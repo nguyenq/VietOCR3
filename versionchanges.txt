@@ -39,7 +39,7 @@ Version 3.1.5 (12 September 2011)
 - Update Tesseract 3.01 to r625
 - Provide Page Segmentation Mode options for Tesseract engine
 
-Version 3.1.6 (22 October 2011)
+Version 3.2 (22 October 2011)
 - Update Tesseract 3.01 to r638 (final release version)
 - Remove unneeded liblept168.dll
 - Update lists of language codes
