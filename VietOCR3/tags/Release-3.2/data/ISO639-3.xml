@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>ISO 639-3 Standard</comment>
+<entry key="ara">Arabic</entry>
+<entry key="ban">Bangla</entry>
+<entry key="ben">Bengali</entry>
+<entry key="bul">Bulgarian</entry>
+<entry key="cat">Catalan</entry>
+<entry key="ces">Czech</entry>
+<entry key="chi_sim">Chinese (simplified)</entry>
+<entry key="chi_tra">Chinese (traditional)</entry>
+<entry key="chr">Cherokee</entry>
+<entry key="cop">Coptic</entry>
+<entry key="dan">Danish</entry>
+<entry key="dan-frak">Danish (Fraktur)</entry>
+<entry key="deu">German</entry>
+<entry key="deu-f">Fraktur</entry>
+<entry key="deu-frak">German (Fraktur)</entry>
+<entry key="ell">Greek</entry>
+<entry key="eng">English</entry>
+<entry key="eus">Basque</entry>
+<entry key="fin">Finish</entry>
+<entry key="fra">French</entry>
+<entry key="heb">Hebrew</entry>
+<entry key="hin">Hindi</entry>
+<entry key="hun">Hungarian</entry>
+<entry key="ind">Indonesian</entry>
+<entry key="ita">Italian</entry>
+<entry key="jpn">Japanese</entry>
+<entry key="kan">Kannada</entry>
+<entry key="khm">Khmer</entry>
+<entry key="kor">Korean</entry>
+<entry key="lav">Latvian</entry>
+<entry key="lit">Lithuanian</entry>
+<entry key="mal">Malayalam</entry>
+<entry key="nld">Dutch</entry>
+<entry key="nor">Norwegian</entry>
+<entry key="osd">Orientation &amp; Script Detection</entry>
+<entry key="pol">Polish</entry>
+<entry key="por">Portuguese</entry>
+<entry key="ron">Romanian</entry>
+<entry key="rus">Russian</entry>
+<entry key="sic">Quechua</entry>
+<entry key="slk">Slovak</entry>
+<entry key="slk-frak">Slovakian Fraktur</entry>
+<entry key="slv">Slovenian</entry>
+<entry key="spa">Spanish</entry>
+<entry key="srp">Serbian</entry>
+<entry key="swe">Swedish</entry>
+<entry key="swe-frak">Swedish (Fraktur)</entry>
+<entry key="tam">Tamil</entry>
+<entry key="tel">Telugu</entry>
+<entry key="tgl">Tagalog</entry>
+<entry key="tha">Thai</entry>
+<entry key="tur">Turkish</entry>
+<entry key="ukr">Ukrainian</entry>
+<entry key="vie">Vietnamese</entry>
+<entry key="vie-1">Viet VNI-TCVN3</entry>
+</properties>
