@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>ISO 639-1 Standard</comment>
+<entry key="ben">bn_BD</entry>
+<entry key="bul">bg_BG</entry>
+<entry key="cat">ca_ES</entry>
+<entry key="ces">cs_CZ</entry>
+<entry key="chi-sim">zh_CN</entry>
+<entry key="chi-tra">zh_TW</entry>
+<entry key="cop">cop_EG</entry>
+<entry key="dan">da_DK</entry>
+<entry key="deu">de_DE</entry>
+<entry key="deu-f">de_DE_f</entry>
+<entry key="ell">el_GR</entry>
+<entry key="eng">en_US</entry>
+<entry key="eus">eu_ES</entry>
+<entry key="fin">fi_FI</entry>
+<entry key="fra">fr_FR</entry>
+<entry key="heb">iw_IL</entry>
+<entry key="hun">hu_HU</entry>
+<entry key="ind">id_ID</entry>
+<entry key="ita">it_IT</entry>
+<entry key="jpn">ja_JP</entry>
+<entry key="kan">kn_IN</entry>
+<entry key="khm">km_KH</entry>
+<entry key="kor">ko_KR</entry>
+<entry key="lav">lv_LV</entry>
+<entry key="lit">lt_LT</entry>
+<entry key="mal">ml_IN</entry>
+<entry key="nld">nl_NL</entry>
+<entry key="nor">no_NO</entry>
+<entry key="pol">pl_PL</entry>
+<entry key="por">pt_BR</entry>
+<entry key="ron">ro_RO</entry>
+<entry key="rus">ru_RU</entry>
+<entry key="slk">sk_SK</entry>
+<entry key="slv">sl_SI</entry>
+<entry key="spa">es_ES</entry>
+<entry key="srp">sr_YU</entry>
+<entry key="swe">sv_SE</entry>
+<entry key="tam">ta_IN</entry>
+<entry key="tel">te_IN</entry>
+<entry key="tgl">tl_PH</entry>
+<entry key="tha">th_TH</entry>
+<entry key="tur">tr_TR</entry>
+<entry key="ukr">uk_UA</entry>
+<entry key="vie">vi_VN</entry>
+</properties>
