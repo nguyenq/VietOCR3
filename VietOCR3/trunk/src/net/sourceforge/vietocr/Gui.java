@@ -1,41 +1,42 @@
 /**
  * Copyright @ 2008 Quan Nguyen
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sourceforge.vietocr;
 
-import java.io.*;
-import javax.swing.*;
-import javax.imageio.*;
-import java.awt.image.*;
 import java.awt.*;
 import java.awt.datatransfer.*;
-import java.util.prefs.Preferences;
-import java.util.*;
-import java.util.List;
-import java.text.*;
-import java.awt.event.*;
-import javax.swing.undo.*;
 import java.awt.dnd.DropTarget;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.nio.channels.*;
+import java.text.*;
+import java.util.List;
+import java.util.*;
+import java.util.prefs.Preferences;
+import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.DefaultEditorKit;
-import net.sourceforge.vietocr.utilities.*;
+import javax.swing.undo.*;
 import net.sourceforge.vietocr.components.*;
-import net.sourceforge.vietpad.inputmethod.*;
-import net.sourceforge.vietpad.components.HtmlPane;
-import net.sourceforge.vietpad.components.SimpleFilter;
+import net.sourceforge.vietocr.utilities.*;
+import net.sourceforge.vietpad.components.*;
+import net.sourceforge.vietpad.inputmethod.VietKeyListener;
 
 public class Gui extends JFrame {
 
@@ -44,6 +45,8 @@ public class Gui extends JFrame {
     static final boolean MAC_OS_X = System.getProperty("os.name").startsWith("Mac");
     static final boolean WINDOWS = System.getProperty("os.name").toLowerCase().startsWith("windows");
 //    static final boolean LINUX = System.getProperty("os.name").equals("Linux");
+    protected final File supportDir = new File(System.getProperty("user.home")
+            + (MAC_OS_X ? "/Library/Application Support/" + APP_NAME : "/." + APP_NAME.toLowerCase()));
     static final String UTF8 = "UTF-8";
     static final String strUILanguage = "UILanguage";
     private static final String strLookAndFeel = "lookAndFeel";
@@ -107,6 +110,7 @@ public class Gui extends JFrame {
         } catch (Exception e) {
             // keep default LAF
         }
+
         bundle = java.util.ResourceBundle.getBundle("net.sourceforge.vietocr.Gui");
         initComponents();
 
@@ -128,6 +132,10 @@ public class Gui extends JFrame {
 
         getInstalledLanguagePacks();
         populateOCRLanguageBox();
+        
+        if (!supportDir.exists()) {
+            supportDir.mkdirs();
+        }
 
         // DnD support
         new DropTarget(this.jImageLabel, new FileDropTargetListener(Gui.this));
@@ -482,7 +490,7 @@ public class Gui extends JFrame {
     }
 
     /**
-     *  Updates the Undo and Redo actions
+     * Updates the Undo and Redo actions
      */
     private void updateUndoRedo() {
         m_undoAction.setEnabled(m_undo.canUndo());
@@ -490,9 +498,9 @@ public class Gui extends JFrame {
     }
 
     /**
-     *  Updates the Cut, Copy, and Delete actions
+     * Updates the Cut, Copy, and Delete actions
      *
-     *@param  isTextSelected  whether any text currently selected
+     * @param isTextSelected whether any text currently selected
      */
     private void updateCutCopyDelete(boolean isTextSelected) {
         actionCut.setEnabled(isTextSelected);
@@ -529,15 +537,15 @@ public class Gui extends JFrame {
     }
 
     /**
-     *  Listens to raw undoable edits
+     * Listens to raw undoable edits
      *
      */
     private class RawListener implements UndoableEditListener {
 
         /**
-         *  Description of the Method
+         * Description of the Method
          *
-         *@param  e  Description of the Parameter
+         * @param e Description of the Parameter
          */
         @Override
         public void undoableEditHappened(UndoableEditEvent e) {
@@ -546,15 +554,15 @@ public class Gui extends JFrame {
     }
 
     /**
-     *  Listens to undoable edits filtered by undoSupport
+     * Listens to undoable edits filtered by undoSupport
      *
      */
     private class SupportListener implements UndoableEditListener {
 
         /**
-         *  Description of the Method
+         * Description of the Method
          *
-         *@param  e  Description of the Parameter
+         * @param e Description of the Parameter
          */
         @Override
         public void undoableEditHappened(UndoableEditEvent e) {
@@ -565,7 +573,7 @@ public class Gui extends JFrame {
     }
 
     /**
-     *  Updates the Paste action
+     * Updates the Paste action
      */
     private void updatePaste() {
         try {
@@ -579,10 +587,10 @@ public class Gui extends JFrame {
         }
     }
 
-    /** This method is called from within the constructor to
-     * initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is
-     * always regenerated by the Form Editor.
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1261,9 +1269,17 @@ public class Gui extends JFrame {
 
     private void jMenuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHelpActionPerformed
         final String readme = bundle.getString("readme");
-        if (MAC_OS_X && new File(readme).exists()) {
+        if (MAC_OS_X) {
             try {
-                Runtime.getRuntime().exec(new String[]{"open", "-a", "Help Viewer", readme});
+                File helpFile = new File(supportDir, "readme.html");
+                copyFileFromJarToSupportDir(helpFile);
+                helpFile = new File(supportDir, "readme_lt.html");
+                copyFileFromJarToSupportDir(helpFile);
+                helpFile = new File(supportDir, "readme_sk.html");
+                copyFileFromJarToSupportDir(helpFile);
+                helpFile = new File(supportDir, "readme_vi.html");
+                copyFileFromJarToSupportDir(helpFile);
+                Runtime.getRuntime().exec(new String[]{"open", "-b", "com.apple.helpviewer", readme}, null, supportDir);
             } catch (IOException x) {
                 x.printStackTrace();
             }
@@ -1280,6 +1296,17 @@ public class Gui extends JFrame {
             helptopicsFrame.setVisible(true);
         }
     }//GEN-LAST:event_jMenuItemHelpActionPerformed
+
+    private void copyFileFromJarToSupportDir(File helpFile) throws IOException {
+        if (!helpFile.exists()) {
+            final ReadableByteChannel input =
+                    Channels.newChannel(ClassLoader.getSystemResourceAsStream(helpFile.getName()));
+            final FileChannel output = new FileOutputStream(helpFile).getChannel();
+            output.transferFrom(input, 0, 1000000L);
+            output.close();
+            input.close();
+        }
+    }
 
     private void jComboBoxLangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxLangItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
@@ -1645,9 +1672,9 @@ public class Gui extends JFrame {
     }
 
     /**
-     *  Displays a dialog to save changes.
+     * Displays a dialog to save changes.
      *
-     *@return    false if user canceled, true else
+     * @return false if user canceled, true else
      */
     protected boolean promptToSave() {
         if (!textChanged) {
@@ -1667,9 +1694,9 @@ public class Gui extends JFrame {
     }
 
     /**
-     *  Updates the Save action.
+     * Updates the Save action.
      *
-     *@param  modified  whether file has been modified
+     * @param modified whether file has been modified
      */
     void updateSave(boolean modified) {
         if (textChanged != modified) {
@@ -1815,10 +1842,10 @@ public class Gui extends JFrame {
     }
 
     /**
-     *  Shows a warning message
+     * Shows a warning message
      *
-     *@param  e        the exception to warn about
-     *@param  message  the message to display
+     * @param e the exception to warn about
+     * @param message the message to display
      */
     public void showError(Exception e, String message) {
         e.printStackTrace();
