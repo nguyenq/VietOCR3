@@ -46,7 +46,7 @@ Version 3.2 (22 October 2011)
 - Update JACOB to 1.16-M1 version
 - Add PSM support to execution from command line
 
-Version 3.2.1 (9 January 2012)
+Version 3.2.1 (14 January 2012)
 - Fix an issue with opening Help file on OS X
 - Update JACOB to 1.16-M2 version
 - Update JNA to 3.4.0 version
