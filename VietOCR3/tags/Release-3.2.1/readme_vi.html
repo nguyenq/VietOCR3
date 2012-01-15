@@ -1,0 +1,189 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>VietOCR - Java GUI Frontend cho Tesseract OCR</title>
+</head>
+<body lang="VI-VN">
+    <div class="Section1">
+        <h2 align="center">
+            VietOCR</h2>
+        <p align="center">
+            <a href="readme.html">English</a> | <a href="readme_lt.html">Lietuviškai</a> | <a
+                href="readme_sk.html">Slovensky</a> | Vietnamese</p>
+        <h3>
+            MÔ TẢ</h3>
+        <p>
+            <a href="http://vietocr.sourceforge.net">VietOCR</a> là một Java GUI frontend cho
+            <a href="http://code.google.com/p/tesseract-ocr/">Tesseract OCR engine</a>, cung
+            cấp hỗ trợ nhận dạng ký tự cho các dạng ảnh phổ thông, và ảnh chứa nhiều trang.
+            Chương trình có phần hậu xử lý giúp sửa chữa các lỗi thường gặp trong quy trình
+            OCR, tăng độ chính xác trên kết quả. Chương trình còn có khả năng vận hành như một
+            ứng dụng console, thi hành lệnh từ command line.</p>
+        <p>
+            Batch processing nay được hỗ trợ. Chương trình theo dõi một watch folder cho các
+            tập tin ảnh mới, tự động xử lý chúng qua OCR engine, và xuất kết quả nhận dạng ra
+            một output folder.</p>
+        <h3>
+            ĐÒI HỎI HỆ THỐNG</h3>
+        <p>
+            <a href="http://java.sun.com/javase/downloads/index.jsp">Java Runtime Environment 6.0</a>
+            hoặc mới hơn.</p>
+        <h3>
+            CÀI ĐẶT</h3>
+        <p>
+            Tesseract 3.0.1 Windows executable đã được gói sẵn với chương trình. Các gói data
+            ngôn ngữ (<a href="http://code.google.com/p/tesseract-ocr/downloads/list">language data
+                packs</a>) cho Tesseract, có tên bắt đầu với mã ISO639-3, nên được đặt vào <tt>tessdata</tt>
+            subdirectory.</p>
+        <p>
+            Cho Linux, Tesseract và language data packages nằm trong Graphics (universe) repository.
+            Chúng có thể được cài qua Synaptic hoặc từ lệnh sau:</p>
+        <blockquote>
+            <p>
+                <tt>sudo apt-get install tesseract-ocr tesseract-ocr-vie</tt></p>
+        </blockquote>
+        <p>
+            Files sẽ được đặt trong <tt>/usr/bin</tt> và <tt>/usr/share/tesseract-ocr/tessdata</tt>,
+            trong thứ tự đó. Mặt khác, nếu Tesseract được xây dựng và cài từ <a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">
+                mã nguồn</a>, chúng sẽ được đặt trong <tt>/usr/local/bin</tt> và <tt>/usr/local/share/tessdata</tt>.
+            Bạn có thể cần chỉ định directory của Tesseract executable từ <tt>Settings</tt>
+            menu của VietOCR. Nếu data nằm trong một directory khác tiêu chuẩn, một soft link
+            tới <tt>tessdata</tt> có thể cần thiết. Bạn cũng có thể cho VietOCR biết địa điểm
+            của <tt>tessdata</tt> qua environment variable <tt>TESSDATA_PREFIX</tt>:</p>
+        <blockquote>
+            <p>
+                <tt>export TESSDATA_PREFIX=/usr/local/share/</tt></p>
+        </blockquote>
+        <p>
+            Cho nền tảng khác, xin tham khảo trang <a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">
+                Tesseract Wiki</a>.</p>
+        <p>
+            VietOCR cũng có cung cấp hỗ trợ tải xuống và cài đặt các language packs được chọn
+            qua <em>Tải dữ liệu ngôn ngữ</em> menu item. Tùy theo địa điểm của thư mục <tt>tessdata</tt>,
+            bạn có thể được yêu cầu chạy chương trình với quyền root hay admin để có thể cài
+            đặt dữ liệu đã được tải vào thư mục đó nếu nó nằm trong một system folder, như là
+            trong <tt>/usr</tt> trên Linux hoặc <tt>C:\Program Files</tt> trên Windows.</p>
+        <p>
+            Hỗ trợ quét văn bản trên Windows được cung cấp qua Windows Image Acquisition Library
+            v2.0, thư viện này đòi hỏi Windows XP Service Pack 1 (SP1) hoặc mới hơn. Thư viện
+            này đến tiêu chuẩn với Windows Vista và 7. Để cài đặt WIA Library trên Windows XP,
+            copy file <tt>wiaaut.dll</tt> vào <tt>System32</tt> directory (thường đặt ở <tt>C:\Windows\System32</tt>)
+            và chạy lệnh từ command line:</p>
+        <blockquote>
+            <p>
+                <tt>regsvr32 C:\Windows\System32\wiaaut.dll</tt></p>
+        </blockquote>
+        <p>
+            Trên Linux, scanning đòi hỏi cài đặt các gói SANE packages:</p>
+        <blockquote>
+            <p>
+                <tt>sudo apt-get install libsane sane sane-utils libsane-extras xsane</tt></p>
+        </blockquote>
+        <p>
+            Hỗ trợ cho PDF được khả thi qua <a href="http://sourceforge.net/projects/ghostscript/">
+                GPL Ghostscript</a>. Sau khi cài đặt thư viện, hãy bảo đảm shared library object
+            (<tt>gsdll32.dll</tt> hoặc <tt>libgs.so</tt>) nằm trong search path bằng cách chỉnh
+            biến môi trường phù hợp. Trên Windows, tiếp đuôi (append) đoạn sau vào giá trị của
+            biến Path (truy cập được qua Control Panel &gt; System &gt; Advanced tab &gt; Environment
+            Variables) cho GS phiên bản 9.04:</p>
+        <blockquote>
+            <p>
+                <tt>;C:\Program Files\gs\gs9.04\bin</tt></p>
+        </blockquote>
+        Trên Linux:<blockquote>
+            <p>
+                <tt>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</tt></p>
+        </blockquote>
+        <p>
+            nơi trong <tt>/usr/local/lib</tt>, <tt>libgs.so</tt> link tới <tt>libgs.so.9.04</tt>
+            được đặt.</p>
+        <p>
+            Tính năng Duyệt chính tả (spellcheck) có được qua Hunspell, mà các <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
+                dictionary</a> files trực thuộc (<tt>.aff</tt>, <tt>.dic</tt>) nên được đặt
+            trong <tt>dict</tt> folder của VietOCR. <tt>user.dic</tt> là một file được mã hóa
+            trong UTF-8 chứa một danh sách các từ riêng, một từ mỗi hàng.</p>
+        <p>
+            Trên Linux, Hunspell và tự điển của nó có thể được cài đặt bởi Synaptic hoặc <tt>apt</tt>,
+            như sau:</p>
+        <blockquote>
+            <tt>sudo apt-get install hunspell hunspell-en-us</tt>
+        </blockquote>
+        <h3>
+            HƯỚNG DẪN</h3>
+        <p>
+            Để phóng chương trình:</p>
+        <blockquote>
+            <p>
+                <tt>java -jar VietOCR.jar</tt></p>
+        </blockquote>
+        <p>
+            <u><b>Lưu ý</b></u>: Nếu bạn gặp out-of-memory exception, hãy chạy <tt>ocr</tt>
+            script file thay vì sử dụng .jar.</p>
+        <p>
+            Bộ Vietnamese language data được tạo cho các font Times New Roman, Arial, Verdana,
+            và Courier New. Do đó, việc nhận dạng sẽ có kết quả cao hơn cho các ảnh có font
+            glyphs tương tự. OCR ảnh có font glyph trông khác các font hỗ trợ thông thường sẽ
+            đòi hỏi <a href="http://code.google.com/p/tesseract-ocr/wiki/TrainingTesseract">tập
+                huấn</a> Tesseract để tạo một bộ language data khác cụ thể cho những mặt chữ
+            đó. Language data cho một số VNI và TCVN3 (ABC) fonts cũng đã được bó kèm trong
+            các phiên bản mới nhất.</p>
+        <p>
+            Hình ảnh muốn được OCR cần quét ở độ phân giải từ 200 DPI (dot per inch) trở lên
+            tới 400 trong trắng đen hoặc grayscale. Quét ảnh với độ phân giải cao hơn nữa chưa
+            hẳn sẽ tăng sự chính xác của kết quả nhận dạng. Hiện tại, mức chính xác có thể lên
+            trên 97% cho Tiếng Việt, và phiên bản tới của Tesseract có thể nâng cao độ nhận
+            dạng hơn nữa. Dầu vậy, độ chính xác thực thụ vẫn còn tùy thuộc rất lớn vào phẩm
+            chất của ảnh quét. Thông số tiêu biểu cho quét ảnh là 300 DPI và 1 bpp (bit per
+            pixel) trắng đen hoặc 8 bpp grayscale dạng không nén (uncompressed) TIFF hay PNG.</p>
+        <p>
+            Chế độ <em>Screenshot Mode</em> cung cấp độ nhận dạng tốt hơn cho những hình ảnh
+            có độ phân giải thấp, chẳng hạn như ảnh in màn hình, bằng cách rescaling chúng tới
+            300 DPI.</p>
+        <p>
+            Ngoài thuật toán hậu xử lý xây trong chương trình, bạn có thể thêm cách thức thay
+            thế từ ngữ đặc riêng của bạn qua một tập tin text có tên <tt>x.DangAmbigs.txt</tt>,
+            mà x là ISO639-3 language code. File này, được mã hóa trong UTF-8, chứa các cặp
+            <tt>giáTrịCũ=giáTrịMới</tt> phân cách bởi dấu bằng.</p>
+        <p>
+            Vài công cụ gắn liền được cung cấp để nối nhiều file ảnh hoặc PDF vào một file đơn
+            để thuận tiện cho các tác vụ OCR, hoặc tách một file PDF thành nhiều file nhỏ hơn
+            nếu nó quá lớn, điều mà có thể gây ra biệt lệ cạn bộ nhớ.</p>
+        <h3>
+            HẬU XỬ LÝ</h3>
+        <p>
+            Các lỗi nhận diện ký tự có thể tổng quát phân làm ba loại. Nhiều lỗi thường bị bởi
+            do lẫn lộn chữ hoa và chữ thường (upper and lower) — ví dụ: hOa, nhắC — có thể dễ
+            dàng sửa chữa sử dụng các chương trình Unicode text editor. Lỗi do sự xử lý không
+            chính xác, gây ra các lỗi như thiếu sót dấu, lầm với ký tự có hình dáng tương tự,
+            v.v… — huu – hưu, mang – marg, h0a – hoa, la – 1a, uhìu - nhìn. Đa số các lỗi này
+            cũng có thể dễ dàng sửa chữa dùng các phần mềm duyệt chính tả. Hàm Hậu xử lý có
+            thể sửa được nhiều lỗi vừa nêu.</p>
+        <p>
+            Loại lỗi cuối cùng là khó phát hiện nhất bởi chúng liên quan đến ngữ nghĩa, semantics,
+            có nghĩa là những chữ đánh vần đúng (tức là mục từ có trong tự điển), nhưng sai
+            nghĩa trong ngữ cảnh (context) — ví dụ: tinh – tình, vân – vấn. Những lỗi này cần
+            phải có người đọc duyệt lại và sửa theo bản gốc trong hình.</p>
+        <p>
+            Sau đây là hướng dẫn cách sửa chữa hai loại lỗi OCR đầu tiên, sử dụng các chức năng
+            được tích hợp sẵn:</p>
+        <ol style='margin-top: 0in' start="1" type="1">
+            <li>Gom dòng. Các hàng chữ (line) cần được gom lại theo từng đoạn (paragraph), bởi khi
+                được OCR, các hàng chữ đứng riêng trong các đoạn 1 hàng (1-line paragraph). Dùng
+                tính năng <i>Nối dòng</i> trong menu <i>Định dạng</i>. Lưu ý rằng tác vụ này có
+                thể không cần cho thi thơ.</li>
+            <li>Cũng trong menu <i>Định dạng</i>, bấm <i>Đổi ngữ cách</i> và chọn <i>Chữ hoa đầu
+                câu</i> để sửa gần như tất cả các lỗi chữ hoa-thường. Hãy dò tìm và sửa các lỗi
+                hoa-thường còn sót.</li>
+            <li>Sửa lỗi chính tả bằng công cụ <i>Duyệt chính tả</i>.</li>
+        </ol>
+        <p>
+            Qua quy trình trên, hầu hết các lỗi thông thường có thể được loại trừ. Những lỗi
+            ngữ nghĩa semantic còn lại ít, nhưng đòi hỏi người duyệt đọc dò lại toàn bộ văn
+            bản để được giống y như văn bản gốc quét, và toàn thiện nếu muốn.</p>
+        <p>
+            Mọi thắc mắc, xin đăng trong <a href="http://vietunicode.sourceforge.net/forum/">Diễn
+                Đàn VietUnicode</a>.</p>
+        <hr />
+    </div>
+</body>
+</html>
