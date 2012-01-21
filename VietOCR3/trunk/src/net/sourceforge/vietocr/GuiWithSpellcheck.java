@@ -1,17 +1,17 @@
 /**
  * Copyright @ 2008 Quan Nguyen
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sourceforge.vietocr;
 
@@ -51,6 +51,7 @@ public class GuiWithSpellcheck extends GuiWithPSM {
 
     /**
      * Populates suggestions at top of context menu.
+     *
      * @param curWord
      */
     void makeSuggestions(final String curWord) {
@@ -82,7 +83,13 @@ public class GuiWithSpellcheck extends GuiWithPSM {
 
         for (String word : suggests) {
             JMenuItem item = new JMenuItem(word);
-            item.setFont(item.getFont().deriveFont(Font.BOLD));
+            Font itemFont = item.getFont();
+            if (itemFont.canDisplayUpTo(word) == -1) {
+                item.setFont(itemFont.deriveFont(Font.BOLD));
+            } else {
+                // use jTextArea's font
+                item.setFont(font.deriveFont(Font.BOLD, itemFont.getSize2D()));
+            }
             item.addActionListener(correctLst);
             popup.add(item);
         }
@@ -113,7 +120,7 @@ public class GuiWithSpellcheck extends GuiWithPSM {
             JOptionPane.showMessageDialog(null, "Need to add an entry in data/ISO639-1.xml file.", Gui.APP_NAME, JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         speller = new SpellCheckHelper(this.jTextArea1, localeId);
         if (this.jToggleButtonSpellCheck.isSelected()) {
             speller.enableSpellCheck();
