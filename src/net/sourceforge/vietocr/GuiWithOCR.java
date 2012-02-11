@@ -88,7 +88,7 @@ public class GuiWithOCR extends GuiWithImageOps {
      * @param index Index of page to be OCRed: -1 for all pages
      */
     void performOCR(final List<IIOImage> iioImageList, final int index, Rectangle rect) {
-        if (this.jComboBoxLang.getSelectedIndex() == -1) {
+        if (curLangCode.trim().length() == 0) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_select_a_language."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }

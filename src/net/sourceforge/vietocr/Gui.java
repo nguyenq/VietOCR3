@@ -842,6 +842,7 @@ public class Gui extends JFrame {
         jLabelLanguage.setToolTipText(bundle.getString("jLabelLanguage.ToolTipText")); // NOI18N
         jToolBar2.add(jLabelLanguage);
 
+        jComboBoxLang.setEditable(true);
         jComboBoxLang.setMaximumSize(new java.awt.Dimension(100, 32767));
         jComboBoxLang.setPreferredSize(new java.awt.Dimension(100, 20));
         jComboBoxLang.addItemListener(new java.awt.event.ItemListener() {
@@ -892,7 +893,7 @@ public class Gui extends JFrame {
         jLabelCurIndex.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabelCurIndex, java.awt.BorderLayout.NORTH);
 
-        jToolBar1.setOrientation(1);
+        jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jButtonPrevPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sourceforge/vietocr/icons/PrevPage.gif"))); // NOI18N
         jButtonPrevPage.setToolTipText(bundle.getString("jButtonPrevPage.ToolTipText")); // NOI18N
@@ -1310,10 +1311,13 @@ public class Gui extends JFrame {
 
     private void jComboBoxLangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxLangItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            curLangCode = installedLanguageCodes[jComboBoxLang.getSelectedIndex()];
-
+            if (jComboBoxLang.getSelectedIndex() != -1) {
+                curLangCode = installedLanguageCodes[jComboBoxLang.getSelectedIndex()];
+            } else {
+                curLangCode = jComboBoxLang.getSelectedItem().toString();
+            }
             // Hide Viet Input Method submenu if selected OCR Language is not Vietnamese
-            boolean vie = curLangCode.startsWith("vie");
+            boolean vie = curLangCode.contains("vie");
             VietKeyListener.setVietModeEnabled(vie);
             this.jMenuInputMethod.setVisible(vie);
             this.jSeparatorInputMethod.setVisible(vie);
