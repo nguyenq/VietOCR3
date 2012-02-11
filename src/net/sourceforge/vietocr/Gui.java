@@ -307,6 +307,7 @@ public class Gui extends JFrame {
 
         DefaultComboBoxModel model = new DefaultComboBoxModel(installedLanguages);
         jComboBoxLang.setModel(model);
+        jComboBoxLang.setSelectedIndex(-1);
         jComboBoxLang.setSelectedItem(prefs.get(strLangCode, null));
         if (installedLanguageCodes != null && jComboBoxLang.getSelectedIndex() != -1) {
             curLangCode = installedLanguageCodes[jComboBoxLang.getSelectedIndex()];
