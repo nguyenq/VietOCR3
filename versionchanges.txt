@@ -55,5 +55,6 @@ Version 3.2.2 (21 January 2012)
 - Fix a context menu's font issue with displaying Unicode characters for spellcheck suggestions
 
 Version 3.3 Beta (11 February 2012)
+- Update Tesseract engine to v3.02 Alpha (r671)
 - Enable text entry in the combobox for Tesseract 3.02's multi-language OCR support
 - Update Hunspell to v1.3.2
