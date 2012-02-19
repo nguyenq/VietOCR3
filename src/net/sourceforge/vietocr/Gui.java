@@ -1543,7 +1543,7 @@ public class Gui extends JFrame {
                     } else {
                         why = e.getMessage();
                     }
-                    e.printStackTrace();
+//                    e.printStackTrace();
                     JOptionPane.showMessageDialog(Gui.this, why, APP_NAME, JOptionPane.ERROR_MESSAGE);
                 } finally {
                     jLabelStatus.setText(bundle.getString("Loading_completed"));
