@@ -845,8 +845,7 @@ public class Gui extends JFrame {
         jToolBar2.add(jLabelLanguage);
 
         jComboBoxLang.setEditable(true);
-        jComboBoxLang.setMaximumSize(new java.awt.Dimension(100, 32767));
-        jComboBoxLang.setPreferredSize(new java.awt.Dimension(100, 20));
+        jComboBoxLang.setMaximumSize(new java.awt.Dimension(100, 24));
         jComboBoxLang.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxLangItemStateChanged(evt);
