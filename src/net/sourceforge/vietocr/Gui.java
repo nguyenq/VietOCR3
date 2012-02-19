@@ -132,7 +132,7 @@ public class Gui extends JFrame {
 
         getInstalledLanguagePacks();
         populateOCRLanguageBox();
-        
+
         if (!supportDir.exists()) {
             supportDir.mkdirs();
         }
@@ -755,6 +755,7 @@ public class Gui extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle(APP_NAME);
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/ocr.png")).getImage());
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(500, 360));
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -763,7 +764,7 @@ public class Gui extends JFrame {
             }
         });
 
-        jButtonOpen.setText(bundle.getString("jButtonOpen.Text")); // NOI18N
+        jButtonOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/open.png"))); // NOI18N
         jButtonOpen.setToolTipText(bundle.getString("jButtonOpen.ToolTipText")); // NOI18N
         jButtonOpen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -772,7 +773,7 @@ public class Gui extends JFrame {
         });
         jToolBar2.add(jButtonOpen);
 
-        jButtonScan.setText(bundle.getString("jButtonScan.Text")); // NOI18N
+        jButtonScan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/scan.png"))); // NOI18N
         jButtonScan.setToolTipText(bundle.getString("jButtonScan.ToolTipText")); // NOI18N
         jButtonScan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonScan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -783,7 +784,7 @@ public class Gui extends JFrame {
         });
         jToolBar2.add(jButtonScan);
 
-        jButtonSave.setText(bundle.getString("jButtonSave.Text")); // NOI18N
+        jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/save.png"))); // NOI18N
         jButtonSave.setToolTipText(bundle.getString("jButtonSave.ToolTipText")); // NOI18N
         jButtonSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonSave.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -794,7 +795,7 @@ public class Gui extends JFrame {
         });
         jToolBar2.add(jButtonSave);
 
-        jButtonOCR.setText(bundle.getString("jButtonOCR.Text")); // NOI18N
+        jButtonOCR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/ocr.png"))); // NOI18N
         jButtonOCR.setToolTipText(bundle.getString("jButtonOCR.ToolTipText")); // NOI18N
         jButtonOCR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -814,7 +815,7 @@ public class Gui extends JFrame {
         });
         jToolBar2.add(jButtonCancelOCR);
 
-        jButtonClear.setText(bundle.getString("jButtonClear.Text")); // NOI18N
+        jButtonClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/clear.png"))); // NOI18N
         jButtonClear.setToolTipText(bundle.getString("jButtonClear.ToolTipText")); // NOI18N
         jButtonClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -824,7 +825,7 @@ public class Gui extends JFrame {
         jToolBar2.add(jButtonClear);
         jToolBar2.add(Box.createHorizontalGlue());
 
-        jToggleButtonSpellCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sourceforge/vietocr/icons/spellcheck.png"))); // NOI18N
+        jToggleButtonSpellCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/spellcheck.png"))); // NOI18N
         jToggleButtonSpellCheck.setToolTipText(bundle.getString("jToggleButtonSpellCheck.ToolTipText")); // NOI18N
         jToggleButtonSpellCheck.setFocusable(false);
         jToggleButtonSpellCheck.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -896,7 +897,7 @@ public class Gui extends JFrame {
 
         jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jButtonPrevPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sourceforge/vietocr/icons/PrevPage.gif"))); // NOI18N
+        jButtonPrevPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/document_page_previous.png"))); // NOI18N
         jButtonPrevPage.setToolTipText(bundle.getString("jButtonPrevPage.ToolTipText")); // NOI18N
         jButtonPrevPage.setEnabled(false);
         jButtonPrevPage.addActionListener(new java.awt.event.ActionListener() {
@@ -906,7 +907,7 @@ public class Gui extends JFrame {
         });
         jToolBar1.add(jButtonPrevPage);
 
-        jButtonNextPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sourceforge/vietocr/icons/NextPage.gif"))); // NOI18N
+        jButtonNextPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/document_page_next.png"))); // NOI18N
         jButtonNextPage.setToolTipText(bundle.getString("jButtonNextPage.ToolTipText")); // NOI18N
         jButtonNextPage.setEnabled(false);
         jButtonNextPage.addActionListener(new java.awt.event.ActionListener() {
@@ -917,7 +918,7 @@ public class Gui extends JFrame {
         jToolBar1.add(jButtonNextPage);
         jToolBar1.add(jSeparator7);
 
-        jButtonFitImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sourceforge/vietocr/icons/FitImage.gif"))); // NOI18N
+        jButtonFitImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_extend.png"))); // NOI18N
         jButtonFitImage.setToolTipText(bundle.getString("jButtonFitImage.ToolTipText")); // NOI18N
         jButtonFitImage.setEnabled(false);
         jButtonFitImage.addActionListener(new java.awt.event.ActionListener() {
@@ -927,7 +928,7 @@ public class Gui extends JFrame {
         });
         jToolBar1.add(jButtonFitImage);
 
-        jButtonActualSize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sourceforge/vietocr/icons/ActualSize.gif"))); // NOI18N
+        jButtonActualSize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_1.png"))); // NOI18N
         jButtonActualSize.setToolTipText(bundle.getString("jButtonActualSize.ToolTipText")); // NOI18N
         jButtonActualSize.setEnabled(false);
         jButtonActualSize.addActionListener(new java.awt.event.ActionListener() {
@@ -938,7 +939,7 @@ public class Gui extends JFrame {
         jToolBar1.add(jButtonActualSize);
         jToolBar1.add(jSeparator8);
 
-        jButtonZoomIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sourceforge/vietocr/icons/ZoomIn.gif"))); // NOI18N
+        jButtonZoomIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_in.png"))); // NOI18N
         jButtonZoomIn.setToolTipText(bundle.getString("jButtonZoomIn.ToolTipText")); // NOI18N
         jButtonZoomIn.setEnabled(false);
         jButtonZoomIn.addActionListener(new java.awt.event.ActionListener() {
@@ -948,7 +949,7 @@ public class Gui extends JFrame {
         });
         jToolBar1.add(jButtonZoomIn);
 
-        jButtonZoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sourceforge/vietocr/icons/ZoomOut.gif"))); // NOI18N
+        jButtonZoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_out.png"))); // NOI18N
         jButtonZoomOut.setToolTipText(bundle.getString("jButtonZoomOut.ToolTipText")); // NOI18N
         jButtonZoomOut.setEnabled(false);
         jButtonZoomOut.addActionListener(new java.awt.event.ActionListener() {
@@ -959,7 +960,7 @@ public class Gui extends JFrame {
         jToolBar1.add(jButtonZoomOut);
         jToolBar1.add(jSeparator9);
 
-        jButtonRotateCCW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sourceforge/vietocr/icons/RotateCCW.gif"))); // NOI18N
+        jButtonRotateCCW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/rotate_ccw.png"))); // NOI18N
         jButtonRotateCCW.setToolTipText(bundle.getString("jButtonRotateCCW.ToolTipText")); // NOI18N
         jButtonRotateCCW.setEnabled(false);
         jButtonRotateCCW.setFocusable(false);
@@ -972,7 +973,7 @@ public class Gui extends JFrame {
         });
         jToolBar1.add(jButtonRotateCCW);
 
-        jButtonRotateCW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sourceforge/vietocr/icons/RotateCW.gif"))); // NOI18N
+        jButtonRotateCW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/rotate_cw.png"))); // NOI18N
         jButtonRotateCW.setToolTipText(bundle.getString("jButtonRotateCW.ToolTipText")); // NOI18N
         jButtonRotateCW.setEnabled(false);
         jButtonRotateCW.setFocusable(false);
@@ -1523,17 +1524,37 @@ public class Gui extends JFrame {
 
             @Override
             protected void done() {
-                jProgressBar1.setIndeterminate(false);
-                loadImage();
-                setTitle(selectedFile.getName() + " - " + APP_NAME);
-                jLabelStatus.setText(bundle.getString("Loading_completed"));
-                jProgressBar1.setString(bundle.getString("Loading_completed"));
-                updateMRUList(selectedFile.getPath());
-                getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                getGlassPane().setVisible(false);
-                jButtonOCR.setEnabled(true);
-                jMenuItemOCR.setEnabled(true);
-                jMenuItemOCRAll.setEnabled(true);
+                try {
+                    get(); // dummy method                   
+                    loadImage();
+                    setTitle(selectedFile.getName() + " - " + APP_NAME);
+                    updateMRUList(selectedFile.getPath());
+                } catch (InterruptedException ignore) {
+                    ignore.printStackTrace();
+                } catch (java.util.concurrent.ExecutionException e) {
+                    String why = null;
+                    Throwable cause = e.getCause();
+                    if (cause != null) {
+                        if (cause instanceof OutOfMemoryError) {
+                            why = bundle.getString("OutOfMemoryError");
+                        } else {
+                            why = cause.getMessage();
+                        }
+                    } else {
+                        why = e.getMessage();
+                    }
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(Gui.this, why, APP_NAME, JOptionPane.ERROR_MESSAGE);
+                } finally {
+                    jLabelStatus.setText(bundle.getString("Loading_completed"));
+                    jProgressBar1.setString(bundle.getString("Loading_completed"));
+                    jProgressBar1.setIndeterminate(false);
+                    getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                    getGlassPane().setVisible(false);
+                    jButtonOCR.setEnabled(true);
+                    jMenuItemOCR.setEnabled(true);
+                    jMenuItemOCRAll.setEnabled(true);
+                }
             }
         };
 
