@@ -198,7 +198,7 @@ public class DownloadDialog extends javax.swing.JDialog {
         boolean isWriteAccess = CheckDirectoryWriteAccess(tessdataDir);
 
         if (!isWriteAccess) {
-            String msg = String.format("You have no write access to \"%1$s\" folder.\nPlease run the program as administrator or super user.", tessdataDir.getPath());
+            String msg = String.format(bundle.getString("Access_denied"), tessdataDir.getPath());
             JOptionPane.showMessageDialog(null, msg, Gui.APP_NAME, JOptionPane.WARNING_MESSAGE);
             return;
         }
