@@ -1618,9 +1618,9 @@ public class Gui extends JFrame {
 
         if (this.isFitImageSelected) {
             // scale image to fit the scrollpane
-            imageIcon.setScaledSize(this.jScrollPane2.getWidth(), this.jScrollPane2.getHeight());
-            scaleX = (float) originalW / (float) this.jScrollPane2.getWidth();
-            scaleY = (float) originalH / (float) this.jScrollPane2.getHeight();
+            imageIcon.setScaledSize(this.jScrollPane2.getViewport().getWidth(), this.jScrollPane2.getViewport().getHeight());
+            scaleX = (float) originalW / (float) this.jScrollPane2.getViewport().getWidth();
+            scaleY = (float) originalH / (float) this.jScrollPane2.getViewport().getHeight();
         } else if (Math.abs(scaleX - 1f) > 0.001f) {
             // scale image for zoom
             imageIcon.setScaledSize((int) (originalW / scaleX), (int) (originalH / scaleY));
@@ -1772,9 +1772,9 @@ public class Gui extends JFrame {
                 @Override
                 public void run() {
                     ((JImageLabel) jImageLabel).deselect();
-                    scaleX *= (float) imageIcon.getIconWidth() / (float) jScrollPane2.getWidth();
-                    scaleY *= (float) imageIcon.getIconHeight() / (float) jScrollPane2.getHeight();
-                    fitImageChange(jScrollPane2.getWidth(), jScrollPane2.getHeight());
+                    scaleX *= (float) imageIcon.getIconWidth() / (float) jScrollPane2.getViewport().getWidth();
+                    scaleY *= (float) imageIcon.getIconHeight() / (float) jScrollPane2.getViewport().getHeight();
+                    fitImageChange(jScrollPane2.getViewport().getWidth(), jScrollPane2.getViewport().getHeight());
                 }
             });
         }
