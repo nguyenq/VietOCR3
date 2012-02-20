@@ -620,8 +620,8 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonCancelOCR">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jButtonCancelOCR.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/fatcow/icons/cancel.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jButtonCancelOCR.ToolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -640,7 +640,7 @@
         <Component class="javax.swing.JButton" name="jButtonClear">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/fatcow/icons/clear.png"/>
+              <Image iconType="3" name="/com/fatcow/icons/draw_eraser.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jButtonClear.ToolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -656,7 +656,7 @@
         <Component class="javax.swing.JToggleButton" name="jToggleButtonSpellCheck">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/fatcow/icons/spellcheck.png"/>
+              <Image iconType="3" name="/com/fatcow/icons/inline_spellcheck.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jToggleButtonSpellCheck.ToolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
