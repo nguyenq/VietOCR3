@@ -804,7 +804,7 @@ public class Gui extends JFrame {
         });
         jToolBar2.add(jButtonOCR);
 
-        jButtonCancelOCR.setText(bundle.getString("jButtonCancelOCR.Text")); // NOI18N
+        jButtonCancelOCR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/cancel.png"))); // NOI18N
         jButtonCancelOCR.setToolTipText(bundle.getString("jButtonCancelOCR.ToolTipText")); // NOI18N
         jButtonCancelOCR.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonCancelOCR.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -815,7 +815,7 @@ public class Gui extends JFrame {
         });
         jToolBar2.add(jButtonCancelOCR);
 
-        jButtonClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/clear.png"))); // NOI18N
+        jButtonClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/draw_eraser.png"))); // NOI18N
         jButtonClear.setToolTipText(bundle.getString("jButtonClear.ToolTipText")); // NOI18N
         jButtonClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -825,7 +825,7 @@ public class Gui extends JFrame {
         jToolBar2.add(jButtonClear);
         jToolBar2.add(Box.createHorizontalGlue());
 
-        jToggleButtonSpellCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/spellcheck.png"))); // NOI18N
+        jToggleButtonSpellCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/inline_spellcheck.png"))); // NOI18N
         jToggleButtonSpellCheck.setToolTipText(bundle.getString("jToggleButtonSpellCheck.ToolTipText")); // NOI18N
         jToggleButtonSpellCheck.setFocusable(false);
         jToggleButtonSpellCheck.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
