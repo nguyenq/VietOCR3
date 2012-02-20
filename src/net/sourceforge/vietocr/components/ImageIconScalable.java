@@ -11,6 +11,7 @@ import java.net.*;
 import javax.imageio.IIOImage;
 
 public class ImageIconScalable extends ImageIcon {
+
     private int width = -1;
     private int height = -1;
 
@@ -78,10 +79,15 @@ public class ImageIconScalable extends ImageIcon {
         if (image == null) {
             return;
         }
+
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
         if ((width == -1) && (height == -1)) {
-            g.drawImage(image, x, y, c);
+            g2d.drawImage(image, x, y, c);
         } else {
-            g.drawImage(image, x, y, width, height, c);
+            g2d.drawImage(image, x, y, width, height, c);
         }
     }
 
@@ -119,9 +125,9 @@ public class ImageIconScalable extends ImageIcon {
 //        AffineTransform at = AffineTransform.getRotateInstance(angle, newW / 2, newH / 2);
 //        at.translate((newW - w) / 2, (newH - h) / 2);
 //        g2d.drawRenderedImage((BufferedImage) this.getImage(), at);
-        
+
         g2d.dispose();
-        
+
         return new ImageIconScalable(result);
     }
 
