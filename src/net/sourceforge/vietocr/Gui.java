@@ -225,6 +225,14 @@ public class Gui extends JFrame {
 //        });
     }
 
+    @Override
+    public List<Image> getIconImages() {
+        List<Image> images = new ArrayList<Image>();
+        images.add(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/ocr_small.png")).getImage());
+        images.add(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/ocr.png")).getImage());
+        return images;
+    }
+
     /**
      * Adds Undo support to textarea via context menu.
      */
@@ -755,7 +763,7 @@ public class Gui extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle(APP_NAME);
-        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/ocr.png")).getImage());
+        setIconImages(getIconImages());
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(500, 360));
         addComponentListener(new java.awt.event.ComponentAdapter() {
