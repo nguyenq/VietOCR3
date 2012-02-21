@@ -657,11 +657,6 @@ public class Gui extends JFrame {
         jTextArea1.getCaret().setBlinkRate(blinkRate);
         jTextArea1.getDocument().putProperty(DefaultEditorKit.EndOfLineStringProperty, System.getProperty("line.separator"));
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jScrollPane2.getVerticalScrollBar().setUnitIncrement(20);
-        jScrollPane2.getHorizontalScrollBar().setUnitIncrement(20);
-        jImageLabel = new JImageLabel();
-        jLabelCurIndex = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
         jButtonPrevPage = new javax.swing.JButton();
         jButtonNextPage = new javax.swing.JButton();
@@ -674,6 +669,12 @@ public class Gui extends JFrame {
         jSeparator9 = new javax.swing.JToolBar.Separator();
         jButtonRotateCCW = new javax.swing.JButton();
         jButtonRotateCW = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabelCurIndex = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane2.getVerticalScrollBar().setUnitIncrement(20);
+        jScrollPane2.getHorizontalScrollBar().setUnitIncrement(20);
+        jImageLabel = new JImageLabel();
         jPanelStatus = new javax.swing.JPanel();
         jLabelStatus = new javax.swing.JLabel();
         jLabelStatus.setVisible(false); // use jProgressBar instead for (more animation) task status
@@ -889,19 +890,6 @@ public class Gui extends JFrame {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jImageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jImageLabelMouseEntered(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jImageLabel);
-
-        jPanel1.add(jScrollPane2, java.awt.BorderLayout.CENTER);
-
-        jLabelCurIndex.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabelCurIndex, java.awt.BorderLayout.NORTH);
-
         jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jButtonPrevPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/document_page_previous.png"))); // NOI18N
@@ -1010,6 +998,23 @@ public class Gui extends JFrame {
         jToolBar1.add(jButtonRotateCW);
 
         jPanel1.add(jToolBar1, java.awt.BorderLayout.WEST);
+
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jLabelCurIndex.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel2.add(jLabelCurIndex, java.awt.BorderLayout.NORTH);
+
+        jImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jImageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jImageLabelMouseEntered(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jImageLabel);
+
+        jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
 
         jSplitPane1.setLeftComponent(jPanel1);
 
@@ -1978,6 +1983,7 @@ public class Gui extends JFrame {
     private javax.swing.JMenu jMenuTools;
     protected javax.swing.JMenu jMenuUILang;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelStatus;
     protected javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
