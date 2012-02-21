@@ -822,6 +822,7 @@ public class Gui extends JFrame {
             }
         });
         jToolBar2.add(jButtonCancelOCR);
+        jToolBar2.add(Box.createHorizontalGlue());
 
         jButtonClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/draw_eraser.png"))); // NOI18N
         jButtonClear.setToolTipText(bundle.getString("jButtonClear.ToolTipText")); // NOI18N
@@ -831,7 +832,6 @@ public class Gui extends JFrame {
             }
         });
         jToolBar2.add(jButtonClear);
-        jToolBar2.add(Box.createHorizontalGlue());
 
         jToggleButtonSpellCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/inline_spellcheck.png"))); // NOI18N
         jToggleButtonSpellCheck.setToolTipText(bundle.getString("jToggleButtonSpellCheck.ToolTipText")); // NOI18N
