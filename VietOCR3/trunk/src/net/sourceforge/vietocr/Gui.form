@@ -226,7 +226,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemDeskew">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Deskew"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jMenuItemDeskew.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemDeskewActionPerformed"/>
@@ -395,7 +397,9 @@
             </MenuItem>
             <Menu class="javax.swing.JMenu" name="jMenuPSM">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Page Segmentation Mode"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jMenuPSM.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
