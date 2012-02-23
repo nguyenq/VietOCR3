@@ -1135,7 +1135,7 @@ public class Gui extends JFrame {
         jMenuImage.add(jMenuItemMetadata);
         jMenuImage.add(jSeparator11);
 
-        jMenuItemDeskew.setText("Deskew");
+        jMenuItemDeskew.setText(bundle.getString("jMenuItemDeskew.Text")); // NOI18N
         jMenuItemDeskew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemDeskewActionPerformed(evt);
@@ -1222,7 +1222,7 @@ public class Gui extends JFrame {
         jMenuSettings.add(jMenuItemDownloadLangData);
         jMenuSettings.add(jSeparator5);
 
-        jMenuPSM.setText("Page Segmentation Mode");
+        jMenuPSM.setText(bundle.getString("jMenuPSM.Text")); // NOI18N
         jMenuSettings.add(jMenuPSM);
         jMenuSettings.add(jSeparatorOptions);
 
