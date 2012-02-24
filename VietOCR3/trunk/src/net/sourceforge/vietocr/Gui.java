@@ -1135,6 +1135,7 @@ public class Gui extends JFrame {
         jMenuImage.add(jMenuItemMetadata);
         jMenuImage.add(jSeparator11);
 
+        jMenuItemDeskew.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemDeskew.Mnemonic").charAt(0));
         jMenuItemDeskew.setText(bundle.getString("jMenuItemDeskew.Text")); // NOI18N
         jMenuItemDeskew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1222,6 +1223,7 @@ public class Gui extends JFrame {
         jMenuSettings.add(jMenuItemDownloadLangData);
         jMenuSettings.add(jSeparator5);
 
+        jMenuPSM.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuPSM.Mnemonic").charAt(0));
         jMenuPSM.setText(bundle.getString("jMenuPSM.Text")); // NOI18N
         jMenuSettings.add(jMenuPSM);
         jMenuSettings.add(jSeparatorOptions);
