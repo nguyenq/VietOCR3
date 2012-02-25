@@ -54,7 +54,8 @@ Version 3.2.1 (14 January 2012)
 Version 3.2.2 (21 January 2012)
 - Fix a context menu's font issue with displaying Unicode characters for spellcheck suggestions
 
-Version 3.3 (24 February 2012)
+Version 3.3 (25 February 2012)
 - Download Language Data will warn if the user does not have write access to tessdata folder
+- Fix a bug with scrollbars visible when Fit Image selected
 - Update Hunspell to v1.3.2
 - Use icons from FatCow (http://www.fatcow.com/free-icons) and by Rimas Kudelis
