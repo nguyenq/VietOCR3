@@ -853,6 +853,7 @@ public class Gui extends JFrame {
         jLabelLanguage.setToolTipText(bundle.getString("jLabelLanguage.ToolTipText")); // NOI18N
         jToolBar2.add(jLabelLanguage);
 
+        jComboBoxLang.setEditable(true);
         jComboBoxLang.setMaximumSize(new java.awt.Dimension(100, 24));
         jComboBoxLang.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -1786,13 +1787,28 @@ public class Gui extends JFrame {
                 @Override
                 public void run() {
                     ((JImageLabel) jImageLabel).deselect();
-                    scaleX *= (float) imageIcon.getIconWidth() / (float) jScrollPane2.getViewport().getWidth();
-                    scaleY *= (float) imageIcon.getIconHeight() / (float) jScrollPane2.getViewport().getHeight();
-                    fitImageChange(jScrollPane2.getViewport().getWidth(), jScrollPane2.getViewport().getHeight());
+                    fitImagetoContainer(originalW, originalH, jScrollPane2.getViewport().getWidth(), jScrollPane2.getViewport().getHeight());
                 }
             });
         }
     }//GEN-LAST:event_formComponentResized
+    
+    void fitImagetoContainer(int iw, int ih, int cw, int ch) {
+        float ratio = (float) iw / ih;
+
+        iw = cw;
+        ih = (int) Math.floor(cw / ratio);
+
+        if (ih > ch) {
+            ih = ch;
+            iw = (int) Math.floor(ch * ratio);
+        }
+        scaleX = (float) iw / cw;
+        scaleY = (float) ih / ch;
+
+        fitImageChange(iw, ih);
+    }
+
     void fitImageChange(final int width, final int height) {
         SwingUtilities.invokeLater(new Runnable() {
 
@@ -1805,6 +1821,7 @@ public class Gui extends JFrame {
             }
         });
     }
+    
     void jMenuItemScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemScanActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemScanActionPerformed
