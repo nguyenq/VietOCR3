@@ -1793,20 +1793,29 @@ public class Gui extends JFrame {
         }
     }//GEN-LAST:event_formComponentResized
     
-    void fitImagetoContainer(int iw, int ih, int cw, int ch) {
-        float ratio = (float) iw / ih;
+    /**
+     * Best fit image height and width calculation algorithm.
+     * 
+     * http://www.karpach.com/Best-fit-calculations-algorithm.htm
+     * @param w
+     * @param h
+     * @param maxWidth
+     * @param maxHeight 
+     */
+    void fitImagetoContainer(int w, int h, int maxWidth, int maxHeight) {
+        float ratio = (float) w / h;
 
-        iw = cw;
-        ih = (int) Math.floor(cw / ratio);
+        w = maxWidth;
+        h = (int) Math.floor(maxWidth / ratio);
 
-        if (ih > ch) {
-            ih = ch;
-            iw = (int) Math.floor(ch * ratio);
+        if (h > maxHeight) {
+            h = maxHeight;
+            w = (int) Math.floor(maxHeight * ratio);
         }
-        scaleX = (float) iw / cw;
-        scaleY = (float) ih / ch;
+        scaleX = (float) w / maxWidth;
+        scaleY = (float) h / maxHeight;
 
-        fitImageChange(iw, ih);
+        fitImageChange(w, h);
     }
 
     void fitImageChange(final int width, final int height) {
