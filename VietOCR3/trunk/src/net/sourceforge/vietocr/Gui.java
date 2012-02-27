@@ -1633,9 +1633,8 @@ public class Gui extends JFrame {
 
         if (this.isFitImageSelected) {
             // scale image to fit the scrollpane
-            imageIcon.setScaledSize(this.jScrollPane2.getViewport().getWidth(), this.jScrollPane2.getViewport().getHeight());
-            scaleX = (float) originalW / (float) this.jScrollPane2.getViewport().getWidth();
-            scaleY = (float) originalH / (float) this.jScrollPane2.getViewport().getHeight();
+            Dimension fitSize = fitImagetoContainer(originalW, originalH, jScrollPane2.getViewport().getWidth(), jScrollPane2.getViewport().getHeight());
+            imageIcon.setScaledSize(fitSize.width, fitSize.height);
         } else if (Math.abs(scaleX - 1f) > 0.001f) {
             // scale image for zoom
             imageIcon.setScaledSize((int) (originalW / scaleX), (int) (originalH / scaleY));
@@ -1787,22 +1786,24 @@ public class Gui extends JFrame {
                 @Override
                 public void run() {
                     ((JImageLabel) jImageLabel).deselect();
-                    fitImagetoContainer(originalW, originalH, jScrollPane2.getViewport().getWidth(), jScrollPane2.getViewport().getHeight());
+                    Dimension fitSize = fitImagetoContainer(originalW, originalH, jScrollPane2.getViewport().getWidth(), jScrollPane2.getViewport().getHeight());
+                    fitImageChange(fitSize.width, fitSize.height);
                 }
             });
         }
     }//GEN-LAST:event_formComponentResized
-    
+
     /**
      * Best fit image height and width calculation algorithm.
-     * 
+     *
      * http://www.karpach.com/Best-fit-calculations-algorithm.htm
+     *
      * @param w
      * @param h
      * @param maxWidth
-     * @param maxHeight 
+     * @param maxHeight
      */
-    void fitImagetoContainer(int w, int h, int maxWidth, int maxHeight) {
+    Dimension fitImagetoContainer(int w, int h, int maxWidth, int maxHeight) {
         float ratio = (float) w / h;
 
         w = maxWidth;
@@ -1812,10 +1813,8 @@ public class Gui extends JFrame {
             h = maxHeight;
             w = (int) Math.floor(maxHeight * ratio);
         }
-        scaleX = (float) w / maxWidth;
-        scaleY = (float) h / maxHeight;
 
-        fitImageChange(w, h);
+        return new Dimension(w, h);
     }
 
     void fitImageChange(final int width, final int height) {
@@ -1830,7 +1829,7 @@ public class Gui extends JFrame {
             }
         });
     }
-    
+
     void jMenuItemScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemScanActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemScanActionPerformed

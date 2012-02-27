@@ -15,6 +15,7 @@
  */
 package net.sourceforge.vietocr;
 
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -62,7 +63,8 @@ public class GuiWithImageOps extends GuiWithScan {
         this.jButtonZoomOut.setEnabled(false);
         ((JImageLabel) jImageLabel).deselect();
         curScrollPos = this.jScrollPane2.getViewport().getViewPosition();
-        fitImagetoContainer(originalW, originalH, this.jScrollPane2.getViewport().getWidth(), this.jScrollPane2.getViewport().getHeight());
+        Dimension fitSize = fitImagetoContainer(originalW, originalH, this.jScrollPane2.getViewport().getWidth(), this.jScrollPane2.getViewport().getHeight());
+        fitImageChange(fitSize.width, fitSize.height);
         isFitImageSelected = true;
     }
 
