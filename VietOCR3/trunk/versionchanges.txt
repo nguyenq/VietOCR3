@@ -64,3 +64,4 @@ Version 3.4 Beta (28 February 2012)
 - Update Tesseract engine to v3.02 Alpha (r679)
 - Use Tesseract 3.02 language data packs
 - Enable text entry in the combobox for Tesseract 3.02's multi-language OCR support
+- Fit Image now retains image aspect ratio
