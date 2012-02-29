@@ -59,3 +59,8 @@ Version 3.3 (25 February 2012)
 - Fix a bug with scrollbars visible when Fit Image selected
 - Update Hunspell to v1.3.2
 - Use icons from FatCow (http://www.fatcow.com/free-icons) and by Rimas Kudelis
+
+Version 3.4 Beta (28 February 2012)
+- Update Tesseract engine to v3.02 Alpha (r679)
+- Use Tesseract 3.02 language data packs
+- Enable text entry in the combobox for Tesseract 3.02's multi-language OCR support
