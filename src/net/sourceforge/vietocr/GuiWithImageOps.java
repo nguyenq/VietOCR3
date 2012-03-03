@@ -63,8 +63,17 @@ public class GuiWithImageOps extends GuiWithScan {
         this.jButtonZoomOut.setEnabled(false);
         ((JImageLabel) jImageLabel).deselect();
         curScrollPos = this.jScrollPane2.getViewport().getViewPosition();
-        Dimension fitSize = fitImagetoContainer(originalW, originalH, this.jScrollPane2.getViewport().getWidth(), this.jScrollPane2.getViewport().getHeight());
+        int w = this.jScrollPane2.getViewport().getWidth();
+        if (this.jScrollPane2.getVerticalScrollBar().isVisible()) {
+            w += this.jScrollPane2.getVerticalScrollBar().getWidth();
+        }
+        int h = this.jScrollPane2.getViewport().getHeight();
+        if (this.jScrollPane2.getHorizontalScrollBar().isVisible()) {
+            h += this.jScrollPane2.getHorizontalScrollBar().getHeight();
+        }
+        Dimension fitSize = fitImagetoContainer(originalW, originalH, w, h);
         fitImageChange(fitSize.width, fitSize.height);
+        setScale(fitSize.width, fitSize.height);
         isFitImageSelected = true;
     }
 

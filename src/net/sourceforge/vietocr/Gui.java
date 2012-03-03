@@ -1020,6 +1020,7 @@ public class Gui extends JFrame {
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
 
+        jPanelStatus.setPreferredSize(new java.awt.Dimension(161, 28));
         jPanelStatus.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
         jPanelStatus.add(jLabelStatus);
 
@@ -1635,6 +1636,7 @@ public class Gui extends JFrame {
             // scale image to fit the scrollpane
             Dimension fitSize = fitImagetoContainer(originalW, originalH, jScrollPane2.getViewport().getWidth(), jScrollPane2.getViewport().getHeight());
             imageIcon.setScaledSize(fitSize.width, fitSize.height);
+            setScale(fitSize.width, fitSize.height);
         } else if (Math.abs(scaleX - 1f) > 0.001f) {
             // scale image for zoom
             imageIcon.setScaledSize((int) (originalW / scaleX), (int) (originalH / scaleY));
@@ -1788,6 +1790,7 @@ public class Gui extends JFrame {
                     ((JImageLabel) jImageLabel).deselect();
                     Dimension fitSize = fitImagetoContainer(originalW, originalH, jScrollPane2.getViewport().getWidth(), jScrollPane2.getViewport().getHeight());
                     fitImageChange(fitSize.width, fitSize.height);
+                    setScale(fitSize.width, fitSize.height);
                 }
             });
         }
@@ -1815,6 +1818,16 @@ public class Gui extends JFrame {
         }
 
         return new Dimension(w, h);
+    }
+
+    void setScale(int width, int height) {
+        scaleX = (float) originalW / width;
+        scaleY = (float) originalH / height;
+        if (scaleX > scaleY) {
+            scaleY = scaleX;
+        } else {
+            scaleX = scaleY;
+        }
     }
 
     void fitImageChange(final int width, final int height) {
