@@ -14,13 +14,12 @@ public class OCRImagesTest {
 
     String tessPath = System.getProperty("user.dir") + "./tesseract";
     String lang = "vie";
-    List<IIOImage> iioImageList;
     OCRImageEntity entity;
 
     public OCRImagesTest() {
         File selectedFile = new File("samples/vietsample1.tif");
         try {
-            iioImageList = ImageIOHelper.getIIOImageList(selectedFile);
+            List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(selectedFile);
             entity = new OCRImageEntity(iioImageList, -1, null, "vie");
         } catch (Exception e) {
         }
