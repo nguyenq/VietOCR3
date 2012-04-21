@@ -18,24 +18,30 @@ package net.sourceforge.vietocr;
 import java.io.File;
 import java.util.List;
 import javax.imageio.IIOImage;
-import net.sourceforge.tess4j.Tesseract;
+//import net.sourceforge.tess4j.Tesseract;
 
+/**
+ * Invokes Tesseract library through JNA-based Tess4J wrapper.<br />
+ * 
+ * Removed at this time for high frequency of hard crashes.
+ */
 public class OCRImages extends OCR<IIOImage> {
 
-    Tesseract instance;
+//    Tesseract instance;
     final String TESSDATA = "tessdata";
 
     OCRImages(String tessPath) {
-        instance = Tesseract.getInstance();
-        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
-        instance.setDatapath(new File(tessPath, TESSDATA).getPath());
+//        instance = Tesseract.getInstance();
+//        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
+//        instance.setDatapath(new File(tessPath, TESSDATA).getPath());
     }
 
     @Override
     public String recognizeText(List<IIOImage> images, String lang) throws Exception {
-        instance.setLanguage(lang);
-        String text = instance.doOCR(images, rect);
-
-        return text;
+//        instance.setLanguage(lang);
+//        String text = instance.doOCR(images, rect);
+//
+//        return text;
+        return null;
     }
 }
