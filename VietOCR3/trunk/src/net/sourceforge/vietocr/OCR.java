@@ -32,7 +32,7 @@ public abstract class OCR<T> {
      * @return
      * @throws Exception
      */
-    public String RecognizeText(List<T> imageEntities, String lang, Rectangle selection) throws Exception {
+    public String recognizeText(List<T> imageEntities, String lang, Rectangle selection) throws Exception {
         rect = selection;
         return recognizeText(imageEntities, lang);
     }
