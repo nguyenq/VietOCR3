@@ -79,8 +79,8 @@ public class ConsoleApp {
                 tessPath = Gui.prefs.get("TesseractDirectory", new File(baseDir, "tesseract").getPath());
             }
 
-            OCR ocrEngine = new OCR(tessPath);
-            ocrEngine.setPSM(psm);
+            OCR<File> ocrEngine = new OCRFiles(tessPath);
+            ocrEngine.setPageSegMode(psm);
             List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(imageFile);
             tempTiffFiles = ImageIOHelper.createTiffFiles(iioImageList, -1);
             String result = ocrEngine.recognizeText(tempTiffFiles, curLangCode);

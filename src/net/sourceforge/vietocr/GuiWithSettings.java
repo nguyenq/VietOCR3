@@ -1,36 +1,34 @@
 /**
  * Copyright @ 2008 Quan Nguyen
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sourceforge.vietocr;
 
-import net.sourceforge.vietocr.utilities.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 import javax.imageio.IIOImage;
 import javax.swing.*;
 import javax.swing.Timer;
-import net.sourceforge.vietocr.postprocessing.Processor;
-import net.sourceforge.vietocr.postprocessing.TextUtilities;
+import net.sourceforge.vietocr.utilities.*;
+import net.sourceforge.vietocr.postprocessing.*;
 
 public class GuiWithSettings extends GuiWithLaF {
 
     private final String strWatchFolder = "WatchFolder";
     private final String strOutputFolder = "OutputFolder";
     private final String strWatchEnabled = "WatchEnabled";
-    
     private String watchFolder;
     private String outputFolder;
     private boolean watchEnabled;
@@ -80,8 +78,8 @@ public class GuiWithSettings extends GuiWithLaF {
                             List<File> tempTiffFiles = null;
 
                             try {
-                                OCR ocrEngine = new OCR(tessPath);
-                                ocrEngine.setPSM(selectedPSM);
+                                OCR<File> ocrEngine = new OCRFiles(tessPath);
+                                ocrEngine.setPageSegMode(selectedPSM);
                                 List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(imageFile);
                                 tempTiffFiles = ImageIOHelper.createTiffFiles(iioImageList, -1);
                                 String result = ocrEngine.recognizeText(tempTiffFiles, curLangCode);

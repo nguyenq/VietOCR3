@@ -78,6 +78,13 @@ public class OCRImageEntity {
     public List<IIOImage> getOimages() {
         return oimages;
     }
+    
+    /**
+     * @return the list of selected oimages
+     */
+    public List<IIOImage> getSelectedOimages() {
+        return index == -1 ? oimages : oimages.subList(index, index + 1);
+    }
 
     /**
      * @return the imageFile

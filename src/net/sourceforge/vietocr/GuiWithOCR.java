@@ -1,17 +1,17 @@
 /**
  * Copyright @ 2008 Quan Nguyen
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sourceforge.vietocr;
 
@@ -126,6 +126,7 @@ public class GuiWithOCR extends GuiWithImageOps {
 
         OCRImageEntity entity;
         List<File> workingFiles;
+        List<IIOImage> imageList;
 
         OcrWorker(OCRImageEntity entity) {
             this.entity = entity;
@@ -133,14 +134,23 @@ public class GuiWithOCR extends GuiWithImageOps {
 
         @Override
         protected Void doInBackground() throws Exception {
-            OCR ocrEngine = new OCR(tessPath);
-            ocrEngine.setPSM(selectedPSM); // set page segmentation mode
-            
-            workingFiles = entity.getClonedImageFiles();
+            OCR<IIOImage> ocrEngine = new OCRImages(tessPath);
+            ocrEngine.setPageSegMode(selectedPSM); // set page segmentation mode
 
-            for (int i = 0; i < workingFiles.size(); i++) {
+//            workingFiles = entity.getClonedImageFiles();
+            
+//            for (int i = 0; i < workingFiles.size(); i++) {
+//                if (!isCancelled()) {
+//                    String result = ocrEngine.recognizeText(workingFiles.subList(i, i + 1), entity.getLanguage());
+//                    publish(result); // interim result
+//                }
+//            }
+
+            imageList = entity.getSelectedOimages();
+            
+            for (int i = 0; i < imageList.size(); i++) {
                 if (!isCancelled()) {
-                    String result = ocrEngine.recognizeText(workingFiles.subList(i, i + 1), entity.getLanguage());
+                    String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), entity.getLanguage());
                     publish(result); // interim result
                 }
             }
