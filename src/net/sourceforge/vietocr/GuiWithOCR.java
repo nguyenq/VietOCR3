@@ -126,7 +126,9 @@ public class GuiWithOCR extends GuiWithImageOps {
 
         OCRImageEntity entity;
         List<File> workingFiles;
-        List<IIOImage> imageList;
+        
+        // Option for Tess4J
+//        List<IIOImage> imageList;
 
         OcrWorker(OCRImageEntity entity) {
             this.entity = entity;
@@ -134,26 +136,27 @@ public class GuiWithOCR extends GuiWithImageOps {
 
         @Override
         protected Void doInBackground() throws Exception {
-            OCR<IIOImage> ocrEngine = new OCRImages(tessPath);
+            OCR<File> ocrEngine = new OCRFiles(tessPath);
             ocrEngine.setPageSegMode(selectedPSM); // set page segmentation mode
 
-//            workingFiles = entity.getClonedImageFiles();
+            workingFiles = entity.getClonedImageFiles();
             
-//            for (int i = 0; i < workingFiles.size(); i++) {
-//                if (!isCancelled()) {
-//                    String result = ocrEngine.recognizeText(workingFiles.subList(i, i + 1), entity.getLanguage());
-//                    publish(result); // interim result
-//                }
-//            }
-
-            imageList = entity.getSelectedOimages();
-            
-            for (int i = 0; i < imageList.size(); i++) {
+            for (int i = 0; i < workingFiles.size(); i++) {
                 if (!isCancelled()) {
-                    String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), entity.getLanguage());
+                    String result = ocrEngine.recognizeText(workingFiles.subList(i, i + 1), entity.getLanguage());
                     publish(result); // interim result
                 }
             }
+
+            // Option for Tess4J
+//            imageList = entity.getSelectedOimages();
+//            
+//            for (int i = 0; i < imageList.size(); i++) {
+//                if (!isCancelled()) {
+//                    String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), entity.getLanguage());
+//                    publish(result); // interim result
+//                }
+//            }
 
             return null;
         }
