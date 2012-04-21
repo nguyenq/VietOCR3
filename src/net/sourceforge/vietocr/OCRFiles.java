@@ -18,6 +18,9 @@ package net.sourceforge.vietocr;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Invokes Tesseract executable via command-line.
+ */
 public class OCRFiles extends OCR<File> {
 
     private final String LANG_OPTION = "-l";
