@@ -24,6 +24,7 @@ import com.sun.media.imageio.plugins.tiff.*;
 import java.awt.Toolkit;
 import java.awt.image.*;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import org.w3c.dom.NodeList;
 
 public class ImageIOHelper {
@@ -204,8 +205,23 @@ public class ImageIOHelper {
 //        ImageIO.write(image.getRenderedImage(), "tiff", ios); // this can be used in lieu of writer
         ios.seek(0);
         BufferedImage bi = ImageIO.read(ios);
+        return convertImageData(bi);
+    }
+    
+        /**
+     * Converts <code>BufferedImage</code> to <code>ByteBuffer</code>.
+     * 
+     * @param bi Input image
+     * @return 
+     */
+    public static ByteBuffer convertImageData(BufferedImage bi) {
         byte[] pixelData = ((DataBufferByte) bi.getRaster().getDataBuffer()).getData();
-        return ByteBuffer.wrap(pixelData);
+ //        return ByteBuffer.wrap(pixelData);
+        ByteBuffer buf = ByteBuffer.allocateDirect(pixelData.length);
+        buf.order(ByteOrder.nativeOrder());
+        buf.put(pixelData);
+        buf.flip();
+        return buf;
     }
 
     /**
