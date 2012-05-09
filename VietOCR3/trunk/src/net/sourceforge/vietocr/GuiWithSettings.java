@@ -127,6 +127,7 @@ public class GuiWithSettings extends GuiWithLaF {
         optionsDialog.setDangAmbigsPath(dangAmbigsPath);
         optionsDialog.setDangAmbigsEnabled(dangAmbigsOn);
         optionsDialog.setCurLangCode(curLangCode);
+        optionsDialog.setTessDllEnabled(tessDllEnabled);
 
         if (optionsDialog.showDialog() == JOptionPane.OK_OPTION) {
             watchFolder = optionsDialog.getWatchFolder();
@@ -139,6 +140,7 @@ public class GuiWithSettings extends GuiWithLaF {
             }
             dangAmbigsPath = optionsDialog.getDangAmbigsPath();
             dangAmbigsOn = optionsDialog.isDangAmbigsEnabled();
+            tessDllEnabled = optionsDialog.isTessDllEnabled();
 
             watcher.setPath(new File(watchFolder));
             watcher.setEnabled(watchEnabled);

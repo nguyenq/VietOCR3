@@ -25,8 +25,14 @@ import net.sourceforge.vietocr.components.JImageLabel;
 
 public class GuiWithOCR extends GuiWithImageOps {
 
+    private final String strTessDllEnabled = "TessDllEnabled";
     private OcrWorker ocrWorker;
     protected String selectedPSM = "3"; // 3 - Fully automatic page segmentation, but no OSD (default)
+    protected boolean tessDllEnabled;
+
+    public GuiWithOCR() {
+        tessDllEnabled = prefs.getBoolean(strTessDllEnabled, false);
+    }
 
     @Override
     void jMenuItemOCRActionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,9 +132,8 @@ public class GuiWithOCR extends GuiWithImageOps {
 
         OCRImageEntity entity;
         List<File> workingFiles;
-        
         // Option for Tess4J
-//        List<IIOImage> imageList;
+        List<IIOImage> imageList;
 
         OcrWorker(OCRImageEntity entity) {
             this.entity = entity;
@@ -136,27 +141,35 @@ public class GuiWithOCR extends GuiWithImageOps {
 
         @Override
         protected Void doInBackground() throws Exception {
-            OCR<File> ocrEngine = new OCRFiles(tessPath);
+            OCR ocrEngine;
+
+            if (!tessDllEnabled) {
+                ocrEngine = new OCRFiles(tessPath);
+            } else {
+                ocrEngine = new OCRImages(tessPath); // for Tess4J
+            }
+//            OCR<IIOImage> ocrEngine = new OCRImages(tessPath); // for Tess4J
+//            OCR<File> ocrEngine = new OCRFiles(tessPath);
             ocrEngine.setPageSegMode(selectedPSM); // set page segmentation mode
 
-            workingFiles = entity.getClonedImageFiles();
-            
-            for (int i = 0; i < workingFiles.size(); i++) {
-                if (!isCancelled()) {
-                    String result = ocrEngine.recognizeText(workingFiles.subList(i, i + 1), entity.getLanguage());
-                    publish(result); // interim result
-                }
-            }
-
-            // Option for Tess4J
-//            imageList = entity.getSelectedOimages();
+//            workingFiles = entity.getClonedImageFiles();
 //            
-//            for (int i = 0; i < imageList.size(); i++) {
+//            for (int i = 0; i < workingFiles.size(); i++) {
 //                if (!isCancelled()) {
-//                    String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), entity.getLanguage());
+//                    String result = ocrEngine.recognizeText(workingFiles.subList(i, i + 1), entity.getLanguage());
 //                    publish(result); // interim result
 //                }
 //            }
+
+            // Option for Tess4J
+            imageList = entity.getSelectedOimages();
+
+            for (int i = 0; i < imageList.size(); i++) {
+                if (!isCancelled()) {
+                    String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), entity.getLanguage());
+                    publish(result); // interim result
+                }
+            }
 
             return null;
         }
