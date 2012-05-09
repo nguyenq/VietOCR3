@@ -1,12 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * OptionsDialog.java
+/**
+ * Copyright @ 2012 Quan Nguyen
  *
- * Created on Jul 9, 2009, 9:51:19 PM
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sourceforge.vietocr;
 
@@ -26,10 +31,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
 import net.sourceforge.vietpad.components.SimpleFilter;
 
-/**
- *
- * @author Quan
- */
 public class OptionsDialog extends javax.swing.JDialog {
 
     private int actionSelected = -1;
@@ -39,6 +40,7 @@ public class OptionsDialog extends javax.swing.JDialog {
     private String dangAmbigsPath;
     private String curLangCode;
     private boolean watchEnabled;
+    private boolean tessDllEnabled;
     private boolean dangAmbigsOn;
     protected ResourceBundle bundle;
 
@@ -95,6 +97,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         jLabelTess = new javax.swing.JLabel();
         jTextFieldTess = new javax.swing.JTextField();
         jButtonTess = new javax.swing.JButton();
+        jCheckBoxTessDLL = new javax.swing.JCheckBox();
         jPanelDangAmbigsPath = new javax.swing.JPanel();
         jLabelDangAmbigs = new javax.swing.JLabel();
         jButtonDangAmbigs = new javax.swing.JButton();
@@ -201,13 +204,18 @@ public class OptionsDialog extends javax.swing.JDialog {
 
         jTabbedPane1.addTab(bundle.getString("Watch"), jPanelWatchFolder); // NOI18N
 
+        jPanelTessPath.setLayout(new java.awt.GridBagLayout());
+
         jLabelTess.setLabelFor(jTextFieldTess);
         jLabelTess.setText(bundle.getString("jLabelTess.Text")); // NOI18N
-        jPanelTessPath.add(jLabelTess);
+        jPanelTessPath.add(jLabelTess, new java.awt.GridBagConstraints());
 
         jTextFieldTess.setEditable(false);
         jTextFieldTess.setPreferredSize(new java.awt.Dimension(200, 20));
-        jPanelTessPath.add(jTextFieldTess);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
+        jPanelTessPath.add(jTextFieldTess, gridBagConstraints);
 
         jButtonTess.setText("...");
         jButtonTess.setToolTipText(bundle.getString("jButtonTess.ToolTipText")); // NOI18N
@@ -217,7 +225,17 @@ public class OptionsDialog extends javax.swing.JDialog {
                 jButtonTessActionPerformed(evt);
             }
         });
-        jPanelTessPath.add(jButtonTess);
+        jPanelTessPath.add(jButtonTess, new java.awt.GridBagConstraints());
+
+        jCheckBoxTessDLL.setText("Use libtesseract DLL");
+        jCheckBoxTessDLL.setActionCommand("libtesseract302");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
+        jPanelTessPath.add(jCheckBoxTessDLL, gridBagConstraints);
+        jCheckBoxTessDLL.getAccessibleContext().setAccessibleName("");
 
         jTabbedPane1.addTab("Tesseract", jPanelTessPath);
 
@@ -338,6 +356,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         this.jTextFieldTess.setText(tessPath);
         this.jTextFieldDangAmbigs.setText(dangAmbigsPath);
         this.jCheckBoxDangAmbigs.setSelected(dangAmbigsOn);
+        this.jCheckBoxTessDLL.setSelected(tessDllEnabled);
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
@@ -397,6 +416,7 @@ public class OptionsDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonTess;
     private javax.swing.JButton jButtonWatch;
     private javax.swing.JCheckBox jCheckBoxDangAmbigs;
+    private javax.swing.JCheckBox jCheckBoxTessDLL;
     private javax.swing.JCheckBox jCheckBoxWatch;
     private javax.swing.JLabel jLabelDangAmbigs;
     private javax.swing.JLabel jLabelOutput;
@@ -504,5 +524,20 @@ public class OptionsDialog extends javax.swing.JDialog {
      */
     public void setDangAmbigsEnabled(boolean dangAmbigsOn) {
         this.dangAmbigsOn = dangAmbigsOn;
+    }
+
+    /**
+     * @return the tessDllEnabled
+     */
+    public boolean isTessDllEnabled() {
+        tessDllEnabled = this.jCheckBoxTessDLL.isSelected();
+        return tessDllEnabled;
+    }
+
+    /**
+     * @param tessDllEnabled the tessDllEnabled to set
+     */
+    public void setTessDllEnabled(boolean tessDllEnabled) {
+        this.tessDllEnabled = tessDllEnabled;
     }
 }
