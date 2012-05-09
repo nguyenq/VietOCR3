@@ -50,7 +50,8 @@ public class OptionsDialog extends javax.swing.JDialog {
         initComponents();
 
         if (Gui.WINDOWS) {
-            jTabbedPane1.remove(jPanelTessPath);
+//            jTabbedPane1.remove(jPanelTessPath);
+            this.jButtonTess.setEnabled(false);
         }
 
         bundle = ResourceBundle.getBundle("net/sourceforge/vietocr/OptionsDialog");
