@@ -49,7 +49,7 @@ public class OCRImagesTest {
         System.out.println("recognizeText");
         List<IIOImage> images = entity.getSelectedOimages();
         OCR<IIOImage> instance = new OCRImages(tessPath);
-        String expResult = "Đôi Mẳt Người Sơn Tây";
+        String expResult = "Đôi Mắt Người Sơn Tây";
         String result = instance.recognizeText(images, lang);
         assertTrue(result.startsWith(expResult));
     }

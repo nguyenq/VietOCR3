@@ -29,6 +29,7 @@ public class GuiWithSettings extends GuiWithLaF {
     private final String strWatchFolder = "WatchFolder";
     private final String strOutputFolder = "OutputFolder";
     private final String strWatchEnabled = "WatchEnabled";
+    private final String strTessDllEnabled = "TessDllEnabled";
     private String watchFolder;
     private String outputFolder;
     private boolean watchEnabled;
@@ -40,6 +41,7 @@ public class GuiWithSettings extends GuiWithLaF {
         watchFolder = prefs.get(strWatchFolder, System.getProperty("user.home"));
         outputFolder = prefs.get(strOutputFolder, System.getProperty("user.home"));
         watchEnabled = prefs.getBoolean(strWatchEnabled, false);
+        tessDllEnabled = prefs.getBoolean(strTessDllEnabled, false);
 
         statusFrame = new StatusFrame();
         statusFrame.setTitle(bundle.getString("statusFrame.Title"));
@@ -158,6 +160,7 @@ public class GuiWithSettings extends GuiWithLaF {
         prefs.put(strWatchFolder, watchFolder);
         prefs.put(strOutputFolder, outputFolder);
         prefs.putBoolean(strWatchEnabled, watchEnabled);
+        prefs.putBoolean(strTessDllEnabled, tessDllEnabled);
         super.quit();
     }
 

@@ -49,7 +49,7 @@ public class OCRFilesTest {
         System.out.println("recognizeText");
         List<File> tiffFiles = entity.getClonedImageFiles();
         OCR<File> instance = new OCRFiles(tessPath);
-        String expResult = "Đôi Mẳt Người Sơn Tây";
+        String expResult = "Đôi Mắt Người Sơn Tây";
         String result = instance.recognizeText(tiffFiles, lang);
         assertTrue(result.startsWith(expResult));
     }
