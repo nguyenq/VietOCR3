@@ -155,7 +155,7 @@ public class GuiWithOCR extends GuiWithImageOps {
 
                 for (int i = 0; i < imageList.size(); i++) {
                     if (!isCancelled()) {
-                        String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), lang);
+                        String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), lang, entity.getRect());
                         publish(result); // interim result
                     }
                 }
