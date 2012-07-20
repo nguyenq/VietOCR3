@@ -32,13 +32,13 @@ public class OCRImages extends OCR<IIOImage> {
 
     OCRImages(String tessPath) {
         instance = Tesseract.getInstance();
-        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
         instance.setDatapath(new File(tessPath, TESSDATA).getPath());
     }
 
     @Override
     public String recognizeText(List<IIOImage> images, String lang) throws Exception {
         instance.setLanguage(lang);
+        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
         String text = instance.doOCR(images, rect);
 
         return text;

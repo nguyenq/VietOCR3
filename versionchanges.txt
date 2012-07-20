@@ -67,3 +67,6 @@ Version 3.4 Beta 3 (12 July 2012)
 - Fit Image now retains image aspect ratio
 - Add optional support for using Tess4J library
 - Update JACOB to 1.16.1 version
+
+Version 3.4 Beta 3 (12 July 2012)
+Fix issue with setPageSegMode method involving Tess4J
