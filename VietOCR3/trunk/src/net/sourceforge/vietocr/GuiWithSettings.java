@@ -29,7 +29,7 @@ public class GuiWithSettings extends GuiWithLaF {
     private final String strWatchFolder = "WatchFolder";
     private final String strOutputFolder = "OutputFolder";
     private final String strWatchEnabled = "WatchEnabled";
-    private final String strTessDllEnabled = "TessDllEnabled";
+    private final String strTessLibEnabled = "TessLibEnabled";
     private String watchFolder;
     private String outputFolder;
     private boolean watchEnabled;
@@ -41,7 +41,7 @@ public class GuiWithSettings extends GuiWithLaF {
         watchFolder = prefs.get(strWatchFolder, System.getProperty("user.home"));
         outputFolder = prefs.get(strOutputFolder, System.getProperty("user.home"));
         watchEnabled = prefs.getBoolean(strWatchEnabled, false);
-        tessDllEnabled = prefs.getBoolean(strTessDllEnabled, false);
+        tessLibEnabled = prefs.getBoolean(strTessLibEnabled, false);
 
         statusFrame = new StatusFrame();
         statusFrame.setTitle(bundle.getString("statusFrame.Title"));
@@ -129,7 +129,7 @@ public class GuiWithSettings extends GuiWithLaF {
         optionsDialog.setDangAmbigsPath(dangAmbigsPath);
         optionsDialog.setDangAmbigsEnabled(dangAmbigsOn);
         optionsDialog.setCurLangCode(curLangCode);
-        optionsDialog.setTessDllEnabled(tessDllEnabled);
+        optionsDialog.setTessLibEnabled(tessLibEnabled);
 
         if (optionsDialog.showDialog() == JOptionPane.OK_OPTION) {
             watchFolder = optionsDialog.getWatchFolder();
@@ -142,7 +142,7 @@ public class GuiWithSettings extends GuiWithLaF {
             }
             dangAmbigsPath = optionsDialog.getDangAmbigsPath();
             dangAmbigsOn = optionsDialog.isDangAmbigsEnabled();
-            tessDllEnabled = optionsDialog.isTessDllEnabled();
+            tessLibEnabled = optionsDialog.isTessLibEnabled();
 
             watcher.setPath(new File(watchFolder));
             watcher.setEnabled(watchEnabled);
@@ -160,7 +160,7 @@ public class GuiWithSettings extends GuiWithLaF {
         prefs.put(strWatchFolder, watchFolder);
         prefs.put(strOutputFolder, outputFolder);
         prefs.putBoolean(strWatchEnabled, watchEnabled);
-        prefs.putBoolean(strTessDllEnabled, tessDllEnabled);
+        prefs.putBoolean(strTessLibEnabled, tessLibEnabled);
         super.quit();
     }
 
