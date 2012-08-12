@@ -70,3 +70,6 @@ Version 3.4 Beta 3 (12 July 2012)
 
 Version 3.4 Beta 4 (19 July 2012)
 - Fix issue with setPageSegMode method involving Tess4J
+
+Version 3.4 Beta 5 (12 August 2012)
+- Update to Tesseract 3.02 (r737)
