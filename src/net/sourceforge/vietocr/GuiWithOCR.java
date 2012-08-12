@@ -27,7 +27,7 @@ public class GuiWithOCR extends GuiWithImageOps {
 
     private OcrWorker ocrWorker;
     protected String selectedPSM = "3"; // 3 - Fully automatic page segmentation, but no OSD (default)
-    protected boolean tessDllEnabled;
+    protected boolean tessLibEnabled;
 
     @Override
     void jMenuItemOCRActionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +137,7 @@ public class GuiWithOCR extends GuiWithImageOps {
         protected Void doInBackground() throws Exception {
             String lang = entity.getLanguage();
 
-            if (!tessDllEnabled) {
+            if (!tessLibEnabled) {
                 OCR<File> ocrEngine = new OCRFiles(tessPath);
                 ocrEngine.setPageSegMode(selectedPSM); // set page segmentation mode
                 workingFiles = entity.getClonedImageFiles();

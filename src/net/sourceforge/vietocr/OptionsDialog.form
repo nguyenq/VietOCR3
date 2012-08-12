@@ -261,7 +261,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBoxTessDLL">
+            <Component class="javax.swing.JCheckBox" name="jCheckBoxTessLib">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Use libtesseract Library"/>
                 <Property name="actionCommand" type="java.lang.String" value="libtesseract302"/>
