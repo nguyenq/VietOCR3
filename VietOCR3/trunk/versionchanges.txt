@@ -60,16 +60,10 @@ Version 3.3 (25 February 2012)
 - Update Hunspell to v1.3.2
 - Use icons from FatCow (http://www.fatcow.com/free-icons) and by Rimas Kudelis
 
-Version 3.4 Beta 3 (12 July 2012)
-- Update Tesseract engine to v3.02 Alpha (r731)
+Version 3.4 RC (27 September 2012)
+- Update Tesseract engine to v3.02 (r768)
 - Use Tesseract 3.02 language data packs
 - Enable text entry in the combobox for Tesseract 3.02's multi-language OCR support
 - Fit Image now retains image aspect ratio
 - Add optional support for using Tess4J library
 - Update JACOB to 1.16.1 version
-
-Version 3.4 Beta 4 (19 July 2012)
-- Fix issue with setPageSegMode method involving Tess4J
-
-Version 3.4 Beta 5 (27 September 2012)
-- Update to Tesseract 3.02 (r768)
