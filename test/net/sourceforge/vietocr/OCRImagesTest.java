@@ -49,8 +49,8 @@ public class OCRImagesTest {
         System.out.println("recognizeText");
         List<IIOImage> images = entity.getSelectedOimages();
         OCR<IIOImage> instance = new OCRImages(tessPath);
-        String expResult = "Đôi Mắt Người Sơn Tây";
+        String expResult = "Tôi từ chinh chiến cũng ra đi";
         String result = instance.recognizeText(images, lang);
-        assertTrue(result.startsWith(expResult));
+        assertTrue(result.contains(expResult));
     }
 }
