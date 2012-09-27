@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class OCRFilesTest {
 
-    String tessPath = System.getProperty("user.dir") + "./tesseract";
+    String tessPath = new File(System.getProperty("user.dir"), "tesseract").getPath();
     String lang = "vie";
     OCRImageEntity entity;
 
