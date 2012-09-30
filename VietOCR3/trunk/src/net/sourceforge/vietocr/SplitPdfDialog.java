@@ -338,6 +338,10 @@ public class SplitPdfDialog extends javax.swing.JDialog {
         this.jTextFieldTo.setEnabled(!enabled);
     }
 
+    /**
+     * Displays dialog.
+     * @return 
+     */
     public int showDialog() {
         setVisible(true);
         return actionSelected;
