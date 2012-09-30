@@ -91,6 +91,11 @@ public class ImageIconScalable extends ImageIcon {
         }
     }
 
+    /**
+     * Sets scale.
+     * @param width
+     * @param height 
+     */
     public void setScaledSize(int width, int height) {
         this.width = width;
         this.height = height;
@@ -103,6 +108,11 @@ public class ImageIconScalable extends ImageIcon {
         return new ImageIconScalable(copy);
     }
 
+    /**
+     * Gets a rotated image.
+     * @param angle
+     * @return 
+     */
     public ImageIconScalable getRotatedImageIcon(double angle) {
         double sin = Math.abs(Math.sin(angle));
         double cos = Math.abs(Math.cos(angle));
@@ -131,12 +141,21 @@ public class ImageIconScalable extends ImageIcon {
         return new ImageIconScalable(result);
     }
 
+    /**
+     * Gets graphic default configuration.
+     * @return 
+     */
     private GraphicsConfiguration getDefaultConfiguration() {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd = ge.getDefaultScreenDevice();
         return gd.getDefaultConfiguration();
     }
 
+    /**
+     * Gets list of images.
+     * @param iioImageList
+     * @return 
+     */
     public static java.util.List<ImageIconScalable> getImageList(java.util.List<IIOImage> iioImageList) {
         try {
             java.util.List<ImageIconScalable> al = new java.util.ArrayList<ImageIconScalable>();

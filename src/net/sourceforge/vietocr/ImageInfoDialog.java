@@ -201,6 +201,10 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
+    /**
+     * Display dialog.
+     * @return 
+     */
     public int showDialog() {
         setVisible(true);
         return actionSelected;
@@ -224,6 +228,10 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    /**
+     * Converts values between unit systems.
+     * @param unit 
+     */
     private void convertUnits(int unit) {
         int width = oimage.getRenderedImage().getWidth();
         int height = oimage.getRenderedImage().getHeight();
@@ -246,11 +254,18 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * Sets image.
+     * @param oimage 
+     */
     public void setImage(IIOImage oimage) {
         this.oimage = oimage;
         readImageData();
     }
 
+    /**
+     * Reads image data.
+     */
     void readImageData() {
         this.jTextFieldWidth.setText(String.valueOf(oimage.getRenderedImage().getWidth()));
         this.jTextFieldHeight.setText(String.valueOf(oimage.getRenderedImage().getHeight()));
@@ -259,6 +274,12 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         this.jTextFieldYRes.setText(metadata.get("dpiY"));
     }
 
+    /**
+     * Math rounding operation.
+     * @param d
+     * @param decimalPlace
+     * @return 
+     */
     public static double round(double d, int decimalPlace) {
 //        BigDecimal bd = new BigDecimal(Double.toString(d));
 //        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);

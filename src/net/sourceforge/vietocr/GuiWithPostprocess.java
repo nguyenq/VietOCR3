@@ -21,6 +21,10 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import net.sourceforge.vietocr.postprocessing.Processor;
 
+/**
+ * Applies post-OCR processing to correct common OCR errors.
+ *
+ */
 public class GuiWithPostprocess extends GuiWithOCR {
 
     private final String strDangAmbigsPath = "DangAmbigsPath";

@@ -123,6 +123,9 @@ public class GuiWithOCR extends GuiWithImageOps {
         this.jButtonCancelOCR.setEnabled(false);
     }
 
+    /**
+     * A worker class for managing OCR process.
+     */
     class OcrWorker extends SwingWorker<Void, String> {
 
         OCRImageEntity entity;

@@ -101,7 +101,7 @@ public class GuiWithFormat extends GuiWithImage {
     }
 
     /**
-     *  Changes case
+     * Changes letter case.
      *
      *@param  typeOfCase  The type that the case should be changed to
      */

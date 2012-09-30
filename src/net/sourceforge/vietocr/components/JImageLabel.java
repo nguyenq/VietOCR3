@@ -82,10 +82,17 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
         new javax.swing.Timer(delay, taskPerformer).start();
     }
 
+    /**
+     * Gets bounding box.
+     * @return 
+     */
     public Rectangle getRect() {
         return rect;
     }
 
+    /**
+     * Deselects bounding box.
+     */
     public void deselect() {
         startPoint = null;
         rect = null;
