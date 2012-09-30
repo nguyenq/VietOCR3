@@ -21,9 +21,11 @@ import javax.imageio.IIOImage;
 import net.sourceforge.tess4j.Tesseract;
 
 /**
- * Invokes Tesseract library through JNA-based Tess4J wrapper.<br />
- * 
- * Removed at this time for high frequency of hard crashes.
+ * Invokes Tesseract OCR API through JNA-based Tess4J wrapper.<br />This could
+ * be faster than the existing method since it feeds image data directly to the
+ * OCR engine without creating intermediate working files (less I/O operations).
+ * However, any exception from native code will result in hard crash of the
+ * application.
  */
 public class OCRImages extends OCR<IIOImage> {
 
