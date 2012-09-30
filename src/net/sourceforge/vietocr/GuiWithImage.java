@@ -30,6 +30,11 @@ public class GuiWithImage extends GuiWithPostprocess {
         this.jCheckBoxMenuItemScreenshotMode.setSelected(prefs.getBoolean(strScreenshotMode, false));
     }
 
+    /**
+     * Displays image meta information.
+     * 
+     * @param evt 
+     */
     @Override
     void jMenuItemMetadataActionPerformed(java.awt.event.ActionEvent evt) {
         if (iioImageList == null) {
@@ -46,6 +51,11 @@ public class GuiWithImage extends GuiWithPostprocess {
         }
     }
 
+    /**
+     * Deskews image.
+     * 
+     * @param evt 
+     */
     @Override
     void jMenuItemDeskewActionPerformed(java.awt.event.ActionEvent evt) {
         if (iioImageList == null) {
