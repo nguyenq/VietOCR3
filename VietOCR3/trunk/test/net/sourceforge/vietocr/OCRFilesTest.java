@@ -12,11 +12,13 @@ import static org.junit.Assert.*;
 
 public class OCRFilesTest {
 
-    String tessPath = new File(System.getProperty("user.dir"), "tesseract").getPath();
+    static final boolean WINDOWS = System.getProperty("os.name").toLowerCase().startsWith("windows");
+    String tessPath;
     String lang = "vie";
     OCRImageEntity entity;
 
     public OCRFilesTest() {
+        tessPath = WINDOWS? new File(System.getProperty("user.dir"), "tesseract").getPath() : "/usr/local/bin";
         File selectedFile = new File("samples/vietsample1.tif");
         try {
             List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(selectedFile);
@@ -49,8 +51,8 @@ public class OCRFilesTest {
         System.out.println("recognizeText");
         List<File> tiffFiles = entity.getClonedImageFiles();
         OCR<File> instance = new OCRFiles(tessPath);
-        String expResult = "Em ở thành Sơn chạy giặc về";
+        String expResult = "Tôi từ chinh chiến cũng ra đi";
         String result = instance.recognizeText(tiffFiles, lang);
-        assertTrue(result.contains(expResult));
+        assertTrue(result.toLowerCase().contains(expResult.toLowerCase()));
     }
 }
