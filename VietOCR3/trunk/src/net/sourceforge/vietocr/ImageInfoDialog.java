@@ -202,7 +202,7 @@ public class ImageInfoDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     /**
-     * Display dialog.
+     * Displays dialog.
      * @return 
      */
     public int showDialog() {

@@ -270,6 +270,14 @@ public class DownloadDialog extends javax.swing.JDialog {
         return null;
     }
 
+    /**
+     * Downloads language data packs from Tesseract site and dictionary files
+     * from OpenOffice site, and extracts them into appropriate folders.
+     *
+     * @param remoteFile
+     * @param destFolder
+     * @throws Exception
+     */
     void downloadDataFile(final URL remoteFile, final String destFolder) throws Exception {
         final URLConnection connection = remoteFile.openConnection();
         connection.setReadTimeout(15000);

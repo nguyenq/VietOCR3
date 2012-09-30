@@ -29,6 +29,10 @@ public class ConsoleApp {
         new ConsoleApp().performOCR(args);
     }
 
+    /**
+     * Performs OCR on input image file.
+     * @param args 
+     */
     private void performOCR(String[] args) {
         List<File> tempTiffFiles = null;
 

@@ -124,6 +124,11 @@ public class GuiWithFormat extends GuiWithImage {
         undoSupport.endUpdate();
     }
 
+    /**
+     * Removes extra line breaks.
+     * 
+     * @param evt 
+     */
     @Override
     void jMenuItemRemoveLineBreaksActionPerformed(java.awt.event.ActionEvent evt) {
         if (jTextArea1.getSelectedText() == null) {

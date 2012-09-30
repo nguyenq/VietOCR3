@@ -55,6 +55,11 @@ public class GuiWithImageOps extends GuiWithScan {
         setButton();
     }
 
+    /**
+     * Fits image to the container while retaining aspect ratio.
+     * 
+     * @param evt 
+     */
     @Override
     void jButtonFitImageActionPerformed(java.awt.event.ActionEvent evt) {
         this.jButtonFitImage.setEnabled(false);
@@ -77,6 +82,11 @@ public class GuiWithImageOps extends GuiWithScan {
         isFitImageSelected = true;
     }
 
+    /**
+     * Reverts to actual image size.
+     * 
+     * @param evt 
+     */
     @Override
     void jButtonActualSizeActionPerformed(java.awt.event.ActionEvent evt) {
         this.jButtonFitImage.setEnabled(true);
@@ -103,6 +113,11 @@ public class GuiWithImageOps extends GuiWithScan {
         isFitImageSelected = false;
     }
 
+    /**
+     * Performs the change on image.
+     * 
+     * @param isZoomIn 
+     */
     void doChange(final boolean isZoomIn) {
         SwingUtilities.invokeLater(new Runnable() {
 
@@ -130,16 +145,31 @@ public class GuiWithImageOps extends GuiWithScan {
         });
     }
 
+    /**
+     * Rotates left.
+     * 
+     * @param evt 
+     */
     @Override
     void jButtonRotateCCWActionPerformed(java.awt.event.ActionEvent evt) {
         rotateImage(270d);
     }
 
+    /**
+     * Rotates right.
+     * 
+     * @param evt 
+     */
     @Override
     void jButtonRotateCWActionPerformed(java.awt.event.ActionEvent evt) {
         rotateImage(90d);
     }
 
+    /**
+     * Rotates image.
+     * 
+     * @param angle the degree of rotation
+     */
     void rotateImage(double angle) {
         try {
             imageIcon = imageList.get(imageIndex).getRotatedImageIcon(Math.toRadians(angle));
