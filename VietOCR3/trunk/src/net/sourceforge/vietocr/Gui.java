@@ -335,6 +335,10 @@ public class Gui extends JFrame {
         updateMRUMenu();
     }
 
+    /**
+     * Populates PopupMenu with spellcheck suggestions.
+     * @param p 
+     */
     void populatePopupMenuWithSuggestions(Point p) {
         // to be implemented in subclass
     }
@@ -1331,6 +1335,11 @@ public class Gui extends JFrame {
         }
     }//GEN-LAST:event_jMenuItemHelpActionPerformed
 
+    /**
+     * Copies resources from Jar to support directory.
+     * @param helpFile
+     * @throws IOException 
+     */
     private void copyFileFromJarToSupportDir(File helpFile) throws IOException {
         if (!helpFile.exists()) {
             final ReadableByteChannel input =
@@ -1420,6 +1429,9 @@ public class Gui extends JFrame {
         about();
     }//GEN-LAST:event_jMenuItemAboutActionPerformed
 
+    /**
+     * Displays About box.
+     */
     void about() {
         try {
             Properties config = new Properties();
@@ -1441,6 +1453,9 @@ public class Gui extends JFrame {
         quit();
     }//GEN-LAST:event_jMenuItemExitActionPerformed
 
+    /**
+     * Quits and saves application preferences before exit.
+     */
     void quit() {
         if (!promptToSave()) {
             return;
@@ -1592,6 +1607,9 @@ public class Gui extends JFrame {
         loadWorker.execute();
     }
 
+    /**
+     * Loads image.
+     */
     void loadImage() {
         if (imageList == null) {
             JOptionPane.showMessageDialog(this, bundle.getString("Cannotloadimage"), APP_NAME, JOptionPane.ERROR_MESSAGE);
@@ -1626,6 +1644,9 @@ public class Gui extends JFrame {
         setButton();
     }
 
+    /**
+     * Displays image.
+     */
     void displayImage() {
         this.jLabelCurIndex.setText(bundle.getString("Page_") + (imageIndex + 1) + " " + bundle.getString("of_") + imageTotal);
         imageIcon = imageList.get(imageIndex).clone();
@@ -1651,6 +1672,10 @@ public class Gui extends JFrame {
         saveAction();
     }//GEN-LAST:event_jMenuItemSaveActionPerformed
 
+    /**
+     * Save file action.
+     * @return 
+     */
     boolean saveAction() {
         if (textFile == null || !textFile.exists()) {
             return saveFileDlg();
@@ -1663,6 +1688,10 @@ public class Gui extends JFrame {
         saveFileDlg();
     }//GEN-LAST:event_jMenuItemSaveAsActionPerformed
 
+    /**
+     * Displays save file dialog.
+     * @return 
+     */
     boolean saveFileDlg() {
         JFileChooser saveChooser = new JFileChooser(outputDirectory);
         FileFilter textFilter = new SimpleFilter("txt", bundle.getString("UTF-8_Text"));
@@ -1697,6 +1726,10 @@ public class Gui extends JFrame {
         }
     }
 
+    /**
+     * Saves output text file.
+     * @return 
+     */
     boolean saveTextFile() {
         getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         getGlassPane().setVisible(true);
@@ -1765,6 +1798,9 @@ public class Gui extends JFrame {
         }
     }
 
+    /**
+     * Enables or disables page navigation buttons.
+     */
     void setButton() {
         if (imageIndex == 0) {
             this.jButtonPrevPage.setEnabled(false);
@@ -1820,6 +1856,11 @@ public class Gui extends JFrame {
         return new Dimension(w, h);
     }
 
+    /**
+     * Sets image scale.
+     * @param width
+     * @param height 
+     */
     void setScale(int width, int height) {
         scaleX = (float) originalW / width;
         scaleY = (float) originalH / height;
@@ -1901,6 +1942,10 @@ public class Gui extends JFrame {
         jImageLabel.requestFocusInWindow();
     }//GEN-LAST:event_jImageLabelMouseEntered
 
+    /**
+     * Changes locale of UI elements.
+     * @param locale 
+     */
     void changeUILanguage(final Locale locale) {
         if (locale.equals(Locale.getDefault())) {
             return; // no change in locale

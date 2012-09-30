@@ -15,7 +15,6 @@
  */
 package net.sourceforge.vietocr;
 
-import net.sourceforge.vietocr.utilities.*;
 import java.awt.Cursor;
 import java.io.File;
 import java.util.Locale;
@@ -33,6 +32,11 @@ public class GuiWithTools extends GuiWithSpellcheck {
         imageFolder = new File(prefs.get(strImageFolder, System.getProperty("user.home")));
     }
 
+    /**
+     * Merges multiple images into a multi-page TIFF file.
+     * 
+     * @param evt 
+     */
     @Override
     void jMenuItemMergeTiffActionPerformed(java.awt.event.ActionEvent evt) {
         JFileChooser jf = new JFileChooser();
@@ -132,6 +136,11 @@ public class GuiWithTools extends GuiWithSpellcheck {
         }
     }
 
+    /**
+     * Merges PDF files.
+     * 
+     * @param evt 
+     */
     @Override
     void jMenuItemMergePdfActionPerformed(java.awt.event.ActionEvent evt) {
         JFileChooser jf = new JFileChooser();
@@ -212,6 +221,11 @@ public class GuiWithTools extends GuiWithSpellcheck {
         }
     }
 
+    /**
+     * Splits a PDF file into smaller files.
+     * 
+     * @param evt 
+     */
     @Override
     void jMenuItemSplitPdfActionPerformed(java.awt.event.ActionEvent evt) {
         SplitPdfDialog dialog = new SplitPdfDialog(this, true);

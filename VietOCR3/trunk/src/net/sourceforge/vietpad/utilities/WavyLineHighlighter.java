@@ -65,6 +65,12 @@ public class WavyLineHighlighter extends DefaultHighlighter.DefaultHighlightPain
         return null;
     }
 
+    /**
+     * Draws a wave line.
+     * @param g
+     * @param start
+     * @param end 
+     */
     void drawWaveLine(Graphics g, Point start, Point end) {
         if ((end.x - start.x) > 2) {
             int points = (end.x - start.x) / 2 + 1;
@@ -90,6 +96,14 @@ public class WavyLineHighlighter extends DefaultHighlighter.DefaultHighlightPain
         }
     }
 
+    /**
+     * Draws a wave line.
+     * @param g
+     * @param startX
+     * @param startY
+     * @param endX
+     * @param endY 
+     */
     void drawWaveLine(Graphics g, int startX, int startY, int endX, int endY) {
         drawWaveLine(g, new Point(startX, startY), new Point(endX, endY));
     }

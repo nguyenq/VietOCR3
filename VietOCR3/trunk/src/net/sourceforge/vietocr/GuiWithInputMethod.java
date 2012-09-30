@@ -22,17 +22,27 @@ import javax.swing.JRadioButtonMenuItem;
 import net.sourceforge.vietpad.inputmethod.InputMethods;
 import net.sourceforge.vietpad.inputmethod.VietKeyListener;
 
+/**
+ * Integrates Vietnamese input methods.
+ * 
+ */
 public class GuiWithInputMethod extends GuiWithFormat {
 
     private final String strInputMethod = "inputMethod";
     private String selectedInputMethod;
 
+    /**
+     * Constructor.
+     */
     public GuiWithInputMethod() {
         selectedInputMethod = prefs.get(strInputMethod, "Telex");
 
         initComponents();
     }
 
+    /**
+     * Builds a menu for input method selection.
+     */
     private void initComponents() {
         VietKeyListener keyLst = new VietKeyListener(jTextArea1);
         jTextArea1.addKeyListener(keyLst);
