@@ -48,7 +48,7 @@ public class OCRImagesTest {
      */
     @Test
     public void testRecognizeText() throws Exception {
-        System.out.println("recognizeText");
+        System.out.println("recognizeText with Tesseract API");
         List<IIOImage> images = entity.getSelectedOimages();
         OCR<IIOImage> instance = new OCRImages(tessPath);
         String expResult = "Tôi từ chinh chiến cũng ra đi";
