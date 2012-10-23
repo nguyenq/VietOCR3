@@ -17,7 +17,9 @@
 <entry key="eng">http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.01.eng.tar.gz</entry>
 <entry key="fin">http://tesseract-ocr.googlecode.com/files/fin.traineddata.gz</entry>
 <entry key="fra">http://tesseract-ocr.googlecode.com/files/fra.traineddata.gz</entry>
-<entry key="heb">http://roidayan.com/downloads/tesseract-ocr-hebrew/heb.traineddata.gz</entry> 
+<entry key="grc">http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.01.grc.tar.gz</entry>
+<entry key="heb">http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.01.heb.tar.gz</entry>
+<entry key="heb-com">http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.01.heb-com.tar.gz</entry> 
 <entry key="hin">http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.01.hin.tar.gz</entry>
 <entry key="hun">http://tesseract-ocr.googlecode.com/files/hun.traineddata.gz</entry>
 <entry key="ind">http://tesseract-ocr.googlecode.com/files/ind.traineddata.gz</entry>

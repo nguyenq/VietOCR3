@@ -48,7 +48,7 @@ public class OCRFilesTest {
      */
     @Test
     public void testRecognizeText() throws Exception {
-        System.out.println("recognizeText");
+        System.out.println("recognizeText with Tesseract executable");
         List<File> tiffFiles = entity.getClonedImageFiles();
         OCR<File> instance = new OCRFiles(tessPath);
         String expResult = "Tôi từ chinh chiến cũng ra đi";
