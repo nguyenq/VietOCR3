@@ -60,8 +60,8 @@ Version 3.3 (25 February 2012)
 - Update Hunspell to v1.3.2
 - Use icons from FatCow (http://www.fatcow.com/free-icons) and by Rimas Kudelis
 
-Version 3.4 RC (22 October 2012)
-- Update Tesseract engine to v3.02 (r783)
+Version 3.4 (30 October 2012)
+- Update Tesseract engine to v3.02 (r798)
 - Use Tesseract 3.02 language data packs
 - Enable text entry in the combobox for Tesseract 3.02's multi-language OCR support
 - Fit Image now retains image aspect ratio
