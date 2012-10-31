@@ -53,6 +53,7 @@ public class OCRImagesTest {
         OCR<IIOImage> instance = new OCRImages(tessPath);
         String expResult = "Tôi từ chinh chiến cũng ra đi";
         String result = instance.recognizeText(images, lang);
+        System.out.println(result);
         assertTrue(result.toLowerCase().contains(expResult.toLowerCase()));
     }
 }

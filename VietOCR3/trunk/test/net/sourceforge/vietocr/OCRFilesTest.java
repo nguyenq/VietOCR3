@@ -53,6 +53,7 @@ public class OCRFilesTest {
         OCR<File> instance = new OCRFiles(tessPath);
         String expResult = "Tôi từ chinh chiến cũng ra đi";
         String result = instance.recognizeText(tiffFiles, lang);
+        System.out.println(result);
         assertTrue(result.toLowerCase().contains(expResult.toLowerCase()));
     }
 }
