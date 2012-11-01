@@ -65,6 +65,6 @@
 <entry key="tha">http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.tha.tar.gz</entry>
 <entry key="tur">http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.tur.tar.gz</entry>
 <entry key="ukr">http://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.ukr.tar.gz</entry>
-<entry key="vie">http://sourceforge.net/projects/vietocr/files/lang%20data%20for%20tesseract-ocr/vietnamese%20language%20pack/tesseract-3.01.vie.zip</entry>
-<entry key="vie-1">http://sourceforge.net/projects/vietocr/files/lang%20data%20for%20tesseract-ocr/vietnamese%20language%20pack/tesseract-3.01.vie-1.vni-tcvn3.zip</entry>
+<entry key="vie">http://sourceforge.net/projects/vietocr/files/lang%20data%20for%20tesseract-ocr/vietnamese%20language%20pack/tesseract-ocr-3.02.vie.zip</entry>
+<entry key="vie-1">http://sourceforge.net/projects/vietocr/files/lang%20data%20for%20tesseract-ocr/vietnamese%20language%20pack/tesseract-ocr-3.02.vie-1.vni-tcvn3.zip</entry>
 </properties>
