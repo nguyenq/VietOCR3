@@ -251,7 +251,7 @@ public class Gui extends JFrame {
      */
     private void getInstalledLanguagePacks() {
         if (WINDOWS) {
-            tessPath = new File(baseDir, "tesseract").getPath();
+            tessPath = new File(baseDir, "tesseract-ocr").getPath();
         } else {
             tessPath = prefs.get(strTessDir, "/usr/bin");
         }
