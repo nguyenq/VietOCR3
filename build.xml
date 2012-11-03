@@ -36,7 +36,7 @@
             </zipfileset>
         </zip>
         <zip zipfile="${dist.dir}/${ant.project.name}-${version}.zip">
-            <zipfileset dir="." includes="*,tesseract/**,lib/**,data/**,samples/**,dict/**" prefix="${ant.project.name}3"
+            <zipfileset dir="." includes="*,tesseract-ocr/**,lib/**,data/**,samples/**,dict/**" prefix="${ant.project.name}3"
                         excludes="build.xml,src,build,dist,doc,test,nbproject">
                 <exclude name="*.mf"/>
             </zipfileset>
