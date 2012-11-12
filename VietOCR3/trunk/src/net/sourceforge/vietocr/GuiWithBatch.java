@@ -29,9 +29,10 @@ public class GuiWithBatch extends GuiWithSettings {
 
     private StatusFrame statusFrame;
     private Watcher watcher;
+    private boolean executeBatch;
 
     public GuiWithBatch() {
-        this.jMenuItemOcrBatch.setEnabled(watchEnabled);
+        this.jMenuItemExecuteBatch.setEnabled(watchEnabled);
         statusFrame = new StatusFrame();
         statusFrame.setTitle(bundle.getString("statusFrame.Title"));
 
@@ -104,7 +105,9 @@ public class GuiWithBatch extends GuiWithSettings {
     }
 
     @Override
-    protected void jMenuItemOcrBatchActionPerformed(java.awt.event.ActionEvent evt) {
+    protected void jMenuItemExecuteBatchActionPerformed(java.awt.event.ActionEvent evt) {
+        executeBatch ^= true;
+        this.jMenuItemExecuteBatch.setText(executeBatch? "Stop Batch" : "Execute Batch");
         watcher.resetWatch();
     }
     
@@ -112,7 +115,7 @@ public class GuiWithBatch extends GuiWithSettings {
     protected void updateWatch(String watchFolder, boolean watchEnabled) {
         watcher.setPath(new File(watchFolder));
         watcher.setEnabled(watchEnabled);
-        this.jMenuItemOcrBatch.setEnabled(watchEnabled);
+        this.jMenuItemExecuteBatch.setEnabled(watchEnabled);
     }
 
     @Override
