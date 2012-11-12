@@ -1119,7 +1119,7 @@ public class Gui extends JFrame {
 
         jMenuItemExecuteBatch.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemExecuteBatch.Mnemonic").charAt(0));
         jMenuItemExecuteBatch.setText(bundle.getString("jMenuItemExecuteBatch.Text")); // NOI18N
-        jMenuItemExecuteBatch.setToolTipText("Perform OCR on image files in Watch folder");
+        jMenuItemExecuteBatch.setToolTipText("OCR Image Files in Watch folder");
         jMenuItemExecuteBatch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemExecuteBatchActionPerformed(evt);
