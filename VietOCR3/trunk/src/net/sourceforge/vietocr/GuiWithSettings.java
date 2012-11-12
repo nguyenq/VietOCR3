@@ -15,14 +15,8 @@
  */
 package net.sourceforge.vietocr;
 
-import java.awt.event.*;
-import java.io.*;
 import java.util.*;
-import javax.imageio.IIOImage;
 import javax.swing.*;
-import javax.swing.Timer;
-import net.sourceforge.vietocr.utilities.*;
-import net.sourceforge.vietocr.postprocessing.*;
 
 public class GuiWithSettings extends GuiWithLaF {
 
@@ -30,90 +24,16 @@ public class GuiWithSettings extends GuiWithLaF {
     private final String strOutputFolder = "OutputFolder";
     private final String strWatchEnabled = "WatchEnabled";
     private final String strTessLibEnabled = "TessLibEnabled";
-    private String watchFolder;
-    private String outputFolder;
-    private boolean watchEnabled;
-    private StatusFrame statusFrame;
+    protected String watchFolder;
+    protected String outputFolder;
+    protected boolean watchEnabled;
     private OptionsDialog optionsDialog;
-    private Watcher watcher;
 
     public GuiWithSettings() {
         watchFolder = prefs.get(strWatchFolder, System.getProperty("user.home"));
         outputFolder = prefs.get(strOutputFolder, System.getProperty("user.home"));
         watchEnabled = prefs.getBoolean(strWatchEnabled, false);
         tessLibEnabled = prefs.getBoolean(strTessLibEnabled, false);
-
-        statusFrame = new StatusFrame();
-        statusFrame.setTitle(bundle.getString("statusFrame.Title"));
-
-        // watch for new image files
-        final Queue<File> queue = new LinkedList<File>();
-        watcher = new Watcher(queue, new File(watchFolder));
-        watcher.setEnabled(watchEnabled);
-
-        Thread t = new Thread(watcher);
-        t.start();
-
-        // autoOCR if there are files in the queue
-        Action autoOcrAction = new AbstractAction() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                final File imageFile = queue.poll();
-                if (imageFile != null) {
-                    if (!statusFrame.isVisible()) {
-                        statusFrame.setVisible(true);
-                    }
-
-                    statusFrame.getTextArea().append(imageFile.getPath() + "\n");
-
-                    if (curLangCode == null) {
-                        statusFrame.getTextArea().append("    **  " + bundle.getString("Please_select_a_language.") + "  **\n");
-//                        queue.clear();
-                        return;
-                    }
-
-                    SwingUtilities.invokeLater(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            List<File> tempTiffFiles = null;
-
-                            try {
-                                OCR<File> ocrEngine = new OCRFiles(tessPath);
-                                ocrEngine.setPageSegMode(selectedPSM);
-                                List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(imageFile);
-                                tempTiffFiles = ImageIOHelper.createTiffFiles(iioImageList, -1);
-                                String result = ocrEngine.recognizeText(tempTiffFiles, curLangCode);
-
-                                // postprocess to correct common OCR errors
-                                result = Processor.postProcess(result, curLangCode);
-                                // correct common errors caused by OCR
-                                result = TextUtilities.correctOCRErrors(result);
-                                // correct letter cases
-                                result = TextUtilities.correctLetterCases(result);
-
-                                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(outputFolder, imageFile.getName() + ".txt")), UTF8));
-                                out.write(result);
-                                out.close();
-                            } catch (Exception e) {
-                                statusFrame.getTextArea().append("    **  " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + "  **\n");
-                                e.printStackTrace();
-                            } finally {
-                                //clean up working files
-                                if (tempTiffFiles != null) {
-                                    for (File f : tempTiffFiles) {
-                                        f.delete();
-                                    }
-                                }
-                            }
-                        }
-                    });
-                }
-            }
-        };
-
-        new Timer(5000, autoOcrAction).start();
     }
 
     @Override
@@ -143,10 +63,13 @@ public class GuiWithSettings extends GuiWithLaF {
             dangAmbigsPath = optionsDialog.getDangAmbigsPath();
             dangAmbigsOn = optionsDialog.isDangAmbigsEnabled();
             tessLibEnabled = optionsDialog.isTessLibEnabled();
-
-            watcher.setPath(new File(watchFolder));
-            watcher.setEnabled(watchEnabled);
+            
+            updateWatch(watchFolder, watchEnabled);
         }
+    }
+    
+    protected void updateWatch(String watchFolder, boolean watchEnabled) {
+        // override in subclass
     }
 
     @Override
@@ -169,14 +92,11 @@ public class GuiWithSettings extends GuiWithLaF {
         super.changeUILanguage(locale);
 
         SwingUtilities.invokeLater(new Runnable() {
-
             @Override
             public void run() {
                 if (optionsDialog != null) {
                     optionsDialog.changeUILanguage(locale);
                 }
-
-                statusFrame.setTitle(bundle.getString("statusFrame.Title"));
             }
         });
     }
@@ -189,7 +109,6 @@ public class GuiWithSettings extends GuiWithLaF {
         Locale.setDefault(getLocale(selectedUILang));
 
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             @Override
             public void run() {
                 new GuiWithSettings().setVisible(true);
