@@ -1,17 +1,17 @@
 /**
  * Copyright @ 2009 Quan Nguyen
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sourceforge.vietocr.utilities;
 
@@ -59,10 +59,9 @@ public class Watcher implements Runnable {
         if (lastTime < newTime) {
             // find modified files
             File[] files = watchFolder.listFiles(new FilenameFilter() {
-
                 @Override
                 public boolean accept(File dir, String name) {
-                    return name.toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp)$");
+                    return name.toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp|pdf)$");
                 }
             });
 
@@ -74,20 +73,38 @@ public class Watcher implements Runnable {
                         System.out.println("New file: " + file);
                         queue.offer(file);
                     }
-                }                
+                }
             }
-            
+
             lastTime = newTime;
             lastFiles = Arrays.asList(files);
         }
     }
 
+    /**
+     * Enables watch function.
+     *
+     * @param enabled
+     */
     public void setEnabled(boolean enabled) {
         watchEnabled = enabled;
     }
-    
+
+    /**
+     * Sets the folder to watch.
+     *
+     * @param path
+     */
     public void setPath(File path) {
         watchFolder = path;
+    }
+
+    /**
+     * Resets watch so that the batch processing can start immediately.
+     */
+    public void resetWatch() {
+        lastTime = 0;
+        lastFiles = new ArrayList<File>();
     }
 
     public static void main(String[] args) {
@@ -97,4 +114,3 @@ public class Watcher implements Runnable {
         t.start();
     }
 }
-

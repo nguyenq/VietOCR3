@@ -20,7 +20,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButtonMenuItem;
 
-public class GuiWithPSM extends GuiWithSettings {
+public class GuiWithPSM extends GuiWithBatch {
 
     public enum PageSegMode {
 

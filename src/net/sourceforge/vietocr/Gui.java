@@ -697,6 +697,7 @@ public class Gui extends JFrame {
         jMenuCommand = new javax.swing.JMenu();
         jMenuItemOCR = new javax.swing.JMenuItem();
         jMenuItemOCRAll = new javax.swing.JMenuItem();
+        jMenuItemOcrBatch = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItemPostProcess = new javax.swing.JMenuItem();
         jMenuImage = new javax.swing.JMenu();
@@ -1113,6 +1114,16 @@ public class Gui extends JFrame {
             }
         });
         jMenuCommand.add(jMenuItemOCRAll);
+
+        jMenuItemOcrBatch.setLabel("OCR Batch");
+        jMenuItemOcrBatch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemOcrBatchActionPerformed(evt);
+            }
+        });
+        jMenuCommand.add(jMenuItemOcrBatch);
+        jMenuItemOcrBatch.getAccessibleContext().setAccessibleName("jMenuItemOcrBatch");
+
         jMenuCommand.add(jSeparator1);
 
         jMenuItemPostProcess.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
@@ -1942,6 +1953,10 @@ public class Gui extends JFrame {
         jImageLabel.requestFocusInWindow();
     }//GEN-LAST:event_jImageLabelMouseEntered
 
+    void jMenuItemOcrBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemOcrBatchActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemOcrBatchActionPerformed
+
     /**
      * Changes locale of UI elements.
      * @param locale 
@@ -2052,6 +2067,7 @@ public class Gui extends JFrame {
     private javax.swing.JMenuItem jMenuItemMetadata;
     protected javax.swing.JMenuItem jMenuItemOCR;
     protected javax.swing.JMenuItem jMenuItemOCRAll;
+    protected javax.swing.JMenuItem jMenuItemOcrBatch;
     private javax.swing.JMenuItem jMenuItemOpen;
     private javax.swing.JMenuItem jMenuItemOptions;
     protected javax.swing.JMenuItem jMenuItemPostProcess;

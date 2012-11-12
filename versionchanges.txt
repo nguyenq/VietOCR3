@@ -61,8 +61,11 @@ Version 3.3 (25 February 2012)
 - Use icons from FatCow (http://www.fatcow.com/free-icons) and by Rimas Kudelis
 
 Version 3.4 (3 November 2012)
-- Update Tesseract engine to v3.02 (r798)
+- Upgrade Tesseract engine to v3.02 (r798)
 - Enable text entry in the combobox for Tesseract 3.02's multi-language OCR support
 - Fit Image now retains image aspect ratio
 - Add optional support for using Tess4J library
 - Update JACOB to 1.16.1 version
+
+Version 3.4.1 (12 November 2012)
+- Modify batch to enable immediate processing
