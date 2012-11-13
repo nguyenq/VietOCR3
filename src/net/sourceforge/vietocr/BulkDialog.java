@@ -75,7 +75,7 @@ public class BulkDialog extends javax.swing.JDialog {
         jButtonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/BatchDialog"); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/BulkDialog"); // NOI18N
         setTitle(bundle.getString("this.Title")); // NOI18N
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -90,7 +90,7 @@ public class BulkDialog extends javax.swing.JDialog {
         jPanelImageFolder.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 4, 10));
         jPanelImageFolder.setLayout(new java.awt.GridBagLayout());
 
-        jLabelFolder.setText(bundle.getString("jLabelFolder.Text")); // NOI18N
+        jLabelFolder.setText(bundle.getString("jLabelInput.Text")); // NOI18N
         jPanelImageFolder.add(jLabelFolder, new java.awt.GridBagConstraints());
 
         jTextFieldFolder.setEditable(false);
@@ -120,7 +120,7 @@ public class BulkDialog extends javax.swing.JDialog {
         jPanelImageFolder.add(jTextFieldOutput, gridBagConstraints);
 
         jButtonFolder.setText("...");
-        jButtonFolder.setToolTipText(bundle.getString("jButtonFolder.ToolTipText")); // NOI18N
+        jButtonFolder.setToolTipText(bundle.getString("jButtonInput.ToolTipText")); // NOI18N
         jButtonFolder.setPreferredSize(new java.awt.Dimension(30, 23));
         jButtonFolder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
