@@ -174,6 +174,9 @@ public class GuiWithBatch extends GuiWithSettings {
             @Override
             public void run() {
                 statusFrame.setTitle(bundle.getString("statusFrame.Title"));
+                if (batchDialog != null) {
+                    batchDialog.changeUILanguage(locale);
+                }
             }
         });
     }
