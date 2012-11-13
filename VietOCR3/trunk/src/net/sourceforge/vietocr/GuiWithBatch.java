@@ -32,7 +32,7 @@ public class GuiWithBatch extends GuiWithSettings {
     private StatusFrame statusFrame;
     private Watcher watcher;
     private boolean executeBatch;
-    private BatchDialog batchDialog;
+    private BulkDialog batchDialog;
     private final String strImageFolder = "ImageFolder";
     private final String strBulkOutputFolder = "BulkOutputFolder";
     private String imageFolder;
@@ -129,7 +129,7 @@ public class GuiWithBatch extends GuiWithSettings {
         }
 
         if (batchDialog == null) {
-            batchDialog = new BatchDialog(this, true);
+            batchDialog = new BulkDialog(this, true);
         }
 
         batchDialog.setImageFolder(imageFolder);

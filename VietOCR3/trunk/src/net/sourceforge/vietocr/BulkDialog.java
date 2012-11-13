@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 import javax.swing.*;
 import net.sourceforge.vietocr.utilities.FormLocalizer;
 
-public class BatchDialog extends javax.swing.JDialog {
+public class BulkDialog extends javax.swing.JDialog {
 
     private int actionSelected = -1;
     private String imageFolder;
@@ -32,11 +32,11 @@ public class BatchDialog extends javax.swing.JDialog {
     /**
      * Creates new form BatchDialog
      */
-    public BatchDialog(java.awt.Frame parent, boolean modal) {
+    public BulkDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
-        bundle = ResourceBundle.getBundle("net/sourceforge/vietocr/BatchDialog");
+        bundle = ResourceBundle.getBundle("net/sourceforge/vietocr/BulkDialog");
 
         this.setLocationRelativeTo(parent);
         getRootPane().setDefaultButton(jButtonRun);
@@ -220,12 +220,12 @@ public class BatchDialog extends javax.swing.JDialog {
 
     void changeUILanguage(final Locale locale) {
         Locale.setDefault(locale);
-        bundle = ResourceBundle.getBundle("net/sourceforge/vietocr/BatchDialog");
+        bundle = ResourceBundle.getBundle("net/sourceforge/vietocr/BulkDialog");
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FormLocalizer localizer = new FormLocalizer(BatchDialog.this, BatchDialog.class);
+                FormLocalizer localizer = new FormLocalizer(BulkDialog.this, BulkDialog.class);
                 localizer.ApplyCulture(bundle);
             }
         });
@@ -276,13 +276,13 @@ public class BatchDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BatchDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BulkDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BatchDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BulkDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BatchDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BulkDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BatchDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BulkDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -290,7 +290,7 @@ public class BatchDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                BatchDialog dialog = new BatchDialog(new javax.swing.JFrame(), true);
+                BulkDialog dialog = new BulkDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
