@@ -30,8 +30,13 @@ public class GuiWithBatch extends GuiWithSettings {
     private StatusFrame statusFrame;
     private Watcher watcher;
     private boolean executeBatch;
+    private BatchDialog batchDialog;
+    private final String strWatchFolder = "WatchFolder";
+    private final String strOutputFolder = "OutputFolder";
 
     public GuiWithBatch() {
+        watchFolder = prefs.get(strWatchFolder, System.getProperty("user.home"));
+        outputFolder = prefs.get(strOutputFolder, System.getProperty("user.home"));
         this.jMenuItemExecuteBatch.setEnabled(watchEnabled);
         statusFrame = new StatusFrame();
         statusFrame.setTitle(bundle.getString("statusFrame.Title"));
@@ -40,7 +45,7 @@ public class GuiWithBatch extends GuiWithSettings {
         final Queue<File> queue = new LinkedList<File>();
         watcher = new Watcher(queue, new File(watchFolder));
         watcher.setEnabled(watchEnabled);
-        
+
         Thread t = new Thread(watcher);
         t.start();
 
@@ -107,15 +112,36 @@ public class GuiWithBatch extends GuiWithSettings {
     @Override
     protected void jMenuItemExecuteBatchActionPerformed(java.awt.event.ActionEvent evt) {
         executeBatch ^= true;
-        this.jMenuItemExecuteBatch.setText(executeBatch? "Stop Batch" : "Execute Batch");
-        watcher.resetWatch();
+
+        if (!executeBatch) {
+            this.jMenuItemExecuteBatch.setText("Execute Batch...");
+            
+            // abort currently executing OCR task.
+            
+            
+            return;
+        }
+
+        if (batchDialog == null) {
+            batchDialog = new BatchDialog(this, true);
+        }
+
+        batchDialog.setImageFolder(watchFolder);
+        batchDialog.setOutputFolder(outputFolder);
+
+        if (batchDialog.showDialog() == JOptionPane.OK_OPTION) {
+            watchFolder = batchDialog.getImageFolder();
+            outputFolder = batchDialog.getOutputFolder();
+            this.jMenuItemExecuteBatch.setText("Stop Batch");
+            
+            //  execute batch
+        }
     }
-    
+
     @Override
     protected void updateWatch(String watchFolder, boolean watchEnabled) {
         watcher.setPath(new File(watchFolder));
         watcher.setEnabled(watchEnabled);
-        this.jMenuItemExecuteBatch.setEnabled(watchEnabled);
     }
 
     @Override
