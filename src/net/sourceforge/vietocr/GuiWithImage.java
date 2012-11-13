@@ -21,7 +21,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-public class GuiWithImage extends GuiWithPostprocess {
+public class GuiWithImage extends GuiWithBulkOCR {
 
     private final String strScreenshotMode = "ScreenshotMode";
     private static final double MINIMUM_DESKEW_THRESHOLD = 0.05d;

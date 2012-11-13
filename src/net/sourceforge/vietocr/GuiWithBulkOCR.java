@@ -1,5 +1,7 @@
 /**
- * Copyright @ 2012 Quan Nguyen
+ * Copyright
+ *
+ * @ 2008 Quan Nguyen
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,105 +18,61 @@
 package net.sourceforge.vietocr;
 
 import java.awt.Cursor;
-import java.awt.event.ActionEvent;
-import java.io.*;
-import java.util.*;
-import javax.imageio.IIOImage;
-import javax.swing.*;
-import javax.swing.Timer;
-import net.sourceforge.vietocr.postprocessing.Processor;
-import net.sourceforge.vietocr.postprocessing.TextUtilities;
-import net.sourceforge.vietocr.utilities.Watcher;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 
-public class GuiWithBatch extends GuiWithSettings {
+public class GuiWithBulkOCR extends GuiWithPostprocess {
 
     private OcrWorker ocrWorker;
     private StatusFrame statusFrame;
-    private Watcher watcher;
-    private boolean executeBatch;
+    private BulkDialog bulkDialog;
+    private final String strInputFolder = "InputFolder";
+    private final String strBulkOutputFolder = "BulkOutputFolder";
+    private String inputFolder;
+    private String bulkOutputFolder;
 
-    public GuiWithBatch() {
+    public GuiWithBulkOCR() {
+        inputFolder = prefs.get(strInputFolder, System.getProperty("user.home"));
+        bulkOutputFolder = prefs.get(strBulkOutputFolder, System.getProperty("user.home"));
         statusFrame = new StatusFrame();
         statusFrame.setTitle(bundle.getString("statusFrame.Title"));
-
-        // watch for new image files
-        final Queue<File> queue = new LinkedList<File>();
-        watcher = new Watcher(queue, new File(watchFolder));
-        watcher.setEnabled(watchEnabled);
-
-        Thread t = new Thread(watcher);
-        t.start();
-
-        // autoOCR if there are files in the queue
-        Action autoOcrAction = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                final File imageFile = queue.poll();
-                performOCR(imageFile);
-            }
-        };
-
-        new Timer(5000, autoOcrAction).start();
     }
-
-    private void performOCR(final File imageFile) {
-        if (imageFile != null && imageFile.exists()) {
-            if (!statusFrame.isVisible()) {
-                statusFrame.setVisible(true);
-            }
-
-            statusFrame.getTextArea().append(imageFile.getPath() + "\n");
-
-            if (curLangCode == null) {
-                statusFrame.getTextArea().append("    **  " + bundle.getString("Please_select_a_language.") + "  **\n");
-//                        queue.clear();
-                return;
-            }
-
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    List<File> tempTiffFiles = null;
-
-                    try {
-                        OCR<File> ocrEngine = new OCRFiles(tessPath);
-                        ocrEngine.setPageSegMode(selectedPSM);
-                        List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(imageFile);
-                        tempTiffFiles = ImageIOHelper.createTiffFiles(iioImageList, -1);
-                        String result = ocrEngine.recognizeText(tempTiffFiles, curLangCode);
-
-                        // postprocess to correct common OCR errors
-                        result = Processor.postProcess(result, curLangCode);
-                        // correct common errors caused by OCR
-                        result = TextUtilities.correctOCRErrors(result);
-                        // correct letter cases
-                        result = TextUtilities.correctLetterCases(result);
-
-                        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(outputFolder, imageFile.getName() + ".txt")), UTF8));
-                        out.write(result);
-                        out.close();
-                    } catch (Exception e) {
-                        statusFrame.getTextArea().append("    **  " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + "  **\n");
-                        e.printStackTrace();
-                    } finally {
-                        //clean up working files
-                        if (tempTiffFiles != null) {
-                            for (File f : tempTiffFiles) {
-                                f.delete();
-                            }
-                        }
-                    }
-                }
-            });
-        }
-    }
-
- 
 
     @Override
-    protected void updateWatch(String watchFolder, boolean watchEnabled) {
-        watcher.setPath(new File(watchFolder));
-        watcher.setEnabled(watchEnabled);
+    protected void jMenuItemBulkOCRActionPerformed(java.awt.event.ActionEvent evt) {
+        if (bulkDialog == null) {
+            bulkDialog = new BulkDialog(this, true);
+        }
+
+        bulkDialog.setImageFolder(inputFolder);
+        bulkDialog.setOutputFolder(bulkOutputFolder);
+
+        if (bulkDialog.showDialog() == JOptionPane.OK_OPTION) {
+            inputFolder = bulkDialog.getImageFolder();
+            bulkOutputFolder = bulkDialog.getBulkOutputFolder();
+            this.jMenuItemBulkOCR.setText("Stop Bulk OCR");
+
+            File[] files = new File(inputFolder).listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp|pdf)$");
+                }
+            });
+
+            // will need to put this long execution task in a swingwork
+            //  execute bulk
+            // instantiate SwingWorker for OCR
+            ocrWorker = new OcrWorker(files);
+            ocrWorker.execute();
+        }
+        this.jMenuItemBulkOCR.setText(bundle.getString("jMenuItemBulkOCR.Text"));
     }
 
     @Override
@@ -125,6 +83,9 @@ public class GuiWithBatch extends GuiWithSettings {
             @Override
             public void run() {
                 statusFrame.setTitle(bundle.getString("statusFrame.Title"));
+                if (bulkDialog != null) {
+                    bulkDialog.changeUILanguage(locale);
+                }
             }
         });
     }
@@ -143,7 +104,7 @@ public class GuiWithBatch extends GuiWithSettings {
         @Override
         protected Void doInBackground() throws Exception {
             for (File file : files) {
-                performOCR(file);
+//                performOCR(file);
             }
             return null;
         }
