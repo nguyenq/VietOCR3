@@ -1,24 +1,32 @@
+/**
+ * Copyright @ 2012 Quan Nguyen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 package net.sourceforge.vietocr;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import net.sourceforge.vietocr.utilities.FormLocalizer;
 
 public class BatchDialog extends javax.swing.JDialog {
 
     private int actionSelected = -1;
     private String imageFolder;
-    private String outputFolder;
+    private String bulkOutputFolder;
     protected ResourceBundle bundle;
 
     /**
@@ -177,11 +185,11 @@ public class BatchDialog extends javax.swing.JDialog {
         filechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         filechooser.setAcceptAllFileFilterUsed(false);
         filechooser.setApproveButtonText(bundle.getString("Set"));
-        filechooser.setCurrentDirectory(new File(outputFolder));
+        filechooser.setCurrentDirectory(new File(bulkOutputFolder));
         filechooser.setDialogTitle(bundle.getString("Set_Output_Folder"));
         if (filechooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            outputFolder = filechooser.getSelectedFile().getPath();
-            this.jTextFieldOutput.setText(outputFolder);
+            bulkOutputFolder = filechooser.getSelectedFile().getPath();
+            this.jTextFieldOutput.setText(bulkOutputFolder);
         }
     }//GEN-LAST:event_jButtonOutputActionPerformed
 
@@ -197,12 +205,12 @@ public class BatchDialog extends javax.swing.JDialog {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         this.jTextFieldFolder.setText(imageFolder);
-        this.jTextFieldOutput.setText(outputFolder);
+        this.jTextFieldOutput.setText(bulkOutputFolder);
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
         imageFolder = this.jTextFieldFolder.getText();
-        outputFolder = this.jTextFieldOutput.getText();
+        bulkOutputFolder = this.jTextFieldOutput.getText();
     }//GEN-LAST:event_formWindowDeactivated
 
     public int showDialog() {
@@ -240,15 +248,15 @@ public class BatchDialog extends javax.swing.JDialog {
     /**
      * @return the outputFolder
      */
-    public String getOutputFolder() {
-        return outputFolder;
+    public String getBulkOutputFolder() {
+        return bulkOutputFolder;
     }
 
     /**
      * @param outputFolder the outputFolder to set
      */
     public void setOutputFolder(String outputFolder) {
-        this.outputFolder = outputFolder;
+        this.bulkOutputFolder = outputFolder;
     }
 
     /**

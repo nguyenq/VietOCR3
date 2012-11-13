@@ -698,7 +698,7 @@ public class Gui extends JFrame {
         jMenuItemOCR = new javax.swing.JMenuItem();
         jMenuItemOCRAll = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
-        jMenuItemExecuteBatch = new javax.swing.JMenuItem();
+        jMenuItemBulkOCR = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItemPostProcess = new javax.swing.JMenuItem();
         jMenuImage = new javax.swing.JMenu();
@@ -1117,16 +1117,15 @@ public class Gui extends JFrame {
         jMenuCommand.add(jMenuItemOCRAll);
         jMenuCommand.add(jSeparator6);
 
-        jMenuItemExecuteBatch.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemExecuteBatch.Mnemonic").charAt(0));
-        jMenuItemExecuteBatch.setText(bundle.getString("jMenuItemExecuteBatch.Text")); // NOI18N
-        jMenuItemExecuteBatch.setToolTipText("OCR Image Files in Watch folder");
-        jMenuItemExecuteBatch.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemBulkOCR.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemBulkOCR.Mnemonic").charAt(0));
+        jMenuItemBulkOCR.setText(bundle.getString("jMenuItemBulkOCR.Text")); // NOI18N
+        jMenuItemBulkOCR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemExecuteBatchActionPerformed(evt);
+                jMenuItemBulkOCRActionPerformed(evt);
             }
         });
-        jMenuCommand.add(jMenuItemExecuteBatch);
-        jMenuItemExecuteBatch.getAccessibleContext().setAccessibleName("jMenuItemExecuteBatch");
+        jMenuCommand.add(jMenuItemBulkOCR);
+        jMenuItemBulkOCR.getAccessibleContext().setAccessibleName("jMenuItemExecuteBatch");
 
         jMenuCommand.add(jSeparator1);
 
@@ -1957,9 +1956,9 @@ public class Gui extends JFrame {
         jImageLabel.requestFocusInWindow();
     }//GEN-LAST:event_jImageLabelMouseEntered
 
-    void jMenuItemExecuteBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExecuteBatchActionPerformed
+    void jMenuItemBulkOCRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBulkOCRActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
-    }//GEN-LAST:event_jMenuItemExecuteBatchActionPerformed
+    }//GEN-LAST:event_jMenuItemBulkOCRActionPerformed
 
     /**
      * Changes locale of UI elements.
@@ -2060,10 +2059,10 @@ public class Gui extends JFrame {
     private javax.swing.JMenu jMenuImage;
     protected javax.swing.JMenu jMenuInputMethod;
     private javax.swing.JMenuItem jMenuItemAbout;
+    protected javax.swing.JMenuItem jMenuItemBulkOCR;
     private javax.swing.JMenuItem jMenuItemChangeCase;
     private javax.swing.JMenuItem jMenuItemDeskew;
     private javax.swing.JMenuItem jMenuItemDownloadLangData;
-    protected javax.swing.JMenuItem jMenuItemExecuteBatch;
     private javax.swing.JMenuItem jMenuItemExit;
     private javax.swing.JMenuItem jMenuItemFont;
     private javax.swing.JMenuItem jMenuItemHelp;
