@@ -536,9 +536,9 @@ public class OptionsDialog extends javax.swing.JDialog {
     }
 
     /**
-     * @param tessDllEnabled the tessDllEnabled to set
+     * @param tessLibEnabled the tessLibEnabled to set
      */
-    public void setTessLibEnabled(boolean tessDllEnabled) {
-        this.tessLibEnabled = tessDllEnabled;
+    public void setTessLibEnabled(boolean tessLibEnabled) {
+        this.tessLibEnabled = tessLibEnabled;
     }
 }
