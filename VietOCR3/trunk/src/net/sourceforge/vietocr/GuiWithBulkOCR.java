@@ -1,7 +1,5 @@
 /**
- * Copyright
- *
- * @ 2008 Quan Nguyen
+ * Copyright 2008 Quan Nguyen
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,6 +16,7 @@
 package net.sourceforge.vietocr;
 
 import java.awt.Cursor;
+import java.awt.Frame;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -53,6 +52,13 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
 
     @Override
     protected void jMenuItemBulkOCRActionPerformed(java.awt.event.ActionEvent evt) {
+        if (ocrWorker != null && !ocrWorker.isDone()) {
+            // Cancel current OCR op to begin a new one. You want only one OCR op at a time.
+            ocrWorker.cancel(true);
+            ocrWorker = null;
+            return;
+        }
+
         if (bulkDialog == null) {
             bulkDialog = new BulkDialog(this, true);
         }
@@ -63,9 +69,15 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
         if (bulkDialog.showDialog() == JOptionPane.OK_OPTION) {
             inputFolder = bulkDialog.getImageFolder();
             bulkOutputFolder = bulkDialog.getBulkOutputFolder();
-            this.jMenuItemBulkOCR.setText("Stop Bulk OCR");
 
-            statusFrame.setVisible(true);
+            if (!statusFrame.isVisible()) {
+                statusFrame.setVisible(true);
+            }
+            if (statusFrame.getState() == Frame.ICONIFIED) {
+                statusFrame.setState(Frame.NORMAL);
+                statusFrame.toFront();
+            }
+
             File[] files = new File(inputFolder).listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
@@ -73,13 +85,20 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 }
             });
 
+            jLabelStatus.setText(bundle.getString("OCR_running..."));
+            jProgressBar1.setIndeterminate(true);
+            jProgressBar1.setString(bundle.getString("OCR_running..."));
+            jProgressBar1.setVisible(true);
+            getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            getGlassPane().setVisible(true);
+            jMenuItemBulkOCR.setText("Cancel Bulk OCR");
+
             // will need to put this long execution task in a swingwork
             //  execute bulk
             // instantiate SwingWorker for OCR
             ocrWorker = new OcrWorker(files);
             ocrWorker.execute();
         }
-        this.jMenuItemBulkOCR.setText(bundle.getString("jMenuItemBulkOCR.Text"));
     }
 
     @Override
@@ -192,6 +211,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 jLabelStatus.setText("OCR " + bundle.getString("canceled"));
                 jProgressBar1.setString("OCR " + bundle.getString("canceled"));
             } finally {
+                jMenuItemBulkOCR.setText(bundle.getString("jMenuItemBulkOCR.Text"));
                 getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 getGlassPane().setVisible(false);
             }
