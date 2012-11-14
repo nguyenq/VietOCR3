@@ -528,7 +528,7 @@ public class OptionsDialog extends javax.swing.JDialog {
     }
 
     /**
-     * @return the tessDllEnabled
+     * @return the tessLibEnabled
      */
     public boolean isTessLibEnabled() {
         tessLibEnabled = this.jCheckBoxTessLib.isSelected();
