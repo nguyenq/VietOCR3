@@ -134,6 +134,8 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(bulkOutputFolder, imageFile.getName() + ".txt")), UTF8));
             out.write(result);
             out.close();
+        } catch (InterruptedException ignore) {
+            // ignore
         } catch (Exception e) {
             statusFrame.getTextArea().append("    **  " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + "  **\n");
         } finally {
@@ -209,6 +211,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             } catch (java.util.concurrent.CancellationException e) {
                 jLabelStatus.setText("OCR " + bundle.getString("canceled"));
                 jProgressBar1.setString("OCR " + bundle.getString("canceled"));
+                statusFrame.getTextArea().append("*** OCR canceled ***" + "\n");
             } finally {
                 jMenuItemBulkOCR.setText(bundle.getString("jMenuItemBulkOCR.Text"));
                 getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
