@@ -73,8 +73,8 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             if (!statusFrame.isVisible()) {
                 statusFrame.setVisible(true);
             }
-            if (statusFrame.getState() == Frame.ICONIFIED) {
-                statusFrame.setState(Frame.NORMAL);
+            if (statusFrame.getExtendedState() == Frame.ICONIFIED) {
+                statusFrame.setExtendedState(Frame.NORMAL);
                 statusFrame.toFront();
             }
 
