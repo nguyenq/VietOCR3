@@ -70,21 +70,6 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             inputFolder = bulkDialog.getImageFolder();
             bulkOutputFolder = bulkDialog.getBulkOutputFolder();
 
-            if (!statusFrame.isVisible()) {
-                statusFrame.setVisible(true);
-            }
-            if (statusFrame.getExtendedState() == Frame.ICONIFIED) {
-                statusFrame.setExtendedState(Frame.NORMAL);
-                statusFrame.toFront();
-            }
-
-            File[] files = new File(inputFolder).listFiles(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    return name.toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp|pdf)$");
-                }
-            });
-
             jLabelStatus.setText(bundle.getString("OCR_running..."));
             jProgressBar1.setIndeterminate(true);
             jProgressBar1.setString(bundle.getString("OCR_running..."));
@@ -93,8 +78,21 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             getGlassPane().setVisible(true);
             jMenuItemBulkOCR.setText("Cancel Bulk OCR");
 
-            // will need to put this long execution task in a swingwork
-            //  execute bulk
+            if (!statusFrame.isVisible()) {
+                statusFrame.setVisible(true);
+            }
+            if (statusFrame.getExtendedState() == Frame.ICONIFIED) {
+                statusFrame.setExtendedState(Frame.NORMAL);
+            }
+            statusFrame.toFront();
+            
+            File[] files = new File(inputFolder).listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp|pdf)$");
+                }
+            });
+
             // instantiate SwingWorker for OCR
             ocrWorker = new OcrWorker(files);
             ocrWorker.execute();
@@ -138,7 +136,6 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             out.close();
         } catch (Exception e) {
             statusFrame.getTextArea().append("    **  " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + "  **\n");
-            e.printStackTrace();
         } finally {
             //clean up working files
             if (tempTiffFiles != null) {
@@ -163,8 +160,10 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
         @Override
         protected Void doInBackground() throws Exception {
             for (File file : files) {
-                publish(file.getName()); // interim result
-                performOCR(file);
+                if (!isCancelled()) {
+                    publish(file.getName()); // interim result
+                    performOCR(file);
+                }
             }
             return null;
         }
@@ -185,7 +184,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 jLabelStatus.setText(bundle.getString("OCR_completed."));
                 jProgressBar1.setString(bundle.getString("OCR_completed."));
             } catch (InterruptedException ignore) {
-                ignore.printStackTrace();
+//                ignore.printStackTrace();
             } catch (java.util.concurrent.ExecutionException e) {
                 String why = null;
                 Throwable cause = e.getCause();
@@ -202,7 +201,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 } else {
                     why = e.getMessage();
                 }
-                e.printStackTrace();
+//                e.printStackTrace();
 //                    System.err.println(why);
                 jLabelStatus.setText(null);
                 jProgressBar1.setString(null);
