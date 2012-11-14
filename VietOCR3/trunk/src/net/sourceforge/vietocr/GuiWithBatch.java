@@ -15,7 +15,6 @@
  */
 package net.sourceforge.vietocr;
 
-import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.io.*;
 import java.util.*;
@@ -28,10 +27,8 @@ import net.sourceforge.vietocr.utilities.Watcher;
 
 public class GuiWithBatch extends GuiWithSettings {
 
-    private OcrWorker ocrWorker;
     private StatusFrame statusFrame;
     private Watcher watcher;
-    private boolean executeBatch;
 
     public GuiWithBatch() {
         statusFrame = new StatusFrame();
@@ -109,8 +106,6 @@ public class GuiWithBatch extends GuiWithSettings {
         }
     }
 
- 
-
     @Override
     protected void updateWatch(String watchFolder, boolean watchEnabled) {
         watcher.setPath(new File(watchFolder));
@@ -127,71 +122,5 @@ public class GuiWithBatch extends GuiWithSettings {
                 statusFrame.setTitle(bundle.getString("statusFrame.Title"));
             }
         });
-    }
-
-    /**
-     * A worker class for managing OCR process.
-     */
-    class OcrWorker extends SwingWorker<Void, String> {
-
-        File[] files;
-
-        OcrWorker(File[] files) {
-            this.files = files;
-        }
-
-        @Override
-        protected Void doInBackground() throws Exception {
-            for (File file : files) {
-                performOCR(file);
-            }
-            return null;
-        }
-
-        @Override
-        protected void process(List<String> results) {
-            for (String str : results) {
-            }
-        }
-
-        @Override
-        protected void done() {
-            jProgressBar1.setIndeterminate(false);
-
-            try {
-                get(); // dummy method
-                jLabelStatus.setText(bundle.getString("OCR_completed."));
-                jProgressBar1.setString(bundle.getString("OCR_completed."));
-            } catch (InterruptedException ignore) {
-                ignore.printStackTrace();
-            } catch (java.util.concurrent.ExecutionException e) {
-                String why = null;
-                Throwable cause = e.getCause();
-                if (cause != null) {
-                    if (cause instanceof IOException) {
-                        why = bundle.getString("Cannot_find_Tesseract._Please_set_its_path.");
-                    } else if (cause instanceof FileNotFoundException) {
-                        why = bundle.getString("An_exception_occurred_in_Tesseract_engine_while_recognizing_this_image.");
-                    } else if (cause instanceof OutOfMemoryError) {
-                        why = cause.getMessage();
-                    } else {
-                        why = cause.getMessage();
-                    }
-                } else {
-                    why = e.getMessage();
-                }
-                e.printStackTrace();
-//                    System.err.println(why);
-                jLabelStatus.setText(null);
-                jProgressBar1.setString(null);
-                JOptionPane.showMessageDialog(null, why, "OCR Operation", JOptionPane.ERROR_MESSAGE);
-            } catch (java.util.concurrent.CancellationException e) {
-                jLabelStatus.setText("OCR " + bundle.getString("canceled"));
-                jProgressBar1.setString("OCR " + bundle.getString("canceled"));
-            } finally {
-                getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                getGlassPane().setVisible(false);
-            }
-        }
     }
 }

@@ -18,15 +18,21 @@
 package net.sourceforge.vietocr;
 
 import java.awt.Cursor;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.List;
 import java.util.Locale;
+import javax.imageio.IIOImage;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import net.sourceforge.vietocr.postprocessing.Processor;
+import net.sourceforge.vietocr.postprocessing.TextUtilities;
 
 public class GuiWithBulkOCR extends GuiWithPostprocess {
 
@@ -59,6 +65,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             bulkOutputFolder = bulkDialog.getBulkOutputFolder();
             this.jMenuItemBulkOCR.setText("Stop Bulk OCR");
 
+            statusFrame.setVisible(true);
             File[] files = new File(inputFolder).listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
@@ -90,6 +97,39 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
         });
     }
 
+    private void performOCR(File imageFile) {
+        List<File> tempTiffFiles = null;
+
+        try {
+            OCR<File> ocrEngine = new OCRFiles(tessPath);
+            ocrEngine.setPageSegMode(selectedPSM);
+            List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(imageFile);
+            tempTiffFiles = ImageIOHelper.createTiffFiles(iioImageList, -1);
+            String result = ocrEngine.recognizeText(tempTiffFiles, curLangCode);
+
+            // postprocess to correct common OCR errors
+            result = Processor.postProcess(result, curLangCode);
+            // correct common errors caused by OCR
+            result = TextUtilities.correctOCRErrors(result);
+            // correct letter cases
+            result = TextUtilities.correctLetterCases(result);
+
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(bulkOutputFolder, imageFile.getName() + ".txt")), UTF8));
+            out.write(result);
+            out.close();
+        } catch (Exception e) {
+            statusFrame.getTextArea().append("    **  " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + "  **\n");
+            e.printStackTrace();
+        } finally {
+            //clean up working files
+            if (tempTiffFiles != null) {
+                for (File f : tempTiffFiles) {
+                    f.delete();
+                }
+            }
+        }
+    }
+
     /**
      * A worker class for managing OCR process.
      */
@@ -104,7 +144,8 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
         @Override
         protected Void doInBackground() throws Exception {
             for (File file : files) {
-//                performOCR(file);
+                publish(file.getName()); // interim result
+                performOCR(file);
             }
             return null;
         }
@@ -112,6 +153,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
         @Override
         protected void process(List<String> results) {
             for (String str : results) {
+                statusFrame.getTextArea().append(str + "\n");
             }
         }
 
