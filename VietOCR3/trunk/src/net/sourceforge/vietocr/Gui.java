@@ -1944,7 +1944,7 @@ public class Gui extends JFrame {
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemDownloadLangDataActionPerformed
     private void jTextArea1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea1MouseEntered
-        if (!this.jTextArea1.isFocusOwner()) {
+        if (!this.jTextArea1.isFocusOwner() && this.isActive()) {
             this.jTextArea1.requestFocusInWindow();
         }
     }//GEN-LAST:event_jTextArea1MouseEntered
@@ -1953,7 +1953,9 @@ public class Gui extends JFrame {
     }//GEN-LAST:event_jMenuItemDeskewActionPerformed
 
     private void jImageLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jImageLabelMouseEntered
-        jImageLabel.requestFocusInWindow();
+        if (!this.jImageLabel.isFocusOwner() && this.isActive()) {
+            jImageLabel.requestFocusInWindow();
+        }
     }//GEN-LAST:event_jImageLabelMouseEntered
 
     void jMenuItemBulkOCRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBulkOCRActionPerformed
