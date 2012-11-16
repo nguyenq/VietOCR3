@@ -15,23 +15,13 @@
  */
 package net.sourceforge.vietocr;
 
-import java.awt.Cursor;
-import java.awt.Frame;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.awt.*;
+import java.io.*;
 import java.util.List;
 import java.util.Locale;
 import javax.imageio.IIOImage;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
-import net.sourceforge.vietocr.postprocessing.Processor;
-import net.sourceforge.vietocr.postprocessing.TextUtilities;
+import javax.swing.*;
+import net.sourceforge.vietocr.postprocessing.*;
 
 public class GuiWithBulkOCR extends GuiWithPostprocess {
 
@@ -85,7 +75,8 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 statusFrame.setExtendedState(Frame.NORMAL);
             }
             statusFrame.toFront();
-            
+            statusFrame.getTextArea().append("\t-- Beginning of task --\n");
+
             File[] files = new File(inputFolder).listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
@@ -112,6 +103,14 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 }
             }
         });
+    }
+
+    @Override
+    void quit() {
+        prefs.put(strInputFolder, inputFolder);
+        prefs.put(strBulkOutputFolder, bulkOutputFolder);
+
+        super.quit();
     }
 
     private void performOCR(File imageFile) {
@@ -163,7 +162,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
         protected Void doInBackground() throws Exception {
             for (File file : files) {
                 if (!isCancelled()) {
-                    publish(file.getName()); // interim result
+                    publish(file.getPath()); // interim result
                     performOCR(file);
                 }
             }
@@ -185,6 +184,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 get(); // dummy method
                 jLabelStatus.setText(bundle.getString("OCR_completed."));
                 jProgressBar1.setString(bundle.getString("OCR_completed."));
+                statusFrame.getTextArea().append("\t-- End of task --\n");
             } catch (InterruptedException ignore) {
 //                ignore.printStackTrace();
             } catch (java.util.concurrent.ExecutionException e) {
@@ -211,7 +211,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             } catch (java.util.concurrent.CancellationException e) {
                 jLabelStatus.setText("OCR " + bundle.getString("canceled"));
                 jProgressBar1.setString("OCR " + bundle.getString("canceled"));
-                statusFrame.getTextArea().append("*** OCR canceled ***" + "\n");
+                statusFrame.getTextArea().append("\t-- OCR canceled --\n");
             } finally {
                 jMenuItemBulkOCR.setText(bundle.getString("jMenuItemBulkOCR.Text"));
                 getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
