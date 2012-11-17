@@ -263,7 +263,9 @@
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBoxTessLib">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Use libtesseract Library"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="net/sourceforge/vietocr/OptionsDialog.properties" key="jCheckBoxTessLib.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
                 <Property name="actionCommand" type="java.lang.String" value="libtesseract302"/>
               </Properties>
               <AccessibilityProperties>
