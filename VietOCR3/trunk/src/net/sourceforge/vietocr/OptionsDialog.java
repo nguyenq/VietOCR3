@@ -143,7 +143,9 @@ public class OptionsDialog extends javax.swing.JDialog {
 
         jLabelWatch.setLabelFor(jTextFieldWatch);
         jLabelWatch.setText(bundle.getString("jLabelWatch.Text")); // NOI18N
-        jPanelWatchFolder.add(jLabelWatch, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanelWatchFolder.add(jLabelWatch, gridBagConstraints);
 
         jTextFieldWatch.setEditable(false);
         jTextFieldWatch.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -160,6 +162,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanelWatchFolder.add(jLabelOutput, gridBagConstraints);
 
         jTextFieldOutput.setEditable(false);
