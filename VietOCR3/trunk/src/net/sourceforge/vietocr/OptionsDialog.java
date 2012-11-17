@@ -231,7 +231,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         });
         jPanelTessPath.add(jButtonTess, new java.awt.GridBagConstraints());
 
-        jCheckBoxTessLib.setText("Use libtesseract Library");
+        jCheckBoxTessLib.setText(bundle.getString("jCheckBoxTessLib.Text")); // NOI18N
         jCheckBoxTessLib.setActionCommand("libtesseract302");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
