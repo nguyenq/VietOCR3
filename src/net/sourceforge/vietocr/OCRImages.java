@@ -32,7 +32,7 @@ public class OCRImages extends OCR<IIOImage> {
     Tesseract instance;
     final String TESSDATA = "tessdata";
 
-    OCRImages(String tessPath) {
+    public OCRImages(String tessPath) {
         instance = Tesseract.getInstance();
         instance.setDatapath(new File(tessPath, TESSDATA).getPath());
     }
