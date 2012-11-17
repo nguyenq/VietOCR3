@@ -19,6 +19,7 @@ import java.awt.*;
 import java.io.*;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import javax.imageio.IIOImage;
 import javax.swing.*;
 import net.sourceforge.vietocr.postprocessing.*;
@@ -113,7 +114,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
         super.quit();
     }
 
-    private void performOCR(File imageFile) {
+    private void performOCR(final File imageFile) {
         List<File> tempTiffFiles = null;
 
         try {
@@ -136,7 +137,11 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
         } catch (InterruptedException ignore) {
             // ignore
         } catch (Exception e) {
-            statusFrame.getTextArea().append("    **  " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + "  **\n");
+            try {
+                Thread.sleep(100); // ensure publish/process occur first
+            } catch (Exception ex) {
+            }
+            statusFrame.getTextArea().append("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **\n");
         } finally {
             //clean up working files
             if (tempTiffFiles != null) {
@@ -152,10 +157,12 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
      */
     class OcrWorker extends SwingWorker<Void, String> {
 
+        long startTime;
         File[] files;
 
         OcrWorker(File[] files) {
             this.files = files;
+            startTime = System.currentTimeMillis();
         }
 
         @Override
@@ -211,11 +218,18 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             } catch (java.util.concurrent.CancellationException e) {
                 jLabelStatus.setText("OCR " + bundle.getString("canceled"));
                 jProgressBar1.setString("OCR " + bundle.getString("canceled"));
-                statusFrame.getTextArea().append("\t-- OCR canceled --\n");
+                statusFrame.getTextArea().append("\t-- Task canceled --\n");
             } finally {
                 jMenuItemBulkOCR.setText(bundle.getString("jMenuItemBulkOCR.Text"));
                 getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 getGlassPane().setVisible(false);
+                long millis = System.currentTimeMillis() - startTime;
+                String elapsedTime = String.format("%02d:%02d:%02d",
+                        TimeUnit.MILLISECONDS.toHours(millis),
+                        TimeUnit.MILLISECONDS.toMinutes(millis),
+                        TimeUnit.MILLISECONDS.toSeconds(millis)
+                        - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
+                statusFrame.getTextArea().append("\tElapsed time: " + elapsedTime + "\n");
             }
         }
     }
