@@ -64,7 +64,7 @@ public class BulkDialog extends javax.swing.JDialog {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanelImageFolder = new javax.swing.JPanel();
-        jLabelFolder = new javax.swing.JLabel();
+        jLabelInput = new javax.swing.JLabel();
         jTextFieldFolder = new javax.swing.JTextField();
         jLabelOutput = new javax.swing.JLabel();
         jTextFieldOutput = new javax.swing.JTextField();
@@ -90,10 +90,10 @@ public class BulkDialog extends javax.swing.JDialog {
         jPanelImageFolder.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 4, 10));
         jPanelImageFolder.setLayout(new java.awt.GridBagLayout());
 
-        jLabelFolder.setText(bundle.getString("jLabelInput.Text")); // NOI18N
+        jLabelInput.setText(bundle.getString("jLabelInput.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanelImageFolder.add(jLabelFolder, gridBagConstraints);
+        jPanelImageFolder.add(jLabelInput, gridBagConstraints);
 
         jTextFieldFolder.setEditable(false);
         jTextFieldFolder.setPreferredSize(new java.awt.Dimension(200, 20));
@@ -309,7 +309,7 @@ public class BulkDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonFolder;
     private javax.swing.JButton jButtonOutput;
     private javax.swing.JButton jButtonRun;
-    private javax.swing.JLabel jLabelFolder;
+    private javax.swing.JLabel jLabelInput;
     private javax.swing.JLabel jLabelOutput;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelImageFolder;
