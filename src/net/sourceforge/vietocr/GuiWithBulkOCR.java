@@ -32,11 +32,11 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
     private final String strInputFolder = "InputFolder";
     private final String strBulkOutputFolder = "BulkOutputFolder";
     private String inputFolder;
-    private String bulkOutputFolder;
+    private String outputFolder;
 
     public GuiWithBulkOCR() {
         inputFolder = prefs.get(strInputFolder, System.getProperty("user.home"));
-        bulkOutputFolder = prefs.get(strBulkOutputFolder, System.getProperty("user.home"));
+        outputFolder = prefs.get(strBulkOutputFolder, System.getProperty("user.home"));
         statusFrame = new StatusFrame();
         statusFrame.setTitle(bundle.getString("statusFrame.Title"));
     }
@@ -55,11 +55,11 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
         }
 
         bulkDialog.setImageFolder(inputFolder);
-        bulkDialog.setOutputFolder(bulkOutputFolder);
+        bulkDialog.setOutputFolder(outputFolder);
 
         if (bulkDialog.showDialog() == JOptionPane.OK_OPTION) {
             inputFolder = bulkDialog.getImageFolder();
-            bulkOutputFolder = bulkDialog.getBulkOutputFolder();
+            outputFolder = bulkDialog.getBulkOutputFolder();
 
             jLabelStatus.setText(bundle.getString("OCR_running..."));
             jProgressBar1.setIndeterminate(true);
@@ -109,47 +109,9 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
     @Override
     void quit() {
         prefs.put(strInputFolder, inputFolder);
-        prefs.put(strBulkOutputFolder, bulkOutputFolder);
+        prefs.put(strBulkOutputFolder, outputFolder);
 
         super.quit();
-    }
-
-    private void performOCR(final File imageFile) {
-        List<File> tempTiffFiles = null;
-
-        try {
-            OCR<File> ocrEngine = new OCRFiles(tessPath);
-            ocrEngine.setPageSegMode(selectedPSM);
-            List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(imageFile);
-            tempTiffFiles = ImageIOHelper.createTiffFiles(iioImageList, -1);
-            String result = ocrEngine.recognizeText(tempTiffFiles, curLangCode);
-
-            // postprocess to correct common OCR errors
-            result = Processor.postProcess(result, curLangCode);
-            // correct common errors caused by OCR
-            result = TextUtilities.correctOCRErrors(result);
-            // correct letter cases
-            result = TextUtilities.correctLetterCases(result);
-
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(bulkOutputFolder, imageFile.getName() + ".txt")), UTF8));
-            out.write(result);
-            out.close();
-        } catch (InterruptedException ignore) {
-            // ignore
-        } catch (Exception e) {
-            try {
-                Thread.sleep(100); // ensure publish/process occur first
-            } catch (Exception ex) {
-            }
-            statusFrame.getTextArea().append("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **\n");
-        } finally {
-            //clean up working files
-            if (tempTiffFiles != null) {
-                for (File f : tempTiffFiles) {
-                    f.delete();
-                }
-            }
-        }
     }
 
     /**
@@ -167,10 +129,14 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
 
         @Override
         protected Void doInBackground() throws Exception {
-            for (File file : files) {
+            for (File imageFile : files) {
                 if (!isCancelled()) {
-                    publish(file.getPath()); // interim result
-                    performOCR(file);
+                    publish(imageFile.getPath()); // interim result
+                    try {
+                        OCRHelper.performOCR(imageFile, new File(outputFolder, imageFile.getName() + ".txt"), tessPath, curLangCode, selectedPSM);
+                    } catch (Exception e) {
+                        publish("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **");
+                    }
                 }
             }
             return null;
