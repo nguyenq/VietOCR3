@@ -1,5 +1,5 @@
 /**
- * Copyright 2008 Quan Nguyen
+ * Copyright 2012 Quan Nguyen
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -74,7 +74,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 statusFrame.setExtendedState(Frame.NORMAL);
             }
             statusFrame.toFront();
-            statusFrame.getTextArea().append("\t-- Beginning of task --\n");
+            statusFrame.getTextArea().append("\t-- " + bundle.getString("Beginning_of_task") + " --\n");
 
             File[] files = new File(inputFolder).listFiles(new FilenameFilter() {
                 @Override
@@ -113,7 +113,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
     }
 
     /**
-     * A worker class for managing OCR process.
+     * A worker class for managing bulk OCR process.
      */
     class BulkOcrWorker extends SwingWorker<Void, String> {
 
@@ -155,7 +155,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 get(); // dummy method
                 jLabelStatus.setText(bundle.getString("OCR_completed."));
                 jProgressBar1.setString(bundle.getString("OCR_completed."));
-                statusFrame.getTextArea().append("\t-- End of task --\n");
+                statusFrame.getTextArea().append("\t-- " + bundle.getString("End_of_task") + " --\n");
             } catch (InterruptedException ignore) {
 //                ignore.printStackTrace();
             } catch (java.util.concurrent.ExecutionException e) {
@@ -174,7 +174,6 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 } else {
                     why = e.getMessage();
                 }
-//                e.printStackTrace();
 //                    System.err.println(why);
                 jLabelStatus.setText(null);
                 jProgressBar1.setString(null);
@@ -182,7 +181,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             } catch (java.util.concurrent.CancellationException e) {
                 jLabelStatus.setText("OCR " + bundle.getString("canceled"));
                 jProgressBar1.setString("OCR " + bundle.getString("canceled"));
-                statusFrame.getTextArea().append("\t-- Task canceled --\n");
+                statusFrame.getTextArea().append("\t-- " + bundle.getString("Task_canceled") + " --\n");
             } finally {
                 jMenuItemBulkOCR.setText(bundle.getString("jMenuItemBulkOCR.Text"));
                 getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -193,7 +192,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                         TimeUnit.MILLISECONDS.toMinutes(millis),
                         TimeUnit.MILLISECONDS.toSeconds(millis)
                         - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
-                statusFrame.getTextArea().append("\tElapsed time: " + elapsedTime + "\n");
+                statusFrame.getTextArea().append("\t" + bundle.getString("Elapsed_time") + ": " + elapsedTime + "\n");
             }
         }
     }
