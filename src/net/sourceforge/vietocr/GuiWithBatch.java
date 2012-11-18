@@ -18,11 +18,8 @@ package net.sourceforge.vietocr;
 import java.awt.event.ActionEvent;
 import java.io.*;
 import java.util.*;
-import javax.imageio.IIOImage;
 import javax.swing.*;
 import javax.swing.Timer;
-import net.sourceforge.vietocr.postprocessing.Processor;
-import net.sourceforge.vietocr.postprocessing.TextUtilities;
 import net.sourceforge.vietocr.utilities.Watcher;
 
 public class GuiWithBatch extends GuiWithSettings {

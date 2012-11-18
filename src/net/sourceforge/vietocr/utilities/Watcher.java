@@ -99,14 +99,6 @@ public class Watcher implements Runnable {
         watchFolder = path;
     }
 
-    /**
-     * Resets watch so that the batch processing can start immediately.
-     */
-    public void resetWatch() {
-        lastTime = 0;
-        lastFiles = new ArrayList<File>();
-    }
-
     public static void main(String[] args) {
         Queue<File> queue = new LinkedList<File>();
         File watchFolder = new File(System.getProperty("user.home"));
