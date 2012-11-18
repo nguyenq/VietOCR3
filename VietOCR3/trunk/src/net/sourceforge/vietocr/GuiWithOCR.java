@@ -184,7 +184,7 @@ public class GuiWithOCR extends GuiWithImageOps {
                 jLabelStatus.setText(bundle.getString("OCR_completed."));
                 jProgressBar1.setString(bundle.getString("OCR_completed."));
             } catch (InterruptedException ignore) {
-                ignore.printStackTrace();
+//                ignore.printStackTrace();
             } catch (java.util.concurrent.ExecutionException e) {
                 String why = null;
                 Throwable cause = e.getCause();
@@ -201,7 +201,6 @@ public class GuiWithOCR extends GuiWithImageOps {
                 } else {
                     why = e.getMessage();
                 }
-                e.printStackTrace();
 //                    System.err.println(why);
                 jLabelStatus.setText(null);
                 jProgressBar1.setString(null);
