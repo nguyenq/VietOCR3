@@ -20,13 +20,11 @@ import java.io.*;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
-import javax.imageio.IIOImage;
 import javax.swing.*;
-import net.sourceforge.vietocr.postprocessing.*;
 
 public class GuiWithBulkOCR extends GuiWithPostprocess {
 
-    private OcrWorker ocrWorker;
+    private BulkOcrWorker ocrWorker;
     private StatusFrame statusFrame;
     private BulkDialog bulkDialog;
     private final String strInputFolder = "InputFolder";
@@ -38,7 +36,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
         inputFolder = prefs.get(strInputFolder, System.getProperty("user.home"));
         outputFolder = prefs.get(strBulkOutputFolder, System.getProperty("user.home"));
         statusFrame = new StatusFrame();
-        statusFrame.setTitle(bundle.getString("statusFrame.Title"));
+        statusFrame.setTitle(bundle.getString("bulkStatusFrame.Title"));
     }
 
     @Override
@@ -67,7 +65,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             jProgressBar1.setVisible(true);
             getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             getGlassPane().setVisible(true);
-            jMenuItemBulkOCR.setText("Cancel Bulk OCR");
+            jMenuItemBulkOCR.setText(bundle.getString("Cancel_Bulk_OCR"));
 
             if (!statusFrame.isVisible()) {
                 statusFrame.setVisible(true);
@@ -86,7 +84,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             });
 
             // instantiate SwingWorker for OCR
-            ocrWorker = new OcrWorker(files);
+            ocrWorker = new BulkOcrWorker(files);
             ocrWorker.execute();
         }
     }
@@ -98,7 +96,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                statusFrame.setTitle(bundle.getString("statusFrame.Title"));
+                statusFrame.setTitle(bundle.getString("bulkStatusFrame.Title"));
                 if (bulkDialog != null) {
                     bulkDialog.changeUILanguage(locale);
                 }
@@ -117,12 +115,12 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
     /**
      * A worker class for managing OCR process.
      */
-    class OcrWorker extends SwingWorker<Void, String> {
+    class BulkOcrWorker extends SwingWorker<Void, String> {
 
         long startTime;
         File[] files;
 
-        OcrWorker(File[] files) {
+        BulkOcrWorker(File[] files) {
             this.files = files;
             startTime = System.currentTimeMillis();
         }
