@@ -26,6 +26,7 @@ public class GuiWithBatch extends GuiWithSettings {
 
     private StatusFrame statusFrame;
     private Watcher watcher;
+    private Timer timer;
 
     public GuiWithBatch() {
         statusFrame = new StatusFrame();
@@ -48,7 +49,10 @@ public class GuiWithBatch extends GuiWithSettings {
             }
         };
 
-        new Timer(5000, autoOcrAction).start();
+        timer = new Timer(5000, autoOcrAction);
+        if (watchEnabled) {
+            timer.start();       
+        }
     }
 
     private void performOCR(final File imageFile) {
@@ -82,6 +86,11 @@ public class GuiWithBatch extends GuiWithSettings {
     protected void updateWatch(String watchFolder, boolean watchEnabled) {
         watcher.setPath(new File(watchFolder));
         watcher.setEnabled(watchEnabled);
+        if (watchEnabled) {
+            timer.start();       
+        } else {
+            timer.stop();
+        }
     }
 
     @Override
