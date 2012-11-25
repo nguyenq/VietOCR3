@@ -19,6 +19,7 @@ import java.io.*;
 import java.util.List;
 import javax.imageio.IIOImage;
 import net.sourceforge.vietocr.postprocessing.*;
+import net.sourceforge.vietocr.utilities.ImageIOHelper;
 
 public class OCRHelper {
 
