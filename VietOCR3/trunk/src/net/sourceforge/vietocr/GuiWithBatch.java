@@ -49,7 +49,7 @@ public class GuiWithBatch extends GuiWithSettings {
             }
         };
 
-        timer = new Timer(5000, autoOcrAction);
+        timer = new Timer(10000, autoOcrAction);
         if (watchEnabled) {
             timer.start();       
         }
