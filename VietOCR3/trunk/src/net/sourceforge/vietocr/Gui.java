@@ -923,7 +923,7 @@ public class Gui extends JFrame {
         jToolBar1.add(jButtonNextPage);
         jToolBar1.add(jSeparator7);
 
-        jButtonFitImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_extend.png"))); // NOI18N
+        jButtonFitImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_fit.png"))); // NOI18N
         jButtonFitImage.setToolTipText(bundle.getString("jButtonFitImage.ToolTipText")); // NOI18N
         jButtonFitImage.setEnabled(false);
         jButtonFitImage.setMargin(new java.awt.Insets(2, 15, 2, 14));
@@ -935,7 +935,7 @@ public class Gui extends JFrame {
         });
         jToolBar1.add(jButtonFitImage);
 
-        jButtonActualSize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_1.png"))); // NOI18N
+        jButtonActualSize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_actual.png"))); // NOI18N
         jButtonActualSize.setToolTipText(bundle.getString("jButtonActualSize.ToolTipText")); // NOI18N
         jButtonActualSize.setEnabled(false);
         jButtonActualSize.setMargin(new java.awt.Insets(2, 15, 2, 14));
