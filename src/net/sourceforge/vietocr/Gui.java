@@ -1710,6 +1710,7 @@ public class Gui extends JFrame {
         JFileChooser saveChooser = new JFileChooser(outputDirectory);
         FileFilter textFilter = new SimpleFilter("txt", bundle.getString("UTF-8_Text"));
         saveChooser.addChoosableFileFilter(textFilter);
+        saveChooser.setFileFilter(textFilter);
         saveChooser.setDialogTitle(bundle.getString("Save_As"));
         if (textFile != null) {
             saveChooser.setSelectedFile(textFile);
@@ -1733,6 +1734,8 @@ public class Gui extends JFrame {
                 } else {
                     textFile = f;
                 }
+            } else {
+                textFile = f;
             }
             return saveTextFile();
         } else {
