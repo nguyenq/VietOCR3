@@ -67,5 +67,5 @@ Version 3.4 (3 November 2012)
 - Add optional support for using Tess4J library
 - Update JACOB to 1.16.1 version
 
-Version 3.4.1 Beta (19 November 2012)
+Version 3.4.1 (28 November 2012)
 - Add Bulk OCR process
