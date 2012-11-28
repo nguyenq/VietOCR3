@@ -69,3 +69,4 @@ Version 3.4 (3 November 2012)
 
 Version 3.4.1 (28 November 2012)
 - Add Bulk OCR process
+- Update Tesseract 3.02 to r806
