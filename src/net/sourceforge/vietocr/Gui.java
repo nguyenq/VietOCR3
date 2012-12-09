@@ -1338,6 +1338,15 @@ public class Gui extends JFrame {
         } else {
             if (helptopicsFrame == null) {
                 helptopicsFrame = new JFrame(jMenuItemHelp.getText());
+                helptopicsFrame.addWindowListener(new WindowAdapter() {
+
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        super.windowClosing(e);
+                        helptopicsFrame.dispose();
+                        helptopicsFrame = null;
+                    }
+                });
                 helptopicsFrame.getContentPane().setLayout(new BorderLayout());
                 HtmlPane helpPane = new HtmlPane(readme);
                 helptopicsFrame.getContentPane().add(helpPane, BorderLayout.CENTER);
@@ -1346,6 +1355,7 @@ public class Gui extends JFrame {
                 helptopicsFrame.setLocation((screen.width - helptopicsFrame.getWidth()) / 2, 40);
             }
             helptopicsFrame.setVisible(true);
+            helptopicsFrame.setExtendedState(Frame.NORMAL);
         }
     }//GEN-LAST:event_jMenuItemHelpActionPerformed
 
