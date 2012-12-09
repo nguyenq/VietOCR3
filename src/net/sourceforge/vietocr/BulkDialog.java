@@ -25,8 +25,8 @@ import net.sourceforge.vietocr.utilities.FormLocalizer;
 public class BulkDialog extends javax.swing.JDialog {
 
     private int actionSelected = -1;
-    private String imageFolder;
-    private String bulkOutputFolder;
+    private String inputFolder;
+    private String outputFolder;
     protected ResourceBundle bundle;
 
     /**
@@ -68,7 +68,7 @@ public class BulkDialog extends javax.swing.JDialog {
         jTextFieldFolder = new javax.swing.JTextField();
         jLabelOutput = new javax.swing.JLabel();
         jTextFieldOutput = new javax.swing.JTextField();
-        jButtonFolder = new javax.swing.JButton();
+        jButtonInput = new javax.swing.JButton();
         jButtonOutput = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButtonRun = new javax.swing.JButton();
@@ -122,15 +122,15 @@ public class BulkDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
         jPanelImageFolder.add(jTextFieldOutput, gridBagConstraints);
 
-        jButtonFolder.setText("...");
-        jButtonFolder.setToolTipText(bundle.getString("jButtonInput.ToolTipText")); // NOI18N
-        jButtonFolder.setPreferredSize(new java.awt.Dimension(30, 23));
-        jButtonFolder.addActionListener(new java.awt.event.ActionListener() {
+        jButtonInput.setText("...");
+        jButtonInput.setToolTipText(bundle.getString("jButtonInput.ToolTipText")); // NOI18N
+        jButtonInput.setPreferredSize(new java.awt.Dimension(30, 23));
+        jButtonInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFolderActionPerformed(evt);
+                jButtonInputActionPerformed(evt);
             }
         });
-        jPanelImageFolder.add(jButtonFolder, new java.awt.GridBagConstraints());
+        jPanelImageFolder.add(jButtonInput, new java.awt.GridBagConstraints());
 
         jButtonOutput.setText("...");
         jButtonOutput.setToolTipText(bundle.getString("jButtonOutput.ToolTipText")); // NOI18N
@@ -170,29 +170,29 @@ public class BulkDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFolderActionPerformed
+    private void jButtonInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInputActionPerformed
         JFileChooser filechooser = new JFileChooser();
         filechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         filechooser.setAcceptAllFileFilterUsed(false);
         filechooser.setApproveButtonText(bundle.getString("Set"));
-        filechooser.setCurrentDirectory(new File(imageFolder));
+        filechooser.setCurrentDirectory(new File(inputFolder));
         filechooser.setDialogTitle(bundle.getString("Set_Image_Folder"));
         if (filechooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            imageFolder = filechooser.getSelectedFile().getPath();
-            this.jTextFieldFolder.setText(imageFolder);
+            inputFolder = filechooser.getSelectedFile().getPath();
+            this.jTextFieldFolder.setText(inputFolder);
         }
-    }//GEN-LAST:event_jButtonFolderActionPerformed
+    }//GEN-LAST:event_jButtonInputActionPerformed
 
     private void jButtonOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOutputActionPerformed
         JFileChooser filechooser = new JFileChooser();
         filechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         filechooser.setAcceptAllFileFilterUsed(false);
         filechooser.setApproveButtonText(bundle.getString("Set"));
-        filechooser.setCurrentDirectory(new File(bulkOutputFolder));
+        filechooser.setCurrentDirectory(new File(outputFolder));
         filechooser.setDialogTitle(bundle.getString("Set_Output_Folder"));
         if (filechooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            bulkOutputFolder = filechooser.getSelectedFile().getPath();
-            this.jTextFieldOutput.setText(bulkOutputFolder);
+            outputFolder = filechooser.getSelectedFile().getPath();
+            this.jTextFieldOutput.setText(outputFolder);
         }
     }//GEN-LAST:event_jButtonOutputActionPerformed
 
@@ -207,13 +207,13 @@ public class BulkDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        this.jTextFieldFolder.setText(imageFolder);
-        this.jTextFieldOutput.setText(bulkOutputFolder);
+        this.jTextFieldFolder.setText(inputFolder);
+        this.jTextFieldOutput.setText(outputFolder);
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
-        imageFolder = this.jTextFieldFolder.getText();
-        bulkOutputFolder = this.jTextFieldOutput.getText();
+        inputFolder = this.jTextFieldFolder.getText();
+        outputFolder = this.jTextFieldOutput.getText();
     }//GEN-LAST:event_formWindowDeactivated
 
     public int showDialog() {
@@ -235,31 +235,31 @@ public class BulkDialog extends javax.swing.JDialog {
     }
     
       /**
-     * @return the imageFolder
+     * @return the inputFolder
      */
-    public String getImageFolder() {
-        return imageFolder;
+    public String getInputFolder() {
+        return inputFolder;
     }
 
     /**
-     * @param imageFolder the imageFolder to set
+     * @param inputFolder the inputFolder to set
      */
-    public void setImageFolder(String imageFolder) {
-        this.imageFolder = imageFolder;
+    public void setInputFolder(String inputFolder) {
+        this.inputFolder = inputFolder;
     }
 
     /**
      * @return the outputFolder
      */
-    public String getBulkOutputFolder() {
-        return bulkOutputFolder;
+    public String getOutputFolder() {
+        return outputFolder;
     }
 
     /**
      * @param outputFolder the outputFolder to set
      */
     public void setOutputFolder(String outputFolder) {
-        this.bulkOutputFolder = outputFolder;
+        this.outputFolder = outputFolder;
     }
 
     /**
@@ -306,7 +306,7 @@ public class BulkDialog extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancel;
-    private javax.swing.JButton jButtonFolder;
+    private javax.swing.JButton jButtonInput;
     private javax.swing.JButton jButtonOutput;
     private javax.swing.JButton jButtonRun;
     private javax.swing.JLabel jLabelInput;

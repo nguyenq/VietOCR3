@@ -52,12 +52,12 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             bulkDialog = new BulkDialog(this, true);
         }
 
-        bulkDialog.setImageFolder(inputFolder);
+        bulkDialog.setInputFolder(inputFolder);
         bulkDialog.setOutputFolder(outputFolder);
 
         if (bulkDialog.showDialog() == JOptionPane.OK_OPTION) {
-            inputFolder = bulkDialog.getImageFolder();
-            outputFolder = bulkDialog.getBulkOutputFolder();
+            inputFolder = bulkDialog.getInputFolder();
+            outputFolder = bulkDialog.getOutputFolder();
 
             jLabelStatus.setText(bundle.getString("OCR_running..."));
             jProgressBar1.setIndeterminate(true);
