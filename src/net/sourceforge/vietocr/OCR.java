@@ -22,7 +22,8 @@ public abstract class OCR<T> {
 
     protected Rectangle rect = null;
     private String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)
-
+    private boolean hocr;
+    
     /**
      * Recognizes files or images.
      *
@@ -63,5 +64,19 @@ public abstract class OCR<T> {
      */
     public void setPageSegMode(String mode) {
         this.pageSegMode = mode;
+    }
+
+    /**
+     * @return the hocr
+     */
+    public boolean isHocr() {
+        return hocr;
+    }
+
+    /**
+     * @param hocr the hocr to set
+     */
+    public void setHocr(boolean hocr) {
+        this.hocr = hocr;
     }
 }

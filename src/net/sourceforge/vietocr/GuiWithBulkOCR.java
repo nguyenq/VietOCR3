@@ -29,12 +29,15 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
     private BulkDialog bulkDialog;
     private final String strInputFolder = "InputFolder";
     private final String strBulkOutputFolder = "BulkOutputFolder";
+    private final String strBulkHocr = "BulkHocr";
     private String inputFolder;
     private String outputFolder;
+    private boolean hocr;
 
     public GuiWithBulkOCR() {
         inputFolder = prefs.get(strInputFolder, System.getProperty("user.home"));
         outputFolder = prefs.get(strBulkOutputFolder, System.getProperty("user.home"));
+        hocr = prefs.getBoolean(strBulkHocr, false);
         statusFrame = new StatusFrame();
         statusFrame.setTitle(bundle.getString("bulkStatusFrame.Title"));
     }
@@ -54,10 +57,12 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
 
         bulkDialog.setInputFolder(inputFolder);
         bulkDialog.setOutputFolder(outputFolder);
+        bulkDialog.setHocr(hocr);
 
         if (bulkDialog.showDialog() == JOptionPane.OK_OPTION) {
             inputFolder = bulkDialog.getInputFolder();
             outputFolder = bulkDialog.getOutputFolder();
+            hocr = bulkDialog.isHocr();
 
             jLabelStatus.setText(bundle.getString("OCR_running..."));
             jProgressBar1.setIndeterminate(true);
@@ -108,6 +113,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
     void quit() {
         prefs.put(strInputFolder, inputFolder);
         prefs.put(strBulkOutputFolder, outputFolder);
+        prefs.putBoolean(strBulkHocr, hocr);
 
         super.quit();
     }
@@ -131,7 +137,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 if (!isCancelled()) {
                     publish(imageFile.getPath()); // interim result
                     try {
-                        OCRHelper.performOCR(imageFile, new File(outputFolder, imageFile.getName() + ".txt"), tessPath, curLangCode, selectedPSM);
+                        OCRHelper.performOCR(imageFile, new File(outputFolder, imageFile.getName() + (hocr ? ".html" : ".txt")), tessPath, curLangCode, selectedPSM, hocr);
                     } catch (Exception e) {
                         publish("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **");
                     }

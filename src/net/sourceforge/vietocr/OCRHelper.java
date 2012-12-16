@@ -23,23 +23,27 @@ import net.sourceforge.vietocr.utilities.ImageIOHelper;
 
 public class OCRHelper {
 
-    public static void performOCR(File imageFile, File outputFile, String tessPath, String langCode, String pageSegMode) throws Exception {
+    public static void performOCR(File imageFile, File outputFile, String tessPath, String langCode, String pageSegMode, boolean hocr) throws Exception {
         List<File> tempTiffFiles = null;
 
         try {
             OCR<File> ocrEngine = new OCRFiles(tessPath);
             ocrEngine.setPageSegMode(pageSegMode);
+            ocrEngine.setHocr(hocr);
             List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(imageFile);
             tempTiffFiles = ImageIOHelper.createTiffFiles(iioImageList, -1);
             String result = ocrEngine.recognizeText(tempTiffFiles, langCode);
-
-            // postprocess to correct common OCR errors
-            result = Processor.postProcess(result, langCode);
-            // correct common errors caused by OCR
-            result = TextUtilities.correctOCRErrors(result);
-            // correct letter cases
-            result = TextUtilities.correctLetterCases(result);
-
+            
+            // skip post-corrections if hocr output
+            if (!hocr) {
+                // postprocess to correct common OCR errors
+                result = Processor.postProcess(result, langCode);
+                // correct common errors caused by OCR
+                result = TextUtilities.correctOCRErrors(result);
+                // correct letter cases
+                result = TextUtilities.correctLetterCases(result);
+            }
+            
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), "UTF-8"));
             out.write(result);
             out.close();

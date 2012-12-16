@@ -73,7 +73,7 @@ public class GuiWithBatch extends GuiWithSettings {
                 @Override
                 public void run() {
                     try {
-                        OCRHelper.performOCR(imageFile, new File(outputFolder, imageFile.getName() + ".txt"), tessPath, curLangCode, selectedPSM);
+                        OCRHelper.performOCR(imageFile, new File(outputFolder, imageFile.getName() + (hocr ? ".html" : ".txt")), tessPath, curLangCode, selectedPSM, hocr);
                     } catch (Exception e) {
                         statusFrame.getTextArea().append("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **\n");
                     }

@@ -41,6 +41,7 @@ public class OCRImages extends OCR<IIOImage> {
     public String recognizeText(List<IIOImage> images, String lang) throws Exception {
         instance.setLanguage(lang);
         instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
+        instance.setHocr(this.isHocr());
         String text = instance.doOCR(images, rect);
 
         return text;
