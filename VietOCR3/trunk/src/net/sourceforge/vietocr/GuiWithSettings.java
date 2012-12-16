@@ -24,9 +24,11 @@ public class GuiWithSettings extends GuiWithLaF {
     private final String strOutputFolder = "OutputFolder";
     private final String strWatchEnabled = "WatchEnabled";
     private final String strTessLibEnabled = "TessLibEnabled";
+    private final String strBatchHocr = "BatchHocr";
     protected String watchFolder;
     protected String outputFolder;
     protected boolean watchEnabled;
+    protected boolean hocr;
     private OptionsDialog optionsDialog;
 
     public GuiWithSettings() {
@@ -34,6 +36,7 @@ public class GuiWithSettings extends GuiWithLaF {
         outputFolder = prefs.get(strOutputFolder, System.getProperty("user.home"));
         watchEnabled = prefs.getBoolean(strWatchEnabled, false);
         tessLibEnabled = prefs.getBoolean(strTessLibEnabled, false);
+        hocr = prefs.getBoolean(strBatchHocr, false);
     }
 
     @Override
@@ -50,6 +53,7 @@ public class GuiWithSettings extends GuiWithLaF {
         optionsDialog.setDangAmbigsEnabled(dangAmbigsOn);
         optionsDialog.setCurLangCode(curLangCode);
         optionsDialog.setTessLibEnabled(tessLibEnabled);
+        optionsDialog.setHocr(hocr);
 
         if (optionsDialog.showDialog() == JOptionPane.OK_OPTION) {
             watchFolder = optionsDialog.getWatchFolder();
@@ -63,6 +67,7 @@ public class GuiWithSettings extends GuiWithLaF {
             dangAmbigsPath = optionsDialog.getDangAmbigsPath();
             dangAmbigsOn = optionsDialog.isDangAmbigsEnabled();
             tessLibEnabled = optionsDialog.isTessLibEnabled();
+            hocr = optionsDialog.isHocr();
             
             updateWatch(watchFolder, watchEnabled);
         }
@@ -84,6 +89,7 @@ public class GuiWithSettings extends GuiWithLaF {
         prefs.put(strOutputFolder, outputFolder);
         prefs.putBoolean(strWatchEnabled, watchEnabled);
         prefs.putBoolean(strTessLibEnabled, tessLibEnabled);
+        prefs.putBoolean(strBatchHocr, hocr);
         super.quit();
     }
 

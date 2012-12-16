@@ -68,10 +68,12 @@ public class BulkDialog extends javax.swing.JDialog {
         jTextFieldFolder = new javax.swing.JTextField();
         jLabelOutput = new javax.swing.JLabel();
         jTextFieldOutput = new javax.swing.JTextField();
+        jCheckBoxHocr = new javax.swing.JCheckBox();
         jButtonInput = new javax.swing.JButton();
         jButtonOutput = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jPanelCommand = new javax.swing.JPanel();
         jButtonRun = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 32767));
         jButtonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -87,7 +89,7 @@ public class BulkDialog extends javax.swing.JDialog {
             }
         });
 
-        jPanelImageFolder.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 4, 10));
+        jPanelImageFolder.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 1, 10));
         jPanelImageFolder.setLayout(new java.awt.GridBagLayout());
 
         jLabelInput.setText(bundle.getString("jLabelInput.Text")); // NOI18N
@@ -122,6 +124,14 @@ public class BulkDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
         jPanelImageFolder.add(jTextFieldOutput, gridBagConstraints);
 
+        jCheckBoxHocr.setText("hocr");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(8, 0, 6, 0);
+        jPanelImageFolder.add(jCheckBoxHocr, gridBagConstraints);
+
         jButtonInput.setText("...");
         jButtonInput.setToolTipText(bundle.getString("jButtonInput.ToolTipText")); // NOI18N
         jButtonInput.setPreferredSize(new java.awt.Dimension(30, 23));
@@ -145,9 +155,7 @@ public class BulkDialog extends javax.swing.JDialog {
         gridBagConstraints.gridy = 1;
         jPanelImageFolder.add(jButtonOutput, gridBagConstraints);
 
-        getContentPane().add(jPanelImageFolder, java.awt.BorderLayout.CENTER);
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 10, 1));
+        jPanelCommand.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 0, 5));
 
         jButtonRun.setText(bundle.getString("jButtonRun.Text")); // NOI18N
         jButtonRun.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +163,8 @@ public class BulkDialog extends javax.swing.JDialog {
                 jButtonRunActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonRun);
+        jPanelCommand.add(jButtonRun);
+        jPanelCommand.add(filler1);
 
         jButtonCancel.setText(bundle.getString("jButtonCancel.Text")); // NOI18N
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -163,9 +172,17 @@ public class BulkDialog extends javax.swing.JDialog {
                 jButtonCancelActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonCancel);
+        jPanelCommand.add(jButtonCancel);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.SOUTH);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(8, 0, 6, 0);
+        jPanelImageFolder.add(jPanelCommand, gridBagConstraints);
+
+        getContentPane().add(jPanelImageFolder, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -305,15 +322,31 @@ public class BulkDialog extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonInput;
     private javax.swing.JButton jButtonOutput;
     private javax.swing.JButton jButtonRun;
+    private javax.swing.JCheckBox jCheckBoxHocr;
     private javax.swing.JLabel jLabelInput;
     private javax.swing.JLabel jLabelOutput;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelCommand;
     private javax.swing.JPanel jPanelImageFolder;
     private javax.swing.JTextField jTextFieldFolder;
     private javax.swing.JTextField jTextFieldOutput;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the hocr
+     */
+    public boolean isHocr() {
+        return this.jCheckBoxHocr.isSelected();
+    }
+
+    /**
+     * @param hocr the hocr to set
+     */
+    public void setHocr(boolean hocr) {
+        this.jCheckBoxHocr.setSelected(hocr);
+    }
 }

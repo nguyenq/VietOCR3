@@ -82,7 +82,7 @@ public class OptionsDialog extends javax.swing.JDialog {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanelCommand = new javax.swing.JPanel();
         jButtonOK = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -92,6 +92,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         jLabelOutput = new javax.swing.JLabel();
         jTextFieldOutput = new javax.swing.JTextField();
         jCheckBoxWatch = new javax.swing.JCheckBox();
+        jCheckBoxHocr = new javax.swing.JCheckBox();
         jButtonWatch = new javax.swing.JButton();
         jButtonOutput = new javax.swing.JButton();
         jPanelTessPath = new javax.swing.JPanel();
@@ -118,8 +119,8 @@ public class OptionsDialog extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 1, 4, 1));
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        jPanelCommand.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 0, 6, 4));
+        jPanelCommand.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jButtonOK.setText(bundle.getString("jButtonOK.Text")); // NOI18N
         jButtonOK.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +128,7 @@ public class OptionsDialog extends javax.swing.JDialog {
                 jButtonOKActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonOK);
+        jPanelCommand.add(jButtonOK);
 
         jButtonCancel.setText(bundle.getString("jButtonCancel.Text")); // NOI18N
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -135,9 +136,9 @@ public class OptionsDialog extends javax.swing.JDialog {
                 jButtonCancelActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonCancel);
+        jPanelCommand.add(jButtonCancel);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.SOUTH);
+        getContentPane().add(jPanelCommand, java.awt.BorderLayout.SOUTH);
 
         jPanelWatchFolder.setLayout(new java.awt.GridBagLayout());
 
@@ -182,6 +183,13 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
         jPanelWatchFolder.add(jCheckBoxWatch, gridBagConstraints);
+
+        jCheckBoxHocr.setText("hocr");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, -4, 0, 0);
+        jPanelWatchFolder.add(jCheckBoxHocr, gridBagConstraints);
 
         jButtonWatch.setText("...");
         jButtonWatch.setToolTipText(bundle.getString("jButtonWatch.ToolTipText")); // NOI18N
@@ -420,13 +428,14 @@ public class OptionsDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonTess;
     private javax.swing.JButton jButtonWatch;
     private javax.swing.JCheckBox jCheckBoxDangAmbigs;
+    private javax.swing.JCheckBox jCheckBoxHocr;
     private javax.swing.JCheckBox jCheckBoxTessLib;
     private javax.swing.JCheckBox jCheckBoxWatch;
     private javax.swing.JLabel jLabelDangAmbigs;
     private javax.swing.JLabel jLabelOutput;
     private javax.swing.JLabel jLabelTess;
     private javax.swing.JLabel jLabelWatch;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelCommand;
     private javax.swing.JPanel jPanelDangAmbigsPath;
     private javax.swing.JPanel jPanelTessPath;
     private javax.swing.JPanel jPanelWatchFolder;
@@ -543,5 +552,19 @@ public class OptionsDialog extends javax.swing.JDialog {
      */
     public void setTessLibEnabled(boolean tessLibEnabled) {
         this.tessLibEnabled = tessLibEnabled;
+    }
+
+    /**
+     * @return the hocr
+     */
+    public boolean isHocr() {
+        return this.jCheckBoxHocr.isSelected();
+    }
+
+    /**
+     * @param hocr the hocr to set
+     */
+    public void setHocr(boolean hocr) {
+        this.jCheckBoxHocr.setSelected(hocr);
     }
 }
