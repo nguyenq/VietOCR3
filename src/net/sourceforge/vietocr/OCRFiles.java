@@ -48,7 +48,7 @@ public class OCRFiles extends OCR<File> {
     @Override
     public String recognizeText(final List<File> tiffFiles, final String lang) throws Exception {
         File tempTessOutputFile = File.createTempFile(OUTPUT_FILE_NAME, this.isHocr() ? HTMLFILE_EXTENSION : FILE_EXTENSION);
-        String outputFileName = tempTessOutputFile.getPath().substring(0, tempTessOutputFile.getPath().length() - (this.isHocr() ? HTMLFILE_EXTENSION.length() : FILE_EXTENSION.length())); // chop the .txt extension
+        String outputFileName = tempTessOutputFile.getPath().substring(0, tempTessOutputFile.getPath().length() - (this.isHocr() ? HTMLFILE_EXTENSION.length() : FILE_EXTENSION.length())); // chop the .html/.txt extension
 
         List<String> cmd = new ArrayList<String>();
         cmd.add(tessPath + "/tesseract");
