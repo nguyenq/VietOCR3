@@ -1,7 +1,7 @@
 SET UTF-8
 TRY aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ
 
-REP 146
+REP 206
 REP f ph
 REP uo ườ
 REP uo ướ
@@ -36,6 +36,16 @@ REP a ắ
 REP A Ắ
 REP a ặ
 REP A Ặ
+REP ă ằ
+REP Ă Ằ
+REP ă ẳ
+REP Ă Ẳ
+REP ă ẵ
+REP Ă Ẵ
+REP ă ắ
+REP Ă Ắ
+REP ă ặ
+REP Ă Ặ
 REP a â
 REP A Â
 REP a ầ
@@ -48,6 +58,16 @@ REP a ấ
 REP A Ấ
 REP a ậ
 REP A Ậ
+REP â ầ
+REP Â Ầ
+REP â ẩ
+REP Â Ẩ
+REP â ẫ
+REP Â Ẫ
+REP â ấ
+REP Â Ấ
+REP â ậ
+REP Â Ậ
 REP d đ
 REP D Đ
 REP e è
@@ -72,6 +92,16 @@ REP e ế
 REP E Ế
 REP e ệ
 REP E Ệ
+REP ê ề
+REP Ê Ề
+REP ê ể
+REP Ê Ể
+REP ê ễ
+REP Ê Ễ
+REP ê ế
+REP Ê Ế
+REP ê ệ
+REP Ê Ệ
 REP i ì
 REP I Ì
 REP i ỉ
@@ -104,6 +134,16 @@ REP o ố
 REP O Ố
 REP o ộ
 REP O Ộ
+REP ô ồ
+REP Ô Ồ
+REP ô ổ
+REP Ô Ổ
+REP ô ỗ
+REP Ô Ỗ
+REP ô ố
+REP Ô Ố
+REP ô ộ
+REP Ô Ộ
 REP o ơ
 REP O Ơ
 REP o ờ
@@ -116,6 +156,16 @@ REP o ớ
 REP O Ớ
 REP o ợ
 REP O Ợ
+REP ơ ờ
+REP Ơ Ờ
+REP ơ ở
+REP Ơ Ở
+REP ơ ỡ
+REP Ơ Ỡ
+REP ơ ớ
+REP Ơ Ớ
+REP ơ ợ
+REP Ơ Ợ
 REP u ù
 REP U Ù
 REP u ủ
@@ -138,6 +188,16 @@ REP u ứ
 REP U Ứ
 REP u ự
 REP U Ự
+REP ư ừ
+REP Ư Ừ
+REP ư ử
+REP Ư Ử
+REP ư ữ
+REP Ư Ữ
+REP ư ứ
+REP Ư Ứ
+REP ư ự
+REP Ư Ự
 REP y ỳ
 REP Y Ỳ
 REP y ỷ
