@@ -30,7 +30,7 @@ public class ConsoleApp {
      * @param args
      */
     private void performOCR(String[] args) {
-        if (args[0].equals("-?") || args[0].equals("-help") || args.length == 1 || args.length == 3 || args.length == 5) {
+        if (args[0].equals("-?") || args[0].equals("-help") || args.length == 1 || args.length >= 8) {
             System.err.println("Usage: java -jar VietOCR.jar\n"
                     + "       (to launch the program in GUI mode)\n\n"
                     + "   or  java -jar VietOCR.jar imagefile outputfile [-l lang] [-psm pagesegmode] [hocr]\n"
@@ -56,13 +56,13 @@ public class ConsoleApp {
         String curLangCode = "eng"; //default language
         String psm = "3"; // Fully automatic page segmentation, but no OSD (default)
 
-        if (args.length == 4) {
+        if ((args.length == 4 && !hocr) || (args.length == 5 && hocr)) {
             if (args[2].equals("-l")) {
                 curLangCode = args[3];
             } else if (args[2].equals("-psm")) {
                 psm = args[3];
             }
-        } else if (args.length == 6) {
+        } else if ((args.length == 6 && !hocr) || (args.length == 7 && hocr)) {
             curLangCode = args[3];
             psm = args[5];
             try {
