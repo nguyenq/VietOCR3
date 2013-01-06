@@ -71,7 +71,8 @@ Version 3.4.1 (28 November 2012)
 - Add Bulk OCR process
 - Update Tesseract 3.02 to r806
 
-Version 3.4.2 Beta2 (30 December 2012)
+Version 3.4.2 (6 January 2013)
 - Add hocr support for Bulk & Batch ops
 - Update links to dictionary files
-- Update JNA to version 3.5.1
+- Update Tesseract 3.02 to r820
+- Update JNA to v3.5.1
