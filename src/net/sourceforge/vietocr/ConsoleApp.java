@@ -78,9 +78,9 @@ public class ConsoleApp {
         File baseDir = Utilities.getBaseDir(this);
 
         if (Gui.WINDOWS) {
-            tessPath = new File(baseDir, "tesseract").getPath();
+            tessPath = new File(baseDir, Gui.TESSERACT_PATH).getPath();
         } else {
-            tessPath = Gui.prefs.get("TesseractDirectory", new File(baseDir, "tesseract").getPath());
+            tessPath = Gui.prefs.get("TesseractDirectory", new File(baseDir, Gui.TESSERACT_PATH).getPath());
         }
 
         try {

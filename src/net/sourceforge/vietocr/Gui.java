@@ -41,6 +41,7 @@ import net.sourceforge.vietpad.inputmethod.VietKeyListener;
 public class Gui extends JFrame {
 
     public static final String APP_NAME = "VietOCR";
+    public static final String TESSERACT_PATH = "tesseract-ocr";
     public static final String TO_BE_IMPLEMENTED = "To be implemented in subclass";
     static final boolean MAC_OS_X = System.getProperty("os.name").startsWith("Mac");
     static final boolean WINDOWS = System.getProperty("os.name").toLowerCase().startsWith("windows");
@@ -251,7 +252,7 @@ public class Gui extends JFrame {
      */
     private void getInstalledLanguagePacks() {
         if (WINDOWS) {
-            tessPath = new File(baseDir, "tesseract-ocr").getPath();
+            tessPath = new File(baseDir, TESSERACT_PATH).getPath();
         } else {
             tessPath = prefs.get(strTessDir, "/usr/bin");
         }
