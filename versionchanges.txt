@@ -72,7 +72,7 @@ Version 3.4.1 (28 November 2012)
 - Update Tesseract 3.02 to r806
 
 Version 3.4.2 (6 January 2013)
-- Add hocr support for Bulk & Batch ops
+- Add hocr support for Bulk & Batch and command-line operations
 - Update links to dictionary files
 - Update Tesseract 3.02 to r820
 - Update JNA to v3.5.1
