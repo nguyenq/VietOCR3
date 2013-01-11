@@ -1,0 +1,1 @@
+java -Dfile.encoding=UTF8 -Xms128m -Xmx512m -jar VietOCR.jar
