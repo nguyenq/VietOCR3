@@ -2,6 +2,7 @@ package net.sourceforge.vietocr;
 
 import net.sourceforge.vietocr.utilities.ImageIOHelper;
 import java.awt.event.*;
+import java.awt.image.RenderedImage;
 import java.util.Map;
 import javax.imageio.IIOImage;
 import javax.swing.*;
@@ -56,6 +57,8 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jComboBox2 = new javax.swing.JComboBox();
+        jLabelBitDepth = new javax.swing.JLabel();
+        jTextFieldBitDepth = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButtonOK = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
@@ -129,7 +132,7 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 2, 5);
         jPanel1.add(jTextFieldYRes, gridBagConstraints);
 
         jLabel7.setText(bundle.getString("DPI")); // NOI18N
@@ -165,6 +168,22 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         jPanel1.add(jComboBox2, gridBagConstraints);
+
+        jLabelBitDepth.setLabelFor(jTextFieldBitDepth);
+        jLabelBitDepth.setText(bundle.getString("jLabelBitDepth.Text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel1.add(jLabelBitDepth, gridBagConstraints);
+
+        jTextFieldBitDepth.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 2, 5);
+        jPanel1.add(jTextFieldBitDepth, gridBagConstraints);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -267,11 +286,13 @@ public class ImageInfoDialog extends javax.swing.JDialog {
      * Reads image data.
      */
     void readImageData() {
-        this.jTextFieldWidth.setText(String.valueOf(oimage.getRenderedImage().getWidth()));
-        this.jTextFieldHeight.setText(String.valueOf(oimage.getRenderedImage().getHeight()));
+        RenderedImage ri = oimage.getRenderedImage();
+        this.jTextFieldWidth.setText(String.valueOf(ri.getWidth()));
+        this.jTextFieldHeight.setText(String.valueOf(ri.getHeight()));
         Map<String, String> metadata = ImageIOHelper.readImageData(oimage);
         this.jTextFieldXRes.setText(metadata.get("dpiX"));
         this.jTextFieldYRes.setText(metadata.get("dpiY"));
+        this.jTextFieldBitDepth.setText(String.valueOf(ri.getColorModel().getPixelSize()));
     }
 
     /**
@@ -315,12 +336,14 @@ public class ImageInfoDialog extends javax.swing.JDialog {
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelBitDepth;
     private javax.swing.JLabel jLabelHeight;
     private javax.swing.JLabel jLabelWidth;
     private javax.swing.JLabel jLabelXRes;
     private javax.swing.JLabel jLabelYRes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextFieldBitDepth;
     private javax.swing.JTextField jTextFieldHeight;
     private javax.swing.JTextField jTextFieldWidth;
     private javax.swing.JTextField jTextFieldXRes;
