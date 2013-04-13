@@ -86,6 +86,14 @@ public class TextUtilities {
             BufferedReader bs = new BufferedReader(stream);
             String str;
             while ((str = bs.readLine()) != null) {
+                // strip BOM character
+                if (str.length() > 0 && str.charAt(0) == '\ufeff') {
+                    str = str.substring(1);
+                }
+                // skip empty line or line starts with #
+                if (str.trim().length() == 0 || str.trim().startsWith("#")) {
+                    continue;
+                }
                 int index = str.indexOf('=');
                 if (index <= 0) {
                     continue;
