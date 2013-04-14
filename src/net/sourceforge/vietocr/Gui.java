@@ -1737,7 +1737,7 @@ public class Gui extends JFrame {
                 if (textFile != null && textFile.getPath().equals(f.getPath())) {
                     if (JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(
                             Gui.this,
-                            textFile.getName() + bundle.getString("file_already_exist"),
+                            String.format(bundle.getString("file_already_exist"), textFile.getName()),
                             bundle.getString("Confirm_Save_As"), JOptionPane.YES_NO_OPTION,
                             JOptionPane.WARNING_MESSAGE)) {
                         return false;
@@ -1799,8 +1799,8 @@ public class Gui extends JFrame {
             return true;
         }
         switch (JOptionPane.showConfirmDialog(this,
-                bundle.getString("Do_you_want_to_save_the_changes_to_")
-                + (textFile == null ? bundle.getString("Untitled") : textFile.getName()) + "?",
+                String.format(bundle.getString("Do_you_want_to_save_the_changes_to_"),
+                (textFile == null ? bundle.getString("Untitled") : textFile.getName())),
                 APP_NAME, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) {
             case JOptionPane.YES_OPTION:
                 return saveAction();
