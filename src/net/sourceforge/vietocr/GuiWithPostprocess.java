@@ -84,7 +84,7 @@ public class GuiWithPostprocess extends GuiWithOCR {
                     Throwable cause = e.getCause();
                     if (cause != null) {
                         if (cause instanceof UnsupportedOperationException) {
-                            why = String.format("Post-processing not supported for %1$s language.\nYou can provide one via a \"%2$s.DangAmbigs.txt\" file.", jComboBoxLang.getSelectedItem(), curLangCode);
+                            why = String.format(bundle.getString("Post-processing_not_supported_for_language"), jComboBoxLang.getSelectedItem(), curLangCode);
                         } else if (cause instanceof RuntimeException) {
                             why = cause.getMessage();
                         } else {
@@ -93,7 +93,7 @@ public class GuiWithPostprocess extends GuiWithOCR {
                     } else {
                         why = e.getMessage();
                     }
-                    e.printStackTrace();
+//                    e.printStackTrace();
                     JOptionPane.showMessageDialog(null, why, APP_NAME, JOptionPane.ERROR_MESSAGE);
                     jProgressBar1.setVisible(false);
                 } finally {
