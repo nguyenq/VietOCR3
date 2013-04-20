@@ -308,6 +308,7 @@ public class Gui extends JFrame {
     /**
      * Populates OCR Language box.
      */
+    @SuppressWarnings("unchecked")
     private void populateOCRLanguageBox() {
         if (installedLanguageCodes == null) {
             JOptionPane.showMessageDialog(Gui.this, bundle.getString("Tesseract_is_not_found._Please_specify_its_path_in_Settings_menu."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
