@@ -1,202 +1,199 @@
-<html>
+﻿<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>„VietOCR“ – „Java“ pagrįsta grafinė sąsaja „Tesseract OCR“ moduliui</title>
 </head>
 <body>
     <div class="Section1">
-        <h2 align="center">
-            VietOCR</h2>
-        <h3>
-            PROGRAMOS APRAŠAS</h3>
+        <h2 align="center">VietOCR</h2>
+        <h3>PROGRAMOS APRAŠAS</h3>
         <p>
             „<a href="http://vietocr.sourceforge.net">VietOCR</a>“ yra „Java“ technologija pagrįsta
-            grafinė aplinka, leidžianti naudotis „<a href="http://code.google.com/p/tesseract-ocr/">Tesseract
-                OCR</a>“ optinio ženklų atpažinimo moduliu ir yra skirta automatiškai atpažinti
-            nuskenuoto rašto ženklus. Programa numato populiariausius vaizdų formatus, leidžia
-            naudoti kelis ar daugiau puslapių viename vaizdo faile. Be to, programa gali papildomai
-            aptvarkyti atpažintą tekstą, ištaisydama būdingiausias teksto atpažinimo metu pasitaikančias
-            klaidas. Tai padeda pasiekti daug geresnės rezultato kokybės. Programa gali veikti
-            ir terminalo ekrane, ją startuojant komandinėje eilutėje.</p>
+                grafinė aplinka, leidžianti naudotis „<a href="http://code.google.com/p/tesseract-ocr/">Tesseract
+                    OCR</a>“ optinio ženklų atpažinimo moduliu ir yra skirta automatiškai atpažinti
+                nuskenuoto rašto ženklus. Programa numato populiariausius vaizdų formatus, leidžia
+                naudoti kelis ar daugiau puslapių viename vaizdo faile. Be to, programa gali papildomai
+                aptvarkyti atpažintą tekstą, ištaisydama būdingiausias teksto atpažinimo metu pasitaikančias
+                klaidas. Tai padeda pasiekti daug geresnės rezultato kokybės. Programa gali veikti
+                ir terminalo ekrane, ją startuojant komandinėje eilutėje.
+        </p>
         <p>
-            Programoje numatytas ir paketinis vaizdų apdorojimas. Programa gali stebėti nurodytą
-            aplanką ir, jame atsiradus naujų failų, automatiškai juos apdoroti, o atpažintus
-            tekstus įrašyti į rezultatams talpinti nurodytą aplanką.</p>
-        <h3>
-            REIKALAVIMAI SISTEMAI</h3>
+            Programoje numatytas ir urminis vaizdų apdorojimas. Programa gali stebėti nurodytą
+                aplanką ir, jame atsiradus naujų failų, automatiškai juos apdoroti, o atpažintus
+                tekstus įrašyti į rezultatams talpinti nurodytą aplanką.
+        </p>
+        <h3>REIKALAVIMAI SISTEMAI</h3>
         <p>
             „<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 6.0</a>“
-            ar vėlesnė laida.</p>
-        <h3>
-            PROGRAMOS ĮDIEGIMAS</h3>
+                ar vėlesnė laida.
+        </p>
+        <h3>PROGRAMOS ĮDIEGIMAS</h3>
         <p>
             „Tesseract 3.02“ vykdomasis failas „Windows“ aplinkai pateikiamas kartu su programa.
-            Papildomi <a href="http://code.google.com/p/tesseract-ocr/downloads/list">kalbinių duomenų
-                paketai</a>, kurių vardai prasideda ISO639-3 kodais, turėtų būti talpinami į
-            poaplankį <tt>tessdata</tt>.
+                Papildomi <a href="http://code.google.com/p/tesseract-ocr/downloads/list">kalbinių duomenų
+                    paketai</a>, kurių vardai prasideda ISO639-3 kodais, turėtų būti talpinami į
+                poaplankį <tt>tessdata</tt>.
         </p>
         <p>
             „Ubuntu Linux“ atveju „Tesseract“ ir šiai programai skirti kalbinių duomenų paketai
-            yra skyriuje „Grafika (universe)“. Juos galite įdiegti, pasinaudodami „Synaptic“
-            arba šia komanda:</p>
+            yra paketų saugykloje „Grafika (universe)“. Juos galite įdiegti, pasinaudodami „Synaptic“
+            arba šia komanda:
+        </p>
         <blockquote>
-            <p>
-                <tt>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-lit</tt></p>
+            <p><tt>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-lit</tt></p>
         </blockquote>
         <p>
             Įdiegimo metu šiuose paketuose esantys failai bus atitinkamai įkelti į <tt>/usr/bin</tt>
-            ir <tt>/usr/share/tesseract-ocr/tessdata</tt> aplankus. Jeigu „Tesseract“ kompiliuosite
-            ir diegsite iš <a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">
-                pradinių tekstų</a>, failai bus įkelti į <tt>/usr/local/bin</tt> ir <tt>/usr/local/share/tessdata</tt>
-            aplankus. Kelią iki „Tesseract“ vykdomojo failo gali reikėti nurodyti „VietOCR“
-            nuostatose. Jeigu kalbiniai duomenys yra nestandartinėje vietoje, gali tekti sukurti
-            simbolinę nuorodą į <tt>tessdata</tt> aplanką. Kelią iki <tt>tessdata</tt> aplanko
-            „VietOCR“ programai taip pat galite nurodyti <tt>TESSDATA_PREFIX</tt> aplinkos kintamajame:</p>
+            ir <tt>/usr/share/tesseract-ocr/tessdata</tt>aplankus. Jeigu „Tesseract“ kompiliuosite ir diegsite iš<a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">pradinių tekstų</a>, failai bus įkelti į <tt>/usr/local/bin</tt>ir <tt>/usr/local/share/tessdata</tt>
+            aplankus. „VietOCR“ nuostatose gali reikėti nurodyti kelią iki „Tesseract“ vykdomojo failo. 
+        Jeigu kalbiniai duomenys yra nestandartinėje vietoje, gali tekti sukurti
+        simbolinę nuorodą į <tt>tessdata</tt>aplanką. Kelią iki <tt>tessdata</tt>aplanko
+        „VietOCR“ programai taip pat galite nurodyti <tt>TESSDATA_PREFIX</tt>aplinkos kintamajame:
+        </p>
         <blockquote>
-            <p>
-                <tt>export TESSDATA_PREFIX=/usr/local/share/</tt></p>
+            <p><tt>export TESSDATA_PREFIX=/usr/local/share/</tt></p>
         </blockquote>
-        <p>
-            Jeigu naudojatės čia nepaminėta platforma, išsamesnės informacijos rasite <a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">
-                „Tesseract“ vikyje</a>.</p>
+        <p>Jeigu naudojatės čia nepaminėta platforma, išsamesnės informacijos rasite <a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">„Tesseract“ vikyje</a>.</p>
         <p>
             „VietOCR“ geba parsiųsti ir įdiegti kalbinių duomenų paketus kai kurioms kalboms;
-            šia funkcija galite pasinaudoti, iškviesdami meniu „<i>Nuostatos</i>“ punktą „<i>Parsiųsti
-                kalbinius duomenis</i>“. Jeigu <tt>tessdata</tt> aplankas yra sisteminio aplanko
-            (pvz., <tt>/usr</tt> „Linux“ sistemoje ar <tt>C:\Program Files</tt> „Windows“ sistemoje)
-            viduje, kalbiniams duomenims įdiegti programą gali tekti vykdyti administratoriaus
-            teisėmis.</p>
+        šia funkcija galite pasinaudoti, iškviesdami meniu „<i>Nuostatos</i>“ punktą „<i>Parsiųsti
+            kalbinius duomenis</i>“. Jeigu <tt>tessdata</tt>aplankas yra sisteminio aplanko
+    (pvz., <tt>/usr</tt>„Linux“ sistemoje ar <tt>C:\Program Files</tt>„Windows“ sistemoje)
+    viduje, kalbiniams duomenims įdiegti programą gali tekti vykdyti administratoriaus
+    teisėmis.
+        </p>
         <p>
             Skenerio programiniam palaikymui yra naudojama „Windows Image Acquisition Library
-            (WIA) v2.0“ biblioteka, kuriai būtina „Windows XP SP1“ ar naujesnė „Windows“ laida.
-            Su „Windows Vista“ ir „Windows 7“ WIA biblioteka pateikiama iškart, o į „Windows
-            XP“ ji įdiegiama, nukopijuojant failą <tt>wiaaut.dll</tt> į sistemos <tt>System32</tt>
+    (WIA) v2.0“ biblioteka, kuriai būtina „Windows XP SP1“ ar naujesnė „Windows“ laida.
+    Su „Windows Vista“ ir „Windows 7“ ši biblioteka pateikiama iškart, o į „Windows
+    XP“ ji įdiegiama, nukopijuojant failą <tt>wiaaut.dll</tt>į sistemos <tt>System32</tt>
             aplanką (dažniausiai jo kelias – <tt>C:\Windows\System32</tt>) ir jį užregistruojant
-            tokia komanda:</p>
+tokia komanda:
+        </p>
         <blockquote>
-            <p>
-                <tt>regsvr32 C:\Windows\System32\wiaaut.dll</tt></p>
+            <p><tt>regsvr32 C:\Windows\System32\wiaaut.dll</tt></p>
         </blockquote>
-        <p>
-            Linux, skenavimo reikia įdiegti SANE paketai:</p>
+        <p>„Linux“ sistemoje, skenavimui reikia įdiegti SANE paketus:</p>
         <blockquote>
-            <p>
-                <tt>sudo apt-get install libsane sane sane-utils libsane-extras xsane</tt></p>
+            <p><tt>sudo apt-get install libsane sane sane-utils libsane-extras xsane</tt></p>
         </blockquote>
         <p>
             PDF failų palaikymas galimas naudojant „<a href="http://sourceforge.net/projects/ghostscript/">GPL
-                Ghostscript</a>“ priemonę. Ją įdiegus, reikia užtikrinti, kad dinaminė biblioteka
-            (<tt>gsdll32.dll</tt> arba <tt>libgs.so</tt>) patektų į sisteminės failų paieškos
-            kelią, papildant atitinkamą aplinkos kintamąjį. „Windows“ sistemoje tai yra kintamasis
+        Ghostscript</a>“ priemonę. Ją įdiegus, reikia užtikrinti, kad dinaminė biblioteka
+    (<tt>gsdll32.dll</tt> arba <tt>libgs.so</tt>) patektų į sisteminės failų paieškos
+kelią, papildant atitinkamą aplinkos kintamąjį. „Windows“ sistemoje tai yra kintamasis
             <tt>Path</tt>, kurį galite redaguoti, atvėrę Valdymo skydą, jame spustelėję piktogramą
-            „Sistema“, tada atverę kortelę „Išsamiau“ ir spustelėję mygtuką „Aplinkos kintamieji“.
-            Pavyzdžiui, „GhostScript 9.06“ atveju, kintamąjį <tt>Path</tt> reikėtų papildyti
-            tokia eilute:</p>
+„Sistema“, tada atvėrę kortelę „Išsamiau“ ir spustelėję mygtuką „Aplinkos kintamieji“.
+Pavyzdžiui, „GhostScript 9.06“ atveju, kintamąjį <tt>Path</tt>reikėtų papildyti
+tokia eilute:
+        </p>
         <blockquote>
-            <p>
-                <tt>;C:\Program Files\gs\gs9.06\bin</tt></p>
+            <p><tt>;C:\Program Files\gs\gs9.06\bin</tt></p>
         </blockquote>
         „Linux“ sistemoje:<blockquote>
-            <p>
-                <tt>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</tt></p>
+            <p><tt>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</tt></p>
         </blockquote>
         <p>
-            pažymėtina, jog šiuo atveju <tt>/usr/lib</tt> aplanke turi būti sukurta <tt>libgs.so</tt>
-            nuoroda į <tt>libgs.so.9.06</tt>.</p>
+            pažymėtina, jog šiuo atveju <tt>/usr/lib</tt>aplanke turi būti sukurta nuoroda
+            <tt>libgs.so</tt>, nukreipianti į failą <tt>libgs.so.9.06</tt>.
+        </p>
         <p>
-            Rašybos tikrinimo funkcija galima panaudojant „Hunspell“ tikrintuvę, kurios <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
-                žodynų</a> failai (<tt>.aff</tt>, <tt>.dic</tt>) turėtų būti patalpinti į aplanką
+            Rašybos tikrinimo funkcija galima panaudojant „Hunspell“ tikrintuvę, kurios <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">žodynų</a> failai (<tt>.aff</tt>, <tt>.dic</tt>) turėtų būti patalpinti į aplanką
             <tt>dict</tt>, esantį „VietOCR“ programos aplanke. Be to, šiame aplanke galite sukurti
-            UTF-8 koduoto teksto failą <tt>user.dic</tt> su papildomais žodyne nesančiais žodžiais
-            (vienas žodis eilutėje).</p>
+UTF-8 koduoto teksto failą <tt>user.dic</tt>su papildomais  žodžiais, nesančiais žodyne
+(vienas žodis eilutėje).
+        </p>
         <p>
             „Linux“ sistemoje „Hunspell“ bei žodynus galite įdiegti, naudodamiesi programa „Synaptic“
-            arba <tt>apt</tt> įrankiu:</p>
+    arba <tt>apt</tt>įrankiu:
+        </p>
+        <blockquote><tt>sudo apt-get install hunspell hunspell-en-us myspell-lt</tt></blockquote>
+        <h3>INSTRUKCIJOS</h3>
+        <p>Programą paleisite tokia komanda:</p>
         <blockquote>
-            <tt>sudo apt-get install hunspell hunspell-en-us</tt>
-        </blockquote>
-        <h3>
-            INSTRUKCIJOS</h3>
-        <p>
-            Programą paleisite tokia komanda:</p>
-        <blockquote>
-            <p>
-                <tt>java -jar VietOCR.jar</tt></p>
+            <p><tt>java -jar VietOCR.jar</tt></p>
         </blockquote>
         <p>
             <b><u>Pastaba</u></b>: jeigu susiduriate su atminties trūkumo problema, bandykite
-            įvykdyti ne .jar failą, bet <tt>ocr</tt> scenarijų.</p>
+    įvykdyti ne .jar failą, bet <tt>ocr</tt>scenarijų.
+        </p>
         <p>
             Kalbinių duomenų failai yra generuojami konkretiems šriftams, todėl programai geriausiai
-            sekasi atpažinti būtent šių ar panašių glifų šriftais rašytus tekstus. Prireikus
-            vaizduose atpažinti kitais šriftais rašytą tekstą, reikės „Tesseract“ programą <a
-                href="http://code.google.com/p/tesseract-ocr/wiki/TrainingTesseract">apmokyti</a>
-            ir sukurti papildomus kalbos duomenų failus, numatančius ir kitokios išvaizdos šriftus.
-            Kiek išsamiau lietuviškai apie „Tesseract“ galite paskaityti <a href="http://dg.lapas.info/?page_id=239">
-                Donato Glodenio tinklaraštyje</a>.</p>
+    sekasi atpažinti jai žinomais ar panašių glifų šriftais rašytus tekstus. Prireikus vaizduose
+    atpažinti kitais šriftais rašytą tekstą, reikės „Tesseract“ programą papildomai
+    <a href="http://code.google.com/p/tesseract-ocr/wiki/TrainingTesseract">apmokyti</a>,
+    sukuriant naujus kalbos duomenų failus. Kiek išsamiau lietuviškai apie „Tesseract“ galite
+    paskaityti <a href="http://dg.lapas.info/?page_id=239">Donato Glodenio tinklaraštyje</a>.
+        </p>
         <p>
             Ženklų atpažinimui teksto failo vaizdai turi būti nuskaitomi nuo 200 iki 400 taškų
-            colyje raiška, naudojant juodai baltą arba pilkumo tonų veikseną. Aukštesnės raiškos
-            vaizdai nebūtinai pagerins ženklų atpažinimo kokybę, kuri ir taip yra pakankamai
-            aukšta, ir kitose „Tesseract“ laidose gali dar pagerėti. Reali ženklų atpažinimo
-            kokybė priklauso nuo nuskenuoto vaizdo kokybės. Rekomenduojamos nuostatos skenuojamam
-            vaizdui yra tokios: 300 taškų colyje, 1 bitas taškui (1bpp; juodai balta veiksena)
-            arba 8 bitai taškui (8bpp; pilkumo tonai), vaizdą įrašant į neglaudintą TIFF arba
-            PNG formato failą.</p>
+    colyje raiška, naudojant juodai baltą arba pilkumo tonų veikseną. Aukštesnės raiškos
+    vaizdai nebūtinai pagerins ženklų atpažinimo kokybę, kuri ir taip yra pakankamai
+    aukšta, ir kitose „Tesseract“ laidose gali dar pagerėti. Ženklų atpažinimo kokybė
+    kiekvienu atveju priklauso nuo nuskenuoto vaizdo kokybės. Rekomenduojamos
+    nuostatos skenuojamam vaizdui yra tokios: 300 taškų colyje, juodai balta veiksena (1bpp)
+    arba 8 bitai taškui (8bpp; pilkumo tonai), vaizdą įrašant į neglaudintą TIFF arba
+    PNG formato failą.
+        </p>
         <p>
-            <em>Žemos raiškos (ekranvaizdžio) veiksena</em> įgalina pagerinti žemos raiškos
-            vaizdų atpažinimo našumą. Šioje veiksenoje žemos raiškos (pvz. ekrano) vaizdai konvertuojami
-            į 300 taškų colyje raišką.</p>
+            <em>Žemos raiškos (ekranvaizdžio) veiksena</em> įgalina pagerinti žemos raiškos vaizdų 
+    atpažinimo kokybę. Šioje veiksenoje, prieš atpažįstant tekstą, žemos raiškos (pvz. ekrano)
+    vaizdų raiška padidinama iki 300 taškų colyje.
+        </p>
         <p>
             Programa numato galimybę jau esamą teksto apdorojimo algoritmą papildyti savuoju.
-            Pridėkite savo pritaikytą teksto ženklų pakeitimo schemą įrašytą faile <tt>x.DangAmbigs.txt</tt>,
-            simbolį „x“ pakeisdami ISO639-3 standarto kalbos kodu (pvz., lietuvių kalbos kodas
-            – „lit“). UTF-8 koduotės teksto faile lygybės ženklu „=“ atskirkite keistinų teksto
-            fragmentų poras taip: <tt>senaReikšmė=naujaReikšmė</tt>.</p>
+    Tam tiesiog pridėkite savo pritaikytą teksto ženklų pakeitimo schemą įrašytą faile <tt>x.DangAmbigs.txt</tt>,
+simbolį „x“ pakeisdami ISO639-3 standarto kalbos kodu (pvz., lietuvių kalbos kodas
+– „lit“). UTF-8 koduotės teksto faile lygybės ženklu „=“ atskirkite keistinų teksto
+fragmentų poras taip: <tt>senaReikšmė=naujaReikšmė</tt>.
+        </p>
         <p>
             Programoje įtaisyti įrankiai, skirti sujungti vaizdams ar PDF formato failams bei
-            skaidyti PDF failams. Kartais patogiau apdoroti vieną failą, bet ne daug smulkių,
-            o kartais, siekiant išvengti atminties stygiaus problemų, tenka padalinti vieną
-            didelį failą į mažesnes dalis.</p>
-        <h3>
-            NUSKAITYTO TEKSTO APDOROJIMAS</h3>
+    skaidyti PDF failams. Kartais patogiau apdoroti vieną failą, bet ne daug smulkių,
+    o kartais, siekiant išvengti atminties stygiaus problemų, tenka padalinti vieną
+    didelį failą į mažesnes dalis.
+        </p>
+        <h3>NUSKAITYTO TEKSTO APDOROJIMAS</h3>
         <p>
             Teksto atpažinimo klaidos paprastai gali būti skirstomos į tris kategorijas. Dauguma
-            klaidų susiję su raidžių registru (pavyzdžiui, „šūVis“) – jos lengvai pataisomos
-            bet kuria su unikodu koduotais tekstais gebančia dirbti tekstų rengykle. Kita klaidų
-            rūšis susijusi su ženklų atpažinimo proceso problemomis, kai raidės supainiojamos
-            dėl diakritinių ženklų arba formos panašumų. Tai nesunkiai pataisoma teksto rašybos
-            taisymo programomis. Programoje įtaisyta nuskaityto teksto papildomo aptvarkymo
-            funkcija leidžia pašalinti daugumą šių tipų klaidų.</p>
+    klaidų susiję su raidžių registru (pavyzdžiui, „šūVis“) – jos lengvai pataisomos
+    bet kuria su unikodu koduotais tekstais gebančia dirbti tekstų rengykle. Kita klaidų
+    rūšis susijusi su ženklų atpažinimo proceso problemomis, kai raidės supainiojamos
+    dėl diakritinių ženklų arba formos panašumų. Tai nesunkiai pataisoma teksto rašybos
+    taisymo programomis. Programoje įtaisyta nuskaityto teksto papildomo aptvarkymo
+    funkcija leidžia pašalinti daugumą šių tipų klaidų.
+        </p>
         <p>
-            Trečiosios kategorijos klaidų pašalinimas negali būti automatizuotas ir reikalauja
-            rankinio teksto redaktoriaus darbo. Šios rūšies klaidos susiję su teksto semantinėm
-            problemom. Tokias atvejais tik žmogus, perskaitęs sakinį, supratęs jo kontekstą,
-            gali nuspręsti kuris žodis buvo originaliame dokumente.</p>
+            Trečiosios kategorijos klaidas aptikti sunkiausia, nes jos yra semantinės. Šių klaidų atveju
+    atpažinti žodžiai yra gramatiškai teisingi, tačiau prie konteksto jie nedera (pavyzdžiui,
+    „sala“ ir „sąla“). Tokias atvejais tik žmogus, perskaitęs sakinį ir supratęs jo kontekstą,
+    gali sugrąžinti žodį, buvusį originaliame dokumente.
+        </p>
         <p>
             Pateikiame instrukciją, kaip taisyti pirmos ir antros kategorijos teksto ženklų
-            atpažinimo klaidas tiesiogiai programos lange:</p>
+    atpažinimo klaidas tiesiogiai programos lange:
+        </p>
         <ol style="margin-top: 0in" start="1" type="1">
             <li>sujunkite teksto eilutes. Po teksto atpažinimo kiekvienos eilutės gale atsiranda
-                po eilutės skirtuką, nurodantį pastraipos pabaigą. Eilutėms sujungti pasinaudokite
-                meniu „<i>Formatas</i>“ punktu „<i>Pašalinti eilučių skirtukus</i>“. Atkreipkite
-                dėmesį, kad, kai tekstas yra eiliuotas (poezija ar pan.) to gali ir nereikėti;</li>
+        po eilutės skirtuką, nurodantį pastraipos pabaigą. Eilutėms sujungti pasinaudokite
+        meniu „<i>Formatas</i>“ punktu „<i>Pašalinti eilučių skirtukus</i>“. Atkreipkite
+        dėmesį, kad, kai tekstas yra eiliuotas (poezija ar pan.) to gali ir nereikėti;</li>
             <li>daugumą raidžių registro klaidų pašalinsite, pasirinkę meniu „<i>Formatas</i>“ punktą
-                „<i>Keisti raidžių registrą</i>“, tuomet pasirinkite punktą „<i>Sakinio stilius</i>“;</li>
+        „<i>Keisti raidžių registrą</i>“ ir nurodę punktą „<i>Sakinio stilius</i>“. Tai atlikę, suraskite
+        ir pašalinkite likusias raidžių registro klaidas;</li>
             <li>ištaisykite rašybos klaidas, pasinaudodami mygtuku „<i>Tikrinti rašybą</i>“.</li>
         </ol>
         <p>
             Atlikus šiuos žingsnius, dauguma klaidų bus pašalintos. Likusios klaidos susiję
-            su teksto semantika. Jos reikalauja žmogaus – tekstų redaktoriaus – pastangų. Redaktorius
-            skaitys originalo tekstą ir ištaisys tas vietas, kuriose automatinis klaidų šalinimas
-            negalėjo padėti.</p>
+    su teksto semantika. Jos reikalauja žmogaus – tekstų redaktoriaus – pastangų. Redaktorius
+    skaitys originalo tekstą ir ištaisys tas vietas, kuriose automatinis klaidų šalinimas
+    negalėjo padėti.
+        </p>
         <p>
-            Jeigu turite kokių nors klausimų, kviečiame kreiptis (angliškai) į <a href="http://sourceforge.net/projects/vietocr/forums">
-                programos naudotojų forumą internete</a>.</p>
-        <hr />
-        <p>
-            <small>Vertė <a href="mailto:rytumb@gmail.com">Rytis Umbrasas</a> ir <a href="mailto:rq@akl.lt">
-                Rimas Kudelis</a>.</small></p>
+            Jeigu turite kokių nors klausimų, kviečiame kreiptis į <a href="http://forumai.akl.lt/">AKL biuro programų forumą</a>
+            arba angliškai į <a href="http://sourceforge.net/projects/vietocr/forums">šios programos naudotojų forumą</a>.
+        </p>
+        <hr>
     </div>
 </body>
 </html>
