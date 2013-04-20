@@ -192,6 +192,7 @@ public class DownloadDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    @SuppressWarnings("deprecation")
     private void jButtonDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDownloadActionPerformed
         if (this.jList1.getSelectedIndex() == -1) {
             return;
@@ -409,6 +410,7 @@ public class DownloadDialog extends javax.swing.JDialog {
      *
      * @param evt
      */
+    @SuppressWarnings("unchecked")
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         String[] available = availableLanguageCodes.keySet().toArray(new String[0]);
         List<String> languageNames = new ArrayList<String>();
