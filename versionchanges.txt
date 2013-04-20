@@ -77,5 +77,6 @@ Version 3.4.2 (6 January 2013)
 - Update Tesseract 3.02 to r820
 - Update JNA to v3.5.1
 
-Version 3.4.3 Beta (3 March 2013)
+Version 3.4.3 Beta (20 April 2013)
 - Update Tess4J library
+- Update Tesseract 3.02 to r835

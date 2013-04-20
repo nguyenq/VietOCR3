@@ -2,6 +2,6 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment>Configuration File</comment>
-    <entry key="ReleaseDate">2013/01/06</entry>
-    <entry key="Version">v3.4.2</entry>
+    <entry key="ReleaseDate">2013/04/20</entry>
+    <entry key="Version">v3.4.3 Beta</entry>
 </properties>
