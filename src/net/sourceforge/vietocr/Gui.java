@@ -622,6 +622,7 @@ public class Gui extends JFrame {
         jButtonClear = new javax.swing.JButton();
         jToggleButtonSpellCheck = new javax.swing.JToggleButton();
         jLabelLanguage = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(3, 0), new java.awt.Dimension(3, 0), new java.awt.Dimension(3, 32767));
         jComboBoxLang = new javax.swing.JComboBox();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -860,6 +861,7 @@ public class Gui extends JFrame {
         jLabelLanguage.setText(bundle.getString("jLabelLanguage.Text")); // NOI18N
         jLabelLanguage.setToolTipText(bundle.getString("jLabelLanguage.ToolTipText")); // NOI18N
         jToolBar2.add(jLabelLanguage);
+        jToolBar2.add(filler1);
 
         jComboBoxLang.setEditable(true);
         jComboBoxLang.setMaximumSize(new java.awt.Dimension(100, 24));
@@ -2046,6 +2048,7 @@ public class Gui extends JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.Box.Filler filler1;
     javax.swing.JButton jButtonActualSize;
     protected javax.swing.JButton jButtonCancelOCR;
     private javax.swing.JButton jButtonClear;
