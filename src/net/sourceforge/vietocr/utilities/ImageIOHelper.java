@@ -1,17 +1,17 @@
 /**
  * Copyright @ 2008 Quan Nguyen
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sourceforge.vietocr.utilities;
 
@@ -32,14 +32,17 @@ public class ImageIOHelper {
     final static String OUTPUT_FILE_NAME = "Tesstmp";
     final static String TIFF_EXT = ".tif";
     final static String TIFF_FORMAT = "tiff";
+    final static String JAI_IMAGE_WRITER_MESSAGE = "Need to install JAI Image I/O package.\nhttps://jai-imageio.dev.java.net";
+    final static String JAI_IMAGE_READER_MESSAGE = "Unsupported image format. May need to install JAI Image I/O package.\nhttps://jai-imageio.dev.java.net";
 
     /**
-     * Creates a list of TIFF image files from an image file. 
-     * It basically converts images of other formats to TIFF format,
-     * or a multi-page TIFF image to multiple TIFF image files.
-     * 
+     * Creates a list of TIFF image files from an image file. It basically
+     * converts images of other formats to TIFF format, or a multi-page TIFF
+     * image to multiple TIFF image files.
+     *
      * @param imageFile input image file
-     * @param index an index of the page; -1 means all pages, as in a multi-page TIFF image
+     * @param index an index of the page; -1 means all pages, as in a multi-page
+     * TIFF image
      * @return a list of TIFF image files
      * @throws Exception
      */
@@ -50,11 +53,12 @@ public class ImageIOHelper {
         String imageFormat = imageFileName.substring(imageFileName.lastIndexOf('.') + 1);
 
         Iterator<ImageReader> readers = ImageIO.getImageReadersByFormatName(imageFormat);
-        ImageReader reader = readers.next();
-
-        if (reader == null) {
-            throw new RuntimeException("Need to install JAI Image I/O package.\nhttps://jai-imageio.dev.java.net");
+        
+        if (!readers.hasNext()) {
+            throw new RuntimeException(JAI_IMAGE_READER_MESSAGE);
         }
+
+        ImageReader reader = readers.next();
 
         ImageInputStream iis = ImageIO.createImageInputStream(imageFile);
         reader.setInput(iis);
@@ -67,6 +71,11 @@ public class ImageIOHelper {
 
         //Get tif writer and set output to file
         Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName(TIFF_FORMAT);
+         
+        if (!writers.hasNext()) {
+            throw new RuntimeException(JAI_IMAGE_WRITER_MESSAGE);
+        }
+        
         ImageWriter writer = writers.next();
 
         //Read the stream metadata
@@ -95,8 +104,9 @@ public class ImageIOHelper {
     }
 
     /**
-     * Creates a list of TIFF image files from a list of <code>IIOImage</code> objects.
-     * 
+     * Creates a list of TIFF image files from a list of
+     * <code>IIOImage</code> objects.
+     *
      * @param imageList a list of <code>IIOImage</code> objects
      * @param index an index of the page; -1 means all pages
      * @return a list of TIFF image files
@@ -115,11 +125,12 @@ public class ImageIOHelper {
 
         //Get tif writer and set output to file
         Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName(TIFF_FORMAT);
-        ImageWriter writer = writers.next();
 
-        if (writer == null) {
-            throw new RuntimeException("Need to install JAI Image I/O package.\nhttps://jai-imageio.dev.java.net");
+        if (!writers.hasNext()) {
+            throw new RuntimeException(JAI_IMAGE_WRITER_MESSAGE);
         }
+        
+        ImageWriter writer = writers.next();
 
         //Get the stream metadata
         IIOMetadata streamMetadata = writer.getDefaultStreamMetadata(tiffWriteParam);
@@ -175,7 +186,7 @@ public class ImageIOHelper {
 
     /**
      * Gets pixel data of an <code>IIOImage</code> object.
-     * 
+     *
      * @param image an <code>IIOImage</code> object
      * @return a byte buffer of pixel data
      * @throws Exception
@@ -187,12 +198,13 @@ public class ImageIOHelper {
 
         //Get tif writer and set output to file
         Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName(TIFF_FORMAT);
-        ImageWriter writer = writers.next();
-
-        if (writer == null) {
-            throw new RuntimeException("Need to install JAI Image I/O package.\nhttps://jai-imageio.dev.java.net");
+        
+        if (!writers.hasNext()) {
+            throw new RuntimeException(JAI_IMAGE_WRITER_MESSAGE);
         }
 
+        ImageWriter writer = writers.next();
+        
         //Get the stream metadata
         IIOMetadata streamMetadata = writer.getDefaultStreamMetadata(tiffWriteParam);
 
@@ -207,16 +219,16 @@ public class ImageIOHelper {
         BufferedImage bi = ImageIO.read(ios);
         return convertImageData(bi);
     }
-    
-        /**
+
+    /**
      * Converts <code>BufferedImage</code> to <code>ByteBuffer</code>.
      * 
      * @param bi Input image
-     * @return 
+     * @return pixel data
      */
     public static ByteBuffer convertImageData(BufferedImage bi) {
         byte[] pixelData = ((DataBufferByte) bi.getRaster().getDataBuffer()).getData();
- //        return ByteBuffer.wrap(pixelData);
+        //        return ByteBuffer.wrap(pixelData);
         ByteBuffer buf = ByteBuffer.allocateDirect(pixelData.length);
         buf.order(ByteOrder.nativeOrder());
         buf.put(pixelData);
@@ -227,7 +239,9 @@ public class ImageIOHelper {
     /**
      * Gets a list of <code>IIOImage</code> objects for an image file.
      *
-     * @param imageFile input image file. It can be any of the supported formats, including TIFF, JPEG, GIF, PNG, BMP, JPEG, and PDF if GPL Ghostscript is installed
+     * @param imageFile input image file. It can be any of the supported
+     * formats, including TIFF, JPEG, GIF, PNG, BMP, JPEG, and PDF if GPL
+     * Ghostscript is installed
      * @return a list of <code>IIOImage</code> objects
      * @throws Exception
      */
@@ -254,12 +268,12 @@ public class ImageIOHelper {
                 imageFormat = "jpeg2000";
             }
             Iterator<ImageReader> readers = ImageIO.getImageReadersByFormatName(imageFormat);
-            reader = readers.next();
-
-            if (reader == null) {
-                throw new RuntimeException("Need to install JAI Image I/O package.\nhttps://jai-imageio.dev.java.net");
+            
+            if (!readers.hasNext()) {
+                throw new RuntimeException(JAI_IMAGE_READER_MESSAGE);
             }
 
+            reader = readers.next();
             iis = ImageIO.createImageInputStream(imageFile);
             reader.setInput(iis);
 
@@ -301,10 +315,10 @@ public class ImageIOHelper {
         iioImageList.add(oimage);
         return iioImageList;
     }
-
+    
     /**
      * Merges multiple images into one TIFF image.
-     * 
+     *
      * @param inputImages an array of image files
      * @param outputTiff the output TIFF file
      * @throws Exception
@@ -322,6 +336,11 @@ public class ImageIOHelper {
         }
 
         Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName(TIFF_FORMAT);
+        
+        if (!writers.hasNext()) {
+            throw new RuntimeException(JAI_IMAGE_WRITER_MESSAGE);
+        }
+                
         ImageWriter writer = writers.next();
 
         //Set up the writeParam
@@ -348,9 +367,9 @@ public class ImageIOHelper {
 
     /**
      * Reads image meta data.
-     * 
+     *
      * @param oimage
-     * @return
+     * @return a map of meta data
      */
     public static Map<String, String> readImageData(IIOImage oimage) {
         Map<String, String> dict = new HashMap<String, String>();
