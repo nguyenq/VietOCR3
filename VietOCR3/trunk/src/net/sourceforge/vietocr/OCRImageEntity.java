@@ -28,7 +28,6 @@ import javax.imageio.IIOImage;
 
 public class OCRImageEntity {
 
-    private final static Rectangle EMPTY_RECTANGLE = new Rectangle();
     /** input images */
     private List<IIOImage> oimages;
     /** input image File */
@@ -99,7 +98,7 @@ public class OCRImageEntity {
     public List<File> getClonedImageFiles() throws IOException {
         if (oimages != null) {
             if (dpiX == 0 || dpiY == 0) {
-                if (rect == null || rect.equals(EMPTY_RECTANGLE)) {
+                if (rect == null || rect.isEmpty()) {
                     return ImageIOHelper.createTiffFiles(oimages, index);
                 } else {
                     // rectangular region
@@ -112,7 +111,7 @@ public class OCRImageEntity {
                 }
             } else {
                 // scaling
-                if (rect == null || rect.equals(EMPTY_RECTANGLE)) {
+                if (rect == null || rect.isEmpty()) {
                     List<IIOImage> tempList = new ArrayList<IIOImage>();
                     for (IIOImage oimage : (index == -1 ? oimages : oimages.subList(index, index + 1))) {
                         BufferedImage bi = (BufferedImage) oimage.getRenderedImage();
