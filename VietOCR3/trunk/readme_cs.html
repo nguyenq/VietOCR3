@@ -1,124 +1,165 @@
 ﻿<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>VietOCR - Uživatelské rozhraní Java pro Tesseract OCR</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>VietOCR - Uživatelské rozhraní Java pro Tesseract OCR</title>
+    <style type="text/css">
+        .style1
+        {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="Section1">
-        <h2 align="center">VietOCR</h2>
-        <h3>POPIS</h3>
-        <p><a href="http://vietocr.sourceforge.net">VietOCR</a> je rozhraní Java pro <a href="http://code.google.com/p/tesseract-ocr/">
-                systém rozpoznávání znaků Tesseract</a>, poskytující podporu rozpoznávání znaků pro běžné
-            formáty obrázků a vícestranové obrázky. Program obsahuje funkci dalšího zpracování,
-            která pomáhá při opravování chyb, které se pravidelně objavují při procesu rozpoznávání, a
-            tak se zvyšuje míra přesnosti výsledku. Program je též možné použít jako konzolovou
-            aplikaci, kterou je možné spustit z příkazového řádku.</p>
-        <p>Podporováno je nyní i dávkové zpracování. Program sleduje nové obrázkové soubory
+        <h2 align="center">
+            VietOCR</h2>
+        <h3>
+            POPIS</h3>
+        <p>
+            <a href="http://vietocr.sourceforge.net">VietOCR</a> je rozhraní Java pro <a href="http://code.google.com/p/tesseract-ocr/">
+                systém rozpoznávání znaků Tesseract</a>, poskytující podporu rozpoznávání znaků
+            pro běžné formáty obrázků a vícestranové obrázky. Program obsahuje funkci dalšího
+            zpracování, která pomáhá při opravování chyb, které se pravidelně objavují při procesu
+            rozpoznávání, a tak se zvyšuje míra přesnosti výsledku. Program je též možné použít
+            jako konzolovou aplikaci, kterou je možné spustit z příkazového řádku.</p>
+        <p>
+            Podporováno je nyní i dávkové zpracování. Program sleduje nové obrázkové soubory
             ve sledované složce a automaticky je zpracuje pomocí OCR systému a výstup uloží
             do výstupní složky.</p>
-        <h3>SYSTÉMOVÉ POŽADAVKY</h3>
-        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 6.0</a>
-            anebo vyšší verze.</p>
-        <h3>INSTALACE</h3>
-        <p>Windows verze Tesseract 3.02 je součástí programu. Další <a href="http://code.google.com/p/tesseract-ocr/downloads/list">
+        <h3>
+            SYSTÉMOVÉ POŽADAVKY</h3>
+        <p>
+            <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime
+                Environment 6.0</a> anebo vyšší verze.</p>
+        <h3>
+            INSTALACE</h3>
+        <p>
+            Windows verze Tesseract 3.02 je součástí programu. Další <a href="http://code.google.com/p/tesseract-ocr/downloads/list">
                 jazykové datové balíky</a> pro Tesseract, které začínají kódem ISO639-3, by
             měly být umístěny do podadresáře <tt>tessdata</tt>.</p>
-        <p>V Ubuntu jsou Tesseract a jeho jazyková data součástí Graphics (universe) repository.
+        <p>
+            V Ubuntu jsou Tesseract a jeho jazyková data součástí Graphics (universe) repository.
             Můžete je nainstalovat pomocí Synaptic anebo příkazu:</p>
         <blockquote>
-            <p><tt>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-ces</tt></p>
-        </blockquote>
-        <p>Soubory budou umístěny do <tt>/usr/bin</tt> resp. <tt>/usr/share/tesseract-ocr/tessdata</tt>.
+            <tt>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-ces</tt></blockquote>
+        <p>
+            Soubory budou umístěny do <tt>/usr/bin</tt> resp. <tt>/usr/share/tesseract-ocr/tessdata</tt>.
             Pokud si Tesseract sestavíte sami <a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">
                 ze zdrojových kódov</a>, nainstaluje se do <tt>/usr/local/bin</tt> a <tt>/usr/local/share/tessdata</tt>.
-            Z tohoto důvodu může být potřebné nastavit umístění programu Tesseract v
-            <tt>Nastavení</tt> VietOCR. Pokud jsou data umístěna nestandardně, je potřeba je nalinkovat
-            do <tt>tessdata</tt>. Též je možné použít proměnnou prostředí <tt>TESSDATA_PREFIX</tt>
-            na informování VietOCR, kde jsou umístěna data:<a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation"><tt>export TESSDATA_PREFIX=/usr/local/share/</tt></a><a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">Informace k instalaci programu Tesseract na jiných platformách hledejte na stránce wiki
-            </a><a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">Tesseract</a>.</p>
+            Z tohoto důvodu může být potřebné nastavit umístění programu Tesseract v <tt>Nastavení</tt>
+            VietOCR. Pokud jsou data umístěna nestandardně, je potřeba je nalinkovat do <tt>tessdata</tt>.
+            Též je možné použít proměnnou prostředí <tt>TESSDATA_PREFIX</tt> na informování
+            VietOCR, kde jsou umístěna data:</p>
         <blockquote>
-            <p>VietOCR taktéž poskytuje podporu pro stahování a instalaci vybraných jazykových
-            balíčků přes položku nabídky <em>Stáhnout jazyková data</em>. V závislosti na umístění složky
-            <tt>tessdata</tt>, může být potřeba spustit program jako superuživatel anebo administrátor,
-            aby bylo možné nainstalovat stáhnutá data do složky, pokud je v systému složek,
-            jako například v <tt>/usr</tt> na Linuxe anebo <tt>C:\Program Files</tt> v systému
-            Windows.</p>
-        </blockquote>
-        <p>Podpora snímání je poskytována přes knihovnu Windows Image Acquisition Library
-            v2.0, která vyžaduje Windows XP Service Pack 1 (SP1) anebo vyšší verzi. Tato knihovna
+            <tt>export TESSDATA_PREFIX=/usr/local/share/</tt></blockquote>
+        Informace k instalaci programu Tesseract na jiných platformách hledejte na stránce
+        <a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">wiki
+            Tesseract</a>.
+        <p>
+            VietOCR taktéž poskytuje podporu pro stahování a instalaci vybraných jazykových
+            balíčků přes položku nabídky <em>Stáhnout jazyková data</em>. V závislosti na umístění
+            složky <tt>tessdata</tt>, může být potřeba spustit program jako superuživatel anebo
+            administrátor, aby bylo možné nainstalovat stáhnutá data do složky, pokud je v systému
+            složek, jako například v <tt>/usr</tt> na Linuxe anebo <tt>C:\Program Files</tt>
+            v systému Windows.</p>
+        <p>
+            Podpora snímání je poskytována přes knihovnu Windows Image Acquisition Library v2.0,
+            která vyžaduje Windows XP Service Pack 1 (SP1) anebo vyšší verzi. Tato knihovna
             je standardní součástí Windows Vista a 7. Instalaci na Windows XP udělejte následovnými
             kroky: zkopírujte soubor <tt>wiaaut.dll</tt> do složky <tt>System32</tt> (obyčejně
             je to <tt>C:\Windows\System32</tt>) a spusťte následující příkaz v příkazovém řádku:</p>
-        <p><tt>regsvr32 C:\Windows\System32\wiaaut.dll</tt></p>
-        <p>V systému Linux vyžaduje snímání instalaci balíčků SANE:</p>
         <blockquote>
-            <p><tt>sudo apt-get install libsane sane sane-utils libsane-extras xsane</tt></p>
-        </blockquote>
-        <p>Podpora PDF je dostupná přes projekt <a href="http://sourceforge.net/projects/ghostscript/">
+            <tt>regsvr32 C:\Windows\System32\wiaaut.dll</tt></blockquote>
+        <p>
+            V systému Linux vyžaduje snímání instalaci balíčků SANE:</p>
+        <blockquote>
+            <tt>sudo apt-get install libsane sane sane-utils libsane-extras xsane</tt></blockquote>
+        <p>
+            Podpora PDF je dostupná přes projekt <a href="http://sourceforge.net/projects/ghostscript/">
                 GPL Ghostscript</a>. Po jeho instalaci se, prosím, ujistěte, že sdílená knihovna
             (<tt>gsdll32.dll</tt> anebo <tt>libgs.so</tt>) je v cestě (PATH), případně nastavte
-            patřičnou proměnnou prostředí. Ve Windows přidejte následující řetězec hodnotě <tt>Path</tt></p>
-        <blockquote>
-            <p>           (přístupná je přes Ovládací panel &gt; Systém &gt; Pokročilé nastavení &gt; Proměnné
+            patřičnou proměnnou prostředí. Ve Windows přidejte následující řetězec hodnotě <tt>Path</tt>
+            (přístupná je přes Ovládací panel &gt; Systém &gt; Pokročilé nastavení &gt; Proměnné
             prostředí) pro GS verze 9.07:</p>
-        </blockquote>
-		<tt>;C:\Program Files\gs\gs9.07\bin</tt><blockquote>
-            <p>kde v <tt>/usr/lib</tt>, <tt>libgs.so</tt> je umístěn odkaz na <tt>libgs.so.9.07</tt>.</p>
-        </blockquote>
-        <p>-</p>
-        <p><tt>sudo apt-get install hunspell hunspell-en-us</tt></p>
-        <p>POKYNY</p>
-        <blockquote>Program spustíte příkazem:</blockquote>
-        <h3><tt>java -jar VietOCR.jar</tt></h3>
-        <p><b></b></p>
         <blockquote>
-            <p>Poznámka:</p>
-        </blockquote>
-        <p>Pokud narazíte na problém „out-of-memory exception“, spusťte skript
-            <tt>ocr(.bat)</tt> namísto uvedeného příkazu.<u>Obrázky určené pro rozpoznávání by měly být snímány v rozlišení aspoň 200 DPI (bodů na palec - dots per inch)
-            až 400 DPI v monochromatickém (černobílém) režimu anebo v odstínech šedé.
-            Snímání ve vyšším rozlišení nepřináší při rozpoznávání znaků vyšší přesnost.
-            Míra přesnosti však závisí hlavně na kvalitě nasnímaného obrázku. Typické nastavení
-            pro snímání je 300 DPI a 1 bpp (bit per pixel) černo-bílo anebo 8 bpp (odstíny
-            šedé) do nekomprimovaného TIFF anebo PNG formátu.</u>Nový <em>Režim snímku obrazovky</em> nabízí lepší míru přesnosti pro obrázky s
-            nízkým rozlišením, jako např. snímky obrazovky, pomocí zvětšení rozlišení na 300
-            DPI.</p>
-        <p>Vedle vestavěného algoritmu pro další zpracování textu si můžete přidat vlastní
+            <tt>;C:\Program Files\gs\gs9.07\bin</tt></blockquote>
+        On Linux:
+        <blockquote>
+                <tt>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</tt></blockquote>
+        <p>
+            kde v <tt>/usr/lib</tt>, <tt>libgs.so</tt> je umístěn odkaz na <tt>libgs.so.9.07</tt>.</p>
+        <p>
+            Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
+                dictionary</a> files (<tt>.aff</tt>, <tt>.dic</tt>) should be placed in <tt>dict</tt>
+            folder of VietOCR. <tt>user.dic</tt> is an UTF-8-encoded file which contains a list
+            of custom words, one word per line.</p>
+        <p>
+            On Linux, Hunspell and its dictionaries can be installed by Synaptic or <tt>apt</tt>,
+            as follows:</p>
+        <blockquote>
+            <tt>sudo apt-get install hunspell hunspell-en-us</tt></blockquote>
+        <h3>
+            POKYNY</h3>
+        Program spustíte příkazem:
+        <blockquote>
+            <tt>java -jar VietOCR.jar</tt></blockquote>
+        <p>
+            <span class="style1"><strong>Poznámka</strong></span>: Pokud narazíte na problém
+            „out-of-memory exception“, spusťte skript <tt>ocr(.bat)</tt> namísto uvedeného příkazu.</p>
+        <p>
+            Obrázky určené pro rozpoznávání by měly být snímány v rozlišení aspoň 200 DPI (bodů
+            na palec - dots per inch) až 400 DPI v monochromatickém (černobílém) režimu anebo
+            v odstínech šedé. Snímání ve vyšším rozlišení nepřináší při rozpoznávání znaků vyšší
+            přesnost. Míra přesnosti však závisí hlavně na kvalitě nasnímaného obrázku. Typické
+            nastavení pro snímání je 300 DPI a 1 bpp (bit per pixel) černo-bílo anebo 8 bpp
+            (odstíny šedé) do nekomprimovaného TIFF anebo PNG formátu.Nový Režim snímku obrazovky
+            nabízí lepší míru přesnosti pro obrázky s nízkým rozlišením, jako např. snímky obrazovky,
+            pomocí zvětšení rozlišení na 300 DPI.</p>
+        <p>
+            Vedle vestavěného algoritmu pro další zpracování textu si můžete přidat vlastní
             schéma nahrazování textu - textový soubor s názvem <tt>x.DangAmbigs.txt</tt>, kde
             x je kód jazyka ISO639-3. Tento soubor v kódovaní UTF-8 by měl obsahovat páry oddělené
             znakem „rovná se“ ve tvaru <tt>staráHodnota=nováHodnota</tt>.</p>
-        <p>Některé vestavěné nástroje poskytují funkce spojování (slučování) několika obrázků anebo
-            souborů PDF do jednoho (pro pohodlnější rozpoznávání znaků), anebo dělení souborů PDF
-            na menší, pokud jsou příliš veliké a způsobují „out-of-memory exceptions“.</p>
-        <p>DALŠÍ ZPRACOVÁNÍ</p>
-        <p>Chyby při rozpoznávání znaků se dají rozdělit do třech skupin. Časté jsou záměny
+        <p>
+            Některé vestavěné nástroje poskytují funkce spojování (slučování) několika obrázků
+            anebo souborů PDF do jednoho (pro pohodlnější rozpoznávání znaků), anebo dělení
+            souborů PDF na menší, pokud jsou příliš veliké a způsobují „out-of-memory exceptions“.</p>
+        <h3>
+            DALŠÍ ZPRACOVÁNÍ</h3>
+        <p>
+            Chyby při rozpoznávání znaků se dají rozdělit do třech skupin. Časté jsou záměny
             velikosti písmen, např. „O“ — „o“, „Z“ — „z“, „S“ — „s“. Tyto chyby se dají opravit
             pomocí oblíbených textových editorů Unicode.</p>
-        <p>Další chyby jsou způsobeny procesem rozpoznávání - například chybějící diakritická znaménka,
-            zaměněné znaky („1“ — „l“). Takové chyby je možné poměrně lehce opravit pomocí
-            ověření pravopisu - kontroly překlepů (spellechecker). Vestavěné funkce pro další zpracování vám mohou
-            pomoci s výše uvedeným chybami.</p>
-        <h3>Poslední skupinou jsou chyby, které je těžké zjistit, protože jsoú to sémantické
+        <p>
+            Další chyby jsou způsobeny procesem rozpoznávání - například chybějící diakritická
+            znaménka, zaměněné znaky („1“ — „l“). Takové chyby je možné poměrně lehce opravit
+            pomocí ověření pravopisu - kontroly překlepů (spellechecker). Vestavěné funkce pro
+            další zpracování vám mohou pomoci s výše uvedeným chybami.</p>
+        <p>
+            Poslední skupinou jsou chyby, které je těžké zjistit, protože jsoú to sémantické
             chyby, což znamená, že daná slova se nacházejí ve slovníku, ale jsou chybná z hlediska
             souvislosti napr. „cíp“ — „cip“ a pod. Tyto chyby si žádají, aby je opravil opravce
-            ručně podle původního obrázku.</h3>
-        <p>Zde jsou pokyny, jak opravit první dvě skupiny chyb vzniklých při rozpoznávání s pomocí zabudovaných
-            funkcí:</p>
-        <p>Seskupení řádků. Řádky je potřeba seskupit tak, aby odpovídali odstavcům, ke
-                kterým patří (1 odstavec = 1 řádek). Použijte na to funkci <i>Odstranit zalomení řádků</i>,
-                která se nachází v nabídce <i>Formát</i>. Taková operace není potřebná pro básně.</p>
-        <p>Vyberte <i>Změnit velikost písmen</i>, z nabídky <i>Formát</i>, a potom <i>První velké</i>
-                na opravu chyb velikosti písmen. Následně opravte ostatní chyby velikosti písmen (např.
-                jména, názvy).</p>
-        <ol style="margin-top: 0in" start="1" type="1">
-<li>Opravte překlepy pomocí <i>Ověření pravopisu</i>.</li>
-            <li>Výše uvedené kroky by měly vyloučit většinu běžných chyb. Zůstávající sémantické
-            chyby však musí opravit lidský opravce/vydavatel pozorným čtením a opravováním, aby byl výsledný
-            dokument bez chyb.</li>
-            <li>Pokud máte nějaké otázky, položte je ve <a href="http://sourceforge.net/projects/vietocr/forums">
-                fóru VietOCR</a>.</li>
+            ručně podle původního obrázku.</p>
+        <p>
+            Zde jsou pokyny, jak opravit první dvě skupiny chyb vzniklých při rozpoznávání s
+            pomocí zabudovaných funkcí:</p>
+        <ol>
+            <li>Seskupení řádků. Řádky je potřeba seskupit tak, aby odpovídali odstavcům, ke kterým
+                patří (1 odstavec = 1 řádek). Použijte na to funkci <i>Odstranit zalomení řádků</i>,
+                která se nachází v nabídce <i>Formát</i>. Taková operace není potřebná pro básně.</li>
+            <li>Vyberte <i>Změnit velikost písmen</i>, z nabídky <i>Formát</i>, a potom <i>První
+                velké</i> na opravu chyb velikosti písmen. Následně opravte ostatní chyby velikosti
+                písmen (např. jména, názvy).</li>
+            <li>Opravte překlepy pomocí <i>Ověření pravopisu</i>.</li>
         </ol>
+        <p>
+            Výše uvedené kroky by měly vyloučit většinu běžných chyb. Zůstávající sémantické
+            chyby však musí opravit lidský opravce/vydavatel pozorným čtením a opravováním,
+            aby byl výsledný dokument bez chyb.</p>
+        <p>
+            Pokud máte nějaké otázky, položte je ve <a href="http://sourceforge.net/projects/vietocr/forums">
+                fóru VietOCR</a>.</p>
         <hr />
-</div>
+    </div>
 </body>
 </html>
