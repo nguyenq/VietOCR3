@@ -875,6 +875,7 @@ public class Gui extends JFrame {
         getContentPane().add(jToolBar2, java.awt.BorderLayout.NORTH);
 
         jSplitPane1.setDividerLocation(250);
+        jSplitPane1.setDividerSize(2);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
