@@ -77,8 +77,9 @@ Version 3.4.2 (6 January 2013)
 - Update Tesseract 3.02 to r820
 - Update JNA to v3.5.1
 
-Version 3.4.3 Beta 3 (10 July 2013)
+Version 3.4.3 Beta 3 (25 July 2013)
 - Update Tesseract 3.02 to r861
 - Update Tess4J library
 - Update JNA to v3.5.2
+- Update JACOB to  1.17-M4 version
 - Add localized UI data for Catalan, Turkish, and Czech 
