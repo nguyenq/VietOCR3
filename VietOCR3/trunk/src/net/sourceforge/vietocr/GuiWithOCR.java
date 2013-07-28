@@ -195,6 +195,9 @@ public class GuiWithOCR extends GuiWithImageOps {
                         why = bundle.getString("An_exception_occurred_in_Tesseract_engine_while_recognizing_this_image.");
                     } else if (cause instanceof OutOfMemoryError) {
                         why = cause.getMessage();
+                    } else if (cause instanceof ClassCastException) {
+                        why = cause.getMessage();
+                        why += "\nConsider converting the image to binary or grayscale before OCR again.";
                     } else {
                         why = cause.getMessage();
                     }
