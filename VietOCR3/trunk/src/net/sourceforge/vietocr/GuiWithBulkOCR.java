@@ -17,6 +17,7 @@ package net.sourceforge.vietocr;
 
 import java.awt.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -81,16 +82,30 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             statusFrame.toFront();
             statusFrame.getTextArea().append("\t-- " + bundle.getString("Beginning_of_task") + " --\n");
 
-            File[] files = new File(inputFolder).listFiles(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    return name.toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp|pdf)$");
-                }
-            });
+            List<File> files = new ArrayList<File>();
+            listImageFiles(files, new File(inputFolder));
 
             // instantiate SwingWorker for OCR
             ocrWorker = new BulkOcrWorker(files);
             ocrWorker.execute();
+        }
+    }
+    
+    void listImageFiles(List<File> list, File dir) {
+        // list image files and subdir
+        File[] files = dir.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.getName().toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp|pdf)$") || file.isDirectory();
+            }
+        });
+
+        for (File file : files) {
+            if (file.isDirectory()) {
+                listImageFiles(list, file);
+            } else {
+                list.add(file);
+            }
         }
     }
 
@@ -124,9 +139,9 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
     class BulkOcrWorker extends SwingWorker<Void, String> {
 
         long startTime;
-        File[] files;
+        List<File> files;
 
-        BulkOcrWorker(File[] files) {
+        BulkOcrWorker(List<File> files) {
             this.files = files;
             startTime = System.currentTimeMillis();
         }
@@ -137,7 +152,8 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 if (!isCancelled()) {
                     publish(imageFile.getPath()); // interim result
                     try {
-                        OCRHelper.performOCR(imageFile, new File(outputFolder, imageFile.getName() + (hocr ? ".html" : ".txt")), tessPath, curLangCode, selectedPSM, hocr);
+                        String outputFilename = imageFile.getPath().substring(inputFolder.length() + 1);
+                        OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename + (hocr ? ".html" : ".txt")), tessPath, curLangCode, selectedPSM, hocr);
                     } catch (Exception e) {
                         publish("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **");
                     }
