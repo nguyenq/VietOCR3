@@ -91,21 +91,35 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
         }
     }
     
-    void listImageFiles(List<File> list, File dir) {
+    /**
+     * Lists image files and directories.
+     * 
+     * @param list
+     * @param directory 
+     */
+    void listImageFiles(List<File> list, File directory) {
         // list image files and subdir
-        File[] files = dir.listFiles(new FileFilter() {
+        File[] files = directory.listFiles(new FileFilter() {
             @Override
             public boolean accept(File file) {
                 return file.getName().toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp|pdf)$") || file.isDirectory();
             }
         });
 
+        List<File> dirs = new ArrayList<File>();
+        
+        // process files first
         for (File file : files) {
-            if (file.isDirectory()) {
-                listImageFiles(list, file);
-            } else {
+            if (file.isFile()) {
                 list.add(file);
+            } else {
+                dirs.add(file);
             }
+        }
+        
+        // then process directories
+        for (File dir : dirs) {
+            listImageFiles(list, dir);
         }
     }
 
