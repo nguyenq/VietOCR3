@@ -180,8 +180,22 @@ public class ImageIOHelper {
         dir.addTIFFField(fieldXRes);
         dir.addTIFFField(fieldYRes);
 
-        // Convert to metadata object and return.
-        return dir.getAsMetadata();
+        // Convert to metadata object.
+        IIOMetadata metadata = dir.getAsMetadata();
+        
+        // Add other metadata.
+        IIOMetadataNode root = new IIOMetadataNode("javax_imageio_1.0");
+        IIOMetadataNode horiz = new IIOMetadataNode("HorizontalPixelSize");
+        horiz.setAttribute("value", Double.toString(25.4f / dpiX));
+        IIOMetadataNode vert = new IIOMetadataNode("VerticalPixelSize");
+        vert.setAttribute("value", Double.toString(25.4f / dpiY));
+        IIOMetadataNode dim = new IIOMetadataNode("Dimension");
+        dim.appendChild(horiz);
+        dim.appendChild(vert);
+        root.appendChild(dim);
+        metadata.mergeTree("javax_imageio_1.0", root);
+        
+        return metadata;
     }
 
     /**
