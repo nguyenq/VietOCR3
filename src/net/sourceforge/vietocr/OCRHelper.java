@@ -44,6 +44,11 @@ public class OCRHelper {
                 result = TextUtilities.correctLetterCases(result);
             }
             
+            // create parent folder if not yet exists
+            if (!outputFile.getParentFile().exists()) {
+                outputFile.getParentFile().mkdirs();
+            }
+            
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), "UTF-8"));
             out.write(result);
             out.close();
