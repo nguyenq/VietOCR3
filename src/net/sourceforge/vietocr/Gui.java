@@ -1202,7 +1202,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemMonochrome);
 
-        jMenuItemInverted.setText("Inverted");
+        jMenuItemInverted.setText(bundle.getString("jMenuItemInverted.Text")); // NOI18N
         jMenuItemInverted.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemInvertedActionPerformed(evt);
@@ -1210,7 +1210,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemInverted);
 
-        jMenuItemSharpen.setText("Sharpen");
+        jMenuItemSharpen.setText(bundle.getString("jMenuItemSharpen")); // NOI18N
         jMenuItemSharpen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemSharpenActionPerformed(evt);
@@ -1218,7 +1218,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemSharpen);
 
-        jMenuItemSmooth.setText("Smooth");
+        jMenuItemSmooth.setText(bundle.getString("jMenuItemSmooth")); // NOI18N
         jMenuItemSmooth.setToolTipText("");
         jMenuItemSmooth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
