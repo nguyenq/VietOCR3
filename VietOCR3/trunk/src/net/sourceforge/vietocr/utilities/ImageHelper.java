@@ -23,7 +23,12 @@ import java.awt.Transparency;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.LookupOp;
+import java.awt.image.RescaleOp;
+import java.awt.image.ShortLookupTable;
 import javax.imageio.IIOImage;
+import static net.sourceforge.vietocr.ImageHelper.convertImageToBinary;
 
 public class ImageHelper {
 
@@ -90,19 +95,66 @@ public class ImageHelper {
         g2.dispose();
         return tmp;
     }
-
+    
     /**
      * A simple method to convert an image to binary or B/W image.
      *
-     * @param image Input image
-     * @return
+     * @param image input image
+     * @return a monochrome image
      */
-    public static BufferedImage convertImage2Binary(BufferedImage image) {
+    public static BufferedImage convertImageToBinary(BufferedImage image) {
         BufferedImage tmp = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
         Graphics2D g2 = tmp.createGraphics();
         g2.drawImage(image, 0, 0, null);
         g2.dispose();
         return tmp;
+    }
+
+    /**
+     * A simple method to convert an image to binary or B/W image.
+     *
+     * @param image input image
+     * @return a monochrome image
+     * @deprecated  As of release 1.1, renamed to {@link #convertImageToBinary(BufferedImage image)}
+     */
+    public static BufferedImage convertImage2Binary(BufferedImage image) {
+        return convertImageToBinary(image);
+    }
+    
+       
+    /**
+     * A simple method to convert an image to gray scale.
+     *
+     * @param image input image
+     * @return a monochrome image
+     */
+    public static BufferedImage convertImageToGrayscale(BufferedImage image) {
+        BufferedImage tmp = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
+        Graphics2D g2 = tmp.createGraphics();
+        g2.drawImage(image, 0, 0, null);
+        g2.dispose();
+        return tmp;
+    }
+    
+    private static final short[] invertTable;
+
+    static {
+        invertTable = new short[256];
+        for (int i = 0; i < 256; i++) {
+            invertTable[i] = (short) (255 - i);
+        }
+    }
+    
+    /**
+     * Inverts image color.
+     * 
+     * @param image input image
+     * @return an inverted-color image
+     */
+    public static BufferedImage invertImageColor(BufferedImage image) {
+        BufferedImage tmp = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
+        BufferedImageOp invertOp = new LookupOp(new ShortLookupTable(0, invertTable), null);
+        return invertOp.filter(image, tmp);
     }
 
     /**
@@ -117,5 +169,22 @@ public class ImageHelper {
         } catch (Exception e) {
             return null;
         }
+    }
+    
+    /**
+     * Returns the supplied src image brightened by a float value from 0 to 10.
+     * Float values below 1.0f actually darken the source image.
+     */
+    public static BufferedImage brighten(BufferedImage src, float level) {
+        BufferedImage dst = new BufferedImage(src.getWidth(), src.getHeight(), src.getType());
+        float[] scales = {level, level, level};
+        float[] offsets = new float[4];
+        RescaleOp rop = new RescaleOp(scales, offsets, null);
+
+        Graphics2D g = dst.createGraphics();
+        g.drawImage(src, rop, 0, 0);
+        g.dispose();
+
+        return dst;
     }
 }
