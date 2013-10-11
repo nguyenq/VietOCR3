@@ -1168,6 +1168,7 @@ public class Gui extends JFrame {
         jMenuImage.add(jMenuItemMetadata);
         jMenuImage.add(jSeparator11);
 
+        jMenuFilter.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuFilter.Mnemonic").charAt(0));
         jMenuFilter.setText(bundle.getString("jMenuFilter.Text")); // NOI18N
 
         jMenuItemBrightness.setText(bundle.getString("jMenuItemBrightness.Text")); // NOI18N
@@ -1210,7 +1211,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemInverted);
 
-        jMenuItemSharpen.setText(bundle.getString("jMenuItemSharpen")); // NOI18N
+        jMenuItemSharpen.setText(bundle.getString("jMenuItemSharpen.Text")); // NOI18N
         jMenuItemSharpen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemSharpenActionPerformed(evt);
@@ -1218,7 +1219,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemSharpen);
 
-        jMenuItemSmooth.setText(bundle.getString("jMenuItemSmooth")); // NOI18N
+        jMenuItemSmooth.setText(bundle.getString("jMenuItemSmooth.Text")); // NOI18N
         jMenuItemSmooth.setToolTipText("");
         jMenuItemSmooth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1229,7 +1230,8 @@ public class Gui extends JFrame {
 
         jMenuImage.add(jMenuFilter);
 
-        jMenuItemAutocrop.setText(bundle.getString("jMenuItemAutocrop")); // NOI18N
+        jMenuItemAutocrop.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemAutocrop.Mnemonic").charAt(0));
+        jMenuItemAutocrop.setText(bundle.getString("jMenuItemAutocrop.Text")); // NOI18N
         jMenuItemAutocrop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemAutocropActionPerformed(evt);
