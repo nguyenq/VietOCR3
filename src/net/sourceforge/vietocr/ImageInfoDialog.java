@@ -61,7 +61,6 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         jTextFieldBitDepth = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButtonOK = new javax.swing.JButton();
-        jButtonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/ImageInfoDialog"); // NOI18N
@@ -197,14 +196,6 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         });
         jPanel2.add(jButtonOK);
 
-        jButtonCancel.setText(bundle.getString("jButtonCancel.Text")); // NOI18N
-        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButtonCancel);
-
         getContentPane().add(jPanel2, java.awt.BorderLayout.SOUTH);
 
         pack();
@@ -214,11 +205,6 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         actionSelected = JOptionPane.OK_OPTION;
         this.setVisible(false);
     }//GEN-LAST:event_jButtonOKActionPerformed
-
-    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        actionSelected = JOptionPane.CANCEL_OPTION;
-        this.setVisible(false);
-    }//GEN-LAST:event_jButtonCancelActionPerformed
 
     /**
      * Displays dialog.
@@ -330,7 +316,6 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonOK;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;

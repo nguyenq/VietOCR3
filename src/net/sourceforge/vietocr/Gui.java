@@ -707,6 +707,15 @@ public class Gui extends JFrame {
         jMenuImage = new javax.swing.JMenu();
         jMenuItemMetadata = new javax.swing.JMenuItem();
         jSeparator11 = new javax.swing.JPopupMenu.Separator();
+        jMenuFilter = new javax.swing.JMenu();
+        jMenuItemBrightness = new javax.swing.JMenuItem();
+        jMenuItemContrast = new javax.swing.JMenuItem();
+        jMenuItemGrayscale = new javax.swing.JMenuItem();
+        jMenuItemMonochrome = new javax.swing.JMenuItem();
+        jMenuItemInverted = new javax.swing.JMenuItem();
+        jMenuItemSharpen = new javax.swing.JMenuItem();
+        jMenuItemSmooth = new javax.swing.JMenuItem();
+        jMenuItemAutocrop = new javax.swing.JMenuItem();
         jMenuItemDeskew = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jCheckBoxMenuItemScreenshotMode = new javax.swing.JCheckBoxMenuItem();
@@ -1158,6 +1167,75 @@ public class Gui extends JFrame {
         });
         jMenuImage.add(jMenuItemMetadata);
         jMenuImage.add(jSeparator11);
+
+        jMenuFilter.setText(bundle.getString("jMenuFilter.Text")); // NOI18N
+
+        jMenuItemBrightness.setText(bundle.getString("jMenuItemBrightness.Text")); // NOI18N
+        jMenuItemBrightness.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemBrightnessActionPerformed(evt);
+            }
+        });
+        jMenuFilter.add(jMenuItemBrightness);
+
+        jMenuItemContrast.setText(bundle.getString("jMenuItemContrast.Text")); // NOI18N
+        jMenuItemContrast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemContrastActionPerformed(evt);
+            }
+        });
+        jMenuFilter.add(jMenuItemContrast);
+
+        jMenuItemGrayscale.setText(bundle.getString("jMenuItemGrayscale.Text")); // NOI18N
+        jMenuItemGrayscale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemGrayscaleActionPerformed(evt);
+            }
+        });
+        jMenuFilter.add(jMenuItemGrayscale);
+
+        jMenuItemMonochrome.setText(bundle.getString("jMenuItemMonochrome.Text")); // NOI18N
+        jMenuItemMonochrome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMonochromeActionPerformed(evt);
+            }
+        });
+        jMenuFilter.add(jMenuItemMonochrome);
+
+        jMenuItemInverted.setText("Inverted");
+        jMenuItemInverted.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemInvertedActionPerformed(evt);
+            }
+        });
+        jMenuFilter.add(jMenuItemInverted);
+
+        jMenuItemSharpen.setText("Sharpen");
+        jMenuItemSharpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSharpenActionPerformed(evt);
+            }
+        });
+        jMenuFilter.add(jMenuItemSharpen);
+
+        jMenuItemSmooth.setText("Smooth");
+        jMenuItemSmooth.setToolTipText("");
+        jMenuItemSmooth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSmoothActionPerformed(evt);
+            }
+        });
+        jMenuFilter.add(jMenuItemSmooth);
+
+        jMenuImage.add(jMenuFilter);
+
+        jMenuItemAutocrop.setText(bundle.getString("jMenuItemAutocrop")); // NOI18N
+        jMenuItemAutocrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAutocropActionPerformed(evt);
+            }
+        });
+        jMenuImage.add(jMenuItemAutocrop);
 
         jMenuItemDeskew.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemDeskew.Mnemonic").charAt(0));
         jMenuItemDeskew.setText(bundle.getString("jMenuItemDeskew.Text")); // NOI18N
@@ -1980,6 +2058,38 @@ public class Gui extends JFrame {
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemBulkOCRActionPerformed
 
+    void jMenuItemAutocropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAutocropActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemAutocropActionPerformed
+
+    void jMenuItemBrightnessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBrightnessActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemBrightnessActionPerformed
+
+    void jMenuItemContrastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemContrastActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemContrastActionPerformed
+
+    void jMenuItemGrayscaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGrayscaleActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemGrayscaleActionPerformed
+
+    void jMenuItemMonochromeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMonochromeActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemMonochromeActionPerformed
+
+    void jMenuItemInvertedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInvertedActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemInvertedActionPerformed
+
+    void jMenuItemSharpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSharpenActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemSharpenActionPerformed
+
+    void jMenuItemSmoothActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSmoothActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemSmoothActionPerformed
+
     /**
      * Changes locale of UI elements.
      * @param locale 
@@ -2075,21 +2185,28 @@ public class Gui extends JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu jMenuCommand;
     private javax.swing.JMenu jMenuFile;
+    private javax.swing.JMenu jMenuFilter;
     private javax.swing.JMenu jMenuFormat;
     private javax.swing.JMenu jMenuHelp;
     private javax.swing.JMenu jMenuImage;
     protected javax.swing.JMenu jMenuInputMethod;
     private javax.swing.JMenuItem jMenuItemAbout;
+    private javax.swing.JMenuItem jMenuItemAutocrop;
+    private javax.swing.JMenuItem jMenuItemBrightness;
     protected javax.swing.JMenuItem jMenuItemBulkOCR;
     private javax.swing.JMenuItem jMenuItemChangeCase;
+    private javax.swing.JMenuItem jMenuItemContrast;
     private javax.swing.JMenuItem jMenuItemDeskew;
     private javax.swing.JMenuItem jMenuItemDownloadLangData;
     private javax.swing.JMenuItem jMenuItemExit;
     private javax.swing.JMenuItem jMenuItemFont;
+    private javax.swing.JMenuItem jMenuItemGrayscale;
     private javax.swing.JMenuItem jMenuItemHelp;
+    private javax.swing.JMenuItem jMenuItemInverted;
     private javax.swing.JMenuItem jMenuItemMergePdf;
     private javax.swing.JMenuItem jMenuItemMergeTiff;
     private javax.swing.JMenuItem jMenuItemMetadata;
+    private javax.swing.JMenuItem jMenuItemMonochrome;
     protected javax.swing.JMenuItem jMenuItemOCR;
     protected javax.swing.JMenuItem jMenuItemOCRAll;
     private javax.swing.JMenuItem jMenuItemOpen;
@@ -2099,6 +2216,8 @@ public class Gui extends JFrame {
     private javax.swing.JMenuItem jMenuItemSave;
     private javax.swing.JMenuItem jMenuItemSaveAs;
     protected javax.swing.JMenuItem jMenuItemScan;
+    private javax.swing.JMenuItem jMenuItemSharpen;
+    private javax.swing.JMenuItem jMenuItemSmooth;
     private javax.swing.JMenuItem jMenuItemSplitPdf;
     protected javax.swing.JMenu jMenuLookAndFeel;
     protected javax.swing.JMenu jMenuPSM;
