@@ -15,10 +15,19 @@
  */
 package net.sourceforge.vietocr;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JSlider;
+import javax.swing.KeyStroke;
 
 public class SliderDialog extends javax.swing.JDialog {
+
     private int actionSelected = -1;
+    public static final String VALUE_CHANGED = "Value Changed";
 
     /**
      * Creates new form SliderDialog
@@ -26,6 +35,21 @@ public class SliderDialog extends javax.swing.JDialog {
     public SliderDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+                
+        setLocationRelativeTo(getOwner());
+
+        //  Handle escape key to hide the dialog
+        KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
+        Action escapeAction =
+                new AbstractAction() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        setVisible(false);
+                    }
+                };
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escapeKeyStroke, "ESCAPE");
+        getRootPane().getActionMap().put("ESCAPE", escapeAction);
     }
 
     /**
@@ -45,14 +69,16 @@ public class SliderDialog extends javax.swing.JDialog {
         jButtonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Slider Control");
+        setTitle("Image Control");
         setResizable(false);
 
+        jPanelMain.setPreferredSize(new java.awt.Dimension(300, 41));
+
+        jLabel1.setLabelFor(jSlider1);
         jLabel1.setText("Label");
         jPanelMain.add(jLabel1);
 
         jSlider1.setMajorTickSpacing(10);
-        jSlider1.setMinorTickSpacing(5);
         jSlider1.setPaintTicks(true);
         jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -63,7 +89,7 @@ public class SliderDialog extends javax.swing.JDialog {
 
         getContentPane().add(jPanelMain, java.awt.BorderLayout.CENTER);
 
-        jPanelButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 10, 1));
+        jPanelButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 1, 10, 1));
 
         jButtonAccept.setText("Accept");
         jButtonAccept.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +113,7 @@ public class SliderDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcceptActionPerformed
-       actionSelected = JOptionPane.OK_OPTION;
+        actionSelected = JOptionPane.OK_OPTION;
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jButtonAcceptActionPerformed
@@ -99,18 +125,24 @@ public class SliderDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-
+        JSlider source = (JSlider) evt.getSource();
+        this.firePropertyChange(VALUE_CHANGED, null, source.getValue());
     }//GEN-LAST:event_jSlider1StateChanged
-        
+
+    public void setLabelText(String text) {
+        this.jLabel1.setText(text);
+    }
+    
     /**
      * Displays dialog.
-     * @return 
+     *
+     * @return
      */
     public int showDialog() {
         setVisible(true);
         return actionSelected;
     }
-    
+
     /**
      * @param args the command line arguments
      */

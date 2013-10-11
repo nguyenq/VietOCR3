@@ -18,15 +18,17 @@ package net.sourceforge.vietocr;
 import com.recognition.software.jdeskew.ImageDeskew;
 import java.awt.Cursor;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import net.sourceforge.vietocr.components.ImageIconScalable;
-import net.sourceforge.vietocr.utilities.*;
 
 public class GuiWithImage extends GuiWithBulkOCR {
 
     private final String strScreenshotMode = "ScreenshotMode";
     private static final double MINIMUM_DESKEW_THRESHOLD = 0.05d;
+    private BufferedImage originalImage;
 
     GuiWithImage() {
         this.jCheckBoxMenuItemScreenshotMode.setSelected(prefs.getBoolean(strScreenshotMode, false));
@@ -98,11 +100,26 @@ public class GuiWithImage extends GuiWithBulkOCR {
             return;
         }
         SliderDialog dialog = new SliderDialog(this, true);
-        if (dialog.showDialog() == JOptionPane.OK_OPTION) {
-            imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.brighten((BufferedImage) iioImageList.get(imageIndex).getRenderedImage(), 1f));
+        dialog.setLabelText("Brightness");
+        dialog.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (evt.getPropertyName().equals(SliderDialog.VALUE_CHANGED)) {
+                    int value = (Integer) evt.getNewValue();
+                    System.out.println("New value from slider: " + value);
+                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.brighten(originalImage, value * 0.01f));
+                    imageList.set(imageIndex, imageIcon);
+                    iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
+                    displayImage();
+                }
+            }
+        });
+
+        originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+        if (dialog.showDialog() == JOptionPane.CANCEL_OPTION) {
+            imageIcon = new ImageIconScalable(originalImage);
             imageList.set(imageIndex, imageIcon);
-            iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
-            displayImage();
+            iioImageList.get(imageIndex).setRenderedImage(originalImage);
         }
     }
 
@@ -113,10 +130,27 @@ public class GuiWithImage extends GuiWithBulkOCR {
             return;
         }
         SliderDialog dialog = new SliderDialog(this, true);
-        if (dialog.showDialog() == JOptionPane.OK_OPTION) {
-            // Do nothing for now.
-            // Initial plan was to implement various image manipulation operations
-            // (rotate, flip, sharpen, brighten, threshold, clean up,...) here.
+        dialog.setLabelText("Contrast");
+        dialog.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (evt.getPropertyName().equals(SliderDialog.VALUE_CHANGED)) {
+                    int value = (Integer) evt.getNewValue();
+                    System.out.println("New value from slider: " + value);
+                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.brighten(originalImage, value * 0.01f));
+                    imageList.set(imageIndex, imageIcon);
+                    iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
+                    displayImage();
+                }
+            }
+        });
+
+        originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+        if (dialog.showDialog() == JOptionPane.CANCEL_OPTION) {
+            //restore image
+            imageIcon = new ImageIconScalable(originalImage);
+            imageList.set(imageIndex, imageIcon);
+            iioImageList.get(imageIndex).setRenderedImage(originalImage);
         }
     }
 
@@ -166,7 +200,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-    
+
     }
 
     @Override
