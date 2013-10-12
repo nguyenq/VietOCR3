@@ -15,24 +15,11 @@
  */
 package net.sourceforge.vietocr.utilities;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
-import java.awt.Transparency;
+import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
-import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ConvolveOp;
-import java.awt.image.Kernel;
-import java.awt.image.LookupOp;
-import java.awt.image.RescaleOp;
-import java.awt.image.ShortLookupTable;
+import java.awt.image.*;
 import javax.imageio.IIOImage;
-import static net.sourceforge.vietocr.ImageHelper.convertImageToBinary;
 
 public class ImageHelper {
 
@@ -301,10 +288,34 @@ public class ImageHelper {
                 }
             }
         }
-
+               
+        // allow a 5px-margin
+        int margin = 5;
+        
+        if ((minX - margin) >= 0) {
+            minX -= margin;
+        }
+        
+        if ((minY - margin) >= 0) {
+            minY -= margin;
+        }
+        
+        if ((maxX + margin) <= width) {
+            maxX += margin;
+        }
+        
+        if ((maxY + margin) <= height) {
+            maxY += margin;
+        }
+        
+        // if same size, return the original
+        if (minX == 0 && minY == 0 && maxX == width && maxY == height) {
+            return source;
+        }
+        
         int newWidth = maxX - minX + 1;
         int newHeight = maxY - minY + 1;
-
+        
         BufferedImage destination = new BufferedImage(newWidth, newHeight, source.getType());
 
         Graphics g = destination.getGraphics();
@@ -349,5 +360,17 @@ public class ImageHelper {
         BufferedImageOp op = new ConvolveOp(kernel);
 
         return op.filter(image, null);
+    }
+    
+    /**
+     * http://stackoverflow.com/questions/3514158/how-do-you-clone-a-bufferedimage
+     * @param bi
+     * @return 
+     */
+    public static BufferedImage cloneImage(BufferedImage bi) {
+        ColorModel cm = bi.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = bi.copyData(null);
+        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
     }
 }
