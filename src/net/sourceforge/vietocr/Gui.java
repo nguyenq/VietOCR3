@@ -715,8 +715,8 @@ public class Gui extends JFrame {
         jMenuItemInverted = new javax.swing.JMenuItem();
         jMenuItemSharpen = new javax.swing.JMenuItem();
         jMenuItemSmooth = new javax.swing.JMenuItem();
-        jMenuItemAutocrop = new javax.swing.JMenuItem();
         jMenuItemDeskew = new javax.swing.JMenuItem();
+        jMenuItemAutocrop = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jCheckBoxMenuItemScreenshotMode = new javax.swing.JCheckBoxMenuItem();
         jMenuFormat = new javax.swing.JMenu();
@@ -1230,15 +1230,6 @@ public class Gui extends JFrame {
 
         jMenuImage.add(jMenuFilter);
 
-        jMenuItemAutocrop.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemAutocrop.Mnemonic").charAt(0));
-        jMenuItemAutocrop.setText(bundle.getString("jMenuItemAutocrop.Text")); // NOI18N
-        jMenuItemAutocrop.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemAutocropActionPerformed(evt);
-            }
-        });
-        jMenuImage.add(jMenuItemAutocrop);
-
         jMenuItemDeskew.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemDeskew.Mnemonic").charAt(0));
         jMenuItemDeskew.setText(bundle.getString("jMenuItemDeskew.Text")); // NOI18N
         jMenuItemDeskew.addActionListener(new java.awt.event.ActionListener() {
@@ -1247,6 +1238,15 @@ public class Gui extends JFrame {
             }
         });
         jMenuImage.add(jMenuItemDeskew);
+
+        jMenuItemAutocrop.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemAutocrop.Mnemonic").charAt(0));
+        jMenuItemAutocrop.setText(bundle.getString("jMenuItemAutocrop.Text")); // NOI18N
+        jMenuItemAutocrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAutocropActionPerformed(evt);
+            }
+        });
+        jMenuImage.add(jMenuItemAutocrop);
         jMenuImage.add(jSeparator2);
 
         jCheckBoxMenuItemScreenshotMode.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jCheckBoxMenuItemScreenshotMode.Mnemonic").charAt(0));

@@ -15,6 +15,8 @@
  */
 package net.sourceforge.vietocr.utilities;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -24,6 +26,8 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
+import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
 import java.awt.image.LookupOp;
 import java.awt.image.RescaleOp;
 import java.awt.image.ShortLookupTable;
@@ -33,7 +37,8 @@ import static net.sourceforge.vietocr.ImageHelper.convertImageToBinary;
 public class ImageHelper {
 
     /**
-     * Convenience method that returns a scaled instance of the provided {@code BufferedImage}.
+     * Convenience method that returns a scaled instance of the provided
+     * {@code BufferedImage}.
      *
      * @param image the original image to be scaled
      * @param targetWidth the desired width of the scaled instance, in pixels
@@ -52,8 +57,9 @@ public class ImageHelper {
     }
 
     /**
-     * Convenience method that returns a scaled instance of the provided {@code IIOImage}.
-     * 
+     * Convenience method that returns a scaled instance of the provided
+     * {@code IIOImage}.
+     *
      * @param iioSource the original image to be scaled
      * @param scale the desired scale
      * @return a scaled version of the original {@code IIOImage}
@@ -66,7 +72,7 @@ public class ImageHelper {
         if (scale == 1.0) {
             return iioSource;
         }
-        
+
         BufferedImage source = (BufferedImage) iioSource.getRenderedImage();
         BufferedImage target = getScaledInstance(source, (int) (scale * source.getWidth()), (int) (scale * source.getHeight()));
         return new IIOImage(target, null, null);
@@ -83,8 +89,7 @@ public class ImageHelper {
      * rectangular region
      * @param width the width of the specified rectangular region
      * @param height the height of the specified rectangular region
-     * @return a BufferedImage that is the subimage of
-     * <code>image</code>.
+     * @return a BufferedImage that is the subimage of <code>image</code>.
      */
     public static BufferedImage getSubImage(BufferedImage image, int x, int y, int width, int height) {
         int type = (image.getTransparency() == Transparency.OPAQUE)
@@ -95,7 +100,7 @@ public class ImageHelper {
         g2.dispose();
         return tmp;
     }
-    
+
     /**
      * A simple method to convert an image to binary or B/W image.
      *
@@ -115,13 +120,13 @@ public class ImageHelper {
      *
      * @param image input image
      * @return a monochrome image
-     * @deprecated  As of release 1.1, renamed to {@link #convertImageToBinary(BufferedImage image)}
+     * @deprecated As of release 1.1, renamed to
+     * {@link #convertImageToBinary(BufferedImage image)}
      */
     public static BufferedImage convertImage2Binary(BufferedImage image) {
         return convertImageToBinary(image);
     }
-    
-       
+
     /**
      * A simple method to convert an image to gray scale.
      *
@@ -135,7 +140,7 @@ public class ImageHelper {
         g2.dispose();
         return tmp;
     }
-    
+
     private static final short[] invertTable;
 
     static {
@@ -144,10 +149,10 @@ public class ImageHelper {
             invertTable[i] = (short) (255 - i);
         }
     }
-    
+
     /**
      * Inverts image color.
-     * 
+     *
      * @param image input image
      * @return an inverted-color image
      */
@@ -170,21 +175,179 @@ public class ImageHelper {
             return null;
         }
     }
-    
-    /**
-     * Returns the supplied src image brightened by a float value from 0 to 10.
-     * Float values below 1.0f actually darken the source image.
-     */
-    public static BufferedImage brighten(BufferedImage src, float level) {
-        BufferedImage dst = new BufferedImage(src.getWidth(), src.getHeight(), src.getType());
-        float[] scales = {level, level, level};
-        float[] offsets = new float[4];
-        RescaleOp rop = new RescaleOp(scales, offsets, null);
 
-        Graphics2D g = dst.createGraphics();
-        g.drawImage(src, rop, 0, 0);
+    /**
+     * Returns the supplied src image brightened by a float value from 0 to 10. Float values
+     * below 1.0f actually darken the source image.
+     */
+    public static BufferedImage brighten(BufferedImage src, float scaleFactor) {
+        RescaleOp rop = new RescaleOp(scaleFactor, 0, null);
+        return rop.filter(src, null);
+    }
+
+    /**
+     * http://stackoverflow.com/questions/10678015/how-to-auto-crop-an-image-white-border-in-java
+     *
+     * @param source
+     * @param tolerance
+     * @return
+     */
+    public static BufferedImage autoCropImage(BufferedImage source, double tolerance) {
+        // Get our top-left pixel color as our "baseline" for cropping
+        int baseColor = source.getRGB(0, 0);
+
+        int width = source.getWidth();
+        int height = source.getHeight();
+
+        int topY = Integer.MAX_VALUE, topX = Integer.MAX_VALUE;
+        int bottomY = -1, bottomX = -1;
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if (colorWithinTolerance(baseColor, source.getRGB(x, y), tolerance)) {
+                    if (x < topX) {
+                        topX = x;
+                    }
+                    if (y < topY) {
+                        topY = y;
+                    }
+                    if (x > bottomX) {
+                        bottomX = x;
+                    }
+                    if (y > bottomY) {
+                        bottomY = y;
+                    }
+                }
+            }
+        }
+
+        BufferedImage destination = new BufferedImage((bottomX - topX + 1),
+                (bottomY - topY + 1), source.getType());
+
+        Graphics g = destination.getGraphics();
+        g.drawImage(source, 0, 0,
+                destination.getWidth(), destination.getHeight(),
+                topX, topY, bottomX, bottomY, null);
+
         g.dispose();
 
-        return dst;
+        return destination;
+    }
+
+    private static boolean colorWithinTolerance(int a, int b, double tolerance) {
+        int aAlpha = (int) ((a & 0xFF000000) >>> 24);   // Alpha level
+        int aRed = (int) ((a & 0x00FF0000) >>> 16);   // Red level
+        int aGreen = (int) ((a & 0x0000FF00) >>> 8);    // Green level
+        int aBlue = (int) (a & 0x000000FF);            // Blue level
+
+        int bAlpha = (int) ((b & 0xFF000000) >>> 24);   // Alpha level
+        int bRed = (int) ((b & 0x00FF0000) >>> 16);   // Red level
+        int bGreen = (int) ((b & 0x0000FF00) >>> 8);    // Green level
+        int bBlue = (int) (b & 0x000000FF);            // Blue level
+
+        double distance = Math.sqrt((aAlpha - bAlpha) * (aAlpha - bAlpha)
+                + (aRed - bRed) * (aRed - bRed)
+                + (aGreen - bGreen) * (aGreen - bGreen)
+                + (aBlue - bBlue) * (aBlue - bBlue));
+
+        // 510.0 is the maximum distance between two colors 
+        // (0,0,0,0 -> 255,255,255,255)
+        double percentAway = distance / 510.0d;
+
+        return (percentAway > tolerance);
+    }
+
+    public static BufferedImage autoCrop(BufferedImage source) {
+        int minX = 0;
+        int minY = 0;
+        int maxX = 0;
+        int maxY = 0;
+
+        int white = Color.white.getRGB();
+        int width = source.getWidth();
+        int height = source.getHeight();
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if (source.getRGB(x, y) != white) {
+                    maxY = y;
+                    break;
+                }
+            }
+        }
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                if (source.getRGB(x, y) != white) {
+                    maxX = x;
+                    break;
+                }
+            }
+        }
+
+        for (int y = height - 1; y >= 0; y--) {
+            for (int x = 0; x < width; x++) {
+                if (source.getRGB(x, y) != white) {
+                    minY = y;
+                    break;
+                }
+            }
+        }
+
+        for (int x = width - 1; x >= 0; x--) {
+            for (int y = 0; y < height; y++) {
+                if (source.getRGB(x, y) != white) {
+                    minX = x;
+                    break;
+                }
+            }
+        }
+
+        int newWidth = maxX - minX + 1;
+        int newHeight = maxY - minY + 1;
+
+        BufferedImage destination = new BufferedImage(newWidth, newHeight, source.getType());
+
+        Graphics g = destination.getGraphics();
+        g.drawImage(source, 0, 0, destination.getWidth(), destination.getHeight(),
+                minX, minY, maxX, maxY, null);
+
+        g.dispose();
+
+        return destination;
+    }
+
+    public static BufferedImage sharpen(BufferedImage image) {
+        // A 3x3 kernel that sharpens an image
+        Kernel kernel = new Kernel(3, 3,
+                new float[] {
+                    -1, -1, -1,
+                    -1, 9, -1,
+                    -1, -1, -1
+                });
+
+        BufferedImageOp op = new ConvolveOp(kernel);
+
+        return op.filter(image, null);
+    }
+    
+    public static BufferedImage smoothen(BufferedImage image) {
+        // A 3x3 kernel that smoothens an image
+//        float data[] = { 
+//            0.0625f, 0.125f, 0.0625f, 
+//            0.125f, 0.25f, 0.125f,
+//            0.0625f, 0.125f, 0.0625f 
+//        };
+        
+        float data1[] = {
+            0.1111f, 0.1111f, 0.1111f,
+            0.1111f, 0.1111f, 0.1111f,
+            0.1111f, 0.1111f, 0.1111f
+        };
+        
+        Kernel kernel = new Kernel(3, 3, data1);
+
+        BufferedImageOp op = new ConvolveOp(kernel);
+
+        return op.filter(image, null);
     }
 }

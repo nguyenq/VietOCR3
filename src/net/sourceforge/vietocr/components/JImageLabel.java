@@ -102,6 +102,8 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
     public void paintComponent(Graphics g) {
         // automatically called when repaint
         super.paintComponent(g);
+        
+        if (this.getIcon() == null) return;
 
         if (rect != null) {
             Graphics2D g2d = (Graphics2D) g;
