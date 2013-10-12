@@ -90,7 +90,11 @@ public class GuiWithImage extends GuiWithBulkOCR {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+        
+        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.autoCrop((BufferedImage) iioImageList.get(imageIndex).getRenderedImage()));
+        imageList.set(imageIndex, imageIcon);
+        iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
+        displayImage();
     }
 
     @Override
@@ -200,7 +204,10 @@ public class GuiWithImage extends GuiWithBulkOCR {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-
+        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.sharpen((BufferedImage) iioImageList.get(imageIndex).getRenderedImage()));
+        imageList.set(imageIndex, imageIcon);
+        iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
+        displayImage();
     }
 
     @Override
@@ -209,7 +216,10 @@ public class GuiWithImage extends GuiWithBulkOCR {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-
+        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.smoothen((BufferedImage) iioImageList.get(imageIndex).getRenderedImage()));
+        imageList.set(imageIndex, imageIcon);
+        iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
+        displayImage();
     }
 
     @Override
