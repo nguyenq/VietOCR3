@@ -717,6 +717,7 @@ public class Gui extends JFrame {
         jMenuItemSmooth = new javax.swing.JMenuItem();
         jMenuItemDeskew = new javax.swing.JMenuItem();
         jMenuItemAutocrop = new javax.swing.JMenuItem();
+        jMenuItemUndo = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jCheckBoxMenuItemScreenshotMode = new javax.swing.JCheckBoxMenuItem();
         jMenuFormat = new javax.swing.JMenu();
@@ -1247,6 +1248,15 @@ public class Gui extends JFrame {
             }
         });
         jMenuImage.add(jMenuItemAutocrop);
+
+        jMenuItemUndo.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemUndo.Mnemonic").charAt(0));
+        jMenuItemUndo.setText(bundle.getString("jMenuItemUndo.Text")); // NOI18N
+        jMenuItemUndo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemUndoActionPerformed(evt);
+            }
+        });
+        jMenuImage.add(jMenuItemUndo);
         jMenuImage.add(jSeparator2);
 
         jCheckBoxMenuItemScreenshotMode.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jCheckBoxMenuItemScreenshotMode.Mnemonic").charAt(0));
@@ -2092,6 +2102,10 @@ public class Gui extends JFrame {
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemSmoothActionPerformed
 
+    void jMenuItemUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUndoActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemUndoActionPerformed
+
     /**
      * Changes locale of UI elements.
      * @param locale 
@@ -2221,6 +2235,7 @@ public class Gui extends JFrame {
     private javax.swing.JMenuItem jMenuItemSharpen;
     private javax.swing.JMenuItem jMenuItemSmooth;
     private javax.swing.JMenuItem jMenuItemSplitPdf;
+    private javax.swing.JMenuItem jMenuItemUndo;
     protected javax.swing.JMenu jMenuLookAndFeel;
     protected javax.swing.JMenu jMenuPSM;
     private javax.swing.JMenu jMenuRecentFiles;

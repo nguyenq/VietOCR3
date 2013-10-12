@@ -20,6 +20,8 @@ import java.awt.Cursor;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import net.sourceforge.vietocr.components.ImageIconScalable;
@@ -29,6 +31,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
     private final String strScreenshotMode = "ScreenshotMode";
     private static final double MINIMUM_DESKEW_THRESHOLD = 0.05d;
     private BufferedImage originalImage;
+    Deque<BufferedImage> stack = new ArrayDeque<BufferedImage>();
 
     GuiWithImage() {
         this.jCheckBoxMenuItemScreenshotMode.setSelected(prefs.getBoolean(strScreenshotMode, false));
@@ -90,11 +93,14 @@ public class GuiWithImage extends GuiWithBulkOCR {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        
+        getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        getGlassPane().setVisible(true);
         imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.autoCrop((BufferedImage) iioImageList.get(imageIndex).getRenderedImage()));
         imageList.set(imageIndex, imageIcon);
         iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
         displayImage();
+        getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        getGlassPane().setVisible(false);
     }
 
     @Override
@@ -110,7 +116,6 @@ public class GuiWithImage extends GuiWithBulkOCR {
             public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals(SliderDialog.VALUE_CHANGED)) {
                     int value = (Integer) evt.getNewValue();
-                    System.out.println("New value from slider: " + value);
                     imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.brighten(originalImage, value * 0.01f));
                     imageList.set(imageIndex, imageIcon);
                     iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
@@ -120,6 +125,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
         });
 
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+        stack.push(originalImage);
         if (dialog.showDialog() == JOptionPane.CANCEL_OPTION) {
             imageIcon = new ImageIconScalable(originalImage);
             imageList.set(imageIndex, imageIcon);
@@ -140,7 +146,6 @@ public class GuiWithImage extends GuiWithBulkOCR {
             public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals(SliderDialog.VALUE_CHANGED)) {
                     int value = (Integer) evt.getNewValue();
-                    System.out.println("New value from slider: " + value);
                     imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.brighten(originalImage, value * 0.01f));
                     imageList.set(imageIndex, imageIcon);
                     iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
@@ -150,6 +155,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
         });
 
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+        stack.push(originalImage);
         if (dialog.showDialog() == JOptionPane.CANCEL_OPTION) {
             //restore image
             imageIcon = new ImageIconScalable(originalImage);
@@ -164,7 +170,10 @@ public class GuiWithImage extends GuiWithBulkOCR {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.convertImageToGrayscale((BufferedImage) iioImageList.get(imageIndex).getRenderedImage()));
+                
+        originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+        stack.push(originalImage);
+        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.convertImageToGrayscale(net.sourceforge.vietocr.utilities.ImageHelper.cloneImage(originalImage)));
         imageList.set(imageIndex, imageIcon);
         iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
         displayImage();
@@ -176,7 +185,10 @@ public class GuiWithImage extends GuiWithBulkOCR {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.convertImageToBinary((BufferedImage) iioImageList.get(imageIndex).getRenderedImage()));
+                
+        originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+        stack.push(originalImage);
+        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.convertImageToBinary(net.sourceforge.vietocr.utilities.ImageHelper.cloneImage(originalImage)));
         imageList.set(imageIndex, imageIcon);
         iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
         displayImage();
@@ -189,7 +201,9 @@ public class GuiWithImage extends GuiWithBulkOCR {
             return;
         }
         try {
-            imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.invertImageColor((BufferedImage) iioImageList.get(imageIndex).getRenderedImage()));
+            originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+            stack.push(originalImage);
+            imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.invertImageColor(net.sourceforge.vietocr.utilities.ImageHelper.cloneImage(originalImage)));
             imageList.set(imageIndex, imageIcon);
             iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
             displayImage();
@@ -204,7 +218,10 @@ public class GuiWithImage extends GuiWithBulkOCR {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.sharpen((BufferedImage) iioImageList.get(imageIndex).getRenderedImage()));
+         
+        originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+        stack.push(originalImage);
+        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.sharpen(originalImage));
         imageList.set(imageIndex, imageIcon);
         iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
         displayImage();
@@ -216,11 +233,26 @@ public class GuiWithImage extends GuiWithBulkOCR {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.smoothen((BufferedImage) iioImageList.get(imageIndex).getRenderedImage()));
+                
+        originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+        stack.push(originalImage);
+        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.smoothen(originalImage));
         imageList.set(imageIndex, imageIcon);
         iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
         displayImage();
     }
+    
+    @Override
+    void jMenuItemUndoActionPerformed(java.awt.event.ActionEvent evt) {
+        if (stack.isEmpty()) {
+            return;
+        }
+        BufferedImage image = stack.pop();
+        imageIcon = new ImageIconScalable(image);
+        imageList.set(imageIndex, imageIcon);
+        iioImageList.get(imageIndex).setRenderedImage(image);
+        displayImage();
+    } 
 
     @Override
     void quit() {
