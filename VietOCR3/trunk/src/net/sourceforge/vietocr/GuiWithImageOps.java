@@ -36,6 +36,7 @@ public class GuiWithImageOps extends GuiWithScan {
             jProgressBar1.setString(null);
             jProgressBar1.setVisible(false);
             displayImage();
+            clearStack();
         }
         setButton();
     }
@@ -51,6 +52,7 @@ public class GuiWithImageOps extends GuiWithScan {
             jProgressBar1.setString(null);
             jProgressBar1.setVisible(false);
             displayImage();
+            clearStack();
         }
         setButton();
     }
@@ -176,6 +178,7 @@ public class GuiWithImageOps extends GuiWithScan {
             imageList.set(imageIndex, imageIcon); // persist the rotated image
             iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
             displayImage();
+            clearStack();
         } catch (OutOfMemoryError oome) {
             JOptionPane.showMessageDialog(this, oome.getMessage(), bundle.getString("OutOfMemoryError"), JOptionPane.ERROR_MESSAGE);
         }

@@ -1741,6 +1741,9 @@ public class Gui extends JFrame {
         isFitImageSelected = false;
 
         displayImage();
+                
+        // clear undo buffer
+        clearStack();
 
         ((JImageLabel) jImageLabel).deselect();
 
@@ -1785,6 +1788,10 @@ public class Gui extends JFrame {
         jImageLabel.setIcon(imageIcon);
         this.jScrollPane2.getViewport().setViewPosition(curScrollPos = new Point());
         jImageLabel.revalidate();
+    }
+    
+    void clearStack() {
+        // to be implemented in subclass
     }
 
     private void jMenuItemSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSaveActionPerformed
