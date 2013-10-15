@@ -77,10 +77,12 @@ Version 3.4.2 (6 January 2013)
 - Update Tesseract 3.02 to r820
 - Update JNA to v3.5.1
 
-Version 3.4.3 Beta 3 (7 October 2013)
+Version 3.4.3 Beta 4 (14 October 2013)
 - Update Tesseract 3.02 to r866
 - Update Tess4J library
 - Update JNA to v4.0
 - Update JACOB to 1.17 version
 - Enhance Bulk ops with subdirectory support
+- Incorporate image filters
+- Implement Undo function
 - Add localized UI data for Catalan, Turkish, and Czech 

@@ -31,7 +31,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
     private final String strScreenshotMode = "ScreenshotMode";
     private static final double MINIMUM_DESKEW_THRESHOLD = 0.05d;
     private BufferedImage originalImage;
-    Deque<BufferedImage> stack = new ArrayDeque<BufferedImage>();
+    Deque<BufferedImage> stack = new FixedSizeStack<BufferedImage>(10);
 
     GuiWithImage() {
         this.jCheckBoxMenuItemScreenshotMode.setSelected(prefs.getBoolean(strScreenshotMode, false));
@@ -252,12 +252,42 @@ public class GuiWithImage extends GuiWithBulkOCR {
         imageList.set(imageIndex, imageIcon);
         iioImageList.get(imageIndex).setRenderedImage(image);
         displayImage();
-    } 
+    }
+    
+    @Override
+    void clearStack() {
+        stack.clear();
+    }
 
     @Override
     void quit() {
         prefs.putBoolean(strScreenshotMode, this.jCheckBoxMenuItemScreenshotMode.isSelected());
 
         super.quit();
+    }
+}
+
+/**
+ * A fixed-size stack.
+ * 
+ * @param <T> 
+ */
+class FixedSizeStack<T> extends ArrayDeque<T>
+{
+    private int limit;
+
+    public FixedSizeStack(int limit)
+    {
+        this.limit = limit;
+    }
+    
+    @Override
+    public void push(T obj)
+    {
+        super.push(obj);
+        if (this.size() > limit)
+        {
+            super.removeLast();
+        }
     }
 }
