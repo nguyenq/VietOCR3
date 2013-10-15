@@ -20,11 +20,11 @@ import java.awt.Cursor;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayDeque;
 import java.util.Deque;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import net.sourceforge.vietocr.components.ImageIconScalable;
+import net.sourceforge.vietocr.utilities.FixedSizeStack;
 
 public class GuiWithImage extends GuiWithBulkOCR {
 
@@ -264,30 +264,5 @@ public class GuiWithImage extends GuiWithBulkOCR {
         prefs.putBoolean(strScreenshotMode, this.jCheckBoxMenuItemScreenshotMode.isSelected());
 
         super.quit();
-    }
-}
-
-/**
- * A fixed-size stack.
- * 
- * @param <T> 
- */
-class FixedSizeStack<T> extends ArrayDeque<T>
-{
-    private int limit;
-
-    public FixedSizeStack(int limit)
-    {
-        this.limit = limit;
-    }
-    
-    @Override
-    public void push(T obj)
-    {
-        super.push(obj);
-        if (this.size() > limit)
-        {
-            super.removeLast();
-        }
     }
 }
