@@ -32,6 +32,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.DefaultEditorKit;
+import javax.swing.text.JTextComponent;
 import javax.swing.undo.*;
 import net.sourceforge.vietocr.components.*;
 import net.sourceforge.vietocr.utilities.*;
@@ -165,11 +166,11 @@ public class Gui extends JFrame {
                 snap(prefs.getInt(strFrameHeight, 360), 150, screen.height));
         setLocation(
                 snap(
-                prefs.getInt(strFrameX, (screen.width - getWidth()) / 2),
-                screen.x, screen.x + screen.width - getWidth()),
+                        prefs.getInt(strFrameX, (screen.width - getWidth()) / 2),
+                        screen.x, screen.x + screen.width - getWidth()),
                 snap(
-                prefs.getInt(strFrameY, screen.y + (screen.height - getHeight()) / 3),
-                screen.y, screen.y + screen.height - getHeight()));
+                        prefs.getInt(strFrameY, screen.y + (screen.height - getHeight()) / 3),
+                        screen.y, screen.y + screen.height - getHeight()));
 
         KeyEventDispatcher dispatcher = new KeyEventDispatcher() {
 
@@ -318,10 +319,20 @@ public class Gui extends JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel(installedLanguages);
         jComboBoxLang.setModel(model);
         jComboBoxLang.setSelectedIndex(-1);
-        jComboBoxLang.setSelectedItem(prefs.get(strLangCode, null));
-        if (installedLanguageCodes != null && jComboBoxLang.getSelectedIndex() != -1) {
-            curLangCode = installedLanguageCodes[jComboBoxLang.getSelectedIndex()];
-        }
+        curLangCode = prefs.get(strLangCode, null);
+        jComboBoxLang.setSelectedItem(curLangCode);
+        final JTextComponent textField = (JTextComponent) jComboBoxLang.getEditor().getEditorComponent();
+        textField.addCaretListener(new CaretListener() {
+
+            @Override
+            public void caretUpdate(CaretEvent e) {
+                String text = textField.getText();
+                if (!text.equals(curLangCode)) {
+                    curLangCode = text;
+                }
+            }
+            
+        });
     }
 
     /**
@@ -339,7 +350,8 @@ public class Gui extends JFrame {
 
     /**
      * Populates PopupMenu with spellcheck suggestions.
-     * @param p 
+     *
+     * @param p
      */
     void populatePopupMenuWithSuggestions(Point p) {
         // to be implemented in subclass
@@ -1456,13 +1468,14 @@ public class Gui extends JFrame {
 
     /**
      * Copies resources from Jar to support directory.
+     *
      * @param helpFile
-     * @throws IOException 
+     * @throws IOException
      */
     private void copyFileFromJarToSupportDir(File helpFile) throws IOException {
         if (!helpFile.exists()) {
-            final ReadableByteChannel input =
-                    Channels.newChannel(ClassLoader.getSystemResourceAsStream(helpFile.getName()));
+            final ReadableByteChannel input
+                    = Channels.newChannel(ClassLoader.getSystemResourceAsStream(helpFile.getName()));
             final FileChannel output = new FileOutputStream(helpFile).getChannel();
             output.transferFrom(input, 0, 1000000L);
             output.close();
@@ -1597,10 +1610,7 @@ public class Gui extends JFrame {
         prefs.putInt(strFontStyle, font.getStyle());
         prefs.put(strLookAndFeel, UIManager.getLookAndFeel().getClass().getName());
         prefs.putInt(strWindowState, getExtendedState());
-        if (this.jComboBoxLang.getSelectedItem() != null) {
-            prefs.put(strLangCode, this.jComboBoxLang.getSelectedItem().toString());
-        }
-
+        prefs.put(strLangCode, curLangCode);
         prefs.putBoolean(strWordWrap, wordWrapOn);
 
         StringBuilder buf = new StringBuilder();
@@ -1741,7 +1751,7 @@ public class Gui extends JFrame {
         isFitImageSelected = false;
 
         displayImage();
-                
+
         // clear undo buffer
         clearStack();
 
@@ -1789,7 +1799,7 @@ public class Gui extends JFrame {
         this.jScrollPane2.getViewport().setViewPosition(curScrollPos = new Point());
         jImageLabel.revalidate();
     }
-    
+
     void clearStack() {
         // to be implemented in subclass
     }
@@ -1800,7 +1810,8 @@ public class Gui extends JFrame {
 
     /**
      * Save file action.
-     * @return 
+     *
+     * @return
      */
     boolean saveAction() {
         if (textFile == null || !textFile.exists()) {
@@ -1816,7 +1827,8 @@ public class Gui extends JFrame {
 
     /**
      * Displays save file dialog.
-     * @return 
+     *
+     * @return
      */
     boolean saveFileDlg() {
         JFileChooser saveChooser = new JFileChooser(outputDirectory);
@@ -1857,7 +1869,8 @@ public class Gui extends JFrame {
 
     /**
      * Saves output text file.
-     * @return 
+     *
+     * @return
      */
     boolean saveTextFile() {
         getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -1901,7 +1914,7 @@ public class Gui extends JFrame {
         }
         switch (JOptionPane.showConfirmDialog(this,
                 String.format(bundle.getString("Do_you_want_to_save_the_changes_to_"),
-                (textFile == null ? bundle.getString("Untitled") : textFile.getName())),
+                        (textFile == null ? bundle.getString("Untitled") : textFile.getName())),
                 APP_NAME, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) {
             case JOptionPane.YES_OPTION:
                 return saveAction();
@@ -1987,8 +2000,9 @@ public class Gui extends JFrame {
 
     /**
      * Sets image scale.
+     *
      * @param width
-     * @param height 
+     * @param height
      */
     void setScale(int width, int height) {
         scaleX = (float) originalW / width;
@@ -2115,7 +2129,8 @@ public class Gui extends JFrame {
 
     /**
      * Changes locale of UI elements.
-     * @param locale 
+     *
+     * @param locale
      */
     void changeUILanguage(final Locale locale) {
         if (locale.equals(Locale.getDefault())) {
