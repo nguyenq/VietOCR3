@@ -1597,7 +1597,7 @@ public class Gui extends JFrame {
         prefs.putInt(strFontStyle, font.getStyle());
         prefs.put(strLookAndFeel, UIManager.getLookAndFeel().getClass().getName());
         prefs.putInt(strWindowState, getExtendedState());
-        if (this.jComboBoxLang.getSelectedIndex() != -1) {
+        if (this.jComboBoxLang.getSelectedItem() != null) {
             prefs.put(strLangCode, this.jComboBoxLang.getSelectedItem().toString());
         }
 

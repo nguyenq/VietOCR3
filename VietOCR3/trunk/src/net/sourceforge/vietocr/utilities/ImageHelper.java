@@ -101,19 +101,7 @@ public class ImageHelper {
         g2.dispose();
         return tmp;
     }
-
-    /**
-     * A simple method to convert an image to binary or B/W image.
-     *
-     * @param image input image
-     * @return a monochrome image
-     * @deprecated As of release 1.1, renamed to
-     * {@link #convertImageToBinary(BufferedImage image)}
-     */
-    public static BufferedImage convertImage2Binary(BufferedImage image) {
-        return convertImageToBinary(image);
-    }
-
+    
     /**
      * A simple method to convert an image to gray scale.
      *
