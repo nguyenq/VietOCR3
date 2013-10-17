@@ -318,20 +318,25 @@ public class Gui extends JFrame {
 
         DefaultComboBoxModel model = new DefaultComboBoxModel(installedLanguages);
         jComboBoxLang.setModel(model);
-        jComboBoxLang.setSelectedIndex(-1);
-        curLangCode = prefs.get(strLangCode, null);
-        jComboBoxLang.setSelectedItem(curLangCode);
+//        jComboBoxLang.setSelectedIndex(-1);
+        jComboBoxLang.setSelectedItem(prefs.get(strLangCode, null));
         final JTextComponent textField = (JTextComponent) jComboBoxLang.getEditor().getEditorComponent();
-        textField.addCaretListener(new CaretListener() {
+        textField.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
-            public void caretUpdate(CaretEvent e) {
-                String text = textField.getText();
-                if (!text.equals(curLangCode)) {
-                    curLangCode = text;
-                }
+            public void insertUpdate(DocumentEvent e) {
+                curLangCode = textField.getText();
             }
-            
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                curLangCode = textField.getText();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // ignore
+            }
         });
     }
 
@@ -1610,7 +1615,7 @@ public class Gui extends JFrame {
         prefs.putInt(strFontStyle, font.getStyle());
         prefs.put(strLookAndFeel, UIManager.getLookAndFeel().getClass().getName());
         prefs.putInt(strWindowState, getExtendedState());
-        prefs.put(strLangCode, curLangCode);
+        prefs.put(strLangCode, this.jComboBoxLang.getSelectedItem().toString());
         prefs.putBoolean(strWordWrap, wordWrapOn);
 
         StringBuilder buf = new StringBuilder();
