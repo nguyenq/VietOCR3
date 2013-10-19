@@ -207,6 +207,8 @@ public class ImageHelper {
 
         return destination;
     }
+    
+    private static final int COLOR_WHITE = Color.WHITE.getRGB();
 
     private static boolean colorWithinTolerance(int a, int b, double tolerance) {
         int aAlpha = (int) ((a & 0xFF000000) >>> 24);   // Alpha level
@@ -232,47 +234,50 @@ public class ImageHelper {
     }
 
     public static BufferedImage autoCrop(BufferedImage source) {
-        int minX = 0;
-        int minY = 0;
-        int maxX = 0;
-        int maxY = 0;
-
-        int white = Color.white.getRGB();
         int width = source.getWidth();
         int height = source.getHeight();
 
+        int minX = 0;
+        int minY = 0;
+        int maxX = width;
+        int maxY = height;
+        
+        lable1:
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                if (source.getRGB(x, y) != white) {
-                    maxY = y;
-                    break;
+                if (source.getRGB(x, y) != COLOR_WHITE) {
+                    minY = y;
+                    break lable1;
                 }
             }
         }
 
+        lable2:
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (source.getRGB(x, y) != white) {
-                    maxX = x;
-                    break;
+                if (source.getRGB(x, y) != COLOR_WHITE) {
+                    minX = x;
+                    break lable2;
                 }
             }
         }
 
+        lable3:
         for (int y = height - 1; y >= 0; y--) {
             for (int x = 0; x < width; x++) {
-                if (source.getRGB(x, y) != white) {
-                    minY = y;
-                    break;
+                if (source.getRGB(x, y) != COLOR_WHITE) {
+                    maxY = y;
+                    break lable3;
                 }
             }
         }
 
+        lable4:
         for (int x = width - 1; x >= 0; x--) {
             for (int y = 0; y < height; y++) {
-                if (source.getRGB(x, y) != white) {
-                    minX = x;
-                    break;
+                if (source.getRGB(x, y) != COLOR_WHITE) {
+                    maxX = x;
+                    break lable4;
                 }
             }
         }
@@ -331,12 +336,6 @@ public class ImageHelper {
     
     public static BufferedImage smoothen(BufferedImage image) {
         // A 3x3 kernel that smoothens an image
-//        float data[] = { 
-//            0.0625f, 0.125f, 0.0625f, 
-//            0.125f, 0.25f, 0.125f,
-//            0.0625f, 0.125f, 0.0625f 
-//        };
-        
         float data1[] = {
             0.1111f, 0.1111f, 0.1111f,
             0.1111f, 0.1111f, 0.1111f,
