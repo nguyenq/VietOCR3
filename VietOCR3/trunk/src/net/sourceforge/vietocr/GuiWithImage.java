@@ -36,11 +36,6 @@ public class GuiWithImage extends GuiWithBulkOCR {
     GuiWithImage() {
         this.jCheckBoxMenuItemScreenshotMode.setSelected(prefs.getBoolean(strScreenshotMode, false));
     }
-     
-//    @Override
-//    void jMenuImageMenuSelected(javax.swing.event.MenuEvent evt) {                                        
-//        this.jMenuItemUndo.setEnabled(!stack.isEmpty());
-//    }
 
     /**
      * Displays image meta information.

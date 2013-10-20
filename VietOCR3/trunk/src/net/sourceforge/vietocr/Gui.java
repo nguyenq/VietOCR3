@@ -1178,15 +1178,6 @@ public class Gui extends JFrame {
 
         jMenuImage.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuImage.Mnemonic").charAt(0));
         jMenuImage.setText(bundle.getString("jMenuImage.Text")); // NOI18N
-        jMenuImage.addMenuListener(new javax.swing.event.MenuListener() {
-            public void menuCanceled(javax.swing.event.MenuEvent evt) {
-            }
-            public void menuDeselected(javax.swing.event.MenuEvent evt) {
-            }
-            public void menuSelected(javax.swing.event.MenuEvent evt) {
-                jMenuImageMenuSelected(evt);
-            }
-        });
 
         jMenuItemMetadata.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemMetadata.Mnemonic").charAt(0));
         jMenuItemMetadata.setText(bundle.getString("jMenuItemMetadata.Text")); // NOI18N
@@ -2145,10 +2136,6 @@ public class Gui extends JFrame {
     void jMenuItemUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUndoActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemUndoActionPerformed
-
-    void jMenuImageMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenuImageMenuSelected
-        // To be implemented in subclass
-    }//GEN-LAST:event_jMenuImageMenuSelected
 
     /**
      * Changes locale of UI elements.
