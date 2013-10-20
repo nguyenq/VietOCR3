@@ -318,7 +318,6 @@ public class Gui extends JFrame {
 
         DefaultComboBoxModel model = new DefaultComboBoxModel(installedLanguages);
         jComboBoxLang.setModel(model);
-//        jComboBoxLang.setSelectedIndex(-1);
         jComboBoxLang.setSelectedItem(prefs.get(strLangCode, null));
         final JTextComponent textField = (JTextComponent) jComboBoxLang.getEditor().getEditorComponent();
         textField.getDocument().addDocumentListener(new DocumentListener() {
@@ -729,11 +728,12 @@ public class Gui extends JFrame {
         jMenuItemContrast = new javax.swing.JMenuItem();
         jMenuItemGrayscale = new javax.swing.JMenuItem();
         jMenuItemMonochrome = new javax.swing.JMenuItem();
-        jMenuItemInverted = new javax.swing.JMenuItem();
+        jMenuItemInvert = new javax.swing.JMenuItem();
         jMenuItemSharpen = new javax.swing.JMenuItem();
         jMenuItemSmooth = new javax.swing.JMenuItem();
         jMenuItemDeskew = new javax.swing.JMenuItem();
         jMenuItemAutocrop = new javax.swing.JMenuItem();
+        jSeparator12 = new javax.swing.JPopupMenu.Separator();
         jMenuItemUndo = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jCheckBoxMenuItemScreenshotMode = new javax.swing.JCheckBoxMenuItem();
@@ -1175,6 +1175,15 @@ public class Gui extends JFrame {
 
         jMenuImage.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuImage.Mnemonic").charAt(0));
         jMenuImage.setText(bundle.getString("jMenuImage.Text")); // NOI18N
+        jMenuImage.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenuImageMenuSelected(evt);
+            }
+        });
 
         jMenuItemMetadata.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemMetadata.Mnemonic").charAt(0));
         jMenuItemMetadata.setText(bundle.getString("jMenuItemMetadata.Text")); // NOI18N
@@ -1221,13 +1230,13 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemMonochrome);
 
-        jMenuItemInverted.setText(bundle.getString("jMenuItemInverted.Text")); // NOI18N
-        jMenuItemInverted.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemInvert.setText(bundle.getString("jMenuItemInverted.Text")); // NOI18N
+        jMenuItemInvert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemInvertedActionPerformed(evt);
+                jMenuItemInvertActionPerformed(evt);
             }
         });
-        jMenuFilter.add(jMenuItemInverted);
+        jMenuFilter.add(jMenuItemInvert);
 
         jMenuItemSharpen.setText(bundle.getString("jMenuItemSharpen.Text")); // NOI18N
         jMenuItemSharpen.addActionListener(new java.awt.event.ActionListener() {
@@ -1265,7 +1274,9 @@ public class Gui extends JFrame {
             }
         });
         jMenuImage.add(jMenuItemAutocrop);
+        jMenuImage.add(jSeparator12);
 
+        jMenuItemUndo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemUndo.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemUndo.Mnemonic").charAt(0));
         jMenuItemUndo.setText(bundle.getString("jMenuItemUndo.Text")); // NOI18N
         jMenuItemUndo.addActionListener(new java.awt.event.ActionListener() {
@@ -2116,9 +2127,9 @@ public class Gui extends JFrame {
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemMonochromeActionPerformed
 
-    void jMenuItemInvertedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInvertedActionPerformed
+    void jMenuItemInvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInvertActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
-    }//GEN-LAST:event_jMenuItemInvertedActionPerformed
+    }//GEN-LAST:event_jMenuItemInvertActionPerformed
 
     void jMenuItemSharpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSharpenActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
@@ -2131,6 +2142,10 @@ public class Gui extends JFrame {
     void jMenuItemUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUndoActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemUndoActionPerformed
+
+    void jMenuImageMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenuImageMenuSelected
+        // To be implemented in subclass
+    }//GEN-LAST:event_jMenuImageMenuSelected
 
     /**
      * Changes locale of UI elements.
@@ -2245,7 +2260,7 @@ public class Gui extends JFrame {
     private javax.swing.JMenuItem jMenuItemFont;
     private javax.swing.JMenuItem jMenuItemGrayscale;
     private javax.swing.JMenuItem jMenuItemHelp;
-    private javax.swing.JMenuItem jMenuItemInverted;
+    private javax.swing.JMenuItem jMenuItemInvert;
     private javax.swing.JMenuItem jMenuItemMergePdf;
     private javax.swing.JMenuItem jMenuItemMergeTiff;
     private javax.swing.JMenuItem jMenuItemMetadata;
@@ -2262,7 +2277,7 @@ public class Gui extends JFrame {
     private javax.swing.JMenuItem jMenuItemSharpen;
     private javax.swing.JMenuItem jMenuItemSmooth;
     private javax.swing.JMenuItem jMenuItemSplitPdf;
-    private javax.swing.JMenuItem jMenuItemUndo;
+    protected javax.swing.JMenuItem jMenuItemUndo;
     protected javax.swing.JMenu jMenuLookAndFeel;
     protected javax.swing.JMenu jMenuPSM;
     private javax.swing.JMenu jMenuRecentFiles;
@@ -2278,6 +2293,7 @@ public class Gui extends JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
+    private javax.swing.JPopupMenu.Separator jSeparator12;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
