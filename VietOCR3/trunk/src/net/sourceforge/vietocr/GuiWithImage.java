@@ -126,7 +126,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
             public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals(SliderDialog.VALUE_CHANGED)) {
                     int value = (Integer) evt.getNewValue();
-                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.brighten(originalImage, value * 0.01f));
+                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.brighten(originalImage, value));
                     imageList.set(imageIndex, imageIcon);
                     iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
                     displayImage();
@@ -151,12 +151,13 @@ public class GuiWithImage extends GuiWithBulkOCR {
         }
         SliderDialog dialog = new SliderDialog(this, true);
         dialog.setLabelText("Contrast");
+        dialog.setForContrast();
         dialog.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals(SliderDialog.VALUE_CHANGED)) {
                     int value = (Integer) evt.getNewValue();
-                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.brighten(originalImage, value * 0.01f));
+                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.contrast(originalImage, value * 0.02f));
                     imageList.set(imageIndex, imageIcon);
                     iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
                     displayImage();

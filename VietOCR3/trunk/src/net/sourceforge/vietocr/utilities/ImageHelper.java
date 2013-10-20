@@ -154,8 +154,23 @@ public class ImageHelper {
     /**
      * Returns the supplied src image brightened by a float value from 0 to 10. Float values
      * below 1.0f actually darken the source image.
+     * @param src
+     * @param offset
+     * @return 
      */
-    public static BufferedImage brighten(BufferedImage src, float scaleFactor) {
+    public static BufferedImage brighten(BufferedImage src, float offset) {
+        RescaleOp rop = new RescaleOp(1, offset, null);
+        return rop.filter(src, null);
+    }
+    
+        
+    /**
+     * Contrast image.
+     * @param src
+     * @param scaleFactor
+     * @return 
+     */
+    public static BufferedImage contrast(BufferedImage src, float scaleFactor) {
         RescaleOp rop = new RescaleOp(scaleFactor, 0, null);
         return rop.filter(src, null);
     }
