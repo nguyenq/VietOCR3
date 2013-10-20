@@ -49,8 +49,10 @@
         </Component>
         <Component class="javax.swing.JSlider" name="jSlider1">
           <Properties>
-            <Property name="majorTickSpacing" type="int" value="10"/>
+            <Property name="majorTickSpacing" type="int" value="20"/>
+            <Property name="minimum" type="int" value="-100"/>
             <Property name="paintTicks" type="boolean" value="true"/>
+            <Property name="value" type="int" value="0"/>
           </Properties>
           <Events>
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSlider1StateChanged"/>

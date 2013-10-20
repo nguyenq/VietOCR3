@@ -30,7 +30,10 @@ public class SliderDialog extends javax.swing.JDialog {
     public static final String VALUE_CHANGED = "Value Changed";
 
     /**
-     * Creates new form SliderDialog
+     * Creates new form SliderDialog.
+     * 
+     * @param parent
+     * @param modal
      */
     public SliderDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -78,8 +81,10 @@ public class SliderDialog extends javax.swing.JDialog {
         jLabel1.setText("Label");
         jPanelMain.add(jLabel1);
 
-        jSlider1.setMajorTickSpacing(10);
+        jSlider1.setMajorTickSpacing(20);
+        jSlider1.setMinimum(-100);
         jSlider1.setPaintTicks(true);
+        jSlider1.setValue(0);
         jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSlider1StateChanged(evt);
@@ -131,6 +136,12 @@ public class SliderDialog extends javax.swing.JDialog {
 
     public void setLabelText(String text) {
         this.jLabel1.setText(text);
+    }
+    
+    public void setForContrast() {
+        this.jSlider1.setMinimum(0);
+        this.jSlider1.setValue(50);
+        this.jSlider1.setMajorTickSpacing(10);
     }
     
     /**
