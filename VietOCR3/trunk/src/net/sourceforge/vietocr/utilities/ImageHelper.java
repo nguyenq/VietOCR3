@@ -233,6 +233,11 @@ public class ImageHelper {
         return (percentAway > tolerance);
     }
 
+    /**
+     * Check from top and left. Immediately break the loops when encountering a non-white pixel.
+     * @param source
+     * @return 
+     */
     public static BufferedImage autoCrop(BufferedImage source) {
         int width = source.getWidth();
         int height = source.getHeight();
@@ -309,15 +314,15 @@ public class ImageHelper {
         int newWidth = maxX - minX + 1;
         int newHeight = maxY - minY + 1;
         
-        BufferedImage destination = new BufferedImage(newWidth, newHeight, source.getType());
+        BufferedImage target = new BufferedImage(newWidth, newHeight, source.getType());
 
-        Graphics g = destination.getGraphics();
-        g.drawImage(source, 0, 0, destination.getWidth(), destination.getHeight(),
+        Graphics g = target.getGraphics();
+        g.drawImage(source, 0, 0, target.getWidth(), target.getHeight(),
                 minX, minY, maxX, maxY, null);
 
         g.dispose();
 
-        return destination;
+        return target;
     }
 
     public static BufferedImage sharpen(BufferedImage image) {
