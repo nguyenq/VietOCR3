@@ -37,10 +37,10 @@ public class GuiWithImage extends GuiWithBulkOCR {
         this.jCheckBoxMenuItemScreenshotMode.setSelected(prefs.getBoolean(strScreenshotMode, false));
     }
      
-    @Override
-    void jMenuImageMenuSelected(javax.swing.event.MenuEvent evt) {                                        
-        this.jMenuItemUndo.setEnabled(!stack.isEmpty());
-    }
+//    @Override
+//    void jMenuImageMenuSelected(javax.swing.event.MenuEvent evt) {                                        
+//        this.jMenuItemUndo.setEnabled(!stack.isEmpty());
+//    }
 
     /**
      * Displays image meta information.
@@ -137,9 +137,12 @@ public class GuiWithImage extends GuiWithBulkOCR {
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
         stack.push(originalImage);
         if (dialog.showDialog() == JOptionPane.CANCEL_OPTION) {
+            //restore image
+            originalImage = stack.pop();
             imageIcon = new ImageIconScalable(originalImage);
             imageList.set(imageIndex, imageIcon);
             iioImageList.get(imageIndex).setRenderedImage(originalImage);
+            displayImage();
         }
     }
 
@@ -169,9 +172,11 @@ public class GuiWithImage extends GuiWithBulkOCR {
         stack.push(originalImage);
         if (dialog.showDialog() == JOptionPane.CANCEL_OPTION) {
             //restore image
+            originalImage = stack.pop();
             imageIcon = new ImageIconScalable(originalImage);
             imageList.set(imageIndex, imageIcon);
             iioImageList.get(imageIndex).setRenderedImage(originalImage);
+            displayImage();
         }
     }
 
