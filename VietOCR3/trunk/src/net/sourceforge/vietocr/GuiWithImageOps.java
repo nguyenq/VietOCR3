@@ -155,6 +155,7 @@ public class GuiWithImageOps extends GuiWithScan {
     @Override
     void jButtonRotateCCWActionPerformed(java.awt.event.ActionEvent evt) {
         rotateImage(270d);
+        clearStack();
     }
 
     /**
@@ -165,6 +166,7 @@ public class GuiWithImageOps extends GuiWithScan {
     @Override
     void jButtonRotateCWActionPerformed(java.awt.event.ActionEvent evt) {
         rotateImage(90d);
+        clearStack();
     }
 
     /**
@@ -178,7 +180,6 @@ public class GuiWithImageOps extends GuiWithScan {
             imageList.set(imageIndex, imageIcon); // persist the rotated image
             iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
             displayImage();
-            clearStack();
         } catch (OutOfMemoryError oome) {
             JOptionPane.showMessageDialog(this, oome.getMessage(), bundle.getString("OutOfMemoryError"), JOptionPane.ERROR_MESSAGE);
         }

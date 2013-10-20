@@ -36,6 +36,11 @@ public class GuiWithImage extends GuiWithBulkOCR {
     GuiWithImage() {
         this.jCheckBoxMenuItemScreenshotMode.setSelected(prefs.getBoolean(strScreenshotMode, false));
     }
+     
+    @Override
+    void jMenuImageMenuSelected(javax.swing.event.MenuEvent evt) {                                        
+        this.jMenuItemUndo.setEnabled(!stack.isEmpty());
+    }
 
     /**
      * Displays image meta information.
@@ -78,7 +83,9 @@ public class GuiWithImage extends GuiWithBulkOCR {
                 ImageDeskew deskew = new ImageDeskew((BufferedImage) iioImageList.get(imageIndex).getRenderedImage());
                 double imageSkewAngle = deskew.getSkewAngle();
 
-                if ((imageSkewAngle > MINIMUM_DESKEW_THRESHOLD || imageSkewAngle < -(MINIMUM_DESKEW_THRESHOLD))) {
+                if ((imageSkewAngle > MINIMUM_DESKEW_THRESHOLD || imageSkewAngle < -(MINIMUM_DESKEW_THRESHOLD))) { 
+                    originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+                    stack.push(originalImage);
                     rotateImage(-imageSkewAngle);
                 }
                 getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -95,7 +102,10 @@ public class GuiWithImage extends GuiWithBulkOCR {
         }
         getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         getGlassPane().setVisible(true);
-        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.autoCrop((BufferedImage) iioImageList.get(imageIndex).getRenderedImage()));
+                
+        originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+        stack.push(originalImage);
+        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.autoCrop(originalImage));
         imageList.set(imageIndex, imageIcon);
         iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
         displayImage();
@@ -195,7 +205,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
     }
 
     @Override
-    void jMenuItemInvertedActionPerformed(java.awt.event.ActionEvent evt) {
+    void jMenuItemInvertActionPerformed(java.awt.event.ActionEvent evt) {
         if (iioImageList == null) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
