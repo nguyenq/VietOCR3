@@ -28,6 +28,8 @@ public class SliderDialog extends javax.swing.JDialog {
 
     private int actionSelected = -1;
     public static final String VALUE_CHANGED = "Value Changed";
+    private int smallChange = 5;
+    private int prevValue;
 
     /**
      * Creates new form SliderDialog.
@@ -130,8 +132,14 @@ public class SliderDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-        JSlider source = (JSlider) evt.getSource();
-        this.firePropertyChange(VALUE_CHANGED, null, source.getValue());
+        JSlider slider = (JSlider) evt.getSource();
+        
+        //reduce # of unnecessary update events
+        if (Math.abs(slider.getValue() - prevValue) >= smallChange) {
+            prevValue = slider.getValue();
+//            System.out.println(prevValue);
+            this.firePropertyChange(VALUE_CHANGED, null, slider.getValue());
+        }
     }//GEN-LAST:event_jSlider1StateChanged
 
     public void setLabelText(String text) {
@@ -150,6 +158,7 @@ public class SliderDialog extends javax.swing.JDialog {
      * @return
      */
     public int showDialog() {
+        prevValue = this.jSlider1.getValue();
         setVisible(true);
         return actionSelected;
     }
