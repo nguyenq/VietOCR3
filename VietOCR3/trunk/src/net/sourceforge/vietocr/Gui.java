@@ -1228,8 +1228,8 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemMonochrome);
 
-        jMenuItemInvert.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemInverted.Mnemonic").charAt(0));
-        jMenuItemInvert.setText(bundle.getString("jMenuItemInverted.Text")); // NOI18N
+        jMenuItemInvert.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemInvert.Mnemonic").charAt(0));
+        jMenuItemInvert.setText(bundle.getString("jMenuItemInvert.Text")); // NOI18N
         jMenuItemInvert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemInvertActionPerformed(evt);
