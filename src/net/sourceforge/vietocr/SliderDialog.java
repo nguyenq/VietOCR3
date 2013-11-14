@@ -28,7 +28,7 @@ public class SliderDialog extends javax.swing.JDialog {
 
     private int actionSelected = -1;
     public static final String VALUE_CHANGED = "Value Changed";
-    private int smallChange = 5;
+    private static final int smallChange = 5;
     private int prevValue;
 
     /**
@@ -74,7 +74,8 @@ public class SliderDialog extends javax.swing.JDialog {
         jButtonCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Image Control");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/SliderDialog"); // NOI18N
+        setTitle(bundle.getString("this.Title")); // NOI18N
         setResizable(false);
 
         jPanelMain.setPreferredSize(new java.awt.Dimension(300, 41));
@@ -98,7 +99,7 @@ public class SliderDialog extends javax.swing.JDialog {
 
         jPanelButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 1, 10, 1));
 
-        jButtonAccept.setText("Accept");
+        jButtonAccept.setText(bundle.getString("jButtonAccept.Text")); // NOI18N
         jButtonAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAcceptActionPerformed(evt);
@@ -106,7 +107,7 @@ public class SliderDialog extends javax.swing.JDialog {
         });
         jPanelButton.add(jButtonAccept);
 
-        jButtonCancel.setText("Cancel");
+        jButtonCancel.setText(bundle.getString("jButtonCancel.Text")); // NOI18N
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelActionPerformed(evt);

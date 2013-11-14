@@ -115,7 +115,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
             return;
         }
         SliderDialog dialog = new SliderDialog(this, true);
-        dialog.setLabelText("Brightness");
+        dialog.setLabelText(bundle.getString("Brightness"));
         dialog.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -148,7 +148,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
             return;
         }
         SliderDialog dialog = new SliderDialog(this, true);
-        dialog.setLabelText("Contrast");
+        dialog.setLabelText(bundle.getString("Contrast"));
         dialog.setForContrast();
         dialog.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
