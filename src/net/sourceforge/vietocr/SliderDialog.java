@@ -78,7 +78,8 @@ public class SliderDialog extends javax.swing.JDialog {
         setTitle(bundle.getString("this.Title")); // NOI18N
         setResizable(false);
 
-        jPanelMain.setPreferredSize(new java.awt.Dimension(300, 41));
+        jPanelMain.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 30, 5, 30));
+        jPanelMain.setLayout(new java.awt.GridLayout(2, 1));
 
         jLabel1.setLabelFor(jSlider1);
         jLabel1.setText("Label");
@@ -97,7 +98,8 @@ public class SliderDialog extends javax.swing.JDialog {
 
         getContentPane().add(jPanelMain, java.awt.BorderLayout.CENTER);
 
-        jPanelButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 1, 10, 1));
+        jPanelButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 1, 15, 1));
+        jPanelButton.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 15, 5));
 
         jButtonAccept.setText(bundle.getString("jButtonAccept.Text")); // NOI18N
         jButtonAccept.addActionListener(new java.awt.event.ActionListener() {
