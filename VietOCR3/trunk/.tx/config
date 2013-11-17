@@ -43,6 +43,12 @@ source_file = src/net/sourceforge/vietocr/SplitPdfDialog.properties
 source_lang = en
 type = PROPERTIES
 
+[vietocr.SliderDialog_properties]
+file_filter = src/net/sourceforge/vietocr/SliderDialog_<lang>.properties
+source_file = src/net/sourceforge/vietocr/SliderDialog.properties
+source_lang = en
+type = PROPERTIES
+
 [vietocr.FontDialog_properties]
 file_filter = src/net/sourceforge/vietpad/components/FontDialog_<lang>.properties
 source_file = src/net/sourceforge/vietpad/components/FontDialog.properties
