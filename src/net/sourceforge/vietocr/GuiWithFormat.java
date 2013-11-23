@@ -59,7 +59,11 @@ public class GuiWithFormat extends GuiWithImage {
         try {
             File xmlFile = new File(baseDir, "data/pangram.xml");
             prop.loadFromXML(new FileInputStream(xmlFile));
-            dlg.setPreviewText(prop.getProperty(curLangCode));
+            String pangram = prop.getProperty(curLangCode);
+            if (pangram == null || pangram.length() == 0) {
+                pangram = prop.getProperty("eng");
+            }
+            dlg.setPreviewText(pangram);
         } catch (IOException ioe) {
             JOptionPane.showMessageDialog(null, ioe.getMessage(), APP_NAME, JOptionPane.ERROR_MESSAGE);
             ioe.printStackTrace();
