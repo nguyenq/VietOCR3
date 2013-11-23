@@ -15,7 +15,7 @@
         <p>Tesseract 3.02のWindows実行ファイルがプログラムにバンドルされています。Tesseractの追加<a href="http://code.google.com/p/tesseract-ocr/downloads/list">言語データパック</a>はサブディレクトリ<tt>tessdata</tt>に配置してください。そのファイル名はISO639-3コードで始まります。</p>
         <p>LinuxではTesseractとその言語データパックはGraphics(universe)リポジトリにあります。Synapticを使用するか次のコマンドでそれらをインストールできます。</p>
         <blockquote>
-            <p><tt>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</tt></p>
+            <p><tt>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-jpn</tt></p>
         </blockquote>
         <p>ファイルはそれぞれ<tt>/usr/bin</tt>と<tt>/usr/share/tesseract-ocr/tessdata</tt>リポジトリに配置されます。もしTesseractをソースからビルドしインストールした場合は<a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation"></a><tt>/usr/local/bin</tt>と<tt>/usr/local/share/tessdata</tt>に配置されます。 VietOCRの<tt>設定</tt>メニューでTesseractの実行ファイルのディレクトリを指定してください。データが標準の場所以外にある場合は<tt>tessdata</tt>へのソフトリンクを要求されます。環境変数<tt>TESSDATA_PREFIX</tt>を設定してVietOCRに<tt>tessdata</tt>の位置を知らせます。</p>
         <blockquote>
