@@ -1,5 +1,5 @@
 /**
- * Copyright @ 2008 Quan Nguyen
+ * Copyright @ 2008
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -22,6 +22,8 @@ import java.awt.image.*;
 import javax.imageio.IIOImage;
 
 public class ImageHelper {
+    
+    private static final int COLOR_WHITE = Color.WHITE.getRGB();
 
     /**
      * Convenience method that returns a scaled instance of the provided
@@ -165,7 +167,7 @@ public class ImageHelper {
     
         
     /**
-     * Contrast image.
+     * Contrasts image.
      * @param src
      * @param scaleFactor
      * @return 
@@ -175,81 +177,80 @@ public class ImageHelper {
         return rop.filter(src, null);
     }
 
+//    /**
+//     * http://stackoverflow.com/questions/10678015/how-to-auto-crop-an-image-white-border-in-java
+//     *
+//     * @param source
+//     * @param tolerance
+//     * @return
+//     */
+//    public static BufferedImage autoCropImage(BufferedImage source, double tolerance) {
+//        // Get our top-left pixel color as our "baseline" for cropping
+//        int baseColor = source.getRGB(0, 0);
+//
+//        int width = source.getWidth();
+//        int height = source.getHeight();
+//
+//        int topY = Integer.MAX_VALUE, topX = Integer.MAX_VALUE;
+//        int bottomY = -1, bottomX = -1;
+//        for (int y = 0; y < height; y++) {
+//            for (int x = 0; x < width; x++) {
+//                if (colorWithinTolerance(baseColor, source.getRGB(x, y), tolerance)) {
+//                    if (x < topX) {
+//                        topX = x;
+//                    }
+//                    if (y < topY) {
+//                        topY = y;
+//                    }
+//                    if (x > bottomX) {
+//                        bottomX = x;
+//                    }
+//                    if (y > bottomY) {
+//                        bottomY = y;
+//                    }
+//                }
+//            }
+//        }
+//
+//        BufferedImage destination = new BufferedImage((bottomX - topX + 1),
+//                (bottomY - topY + 1), source.getType());
+//
+//        Graphics g = destination.getGraphics();
+//        g.drawImage(source, 0, 0,
+//                destination.getWidth(), destination.getHeight(),
+//                topX, topY, bottomX, bottomY, null);
+//
+//        g.dispose();
+//
+//        return destination;
+//    }
+//    
+//
+//    private static boolean colorWithinTolerance(int a, int b, double tolerance) {
+//        int aAlpha = (int) ((a & 0xFF000000) >>> 24);   // Alpha level
+//        int aRed = (int) ((a & 0x00FF0000) >>> 16);   // Red level
+//        int aGreen = (int) ((a & 0x0000FF00) >>> 8);    // Green level
+//        int aBlue = (int) (a & 0x000000FF);            // Blue level
+//
+//        int bAlpha = (int) ((b & 0xFF000000) >>> 24);   // Alpha level
+//        int bRed = (int) ((b & 0x00FF0000) >>> 16);   // Red level
+//        int bGreen = (int) ((b & 0x0000FF00) >>> 8);    // Green level
+//        int bBlue = (int) (b & 0x000000FF);            // Blue level
+//
+//        double distance = Math.sqrt((aAlpha - bAlpha) * (aAlpha - bAlpha)
+//                + (aRed - bRed) * (aRed - bRed)
+//                + (aGreen - bGreen) * (aGreen - bGreen)
+//                + (aBlue - bBlue) * (aBlue - bBlue));
+//
+//        // 510.0 is the maximum distance between two colors 
+//        // (0,0,0,0 -> 255,255,255,255)
+//        double percentAway = distance / 510.0d;
+//
+//        return (percentAway > tolerance);
+//    }
+
     /**
-     * http://stackoverflow.com/questions/10678015/how-to-auto-crop-an-image-white-border-in-java
-     *
-     * @param source
-     * @param tolerance
-     * @return
-     */
-    public static BufferedImage autoCropImage(BufferedImage source, double tolerance) {
-        // Get our top-left pixel color as our "baseline" for cropping
-        int baseColor = source.getRGB(0, 0);
-
-        int width = source.getWidth();
-        int height = source.getHeight();
-
-        int topY = Integer.MAX_VALUE, topX = Integer.MAX_VALUE;
-        int bottomY = -1, bottomX = -1;
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                if (colorWithinTolerance(baseColor, source.getRGB(x, y), tolerance)) {
-                    if (x < topX) {
-                        topX = x;
-                    }
-                    if (y < topY) {
-                        topY = y;
-                    }
-                    if (x > bottomX) {
-                        bottomX = x;
-                    }
-                    if (y > bottomY) {
-                        bottomY = y;
-                    }
-                }
-            }
-        }
-
-        BufferedImage destination = new BufferedImage((bottomX - topX + 1),
-                (bottomY - topY + 1), source.getType());
-
-        Graphics g = destination.getGraphics();
-        g.drawImage(source, 0, 0,
-                destination.getWidth(), destination.getHeight(),
-                topX, topY, bottomX, bottomY, null);
-
-        g.dispose();
-
-        return destination;
-    }
-    
-    private static final int COLOR_WHITE = Color.WHITE.getRGB();
-
-    private static boolean colorWithinTolerance(int a, int b, double tolerance) {
-        int aAlpha = (int) ((a & 0xFF000000) >>> 24);   // Alpha level
-        int aRed = (int) ((a & 0x00FF0000) >>> 16);   // Red level
-        int aGreen = (int) ((a & 0x0000FF00) >>> 8);    // Green level
-        int aBlue = (int) (a & 0x000000FF);            // Blue level
-
-        int bAlpha = (int) ((b & 0xFF000000) >>> 24);   // Alpha level
-        int bRed = (int) ((b & 0x00FF0000) >>> 16);   // Red level
-        int bGreen = (int) ((b & 0x0000FF00) >>> 8);    // Green level
-        int bBlue = (int) (b & 0x000000FF);            // Blue level
-
-        double distance = Math.sqrt((aAlpha - bAlpha) * (aAlpha - bAlpha)
-                + (aRed - bRed) * (aRed - bRed)
-                + (aGreen - bGreen) * (aGreen - bGreen)
-                + (aBlue - bBlue) * (aBlue - bBlue));
-
-        // 510.0 is the maximum distance between two colors 
-        // (0,0,0,0 -> 255,255,255,255)
-        double percentAway = distance / 510.0d;
-
-        return (percentAway > tolerance);
-    }
-
-    /**
-     * Check from top and left. Immediately break the loops when encountering a non-white pixel.
+     * Auto crops an image. Immediately break the loops when encountering a non-white pixel.
      * @param source
      * @return 
      */
@@ -274,7 +275,7 @@ public class ImageHelper {
 
         lable2:
         for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
+            for (int y = minY; y < height; y++) {
                 if (source.getRGB(x, y) != COLOR_WHITE) {
                     minX = x;
                     break lable2;
@@ -283,8 +284,8 @@ public class ImageHelper {
         }
 
         lable3:
-        for (int y = height - 1; y >= 0; y--) {
-            for (int x = 0; x < width; x++) {
+        for (int y = height - 1; y >= minY; y--) {
+            for (int x = minX; x < width; x++) {
                 if (source.getRGB(x, y) != COLOR_WHITE) {
                     maxY = y;
                     break lable3;
@@ -293,8 +294,8 @@ public class ImageHelper {
         }
 
         lable4:
-        for (int x = width - 1; x >= 0; x--) {
-            for (int y = 0; y < height; y++) {
+        for (int x = width - 1; x >= minX; x--) {
+            for (int y = minY; y < maxY; y++) {
                 if (source.getRGB(x, y) != COLOR_WHITE) {
                     maxX = x;
                     break lable4;
@@ -340,6 +341,12 @@ public class ImageHelper {
         return target;
     }
 
+    /**
+     * Sharpens an image.
+     * 
+     * @param image
+     * @return 
+     */
     public static BufferedImage sharpen(BufferedImage image) {
         // A 3x3 kernel that sharpens an image
         Kernel kernel = new Kernel(3, 3,
@@ -354,6 +361,12 @@ public class ImageHelper {
         return op.filter(image, null);
     }
     
+    /**
+     * Smooths or blurs an image.
+     * 
+     * @param image
+     * @return 
+     */
     public static BufferedImage smoothen(BufferedImage image) {
         // A 3x3 kernel that smoothens an image
         float data1[] = {
@@ -363,13 +376,13 @@ public class ImageHelper {
         };
         
         Kernel kernel = new Kernel(3, 3, data1);
-
         BufferedImageOp op = new ConvolveOp(kernel);
 
         return op.filter(image, null);
     }
     
     /**
+     * Clones an image.
      * http://stackoverflow.com/questions/3514158/how-do-you-clone-a-bufferedimage
      * @param bi
      * @return 
