@@ -21,6 +21,9 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.image.*;
 import javax.imageio.IIOImage;
 
+/**
+ * Common image processing routines.
+ */
 public class ImageHelper {
     
     private static final int COLOR_WHITE = Color.WHITE.getRGB();
