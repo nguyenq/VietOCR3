@@ -1,6 +1,6 @@
 ﻿<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>VietOCR - Un'interfaccia grafica in java per Tesseract OCR</title>
 </head>
 <body>
@@ -10,8 +10,8 @@
         <h3>
             DESCRIZIONE</h3>
         <p>
-            <a href="http://sourceforge.net/project/showfiles.php?group_id=153105">VietOCR</a>
-            è un'interfaccia grafica per <a href="http://code.google.com/p/tesseract-ocr/">Tesseract
+            <a href="http://sourceforge.net/project/showfiles.php?group_id=153105">VietOCR.NET</a>
+            è un'interfaccia grafica per<a href="http://code.google.com/p/tesseract-ocr/">Tesseract
                 OCR engine</a>, fornisce supporto per il riconoscimento dei caratteri per i
             formati immagine più comuni. Il programma dispone di software di post-elaborazione
             che aiuta a correggere gli errori che susseguono nel processo di riconoscimento,
@@ -48,9 +48,9 @@
                 </a>, saranno messi in <tt>/usr/local/bin</tt> e <tt>/usr/local/share/tessdata</tt>.
             Potrebbe essere necessario specificare la directory dell'eseguibile da Tesseract
             VietOCR nel menù <tt>Impostazioni</tt>. Se i dati sono in un percorso non standard,
-            un link simbolico per <tt>tessdata</tt> può essere richiesto. È anche possibile lasciare
-            che VietOCR riconosca automaticamente la posizione della cartella <tt>tessdata</tt> tramite
-            la variabile <tt>TESSDATA_PREFIX</tt>:</p>
+            un link simbolico per <tt>tessdata</tt> può essere richiesto. È anche possibile
+            lasciare che VietOCR riconosca automaticamente la posizione della cartella <tt>tessdata</tt>
+            tramite la variabile <tt>TESSDATA_PREFIX</tt>:</p>
         <blockquote>
             <p>
                 <tt>export TESSDATA_PREFIX=/usr/local/share/</tt></p>
@@ -63,15 +63,14 @@
             Lingue selezionati attraverso <em>Download Pacchetti Dati</em> che si trova nel
             menù. A seconda della posizione della cartella <tt>tessdata</tt>, potrebbe essere
             necessario eseguire il programma come root o admin per essere in grado di installare
-            i dati scaricati, come ad esempio in <tt>/usr</tt> su Linux o <tt>C:\Program Files</tt> in
-            Windows.</p>
+            i dati scaricati, come ad esempio in <tt>/usr</tt> su Linux o <tt>C:\Program Files</tt>
+            in Windows.</p>
         <p>
             Il supporto per lo scnnering viene fornito da Windows Image Acquisition Library
             v2.0, che richiede Windows XP Service Pack 1 (SP1) o superiore; la libreria è inclusa
-            in Windows Vista e 7. Per installare la libreria WIA , copia il file <tt>wiaaut.dll</tt> nella
-            cartella <tt>System32</tt> (posta in <tt>C:\Windows\System32</tt>) ed esegui tramite
-            linea di comando:
-        </p>
+            in Windows Vista e 7. Per installare la libreria WIA , copia il file <tt>wiaaut.dll</tt>
+            nella cartella <tt>System32</tt> (posta in <tt>C:\Windows\System32</tt>) ed esegui
+            tramite linea di comando:</p>
         <blockquote>
             <p>
                 <tt>regsvr32 C:\Windows\System32\wiaaut.dll</tt></p>
@@ -83,12 +82,12 @@
                 <tt>sudo apt-get install libsane sane sane-utils libsane-extras xsane</tt></p>
         </blockquote>
         <p>
-            Il supporto PDF è possibile grazie a <a href="http://sourceforge.net/projects/ghostscript/">
-                GPL Ghostscript</a>. Dopo l'installazione della libreria, verificare la dinamica
-            del caricamento della libreria <tt>gsdll32.dll</tt> è nel percorso di ricerca impostando
-            nel campo <tt>Path</tt> variabile, che è accessibile tramite il Pannello di controllo
-            di Windows System &gt; Advanced tab &gt; Environment Variables.Per esempio aggiungere
-            <tt>Path</tt> alla variabile per GS version 9.10:</p>
+            Il supporto PDF è disponibile con <a href="http://sourceforge.net/projects/ghostscript/">
+                GPL⏎ Ghostscript</a>. Dopo l'intallazione della libreria, controlla che gli
+            oggetti⏎ (<tt>gsdll32.dll</tt> o <tt>libgs.so</tt>) siano presenti nel percorso
+            di ricerca impostando nel campo variabile <tt>Path</tt>, (accessibile tramite il
+            Pannello di controllo di Windows System &gt; Advanced tab &gt; Environment Variables)
+            per GS version 9.10:</p>
         <blockquote>
             <p>
                 <tt>;C:\Program Files\gs\gs9.10\bin</tt></p>
@@ -103,7 +102,7 @@
         <p>
             La funzionalità di controllo ortografico è disponibile attraverso Hunspell, il cui
             <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">dizionario</a> (<tt>.aff</tt>,
-            <tt>.dic</tt>) deve essere posto nella cartella <tt>dict</tt> di VietOCR. <tt>user.dic</tt> 
+            <tt>.dic</tt>) deve essere posto nella cartella <tt>dict</tt> di VietOCR. <tt>user.dic</tt>
             è un file criptato UTF-8 che contiene una lista di parole predefinite, una per linea.</p>
         <p>
             Su Linux, Hunspell ed i suoi dizionari possono essere installati da Synaptic o <tt>apt</tt>,
@@ -188,7 +187,7 @@
         <p>
             Se ci sono delle domande, si prega di scrivere sul <a href="http://sourceforge.net/projects/vietocr/forums">
                 Forum VietOCR</a>.</p>
-        <hr />
+        <hr>
     </div>
 </body>
 </html>
