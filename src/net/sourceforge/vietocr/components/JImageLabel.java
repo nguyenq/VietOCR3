@@ -107,7 +107,7 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
 
         if (rect != null) {
             Graphics2D g2d = (Graphics2D) g;
-            Rectangle[] squares = createSquares(rect);
+            java.util.List<Rectangle> squares = createSquares(rect);
             for (Rectangle square : squares) {
                 g2d.draw(square);
             }
@@ -122,9 +122,10 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
      * Creates grip squares.
      *
      */
-    Rectangle[] createSquares(Rectangle rect) {
+    java.util.List<Rectangle> createSquares(Rectangle rect) {
+        java.util.List<Rectangle> ar = new ArrayList<Rectangle>();
         if (moving) {
-            return new Rectangle[]{};
+            return ar;
         }
 
         int wh = 6;
@@ -134,7 +135,6 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
         int w = rect.width;
         int h = rect.height;
 
-        ArrayList<Rectangle> ar = new ArrayList<Rectangle>();
         ar.add(new Rectangle(x, y, wh, wh));
         ar.add(new Rectangle(x + w / 2, y, wh, wh));
         ar.add(new Rectangle(x + w, y, wh, wh));
@@ -144,7 +144,7 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
         ar.add(new Rectangle(x, y + h, wh, wh));
         ar.add(new Rectangle(x, y + h / 2, wh, wh));
 
-        return ar.toArray(new Rectangle[ar.size()]);
+        return ar;
     }
 
     @Override
