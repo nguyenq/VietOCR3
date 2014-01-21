@@ -1627,7 +1627,10 @@ public class Gui extends JFrame {
         prefs.putInt(strFontStyle, font.getStyle());
         prefs.put(strLookAndFeel, UIManager.getLookAndFeel().getClass().getName());
         prefs.putInt(strWindowState, getExtendedState());
-        prefs.put(strLangCode, this.jComboBoxLang.getSelectedItem().toString());
+        if (this.jComboBoxLang.getSelectedIndex() != -1) {
+            prefs.put(strLangCode, this.jComboBoxLang.getSelectedItem().toString());
+        }
+        
         prefs.putBoolean(strWordWrap, wordWrapOn);
 
         StringBuilder buf = new StringBuilder();
