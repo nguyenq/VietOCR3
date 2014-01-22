@@ -234,8 +234,8 @@ public class ImageHelper {
             }
         }
                
-        // allow a 5px-margin
-        int margin = 5;
+        // allow a 10px-margin
+        int margin = 10;
         
         if ((minX - margin) >= 0) {
             minX -= margin;
