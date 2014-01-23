@@ -265,7 +265,7 @@ public class ImageHelper {
 
         Graphics g = target.getGraphics();
         g.drawImage(source, 0, 0, target.getWidth(), target.getHeight(),
-                minX, minY, maxX, maxY, null);
+                minX, minY, maxX + 1, maxY + 1, null);
 
         g.dispose();
 
