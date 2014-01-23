@@ -168,7 +168,6 @@ public class ImageHelper {
         return rop.filter(src, null);
     }
     
-        
     /**
      * Contrasts image.
      * @param src
@@ -179,9 +178,12 @@ public class ImageHelper {
         RescaleOp rop = new RescaleOp(scaleFactor, 0, null);
         return rop.filter(src, null);
     }
+    
+    // allow a 10px-margin
+    private static final int margin = 10;
 
     /**
-     * Auto crops an image. Immediately break the loops when encountering a non-white pixel.
+     * Auto crops an image.
      * @param source
      * @return 
      */
@@ -194,6 +196,7 @@ public class ImageHelper {
         int maxX = width;
         int maxY = height;
         
+        // Immediately break the loops when encountering a non-white pixel.
         lable1:
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -233,9 +236,6 @@ public class ImageHelper {
                 }
             }
         }
-               
-        // allow a 10px-margin
-        int margin = 10;
         
         if ((minX - margin) >= 0) {
             minX -= margin;
