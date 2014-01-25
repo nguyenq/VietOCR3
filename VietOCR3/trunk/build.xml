@@ -32,12 +32,13 @@
                 <exclude name="${dist.dir}/**"/>
                 <exclude name="${build.dir}/**"/>
                 <exclude name="doc/**"/>
+                <exclude name=".tx/**"/>
                 <exclude name="${ant.project.name}.jar"/>
             </zipfileset>
         </zip>
         <zip zipfile="${dist.dir}/${ant.project.name}-${version}.zip">
             <zipfileset dir="." includes="*,tesseract-ocr/**,lib/**,data/**,samples/**,dict/**" prefix="${ant.project.name}3"
-                        excludes="build.xml,src,build,dist,doc,test,nbproject">
+                        excludes="build.xml,src,build,dist,doc,.tx,test,nbproject">
                 <exclude name="*.mf"/>
             </zipfileset>
         </zip>
