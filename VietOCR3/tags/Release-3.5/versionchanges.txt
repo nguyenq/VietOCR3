@@ -1,0 +1,88 @@
+VietOCR Change Summary
+
+Version 3.0 (3 October 2010)
+- Upgrade Tesseract OCR engine to 3.0
+- Replace old format (2.0x) language data with new format (3.0) language data
+- Change datafile suffix from .inttemp to .traineddata
+
+Version 3.1 (port changes from Version 2.0) (6 February 2011)
+- Upgrade JACOB library to version 1.15-M4
+- Add support for spellcheck suggestion in context menu
+- Improve program accessibility and usability
+- Add support for downloading and installing language data packs and appropriate spell dictionaries
+- Add UI localization for Lithuanian and Slovak
+- Refactoring by breaking up large classes into smaller ones
+- Update Tesseract OCR engine to 3.01 (r551)
+
+Version 3.1.1 (7 March 2011)
+- Incorporate Apple Java Extensions
+- Fix a bug which hangs the program if x.DangAmbigs.txt contains entries starting with an equal symbol (=)
+- Improve postprocessing performance by caching the word list used; reload only if changes
+- Improve error reporting by displaying actual messages output from the engine
+
+Version 3.1.2 (13 March 2011)
+- Fix a MissingResourceException associated with Font dialog
+- Incorporate deskew functionality using JDeskew library
+
+Version 3.1.3 (4 June 2011)
+- Update Tesseract 3.01 to r585
+- Fix an issue with restart notification after language pack downloads
+- Refactoring
+- Improve program usability, enabling image navigation and manipulation with keyboard
+- Fix an EOL issue that broke Remove Line Breaks functionality on Windows
+- Replace Vietnamese language pack with an improved version
+
+Version 3.1.4 (1 August 2011)
+- Update Tesseract 3.01 to r597
+
+Version 3.1.5 (12 September 2011)
+- Update Tesseract 3.01 to r625
+- Provide Page Segmentation Mode options for Tesseract engine
+
+Version 3.2 (22 October 2011)
+- Update Tesseract 3.01 to r638 (final release version)
+- Remove unneeded liblept168.dll
+- Update lists of language codes
+- Update JACOB to 1.16-M1 version
+- Add PSM support to execution from command line
+
+Version 3.2.1 (14 January 2012)
+- Fix an issue with opening Help file on OS X
+- Update JACOB to 1.16-M2 version
+- Update JNA to 3.4.0 version
+
+Version 3.2.2 (21 January 2012)
+- Fix a context menu's font issue with displaying Unicode characters for spellcheck suggestions
+
+Version 3.3 (25 February 2012)
+- Download Language Data will warn if the user does not have write access to tessdata folder
+- Fix a bug with scrollbars visible when Fit Image selected
+- Update Hunspell to v1.3.2
+- Use icons from FatCow (http://www.fatcow.com/free-icons) and by Rimas Kudelis
+
+Version 3.4 (3 November 2012)
+- Upgrade Tesseract engine to v3.02 (r798)
+- Enable text entry in the combobox for Tesseract 3.02's multi-language OCR support
+- Fit Image now retains image aspect ratio
+- Add optional support for using Tess4J library
+- Update JACOB to 1.16.1 version
+
+Version 3.4.1 (28 November 2012)
+- Add Bulk OCR process
+- Update Tesseract 3.02 to r806
+
+Version 3.4.2 (6 January 2013)
+- Add hocr support for Bulk & Batch and command-line operations
+- Update links to dictionary files
+- Update Tesseract 3.02 to r820
+- Update JNA to v3.5.1
+
+Version 3.5 (25 January 2014)
+- Update Tesseract 3.02 to r866
+- Update Tess4J library
+- Update JNA to v4.0
+- Update JACOB to 1.17 version
+- Enhance Bulk ops with subdirectory support
+- Incorporate image filters
+- Implement Undo function
+- Additional translations
