@@ -69,6 +69,7 @@ public class BulkDialog extends javax.swing.JDialog {
         jLabelOutput = new javax.swing.JLabel();
         jTextFieldOutput = new javax.swing.JTextField();
         jCheckBoxHocr = new javax.swing.JCheckBox();
+        jComboBoxOutputFormat = new javax.swing.JComboBox();
         jButtonInput = new javax.swing.JButton();
         jButtonOutput = new javax.swing.JButton();
         jPanelCommand = new javax.swing.JPanel();
@@ -131,6 +132,12 @@ public class BulkDialog extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 0, 6, 0);
         jPanelImageFolder.add(jCheckBoxHocr, gridBagConstraints);
+
+        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "txt", "pdf", "hocr" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        jPanelImageFolder.add(jComboBoxOutputFormat, gridBagConstraints);
 
         jButtonInput.setText("...");
         jButtonInput.setToolTipText(bundle.getString("jButtonInput.ToolTipText")); // NOI18N
@@ -328,6 +335,7 @@ public class BulkDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonOutput;
     private javax.swing.JButton jButtonRun;
     private javax.swing.JCheckBox jCheckBoxHocr;
+    private javax.swing.JComboBox jComboBoxOutputFormat;
     private javax.swing.JLabel jLabelInput;
     private javax.swing.JLabel jLabelOutput;
     private javax.swing.JPanel jPanelCommand;
@@ -337,16 +345,16 @@ public class BulkDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     /**
-     * @return the hocr
+     * @return the selectedFormat
      */
-    public boolean isHocr() {
-        return this.jCheckBoxHocr.isSelected();
+    public String getSelectedOutputFormat() {
+        return this.jComboBoxOutputFormat.getSelectedItem().toString();
     }
 
     /**
-     * @param hocr the hocr to set
+     * @param selectedFormat the selectedFormat to set
      */
-    public void setHocr(boolean hocr) {
-        this.jCheckBoxHocr.setSelected(hocr);
+    public void setSelectedOutputFormat(String selectedFormat) {
+        this.jComboBoxOutputFormat.setSelectedItem(selectedFormat);
     }
 }
