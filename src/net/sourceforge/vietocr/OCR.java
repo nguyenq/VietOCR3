@@ -22,31 +22,31 @@ public abstract class OCR<T> {
 
     protected Rectangle rect = null;
     private String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)
+    private String language = "eng";
     private boolean hocr;
+    private String outputFormat = "txt";
     
     /**
      * Recognizes files or images.
      *
      * @param imageEntities List of files or images
-     * @param lang OCR language
      * @param selection Region of Interest
      * @return
      * @throws Exception
      */
-    public String recognizeText(List<T> imageEntities, String lang, Rectangle selection) throws Exception {
+    public String recognizeText(List<T> imageEntities, Rectangle selection) throws Exception {
         rect = selection;
-        return recognizeText(imageEntities, lang);
+        return recognizeText(imageEntities);
     }
 
     /**
      * Recognizes files or images.
      *
      * @param imageEntities List of files or images
-     * @param lang OCR language
      * @return
      * @throws Exception
      */
-    public abstract String recognizeText(List<T> imageEntities, String lang) throws Exception;
+    public abstract String recognizeText(List<T> imageEntities) throws Exception;
 
     /**
      * Gets page segmentation mode.
@@ -78,5 +78,33 @@ public abstract class OCR<T> {
      */
     public void setHocr(boolean hocr) {
         this.hocr = hocr;
+    }
+
+    /**
+     * @return the outputFormat
+     */
+    public String getOutputFormat() {
+        return outputFormat;
+    }
+
+    /**
+     * @param outputFormat the outputFormat to set
+     */
+    public void setOutputFormat(String outputFormat) {
+        this.outputFormat = outputFormat;
+    }
+
+    /**
+     * @return the language
+     */
+    public String getLanguage() {
+        return language;
+    }
+
+    /**
+     * @param language the language to set
+     */
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }

@@ -143,22 +143,24 @@ public class GuiWithOCR extends GuiWithImageOps {
             if (!tessLibEnabled) {
                 OCR<File> ocrEngine = new OCRFiles(tessPath);
                 ocrEngine.setPageSegMode(selectedPSM); // set page segmentation mode
+                ocrEngine.setLanguage(lang);
                 workingFiles = entity.getClonedImageFiles();
 
                 for (int i = 0; i < workingFiles.size(); i++) {
                     if (!isCancelled()) {
-                        String result = ocrEngine.recognizeText(workingFiles.subList(i, i + 1), lang);
+                        String result = ocrEngine.recognizeText(workingFiles.subList(i, i + 1));
                         publish(result); // interim result
                     }
                 }
             } else {
                 OCR<IIOImage> ocrEngine = new OCRImages(tessPath); // for Tess4J
                 ocrEngine.setPageSegMode(selectedPSM); // set page segmentation mode
+                ocrEngine.setLanguage(lang);
                 imageList = entity.getSelectedOimages();
 
                 for (int i = 0; i < imageList.size(); i++) {
                     if (!isCancelled()) {
-                        String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), lang, entity.getRect());
+                        String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), entity.getRect());
                         publish(result); // interim result
                     }
                 }
