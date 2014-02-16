@@ -38,8 +38,8 @@ public class OCRImages extends OCR<IIOImage> {
     }
 
     @Override
-    public String recognizeText(List<IIOImage> images, String lang) throws Exception {
-        instance.setLanguage(lang);
+    public String recognizeText(List<IIOImage> images) throws Exception {
+        instance.setLanguage(this.getLanguage());
         instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
         instance.setHocr(this.isHocr());
         String text = instance.doOCR(images, rect);

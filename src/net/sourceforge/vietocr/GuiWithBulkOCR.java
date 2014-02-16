@@ -26,19 +26,19 @@ import javax.swing.*;
 public class GuiWithBulkOCR extends GuiWithPostprocess {
 
     private BulkOcrWorker ocrWorker;
-    private StatusFrame statusFrame;
+    private final StatusFrame statusFrame;
     private BulkDialog bulkDialog;
     private final String strInputFolder = "InputFolder";
     private final String strBulkOutputFolder = "BulkOutputFolder";
-    private final String strBulkHocr = "BulkHocr";
+    private final String strBulkOutputFormat = "BulkOutputFormat";
     private String inputFolder;
     private String outputFolder;
-    private boolean hocr;
+    private String outputFormat;
 
     public GuiWithBulkOCR() {
         inputFolder = prefs.get(strInputFolder, System.getProperty("user.home"));
         outputFolder = prefs.get(strBulkOutputFolder, System.getProperty("user.home"));
-        hocr = prefs.getBoolean(strBulkHocr, false);
+        outputFormat = prefs.get(strBulkOutputFormat, "txt");
         statusFrame = new StatusFrame();
         statusFrame.setTitle(bundle.getString("bulkStatusFrame.Title"));
     }
@@ -58,12 +58,12 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
 
         bulkDialog.setInputFolder(inputFolder);
         bulkDialog.setOutputFolder(outputFolder);
-        bulkDialog.setHocr(hocr);
+        bulkDialog.setSelectedOutputFormat(outputFormat);
 
         if (bulkDialog.showDialog() == JOptionPane.OK_OPTION) {
             inputFolder = bulkDialog.getInputFolder();
             outputFolder = bulkDialog.getOutputFolder();
-            hocr = bulkDialog.isHocr();
+            outputFormat = bulkDialog.getSelectedOutputFormat();
 
             jLabelStatus.setText(bundle.getString("OCR_running..."));
             jProgressBar1.setIndeterminate(true);
@@ -142,7 +142,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
     void quit() {
         prefs.put(strInputFolder, inputFolder);
         prefs.put(strBulkOutputFolder, outputFolder);
-        prefs.putBoolean(strBulkHocr, hocr);
+        prefs.put(strBulkOutputFormat, outputFormat);
 
         super.quit();
     }
@@ -167,7 +167,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                     publish(imageFile.getPath()); // interim result
                     try {
                         String outputFilename = imageFile.getPath().substring(inputFolder.length() + 1);
-                        OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename + (hocr ? ".html" : ".txt")), tessPath, curLangCode, selectedPSM, hocr);
+                        OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename + "." + outputFormat), tessPath, curLangCode, selectedPSM, outputFormat);
                     } catch (Exception e) {
                         publish("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **");
                     }

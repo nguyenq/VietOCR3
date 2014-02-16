@@ -51,8 +51,9 @@ public class OCRFilesTest {
         System.out.println("recognizeText with Tesseract executable");
         List<File> tiffFiles = entity.getClonedImageFiles();
         OCR<File> instance = new OCRFiles(tessPath);
+        instance.setLanguage(lang);
         String expResult = "Tôi từ chinh chiến cũng ra đi";
-        String result = instance.recognizeText(tiffFiles, lang);
+        String result = instance.recognizeText(tiffFiles);
         System.out.println(result);
         assertTrue(result.toLowerCase().contains(expResult.toLowerCase()));
     }

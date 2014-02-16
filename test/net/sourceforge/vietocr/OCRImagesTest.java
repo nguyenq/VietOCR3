@@ -51,8 +51,9 @@ public class OCRImagesTest {
         System.out.println("recognizeText with Tesseract API");
         List<IIOImage> images = entity.getSelectedOimages();
         OCR<IIOImage> instance = new OCRImages(tessPath);
+        instance.setLanguage(lang);
         String expResult = "Tôi từ chinh chiến cũng ra đi";
-        String result = instance.recognizeText(images, lang);
+        String result = instance.recognizeText(images);
         System.out.println(result);
         assertTrue(result.toLowerCase().contains(expResult.toLowerCase()));
     }
