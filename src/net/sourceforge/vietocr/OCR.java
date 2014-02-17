@@ -49,7 +49,7 @@ public abstract class OCR<T> {
     public abstract String recognizeText(List<T> imageEntities) throws Exception;
     
     public void processPages(File imageFile, File outputFile) throws Exception {
-        // to be overridden by subclass
+        // to be implemented by subclass
     }
 
     /**
