@@ -33,20 +33,22 @@ public class ConsoleApp {
         if (args[0].equals("-?") || args[0].equals("-help") || args.length == 1 || args.length >= 8) {
             System.err.println("Usage: java -jar VietOCR.jar\n"
                     + "       (to launch the program in GUI mode)\n\n"
-                    + "   or  java -jar VietOCR.jar imagefile outputfile [-l lang] [-psm pagesegmode] [hocr]\n"
+                    + "   or  java -jar VietOCR.jar imagefile outputfile [-l lang] [-psm pagesegmode] [hocr] [pdf]\n"
                     + "       (to execute the program in command-line mode)");
             return;
         }
 
-        boolean hocr = false;
+        String outputFormat = "txt";
         for (String arg : args) {
             if ("hocr".equals(arg)) {
-                hocr = true;
+                outputFormat = "hocr";
+            } else if ("pdf".equals(arg)) {
+                outputFormat = "pdf";
             }
         }
                 
         final File imageFile = new File(args[0]);
-        final File outputFile = new File(args[1] + (hocr ? ".html" : ".txt"));
+        final File outputFile = new File(args[1] + "." + outputFormat);
 
         if (!imageFile.exists()) {
             System.err.println("Input file does not exist.");
@@ -56,13 +58,13 @@ public class ConsoleApp {
         String curLangCode = "eng"; //default language
         String psm = "3"; // Fully automatic page segmentation, but no OSD (default)
 
-        if ((args.length == 4 && !hocr) || (args.length == 5 && hocr)) {
+        if ((args.length == 4) || (args.length == 5)) {
             if (args[2].equals("-l")) {
                 curLangCode = args[3];
             } else if (args[2].equals("-psm")) {
                 psm = args[3];
             }
-        } else if ((args.length == 6 && !hocr) || (args.length == 7 && hocr)) {
+        } else if ((args.length == 6) || (args.length == 7)) {
             curLangCode = args[3];
             psm = args[5];
             try {
@@ -84,7 +86,7 @@ public class ConsoleApp {
         }
 
         try {
-            OCRHelper.performOCR(imageFile, outputFile, tessPath, curLangCode, psm, hocr);
+            OCRHelper.performOCR(imageFile, outputFile, tessPath, curLangCode, psm, outputFormat);
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
