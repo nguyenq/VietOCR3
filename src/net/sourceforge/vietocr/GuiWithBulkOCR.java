@@ -166,7 +166,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 if (!isCancelled()) {
                     publish(imageFile.getPath()); // interim result
                     try {
-                        String outputFilename = imageFile.getName();
+                        String outputFilename = imageFile.getPath().substring(inputFolder.length() + 1);
                         OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename), tessPath, curLangCode, selectedPSM, outputFormat);
                     } catch (Exception e) {
                         publish("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **");

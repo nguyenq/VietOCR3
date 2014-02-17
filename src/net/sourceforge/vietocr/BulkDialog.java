@@ -68,6 +68,7 @@ public class BulkDialog extends javax.swing.JDialog {
         jTextFieldFolder = new javax.swing.JTextField();
         jLabelOutput = new javax.swing.JLabel();
         jTextFieldOutput = new javax.swing.JTextField();
+        jLabelOutputFormat = new javax.swing.JLabel();
         jComboBoxOutputFormat = new javax.swing.JComboBox();
         jButtonInput = new javax.swing.JButton();
         jButtonOutput = new javax.swing.JButton();
@@ -123,6 +124,15 @@ public class BulkDialog extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
         jPanelImageFolder.add(jTextFieldOutput, gridBagConstraints);
+
+        jLabelOutputFormat.setLabelFor(jComboBoxOutputFormat);
+        jLabelOutputFormat.setText("Output Format");
+        jLabelOutputFormat.setToolTipText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        jPanelImageFolder.add(jLabelOutputFormat, gridBagConstraints);
+        jLabelOutputFormat.getAccessibleContext().setAccessibleName("jLabelOutputFormat");
 
         jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "txt", "pdf", "hocr" }));
         jComboBoxOutputFormat.setToolTipText("Output Format");
@@ -331,6 +341,7 @@ public class BulkDialog extends javax.swing.JDialog {
     private javax.swing.JComboBox jComboBoxOutputFormat;
     private javax.swing.JLabel jLabelInput;
     private javax.swing.JLabel jLabelOutput;
+    private javax.swing.JLabel jLabelOutputFormat;
     private javax.swing.JPanel jPanelCommand;
     private javax.swing.JPanel jPanelImageFolder;
     private javax.swing.JTextField jTextFieldFolder;
