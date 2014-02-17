@@ -26,8 +26,6 @@ public class OCRFiles extends OCR<File> {
 
     private final String LANG_OPTION = "-l";
     private final String PSM_OPTION = "-psm";
-    private final String HOCR_OPTION = "hocr";
-    private final String PDF_OPTION = "pdf";
     private final String tessPath;
     final static String OUTPUT_FILE_NAME = "TessOutput";
     final static String TEXTFILE_EXTENSION = ".txt";
@@ -50,7 +48,7 @@ public class OCRFiles extends OCR<File> {
     @Override
     public String recognizeText(final List<File> tiffFiles) throws Exception {
         File tempTessOutputFile = File.createTempFile(OUTPUT_FILE_NAME, TEXTFILE_EXTENSION);
-        String outputFileName = Utilities.stripExtension(tempTessOutputFile.getPath()); // chop the .html/.txt extension
+        String outputFileName = Utilities.stripExtension(tempTessOutputFile.getPath()); // chop the file extension
 
         List<String> cmd = new ArrayList<String>();
         cmd.add(tessPath + "/tesseract");
@@ -119,10 +117,8 @@ public class OCRFiles extends OCR<File> {
         cmd.add(PSM_OPTION);
         cmd.add(String.valueOf(getPageSegMode()));
         
-        if ("hocr".equals(outputFormat)) {
-            cmd.add(HOCR_OPTION);
-        } else if ("pdf".equals(outputFormat)) {
-            cmd.add(PDF_OPTION);
+        if ("hocr".equals(outputFormat) || "pdf".equals(outputFormat)) {
+            cmd.add(outputFormat);
         }
         
         ProcessBuilder pb = new ProcessBuilder();

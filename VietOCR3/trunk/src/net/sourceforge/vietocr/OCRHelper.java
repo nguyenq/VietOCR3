@@ -41,11 +41,13 @@ public class OCRHelper {
             if (!dir.exists()) {
                 dir.mkdirs();
             }
+            
+            boolean postprocess = "txt+".equals(outputFormat);
 
             OCR<File> ocrEngine = new OCRFiles(tessPath);
             ocrEngine.setPageSegMode(pageSegMode);
             ocrEngine.setLanguage(langCode);
-            ocrEngine.setOutputFormat(outputFormat);
+            ocrEngine.setOutputFormat(outputFormat.replace("+", ""));
 
             // convert PDF to TIFF
             if (imageFile.getName().toLowerCase().endsWith(".pdf")) {
@@ -57,7 +59,7 @@ public class OCRHelper {
             ocrEngine.processPages(imageFile, outputFile);
 
             // post-corrections for txt+ output
-            if ("txt+".equals(outputFormat)) {
+            if (postprocess) {
                 outputFile = new File(outputFile.getPath() + ".txt");
                 String result = Utilities.readTextFile(outputFile);
 
