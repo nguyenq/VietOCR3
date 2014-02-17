@@ -28,29 +28,28 @@ public class OCRFiles extends OCR<File> {
     private final String PSM_OPTION = "-psm";
     private final String HOCR_OPTION = "hocr";
     private final String PDF_OPTION = "pdf";
-    private final String EOL = "\n";
     private final String tessPath;
     final static String OUTPUT_FILE_NAME = "TessOutput";
     final static String TEXTFILE_EXTENSION = ".txt";
-    final static String HTMLFILE_EXTENSION = ".html";
-    final static String PDFFILE_EXTENSION = ".pdf";
 
     /**
      * Creates a new instance of OCR
+     * @param tessPath
      */
     public OCRFiles(String tessPath) {
         this.tessPath = tessPath;
     }
 
     /**
+     * Recognizes TIFF files.
+     * 
      * @param tiffFiles
-     * @return
+     * @return recognized text
      * @throws java.lang.Exception
      */
     @Override
     public String recognizeText(final List<File> tiffFiles) throws Exception {
-        String outputFormat = this.getOutputFormat();
-        File tempTessOutputFile = File.createTempFile(OUTPUT_FILE_NAME, outputFormat == HOCR_OPTION ? HTMLFILE_EXTENSION : outputFormat == PDF_OPTION ? PDFFILE_EXTENSION : TEXTFILE_EXTENSION);
+        File tempTessOutputFile = File.createTempFile(OUTPUT_FILE_NAME, TEXTFILE_EXTENSION);
         String outputFileName = Utilities.stripExtension(tempTessOutputFile.getPath()); // chop the .html/.txt extension
 
         List<String> cmd = new ArrayList<String>();
@@ -61,11 +60,6 @@ public class OCRFiles extends OCR<File> {
         cmd.add(this.getLanguage());
         cmd.add(PSM_OPTION);
         cmd.add(String.valueOf(getPageSegMode()));
-        if ("hocr".equals(outputFormat)) {
-            cmd.add(HOCR_OPTION);
-        } else if ("pdf".equals(outputFormat)) {
-            cmd.add(PDF_OPTION);
-        }
         
         ProcessBuilder pb = new ProcessBuilder();
         pb.directory(new File(tessPath));
@@ -76,7 +70,7 @@ public class OCRFiles extends OCR<File> {
         for (File tiffFile : tiffFiles) {
             cmd.set(1, tiffFile.getPath());
             pb.command(cmd);
-            System.out.println(cmd);
+//            System.out.println(cmd);
             Process process = pb.start();
             // any error message?
             // this has become unneccesary b/c the standard error is already merged with the standard output
@@ -90,24 +84,8 @@ public class OCRFiles extends OCR<File> {
             System.out.println("Exit value = " + w);
 
             if (w == 0) {
-                if ("hocr".equals(outputFormat) || "pdf".equals(outputFormat)) {
-                    tempTessOutputFile.renameTo(tiffFile);
-                    
-                    return "";
-                }
-                BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(tempTessOutputFile), "UTF-8"));
-
-                String str;
-
-                while ((str = in.readLine()) != null) {
-                    result.append(str).append(EOL);
-                }
-
-                int length = result.length();
-                if (length >= EOL.length()) {
-                    result.setLength(length - EOL.length()); // remove last EOL
-                }
-                in.close();
+                String str = Utilities.readTextFile(tempTessOutputFile);
+                result.append(str);
             } else {
                 tempTessOutputFile.delete();
                 String msg = outputGobbler.getMessage(); // get actual message from the engine;
@@ -122,6 +100,13 @@ public class OCRFiles extends OCR<File> {
         return result.toString();
     }
 
+    /**
+     * Processes OCR for input file with specified output format.
+     * 
+     * @param inputImage
+     * @param outputFile
+     * @throws Exception 
+     */
     @Override
     public void processPages(File inputImage, File outputFile) throws Exception {
         String outputFormat = this.getOutputFormat();
@@ -131,10 +116,8 @@ public class OCRFiles extends OCR<File> {
         cmd.add(outputFile.getPath());
         cmd.add(LANG_OPTION);
         cmd.add(this.getLanguage());
-        if (!"pdf".equals(outputFormat)) {
-            cmd.add(PSM_OPTION);
-            cmd.add(String.valueOf(getPageSegMode()));
-        }
+        cmd.add(PSM_OPTION);
+        cmd.add(String.valueOf(getPageSegMode()));
         
         if ("hocr".equals(outputFormat)) {
             cmd.add(HOCR_OPTION);
@@ -146,7 +129,7 @@ public class OCRFiles extends OCR<File> {
         pb.directory(new File(tessPath));
         pb.redirectErrorStream(true);
         pb.command(cmd);
-        System.out.println(cmd);
+//        System.out.println(cmd);
         Process process = pb.start();
 
         StreamGobbler outputGobbler = new StreamGobbler(process.getInputStream());
@@ -155,8 +138,12 @@ public class OCRFiles extends OCR<File> {
         int w = process.waitFor();
         System.out.println("Exit value = " + w);
 
-        if (w == 0) {
-
+        if (w != 0) {
+            String msg = outputGobbler.getMessage(); // get actual message from the engine;
+            if (msg.trim().length() == 0) {
+                msg = "Errors occurred.";
+            }
+            throw new RuntimeException(msg);
         }
     }
 }

@@ -86,3 +86,8 @@ Version 3.5 (25 January 2014)
 - Incorporate image filters
 - Implement Undo function
 - Additional translations
+
+Version 4.0 Beta (17 February 2014)
+- Upgrade to Tesseract 3.03 RC (r1051)
+- Upgrade Tess4J library
+- Add support for searchable PDF output in bulk/batch mode
