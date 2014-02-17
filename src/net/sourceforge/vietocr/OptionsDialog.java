@@ -17,6 +17,7 @@ package net.sourceforge.vietocr;
 
 import net.sourceforge.vietocr.utilities.FormLocalizer;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.Locale;
@@ -186,14 +187,18 @@ public class OptionsDialog extends javax.swing.JDialog {
         jPanelWatchFolder.add(jCheckBoxWatch, gridBagConstraints);
 
         jLabelOutputFormat.setLabelFor(jComboBoxOutputFormat);
-        jLabelOutputFormat.setText("Output Format");
+        jLabelOutputFormat.setText(bundle.getString("jComboBoxOutputFormat.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         jPanelWatchFolder.add(jLabelOutputFormat, gridBagConstraints);
 
-        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "txt", "pdf", "hocr" }));
-        jComboBoxOutputFormat.setToolTipText("Output Format");
+        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "txt", "txt+", "pdf", "hocr" }));
+        jComboBoxOutputFormat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jComboBoxOutputFormatMouseEntered(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -389,6 +394,22 @@ public class OptionsDialog extends javax.swing.JDialog {
         dangAmbigsPath = this.jTextFieldDangAmbigs.getText();
         dangAmbigsOn = this.jCheckBoxDangAmbigs.isSelected();
     }//GEN-LAST:event_formWindowDeactivated
+
+    private void jComboBoxOutputFormatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxOutputFormatMouseEntered
+        String val = this.jComboBoxOutputFormat.getSelectedItem().toString();
+        if ("txt+".equals(val)) {
+            val = "Text with postprocessing";
+        } else if ("txt".equals(val)) {
+            val = "Text with no postprocessing";
+        } else if ("pdf".equals(val)) {
+            val = "PDF";
+        } else if ("hocr".equals(val)) {
+            val = "hOCR";
+        } else {
+            val = null;
+        }
+        this.jComboBoxOutputFormat.setToolTipText(val);
+    }//GEN-LAST:event_jComboBoxOutputFormatMouseEntered
 
     public int showDialog() {
         setVisible(true);

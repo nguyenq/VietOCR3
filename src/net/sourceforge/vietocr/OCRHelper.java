@@ -56,8 +56,8 @@ public class OCRHelper {
             // recognize image file
             ocrEngine.processPages(imageFile, outputFile);
 
-            // post-corrections only for txt output
-            if ("txt".equals(outputFormat)) {
+            // post-corrections for txt+ output
+            if ("txt+".equals(outputFormat)) {
                 outputFile = new File(outputFile.getPath() + ".txt");
                 String result = Utilities.readTextFile(outputFile);
 

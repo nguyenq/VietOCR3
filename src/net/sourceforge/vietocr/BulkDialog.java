@@ -93,6 +93,7 @@ public class BulkDialog extends javax.swing.JDialog {
         jPanelImageFolder.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 1, 10));
         jPanelImageFolder.setLayout(new java.awt.GridBagLayout());
 
+        jLabelInput.setLabelFor(jTextFieldFolder);
         jLabelInput.setText(bundle.getString("jLabelInput.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -108,6 +109,7 @@ public class BulkDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
         jPanelImageFolder.add(jTextFieldFolder, gridBagConstraints);
 
+        jLabelOutput.setLabelFor(jTextFieldOutput);
         jLabelOutput.setText(bundle.getString("jLabelOutput.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -126,7 +128,7 @@ public class BulkDialog extends javax.swing.JDialog {
         jPanelImageFolder.add(jTextFieldOutput, gridBagConstraints);
 
         jLabelOutputFormat.setLabelFor(jComboBoxOutputFormat);
-        jLabelOutputFormat.setText("Output Format");
+        jLabelOutputFormat.setText(bundle.getString("jComboBoxOutputFormat.Text")); // NOI18N
         jLabelOutputFormat.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -134,8 +136,12 @@ public class BulkDialog extends javax.swing.JDialog {
         jPanelImageFolder.add(jLabelOutputFormat, gridBagConstraints);
         jLabelOutputFormat.getAccessibleContext().setAccessibleName("jLabelOutputFormat");
 
-        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "txt", "pdf", "hocr" }));
-        jComboBoxOutputFormat.setToolTipText("Output Format");
+        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "txt", "txt+", "pdf", "hocr" }));
+        jComboBoxOutputFormat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jComboBoxOutputFormatMouseEntered(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -243,6 +249,22 @@ public class BulkDialog extends javax.swing.JDialog {
         inputFolder = this.jTextFieldFolder.getText();
         outputFolder = this.jTextFieldOutput.getText();
     }//GEN-LAST:event_formWindowDeactivated
+
+    private void jComboBoxOutputFormatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxOutputFormatMouseEntered
+        String val = this.jComboBoxOutputFormat.getSelectedItem().toString();
+        if ("txt+".equals(val)) {
+            val = "Text with postprocessing";
+        } else if ("txt".equals(val)) {
+            val = "Text with no postprocessing";
+        } else if ("pdf".equals(val)) {
+            val = "PDF";
+        } else if ("hocr".equals(val)) {
+            val = "hOCR";
+        } else {
+            val = null;
+        }
+        this.jComboBoxOutputFormat.setToolTipText(val);
+    }//GEN-LAST:event_jComboBoxOutputFormatMouseEntered
 
     public int showDialog() {
         setVisible(true);
