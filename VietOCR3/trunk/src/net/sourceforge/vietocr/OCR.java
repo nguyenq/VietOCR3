@@ -16,6 +16,7 @@
 package net.sourceforge.vietocr;
 
 import java.awt.Rectangle;
+import java.io.File;
 import java.util.List;
 
 public abstract class OCR<T> {
@@ -23,7 +24,6 @@ public abstract class OCR<T> {
     protected Rectangle rect = null;
     private String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)
     private String language = "eng";
-    private boolean hocr;
     private String outputFormat = "txt";
     
     /**
@@ -47,6 +47,10 @@ public abstract class OCR<T> {
      * @throws Exception
      */
     public abstract String recognizeText(List<T> imageEntities) throws Exception;
+    
+    public void processPages(File imageFile, File outputFile) throws Exception {
+        // to be overridden by subclass
+    }
 
     /**
      * Gets page segmentation mode.
@@ -60,24 +64,10 @@ public abstract class OCR<T> {
     /**
      * Sets page segmentation mode.
      *
-     * @param psm the mode to set
+     * @param pageSegMode the mode to set
      */
-    public void setPageSegMode(String mode) {
-        this.pageSegMode = mode;
-    }
-
-    /**
-     * @return the hocr
-     */
-    public boolean isHocr() {
-        return hocr;
-    }
-
-    /**
-     * @param hocr the hocr to set
-     */
-    public void setHocr(boolean hocr) {
-        this.hocr = hocr;
+    public void setPageSegMode(String pageSegMode) {
+        this.pageSegMode = pageSegMode;
     }
 
     /**
@@ -88,7 +78,7 @@ public abstract class OCR<T> {
     }
 
     /**
-     * @param outputFormat the outputFormat to set
+     * @param outputFormat the outputFormat to set; possible values: txt, hocr, pdf
      */
     public void setOutputFormat(String outputFormat) {
         this.outputFormat = outputFormat;

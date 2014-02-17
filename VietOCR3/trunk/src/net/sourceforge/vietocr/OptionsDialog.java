@@ -92,7 +92,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         jLabelOutput = new javax.swing.JLabel();
         jTextFieldOutput = new javax.swing.JTextField();
         jCheckBoxWatch = new javax.swing.JCheckBox();
-        jCheckBoxHocr = new javax.swing.JCheckBox();
         jComboBoxOutputFormat = new javax.swing.JComboBox();
         jButtonWatch = new javax.swing.JButton();
         jButtonOutput = new javax.swing.JButton();
@@ -185,16 +184,10 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
         jPanelWatchFolder.add(jCheckBoxWatch, gridBagConstraints);
 
-        jCheckBoxHocr.setText("hocr");
+        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "txt", "pdf", "hocr" }));
+        jComboBoxOutputFormat.setToolTipText("Output Format");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(0, -4, 0, 0);
-        jPanelWatchFolder.add(jCheckBoxHocr, gridBagConstraints);
-
-        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Text", "PDF", "hOCR" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         jPanelWatchFolder.add(jComboBoxOutputFormat, gridBagConstraints);
 
@@ -435,7 +428,6 @@ public class OptionsDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonTess;
     private javax.swing.JButton jButtonWatch;
     private javax.swing.JCheckBox jCheckBoxDangAmbigs;
-    private javax.swing.JCheckBox jCheckBoxHocr;
     private javax.swing.JCheckBox jCheckBoxTessLib;
     private javax.swing.JCheckBox jCheckBoxWatch;
     private javax.swing.JComboBox jComboBoxOutputFormat;

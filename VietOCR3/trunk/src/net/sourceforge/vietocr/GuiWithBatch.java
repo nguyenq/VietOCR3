@@ -24,9 +24,9 @@ import net.sourceforge.vietocr.utilities.Watcher;
 
 public class GuiWithBatch extends GuiWithSettings {
 
-    private StatusFrame statusFrame;
-    private Watcher watcher;
-    private Timer timer;
+    private final StatusFrame statusFrame;
+    private final Watcher watcher;
+    private final Timer timer;
 
     public GuiWithBatch() {
         statusFrame = new StatusFrame();
@@ -73,7 +73,7 @@ public class GuiWithBatch extends GuiWithSettings {
                 @Override
                 public void run() {
                     try {
-                        OCRHelper.performOCR(imageFile, new File(outputFolder, imageFile.getName() + (hocr ? ".html" : ".txt")), tessPath, curLangCode, selectedPSM, hocr);
+                        OCRHelper.performOCR(imageFile, new File(outputFolder, imageFile.getName()), tessPath, curLangCode, selectedPSM, outputFormat);
                     } catch (Exception e) {
                         statusFrame.getTextArea().append("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **\n");
                     }
