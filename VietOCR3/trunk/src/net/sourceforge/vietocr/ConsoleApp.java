@@ -44,6 +44,8 @@ public class ConsoleApp {
                 outputFormat = "hocr";
             } else if ("pdf".equals(arg)) {
                 outputFormat = "pdf";
+            } else if ("txt+".equals(arg)) {
+                outputFormat = "txt+";    
             }
         }
                 
