@@ -92,6 +92,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         jLabelOutput = new javax.swing.JLabel();
         jTextFieldOutput = new javax.swing.JTextField();
         jCheckBoxWatch = new javax.swing.JCheckBox();
+        jLabelOutputFormat = new javax.swing.JLabel();
         jComboBoxOutputFormat = new javax.swing.JComboBox();
         jButtonWatch = new javax.swing.JButton();
         jButtonOutput = new javax.swing.JButton();
@@ -180,15 +181,24 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
         jPanelWatchFolder.add(jCheckBoxWatch, gridBagConstraints);
+
+        jLabelOutputFormat.setLabelFor(jComboBoxOutputFormat);
+        jLabelOutputFormat.setText("Output Format");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        jPanelWatchFolder.add(jLabelOutputFormat, gridBagConstraints);
 
         jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "txt", "pdf", "hocr" }));
         jComboBoxOutputFormat.setToolTipText("Output Format");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 0);
         jPanelWatchFolder.add(jComboBoxOutputFormat, gridBagConstraints);
 
         jButtonWatch.setText("...");
@@ -433,6 +443,7 @@ public class OptionsDialog extends javax.swing.JDialog {
     private javax.swing.JComboBox jComboBoxOutputFormat;
     private javax.swing.JLabel jLabelDangAmbigs;
     private javax.swing.JLabel jLabelOutput;
+    private javax.swing.JLabel jLabelOutputFormat;
     private javax.swing.JLabel jLabelTess;
     private javax.swing.JLabel jLabelWatch;
     private javax.swing.JPanel jPanelCommand;
