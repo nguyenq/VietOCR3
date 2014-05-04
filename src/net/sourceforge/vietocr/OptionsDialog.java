@@ -87,16 +87,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         jButtonOK = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanelWatchFolder = new javax.swing.JPanel();
-        jLabelWatch = new javax.swing.JLabel();
-        jTextFieldWatch = new javax.swing.JTextField();
-        jLabelOutput = new javax.swing.JLabel();
-        jTextFieldOutput = new javax.swing.JTextField();
-        jCheckBoxWatch = new javax.swing.JCheckBox();
-        jLabelOutputFormat = new javax.swing.JLabel();
-        jComboBoxOutputFormat = new javax.swing.JComboBox();
-        jButtonWatch = new javax.swing.JButton();
-        jButtonOutput = new javax.swing.JButton();
         jPanelTessPath = new javax.swing.JPanel();
         jLabelTess = new javax.swing.JLabel();
         jTextFieldTess = new javax.swing.JTextField();
@@ -107,6 +97,16 @@ public class OptionsDialog extends javax.swing.JDialog {
         jButtonDangAmbigs = new javax.swing.JButton();
         jTextFieldDangAmbigs = new javax.swing.JTextField();
         jCheckBoxDangAmbigs = new javax.swing.JCheckBox();
+        jPanelWatchFolder = new javax.swing.JPanel();
+        jLabelWatch = new javax.swing.JLabel();
+        jTextFieldWatch = new javax.swing.JTextField();
+        jLabelOutput = new javax.swing.JLabel();
+        jTextFieldOutput = new javax.swing.JTextField();
+        jCheckBoxWatch = new javax.swing.JCheckBox();
+        jLabelOutputFormat = new javax.swing.JLabel();
+        jComboBoxOutputFormat = new javax.swing.JComboBox();
+        jButtonWatch = new javax.swing.JButton();
+        jButtonOutput = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/OptionsDialog"); // NOI18N
@@ -141,6 +141,79 @@ public class OptionsDialog extends javax.swing.JDialog {
         jPanelCommand.add(jButtonCancel);
 
         getContentPane().add(jPanelCommand, java.awt.BorderLayout.SOUTH);
+
+        jPanelTessPath.setLayout(new java.awt.GridBagLayout());
+
+        jLabelTess.setLabelFor(jTextFieldTess);
+        jLabelTess.setText(bundle.getString("jLabelTess.Text")); // NOI18N
+        jPanelTessPath.add(jLabelTess, new java.awt.GridBagConstraints());
+
+        jTextFieldTess.setEditable(false);
+        jTextFieldTess.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
+        jPanelTessPath.add(jTextFieldTess, gridBagConstraints);
+
+        jButtonTess.setText("...");
+        jButtonTess.setToolTipText(bundle.getString("jButtonTess.ToolTipText")); // NOI18N
+        jButtonTess.setPreferredSize(new java.awt.Dimension(30, 23));
+        jButtonTess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTessActionPerformed(evt);
+            }
+        });
+        jPanelTessPath.add(jButtonTess, new java.awt.GridBagConstraints());
+
+        jCheckBoxTessLib.setText(bundle.getString("jCheckBoxTessLib.Text")); // NOI18N
+        jCheckBoxTessLib.setActionCommand("libtesseract302");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
+        jPanelTessPath.add(jCheckBoxTessLib, gridBagConstraints);
+        jCheckBoxTessLib.getAccessibleContext().setAccessibleName("");
+
+        jTabbedPane1.addTab("Tesseract", jPanelTessPath);
+
+        jPanelDangAmbigsPath.setLayout(new java.awt.GridBagLayout());
+
+        jLabelDangAmbigs.setLabelFor(jTextFieldDangAmbigs);
+        jLabelDangAmbigs.setText(bundle.getString("jLabelDangAmbigs.Text")); // NOI18N
+        jPanelDangAmbigsPath.add(jLabelDangAmbigs, new java.awt.GridBagConstraints());
+
+        jButtonDangAmbigs.setText("...");
+        jButtonDangAmbigs.setToolTipText(bundle.getString("jButtonDangAmbigs.ToolTipText")); // NOI18N
+        jButtonDangAmbigs.setPreferredSize(new java.awt.Dimension(30, 23));
+        jButtonDangAmbigs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDangAmbigsActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        jPanelDangAmbigsPath.add(jButtonDangAmbigs, gridBagConstraints);
+
+        jTextFieldDangAmbigs.setEditable(false);
+        jTextFieldDangAmbigs.setPreferredSize(new java.awt.Dimension(200, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
+        jPanelDangAmbigsPath.add(jTextFieldDangAmbigs, gridBagConstraints);
+
+        jCheckBoxDangAmbigs.setText(bundle.getString("jCheckBoxDangAmbigs.Text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
+        jPanelDangAmbigsPath.add(jCheckBoxDangAmbigs, gridBagConstraints);
+
+        jTabbedPane1.addTab("DangAmbigs.txt", jPanelDangAmbigsPath);
 
         jPanelWatchFolder.setLayout(new java.awt.GridBagLayout());
 
@@ -230,79 +303,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         jPanelWatchFolder.add(jButtonOutput, gridBagConstraints);
 
         jTabbedPane1.addTab(bundle.getString("Watch"), jPanelWatchFolder); // NOI18N
-
-        jPanelTessPath.setLayout(new java.awt.GridBagLayout());
-
-        jLabelTess.setLabelFor(jTextFieldTess);
-        jLabelTess.setText(bundle.getString("jLabelTess.Text")); // NOI18N
-        jPanelTessPath.add(jLabelTess, new java.awt.GridBagConstraints());
-
-        jTextFieldTess.setEditable(false);
-        jTextFieldTess.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
-        jPanelTessPath.add(jTextFieldTess, gridBagConstraints);
-
-        jButtonTess.setText("...");
-        jButtonTess.setToolTipText(bundle.getString("jButtonTess.ToolTipText")); // NOI18N
-        jButtonTess.setPreferredSize(new java.awt.Dimension(30, 23));
-        jButtonTess.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTessActionPerformed(evt);
-            }
-        });
-        jPanelTessPath.add(jButtonTess, new java.awt.GridBagConstraints());
-
-        jCheckBoxTessLib.setText(bundle.getString("jCheckBoxTessLib.Text")); // NOI18N
-        jCheckBoxTessLib.setActionCommand("libtesseract302");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
-        jPanelTessPath.add(jCheckBoxTessLib, gridBagConstraints);
-        jCheckBoxTessLib.getAccessibleContext().setAccessibleName("");
-
-        jTabbedPane1.addTab("Tesseract", jPanelTessPath);
-
-        jPanelDangAmbigsPath.setLayout(new java.awt.GridBagLayout());
-
-        jLabelDangAmbigs.setLabelFor(jTextFieldDangAmbigs);
-        jLabelDangAmbigs.setText(bundle.getString("jLabelDangAmbigs.Text")); // NOI18N
-        jPanelDangAmbigsPath.add(jLabelDangAmbigs, new java.awt.GridBagConstraints());
-
-        jButtonDangAmbigs.setText("...");
-        jButtonDangAmbigs.setToolTipText(bundle.getString("jButtonDangAmbigs.ToolTipText")); // NOI18N
-        jButtonDangAmbigs.setPreferredSize(new java.awt.Dimension(30, 23));
-        jButtonDangAmbigs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDangAmbigsActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        jPanelDangAmbigsPath.add(jButtonDangAmbigs, gridBagConstraints);
-
-        jTextFieldDangAmbigs.setEditable(false);
-        jTextFieldDangAmbigs.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
-        jPanelDangAmbigsPath.add(jTextFieldDangAmbigs, gridBagConstraints);
-
-        jCheckBoxDangAmbigs.setText(bundle.getString("jCheckBoxDangAmbigs.Text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
-        jPanelDangAmbigsPath.add(jCheckBoxDangAmbigs, gridBagConstraints);
-
-        jTabbedPane1.addTab("DangAmbigs.txt", jPanelDangAmbigsPath);
 
         getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
         jTabbedPane1.getAccessibleContext().setAccessibleName("Watch");
