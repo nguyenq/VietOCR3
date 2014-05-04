@@ -87,7 +87,8 @@ Version 3.5 (25 January 2014)
 - Implement Undo function
 - Additional translations
 
-Version 4.0 Beta (17 February 2014)
-- Upgrade to Tesseract 3.03 RC (r1051)
+Version 4.0 Beta (4 May 2014)
+- Upgrade to Tesseract 3.03 RC (r1092)
 - Upgrade Tess4J library
+- Update JNA to v4.1.0
 - Add support for searchable PDF output in bulk/batch mode
