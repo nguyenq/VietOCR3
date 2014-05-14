@@ -136,7 +136,7 @@ public class BulkDialog extends javax.swing.JDialog {
         jPanelImageFolder.add(jLabelOutputFormat, gridBagConstraints);
         jLabelOutputFormat.getAccessibleContext().setAccessibleName("jLabelOutputFormat");
 
-        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "txt", "txt+", "pdf", "hocr" }));
+        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "text", "text+", "pdf", "hocr" }));
         jComboBoxOutputFormat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jComboBoxOutputFormatMouseEntered(evt);
@@ -252,9 +252,9 @@ public class BulkDialog extends javax.swing.JDialog {
 
     private void jComboBoxOutputFormatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxOutputFormatMouseEntered
         String val = this.jComboBoxOutputFormat.getSelectedItem().toString();
-        if ("txt+".equals(val)) {
+        if ("text+".equals(val)) {
             val = "Text with postprocessing";
-        } else if ("txt".equals(val)) {
+        } else if ("text".equals(val)) {
             val = "Text with no postprocessing";
         } else if ("pdf".equals(val)) {
             val = "PDF";

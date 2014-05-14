@@ -38,14 +38,14 @@ public class ConsoleApp {
             return;
         }
 
-        String outputFormat = "txt";
+        String outputFormat = "text";
         for (String arg : args) {
             if ("hocr".equals(arg)) {
                 outputFormat = "hocr";
             } else if ("pdf".equals(arg)) {
                 outputFormat = "pdf";
-            } else if ("txt+".equals(arg)) {
-                outputFormat = "txt+";    
+            } else if ("text+".equals(arg)) {
+                outputFormat = "text+";    
             }
         }
                 

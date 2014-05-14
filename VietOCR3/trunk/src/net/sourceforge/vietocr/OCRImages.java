@@ -18,6 +18,7 @@ package net.sourceforge.vietocr;
 import java.io.File;
 import java.util.List;
 import javax.imageio.IIOImage;
+import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 
 /**
@@ -41,7 +42,7 @@ public class OCRImages extends OCR<IIOImage> {
     public String recognizeText(List<IIOImage> images) throws Exception {
         instance.setLanguage(this.getLanguage());
         instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
-        instance.setOutputFormat(this.getOutputFormat());
+        instance.setRenderedFormat(ITesseract.RenderedFormat.valueOf(this.getOutputFormat().toUpperCase()));
         String text = instance.doOCR(images, rect);
 
         return text;
