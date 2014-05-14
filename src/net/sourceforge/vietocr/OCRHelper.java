@@ -42,7 +42,7 @@ public class OCRHelper {
                 dir.mkdirs();
             }
             
-            boolean postprocess = "txt+".equals(outputFormat);
+            boolean postprocess = "text+".equals(outputFormat);
 
             OCR<File> ocrEngine = new OCRFiles(tessPath);
             ocrEngine.setPageSegMode(pageSegMode);
@@ -58,7 +58,7 @@ public class OCRHelper {
             // recognize image file
             ocrEngine.processPages(imageFile, outputFile);
 
-            // post-corrections for txt+ output
+            // post-corrections for text+ output
             if (postprocess) {
                 outputFile = new File(outputFile.getPath() + ".txt");
                 String result = Utilities.readTextFile(outputFile);

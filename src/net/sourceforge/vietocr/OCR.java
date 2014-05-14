@@ -24,7 +24,7 @@ public abstract class OCR<T> {
     protected Rectangle rect = null;
     private String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)
     private String language = "eng";
-    private String outputFormat = "txt";
+    private String outputFormat = "text";
     
     /**
      * Recognizes files or images.
