@@ -87,8 +87,8 @@ Version 3.5 (25 January 2014)
 - Implement Undo function
 - Additional translations
 
-Version 4.0 Beta (13 May 2014)
-- Upgrade to Tesseract 3.03 RC (r1101)
+Version 4.0 Beta (16 May 2014)
+- Upgrade to Tesseract 3.03 RC (r1102)
 - Upgrade Tess4J library
 - Update JNA to v4.1.0
 - Update Ghost4J to v0.5.1
