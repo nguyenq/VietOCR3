@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import javax.swing.*;
+import net.sourceforge.vietocr.utilities.Utilities;
 
 public class GuiWithBulkOCR extends GuiWithPostprocess {
 
@@ -83,43 +84,11 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             statusFrame.getTextArea().append("\t-- " + bundle.getString("Beginning_of_task") + " --\n");
 
             List<File> files = new ArrayList<File>();
-            listImageFiles(files, new File(inputFolder));
+            Utilities.listImageFiles(files, new File(inputFolder));
 
             // instantiate SwingWorker for OCR
             ocrWorker = new BulkOcrWorker(files);
             ocrWorker.execute();
-        }
-    }
-    
-    /**
-     * Lists image files and directories.
-     * 
-     * @param list
-     * @param directory 
-     */
-    void listImageFiles(List<File> list, File directory) {
-        // list image files and subdir
-        File[] files = directory.listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File file) {
-                return file.getName().toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp|pdf)$") || file.isDirectory();
-            }
-        });
-
-        List<File> dirs = new ArrayList<File>();
-        
-        // process files first
-        for (File file : files) {
-            if (file.isFile()) {
-                list.add(file);
-            } else {
-                dirs.add(file);
-            }
-        }
-        
-        // then process directories
-        for (File dir : dirs) {
-            listImageFiles(list, dir);
         }
     }
 

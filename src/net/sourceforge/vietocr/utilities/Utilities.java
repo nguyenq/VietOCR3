@@ -17,6 +17,8 @@ package net.sourceforge.vietocr.utilities;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Utilities {
 
@@ -92,5 +94,38 @@ public class Utilities {
         in.close();
 
         return result.toString();
+    }
+    
+     
+    /**
+     * Lists image files recursively in a given directory.
+     * 
+     * @param list
+     * @param directory 
+     */
+    public static void listImageFiles(List<File> list, File directory) {
+        // list image files and subdir
+        File[] files = directory.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File file) {
+                return file.getName().toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp|pdf)$") || file.isDirectory();
+            }
+        });
+
+        List<File> dirs = new ArrayList<File>();
+        
+        // process files first
+        for (File file : files) {
+            if (file.isFile()) {
+                list.add(file);
+            } else {
+                dirs.add(file);
+            }
+        }
+        
+        // then process directories
+        for (File dir : dirs) {
+            listImageFiles(list, dir);
+        }
     }
 }
