@@ -17,7 +17,7 @@ package net.sourceforge.vietocr;
 
 import java.io.*;
 import net.sourceforge.vietocr.postprocessing.*;
-import net.sourceforge.vietocr.utilities.Utilities;
+import net.sourceforge.vietocr.utilities.*;
 
 public class OCRHelper {
 
