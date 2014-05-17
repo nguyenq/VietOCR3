@@ -61,13 +61,13 @@ tokia komanda:</p>
         <blockquote>
             <p><tt>sudo apt-get install libsane sane sane-utils libsane-extras xsane</tt></p>
         </blockquote>
-        <p>PDF failų palaikymas galimas naudojant „<a href="http://sourceforge.net/projects/ghostscript/">GPL Ghostscript</a>“ priemonę. Ją įdiegus, reikia užtikrinti, kad dinaminė biblioteka (<tt>gsdll32.dll</tt> arba <tt>libgs.so</tt>) patektų į sisteminės failų paieškos kelią, papildant atitinkamą aplinkos kintamąjį. „Windows“ sistemoje tai yra kintamasis <tt>Path</tt>, kurį galite redaguoti, atvėrę Valdymo skydą, jame spustelėję piktogramą „Sistema“, tada atverę kortelę „Išsamiau“ ir spustelėję mygtuką „Aplinkos kintamieji“. Pavyzdžiui, „GhostScript 9.10“ atveju, šį kintamąjį reikėtų papildyti tokia eilute:</p>
+        <p>PDF failų palaikymas galimas naudojant „<a href="http://sourceforge.net/projects/ghostscript/">GPL Ghostscript</a>“ priemonę. Ją įdiegus, reikia užtikrinti, kad dinaminė biblioteka (<tt>gsdll32.dll</tt> arba <tt>libgs.so</tt>) patektų į sisteminės failų paieškos kelią, papildant atitinkamą aplinkos kintamąjį. „Windows“ sistemoje tai yra kintamasis <tt>Path</tt>, kurį galite redaguoti, atvėrę Valdymo skydą, jame spustelėję piktogramą „Sistema“, tada atverę kortelę „Išsamiau“ ir spustelėję mygtuką „Aplinkos kintamieji“. Pavyzdžiui, „GhostScript 9.14“ atveju, šį kintamąjį reikėtų papildyti tokia eilute:</p>
         <blockquote>
-            <p><tt>;C:\Program Files\gs\gs9.10\bin</tt></p>
+            <p><tt>;C:\Program Files\gs\gs9.14\bin</tt></p>
         </blockquote>„Linux“ sistemoje:<blockquote>
             <p><tt>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</tt></p>
         </blockquote>
-        <p>kur <tt>/usr/lib</tt> aplanke yra nuoroda <tt>libgs.so</tt>, nurodanti failą <tt>libgs.so.9.10</tt>.</p>
+        <p>kur <tt>/usr/lib</tt> aplanke yra nuoroda <tt>libgs.so</tt>, nurodanti failą <tt>libgs.so.9.14</tt>.</p>
         <p>Rašybos tikrinimo funkcija galima panaudojant „Hunspell“ tikrintuvę, kurios <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
 žodynų</a> failai (<tt>.aff</tt>, <tt>.dic</tt>) turėtų būti patalpinti į aplanką
 <tt>dict</tt>, esantį „VietOCR“ programos aplanke. Be to, šiame aplanke galite sukurti
