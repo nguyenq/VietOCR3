@@ -26,10 +26,10 @@ public class OCRHelper {
      *
      * @param imageFile Image file
      * @param outputFile Without extension
-     * @param tessPath
-     * @param langCode
-     * @param pageSegMode
-     * @param outputFormat
+     * @param tessPath path to Tesseract executable
+     * @param langCode language code
+     * @param pageSegMode page segmentation mode
+     * @param outputFormat format of output file. Possible values: <code>text</code>, <code>text+</code> (with post-corrections), <code>hocr</code>, <code>pdf</code>
      * @throws Exception
      */
     public static void performOCR(File imageFile, File outputFile, String tessPath, String langCode, String pageSegMode, String outputFormat) throws Exception {
