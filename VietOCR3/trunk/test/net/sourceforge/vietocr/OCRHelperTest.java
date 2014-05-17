@@ -59,5 +59,7 @@ public class OCRHelperTest {
                 System.out.println(e.getMessage());
             }
         }
+        
+        assertTrue(new File(outputFolder).list().length > 0);
     }
 }

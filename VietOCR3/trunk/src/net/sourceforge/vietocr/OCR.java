@@ -48,9 +48,14 @@ public abstract class OCR<T> {
      */
     public abstract String recognizeText(List<T> imageEntities) throws Exception;
     
-    public void processPages(File imageFile, File outputFile) throws Exception {
-        // to be implemented by subclass
-    }
+    /**
+     * Processes image file to output file.
+     * 
+     * @param imageFile image file
+     * @param outputFile output file
+     * @throws Exception 
+     */
+    public abstract void processPages(File imageFile, File outputFile) throws Exception;
 
     /**
      * Gets page segmentation mode.
