@@ -16,10 +16,13 @@
 package net.sourceforge.vietocr;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.IIOImage;
 import net.sourceforge.tess4j.ITesseract;
+import net.sourceforge.tess4j.ITesseract.RenderedFormat;
 import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.vietocr.utilities.Utilities;
 
 /**
  * Invokes Tesseract OCR API through JNA-based Tess4J wrapper.<br />This could
@@ -46,5 +49,21 @@ public class OCRImages extends OCR<IIOImage> {
         String text = instance.doOCR(images, rect);
 
         return text;
+    }
+    
+    /**
+     * Processes OCR for input file with specified output format.
+     * 
+     * @param inputImage
+     * @param outputFile
+     * @throws Exception 
+     */
+    @Override
+    public void processPages(File inputImage, File outputFile) throws Exception {
+        instance.setLanguage(this.getLanguage());
+        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
+        List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
+        formats.add(RenderedFormat.valueOf(this.getOutputFormat().toUpperCase()));
+        instance.createDocuments(inputImage.getPath(), Utilities.stripExtension(outputFile.getName()), outputFile.getParent(), formats);
     }
 }
