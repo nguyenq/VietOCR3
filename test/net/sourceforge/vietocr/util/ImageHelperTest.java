@@ -78,7 +78,7 @@ public class ImageHelperTest {
     public void testAutoCrop() throws IOException {
         System.out.println("autoCrop");
         BufferedImage source = ImageIO.read(file);
-        Rectangle expResult = new Rectangle(2265, 2987);
+        Rectangle expResult = new Rectangle(2275, 2997);
         BufferedImage result = ImageHelper.autoCrop(source);
         //verify dimension
         assertEquals(expResult, new Rectangle(result.getWidth(), result.getHeight()));

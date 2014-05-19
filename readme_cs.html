@@ -49,7 +49,9 @@
             je standardní součástí Windows Vista a 7. Instalaci na Windows XP udělejte následovnými
             kroky: zkopírujte soubor <tt>wiaaut.dll</tt> do složky <tt>System32</tt> (obyčejně
             je to <tt>C:\Windows\System32</tt>) a spusťte následující příkaz v příkazovém řádku:</p>
-        <p><tt>regsvr32 C:\Windows\System32\wiaaut.dll</tt></p>
+        <blockquote>
+            <p><tt>regsvr32 C:\Windows\System32\wiaaut.dll</tt></p>
+        </blockquote>
         <p>V systému Linux vyžaduje snímání instalaci balíčků SANE:</p>
         <blockquote>
             <p><tt>sudo apt-get install libsane sane sane-utils libsane-extras xsane</tt></p>
@@ -60,7 +62,7 @@
             patřičnou proměnnou prostředí. Ve Windows přidejte následující řetězec hodnotě <tt>Path</tt></p>
         <blockquote>
             <p>           (přístupná je přes Ovládací panel &gt; Systém &gt; Pokročilé nastavení &gt; Proměnné
-            prostředí) pro GS verze 9.06:</p>
+            prostředí) pro GS verze 9.14:</p>
         </blockquote>
         <p>PDF support is possible via <a href="http://sourceforge.net/projects/ghostscript/">GPL
                 Ghostscript</a>. Po instalaci knihovny se, prosím, ujistěte, že dynamické
@@ -71,10 +73,9 @@
         <blockquote>
             <p><tt>;C:\Program Files\gs\gs9.14\bin</tt></p>
         </blockquote>
-<tt>;C:\Program Files\gs\gs9.07\bin</tt><blockquote>
-            <p>kde v <tt>/usr/lib</tt>, <tt>libgs.so</tt> je umístěn odkaz na <tt>libgs.so.9.07</tt>.</p>
+        <blockquote>
+            <p>kde v <tt>/usr/lib</tt>, <tt>libgs.so</tt> je umístěn odkaz na <tt>libgs.so.9.14</tt>.</p>
         </blockquote>
-        <p>kde v <tt>/usr/lib</tt>, <tt>libgs.so</tt> je umístěn odkaz na <tt>libgs.so.9.14</tt>.</p>
         <p><tt>sudo apt-get install hunspell hunspell-en-us</tt></p>
         <p>POKYNY</p>
         <blockquote>Program spustíte příkazem:</blockquote>
