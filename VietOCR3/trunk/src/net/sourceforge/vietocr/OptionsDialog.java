@@ -15,9 +15,8 @@
  */
 package net.sourceforge.vietocr;
 
-import net.sourceforge.vietocr.utilities.FormLocalizer;
+import net.sourceforge.vietocr.util.FormLocalizer;
 import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.Locale;

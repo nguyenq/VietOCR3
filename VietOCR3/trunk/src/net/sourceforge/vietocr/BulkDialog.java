@@ -20,7 +20,7 @@ import java.io.File;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.*;
-import net.sourceforge.vietocr.utilities.FormLocalizer;
+import net.sourceforge.vietocr.util.FormLocalizer;
 
 public class BulkDialog extends javax.swing.JDialog {
 

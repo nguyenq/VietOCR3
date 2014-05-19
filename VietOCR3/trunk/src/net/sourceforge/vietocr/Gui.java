@@ -34,8 +34,11 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.JTextComponent;
 import javax.swing.undo.*;
+import net.sourceforge.tess4j.util.ImageHelper;
+import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.vietocr.components.*;
-import net.sourceforge.vietocr.utilities.*;
+import net.sourceforge.vietocr.util.FormLocalizer;
+import net.sourceforge.vietocr.util.Utils;
 import net.sourceforge.vietpad.components.*;
 import net.sourceforge.vietpad.inputmethod.VietKeyListener;
 
@@ -100,7 +103,7 @@ public class Gui extends JFrame {
     private boolean textChanged = true;
     private RawListener rawListener;
     private final String DATAFILE_SUFFIX = ".traineddata";
-    protected final File baseDir = Utilities.getBaseDir(Gui.this);
+    protected final File baseDir = Utils.getBaseDir(Gui.this);
     private File tessdataDir;
 
     /**

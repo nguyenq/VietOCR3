@@ -15,7 +15,7 @@
  */
 package net.sourceforge.vietocr;
 
-import net.sourceforge.vietocr.utilities.Utilities;
+import net.sourceforge.vietocr.util.Utils;
 import java.io.*;
 
 public class ConsoleApp {
@@ -79,7 +79,7 @@ public class ConsoleApp {
 
         String tessPath;
 
-        File baseDir = Utilities.getBaseDir(this);
+        File baseDir = Utils.getBaseDir(this);
 
         if (Gui.WINDOWS) {
             tessPath = new File(baseDir, Gui.TESSERACT_PATH).getPath();

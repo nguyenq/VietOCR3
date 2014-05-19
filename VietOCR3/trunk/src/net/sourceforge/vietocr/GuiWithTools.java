@@ -20,8 +20,8 @@ import java.io.File;
 import java.util.Locale;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
-import net.sourceforge.vietocr.utilities.ImageIOHelper;
-import net.sourceforge.vietocr.utilities.PdfUtilities;
+import net.sourceforge.tess4j.util.ImageIOHelper;
+import net.sourceforge.tess4j.util.PdfUtilities;
 import net.sourceforge.vietpad.components.SimpleFilter;
 
 public class GuiWithTools extends GuiWithSpellcheck {

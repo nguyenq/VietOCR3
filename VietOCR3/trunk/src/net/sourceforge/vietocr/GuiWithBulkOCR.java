@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import javax.swing.*;
-import net.sourceforge.vietocr.utilities.Utilities;
+import net.sourceforge.vietocr.util.Utils;
 
 public class GuiWithBulkOCR extends GuiWithPostprocess {
 
@@ -84,7 +84,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
             statusFrame.getTextArea().append("\t-- " + bundle.getString("Beginning_of_task") + " --\n");
 
             List<File> files = new ArrayList<File>();
-            Utilities.listImageFiles(files, new File(inputFolder));
+            Utils.listImageFiles(files, new File(inputFolder));
 
             // instantiate SwingWorker for OCR
             ocrWorker = new BulkOcrWorker(files);

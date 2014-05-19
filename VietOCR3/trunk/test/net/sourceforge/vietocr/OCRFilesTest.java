@@ -3,7 +3,7 @@ package net.sourceforge.vietocr;
 import java.io.File;
 import java.util.List;
 import javax.imageio.IIOImage;
-import net.sourceforge.vietocr.utilities.ImageIOHelper;
+import net.sourceforge.tess4j.util.ImageIOHelper;
 import org.junit.*;
 import static org.junit.Assert.*;
 

@@ -17,7 +17,7 @@ package net.sourceforge.vietocr;
 
 import java.io.*;
 import java.util.*;
-import net.sourceforge.vietocr.utilities.Utilities;
+import net.sourceforge.vietocr.util.Utils;
 
 /**
  * Invokes Tesseract executable via command-line.
@@ -48,7 +48,7 @@ public class OCRFiles extends OCR<File> {
     @Override
     public String recognizeText(final List<File> tiffFiles) throws Exception {
         File tempTessOutputFile = File.createTempFile(OUTPUT_FILE_NAME, TEXTFILE_EXTENSION);
-        String outputFileName = Utilities.stripExtension(tempTessOutputFile.getPath()); // chop the file extension
+        String outputFileName = Utils.stripExtension(tempTessOutputFile.getPath()); // chop the file extension
 
         List<String> cmd = new ArrayList<String>();
         cmd.add(tessPath + "/tesseract");
@@ -82,7 +82,7 @@ public class OCRFiles extends OCR<File> {
             System.out.println("Exit value = " + w);
 
             if (w == 0) {
-                String str = Utilities.readTextFile(tempTessOutputFile);
+                String str = Utils.readTextFile(tempTessOutputFile);
                 result.append(str);
             } else {
                 tempTessOutputFile.delete();
