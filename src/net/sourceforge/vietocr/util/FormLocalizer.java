@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.sourceforge.vietocr.utilities;
+package net.sourceforge.vietocr.util;
 
 import java.lang.reflect.*;
 import java.util.ResourceBundle;

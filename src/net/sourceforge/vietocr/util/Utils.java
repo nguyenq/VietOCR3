@@ -13,14 +13,14 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package net.sourceforge.vietocr.utilities;
+package net.sourceforge.vietocr.util;
 
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Utilities {
+public class Utils {
 
     private static final String EOL = "\n";
 

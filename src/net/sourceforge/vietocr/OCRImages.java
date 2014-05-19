@@ -22,7 +22,7 @@ import javax.imageio.IIOImage;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.ITesseract.RenderedFormat;
 import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.vietocr.utilities.Utilities;
+import net.sourceforge.vietocr.util.Utils;
 
 /**
  * Invokes Tesseract OCR API through JNA-based Tess4J wrapper.<br />This could
@@ -64,6 +64,6 @@ public class OCRImages extends OCR<IIOImage> {
         instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
         List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
         formats.add(RenderedFormat.valueOf(this.getOutputFormat().toUpperCase()));
-        instance.createDocuments(inputImage.getPath(), Utilities.stripExtension(outputFile.getName()), outputFile.getParent(), formats);
+        instance.createDocuments(inputImage.getPath(), Utils.stripExtension(outputFile.getName()), outputFile.getParent(), formats);
     }
 }

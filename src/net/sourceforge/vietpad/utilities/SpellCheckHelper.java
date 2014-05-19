@@ -28,7 +28,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.*;
 import net.sourceforge.vietocr.Gui;
-import net.sourceforge.vietocr.utilities.Utilities;
+import net.sourceforge.vietocr.util.Utils;
 
 public class SpellCheckHelper {
 
@@ -51,7 +51,7 @@ public class SpellCheckHelper {
     public SpellCheckHelper(JTextComponent textComp, String localeId) {
         this.textComp = textComp;
         this.localeId = localeId;
-        baseDir = Utilities.getBaseDir(SpellCheckHelper.this);
+        baseDir = Utils.getBaseDir(SpellCheckHelper.this);
     }
 
     /**

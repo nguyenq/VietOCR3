@@ -23,8 +23,9 @@ import java.beans.PropertyChangeListener;
 import java.util.Deque;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import net.sourceforge.tess4j.util.ImageHelper;
 import net.sourceforge.vietocr.components.ImageIconScalable;
-import net.sourceforge.vietocr.utilities.FixedSizeStack;
+import net.sourceforge.vietocr.util.FixedSizeStack;
 
 public class GuiWithImage extends GuiWithBulkOCR {
 
@@ -100,7 +101,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
                 
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
         stack.push(originalImage);
-        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.autoCrop(originalImage));
+        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.autoCrop(originalImage));
         imageList.set(imageIndex, imageIcon);
         iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
         displayImage();
@@ -121,7 +122,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
             public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals(SliderDialog.VALUE_CHANGED)) {
                     int value = (Integer) evt.getNewValue();
-                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.brighten(originalImage, value));
+                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.brighten(originalImage, value));
                     imageList.set(imageIndex, imageIcon);
                     iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
                     displayImage();
@@ -155,7 +156,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
             public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals(SliderDialog.VALUE_CHANGED)) {
                     int value = (Integer) evt.getNewValue();
-                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.contrast(originalImage, value * 0.02f));
+                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.contrast(originalImage, value * 0.02f));
                     imageList.set(imageIndex, imageIcon);
                     iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
                     displayImage();
@@ -184,7 +185,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
                 
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
         stack.push(originalImage);
-        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.convertImageToGrayscale(net.sourceforge.vietocr.utilities.ImageHelper.cloneImage(originalImage)));
+        imageIcon = new ImageIconScalable(ImageHelper.convertImageToGrayscale(ImageHelper.cloneImage(originalImage)));
         imageList.set(imageIndex, imageIcon);
         iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
         displayImage();
@@ -199,7 +200,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
                 
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
         stack.push(originalImage);
-        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.convertImageToBinary(net.sourceforge.vietocr.utilities.ImageHelper.cloneImage(originalImage)));
+        imageIcon = new ImageIconScalable(ImageHelper.convertImageToBinary(ImageHelper.cloneImage(originalImage)));
         imageList.set(imageIndex, imageIcon);
         iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
         displayImage();
@@ -214,7 +215,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
         try {
             originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
             stack.push(originalImage);
-            imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.invertImageColor(net.sourceforge.vietocr.utilities.ImageHelper.cloneImage(originalImage)));
+            imageIcon = new ImageIconScalable(ImageHelper.invertImageColor(ImageHelper.cloneImage(originalImage)));
             imageList.set(imageIndex, imageIcon);
             iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
             displayImage();
@@ -232,7 +233,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
          
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
         stack.push(originalImage);
-        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.sharpen(originalImage));
+        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.sharpen(originalImage));
         imageList.set(imageIndex, imageIcon);
         iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
         displayImage();
@@ -247,7 +248,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
                 
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
         stack.push(originalImage);
-        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.utilities.ImageHelper.smoothen(originalImage));
+        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.smoothen(originalImage));
         imageList.set(imageIndex, imageIcon);
         iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
         displayImage();

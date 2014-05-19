@@ -1,4 +1,4 @@
-package net.sourceforge.vietocr.utilities;
+package net.sourceforge.vietocr.util;
 
 import com.ice.tar.TarEntry;
 import com.ice.tar.TarInputStream;

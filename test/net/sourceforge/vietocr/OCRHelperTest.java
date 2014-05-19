@@ -3,7 +3,7 @@ package net.sourceforge.vietocr;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import net.sourceforge.vietocr.utilities.Utilities;
+import net.sourceforge.vietocr.util.Utils;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -48,7 +48,7 @@ public class OCRHelperTest {
         String inputFolder = "C:\\Temp\\Images";
         String outputFolder = "C:\\Temp\\Output";
         List<File> files = new ArrayList<File>();
-        Utilities.listImageFiles(files, new File(inputFolder));
+        Utils.listImageFiles(files, new File(inputFolder));
         
         for (File imageFile : files) {
             try {

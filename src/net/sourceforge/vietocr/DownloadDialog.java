@@ -32,8 +32,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import javax.swing.*;
-import net.sourceforge.vietocr.utilities.FileExtractor;
-import net.sourceforge.vietocr.utilities.Utilities;
+import net.sourceforge.vietocr.util.FileExtractor;
+import net.sourceforge.vietocr.util.Utils;
 
 public class DownloadDialog extends javax.swing.JDialog {
 
@@ -59,7 +59,7 @@ public class DownloadDialog extends javax.swing.JDialog {
         initComponents();
         bundle = ResourceBundle.getBundle("net/sourceforge/vietocr/DownloadDialog");
 
-        baseDir = Utilities.getBaseDir(DownloadDialog.this);
+        baseDir = Utils.getBaseDir(DownloadDialog.this);
         downloadTracker = new ArrayList<SwingWorker<File, Integer>>();
         lookupISO639 = ((Gui) parent).getLookupISO639();
         lookupISO_3_1_Codes = ((Gui) parent).getLookupISO_3_1_Codes();

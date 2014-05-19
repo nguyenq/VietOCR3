@@ -1,5 +1,6 @@
-package net.sourceforge.vietocr.utilities;
+package net.sourceforge.vietocr.util;
 
+import net.sourceforge.vietocr.util.FixedSizeStack;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

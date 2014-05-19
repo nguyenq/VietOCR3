@@ -20,7 +20,7 @@ import java.io.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.Timer;
-import net.sourceforge.vietocr.utilities.Watcher;
+import net.sourceforge.vietocr.util.Watcher;
 
 public class GuiWithBatch extends GuiWithSettings {
 

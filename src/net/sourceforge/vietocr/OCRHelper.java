@@ -16,9 +16,10 @@
 package net.sourceforge.vietocr;
 
 import java.io.*;
+import net.sourceforge.tess4j.util.PdfUtilities;
 //import javax.imageio.IIOImage;
 import net.sourceforge.vietocr.postprocessing.*;
-import net.sourceforge.vietocr.utilities.*;
+import net.sourceforge.vietocr.util.Utils;
 
 public class OCRHelper {
 
@@ -63,7 +64,7 @@ public class OCRHelper {
             // post-corrections for text+ output
             if (postprocess) {
                 outputFile = new File(outputFile.getPath() + ".txt");
-                String result = Utilities.readTextFile(outputFile);
+                String result = Utils.readTextFile(outputFile);
 
                 // postprocess to correct common OCR errors
                 result = Processor.postProcess(result, langCode);
