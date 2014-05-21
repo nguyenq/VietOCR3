@@ -43,7 +43,7 @@ public class OCRFiles extends OCR<File> {
      * 
      * @param tiffFiles
      * @return recognized text
-     * @throws java.lang.Exception
+     * @throws Exception
      */
     @Override
     public String recognizeText(final List<File> tiffFiles) throws Exception {
