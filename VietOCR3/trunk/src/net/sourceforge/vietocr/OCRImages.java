@@ -41,11 +41,18 @@ public class OCRImages extends OCR<IIOImage> {
         instance.setDatapath(new File(tessPath, TESSDATA).getPath());
     }
 
+    /**
+     * Recognizes images.
+     * 
+     * @param images as IIOImage
+     * @return recognized text
+     * @throws Exception 
+     */
     @Override
     public String recognizeText(List<IIOImage> images) throws Exception {
         instance.setLanguage(this.getLanguage());
         instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
-        instance.setRenderedFormat(ITesseract.RenderedFormat.valueOf(this.getOutputFormat().toUpperCase()));
+        instance.setHocr(this.getOutputFormat().equalsIgnoreCase("hocr"));
         String text = instance.doOCR(images, rect);
 
         return text;
