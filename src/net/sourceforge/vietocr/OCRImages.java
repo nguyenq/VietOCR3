@@ -19,7 +19,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.IIOImage;
-import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.ITesseract.RenderedFormat;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.vietocr.util.Utils;
@@ -71,6 +70,6 @@ public class OCRImages extends OCR<IIOImage> {
         instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
         List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
         formats.add(RenderedFormat.valueOf(this.getOutputFormat().toUpperCase()));
-        instance.createDocuments(inputImage.getPath(), Utils.stripExtension(outputFile.getName()), outputFile.getParent(), formats);
+        instance.createDocuments(inputImage.getPath(), Utils.stripExtension(outputFile.getPath()), formats);
     }
 }
