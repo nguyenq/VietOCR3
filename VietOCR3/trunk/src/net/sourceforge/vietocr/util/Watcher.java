@@ -61,7 +61,7 @@ public class Watcher implements Runnable {
             File[] files = watchFolder.listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
-                    return name.toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp|pdf)$");
+                    return name.toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|jp2|gif|png|bmp|pdf)$");
                 }
             });
 
