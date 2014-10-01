@@ -108,7 +108,7 @@ public class Utils {
         File[] files = directory.listFiles(new FileFilter() {
             @Override
             public boolean accept(File file) {
-                return file.getName().toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|jp2|gif|png|bmp|pdf)$") || file.isDirectory();
+                return file.getName().toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp|pdf)$") || file.isDirectory();
             }
         });
 
