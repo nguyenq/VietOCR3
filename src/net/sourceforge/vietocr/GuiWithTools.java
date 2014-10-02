@@ -152,7 +152,6 @@ public class GuiWithTools extends GuiWithSpellcheck {
         jf.setApproveButtonText("Split");
         jf.setCurrentDirectory(imageFolder);
         FileFilter tiffFilter = new SimpleFilter("tif;tiff", "TIFF");
-
         jf.addChoosableFileFilter(tiffFilter);
 
         if (selectedFilter != null) {
@@ -165,9 +164,9 @@ public class GuiWithTools extends GuiWithSpellcheck {
             final File input = jf.getSelectedFile();
             imageFolder = jf.getCurrentDirectory();
 
-            jLabelStatus.setText(bundle.getString("MergeTIFF_running..."));
+            jLabelStatus.setText(bundle.getString("SplitTIFF_running..."));
             jProgressBar1.setIndeterminate(true);
-            jProgressBar1.setString(bundle.getString("MergeTIFF_running..."));
+            jProgressBar1.setString(bundle.getString("SplitTIFF_running..."));
             jProgressBar1.setVisible(true);
             getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             getGlassPane().setVisible(true);
@@ -177,11 +176,10 @@ public class GuiWithTools extends GuiWithSpellcheck {
                 @Override
                 protected Void doInBackground() throws Exception {
                     List<File> files = ImageIOHelper.createTiffFiles(input, -1, true);
-                    // move temp TIFF files to selected folder
+                    // move temp TIFF files to currently selected folder
                     for (int i = 0; i < files.size(); i++) {
-                        String filename = Utils.stripExtension(input.getPath()); // chop the file extension
-                        File output = new File(filename + "-" + String.valueOf(i) + ".tif");
-                        files.get(i).renameTo(output);
+                        String filename = String.format("%s-%03d.tif", Utils.stripExtension(input.getPath()), i + 1);
+                        files.get(i).renameTo(new File(filename));
                     }
                     return null;
                 }
