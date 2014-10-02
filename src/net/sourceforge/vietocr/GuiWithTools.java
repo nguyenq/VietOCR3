@@ -1,27 +1,29 @@
 /**
  * Copyright @ 2009 Quan Nguyen
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sourceforge.vietocr;
 
 import java.awt.Cursor;
 import java.io.File;
+import java.util.List;
 import java.util.Locale;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.tess4j.util.PdfUtilities;
+import net.sourceforge.vietocr.util.Utils;
 import net.sourceforge.vietpad.components.SimpleFilter;
 
 public class GuiWithTools extends GuiWithSpellcheck {
@@ -36,8 +38,8 @@ public class GuiWithTools extends GuiWithSpellcheck {
 
     /**
      * Merges multiple images into a multi-page TIFF file.
-     * 
-     * @param evt 
+     *
+     * @param evt
      */
     @Override
     void jMenuItemMergeTiffActionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,9 +141,92 @@ public class GuiWithTools extends GuiWithSpellcheck {
     }
 
     /**
+     * Splits a multi-page TIFF to individual TIFF files.
+     *
+     * @param evt
+     */
+    @Override
+    void jMenuItemSplitTiffActionPerformed(java.awt.event.ActionEvent evt) {
+        JFileChooser jf = new JFileChooser();
+        jf.setDialogTitle(bundle.getString("Select_Input_TIFF"));
+        jf.setApproveButtonText("Split");
+        jf.setCurrentDirectory(imageFolder);
+        FileFilter tiffFilter = new SimpleFilter("tif;tiff", "TIFF");
+
+        jf.addChoosableFileFilter(tiffFilter);
+
+        if (selectedFilter != null) {
+            jf.setFileFilter(selectedFilter);
+        }
+
+        jf.setAcceptAllFileFilterUsed(false);
+        if (jf.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            selectedFilter = jf.getFileFilter();
+            final File input = jf.getSelectedFile();
+            imageFolder = jf.getCurrentDirectory();
+
+            jLabelStatus.setText(bundle.getString("MergeTIFF_running..."));
+            jProgressBar1.setIndeterminate(true);
+            jProgressBar1.setString(bundle.getString("MergeTIFF_running..."));
+            jProgressBar1.setVisible(true);
+            getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            getGlassPane().setVisible(true);
+
+            SwingWorker worker = new SwingWorker<Void, Void>() {
+
+                @Override
+                protected Void doInBackground() throws Exception {
+                    List<File> files = ImageIOHelper.createTiffFiles(input, -1, true);
+                    // move temp TIFF files to selected folder
+                    for (int i = 0; i < files.size(); i++) {
+                        String filename = Utils.stripExtension(input.getPath()); // chop the file extension
+                        File output = new File(filename + "-" + String.valueOf(i) + ".tif");
+                        files.get(i).renameTo(output);
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    jLabelStatus.setText(bundle.getString("SplitTIFFcompleted"));
+                    jProgressBar1.setIndeterminate(false);
+                    jProgressBar1.setString(bundle.getString("SplitTIFFcompleted"));
+
+                    try {
+                        get();
+                        JOptionPane.showMessageDialog(GuiWithTools.this, bundle.getString("SplitTIFFcompleted"), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+                    } catch (InterruptedException ignore) {
+                        ignore.printStackTrace();
+                    } catch (java.util.concurrent.ExecutionException e) {
+                        String why = null;
+                        Throwable cause = e.getCause();
+                        if (cause != null) {
+                            if (cause instanceof OutOfMemoryError) {
+                                why = bundle.getString("OutOfMemoryError");
+                            } else {
+                                why = cause.getMessage();
+                            }
+                        } else {
+                            why = e.getMessage();
+                        }
+                        e.printStackTrace();
+                        JOptionPane.showMessageDialog(GuiWithTools.this, why, APP_NAME, JOptionPane.ERROR_MESSAGE);
+                    } finally {
+                        jProgressBar1.setVisible(false);
+                        getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        getGlassPane().setVisible(false);
+                    }
+                }
+            };
+
+            worker.execute();
+        }
+    }
+
+    /**
      * Merges PDF files.
-     * 
-     * @param evt 
+     *
+     * @param evt
      */
     @Override
     void jMenuItemMergePdfActionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,8 +310,8 @@ public class GuiWithTools extends GuiWithSpellcheck {
 
     /**
      * Splits a PDF file into smaller files.
-     * 
-     * @param evt 
+     *
+     * @param evt
      */
     @Override
     void jMenuItemSplitPdfActionPerformed(java.awt.event.ActionEvent evt) {

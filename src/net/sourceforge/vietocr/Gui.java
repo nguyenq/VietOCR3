@@ -759,6 +759,8 @@ public class Gui extends JFrame {
         jMenuItemOptions = new javax.swing.JMenuItem();
         jMenuTools = new javax.swing.JMenu();
         jMenuItemMergeTiff = new javax.swing.JMenuItem();
+        jMenuItemSplitTiff = new javax.swing.JMenuItem();
+        jSeparator13 = new javax.swing.JPopupMenu.Separator();
         jMenuItemMergePdf = new javax.swing.JMenuItem();
         jMenuItemSplitPdf = new javax.swing.JMenuItem();
         jMenuHelp = new javax.swing.JMenu();
@@ -1396,6 +1398,16 @@ public class Gui extends JFrame {
             }
         });
         jMenuTools.add(jMenuItemMergeTiff);
+
+        jMenuItemSplitTiff.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemSplitTiff.Mnemonic").charAt(0));
+        jMenuItemSplitTiff.setText(bundle.getString("jMenuItemSplitTiff.Text")); // NOI18N
+        jMenuItemSplitTiff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSplitTiffActionPerformed(evt);
+            }
+        });
+        jMenuTools.add(jMenuItemSplitTiff);
+        jMenuTools.add(jSeparator13);
 
         jMenuItemMergePdf.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemMergePdf.Mnemonic").charAt(0));
         jMenuItemMergePdf.setText(bundle.getString("jMenuItemMergePdf.Text")); // NOI18N
@@ -2150,6 +2162,10 @@ public class Gui extends JFrame {
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemUndoActionPerformed
 
+    void jMenuItemSplitTiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSplitTiffActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemSplitTiffActionPerformed
+
     /**
      * Changes locale of UI elements.
      *
@@ -2280,6 +2296,7 @@ public class Gui extends JFrame {
     private javax.swing.JMenuItem jMenuItemSharpen;
     private javax.swing.JMenuItem jMenuItemSmooth;
     private javax.swing.JMenuItem jMenuItemSplitPdf;
+    private javax.swing.JMenuItem jMenuItemSplitTiff;
     protected javax.swing.JMenuItem jMenuItemUndo;
     protected javax.swing.JMenu jMenuLookAndFeel;
     protected javax.swing.JMenu jMenuPSM;
@@ -2297,6 +2314,7 @@ public class Gui extends JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
     private javax.swing.JPopupMenu.Separator jSeparator12;
+    private javax.swing.JPopupMenu.Separator jSeparator13;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
