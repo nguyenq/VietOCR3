@@ -178,8 +178,10 @@ public class GuiWithTools extends GuiWithSpellcheck {
                     List<File> files = ImageIOHelper.createTiffFiles(input, -1, true);
                     // move temp TIFF files to currently selected folder
                     for (int i = 0; i < files.size(); i++) {
-                        String filename = String.format("%s-%03d.tif", Utils.stripExtension(input.getPath()), i + 1);
-                        files.get(i).renameTo(new File(filename));
+                        String outfilename = String.format("%s-%03d.tif", Utils.stripExtension(input.getPath()), i + 1);
+                        File outfile = new File(outfilename);
+                        outfile.delete();
+                        files.get(i).renameTo(outfile);
                     }
                     return null;
                 }
