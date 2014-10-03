@@ -175,10 +175,12 @@ public class GuiWithTools extends GuiWithSpellcheck {
 
                 @Override
                 protected Void doInBackground() throws Exception {
+                    String basefilename =Utils.stripExtension(input.getPath());
                     List<File> files = ImageIOHelper.createTiffFiles(input, -1, true);
-                    // move temp TIFF files to currently selected folder
+                    
+                    // move temp TIFF files to selected folder
                     for (int i = 0; i < files.size(); i++) {
-                        String outfilename = String.format("%s-%03d.tif", Utils.stripExtension(input.getPath()), i + 1);
+                        String outfilename = String.format("%s-%03d.tif", basefilename, i + 1);
                         File outfile = new File(outfilename);
                         outfile.delete();
                         files.get(i).renameTo(outfile);
