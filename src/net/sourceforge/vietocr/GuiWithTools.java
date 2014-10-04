@@ -114,7 +114,7 @@ public class GuiWithTools extends GuiWithSpellcheck {
                         } catch (InterruptedException ignore) {
                             ignore.printStackTrace();
                         } catch (java.util.concurrent.ExecutionException e) {
-                            String why = null;
+                            String why;
                             Throwable cause = e.getCause();
                             if (cause != null) {
                                 if (cause instanceof OutOfMemoryError) {
@@ -175,9 +175,9 @@ public class GuiWithTools extends GuiWithSpellcheck {
 
                 @Override
                 protected Void doInBackground() throws Exception {
-                    String basefilename =Utils.stripExtension(input.getPath());
+                    String basefilename = Utils.stripExtension(input.getPath());
                     List<File> files = ImageIOHelper.createTiffFiles(input, -1, true);
-                    
+
                     // move temp TIFF files to selected folder
                     for (int i = 0; i < files.size(); i++) {
                         String outfilename = String.format("%s-%03d.tif", basefilename, i + 1);
@@ -373,7 +373,7 @@ public class GuiWithTools extends GuiWithSpellcheck {
                     } catch (InterruptedException ignore) {
                         ignore.printStackTrace();
                     } catch (java.util.concurrent.ExecutionException e) {
-                        String why = null;
+                        String why;
                         Throwable cause = e.getCause();
                         if (cause != null) {
                             if (cause instanceof OutOfMemoryError) {

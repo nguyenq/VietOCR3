@@ -296,7 +296,7 @@ public class DownloadDialog extends javax.swing.JDialog {
                 FileOutputStream fos = new FileOutputStream(outputFile);
                 BufferedOutputStream bout = new BufferedOutputStream(fos);
                 byte[] buffer = new byte[BUFFER_SIZE];
-                int bytesRead = 0;
+                int bytesRead;
 
                 while ((bytesRead = inputStream.read(buffer, 0, BUFFER_SIZE)) > -1) {
                     if (isCancelled()) {
