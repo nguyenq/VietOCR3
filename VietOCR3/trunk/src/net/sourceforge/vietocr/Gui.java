@@ -1649,8 +1649,8 @@ public class Gui extends JFrame {
         prefs.putBoolean(strWordWrap, wordWrapOn);
 
         StringBuilder buf = new StringBuilder();
-        for (int i = 0; i < this.mruList.size(); i++) {
-            buf.append(this.mruList.get(i)).append(File.pathSeparatorChar);
+        for (String item : this.mruList) {
+            buf.append(item).append(File.pathSeparatorChar);
         }
         prefs.put(strMruList, buf.toString());
 

@@ -189,9 +189,9 @@ public class ChangeCaseDialog extends javax.swing.JDialog {
     }
 
     /**
-     *  Sets the selected case
+     * Sets the selected case.
      *
-     *@param  String selectedCase
+     *@param selectedCase
      */
     public void setSelectedCase(String selectedCase) {
         this.selectedCase = selectedCase;
@@ -206,7 +206,7 @@ public class ChangeCaseDialog extends javax.swing.JDialog {
     }
 
     /**
-     *  Gets the selected case
+     * Gets the selected case
      *
      *@return    String selectedCase
      */
@@ -215,7 +215,9 @@ public class ChangeCaseDialog extends javax.swing.JDialog {
     }
     
     /**
-     *  Shows and hides the dialog
+     * Shows and hides the dialog.
+     * 
+     * @param flag
      */
     @Override
     public void setVisible(final boolean flag) {
@@ -236,6 +238,11 @@ public class ChangeCaseDialog extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * Changes UI language.
+     * 
+     * @param locale 
+     */
     public void changeUILanguage(final Locale locale) {
         Locale.setDefault(locale);
         final ResourceBundle bundle = ResourceBundle.getBundle("net.sourceforge.vietocr.ChangeCaseDialog");

@@ -44,8 +44,8 @@ public class GuiWithUILanguage extends GuiWithInputMethod {
         // build UI Language submenu
         ButtonGroup groupUILang = new ButtonGroup();
         String[] uiLangs = getInstalledUILangs();
-        for (int i = 0; i < uiLangs.length; i++) {
-            Locale locale = new Locale(uiLangs[i]);
+        for (String uiLang : uiLangs) {
+            Locale locale = new Locale(uiLang);
             JRadioButtonMenuItem uiLangButton = new JRadioButtonMenuItem(locale.getDisplayLanguage(), selectedUILang.equals(locale.getLanguage()));
             uiLangButton.setActionCommand(locale.getLanguage());
             uiLangButton.addActionListener(uiLangLst);

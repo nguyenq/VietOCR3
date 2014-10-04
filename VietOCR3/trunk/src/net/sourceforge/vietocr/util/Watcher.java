@@ -30,7 +30,7 @@ public class Watcher implements Runnable {
     private long lastTime = 0;
     private List<File> lastFiles = new ArrayList<File>();
     private File watchFolder;
-    private Queue<File> queue;
+    private final Queue<File> queue;
     private boolean firstTimeEntered = true;
     private volatile boolean watchEnabled;
 

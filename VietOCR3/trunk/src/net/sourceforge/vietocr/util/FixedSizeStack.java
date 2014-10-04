@@ -24,7 +24,7 @@ import java.util.ArrayDeque;
  */
 public class FixedSizeStack<T> extends ArrayDeque<T> {
 
-    private int limit;
+    private final int limit;
 
     public FixedSizeStack(int limit) {
         this.limit = limit;

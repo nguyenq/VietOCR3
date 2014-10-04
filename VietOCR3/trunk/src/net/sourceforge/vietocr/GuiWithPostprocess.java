@@ -80,7 +80,7 @@ public class GuiWithPostprocess extends GuiWithOCR {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (java.util.concurrent.ExecutionException e) {
-                    String why = null;
+                    String why;
                     Throwable cause = e.getCause();
                     if (cause != null) {
                         if (cause instanceof UnsupportedOperationException) {

@@ -33,11 +33,11 @@ public class OCRImageEntity {
     /** input image File */
     private File imageFile;
     /** index of pages, such as in multi-page TIFF image */
-    private int index;
+    private final int index;
     /** bounding rectangle */
-    private Rectangle rect;
+    private final Rectangle rect;
     /** Language code, which follows ISO 639-3 standard */
-    private String lang;
+    private final String lang;
     /** Horizontal Resolution */
     private int dpiX;
     /** Vertical Resolution */
@@ -46,8 +46,8 @@ public class OCRImageEntity {
     /**
      * Constructor.
      * @param oimages a list of <code>IIOImage</code> objects
-     * @param index
-     * @param the bounding rectangle defines the region of the image to be recognized. A rectangle of zero dimension or <code>null</code> indicates the whole image.
+     * @param index index of images
+     * @param rect the bounding rectangle defines the region of the image to be recognized. A rectangle of zero dimension or <code>null</code> indicates the whole image.
      * @param lang language code, which follows ISO 639-3 standard
      */
     public OCRImageEntity(List<IIOImage> oimages, int index, Rectangle rect, String lang) {
@@ -60,8 +60,8 @@ public class OCRImageEntity {
     /**
      * Constructor.
      * @param imageFile an image file
-     * @param index
-     * @param the bounding rectangle defines the region of the image to be recognized. A rectangle of zero dimension or <code>null</code> indicates the whole image.
+     * @param index index of images
+     * @param rect the bounding rectangle defines the region of the image to be recognized. A rectangle of zero dimension or <code>null</code> indicates the whole image.
      * @param lang language code, which follows ISO 639-3 standard
      */
     public OCRImageEntity(File imageFile, int index, Rectangle rect, String lang) {

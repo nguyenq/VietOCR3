@@ -22,8 +22,8 @@ import javax.swing.*;
 
 public class FormLocalizer {
 
-    private Window window;
-    private Class windowType;
+    private final Window window;
+    private final Class windowType;
 
     /**
      * Constructor.
@@ -139,8 +139,8 @@ public class FormLocalizer {
 
             if (b.isInterface()) {
                 Class interfaces[] = x.getInterfaces();
-                for (int i = 0; i < interfaces.length; i++) {
-                    if (isSubclass(interfaces[i], b)) {
+                for (Class intf : interfaces) {
+                    if (isSubclass(intf, b)) {
                         return true;
                     }
                 }
