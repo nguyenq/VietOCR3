@@ -31,7 +31,7 @@ public class FontDialog extends JDialog {
     private OpenList m_lstFontStyle;
     private OpenList m_lstFontSize;
     private JLabel m_preview;
-    private ResourceBundle bundle;
+    private final ResourceBundle bundle;
     private Font curFont;
     private boolean m_succeeded = false;
     final static boolean MAC_OS_X = System.getProperty("os.name").startsWith("Mac");
@@ -77,8 +77,8 @@ public class FontDialog extends JDialog {
 
         final Font[] allFonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
         final Collection<String> fontFamilies = new TreeSet<String>();
-        for (int i = 0; i < allFonts.length; i++) {
-            fontFamilies.add(allFonts[i].getFamily());
+        for (Font font : allFonts) {
+            fontFamilies.add(font.getFamily());
         }
 
         m_lstFontName = new OpenList(fontFamilies.toArray(), bundle.getString("Name"));
