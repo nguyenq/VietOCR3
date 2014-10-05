@@ -25,7 +25,9 @@ public class Utils {
     private static final String EOL = "\n";
 
     /**
-     *
+     * Gets the directory of the executing JAR.
+     * 
+     * @param aType
      * @return the directory of the running jar
      */
     public static File getBaseDir(Object aType) {
