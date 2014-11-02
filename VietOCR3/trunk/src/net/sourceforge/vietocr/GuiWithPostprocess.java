@@ -17,6 +17,8 @@ package net.sourceforge.vietocr;
 
 import java.awt.Cursor;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import net.sourceforge.vietocr.postprocessing.Processor;
@@ -31,6 +33,8 @@ public class GuiWithPostprocess extends GuiWithOCR {
     private final String strDangAmbigs = "DangAmbigs";
     protected String dangAmbigsPath;
     protected boolean dangAmbigsOn;
+    
+    private final static Logger logger = Logger.getLogger(GuiWithPostprocess.class.getName());
 
     public GuiWithPostprocess() {
         dangAmbigsPath = prefs.get(strDangAmbigsPath, new File(baseDir, "data").getPath());
@@ -78,7 +82,7 @@ public class GuiWithPostprocess extends GuiWithOCR {
                     jLabelStatus.setText(bundle.getString("Correction_completed"));
                     jProgressBar1.setString(bundle.getString("Correction_completed"));
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.log(Level.WARNING, e.getMessage(), e);
                 } catch (java.util.concurrent.ExecutionException e) {
                     String why;
                     Throwable cause = e.getCause();
@@ -93,7 +97,7 @@ public class GuiWithPostprocess extends GuiWithOCR {
                     } else {
                         why = e.getMessage();
                     }
-//                    e.printStackTrace();
+                    logger.log(Level.SEVERE, why, e);
                     JOptionPane.showMessageDialog(null, why, APP_NAME, JOptionPane.ERROR_MESSAGE);
                     jProgressBar1.setVisible(false);
                 } finally {

@@ -18,12 +18,16 @@ package net.sourceforge.vietocr.util;
 import java.lang.reflect.*;
 import java.util.ResourceBundle;
 import java.awt.Window;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class FormLocalizer {
 
     private final Window window;
     private final Class windowType;
+    
+    private final static Logger logger = Logger.getLogger(FormLocalizer.class.getName());
 
     /**
      * Constructor.
@@ -68,7 +72,7 @@ public class FormLocalizer {
                     continue;
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.WARNING, e.getMessage(), e);
             }
 
             for (Method method : fieldType.getMethods()) {
@@ -92,7 +96,7 @@ public class FormLocalizer {
                     }
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.log(Level.WARNING, e.getMessage(), e);
                 }
             }
         }

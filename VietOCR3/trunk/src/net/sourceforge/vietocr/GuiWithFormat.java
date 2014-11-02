@@ -17,8 +17,11 @@ package net.sourceforge.vietocr;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
 import net.sourceforge.vietpad.utilities.TextUtilities;
 import net.sourceforge.vietpad.components.FontDialog;
 
@@ -28,6 +31,8 @@ public class GuiWithFormat extends GuiWithImage {
     private final String strChangeCaseX = "changeCaseX";
     private final String strChangeCaseY = "changeCaseY";
     private ChangeCaseDialog changeCaseDlg;
+    
+    private final static Logger logger = Logger.getLogger(GuiWithFormat.class.getName());
 
     @Override
     void changeUILanguage(final Locale locale) {
@@ -64,11 +69,11 @@ public class GuiWithFormat extends GuiWithImage {
                 pangram = prop.getProperty("eng");
             }
             dlg.setPreviewText(pangram);
-        } catch (IOException ioe) {
-            JOptionPane.showMessageDialog(null, ioe.getMessage(), APP_NAME, JOptionPane.ERROR_MESSAGE);
-            ioe.printStackTrace();
-        } catch (Exception exc) {
-            exc.printStackTrace();
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, e.getMessage(), e);
+            JOptionPane.showMessageDialog(null, e.getMessage(), APP_NAME, JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, e.getMessage(), e);
         }
 
         dlg.setVisible(true);

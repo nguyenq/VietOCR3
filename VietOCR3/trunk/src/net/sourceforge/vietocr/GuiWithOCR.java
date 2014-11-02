@@ -19,8 +19,11 @@ import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.IIOImage;
 import javax.swing.*;
+
 import net.sourceforge.vietocr.components.JImageLabel;
 
 public class GuiWithOCR extends GuiWithImageOps {
@@ -28,6 +31,8 @@ public class GuiWithOCR extends GuiWithImageOps {
     private OcrWorker ocrWorker;
     protected String selectedPSM = "3"; // 3 - Fully automatic page segmentation, but no OSD (default)
     protected boolean tessLibEnabled;
+    
+    private final static Logger logger = Logger.getLogger(GuiWithOCR.class.getName());
 
     @Override
     void jMenuItemOCRActionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,10 +64,10 @@ public class GuiWithOCR extends GuiWithImageOps {
 //                tempList.add(new IIOImage(bi, null, null));
                 performOCR(iioImageList, imageIndex, rect);
             } catch (RasterFormatException rfe) {
+                logger.log(Level.SEVERE, rfe.getMessage(), rfe);
                 JOptionPane.showMessageDialog(this, rfe.getMessage(), APP_NAME, JOptionPane.ERROR_MESSAGE);
-//                rfe.printStackTrace();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.SEVERE, e.getMessage(), e);
             }
         } else {
             performOCR(iioImageList, imageIndex, null);
@@ -186,7 +191,7 @@ public class GuiWithOCR extends GuiWithImageOps {
                 jLabelStatus.setText(bundle.getString("OCR_completed."));
                 jProgressBar1.setString(bundle.getString("OCR_completed."));
             } catch (InterruptedException ignore) {
-//                ignore.printStackTrace();
+                logger.log(Level.WARNING, ignore.getMessage(), ignore);
             } catch (java.util.concurrent.ExecutionException e) {
                 String why;
                 Throwable cause = e.getCause();
@@ -206,11 +211,13 @@ public class GuiWithOCR extends GuiWithImageOps {
                 } else {
                     why = e.getMessage();
                 }
-//                    System.err.println(why);
+
+                logger.log(Level.SEVERE, why, e);
                 jLabelStatus.setText(null);
                 jProgressBar1.setString(null);
                 JOptionPane.showMessageDialog(null, why, "OCR Operation", JOptionPane.ERROR_MESSAGE);
             } catch (java.util.concurrent.CancellationException e) {
+                logger.log(Level.WARNING, e.getMessage(), e);
                 jLabelStatus.setText("OCR " + bundle.getString("canceled"));
                 jProgressBar1.setString("OCR " + bundle.getString("canceled"));
             } finally {

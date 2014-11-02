@@ -17,13 +17,18 @@ package net.sourceforge.vietocr;
 
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
 import net.sourceforge.vietocr.components.JImageLabel;
 
 public class GuiWithImageOps extends GuiWithScan {
 
     private final float ZOOM_FACTOR = 1.25f;
+    
+    private final static Logger logger = Logger.getLogger(GuiWithImageOps.class.getName());
 
     @Override
     void jButtonPrevPageActionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +186,7 @@ public class GuiWithImageOps extends GuiWithScan {
             iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
             displayImage();
         } catch (OutOfMemoryError oome) {
+            logger.log(Level.SEVERE, oome.getMessage(), oome);
             JOptionPane.showMessageDialog(this, oome.getMessage(), bundle.getString("OutOfMemoryError"), JOptionPane.ERROR_MESSAGE);
         }
     }

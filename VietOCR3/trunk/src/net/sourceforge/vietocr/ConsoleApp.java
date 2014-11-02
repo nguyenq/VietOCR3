@@ -17,8 +17,11 @@ package net.sourceforge.vietocr;
 
 import net.sourceforge.vietocr.util.Utils;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConsoleApp {
+    private final static Logger logger = Logger.getLogger(ConsoleApp.class.getName());
 
     public static void main(String[] args) {
         new ConsoleApp().performOCR(args);
@@ -31,7 +34,7 @@ public class ConsoleApp {
      */
     private void performOCR(String[] args) {
         if (args[0].equals("-?") || args[0].equals("-help") || args.length == 1 || args.length >= 8) {
-            System.err.println("Usage: java -jar VietOCR.jar\n"
+            System.out.println("Usage: java -jar VietOCR.jar\n"
                     + "       (to launch the program in GUI mode)\n\n"
                     + "   or  java -jar VietOCR.jar imagefile outputfile [-l lang] [-psm pagesegmode] [hocr] [pdf]\n"
                     + "       (to execute the program in command-line mode)");
@@ -53,7 +56,8 @@ public class ConsoleApp {
         final File outputFile = new File(args[1]);
 
         if (!imageFile.exists()) {
-            System.err.println("Input file does not exist.");
+            System.out.println("Input file does not exist.");
+            logger.log(Level.SEVERE, "Input file does not exist.");
             return;
         }
 
@@ -72,7 +76,8 @@ public class ConsoleApp {
             try {
                 Integer.parseInt(psm);
             } catch (Exception e) {
-                System.err.println("Invalid input value.");
+                System.out.println("Invalid input value.");
+                logger.log(Level.SEVERE, "Invalid input value.");
                 return;
             }
         }
@@ -90,7 +95,7 @@ public class ConsoleApp {
         try {
             OCRHelper.performOCR(imageFile, outputFile, tessPath, curLangCode, psm, outputFormat);
         } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
+            logger.log(Level.SEVERE, e.getMessage(), e);
         }
     }
 }

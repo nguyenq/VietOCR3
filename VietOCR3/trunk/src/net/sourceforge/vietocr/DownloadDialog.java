@@ -31,7 +31,10 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
+
 import net.sourceforge.vietocr.util.FileExtractor;
 import net.sourceforge.vietocr.util.Utils;
 
@@ -50,9 +53,14 @@ public class DownloadDialog extends javax.swing.JDialog {
     int contentLength, byteCount, numberOfDownloads, numOfConcurrentTasks;
     ResourceBundle bundle;
     private File tessdataDir;
+    
+    private final static Logger logger = Logger.getLogger(DownloadDialog.class.getName());
 
     /**
-     * Creates new form DownloadDialog
+     * Creates new form DownloadDialog.
+     * 
+     * @param parent
+     * @param modal
      */
     public DownloadDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -73,6 +81,7 @@ public class DownloadDialog extends javax.swing.JDialog {
             xmlFile = new File(baseDir, "data/OO-SpellDictionaries.xml");
             availableDictionaries.loadFromXML(new FileInputStream(xmlFile));
         } catch (Exception e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
 
         setLocationRelativeTo(getOwner());
@@ -235,6 +244,7 @@ public class DownloadDialog extends javax.swing.JDialog {
                         }
                     }
                 } catch (Exception e) {
+                    logger.log(Level.WARNING, e.getMessage(), e);
                 }
             }
         }
@@ -257,6 +267,7 @@ public class DownloadDialog extends javax.swing.JDialog {
                     writeAccess = true;
                 }
             } catch (Exception e) {
+                logger.log(Level.WARNING, e.getMessage(), e);
                 writeAccess = false;
             }
         }
@@ -339,10 +350,10 @@ public class DownloadDialog extends javax.swing.JDialog {
                         jProgressBar1.setVisible(false);
                     }
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logger.log(Level.WARNING, e.getMessage(), e);
                     numOfConcurrentTasks = 0;
                 } catch (java.util.concurrent.ExecutionException e) {
-                    String why = null;
+                    String why;
                     Throwable cause = e.getCause();
                     if (cause != null) {
                         if (cause instanceof UnsupportedOperationException) {
@@ -357,17 +368,18 @@ public class DownloadDialog extends javax.swing.JDialog {
                     } else {
                         why = e.getMessage();
                     }
-                    e.printStackTrace();
+                    logger.log(Level.SEVERE, why, e);
                     JOptionPane.showMessageDialog(null, why, Gui.APP_NAME, JOptionPane.ERROR_MESSAGE);
                     jProgressBar1.setVisible(false);
                     jLabelStatus.setText(null);
                     --numOfConcurrentTasks;
                 } catch (java.util.concurrent.CancellationException e) {
+                    logger.log(Level.WARNING, e.getMessage(), e);
                     jLabelStatus.setText(bundle.getString("Download_cancelled"));
 //                    jProgressBar1.setVisible(false);
                     numOfConcurrentTasks = 0;
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.log(Level.SEVERE, e.getMessage(), e);
                     JOptionPane.showMessageDialog(null, e.getMessage(), Gui.APP_NAME, JOptionPane.ERROR_MESSAGE);
                     jProgressBar1.setVisible(false);
                     jLabelStatus.setText(bundle.getString("Unable_to_install"));

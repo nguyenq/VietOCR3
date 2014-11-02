@@ -17,6 +17,8 @@ package net.sourceforge.vietocr;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.sourceforge.vietocr.util.Utils;
 
 /**
@@ -152,6 +154,8 @@ class StreamGobbler extends Thread {
 
     InputStream is;
     StringBuilder outputMessage = new StringBuilder();
+    
+    private final static Logger logger = Logger.getLogger(StreamGobbler.class.getName());
 
     StreamGobbler(InputStream is) {
         this.is = is;
@@ -172,7 +176,7 @@ class StreamGobbler extends Thread {
                 outputMessage.append(line).append("\n");
             }
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            logger.log(Level.SEVERE, ioe.getMessage(), ioe);
         }
     }
 }

@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import net.sourceforge.vietocr.util.Utils;
 
@@ -35,6 +37,8 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
     private String inputFolder;
     private String outputFolder;
     private String outputFormat;
+    
+    private final static Logger logger = Logger.getLogger(GuiWithBulkOCR.class.getName());
 
     public GuiWithBulkOCR() {
         inputFolder = prefs.get(strInputFolder, System.getProperty("user.home"));
@@ -138,6 +142,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                         String outputFilename = imageFile.getPath().substring(inputFolder.length() + 1);
                         OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename), tessPath, curLangCode, selectedPSM, outputFormat);
                     } catch (Exception e) {
+                        logger.log(Level.WARNING, e.getMessage(), e);
                         publish("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **");
                     }
                 }
@@ -162,7 +167,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 jProgressBar1.setString(bundle.getString("OCR_completed."));
                 statusFrame.getTextArea().append("\t-- " + bundle.getString("End_of_task") + " --\n");
             } catch (InterruptedException ignore) {
-//                ignore.printStackTrace();
+                logger.log(Level.WARNING, ignore.getMessage(), ignore);
             } catch (java.util.concurrent.ExecutionException e) {
                 String why;
                 Throwable cause = e.getCause();
@@ -179,11 +184,12 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
                 } else {
                     why = e.getMessage();
                 }
-//                    System.err.println(why);
+                logger.log(Level.SEVERE, e.getMessage(), e);
                 jLabelStatus.setText(null);
                 jProgressBar1.setString(null);
                 JOptionPane.showMessageDialog(null, why, "OCR Operation", JOptionPane.ERROR_MESSAGE);
             } catch (java.util.concurrent.CancellationException e) {
+                logger.log(Level.WARNING, e.getMessage(), e);
                 jLabelStatus.setText("OCR " + bundle.getString("canceled"));
                 jProgressBar1.setString("OCR " + bundle.getString("canceled"));
                 statusFrame.getTextArea().append("\t-- " + bundle.getString("Task_canceled") + " --\n");

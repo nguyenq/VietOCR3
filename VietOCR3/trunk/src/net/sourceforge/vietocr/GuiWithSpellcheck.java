@@ -21,6 +21,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
@@ -30,6 +32,8 @@ public class GuiWithSpellcheck extends GuiWithPSM {
 
     private int start, end;
     private SpellCheckHelper speller;
+    
+    private final static Logger logger = Logger.getLogger(GuiWithSpellcheck.class.getName());
 
     @Override
     void populatePopupMenuWithSuggestions(Point pointClicked) {
@@ -43,6 +47,7 @@ public class GuiWithSpellcheck extends GuiWithPSM {
                 makeSuggestions(curWord);
             }
         } catch (BadLocationException e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
         } finally {
             // load standard menu items
             repopulatePopupMenu();
