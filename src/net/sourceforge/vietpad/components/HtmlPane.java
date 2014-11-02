@@ -100,7 +100,9 @@ public class HtmlPane extends JScrollPane implements HyperlinkListener {
     }
     
     /**
-     * Get the Status Bar
+     * Get the Status Bar.
+     * 
+     * @return 
      */
     public JTextField getStatusBar() {
         return statusBar;
