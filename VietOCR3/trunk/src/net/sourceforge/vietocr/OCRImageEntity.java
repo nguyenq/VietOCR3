@@ -72,6 +72,8 @@ public class OCRImageEntity {
     }
 
     /**
+     * Gets oimages.
+     * 
      * @return the list of oimages
      */
     public List<IIOImage> getOimages() {
@@ -79,6 +81,8 @@ public class OCRImageEntity {
     }
     
     /**
+     * Gets selected oimages.
+     * 
      * @return the list of selected oimages
      */
     public List<IIOImage> getSelectedOimages() {
@@ -86,6 +90,8 @@ public class OCRImageEntity {
     }
 
     /**
+     * Gets image file.
+     * 
      * @return the imageFile
      */
     public File getImageFile() {
@@ -93,7 +99,10 @@ public class OCRImageEntity {
     }
 
     /**
+     * Gets cloned image files.
+     * 
      * @return the ClonedImageFiles
+     * @throws java.io.IOException
      */
     public List<File> getClonedImageFiles() throws IOException {
         if (oimages != null) {
@@ -139,6 +148,8 @@ public class OCRImageEntity {
     }
 
     /**
+     * Gets the index.
+     * 
      * @return the index
      */
     public int getIndex() {
@@ -146,6 +157,8 @@ public class OCRImageEntity {
     }
 
     /**
+     * Gets bounding rectangle.
+     * 
      * @return the bounding rectangle
      */
     public Rectangle getRect() {
@@ -154,6 +167,7 @@ public class OCRImageEntity {
 
     /**
      * Sets screenshot mode.
+     * 
      * @param mode true for resampling the input image; false for no manipulation of the image
      */
     public void setScreenshotMode(boolean mode) {
@@ -163,6 +177,7 @@ public class OCRImageEntity {
 
     /**
      * Sets resolution (DPI).
+     * 
      * @param dpiX horizontal resolution
      * @param dpiY vertical resolution
      */
@@ -172,6 +187,8 @@ public class OCRImageEntity {
     }
 
     /**
+     * Gets language code.
+     * 
      * @return the language code
      */
     public String getLanguage() {
