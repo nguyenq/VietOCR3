@@ -19,10 +19,14 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Utils {
 
     private static final String EOL = "\n";
+    
+    private final static Logger logger = Logger.getLogger(Utils.class.getName());
 
     /**
      * Gets the directory of the executing JAR.
@@ -39,10 +43,10 @@ public class Utils {
                 dir = new URL(dir.toString().replaceFirst("^jar:", "").replaceFirst("/[^/]+.jar!.*$", ""));
                 dbDir = new File(dir.toURI());
             }
-        } catch (MalformedURLException mue) {
-            mue.printStackTrace();
-        } catch (URISyntaxException use) {
-            use.printStackTrace();
+        } catch (MalformedURLException e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
+        } catch (URISyntaxException e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
         return dbDir;
     }

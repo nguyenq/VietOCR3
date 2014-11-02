@@ -19,17 +19,23 @@ import java.awt.Cursor;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
 import net.sourceforge.vietocr.components.ImageIconScalable;
 import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.vietocr.wia.*;
+
 import uk.co.mmscomputing.device.scanner.*;
 import uk.co.mmscomputing.device.sane.*;
 
 public class GuiWithScan extends Gui implements ScannerListener {
 
     Scanner scanner;
+    
+    private final static Logger logger = Logger.getLogger(GuiWithScan.class.getName());
 
     /**
      * Access scanner and scan documents via Windows WIA or Linux Sane.
@@ -69,17 +75,21 @@ public class GuiWithScan extends Gui implements ScannerListener {
                         scanner.addListener(GuiWithScan.this);
                         scanner.acquire();
                     }
-                } catch (ScannerIOException se) {
-                    JOptionPane.showMessageDialog(null, se.getMessage(), "Error Scanning Image", JOptionPane.ERROR_MESSAGE);
-                } catch (IOException ioe) {
-                    JOptionPane.showMessageDialog(null, ioe.getMessage(), "I/O Error", JOptionPane.ERROR_MESSAGE);
-                } catch (WiaOperationException woe) {
-                    JOptionPane.showMessageDialog(null, woe.getWIAMessage(), woe.getMessage(), JOptionPane.WARNING_MESSAGE);
+                } catch (ScannerIOException e) {
+                    logger.log(Level.SEVERE, e.getMessage(), e);
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "Error Scanning Image", JOptionPane.ERROR_MESSAGE);
+                } catch (IOException e) {
+                    logger.log(Level.SEVERE, e.getMessage(), e);
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "I/O Error", JOptionPane.ERROR_MESSAGE);
+                } catch (WiaOperationException e) {
+                    logger.log(Level.SEVERE, e.getMessage(), e);
+                    JOptionPane.showMessageDialog(null, e.getWIAMessage(), e.getMessage(), JOptionPane.WARNING_MESSAGE);
                 } catch (Exception e) {
                     String msg = e.getMessage();
                     if (msg == null || msg.equals("")) {
                         msg = "Scanner Operation Error.";
                     }
+                    logger.log(Level.SEVERE, e.getMessage(), e);
                     JOptionPane.showMessageDialog(null, msg, "Scanner Operation Error", JOptionPane.ERROR_MESSAGE);
                 } finally {
 //                    if (WINDOWS) {
@@ -107,6 +117,7 @@ public class GuiWithScan extends Gui implements ScannerListener {
                 loadImage();
                 setTitle("Scanned image - " + APP_NAME);
             } catch (Exception e) {
+                logger.log(Level.SEVERE, e.getMessage(), e);
                 JOptionPane.showMessageDialog(null, e.getMessage(), "I/O Error", JOptionPane.ERROR_MESSAGE);
             } finally {
                 scanCompleted();
@@ -118,7 +129,7 @@ public class GuiWithScan extends Gui implements ScannerListener {
                 device.setOption("mode", "True Gray");
                 device.setOption("source", "FlatBed");
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.WARNING, e.getMessage(), e);
             }
         } else if (type.equals(ScannerIOMetadata.STATECHANGE)) {
             System.out.println(metadata.getStateStr());
@@ -126,7 +137,7 @@ public class GuiWithScan extends Gui implements ScannerListener {
                 scanCompleted();
             }
         } else if (type.equals(ScannerIOMetadata.EXCEPTION)) {
-            metadata.getException().printStackTrace();
+            logger.log(Level.SEVERE, metadata.getException().getMessage(), metadata.getException());
         }
     }
 

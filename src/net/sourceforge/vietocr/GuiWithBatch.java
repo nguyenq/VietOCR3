@@ -18,6 +18,8 @@ package net.sourceforge.vietocr;
 import java.awt.event.ActionEvent;
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.Timer;
 import net.sourceforge.vietocr.util.Watcher;
@@ -28,6 +30,8 @@ public class GuiWithBatch extends GuiWithSettings {
     private final Watcher watcher;
     private final Timer timer;
 
+    private final static Logger logger = Logger.getLogger(GuiWithBatch.class.getName());
+    
     public GuiWithBatch() {
         statusFrame = new StatusFrame();
         statusFrame.setTitle(bundle.getString("statusFrame.Title"));
@@ -75,6 +79,7 @@ public class GuiWithBatch extends GuiWithSettings {
                     try {
                         OCRHelper.performOCR(imageFile, new File(outputFolder, imageFile.getName()), tessPath, curLangCode, selectedPSM, outputFormat);
                     } catch (Exception e) {
+                        logger.log(Level.WARNING, e.getMessage(), e);
                         statusFrame.getTextArea().append("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **\n");
                     }
                 }

@@ -19,6 +19,8 @@ import java.awt.datatransfer.*;
 import java.awt.dnd.*;
 import java.io.*;
 import java.net.URI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *  File Drop Target Listener
@@ -28,8 +30,10 @@ import java.net.URI;
  *@see        http://vietpad.sourceforge.net
  */
 public class FileDropTargetListener extends DropTargetAdapter {
-    private Gui holder;
+    private final Gui holder;
     private File droppedFile;
+    
+    private final static Logger logger = Logger.getLogger(FileDropTargetListener.class.getName());
     
     /**
      *  Constructor for the FileDropTargetListener object
@@ -50,8 +54,8 @@ public class FileDropTargetListener extends DropTargetAdapter {
     public void dragOver(DropTargetDragEvent dtde) {
         if (droppedFile == null) {
             DataFlavor[] flavors = dtde.getCurrentDataFlavors();
-            for (int i = 0; i < flavors.length; i++) {               
-                if (flavors[i].isFlavorJavaFileListType()) {
+            for (DataFlavor flavor : flavors) {
+                if (flavor.isFlavorJavaFileListType()) {
                     dtde.acceptDrag(DnDConstants.ACTION_COPY);
                     return;
                 }
@@ -72,13 +76,12 @@ public class FileDropTargetListener extends DropTargetAdapter {
         
         final boolean LINUX = System.getProperty("os.name").equals("Linux");
         
-        for (int i = 0; i < flavors.length; i++) {
+        for (DataFlavor flavor : flavors) {
             try {
-                if (flavors[i].equals(DataFlavor.javaFileListFlavor) || (LINUX && flavors[i].getPrimaryType().equals("text") && flavors[i].getSubType().equals("uri-list"))) {
+                if (flavor.equals(DataFlavor.javaFileListFlavor) || (LINUX && flavor.getPrimaryType().equals("text") && flavor.getSubType().equals("uri-list"))) {
                     dtde.acceptDrop(DnDConstants.ACTION_COPY);
-                    
                     // Missing DataFlavor.javaFileListFlavor on Linux (Bug ID: 4899516)
-                    if (flavors[i].equals(DataFlavor.javaFileListFlavor)) {
+                    if (flavor.equals(DataFlavor.javaFileListFlavor)) {
                         java.util.List fileList = (java.util.List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
                         droppedFile = (File) fileList.get(0);
                     } else {
@@ -88,7 +91,6 @@ public class FileDropTargetListener extends DropTargetAdapter {
                         URI uri = new URI(string.substring(0, string.indexOf('\n')));
                         droppedFile = new File(uri);
                     }
-                    
                     // Note: On Windows, Java 1.4.2 can't recognize a Unicode file name
                     // (Bug ID 4896217). Fixed in Java 1.5.
                     
@@ -100,12 +102,11 @@ public class FileDropTargetListener extends DropTargetAdapter {
                             droppedFile = null;
                         }
                     }.start();
-                    
                     dtde.dropComplete(true);
                     return;
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            }catch (Exception e) {
+                logger.log(Level.WARNING, e.getMessage(), e);
                 dtde.rejectDrop();
             }
         }

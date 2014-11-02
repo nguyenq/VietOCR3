@@ -22,6 +22,8 @@ import java.io.*;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.*;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
@@ -41,6 +43,8 @@ public class SpellCheckHelper {
     Hunspell.Dictionary spellDict;
     static List<String> userWordList = new ArrayList<String>();
     static long mapLastModified = Long.MIN_VALUE;
+    
+    private final static Logger logger = Logger.getLogger(SpellCheckHelper.class.getName());
 
     /**
      * Constructor.
@@ -70,6 +74,7 @@ public class SpellCheckHelper {
             this.textComp.getDocument().addDocumentListener(docListener);
             spellCheck();
         } catch (Exception e) {
+            logger.log(Level.SEVERE, e.getMessage(), e);
             JOptionPane.showMessageDialog(null, e.getMessage(), Gui.APP_NAME, JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -175,6 +180,7 @@ public class SpellCheckHelper {
             try {
                 return spellDict.suggest(misspelled);
             } catch (Exception e) {
+                logger.log(Level.WARNING, e.getMessage(), e);
                 return null;
             }
         }
@@ -206,7 +212,7 @@ public class SpellCheckHelper {
                 out.newLine();
                 out.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.log(Level.SEVERE, e.getMessage(), e);
             }
         }
     }
@@ -231,8 +237,9 @@ public class SpellCheckHelper {
                 userWordList.add(str.toLowerCase());
             }
             in.close();
-        } catch (IOException ioe) {
-            JOptionPane.showMessageDialog(null, ioe.getMessage(), Gui.APP_NAME, JOptionPane.ERROR_MESSAGE);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, e.getMessage(), e);
+            JOptionPane.showMessageDialog(null, e.getMessage(), Gui.APP_NAME, JOptionPane.ERROR_MESSAGE);
         }
     }
 

@@ -17,9 +17,12 @@ package net.sourceforge.vietocr;
 
 import java.awt.Window;
 import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class GuiWithLaF extends GuiWithUILanguage {
+    private final static Logger logger = Logger.getLogger(GuiWithLaF.class.getName());
 
     public GuiWithLaF() {
         initComponents();
@@ -57,9 +60,8 @@ public class GuiWithLaF extends GuiWithUILanguage {
     void updateLaF(String laf) {
         try {
             UIManager.setLookAndFeel(laf);
-        } catch (Exception exc) {
-            // do nothing
-//            exc.printStackTrace();
+        } catch (Exception e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
 
         for (Window win : Window.getWindows()) {

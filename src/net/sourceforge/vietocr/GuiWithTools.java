@@ -19,8 +19,11 @@ import java.awt.Cursor;
 import java.io.File;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
+
 import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.tess4j.util.PdfUtilities;
 import net.sourceforge.vietocr.util.Utils;
@@ -31,6 +34,8 @@ public class GuiWithTools extends GuiWithSpellcheck {
     private final String strImageFolder = "ImageFolder";
     File imageFolder;
     FileFilter selectedFilter;
+    
+    private final static Logger logger = Logger.getLogger(GuiWithTools.class.getName());
 
     public GuiWithTools() {
         imageFolder = new File(prefs.get(strImageFolder, System.getProperty("user.home")));
@@ -112,7 +117,7 @@ public class GuiWithTools extends GuiWithSpellcheck {
                             File result = get();
                             JOptionPane.showMessageDialog(GuiWithTools.this, bundle.getString("MergeTIFFcompleted") + result.getName() + bundle.getString("created"), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
                         } catch (InterruptedException ignore) {
-                            ignore.printStackTrace();
+                            logger.log(Level.WARNING, ignore.getMessage(), ignore);
                         } catch (java.util.concurrent.ExecutionException e) {
                             String why;
                             Throwable cause = e.getCause();
@@ -125,7 +130,7 @@ public class GuiWithTools extends GuiWithSpellcheck {
                             } else {
                                 why = e.getMessage();
                             }
-                            e.printStackTrace();
+                            logger.log(Level.SEVERE, why, e);
                             JOptionPane.showMessageDialog(GuiWithTools.this, why, APP_NAME, JOptionPane.ERROR_MESSAGE);
                         } finally {
                             jProgressBar1.setVisible(false);
@@ -198,9 +203,9 @@ public class GuiWithTools extends GuiWithSpellcheck {
                         get();
                         JOptionPane.showMessageDialog(GuiWithTools.this, bundle.getString("SplitTIFFcompleted"), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
                     } catch (InterruptedException ignore) {
-                        ignore.printStackTrace();
+                        logger.log(Level.WARNING, ignore.getMessage(), ignore);
                     } catch (java.util.concurrent.ExecutionException e) {
-                        String why = null;
+                        String why;
                         Throwable cause = e.getCause();
                         if (cause != null) {
                             if (cause instanceof OutOfMemoryError) {
@@ -211,7 +216,7 @@ public class GuiWithTools extends GuiWithSpellcheck {
                         } else {
                             why = e.getMessage();
                         }
-                        e.printStackTrace();
+                        logger.log(Level.SEVERE, why, e);
                         JOptionPane.showMessageDialog(GuiWithTools.this, why, APP_NAME, JOptionPane.ERROR_MESSAGE);
                     } finally {
                         jProgressBar1.setVisible(false);
@@ -282,9 +287,9 @@ public class GuiWithTools extends GuiWithSpellcheck {
                             File result = get();
                             JOptionPane.showMessageDialog(GuiWithTools.this, bundle.getString("MergePDFcompleted") + result.getName() + bundle.getString("created"), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
                         } catch (InterruptedException ignore) {
-                            ignore.printStackTrace();
+                            logger.log(Level.WARNING, ignore.getMessage(), ignore);
                         } catch (java.util.concurrent.ExecutionException e) {
-                            String why = null;
+                            String why;
                             Throwable cause = e.getCause();
                             if (cause != null) {
                                 if (cause instanceof OutOfMemoryError) {
@@ -295,7 +300,7 @@ public class GuiWithTools extends GuiWithSpellcheck {
                             } else {
                                 why = e.getMessage();
                             }
-                            e.printStackTrace();
+                            logger.log(Level.SEVERE, why, e);
                             JOptionPane.showMessageDialog(GuiWithTools.this, why, APP_NAME, JOptionPane.ERROR_MESSAGE);
                         } finally {
                             jProgressBar1.setVisible(false);
@@ -371,7 +376,7 @@ public class GuiWithTools extends GuiWithSpellcheck {
                         String result = get();
                         JOptionPane.showMessageDialog(GuiWithTools.this, bundle.getString("SplitPDF_completed.") + bundle.getString("check_output_in") + new File(result).getParent());
                     } catch (InterruptedException ignore) {
-                        ignore.printStackTrace();
+                        logger.log(Level.WARNING, ignore.getMessage(), ignore);
                     } catch (java.util.concurrent.ExecutionException e) {
                         String why;
                         Throwable cause = e.getCause();
@@ -384,7 +389,7 @@ public class GuiWithTools extends GuiWithSpellcheck {
                         } else {
                             why = e.getMessage();
                         }
-                        e.printStackTrace();
+                        logger.log(Level.SEVERE, why, e);
                         JOptionPane.showMessageDialog(GuiWithTools.this, why, APP_NAME, JOptionPane.ERROR_MESSAGE);
                     } finally {
                         jProgressBar1.setVisible(false);
