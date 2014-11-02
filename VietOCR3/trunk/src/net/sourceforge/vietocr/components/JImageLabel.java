@@ -247,7 +247,6 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
                     startPoint = p;
                     pressOut = true;
                 }
-
             }
         }
     }
@@ -269,8 +268,6 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
                     moving = true;
                     repaint();
                 } else {
-
-
                     int diffX = startDragX - x;
                     int diffY = startDragY - y;
 
@@ -320,10 +317,10 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
     /**
      * Invoked when the mouse cursor has been moved onto a component
      * but no buttons have been pushed.
+     * @param e
      */
     @Override
     public void mouseMoved(MouseEvent e) {
-
         if (rect != null) {
             int rectX = rect.x;
             int rectY = rect.y;
