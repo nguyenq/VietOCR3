@@ -27,6 +27,9 @@
       </AuxValues>
     </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="&#xa;        // DnD support&#xa;        new DropTarget(this.jImageLabel, new FileDropTargetListener(Gui.this));&#xa;        new DropTarget(this.jTextArea1, new FileDropTargetListener(Gui.this));&#xa;&#xa;        this.addWindowListener(new WindowAdapter() {&#xa;&#xa;            @Override&#xa;            public void windowClosing(WindowEvent e) {&#xa;                quit();&#xa;            }&#xa;&#xa;            @Override&#xa;            public void windowOpened(WindowEvent e) {&#xa;                updateSave(false);&#xa;                setExtendedState(prefs.getInt(strWindowState, Frame.NORMAL));&#xa;                populateMRUList();&#xa;                populatePopupMenu();&#xa;                addUndoSupport();&#xa;            }&#xa;        });&#xa;&#xa;        setSize(&#xa;                snap(prefs.getInt(strFrameWidth, 500), 300, screen.width),&#xa;                snap(prefs.getInt(strFrameHeight, 360), 150, screen.height));&#xa;        setLocation(&#xa;                snap(prefs.getInt(strFrameX, (screen.width - getWidth()) / 2),&#xa;                        screen.x, screen.x + screen.width - getWidth()),&#xa;                snap(prefs.getInt(strFrameY, screen.y + (screen.height - getHeight()) / 3),&#xa;                        screen.y, screen.y + screen.height - getHeight()));"/>
+      </AuxValues>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenuFile">
           <Properties>
@@ -1175,16 +1178,38 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabelCurIndex">
-                  <Properties>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                  </Properties>
+                <Container class="javax.swing.JPanel" name="jPanelPageNum">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                       <BorderConstraints direction="North"/>
                     </Constraint>
                   </Constraints>
-                </Component>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabelPage">
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jTextFieldCurPage">
+                      <Properties>
+                        <Property name="columns" type="int" value="3"/>
+                        <Property name="document" type="javax.swing.text.Document" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new LimitedLengthDocument(3)" type="code"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldCurPageFocusLost"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCurPageActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jTextFieldCurPage.setVisible(false);&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabelPageMax">
+                    </Component>
+                  </SubComponents>
+                </Container>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane2">
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jScrollPane2.getVerticalScrollBar().setUnitIncrement(20);&#xa;jScrollPane2.getHorizontalScrollBar().setUnitIncrement(20);"/>
