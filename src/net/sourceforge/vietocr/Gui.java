@@ -34,6 +34,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.JTextComponent;
 import javax.swing.undo.*;
+
 import net.sourceforge.tess4j.util.ImageHelper;
 import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.vietocr.components.*;
@@ -41,6 +42,7 @@ import net.sourceforge.vietocr.util.FormLocalizer;
 import net.sourceforge.vietocr.util.Utils;
 import net.sourceforge.vietpad.components.*;
 import net.sourceforge.vietpad.inputmethod.VietKeyListener;
+import net.sourceforge.vietpad.utilities.LimitedLengthDocument;
 
 public class Gui extends JFrame {
 
@@ -141,39 +143,6 @@ public class Gui extends JFrame {
         if (!supportDir.exists()) {
             supportDir.mkdirs();
         }
-
-        // DnD support
-        new DropTarget(this.jImageLabel, new FileDropTargetListener(Gui.this));
-        new DropTarget(this.jTextArea1, new FileDropTargetListener(Gui.this));
-
-        this.addWindowListener(
-                new WindowAdapter() {
-
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        quit();
-                    }
-
-                    @Override
-                    public void windowOpened(WindowEvent e) {
-                        updateSave(false);
-                        setExtendedState(prefs.getInt(strWindowState, Frame.NORMAL));
-                        populateMRUList();
-                        populatePopupMenu();
-                        addUndoSupport();
-                    }
-                });
-
-        setSize(
-                snap(prefs.getInt(strFrameWidth, 500), 300, screen.width),
-                snap(prefs.getInt(strFrameHeight, 360), 150, screen.height));
-        setLocation(
-                snap(
-                        prefs.getInt(strFrameX, (screen.width - getWidth()) / 2),
-                        screen.x, screen.x + screen.width - getWidth()),
-                snap(
-                        prefs.getInt(strFrameY, screen.y + (screen.height - getHeight()) / 3),
-                        screen.y, screen.y + screen.height - getHeight()));
 
         KeyEventDispatcher dispatcher = new KeyEventDispatcher() {
 
@@ -696,7 +665,11 @@ public class Gui extends JFrame {
         jButtonRotateCCW = new javax.swing.JButton();
         jButtonRotateCW = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabelCurIndex = new javax.swing.JLabel();
+        jPanelPageNum = new javax.swing.JPanel();
+        jLabelPage = new javax.swing.JLabel();
+        jTextFieldCurPage = new javax.swing.JTextField();
+        jTextFieldCurPage.setVisible(false);
+        jLabelPageMax = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane2.getVerticalScrollBar().setUnitIncrement(20);
         jScrollPane2.getHorizontalScrollBar().setUnitIncrement(20);
@@ -1047,8 +1020,25 @@ public class Gui extends JFrame {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jLabelCurIndex.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(jLabelCurIndex, java.awt.BorderLayout.NORTH);
+        jPanelPageNum.add(jLabelPage);
+
+        jTextFieldCurPage.setColumns(3);
+        jTextFieldCurPage.setDocument(new LimitedLengthDocument(3));
+        jTextFieldCurPage.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldCurPage.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldCurPageFocusLost(evt);
+            }
+        });
+        jTextFieldCurPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCurPageActionPerformed(evt);
+            }
+        });
+        jPanelPageNum.add(jTextFieldCurPage);
+        jPanelPageNum.add(jLabelPageMax);
+
+        jPanel2.add(jPanelPageNum, java.awt.BorderLayout.NORTH);
 
         jImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jImageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1455,6 +1445,36 @@ public class Gui extends JFrame {
 
         setJMenuBar(jMenuBar2);
 
+        // DnD support
+        new DropTarget(this.jImageLabel, new FileDropTargetListener(Gui.this));
+        new DropTarget(this.jTextArea1, new FileDropTargetListener(Gui.this));
+
+        this.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                quit();
+            }
+
+            @Override
+            public void windowOpened(WindowEvent e) {
+                updateSave(false);
+                setExtendedState(prefs.getInt(strWindowState, Frame.NORMAL));
+                populateMRUList();
+                populatePopupMenu();
+                addUndoSupport();
+            }
+        });
+
+        setSize(
+            snap(prefs.getInt(strFrameWidth, 500), 300, screen.width),
+            snap(prefs.getInt(strFrameHeight, 360), 150, screen.height));
+        setLocation(
+            snap(prefs.getInt(strFrameX, (screen.width - getWidth()) / 2),
+                screen.x, screen.x + screen.width - getWidth()),
+            snap(prefs.getInt(strFrameY, screen.y + (screen.height - getHeight()) / 3),
+                screen.y, screen.y + screen.height - getHeight()));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1645,7 +1665,7 @@ public class Gui extends JFrame {
         if (this.jComboBoxLang.getSelectedIndex() != -1) {
             prefs.put(strLangCode, this.jComboBoxLang.getSelectedItem().toString());
         }
-        
+
         prefs.putBoolean(strWordWrap, wordWrapOn);
 
         StringBuilder buf = new StringBuilder();
@@ -1815,7 +1835,10 @@ public class Gui extends JFrame {
      * Displays image.
      */
     void displayImage() {
-        this.jLabelCurIndex.setText(bundle.getString("Page_") + (imageIndex + 1) + " " + bundle.getString("of_") + imageTotal);
+        this.jLabelPage.setText(bundle.getString("Page_").trim());
+        this.jTextFieldCurPage.setVisible(true);
+        this.jTextFieldCurPage.setText(String.valueOf(imageIndex + 1));
+        this.jLabelPageMax.setText("/ " + imageTotal);
         imageIcon = imageList.get(imageIndex).clone();
         originalW = imageIcon.getIconWidth();
         originalH = imageIcon.getIconHeight();
@@ -2166,6 +2189,34 @@ public class Gui extends JFrame {
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemSplitTiffActionPerformed
 
+    private void jTextFieldCurPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCurPageActionPerformed
+        int pageNum;
+        try {
+            pageNum = Integer.parseInt(jTextFieldCurPage.getText().trim());
+            if (pageNum < 1 || pageNum > imageTotal) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            String pageMsgFormat = bundle.getString("InvalidPageMessage");
+            JOptionPane.showMessageDialog(this, String.format(pageMsgFormat, jTextFieldCurPage.getText()));
+            jTextFieldCurPage.setText(String.valueOf(imageIndex + 1));
+            return;
+        }
+
+        ((JImageLabel) jImageLabel).deselect();
+        imageIndex = pageNum - 1;
+        jLabelStatus.setText(null);
+        jProgressBar1.setString(null);
+        jProgressBar1.setVisible(false);
+        displayImage();
+        clearStack();
+        setButton();
+    }//GEN-LAST:event_jTextFieldCurPageActionPerformed
+
+    private void jTextFieldCurPageFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldCurPageFocusLost
+        jTextFieldCurPage.setText(String.valueOf(imageIndex + 1));
+    }//GEN-LAST:event_jTextFieldCurPageFocusLost
+
     /**
      * Changes locale of UI elements.
      *
@@ -2185,7 +2236,7 @@ public class Gui extends JFrame {
                 FormLocalizer localizer = new FormLocalizer(Gui.this, Gui.class);
                 localizer.ApplyCulture(bundle);
                 if (imageTotal > 0) {
-                    jLabelCurIndex.setText(bundle.getString("Page_") + (imageIndex + 1) + " " + bundle.getString("of_") + imageTotal);
+                    jLabelPage.setText(bundle.getString("Page_").trim());
                 }
                 if (helptopicsFrame != null) {
                     helptopicsFrame.setTitle(jMenuItemHelp.getText());
@@ -2256,8 +2307,9 @@ public class Gui extends JFrame {
     protected javax.swing.JComboBox jComboBoxLang;
     protected javax.swing.JFileChooser jFileChooser;
     protected javax.swing.JLabel jImageLabel;
-    private javax.swing.JLabel jLabelCurIndex;
     private javax.swing.JLabel jLabelLanguage;
+    private javax.swing.JLabel jLabelPage;
+    private javax.swing.JLabel jLabelPageMax;
     protected javax.swing.JLabel jLabelStatus;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu jMenuCommand;
@@ -2306,6 +2358,7 @@ public class Gui extends JFrame {
     protected javax.swing.JMenu jMenuUILang;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelPageNum;
     private javax.swing.JPanel jPanelStatus;
     protected javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -2329,6 +2382,7 @@ public class Gui extends JFrame {
     private javax.swing.JPopupMenu.Separator jSeparatorOptions;
     private javax.swing.JSplitPane jSplitPane1;
     protected javax.swing.JTextArea jTextArea1;
+    protected javax.swing.JTextField jTextFieldCurPage;
     protected javax.swing.JToggleButton jToggleButtonSpellCheck;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
