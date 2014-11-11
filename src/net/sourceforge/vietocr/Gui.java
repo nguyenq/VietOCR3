@@ -2193,8 +2193,11 @@ public class Gui extends JFrame {
         int pageNum;
         try {
             pageNum = Integer.parseInt(jTextFieldCurPage.getText().trim());
-            if (pageNum < 1 || pageNum > imageTotal) {
-                throw new IllegalArgumentException();
+
+            if (pageNum < imageIndex + 1) {
+                return; // no change
+            } else if (pageNum < 1 || pageNum > imageTotal) {
+                throw new IllegalArgumentException(); // out of range
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, String.format(bundle.getString("InvalidPageMessage"), jTextFieldCurPage.getText()));
