@@ -2140,7 +2140,7 @@ public class Gui extends JFrame {
     }//GEN-LAST:event_jMenuItemDeskewActionPerformed
 
     private void jImageLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jImageLabelMouseEntered
-        if (!this.jImageLabel.isFocusOwner() && this.isActive()) {
+        if (!this.jImageLabel.isFocusOwner() && this.isActive() && !this.jTextFieldCurPage.isFocusOwner()) {
             jImageLabel.requestFocusInWindow();
         }
     }//GEN-LAST:event_jImageLabelMouseEntered
@@ -2197,8 +2197,7 @@ public class Gui extends JFrame {
                 throw new IllegalArgumentException();
             }
         } catch (Exception e) {
-            String pageMsgFormat = bundle.getString("InvalidPageMessage");
-            JOptionPane.showMessageDialog(this, String.format(pageMsgFormat, jTextFieldCurPage.getText()));
+            JOptionPane.showMessageDialog(this, String.format(bundle.getString("InvalidPageMessage"), jTextFieldCurPage.getText()));
             jTextFieldCurPage.setText(String.valueOf(imageIndex + 1));
             return;
         }
