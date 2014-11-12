@@ -608,6 +608,23 @@ public class Gui extends JFrame {
         jButtonCancelOCR = new javax.swing.JButton();
         jButtonCancelOCR.setVisible(false);
         jButtonClear = new javax.swing.JButton();
+        jSeparator14 = new javax.swing.JToolBar.Separator();
+        jButtonPrevPage = new javax.swing.JButton();
+        jButtonNextPage = new javax.swing.JButton();
+        jTextFieldCurPage = new javax.swing.JTextField();
+        jTextFieldCurPage.setFont(jTextFieldCurPage.getFont().deriveFont(Font.PLAIN, 13));
+        jLabelPageMax = new javax.swing.JLabel();
+        jLabelPageMax.setFont(jLabelPageMax.getFont().deriveFont(Font.PLAIN, 13));
+        jSeparator7 = new javax.swing.JToolBar.Separator();
+        jButtonFitImage = new javax.swing.JButton();
+        jButtonActualSize = new javax.swing.JButton();
+        jSeparator8 = new javax.swing.JToolBar.Separator();
+        jButtonZoomIn = new javax.swing.JButton();
+        jButtonZoomOut = new javax.swing.JButton();
+        jSeparator9 = new javax.swing.JToolBar.Separator();
+        jButtonRotateCCW = new javax.swing.JButton();
+        jButtonRotateCW = new javax.swing.JButton();
+        jSeparator15 = new javax.swing.JToolBar.Separator();
         jToggleButtonSpellCheck = new javax.swing.JToggleButton();
         jLabelLanguage = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(4, 0), new java.awt.Dimension(4, 0), new java.awt.Dimension(4, 32767));
@@ -653,23 +670,8 @@ public class Gui extends JFrame {
         jTextArea1.getDocument().putProperty(DefaultEditorKit.EndOfLineStringProperty, System.getProperty("line.separator"));
         jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
-        jButtonPrevPage = new javax.swing.JButton();
-        jButtonNextPage = new javax.swing.JButton();
-        jSeparator7 = new javax.swing.JToolBar.Separator();
-        jButtonFitImage = new javax.swing.JButton();
-        jButtonActualSize = new javax.swing.JButton();
-        jSeparator8 = new javax.swing.JToolBar.Separator();
-        jButtonZoomIn = new javax.swing.JButton();
-        jButtonZoomOut = new javax.swing.JButton();
-        jSeparator9 = new javax.swing.JToolBar.Separator();
-        jButtonRotateCCW = new javax.swing.JButton();
-        jButtonRotateCW = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanelPageNum = new javax.swing.JPanel();
-        jLabelPage = new javax.swing.JLabel();
-        jTextFieldCurPage = new javax.swing.JTextField();
-        jTextFieldCurPage.setVisible(false);
-        jLabelPageMax = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane2.getVerticalScrollBar().setUnitIncrement(20);
         jScrollPane2.getHorizontalScrollBar().setUnitIncrement(20);
@@ -848,6 +850,156 @@ public class Gui extends JFrame {
             }
         });
         jToolBar2.add(jButtonClear);
+        jToolBar2.add(jSeparator14);
+
+        jButtonPrevPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/document_page_previous.png"))); // NOI18N
+        jButtonPrevPage.setToolTipText(bundle.getString("jButtonPrevPage.ToolTipText")); // NOI18N
+        jButtonPrevPage.setEnabled(false);
+        jButtonPrevPage.setFocusable(false);
+        jButtonPrevPage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonPrevPage.setMargin(new java.awt.Insets(2, 15, 2, 14));
+        jButtonPrevPage.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonPrevPage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonPrevPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPrevPageActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButtonPrevPage);
+
+        jButtonNextPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/document_page_next.png"))); // NOI18N
+        jButtonNextPage.setToolTipText(bundle.getString("jButtonNextPage.ToolTipText")); // NOI18N
+        jButtonNextPage.setEnabled(false);
+        jButtonNextPage.setFocusable(false);
+        jButtonNextPage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonNextPage.setMargin(new java.awt.Insets(2, 15, 2, 14));
+        jButtonNextPage.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonNextPage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonNextPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNextPageActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButtonNextPage);
+
+        jTextFieldCurPage.setColumns(3);
+        jTextFieldCurPage.setDocument(new LimitedLengthDocument(3));
+        jTextFieldCurPage.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldCurPage.setText("0");
+        jTextFieldCurPage.setEnabled(false);
+        jTextFieldCurPage.setMaximumSize(new java.awt.Dimension(30, 24));
+        jTextFieldCurPage.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldCurPageFocusLost(evt);
+            }
+        });
+        jTextFieldCurPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCurPageActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jTextFieldCurPage);
+
+        jLabelPageMax.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelPageMax.setText(" / 0");
+        jLabelPageMax.setEnabled(false);
+        jLabelPageMax.setPreferredSize(new java.awt.Dimension(24, 14));
+        jToolBar2.add(jLabelPageMax);
+        jToolBar2.add(Box.createHorizontalStrut(4));
+        jToolBar2.add(jSeparator7);
+
+        jButtonFitImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_fit.png"))); // NOI18N
+        jButtonFitImage.setToolTipText(bundle.getString("jButtonFitImage.ToolTipText")); // NOI18N
+        jButtonFitImage.setEnabled(false);
+        jButtonFitImage.setFocusable(false);
+        jButtonFitImage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonFitImage.setMargin(new java.awt.Insets(2, 15, 2, 14));
+        jButtonFitImage.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonFitImage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonFitImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFitImageActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButtonFitImage);
+
+        jButtonActualSize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_actual.png"))); // NOI18N
+        jButtonActualSize.setToolTipText(bundle.getString("jButtonActualSize.ToolTipText")); // NOI18N
+        jButtonActualSize.setEnabled(false);
+        jButtonActualSize.setFocusable(false);
+        jButtonActualSize.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonActualSize.setMargin(new java.awt.Insets(2, 15, 2, 14));
+        jButtonActualSize.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonActualSize.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonActualSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualSizeActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButtonActualSize);
+        jToolBar2.add(jSeparator8);
+
+        jButtonZoomIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_in.png"))); // NOI18N
+        jButtonZoomIn.setToolTipText(bundle.getString("jButtonZoomIn.ToolTipText")); // NOI18N
+        jButtonZoomIn.setEnabled(false);
+        jButtonZoomIn.setFocusable(false);
+        jButtonZoomIn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonZoomIn.setMargin(new java.awt.Insets(2, 15, 2, 14));
+        jButtonZoomIn.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonZoomIn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonZoomIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonZoomInActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButtonZoomIn);
+
+        jButtonZoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_out.png"))); // NOI18N
+        jButtonZoomOut.setToolTipText(bundle.getString("jButtonZoomOut.ToolTipText")); // NOI18N
+        jButtonZoomOut.setEnabled(false);
+        jButtonZoomOut.setFocusable(false);
+        jButtonZoomOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonZoomOut.setMargin(new java.awt.Insets(2, 15, 2, 14));
+        jButtonZoomOut.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonZoomOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonZoomOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonZoomOutActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButtonZoomOut);
+        jToolBar2.add(jSeparator9);
+
+        jButtonRotateCCW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/rotate_ccw.png"))); // NOI18N
+        jButtonRotateCCW.setToolTipText(bundle.getString("jButtonRotateCCW.ToolTipText")); // NOI18N
+        jButtonRotateCCW.setEnabled(false);
+        jButtonRotateCCW.setFocusable(false);
+        jButtonRotateCCW.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonRotateCCW.setMargin(new java.awt.Insets(2, 15, 2, 14));
+        jButtonRotateCCW.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonRotateCCW.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonRotateCCW.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRotateCCWActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButtonRotateCCW);
+
+        jButtonRotateCW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/rotate_cw.png"))); // NOI18N
+        jButtonRotateCW.setToolTipText(bundle.getString("jButtonRotateCW.ToolTipText")); // NOI18N
+        jButtonRotateCW.setEnabled(false);
+        jButtonRotateCW.setFocusable(false);
+        jButtonRotateCW.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonRotateCW.setMargin(new java.awt.Insets(2, 15, 2, 14));
+        jButtonRotateCW.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonRotateCW.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonRotateCW.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRotateCWActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButtonRotateCW);
+        jToolBar2.add(jSeparator15);
         jToolBar2.add(Box.createHorizontalGlue());
 
         jToggleButtonSpellCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/inline_spellcheck.png"))); // NOI18N
@@ -910,135 +1062,10 @@ public class Gui extends JFrame {
 
         jToolBar1.setFloatable(false);
         jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jButtonPrevPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/document_page_previous.png"))); // NOI18N
-        jButtonPrevPage.setToolTipText(bundle.getString("jButtonPrevPage.ToolTipText")); // NOI18N
-        jButtonPrevPage.setEnabled(false);
-        jButtonPrevPage.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonPrevPage.setPreferredSize(new java.awt.Dimension(36, 23));
-        jButtonPrevPage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPrevPageActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButtonPrevPage);
-
-        jButtonNextPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/document_page_next.png"))); // NOI18N
-        jButtonNextPage.setToolTipText(bundle.getString("jButtonNextPage.ToolTipText")); // NOI18N
-        jButtonNextPage.setEnabled(false);
-        jButtonNextPage.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonNextPage.setPreferredSize(new java.awt.Dimension(36, 23));
-        jButtonNextPage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNextPageActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButtonNextPage);
-        jToolBar1.add(jSeparator7);
-
-        jButtonFitImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_fit.png"))); // NOI18N
-        jButtonFitImage.setToolTipText(bundle.getString("jButtonFitImage.ToolTipText")); // NOI18N
-        jButtonFitImage.setEnabled(false);
-        jButtonFitImage.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonFitImage.setPreferredSize(new java.awt.Dimension(36, 23));
-        jButtonFitImage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFitImageActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButtonFitImage);
-
-        jButtonActualSize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_actual.png"))); // NOI18N
-        jButtonActualSize.setToolTipText(bundle.getString("jButtonActualSize.ToolTipText")); // NOI18N
-        jButtonActualSize.setEnabled(false);
-        jButtonActualSize.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonActualSize.setPreferredSize(new java.awt.Dimension(36, 23));
-        jButtonActualSize.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonActualSizeActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButtonActualSize);
-        jToolBar1.add(jSeparator8);
-
-        jButtonZoomIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_in.png"))); // NOI18N
-        jButtonZoomIn.setToolTipText(bundle.getString("jButtonZoomIn.ToolTipText")); // NOI18N
-        jButtonZoomIn.setEnabled(false);
-        jButtonZoomIn.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonZoomIn.setPreferredSize(new java.awt.Dimension(36, 23));
-        jButtonZoomIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonZoomInActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButtonZoomIn);
-
-        jButtonZoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_out.png"))); // NOI18N
-        jButtonZoomOut.setToolTipText(bundle.getString("jButtonZoomOut.ToolTipText")); // NOI18N
-        jButtonZoomOut.setEnabled(false);
-        jButtonZoomOut.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonZoomOut.setPreferredSize(new java.awt.Dimension(36, 23));
-        jButtonZoomOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonZoomOutActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButtonZoomOut);
-        jToolBar1.add(jSeparator9);
-
-        jButtonRotateCCW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/rotate_ccw.png"))); // NOI18N
-        jButtonRotateCCW.setToolTipText(bundle.getString("jButtonRotateCCW.ToolTipText")); // NOI18N
-        jButtonRotateCCW.setEnabled(false);
-        jButtonRotateCCW.setFocusable(false);
-        jButtonRotateCCW.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonRotateCCW.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonRotateCCW.setPreferredSize(new java.awt.Dimension(36, 23));
-        jButtonRotateCCW.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonRotateCCW.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRotateCCWActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButtonRotateCCW);
-
-        jButtonRotateCW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/rotate_cw.png"))); // NOI18N
-        jButtonRotateCW.setToolTipText(bundle.getString("jButtonRotateCW.ToolTipText")); // NOI18N
-        jButtonRotateCW.setEnabled(false);
-        jButtonRotateCW.setFocusable(false);
-        jButtonRotateCW.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonRotateCW.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonRotateCW.setPreferredSize(new java.awt.Dimension(36, 23));
-        jButtonRotateCW.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonRotateCW.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRotateCWActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButtonRotateCW);
-
         jPanel1.add(jToolBar1, java.awt.BorderLayout.WEST);
 
         jPanel2.setLayout(new java.awt.BorderLayout());
-
-        jPanelPageNum.add(jLabelPage);
-
-        jTextFieldCurPage.setColumns(3);
-        jTextFieldCurPage.setDocument(new LimitedLengthDocument(3));
-        jTextFieldCurPage.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldCurPage.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldCurPageFocusLost(evt);
-            }
-        });
-        jTextFieldCurPage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCurPageActionPerformed(evt);
-            }
-        });
-        jPanelPageNum.add(jTextFieldCurPage);
-        jPanelPageNum.add(jLabelPageMax);
-
-        jPanel2.add(jPanelPageNum, java.awt.BorderLayout.NORTH);
+        jPanel2.add(jPanelPageNum, java.awt.BorderLayout.SOUTH);
 
         jImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jImageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1835,10 +1862,10 @@ public class Gui extends JFrame {
      * Displays image.
      */
     void displayImage() {
-        this.jLabelPage.setText(bundle.getString("Page_").trim());
-        this.jTextFieldCurPage.setVisible(true);
+        this.jTextFieldCurPage.setEnabled(true);
         this.jTextFieldCurPage.setText(String.valueOf(imageIndex + 1));
-        this.jLabelPageMax.setText("/ " + imageTotal);
+        this.jLabelPageMax.setEnabled(true);
+        this.jLabelPageMax.setText(" / " + imageTotal);
         imageIcon = imageList.get(imageIndex).clone();
         originalW = imageIcon.getIconWidth();
         originalH = imageIcon.getIconHeight();
@@ -2237,9 +2264,7 @@ public class Gui extends JFrame {
             public void run() {
                 FormLocalizer localizer = new FormLocalizer(Gui.this, Gui.class);
                 localizer.ApplyCulture(bundle);
-                if (imageTotal > 0) {
-                    jLabelPage.setText(bundle.getString("Page_").trim());
-                }
+
                 if (helptopicsFrame != null) {
                     helptopicsFrame.setTitle(jMenuItemHelp.getText());
                 }
@@ -2310,7 +2335,6 @@ public class Gui extends JFrame {
     protected javax.swing.JFileChooser jFileChooser;
     protected javax.swing.JLabel jImageLabel;
     private javax.swing.JLabel jLabelLanguage;
-    private javax.swing.JLabel jLabelPage;
     private javax.swing.JLabel jLabelPageMax;
     protected javax.swing.JLabel jLabelStatus;
     private javax.swing.JMenuBar jMenuBar2;
@@ -2370,6 +2394,8 @@ public class Gui extends JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator11;
     private javax.swing.JPopupMenu.Separator jSeparator12;
     private javax.swing.JPopupMenu.Separator jSeparator13;
+    private javax.swing.JToolBar.Separator jSeparator14;
+    private javax.swing.JToolBar.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
