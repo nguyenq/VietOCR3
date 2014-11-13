@@ -669,13 +669,14 @@ public class Gui extends JFrame {
         jTextArea1.getCaret().setBlinkRate(blinkRate);
         jTextArea1.getDocument().putProperty(DefaultEditorKit.EndOfLineStringProperty, System.getProperty("line.separator"));
         jPanel1 = new javax.swing.JPanel();
-        jToolBar1 = new javax.swing.JToolBar();
         jPanel2 = new javax.swing.JPanel();
-        jPanelPageNum = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane2.getVerticalScrollBar().setUnitIncrement(20);
         jScrollPane2.getHorizontalScrollBar().setUnitIncrement(20);
         jImageLabel = new JImageLabel();
+        jToolBarThumb = new javax.swing.JToolBar();
+        jToolBarThumb.add(Box.createGlue());
+        jToolBarThumb.add(Box.createGlue());
         jPanelStatus = new javax.swing.JPanel();
         jLabelStatus = new javax.swing.JLabel();
         jLabelStatus.setVisible(false); // use jProgressBar instead for (more animation) task status
@@ -1060,12 +1061,7 @@ public class Gui extends JFrame {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jToolBar1.setFloatable(false);
-        jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jToolBar1, java.awt.BorderLayout.WEST);
-
         jPanel2.setLayout(new java.awt.BorderLayout());
-        jPanel2.add(jPanelPageNum, java.awt.BorderLayout.SOUTH);
 
         jImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jImageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1078,6 +1074,11 @@ public class Gui extends JFrame {
         jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        jToolBarThumb.setFloatable(false);
+        jToolBarThumb.setRollover(true);
+        jToolBarThumb.setToolTipText("Thumbnails");
+        jPanel1.add(jToolBarThumb, java.awt.BorderLayout.SOUTH);
 
         jSplitPane1.setLeftComponent(jPanel1);
 
@@ -1833,6 +1834,7 @@ public class Gui extends JFrame {
         isFitImageSelected = false;
 
         displayImage();
+        loadThumbnails();
 
         // clear undo buffer
         clearStack();
@@ -2247,6 +2249,13 @@ public class Gui extends JFrame {
     }//GEN-LAST:event_jTextFieldCurPageFocusLost
 
     /**
+     * Loads thumbnails.
+     */
+    void loadThumbnails() {
+        // to be implemented in subclass
+    }
+    
+    /**
      * Changes locale of UI elements.
      *
      * @param locale
@@ -2384,7 +2393,6 @@ public class Gui extends JFrame {
     protected javax.swing.JMenu jMenuUILang;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanelPageNum;
     private javax.swing.JPanel jPanelStatus;
     protected javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -2412,8 +2420,8 @@ public class Gui extends JFrame {
     protected javax.swing.JTextArea jTextArea1;
     protected javax.swing.JTextField jTextFieldCurPage;
     protected javax.swing.JToggleButton jToggleButtonSpellCheck;
-    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
+    protected javax.swing.JToolBar jToolBarThumb;
     protected javax.swing.JPopupMenu popup;
     // End of variables declaration//GEN-END:variables
     private final UndoManager m_undo = new UndoManager();

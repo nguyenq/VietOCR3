@@ -31,10 +31,10 @@ import net.sourceforge.vietocr.wia.*;
 import uk.co.mmscomputing.device.scanner.*;
 import uk.co.mmscomputing.device.sane.*;
 
-public class GuiWithScan extends Gui implements ScannerListener {
+public class GuiWithScan extends GuiWithThumbnail implements ScannerListener {
 
     Scanner scanner;
-    
+
     private final static Logger logger = Logger.getLogger(GuiWithScan.class.getName());
 
     /**
