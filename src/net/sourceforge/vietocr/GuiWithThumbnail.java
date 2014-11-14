@@ -15,14 +15,20 @@
  */
 package net.sourceforge.vietocr;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.AbstractAction;
 import static javax.swing.Action.LARGE_ICON_KEY;
 import static javax.swing.Action.SHORT_DESCRIPTION;
+import javax.swing.Box;
+import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JToggleButton;
 import javax.swing.SwingWorker;
 
 import net.sourceforge.vietocr.components.JImageLabel;
@@ -37,6 +43,7 @@ public class GuiWithThumbnail extends Gui {
 
     @Override
     void loadThumbnails() {
+//        jPanelThumb.removeAll();
         loadImages.execute();
     }
 
@@ -52,11 +59,10 @@ public class GuiWithThumbnail extends Gui {
         @Override
         protected Void doInBackground() throws Exception {
             for (int i = 0; i < imageList.size(); i++) {
-                ImageIcon thumbnailIcon = new ImageIcon(imageList.get(i).getScaledImage(64, 64));
+                ImageIcon thumbnailIcon = new ImageIcon(imageList.get(i).getScaledImage(52, 72));
                 ThumbnailAction thumbAction = new ThumbnailAction(thumbnailIcon, i, page + i);
                 publish(thumbAction);
             }
-
             return null;
         }
 
@@ -65,12 +71,22 @@ public class GuiWithThumbnail extends Gui {
          */
         @Override
         protected void process(List<ThumbnailAction> chunks) {
+            ButtonGroup group = new ButtonGroup();
             for (ThumbnailAction thumbAction : chunks) {
-                JButton thumbButton = new JButton(thumbAction);
+                JToggleButton thumbButton = new JToggleButton(thumbAction);
+                thumbButton.setAlignmentX(Component.CENTER_ALIGNMENT);
                 // add the new button BEFORE the last glue
                 // this centers the buttons in the toolbar
-                jToolBarThumb.add(thumbButton, jToolBarThumb.getComponentCount() - 1);
+                jPanelThumb.add(Box.createRigidArea((new Dimension(0,5))));
+                jPanelThumb.add(thumbButton);
+                group.add(thumbButton);
+                JLabel label = new JLabel(String.valueOf(thumbAction.getIndex() + 1));
+                label.setAlignmentX(Component.CENTER_ALIGNMENT);
+                jPanelThumb.add(label);
             }
+            jPanelThumb.revalidate();
+            jPanelThumb.repaint();
+            jPanelThumb.validate();
         }
     };
 
@@ -78,7 +94,6 @@ public class GuiWithThumbnail extends Gui {
      * Action class that shows the image specified.
      */
     private class ThumbnailAction extends AbstractAction {
-
         int index;
 
         /**
@@ -94,6 +109,10 @@ public class GuiWithThumbnail extends Gui {
             // The LARGE_ICON_KEY is the key for setting the
             // icon when an Action is applied to a button.
             putValue(LARGE_ICON_KEY, thumb);
+        }
+
+        public int getIndex() {
+            return index;
         }
 
         /**
