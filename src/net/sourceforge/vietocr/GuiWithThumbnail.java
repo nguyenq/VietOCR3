@@ -18,32 +18,31 @@ package net.sourceforge.vietocr;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.util.Enumeration;
 import java.util.List;
-import javax.swing.AbstractAction;
 import static javax.swing.Action.LARGE_ICON_KEY;
 import static javax.swing.Action.SHORT_DESCRIPTION;
-import javax.swing.Box;
-import javax.swing.ButtonGroup;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JToggleButton;
-import javax.swing.SwingWorker;
+import javax.swing.*;
 
 import net.sourceforge.vietocr.components.JImageLabel;
 
 /**
  * Adapted from Java Tutorial's IconDemoApp example.
- * 
+ *
  */
 public class GuiWithThumbnail extends Gui {
 
     String page = "Page ";
+    ButtonGroup group = new ButtonGroup();
 
     @Override
     void loadThumbnails() {
-//        jPanelThumb.removeAll();
+        jPanelThumb.removeAll();
+        Enumeration<AbstractButton> buttons = group.getElements();
+        while (buttons.hasMoreElements()) {
+            group.remove(buttons.nextElement());
+        }
+
         loadImages.execute();
     }
 
@@ -59,7 +58,7 @@ public class GuiWithThumbnail extends Gui {
         @Override
         protected Void doInBackground() throws Exception {
             for (int i = 0; i < imageList.size(); i++) {
-                ImageIcon thumbnailIcon = new ImageIcon(imageList.get(i).getScaledImage(52, 72));
+                ImageIcon thumbnailIcon = new ImageIcon(imageList.get(i).getScaledImage(60, 90));
                 ThumbnailAction thumbAction = new ThumbnailAction(thumbnailIcon, i, page + i);
                 publish(thumbAction);
             }
@@ -71,13 +70,13 @@ public class GuiWithThumbnail extends Gui {
          */
         @Override
         protected void process(List<ThumbnailAction> chunks) {
-            ButtonGroup group = new ButtonGroup();
+
             for (ThumbnailAction thumbAction : chunks) {
                 JToggleButton thumbButton = new JToggleButton(thumbAction);
                 thumbButton.setAlignmentX(Component.CENTER_ALIGNMENT);
                 // add the new button BEFORE the last glue
                 // this centers the buttons in the toolbar
-                jPanelThumb.add(Box.createRigidArea((new Dimension(0,5))));
+                jPanelThumb.add(Box.createRigidArea((new Dimension(0, 5))));
                 jPanelThumb.add(thumbButton);
                 group.add(thumbButton);
                 JLabel label = new JLabel(String.valueOf(thumbAction.getIndex() + 1));
@@ -94,6 +93,7 @@ public class GuiWithThumbnail extends Gui {
      * Action class that shows the image specified.
      */
     private class ThumbnailAction extends AbstractAction {
+
         int index;
 
         /**

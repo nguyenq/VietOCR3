@@ -675,6 +675,7 @@ public class Gui extends JFrame {
         jScrollPane2.getHorizontalScrollBar().setUnitIncrement(20);
         jImageLabel = new JImageLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane3.getVerticalScrollBar().setUnitIncrement(20);
         jPanelThumb = new javax.swing.JPanel();
         jPanelStatus = new javax.swing.JPanel();
         jLabelStatus = new javax.swing.JLabel();
