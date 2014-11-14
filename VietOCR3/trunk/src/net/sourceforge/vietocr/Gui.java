@@ -630,7 +630,7 @@ public class Gui extends JFrame {
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(4, 0), new java.awt.Dimension(4, 0), new java.awt.Dimension(4, 32767));
         jComboBoxLang = new javax.swing.JComboBox();
         jSplitPane1 = new javax.swing.JSplitPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPaneText = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jTextArea1.addMouseListener(new MouseAdapter() {
             public void mousePressed(final MouseEvent e) {
@@ -674,9 +674,8 @@ public class Gui extends JFrame {
         jScrollPane2.getVerticalScrollBar().setUnitIncrement(20);
         jScrollPane2.getHorizontalScrollBar().setUnitIncrement(20);
         jImageLabel = new JImageLabel();
-        jToolBarThumb = new javax.swing.JToolBar();
-        jToolBarThumb.add(Box.createGlue());
-        jToolBarThumb.add(Box.createGlue());
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jPanelThumb = new javax.swing.JPanel();
         jPanelStatus = new javax.swing.JPanel();
         jLabelStatus = new javax.swing.JLabel();
         jLabelStatus.setVisible(false); // use jProgressBar instead for (more animation) task status
@@ -904,7 +903,7 @@ public class Gui extends JFrame {
         jLabelPageMax.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPageMax.setText(" / 0");
         jLabelPageMax.setEnabled(false);
-        jLabelPageMax.setPreferredSize(new java.awt.Dimension(24, 14));
+        jLabelPageMax.setPreferredSize(new java.awt.Dimension(30, 14));
         jToolBar2.add(jLabelPageMax);
         jToolBar2.add(Box.createHorizontalStrut(4));
         jToolBar2.add(jSeparator7);
@@ -1046,7 +1045,7 @@ public class Gui extends JFrame {
                 jTextArea1MouseEntered(evt);
             }
         });
-        jScrollPane1.setViewportView(jTextArea1);
+        jScrollPaneText.setViewportView(jTextArea1);
         wordWrapOn = prefs.getBoolean(strWordWrap, false);
         jTextArea1.setLineWrap(wordWrapOn);
         jCheckBoxMenuWordWrap.setSelected(wordWrapOn);
@@ -1057,7 +1056,7 @@ public class Gui extends JFrame {
             prefs.getInt(strFontSize, 12));
         jTextArea1.setFont(font);
 
-        jSplitPane1.setRightComponent(jScrollPane1);
+        jSplitPane1.setRightComponent(jScrollPaneText);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -1073,12 +1072,14 @@ public class Gui extends JFrame {
 
         jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(120, 120));
 
-        jToolBarThumb.setFloatable(false);
-        jToolBarThumb.setRollover(true);
-        jToolBarThumb.setToolTipText("Thumbnails");
-        jPanel1.add(jToolBarThumb, java.awt.BorderLayout.SOUTH);
+        jPanelThumb.setLayout(new javax.swing.BoxLayout(jPanelThumb, javax.swing.BoxLayout.PAGE_AXIS));
+        jScrollPane3.setViewportView(jPanelThumb);
+
+        jPanel2.add(jScrollPane3, java.awt.BorderLayout.WEST);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
 
         jSplitPane1.setLeftComponent(jPanel1);
 
@@ -2394,9 +2395,11 @@ public class Gui extends JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelStatus;
+    protected javax.swing.JPanel jPanelThumb;
     protected javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JScrollPane jScrollPane1;
     protected javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPaneText;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
@@ -2421,7 +2424,6 @@ public class Gui extends JFrame {
     protected javax.swing.JTextField jTextFieldCurPage;
     protected javax.swing.JToggleButton jToggleButtonSpellCheck;
     private javax.swing.JToolBar jToolBar2;
-    protected javax.swing.JToolBar jToolBarThumb;
     protected javax.swing.JPopupMenu popup;
     // End of variables declaration//GEN-END:variables
     private final UndoManager m_undo = new UndoManager();
