@@ -107,6 +107,7 @@ public class Gui extends JFrame {
     private final String DATAFILE_SUFFIX = ".traineddata";
     protected final File baseDir = Utils.getBaseDir(Gui.this);
     private File tessdataDir;
+    private int dividerLocation;
 
     /**
      * Creates new form.
@@ -668,15 +669,17 @@ public class Gui extends JFrame {
         }
         jTextArea1.getCaret().setBlinkRate(blinkRate);
         jTextArea1.getDocument().putProperty(DefaultEditorKit.EndOfLineStringProperty, System.getProperty("line.separator"));
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jScrollPane2.getVerticalScrollBar().setUnitIncrement(20);
-        jScrollPane2.getHorizontalScrollBar().setUnitIncrement(20);
-        jImageLabel = new JImageLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jScrollPane3.getVerticalScrollBar().setUnitIncrement(20);
+        jPanelLeft = new javax.swing.JPanel();
+        jSplitPaneImage = new javax.swing.JSplitPane();
+        jScrollPaneThumbnail = new javax.swing.JScrollPane();
+        jScrollPaneThumbnail.getVerticalScrollBar().setUnitIncrement(20);
         jPanelThumb = new javax.swing.JPanel();
+        jScrollPaneImage = new javax.swing.JScrollPane();
+        jScrollPaneImage.getVerticalScrollBar().setUnitIncrement(20);
+        jScrollPaneImage.getHorizontalScrollBar().setUnitIncrement(20);
+        jImageLabel = new JImageLabel();
+        jPanelArrow = new javax.swing.JPanel();
+        jButtonCollapseExpand = new javax.swing.JButton();
         jPanelStatus = new javax.swing.JPanel();
         jLabelStatus = new javax.swing.JLabel();
         jLabelStatus.setVisible(false); // use jProgressBar instead for (more animation) task status
@@ -1059,9 +1062,16 @@ public class Gui extends JFrame {
 
         jSplitPane1.setRightComponent(jScrollPaneText);
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanelLeft.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setLayout(new java.awt.BorderLayout());
+        jSplitPaneImage.setDividerLocation(100);
+
+        jScrollPaneThumbnail.setPreferredSize(new java.awt.Dimension(120, 120));
+
+        jPanelThumb.setLayout(new javax.swing.BoxLayout(jPanelThumb, javax.swing.BoxLayout.PAGE_AXIS));
+        jScrollPaneThumbnail.setViewportView(jPanelThumb);
+
+        jSplitPaneImage.setLeftComponent(jScrollPaneThumbnail);
 
         jImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jImageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1069,20 +1079,28 @@ public class Gui extends JFrame {
                 jImageLabelMouseEntered(evt);
             }
         });
-        jScrollPane2.setViewportView(jImageLabel);
+        jScrollPaneImage.setViewportView(jImageLabel);
 
-        jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        jSplitPaneImage.setRightComponent(jScrollPaneImage);
 
-        jScrollPane3.setPreferredSize(new java.awt.Dimension(120, 120));
+        jPanelLeft.add(jSplitPaneImage, java.awt.BorderLayout.CENTER);
 
-        jPanelThumb.setLayout(new javax.swing.BoxLayout(jPanelThumb, javax.swing.BoxLayout.PAGE_AXIS));
-        jScrollPane3.setViewportView(jPanelThumb);
+        jPanelArrow.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 5));
 
-        jPanel2.add(jScrollPane3, java.awt.BorderLayout.WEST);
+        jButtonCollapseExpand.setText("«");
+        jButtonCollapseExpand.setContentAreaFilled(false);
+        jButtonCollapseExpand.setMargin(new java.awt.Insets(2, 6, 2, 6));
+        jButtonCollapseExpand.setPreferredSize(new java.awt.Dimension(30, 23));
+        jButtonCollapseExpand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCollapseExpandActionPerformed(evt);
+            }
+        });
+        jPanelArrow.add(jButtonCollapseExpand);
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
+        jPanelLeft.add(jPanelArrow, java.awt.BorderLayout.WEST);
 
-        jSplitPane1.setLeftComponent(jPanel1);
+        jSplitPane1.setLeftComponent(jPanelLeft);
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
 
@@ -1876,7 +1894,7 @@ public class Gui extends JFrame {
 
         if (this.isFitImageSelected) {
             // scale image to fit the scrollpane
-            Dimension fitSize = fitImagetoContainer(originalW, originalH, jScrollPane2.getViewport().getWidth(), jScrollPane2.getViewport().getHeight());
+            Dimension fitSize = fitImagetoContainer(originalW, originalH, jScrollPaneImage.getViewport().getWidth(), jScrollPaneImage.getViewport().getHeight());
             imageIcon.setScaledSize(fitSize.width, fitSize.height);
             setScale(fitSize.width, fitSize.height);
         } else if (Math.abs(scaleX - 1f) > 0.001f) {
@@ -1885,7 +1903,7 @@ public class Gui extends JFrame {
         }
 
         jImageLabel.setIcon(imageIcon);
-        this.jScrollPane2.getViewport().setViewPosition(curScrollPos = new Point());
+        this.jScrollPaneImage.getViewport().setViewPosition(curScrollPos = new Point());
         jImageLabel.revalidate();
     }
 
@@ -2055,7 +2073,7 @@ public class Gui extends JFrame {
                 @Override
                 public void run() {
                     ((JImageLabel) jImageLabel).deselect();
-                    Dimension fitSize = fitImagetoContainer(originalW, originalH, jScrollPane2.getViewport().getWidth(), jScrollPane2.getViewport().getHeight());
+                    Dimension fitSize = fitImagetoContainer(originalW, originalH, jScrollPaneImage.getViewport().getWidth(), jScrollPaneImage.getViewport().getHeight());
                     fitImageChange(fitSize.width, fitSize.height);
                     setScale(fitSize.width, fitSize.height);
                 }
@@ -2109,9 +2127,9 @@ public class Gui extends JFrame {
             @Override
             public void run() {
                 imageIcon.setScaledSize(width, height);
-                jScrollPane2.getViewport().setViewPosition(curScrollPos);
+                jScrollPaneImage.getViewport().setViewPosition(curScrollPos);
                 jImageLabel.revalidate();
-                jScrollPane2.repaint();
+                jScrollPaneImage.repaint();
             }
         });
     }
@@ -2250,6 +2268,15 @@ public class Gui extends JFrame {
         jTextFieldCurPage.setText(String.valueOf(imageIndex + 1));
     }//GEN-LAST:event_jTextFieldCurPageFocusLost
 
+    private void jButtonCollapseExpandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCollapseExpandActionPerformed
+        this.jButtonCollapseExpand.setText(this.jButtonCollapseExpand.getText().equals("»") ? "«" : "»");
+        int currentLoc = this.jSplitPaneImage.getDividerLocation();
+        if (currentLoc > 1) {
+            dividerLocation = currentLoc;
+        }
+        this.jSplitPaneImage.setDividerLocation(currentLoc == 1 ? dividerLocation : 1);
+    }//GEN-LAST:event_jButtonCollapseExpandActionPerformed
+
     /**
      * Loads thumbnails.
      */
@@ -2329,6 +2356,7 @@ public class Gui extends JFrame {
     javax.swing.JButton jButtonActualSize;
     protected javax.swing.JButton jButtonCancelOCR;
     private javax.swing.JButton jButtonClear;
+    private javax.swing.JButton jButtonCollapseExpand;
     javax.swing.JButton jButtonFitImage;
     private javax.swing.JButton jButtonNextPage;
     protected javax.swing.JButton jButtonOCR;
@@ -2393,14 +2421,14 @@ public class Gui extends JFrame {
     private javax.swing.JMenu jMenuSettings;
     private javax.swing.JMenu jMenuTools;
     protected javax.swing.JMenu jMenuUILang;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelArrow;
+    private javax.swing.JPanel jPanelLeft;
     private javax.swing.JPanel jPanelStatus;
     protected javax.swing.JPanel jPanelThumb;
     protected javax.swing.JProgressBar jProgressBar1;
-    protected javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    protected javax.swing.JScrollPane jScrollPaneImage;
     private javax.swing.JScrollPane jScrollPaneText;
+    private javax.swing.JScrollPane jScrollPaneThumbnail;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
@@ -2421,6 +2449,7 @@ public class Gui extends JFrame {
     private javax.swing.JPopupMenu.Separator jSeparatorInputMethod;
     private javax.swing.JPopupMenu.Separator jSeparatorOptions;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane jSplitPaneImage;
     protected javax.swing.JTextArea jTextArea1;
     protected javax.swing.JTextField jTextFieldCurPage;
     protected javax.swing.JToggleButton jToggleButtonSpellCheck;

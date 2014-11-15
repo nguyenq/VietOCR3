@@ -74,14 +74,14 @@ public class GuiWithImageOps extends GuiWithScan {
         this.jButtonZoomIn.setEnabled(false);
         this.jButtonZoomOut.setEnabled(false);
         ((JImageLabel) jImageLabel).deselect();
-        curScrollPos = this.jScrollPane2.getViewport().getViewPosition();
-        int w = this.jScrollPane2.getViewport().getWidth();
-        if (this.jScrollPane2.getVerticalScrollBar().isVisible()) {
-            w += this.jScrollPane2.getVerticalScrollBar().getWidth();
+        curScrollPos = this.jScrollPaneImage.getViewport().getViewPosition();
+        int w = this.jScrollPaneImage.getViewport().getWidth();
+        if (this.jScrollPaneImage.getVerticalScrollBar().isVisible()) {
+            w += this.jScrollPaneImage.getVerticalScrollBar().getWidth();
         }
-        int h = this.jScrollPane2.getViewport().getHeight();
-        if (this.jScrollPane2.getHorizontalScrollBar().isVisible()) {
-            h += this.jScrollPane2.getHorizontalScrollBar().getHeight();
+        int h = this.jScrollPaneImage.getViewport().getHeight();
+        if (this.jScrollPaneImage.getHorizontalScrollBar().isVisible()) {
+            h += this.jScrollPaneImage.getHorizontalScrollBar().getHeight();
         }
         Dimension fitSize = fitImagetoContainer(originalW, originalH, w, h);
         fitImageChange(fitSize.width, fitSize.height);
@@ -139,7 +139,7 @@ public class GuiWithImageOps extends GuiWithScan {
                     imageIcon.setScaledSize((int) (width / ZOOM_FACTOR), (int) (height / ZOOM_FACTOR));
                 }
                 jImageLabel.revalidate();
-                jScrollPane2.repaint();
+                jScrollPaneImage.repaint();
 
                 if (isZoomIn) {
                     scaleX /= ZOOM_FACTOR;
