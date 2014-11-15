@@ -48,11 +48,11 @@ public class GuiWithOCR extends GuiWithImageOps {
                 ImageIcon ii = (ImageIcon) this.jImageLabel.getIcon();
                 int offsetX = 0;
                 int offsetY = 0;
-                if (ii.getIconWidth() < this.jScrollPane2.getWidth()) {
-                    offsetX = (this.jScrollPane2.getViewport().getWidth() - ii.getIconWidth()) / 2;
+                if (ii.getIconWidth() < this.jScrollPaneImage.getWidth()) {
+                    offsetX = (this.jScrollPaneImage.getViewport().getWidth() - ii.getIconWidth()) / 2;
                 }
-                if (ii.getIconHeight() < this.jScrollPane2.getHeight()) {
-                    offsetY = (this.jScrollPane2.getViewport().getHeight() - ii.getIconHeight()) / 2;
+                if (ii.getIconHeight() < this.jScrollPaneImage.getHeight()) {
+                    offsetY = (this.jScrollPaneImage.getViewport().getHeight() - ii.getIconHeight()) / 2;
                 }
 //                BufferedImage bi = ((BufferedImage) ii.getImage()).getSubimage((int) ((rect.x - offsetX) * scaleX), (int) ((rect.y - offsetY) * scaleY), (int) (rect.width * scaleX), (int) (rect.height * scaleY));
 
