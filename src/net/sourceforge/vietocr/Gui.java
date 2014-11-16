@@ -109,7 +109,6 @@ public class Gui extends JFrame {
     private final String DATAFILE_SUFFIX = ".traineddata";
     protected final File baseDir = Utils.getBaseDir(Gui.this);
     private File tessdataDir;
-    private int dividerLocation;
 
     private final static Logger logger = Logger.getLogger(Gui.class.getName());
 
@@ -121,6 +120,7 @@ public class Gui extends JFrame {
             UIManager.setLookAndFeel(prefs.get(strLookAndFeel, UIManager.getSystemLookAndFeelClassName()));
         } catch (Exception e) {
             // keep default LAF
+            logger.log(Level.WARNING, e.getMessage(), e);
         }
 
         bundle = java.util.ResourceBundle.getBundle("net.sourceforge.vietocr.Gui");
@@ -1089,10 +1089,14 @@ public class Gui extends JFrame {
         jSplitPaneImage.setRightComponent(jScrollPaneImage);
 
         jPanelImage.add(jSplitPaneImage, java.awt.BorderLayout.CENTER);
+        jSplitPaneImage.getLeftComponent().setMinimumSize(new Dimension());
+        jSplitPaneImage.setDividerLocation(0);
+        jSplitPaneImage.setDividerSize(0);
+        jSplitPaneImage.setEnabled(false);
 
         jPanelArrow.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 5));
 
-        jButtonCollapseExpand.setText("«");
+        jButtonCollapseExpand.setText("»");
         jButtonCollapseExpand.setContentAreaFilled(false);
         jButtonCollapseExpand.setMargin(new java.awt.Insets(2, 4, 2, 4));
         jButtonCollapseExpand.setPreferredSize(new java.awt.Dimension(26, 23));
@@ -2276,11 +2280,10 @@ public class Gui extends JFrame {
 
     private void jButtonCollapseExpandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCollapseExpandActionPerformed
         this.jButtonCollapseExpand.setText(this.jButtonCollapseExpand.getText().equals("»") ? "«" : "»");
-        int currentLoc = this.jSplitPaneImage.getDividerLocation();
-        if (currentLoc > 1) {
-            dividerLocation = currentLoc;
-        }
-        this.jSplitPaneImage.setDividerLocation(currentLoc == 1 ? dividerLocation : 1);
+        boolean collapsed = this.jButtonCollapseExpand.getText().equals("»");
+        this.jSplitPaneImage.setEnabled(!collapsed);
+        this.jSplitPaneImage.setDividerLocation(collapsed ? 0 : this.jSplitPaneImage.getLastDividerLocation());
+        this.jSplitPaneImage.setDividerSize(collapsed? 0 : 5);
     }//GEN-LAST:event_jButtonCollapseExpandActionPerformed
 
     /**
@@ -2289,7 +2292,7 @@ public class Gui extends JFrame {
     void loadThumbnails() {
         // to be implemented in subclass
     }
-    
+
     /**
      * Changes locale of UI elements.
      *
