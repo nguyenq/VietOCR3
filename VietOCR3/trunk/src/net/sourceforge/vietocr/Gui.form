@@ -1221,6 +1221,9 @@
               <Properties>
                 <Property name="dividerLocation" type="int" value="120"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="jSplitPaneImage.getLeftComponent().setMinimumSize(new Dimension());                &#xa;jSplitPaneImage.setDividerLocation(0);&#xa;                jSplitPaneImage.setDividerSize(0);&#xa;                jSplitPaneImage.setEnabled(false);"/>
+              </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                   <BorderConstraints direction="Center"/>
@@ -1299,7 +1302,7 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="jButtonCollapseExpand">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#xab;"/>
+                    <Property name="text" type="java.lang.String" value="&#xbb;"/>
                     <Property name="contentAreaFilled" type="boolean" value="false"/>
                     <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
                       <Insets value="[2, 4, 2, 4]"/>
