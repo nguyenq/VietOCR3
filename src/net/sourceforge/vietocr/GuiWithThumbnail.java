@@ -15,7 +15,6 @@
  */
 package net.sourceforge.vietocr;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Insets;
@@ -23,20 +22,14 @@ import java.awt.event.ActionEvent;
 import java.util.Enumeration;
 import java.util.List;
 import static javax.swing.Action.LARGE_ICON_KEY;
-import static javax.swing.Action.SHORT_DESCRIPTION;
+//import static javax.swing.Action.SHORT_DESCRIPTION;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 
 import net.sourceforge.vietocr.components.JImageLabel;
 
-/**
- * Adapted from Java Tutorial's IconDemoApp example.
- *
- */
 public class GuiWithThumbnail extends Gui {
 
-    String page = "Page ";
+    LoadThumbnailWorker loadWorker;
     ButtonGroup group = new ButtonGroup();
 
     @Override
@@ -46,15 +39,17 @@ public class GuiWithThumbnail extends Gui {
         while (buttons.hasMoreElements()) {
             group.remove(buttons.nextElement());
         }
-
-        loadImages.execute();
+        loadWorker = new LoadThumbnailWorker();
+        loadWorker.execute();
     }
 
     /**
-     * SwingWorker class that loads the images a background thread and calls
+     * SwingWorker class that loads the images in a background thread and calls
      * publish when a new one is ready to be displayed.
+     *
+     * Adapted from Java Tutorial's IconDemoApp example.
      */
-    private final SwingWorker<Void, ThumbnailAction> loadImages = new SwingWorker<Void, ThumbnailAction>() {
+    private class LoadThumbnailWorker extends SwingWorker<Void, ThumbnailAction> {
 
         /**
          * Creates thumbnail versions of the target image files.
@@ -62,8 +57,8 @@ public class GuiWithThumbnail extends Gui {
         @Override
         protected Void doInBackground() throws Exception {
             for (int i = 0; i < imageList.size(); i++) {
-                ImageIcon thumbnailIcon = new ImageIcon(imageList.get(i).getScaledImage(80, 90));
-                ThumbnailAction thumbAction = new ThumbnailAction(thumbnailIcon, i, page + i);
+                ImageIcon thumbnailIcon = new ImageIcon(imageList.get(i).getScaledImage(80, 95));
+                ThumbnailAction thumbAction = new ThumbnailAction(thumbnailIcon, i, bundle.getString("Page_") + (i + 1));
                 publish(thumbAction);
             }
             return null;
@@ -79,7 +74,7 @@ public class GuiWithThumbnail extends Gui {
                 jPanelThumb.add(Box.createRigidArea((new Dimension(0, 7))));
                 JToggleButton thumbButton = new JToggleButton(thumbAction);
                 group.add(thumbButton);
-                
+
                 thumbButton.setMargin(new Insets(0, 0, 0, 0)); // remove paddings
 //                Border innerBorder = BorderFactory.createEmptyBorder(0, 0, 1, 0);
 //                Border outerBorder = new LineBorder(Color.black, 1, false);
@@ -87,15 +82,12 @@ public class GuiWithThumbnail extends Gui {
 //                thumbButton.setBorder(compoundBorder);
                 thumbButton.setAlignmentX(Component.CENTER_ALIGNMENT);
                 jPanelThumb.add(thumbButton);
-                
+
                 JLabel label = new JLabel(String.valueOf(thumbAction.getIndex() + 1));
                 label.setAlignmentX(Component.CENTER_ALIGNMENT);
                 jPanelThumb.add(label);
-                label.revalidate();
             }
             jPanelThumb.revalidate();
-            jPanelThumb.repaint();
-//            jPanelThumb.validate();
         }
     };
 
@@ -114,7 +106,7 @@ public class GuiWithThumbnail extends Gui {
             this.index = index;
 
             // The short description becomes the tooltip of a button.
-            putValue(SHORT_DESCRIPTION, desc);
+//            putValue(SHORT_DESCRIPTION, desc);
 
             // The LARGE_ICON_KEY is the key for setting the
             // icon when an Action is applied to a button.

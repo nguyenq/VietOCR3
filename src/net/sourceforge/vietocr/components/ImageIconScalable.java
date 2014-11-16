@@ -1,13 +1,16 @@
 /**
- * Core Java Technologies Tech Tips, February 20, 2003: Providing a Scalable Image Icon
- * http://java.sun.com/developer/JDCTechTips/2003/tt0220.html#2
+ * Core Java Technologies Tech Tips, February 20, 2003: Providing a Scalable
+ * Image Icon http://java.sun.com/developer/JDCTechTips/2003/tt0220.html#2
  */
 package net.sourceforge.vietocr.components;
 
 import java.awt.*;
+import java.awt.RenderingHints.Key;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 import java.net.*;
+import java.util.HashMap;
+import java.util.Map;
 import javax.imageio.IIOImage;
 
 public class ImageIconScalable extends ImageIcon {
@@ -93,8 +96,9 @@ public class ImageIconScalable extends ImageIcon {
 
     /**
      * Sets scale.
+     *
      * @param width
-     * @param height 
+     * @param height
      */
     public void setScaledSize(int width, int height) {
         this.width = width;
@@ -110,8 +114,9 @@ public class ImageIconScalable extends ImageIcon {
 
     /**
      * Gets a rotated image.
+     *
      * @param angle
-     * @return 
+     * @return
      */
     public ImageIconScalable getRotatedImageIcon(double angle) {
         double sin = Math.abs(Math.sin(angle));
@@ -135,7 +140,6 @@ public class ImageIconScalable extends ImageIcon {
 //        AffineTransform at = AffineTransform.getRotateInstance(angle, newW / 2, newH / 2);
 //        at.translate((newW - w) / 2, (newH - h) / 2);
 //        g2d.drawRenderedImage((BufferedImage) this.getImage(), at);
-
         g2d.dispose();
 
         return new ImageIconScalable(result);
@@ -154,17 +158,47 @@ public class ImageIconScalable extends ImageIcon {
             return null;
         }
 
-        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2 = resizedImg.createGraphics();
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.drawImage(image, 0, 0, w, h, null);
-        g2.dispose();
-        return resizedImg;
+        return rescaleImage((BufferedImage) image, w, h);
+    }
+
+    /**
+     * https://github.com/redwarp/9-Patch-Resizer/blob/develop/src/net/redwarp/tool/resizer/worker/ImageScaler.java
+     *
+     * @param image
+     * @param targetWidth
+     * @param targetHeight
+     * @return
+     */
+    public BufferedImage rescaleImage(BufferedImage image, int targetWidth, int targetHeight) {
+        if (targetWidth == 0) {
+            targetWidth = 1;
+        }
+        if (targetHeight == 0) {
+            targetHeight = 1;
+        }
+        if (targetWidth * 2 < image.getWidth() - 1) {
+            BufferedImage tempImage = rescaleImage(image, image.getWidth() / 2, image.getHeight() / 2);
+            return rescaleImage(tempImage, targetWidth, targetHeight);
+        } else {
+            BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D graphics = outputImage.createGraphics();
+            Map<Key, Object> hints = new HashMap<RenderingHints.Key, Object>();
+            hints.put(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_ENABLE);
+            hints.put(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            hints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            hints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            hints.put(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+            graphics.setRenderingHints(hints);
+            graphics.drawImage(image, 0, 0, outputImage.getWidth(), outputImage.getHeight(), null);
+            graphics.dispose();
+            return outputImage;
+        }
     }
 
     /**
      * Gets graphic default configuration.
-     * @return 
+     *
+     * @return
      */
     private GraphicsConfiguration getDefaultConfiguration() {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -174,8 +208,9 @@ public class ImageIconScalable extends ImageIcon {
 
     /**
      * Gets list of images.
+     *
      * @param iioImageList
-     * @return 
+     * @return
      */
     public static java.util.List<ImageIconScalable> getImageList(java.util.List<IIOImage> iioImageList) {
         try {
