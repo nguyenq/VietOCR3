@@ -49,7 +49,6 @@ public class Watcher implements Runnable {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 // not important
-                e.printStackTrace();
             }
         }
     }
