@@ -1092,7 +1092,6 @@ public class Gui extends JFrame {
         jSplitPaneImage.getLeftComponent().setMinimumSize(new Dimension());
         jSplitPaneImage.setDividerLocation(0);
         jSplitPaneImage.setDividerSize(0);
-        jSplitPaneImage.setEnabled(false);
 
         jPanelArrow.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 5));
 
@@ -2281,7 +2280,6 @@ public class Gui extends JFrame {
     private void jButtonCollapseExpandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCollapseExpandActionPerformed
         this.jButtonCollapseExpand.setText(this.jButtonCollapseExpand.getText().equals("»") ? "«" : "»");
         boolean collapsed = this.jButtonCollapseExpand.getText().equals("»");
-        this.jSplitPaneImage.setEnabled(!collapsed);
         this.jSplitPaneImage.setDividerLocation(collapsed ? 0 : this.jSplitPaneImage.getLastDividerLocation());
         this.jSplitPaneImage.setDividerSize(collapsed? 0 : 5);
     }//GEN-LAST:event_jButtonCollapseExpandActionPerformed
