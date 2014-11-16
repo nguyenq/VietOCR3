@@ -1222,7 +1222,7 @@
                 <Property name="dividerLocation" type="int" value="120"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="jSplitPaneImage.getLeftComponent().setMinimumSize(new Dimension());                &#xa;jSplitPaneImage.setDividerLocation(0);&#xa;                jSplitPaneImage.setDividerSize(0);&#xa;                jSplitPaneImage.setEnabled(false);"/>
+                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="jSplitPaneImage.getLeftComponent().setMinimumSize(new Dimension());                &#xa;jSplitPaneImage.setDividerLocation(0);&#xa;                jSplitPaneImage.setDividerSize(0);"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
