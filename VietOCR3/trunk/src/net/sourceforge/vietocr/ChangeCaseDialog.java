@@ -20,10 +20,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class ChangeCaseDialog extends javax.swing.JDialog {
     private String selectedCase;
+
+    private final static Logger logger = Logger.getLogger(ChangeCaseDialog.class.getName());
 
     /** Creates new form ChangeCaseDialog */
     public ChangeCaseDialog(java.awt.Frame parent, boolean modal) {
@@ -143,10 +147,7 @@ public class ChangeCaseDialog extends javax.swing.JDialog {
         try {
             ((GuiWithFormat)frame).changeCase(selectedCase);
         } catch (OutOfMemoryError e) {
-            e.printStackTrace();
-//                    JOptionPane.showMessageDialog(frame, GuiWithFormat.APP_NAME
-//                             + myResources.getString("_has_run_out_of_memory.\nPlease_restart_") + GuiWithFormat.APP_NAME
-//                             + myResources.getString("_and_try_again."), myResources.getString("Out_of_Memory"), JOptionPane.ERROR_MESSAGE);
+            logger.log(Level.WARNING, e.getMessage(), e);
         } finally {
             SwingUtilities.invokeLater(
                     new Runnable() {

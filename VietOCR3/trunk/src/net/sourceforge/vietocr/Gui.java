@@ -25,6 +25,8 @@ import java.nio.channels.*;
 import java.text.*;
 import java.util.List;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
@@ -108,6 +110,8 @@ public class Gui extends JFrame {
     protected final File baseDir = Utils.getBaseDir(Gui.this);
     private File tessdataDir;
     private int dividerLocation;
+
+    private final static Logger logger = Logger.getLogger(Gui.class.getName());
 
     /**
      * Creates new form.
@@ -261,11 +265,11 @@ public class Gui extends JFrame {
             lookupISO639.loadFromXML(new FileInputStream(xmlFile));
             xmlFile = new File(baseDir, "data/ISO639-1.xml");
             lookupISO_3_1_Codes.loadFromXML(new FileInputStream(xmlFile));
-        } catch (IOException ioe) {
-            JOptionPane.showMessageDialog(null, ioe.getMessage(), APP_NAME, JOptionPane.ERROR_MESSAGE);
-//            ioe.printStackTrace();
-        } catch (Exception exc) {
-//            exc.printStackTrace();
+        } catch (IOException e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
+            JOptionPane.showMessageDialog(null, e.getMessage(), APP_NAME, JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
         } finally {
             if (installedLanguageCodes == null) {
                 installedLanguages = new String[0];
@@ -585,9 +589,9 @@ public class Gui extends JFrame {
             if (clipData != null) {
                 actionPaste.setEnabled(clipData.isDataFlavorSupported(DataFlavor.stringFlavor));
             }
-        } catch (OutOfMemoryError oome) {
-//            oome.printStackTrace();
-            JOptionPane.showMessageDialog(this, oome.getMessage(), bundle.getString("OutOfMemoryError"), JOptionPane.ERROR_MESSAGE);
+        } catch (OutOfMemoryError e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
+            JOptionPane.showMessageDialog(this, e.getMessage(), bundle.getString("OutOfMemoryError"), JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -1540,8 +1544,8 @@ public class Gui extends JFrame {
                 helpFile = new File(supportDir, "readme_vi.html");
                 copyFileFromJarToSupportDir(helpFile);
                 Runtime.getRuntime().exec(new String[]{"open", "-b", "com.apple.helpviewer", readme}, null, supportDir);
-            } catch (IOException x) {
-                x.printStackTrace();
+            } catch (IOException e) {
+                logger.log(Level.WARNING, e.getMessage(), e);
             }
         } else {
             if (helptopicsFrame == null) {
@@ -1678,7 +1682,7 @@ public class Gui extends JFrame {
                     + DateFormat.getDateInstance(DateFormat.LONG).format(releaseDate)
                     + "\nhttp://vietocr.sourceforge.net", jMenuItemAbout.getText(), JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            logger.log(Level.SEVERE, e.getMessage(), e);
         }
     }
 
@@ -1752,6 +1756,7 @@ public class Gui extends JFrame {
     /**
      * Opens image or text file.
      *
+     * @param selectedFile
      */
     public void openFile(final File selectedFile) {
         if (!selectedFile.exists()) {
@@ -1778,6 +1783,7 @@ public class Gui extends JFrame {
                 updateSave(false);
                 this.jTextArea1.requestFocusInWindow();
             } catch (Exception e) {
+                logger.log(Level.WARNING, e.getMessage(), e);
             }
             return;
         }
@@ -1808,10 +1814,10 @@ public class Gui extends JFrame {
                     loadImage();
                     setTitle(selectedFile.getName() + " - " + APP_NAME);
                     updateMRUList(selectedFile.getPath());
-                } catch (InterruptedException ignore) {
-                    ignore.printStackTrace();
+                } catch (InterruptedException e) {
+                    logger.log(Level.WARNING, e.getMessage(), e);
                 } catch (java.util.concurrent.ExecutionException e) {
-                    String why = null;
+                    String why;
                     Throwable cause = e.getCause();
                     if (cause != null) {
                         if (cause instanceof OutOfMemoryError) {
@@ -1822,7 +1828,7 @@ public class Gui extends JFrame {
                     } else {
                         why = e.getMessage();
                     }
-//                    e.printStackTrace();
+                    logger.log(Level.SEVERE, e.getMessage(), e);
                     JOptionPane.showMessageDialog(Gui.this, why, APP_NAME, JOptionPane.ERROR_MESSAGE);
                 } finally {
                     jLabelStatus.setText(bundle.getString("Loading_completed"));
@@ -1991,7 +1997,6 @@ public class Gui extends JFrame {
             updateMRUList(textFile.getPath());
             updateSave(false);
         } catch (OutOfMemoryError oome) {
-//            oome.printStackTrace();
             JOptionPane.showMessageDialog(this, oome.getMessage(), bundle.getString("OutOfMemoryError"), JOptionPane.ERROR_MESSAGE);
         } catch (FileNotFoundException fnfe) {
             showError(fnfe, fnfe.getMessage());
@@ -2043,7 +2048,7 @@ public class Gui extends JFrame {
             textChanged = modified;
             this.jButtonSave.setEnabled(modified);
             this.jMenuItemSave.setEnabled(modified);
-            rootPane.putClientProperty("windowModified", Boolean.valueOf(modified));
+            rootPane.putClientProperty("windowModified", modified);
             // see http://developer.apple.com/qa/qa2001/qa1146.html
         }
     }
@@ -2328,7 +2333,7 @@ public class Gui extends JFrame {
      * @param message the message to display
      */
     public void showError(Exception e, String message) {
-        e.printStackTrace();
+        logger.log(Level.WARNING, e.getMessage(), e);
         JOptionPane.showMessageDialog(this, message, APP_NAME, JOptionPane.WARNING_MESSAGE);
     }
 

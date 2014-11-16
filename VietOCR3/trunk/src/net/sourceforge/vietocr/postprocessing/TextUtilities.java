@@ -107,7 +107,6 @@ public class TextUtilities {
             stream.close();
         } catch (Exception e) {
             System.err.println(e.getMessage());
-//            e.printStackTrace();
         }
 
         return map;
