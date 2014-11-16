@@ -57,7 +57,7 @@ public class GuiWithThumbnail extends Gui {
         @Override
         protected Void doInBackground() throws Exception {
             for (int i = 0; i < imageList.size(); i++) {
-                ImageIcon thumbnailIcon = new ImageIcon(imageList.get(i).getScaledImage(80, 95));
+                ImageIcon thumbnailIcon = new ImageIcon(imageList.get(i).getScaledImage(85, 110));
                 ThumbnailAction thumbAction = new ThumbnailAction(thumbnailIcon, i, bundle.getString("Page_") + (i + 1));
                 publish(thumbAction);
             }
@@ -65,7 +65,7 @@ public class GuiWithThumbnail extends Gui {
         }
 
         /**
-         * Process all loaded images.
+         * Loads thumbnails and associated labels into panel.
          */
         @Override
         protected void process(List<ThumbnailAction> chunks) {
