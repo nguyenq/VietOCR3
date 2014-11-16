@@ -84,13 +84,12 @@ public class ImageIconScalable extends ImageIcon {
         }
 
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
         if ((width == -1) && (height == -1)) {
             g2d.drawImage(image, x, y, c);
         } else {
-            g2d.drawImage(image, x, y, width, height, c);
+            Image tempImage = rescaleImage((BufferedImage) image, width, height);
+            g2d.drawImage(tempImage, x, y, c);
         }
     }
 
