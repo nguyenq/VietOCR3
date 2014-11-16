@@ -862,7 +862,7 @@ public class Gui extends JFrame {
         jButtonPrevPage.setFocusable(false);
         jButtonPrevPage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonPrevPage.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonPrevPage.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonPrevPage.setPreferredSize(new java.awt.Dimension(30, 23));
         jButtonPrevPage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonPrevPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -877,7 +877,7 @@ public class Gui extends JFrame {
         jButtonNextPage.setFocusable(false);
         jButtonNextPage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonNextPage.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonNextPage.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonNextPage.setPreferredSize(new java.awt.Dimension(30, 23));
         jButtonNextPage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonNextPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -892,6 +892,7 @@ public class Gui extends JFrame {
         jTextFieldCurPage.setText("0");
         jTextFieldCurPage.setEnabled(false);
         jTextFieldCurPage.setMaximumSize(new java.awt.Dimension(30, 24));
+        jTextFieldCurPage.setMinimumSize(new java.awt.Dimension(30, 20));
         jTextFieldCurPage.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextFieldCurPageFocusLost(evt);
@@ -918,7 +919,7 @@ public class Gui extends JFrame {
         jButtonFitImage.setFocusable(false);
         jButtonFitImage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonFitImage.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonFitImage.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonFitImage.setPreferredSize(new java.awt.Dimension(30, 23));
         jButtonFitImage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonFitImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -933,7 +934,7 @@ public class Gui extends JFrame {
         jButtonActualSize.setFocusable(false);
         jButtonActualSize.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonActualSize.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonActualSize.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonActualSize.setPreferredSize(new java.awt.Dimension(30, 23));
         jButtonActualSize.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonActualSize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -949,7 +950,7 @@ public class Gui extends JFrame {
         jButtonZoomIn.setFocusable(false);
         jButtonZoomIn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonZoomIn.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonZoomIn.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonZoomIn.setPreferredSize(new java.awt.Dimension(30, 23));
         jButtonZoomIn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonZoomIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -964,7 +965,7 @@ public class Gui extends JFrame {
         jButtonZoomOut.setFocusable(false);
         jButtonZoomOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonZoomOut.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonZoomOut.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonZoomOut.setPreferredSize(new java.awt.Dimension(30, 23));
         jButtonZoomOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonZoomOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -980,7 +981,7 @@ public class Gui extends JFrame {
         jButtonRotateCCW.setFocusable(false);
         jButtonRotateCCW.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonRotateCCW.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonRotateCCW.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonRotateCCW.setPreferredSize(new java.awt.Dimension(30, 23));
         jButtonRotateCCW.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonRotateCCW.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -995,7 +996,7 @@ public class Gui extends JFrame {
         jButtonRotateCW.setFocusable(false);
         jButtonRotateCW.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonRotateCW.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonRotateCW.setPreferredSize(new java.awt.Dimension(36, 23));
+        jButtonRotateCW.setPreferredSize(new java.awt.Dimension(30, 23));
         jButtonRotateCW.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonRotateCW.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
