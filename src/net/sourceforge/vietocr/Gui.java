@@ -669,7 +669,7 @@ public class Gui extends JFrame {
         }
         jTextArea1.getCaret().setBlinkRate(blinkRate);
         jTextArea1.getDocument().putProperty(DefaultEditorKit.EndOfLineStringProperty, System.getProperty("line.separator"));
-        jPanelLeft = new javax.swing.JPanel();
+        jPanelImage = new javax.swing.JPanel();
         jSplitPaneImage = new javax.swing.JSplitPane();
         jScrollPaneThumbnail = new javax.swing.JScrollPane();
         jScrollPaneThumbnail.getVerticalScrollBar().setUnitIncrement(20);
@@ -1062,9 +1062,9 @@ public class Gui extends JFrame {
 
         jSplitPane1.setRightComponent(jScrollPaneText);
 
-        jPanelLeft.setLayout(new java.awt.BorderLayout());
+        jPanelImage.setLayout(new java.awt.BorderLayout());
 
-        jSplitPaneImage.setDividerLocation(100);
+        jSplitPaneImage.setDividerLocation(120);
 
         jScrollPaneThumbnail.setPreferredSize(new java.awt.Dimension(120, 120));
 
@@ -1083,14 +1083,14 @@ public class Gui extends JFrame {
 
         jSplitPaneImage.setRightComponent(jScrollPaneImage);
 
-        jPanelLeft.add(jSplitPaneImage, java.awt.BorderLayout.CENTER);
+        jPanelImage.add(jSplitPaneImage, java.awt.BorderLayout.CENTER);
 
         jPanelArrow.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 5));
 
         jButtonCollapseExpand.setText("«");
         jButtonCollapseExpand.setContentAreaFilled(false);
-        jButtonCollapseExpand.setMargin(new java.awt.Insets(2, 6, 2, 6));
-        jButtonCollapseExpand.setPreferredSize(new java.awt.Dimension(30, 23));
+        jButtonCollapseExpand.setMargin(new java.awt.Insets(2, 4, 2, 4));
+        jButtonCollapseExpand.setPreferredSize(new java.awt.Dimension(26, 23));
         jButtonCollapseExpand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCollapseExpandActionPerformed(evt);
@@ -1098,9 +1098,9 @@ public class Gui extends JFrame {
         });
         jPanelArrow.add(jButtonCollapseExpand);
 
-        jPanelLeft.add(jPanelArrow, java.awt.BorderLayout.WEST);
+        jPanelImage.add(jPanelArrow, java.awt.BorderLayout.WEST);
 
-        jSplitPane1.setLeftComponent(jPanelLeft);
+        jSplitPane1.setLeftComponent(jPanelImage);
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
 
@@ -2422,7 +2422,7 @@ public class Gui extends JFrame {
     private javax.swing.JMenu jMenuTools;
     protected javax.swing.JMenu jMenuUILang;
     private javax.swing.JPanel jPanelArrow;
-    private javax.swing.JPanel jPanelLeft;
+    private javax.swing.JPanel jPanelImage;
     private javax.swing.JPanel jPanelStatus;
     protected javax.swing.JPanel jPanelThumb;
     protected javax.swing.JProgressBar jProgressBar1;

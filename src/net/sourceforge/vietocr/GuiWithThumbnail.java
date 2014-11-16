@@ -15,14 +15,18 @@
  */
 package net.sourceforge.vietocr;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.util.Enumeration;
 import java.util.List;
 import static javax.swing.Action.LARGE_ICON_KEY;
 import static javax.swing.Action.SHORT_DESCRIPTION;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 import net.sourceforge.vietocr.components.JImageLabel;
 
@@ -58,7 +62,7 @@ public class GuiWithThumbnail extends Gui {
         @Override
         protected Void doInBackground() throws Exception {
             for (int i = 0; i < imageList.size(); i++) {
-                ImageIcon thumbnailIcon = new ImageIcon(imageList.get(i).getScaledImage(60, 90));
+                ImageIcon thumbnailIcon = new ImageIcon(imageList.get(i).getScaledImage(80, 90));
                 ThumbnailAction thumbAction = new ThumbnailAction(thumbnailIcon, i, page + i);
                 publish(thumbAction);
             }
@@ -72,20 +76,26 @@ public class GuiWithThumbnail extends Gui {
         protected void process(List<ThumbnailAction> chunks) {
 
             for (ThumbnailAction thumbAction : chunks) {
+                jPanelThumb.add(Box.createRigidArea((new Dimension(0, 7))));
                 JToggleButton thumbButton = new JToggleButton(thumbAction);
-                thumbButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-                // add the new button BEFORE the last glue
-                // this centers the buttons in the toolbar
-                jPanelThumb.add(Box.createRigidArea((new Dimension(0, 5))));
-                jPanelThumb.add(thumbButton);
                 group.add(thumbButton);
+                
+                thumbButton.setMargin(new Insets(0, 0, 0, 0)); // remove paddings
+//                Border innerBorder = BorderFactory.createEmptyBorder(0, 0, 1, 0);
+//                Border outerBorder = new LineBorder(Color.black, 1, false);
+//                Border compoundBorder = BorderFactory.createCompoundBorder(outerBorder, innerBorder);
+//                thumbButton.setBorder(compoundBorder);
+                thumbButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+                jPanelThumb.add(thumbButton);
+                
                 JLabel label = new JLabel(String.valueOf(thumbAction.getIndex() + 1));
                 label.setAlignmentX(Component.CENTER_ALIGNMENT);
                 jPanelThumb.add(label);
+                label.revalidate();
             }
             jPanelThumb.revalidate();
             jPanelThumb.repaint();
-            jPanelThumb.validate();
+//            jPanelThumb.validate();
         }
     };
 
