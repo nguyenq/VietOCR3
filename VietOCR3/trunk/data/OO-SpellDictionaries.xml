@@ -5,6 +5,7 @@
   <entry key="af_ZA">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/af_ZA.zip</entry>
   <entry key="ak_GH">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/ak_GH.zip</entry>
   <entry key="bg_BG">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/bg_BG.zip</entry>
+  <entry key="bn_IN">https://anishpatil.fedorapeople.org/bn_in.1.0.0.tar.gz</entry>
   <entry key="ca_ANY">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/ca_ANY.zip</entry>
   <entry key="ca_ES">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/ca_ES.zip</entry>
   <entry key="cop_EG">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/cop_EG.zip</entry>
@@ -72,6 +73,7 @@
   <entry key="id_ID">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/id_ID.zip</entry>
   <entry key="is_IS">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/is_IS.zip</entry>
   <entry key="it_IT">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/it_IT.zip</entry>
+  <entry key="kn_IN">https://anishpatil.fedorapeople.org/kn_in.2.0.0.tar.gz</entry>
   <entry key="ku_TR">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/ku_TR.zip</entry>
   <entry key="la">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/la.zip</entry>
   <entry key="lt_LT">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/lt_LT.zip</entry>
@@ -79,6 +81,7 @@
   <entry key="mg_MG">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/mg_MG.zip</entry>
   <entry key="mi_NZ">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/mi_NZ.zip</entry>
   <entry key="mk_MK">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/mk_MK.zip</entry>
+  <entry key="ml_IN">https://anishpatil.fedorapeople.org/ml_in.2.0.0.tar.gz</entry>
   <entry key="mos_BF">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/mos_BF.zip</entry>
   <entry key="mr_IN">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/mr_IN.zip</entry>
   <entry key="ms_MY">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/ms_MY.zip</entry>
@@ -91,6 +94,8 @@
   <entry key="ns_ZA">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/ns_ZA.zip</entry>
   <entry key="ny_MW">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/ny_MW.zip</entry>
   <entry key="oc_FR">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/oc_FR.zip</entry>
+  <entry key="or_IN">https://anishpatil.fedorapeople.org/or_in.2.0.0.tar.gz</entry>
+  <entry key="pa_IN">https://anishpatil.fedorapeople.org/pa_in.1.0.0.tar.gz</entry>
   <entry key="pl_PL">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/pl_PL.zip</entry>
   <entry key="pt_BR">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/pt_BR.zip</entry>
   <entry key="pt_PT">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/pt_PT.zip</entry>
@@ -106,6 +111,8 @@
   <entry key="st_ZA">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/st_ZA.zip</entry>
   <entry key="sv_SE">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/sv_SE.zip</entry>
   <entry key="sw_KE">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/sw_KE.zip</entry>
+  <entry key="ta_IN">https://anishpatil.fedorapeople.org/ta_in.1.0.0.tar.gz</entry>
+  <entry key="te_IN">https://anishpatil.fedorapeople.org/te_in.1.0.0.tar.gz</entry>
   <entry key="tet_ID">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/tet_ID.zip</entry>
   <entry key="th_TH">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/th_TH.zip</entry>
   <entry key="tl_PH">http://ftp.nluug.nl/office/openoffice/contrib/dictionaries/tl_PH.zip</entry>
