@@ -2261,7 +2261,7 @@ public class Gui extends JFrame {
         try {
             pageNum = Integer.parseInt(jTextFieldCurPage.getText().trim());
 
-            if (pageNum < imageIndex + 1) {
+            if (pageNum == imageIndex + 1) {
                 return; // no change
             } else if (pageNum < 1 || pageNum > imageTotal) {
                 throw new IllegalArgumentException(); // out of range
