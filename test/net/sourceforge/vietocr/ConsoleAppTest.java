@@ -35,9 +35,9 @@ public class ConsoleAppTest {
     @Test
     public void testMain() {
         System.out.println("main");
-        String[] args = {"C:\\Projects\\VietOCR3\\samples\\vietsample.tif", "C:\\Temp\\build\\out", "-l", "vie"};
+        String[] args = {"samples/vietsample.tif", "build/test/out", "-l", "vie"};
         ConsoleApp.main(args);
-        assertTrue(new File("C:\\Temp\\build\\out.txt").exists());
+        assertTrue(new File("build/test/out.txt").exists());
     }
     
 }
