@@ -1105,6 +1105,7 @@ public class Gui extends JFrame {
         jPanelArrow.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 5));
 
         jButtonCollapseExpand.setText("»");
+        jButtonCollapseExpand.setToolTipText(bundle.getString("jButtonCollapseExpand.ToolTipText")); // NOI18N
         jButtonCollapseExpand.setContentAreaFilled(false);
         jButtonCollapseExpand.setMargin(new java.awt.Insets(2, 4, 2, 4));
         jButtonCollapseExpand.setPreferredSize(new java.awt.Dimension(26, 23));
