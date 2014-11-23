@@ -1136,17 +1136,14 @@ public class Gui extends JFrame {
 
         jSeparator16.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator16.setMaximumSize(new java.awt.Dimension(2, 14));
-        jSeparator16.setPreferredSize(new java.awt.Dimension(2, 14));
         jPanelStatus.add(jSeparator16);
         jPanelStatus.add(Box.createHorizontalStrut(4));
 
-        jLabelPSM.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelPSM.setText("PSM");
         jPanelStatus.add(jLabelPSM);
 
         jSeparator17.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator17.setMaximumSize(new java.awt.Dimension(2, 14));
-        jSeparator17.setPreferredSize(new java.awt.Dimension(2, 14));
         jPanelStatus.add(Box.createHorizontalStrut(4));
         jPanelStatus.add(jSeparator17);
         jPanelStatus.add(Box.createHorizontalStrut(16));

@@ -1408,9 +1408,6 @@
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[2, 14]"/>
             </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[2, 14]"/>
-            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jPanelStatus.add(Box.createHorizontalStrut(4));"/>
@@ -1418,7 +1415,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelPSM">
           <Properties>
-            <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="PSM"/>
           </Properties>
           <AuxValues>
@@ -1429,9 +1425,6 @@
           <Properties>
             <Property name="orientation" type="int" value="1"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[2, 14]"/>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[2, 14]"/>
             </Property>
           </Properties>
