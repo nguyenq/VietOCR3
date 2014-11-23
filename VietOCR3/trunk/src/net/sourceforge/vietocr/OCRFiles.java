@@ -31,6 +31,7 @@ public class OCRFiles extends OCR<File> {
     private final String tessPath;
     final static String OUTPUT_FILE_NAME = "TessOutput";
     final static String TEXTFILE_EXTENSION = ".txt";
+    final static String CONFIG_FILE = "tess_configs";
 
     /**
      * Creates a new instance of OCR
@@ -59,7 +60,8 @@ public class OCRFiles extends OCR<File> {
         cmd.add(LANG_OPTION);
         cmd.add(this.getLanguage());
         cmd.add(PSM_OPTION);
-        cmd.add(String.valueOf(getPageSegMode()));
+        cmd.add(getPageSegMode());
+        cmd.add(CONFIG_FILE);
         
         ProcessBuilder pb = new ProcessBuilder();
         pb.directory(new File(tessPath));
@@ -117,7 +119,8 @@ public class OCRFiles extends OCR<File> {
         cmd.add(LANG_OPTION);
         cmd.add(this.getLanguage());
         cmd.add(PSM_OPTION);
-        cmd.add(String.valueOf(getPageSegMode()));
+        cmd.add(getPageSegMode());
+        cmd.add(CONFIG_FILE);
         
         if ("hocr".equals(outputFormat) || "pdf".equals(outputFormat)) {
             cmd.add(outputFormat);
