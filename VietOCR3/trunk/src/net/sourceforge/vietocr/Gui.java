@@ -1140,6 +1140,7 @@ public class Gui extends JFrame {
         jPanelStatus.add(Box.createHorizontalStrut(4));
 
         jLabelPSM.setText("PSM");
+        jLabelPSM.setToolTipText(bundle.getString("jLabelPSM.ToolTipText")); // NOI18N
         jPanelStatus.add(jLabelPSM);
 
         jSeparator17.setOrientation(javax.swing.SwingConstants.VERTICAL);
