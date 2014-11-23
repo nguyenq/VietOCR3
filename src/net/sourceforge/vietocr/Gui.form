@@ -1348,6 +1348,9 @@
                 <Component class="javax.swing.JButton" name="jButtonCollapseExpand">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&#xbb;"/>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jButtonCollapseExpand.ToolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                    </Property>
                     <Property name="contentAreaFilled" type="boolean" value="false"/>
                     <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
                       <Insets value="[2, 4, 2, 4]"/>
