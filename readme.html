@@ -142,9 +142,12 @@
             where x is the ISO639-3 language code. The UTF-8-encoded file should contain equal
             sign-delimited <tt>oldValue=newValue</tt> pairs.</p>
         <p>
+            You can put control parameters in <code>tessdata/configs/tess_configs</code> 
+            file to modify Tesseract&#39;s behaviour.</p>
+        <p>
             Some built-in tools are provided to merge several images or PDF files into a single
-            one for convenient OCR operations, or to split a PDF file into smaller ones if it
-            is too large, which can cause out-of-memory exceptions.</p>
+            one for convenient OCR operations, or to split a TIFF or PDF file into smaller 
+            ones if it contains too many pages, which can cause out-of-memory exceptions.</p>
         <h3>
             POSTPROCESSING</h3>
         <p>
