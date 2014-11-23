@@ -689,6 +689,9 @@ public class Gui extends JFrame {
         jLabelStatus.setVisible(false); // use jProgressBar instead for (more animation) task status
         jProgressBar1 = new javax.swing.JProgressBar();
         jProgressBar1.setVisible(false);
+        jSeparator16 = new javax.swing.JSeparator();
+        jLabelPSM = new javax.swing.JLabel();
+        jSeparator17 = new javax.swing.JSeparator();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemOpen = new javax.swing.JMenuItem();
@@ -1122,12 +1125,31 @@ public class Gui extends JFrame {
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
 
-        jPanelStatus.setPreferredSize(new java.awt.Dimension(161, 28));
-        jPanelStatus.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanelStatus.setPreferredSize(new java.awt.Dimension(10, 22));
+        jPanelStatus.setLayout(new javax.swing.BoxLayout(jPanelStatus, javax.swing.BoxLayout.LINE_AXIS));
         jPanelStatus.add(jLabelStatus);
 
+        jProgressBar1.setMaximumSize(new java.awt.Dimension(146, 17));
         jProgressBar1.setStringPainted(true);
         jPanelStatus.add(jProgressBar1);
+        jPanelStatus.add(Box.createHorizontalGlue());
+
+        jSeparator16.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator16.setMaximumSize(new java.awt.Dimension(2, 14));
+        jSeparator16.setPreferredSize(new java.awt.Dimension(2, 14));
+        jPanelStatus.add(jSeparator16);
+        jPanelStatus.add(Box.createHorizontalStrut(4));
+
+        jLabelPSM.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelPSM.setText("PSM");
+        jPanelStatus.add(jLabelPSM);
+
+        jSeparator17.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator17.setMaximumSize(new java.awt.Dimension(2, 14));
+        jSeparator17.setPreferredSize(new java.awt.Dimension(2, 14));
+        jPanelStatus.add(Box.createHorizontalStrut(4));
+        jPanelStatus.add(jSeparator17);
+        jPanelStatus.add(Box.createHorizontalStrut(16));
 
         getContentPane().add(jPanelStatus, java.awt.BorderLayout.SOUTH);
 
@@ -2391,6 +2413,7 @@ public class Gui extends JFrame {
     protected javax.swing.JFileChooser jFileChooser;
     protected javax.swing.JLabel jImageLabel;
     private javax.swing.JLabel jLabelLanguage;
+    protected javax.swing.JLabel jLabelPSM;
     private javax.swing.JLabel jLabelPageMax;
     protected javax.swing.JLabel jLabelStatus;
     private javax.swing.JMenuBar jMenuBar2;
@@ -2453,6 +2476,8 @@ public class Gui extends JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator13;
     private javax.swing.JToolBar.Separator jSeparator14;
     private javax.swing.JToolBar.Separator jSeparator15;
+    private javax.swing.JSeparator jSeparator16;
+    private javax.swing.JSeparator jSeparator17;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
