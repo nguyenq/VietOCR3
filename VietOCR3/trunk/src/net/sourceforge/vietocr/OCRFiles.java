@@ -112,8 +112,8 @@ public class OCRFiles extends OCR<File> {
         String outputFormat = this.getOutputFormat();
         List<String> cmd = new ArrayList<String>();
         cmd.add(tessPath + "/tesseract");
-        cmd.add(inputImage.getPath());
-        cmd.add(outputFile.getPath());
+        cmd.add(inputImage.getAbsolutePath());
+        cmd.add(outputFile.getAbsolutePath());
         cmd.add(LANG_OPTION);
         cmd.add(this.getLanguage());
         cmd.add(PSM_OPTION);
