@@ -55,12 +55,14 @@ public class GuiWithPSM extends GuiWithBatch {
 
     public GuiWithPSM() {
         selectedPSM = prefs.get(strPSM, "3");
+        this.jLabelPSM.setText("PSM: " + selectedPSM);
 
         ActionListener psmLst = new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
                 selectedPSM = ae.getActionCommand();
+                jLabelPSM.setText("PSM: " + selectedPSM);
             }
         };
 
