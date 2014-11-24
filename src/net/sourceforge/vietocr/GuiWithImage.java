@@ -36,6 +36,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     GuiWithImage() {
         this.jCheckBoxMenuItemScreenshotMode.setSelected(prefs.getBoolean(strScreenshotMode, false));
+        jLabelScreenshotModeValue.setText(this.jCheckBoxMenuItemScreenshotMode.isSelected() ? "On" : "Off");
     }
 
     /**
@@ -79,7 +80,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
                 ImageDeskew deskew = new ImageDeskew((BufferedImage) iioImageList.get(imageIndex).getRenderedImage());
                 double imageSkewAngle = deskew.getSkewAngle();
 
-                if ((imageSkewAngle > MINIMUM_DESKEW_THRESHOLD || imageSkewAngle < -(MINIMUM_DESKEW_THRESHOLD))) { 
+                if ((imageSkewAngle > MINIMUM_DESKEW_THRESHOLD || imageSkewAngle < -(MINIMUM_DESKEW_THRESHOLD))) {
                     originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
                     stack.push(originalImage);
                     rotateImage(-imageSkewAngle);
@@ -98,7 +99,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
         }
         getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         getGlassPane().setVisible(true);
-                
+
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
         stack.push(originalImage);
         imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.autoCrop(originalImage));
@@ -182,7 +183,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-                
+
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
         stack.push(originalImage);
         imageIcon = new ImageIconScalable(ImageHelper.convertImageToGrayscale(ImageHelper.cloneImage(originalImage)));
@@ -197,7 +198,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-                
+
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
         stack.push(originalImage);
         imageIcon = new ImageIconScalable(ImageHelper.convertImageToBinary(ImageHelper.cloneImage(originalImage)));
@@ -230,7 +231,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-         
+
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
         stack.push(originalImage);
         imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.sharpen(originalImage));
@@ -245,7 +246,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-                
+
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
         stack.push(originalImage);
         imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.smoothen(originalImage));
@@ -253,7 +254,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
         iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
         displayImage();
     }
-    
+
     @Override
     void jMenuItemUndoActionPerformed(java.awt.event.ActionEvent evt) {
         if (stack.isEmpty()) {
@@ -265,10 +266,15 @@ public class GuiWithImage extends GuiWithBulkOCR {
         iioImageList.get(imageIndex).setRenderedImage(image);
         displayImage();
     }
-    
+
     @Override
     void clearStack() {
         stack.clear();
+    }
+
+    @Override
+    void jCheckBoxMenuItemScreenshotModeActionPerformed(java.awt.event.ActionEvent evt) {
+        jLabelScreenshotModeValue.setText(this.jCheckBoxMenuItemScreenshotMode.isSelected() ? "On" : "Off");
     }
 
     @Override
