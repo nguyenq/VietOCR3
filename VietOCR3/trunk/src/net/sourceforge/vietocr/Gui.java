@@ -256,7 +256,7 @@ public class Gui extends JFrame {
 
                 @Override
                 public boolean accept(File dir, String name) {
-                    return name.endsWith(DATAFILE_SUFFIX);
+                    return name.endsWith(DATAFILE_SUFFIX) && !name.equals("osd.traineddata");
                 }
             });
             Arrays.sort(installedLanguageCodes, Collator.getInstance());
@@ -689,10 +689,13 @@ public class Gui extends JFrame {
         jLabelStatus.setVisible(false); // use jProgressBar instead for (more animation) task status
         jProgressBar1 = new javax.swing.JProgressBar();
         jProgressBar1.setVisible(false);
-        jSeparator16 = new javax.swing.JSeparator();
+        jSeparatorSM = new javax.swing.JSeparator();
+        jLabelScreenshotMode = new javax.swing.JLabel();
+        jLabelScreenshotModeValue = new javax.swing.JLabel();
+        jSeparatorPSM = new javax.swing.JSeparator();
         jLabelPSM = new javax.swing.JLabel();
         jLabelPSMvalue = new javax.swing.JLabel();
-        jSeparator17 = new javax.swing.JSeparator();
+        jSeparatorEnd = new javax.swing.JSeparator();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemOpen = new javax.swing.JMenuItem();
@@ -1135,9 +1138,21 @@ public class Gui extends JFrame {
         jPanelStatus.add(jProgressBar1);
         jPanelStatus.add(Box.createHorizontalGlue());
 
-        jSeparator16.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator16.setMaximumSize(new java.awt.Dimension(2, 14));
-        jPanelStatus.add(jSeparator16);
+        jSeparatorSM.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparatorSM.setMaximumSize(new java.awt.Dimension(2, 14));
+        jPanelStatus.add(jSeparatorSM);
+        jPanelStatus.add(Box.createHorizontalStrut(4));
+
+        jLabelScreenshotMode.setText(bundle.getString("jLabelScreenshotMode.Text")); // NOI18N
+        jLabelScreenshotMode.setToolTipText(bundle.getString("jLabelScreenshotMode.ToolTipText")); // NOI18N
+        jPanelStatus.add(jLabelScreenshotMode);
+        jPanelStatus.add(Box.createHorizontalStrut(4));
+        jPanelStatus.add(jLabelScreenshotModeValue);
+
+        jSeparatorPSM.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparatorPSM.setMaximumSize(new java.awt.Dimension(2, 14));
+        jPanelStatus.add(Box.createHorizontalStrut(4));
+        jPanelStatus.add(jSeparatorPSM);
         jPanelStatus.add(Box.createHorizontalStrut(4));
 
         jLabelPSM.setText("PSM:");
@@ -1146,10 +1161,10 @@ public class Gui extends JFrame {
         jPanelStatus.add(Box.createHorizontalStrut(4));
         jPanelStatus.add(jLabelPSMvalue);
 
-        jSeparator17.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator17.setMaximumSize(new java.awt.Dimension(2, 14));
+        jSeparatorEnd.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparatorEnd.setMaximumSize(new java.awt.Dimension(2, 14));
         jPanelStatus.add(Box.createHorizontalStrut(4));
-        jPanelStatus.add(jSeparator17);
+        jPanelStatus.add(jSeparatorEnd);
         jPanelStatus.add(Box.createHorizontalStrut(16));
 
         getContentPane().add(jPanelStatus, java.awt.BorderLayout.SOUTH);
@@ -1375,6 +1390,11 @@ public class Gui extends JFrame {
         jCheckBoxMenuItemScreenshotMode.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jCheckBoxMenuItemScreenshotMode.Mnemonic").charAt(0));
         jCheckBoxMenuItemScreenshotMode.setSelected(true);
         jCheckBoxMenuItemScreenshotMode.setText(bundle.getString("jCheckBoxMenuItemScreenshotMode.Text")); // NOI18N
+        jCheckBoxMenuItemScreenshotMode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItemScreenshotModeActionPerformed(evt);
+            }
+        });
         jMenuImage.add(jCheckBoxMenuItemScreenshotMode);
 
         jMenuBar2.add(jMenuImage);
@@ -2317,6 +2337,10 @@ public class Gui extends JFrame {
         this.jSplitPaneImage.setDividerSize(collapsed? 0 : 5);
     }//GEN-LAST:event_jButtonCollapseExpandActionPerformed
 
+    void jCheckBoxMenuItemScreenshotModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemScreenshotModeActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jCheckBoxMenuItemScreenshotModeActionPerformed
+
     /**
      * Loads thumbnails.
      */
@@ -2417,6 +2441,8 @@ public class Gui extends JFrame {
     private javax.swing.JLabel jLabelPSM;
     protected javax.swing.JLabel jLabelPSMvalue;
     private javax.swing.JLabel jLabelPageMax;
+    private javax.swing.JLabel jLabelScreenshotMode;
+    protected javax.swing.JLabel jLabelScreenshotModeValue;
     protected javax.swing.JLabel jLabelStatus;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu jMenuCommand;
@@ -2478,8 +2504,6 @@ public class Gui extends JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator13;
     private javax.swing.JToolBar.Separator jSeparator14;
     private javax.swing.JToolBar.Separator jSeparator15;
-    private javax.swing.JSeparator jSeparator16;
-    private javax.swing.JSeparator jSeparator17;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
@@ -2489,9 +2513,12 @@ public class Gui extends JFrame {
     private javax.swing.JToolBar.Separator jSeparator8;
     private javax.swing.JToolBar.Separator jSeparator9;
     private javax.swing.JPopupMenu.Separator jSeparatorAbout;
+    private javax.swing.JSeparator jSeparatorEnd;
     private javax.swing.JPopupMenu.Separator jSeparatorExit;
     private javax.swing.JPopupMenu.Separator jSeparatorInputMethod;
     private javax.swing.JPopupMenu.Separator jSeparatorOptions;
+    private javax.swing.JSeparator jSeparatorPSM;
+    private javax.swing.JSeparator jSeparatorSM;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPaneImage;
     protected javax.swing.JTextArea jTextArea1;
