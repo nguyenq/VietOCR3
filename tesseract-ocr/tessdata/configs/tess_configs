@@ -4,3 +4,11 @@
 # Each key/value pair, delimited by spaces, takes one line. Comment lines start with # sign.
 # Ex:
 #debug_file /dev/null
+#debug_file tesseract.log
+#load_system_dawg     F
+#load_freq_dawg       F
+#user_words_suffix    user-words
+#user_patterns_suffix user-patterns
+#tessedit_char_whitelist 0123456789-.
+#tessedit_create_hocr 1
+#tessedit_pageseg_mode 1
