@@ -691,6 +691,7 @@ public class Gui extends JFrame {
         jProgressBar1.setVisible(false);
         jSeparator16 = new javax.swing.JSeparator();
         jLabelPSM = new javax.swing.JLabel();
+        jLabelPSMvalue = new javax.swing.JLabel();
         jSeparator17 = new javax.swing.JSeparator();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
@@ -1139,9 +1140,11 @@ public class Gui extends JFrame {
         jPanelStatus.add(jSeparator16);
         jPanelStatus.add(Box.createHorizontalStrut(4));
 
-        jLabelPSM.setText("PSM");
+        jLabelPSM.setText("PSM:");
         jLabelPSM.setToolTipText(bundle.getString("jLabelPSM.ToolTipText")); // NOI18N
         jPanelStatus.add(jLabelPSM);
+        jPanelStatus.add(Box.createHorizontalStrut(4));
+        jPanelStatus.add(jLabelPSMvalue);
 
         jSeparator17.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator17.setMaximumSize(new java.awt.Dimension(2, 14));
@@ -2411,7 +2414,8 @@ public class Gui extends JFrame {
     protected javax.swing.JFileChooser jFileChooser;
     protected javax.swing.JLabel jImageLabel;
     private javax.swing.JLabel jLabelLanguage;
-    protected javax.swing.JLabel jLabelPSM;
+    private javax.swing.JLabel jLabelPSM;
+    protected javax.swing.JLabel jLabelPSMvalue;
     private javax.swing.JLabel jLabelPageMax;
     protected javax.swing.JLabel jLabelStatus;
     private javax.swing.JMenuBar jMenuBar2;
