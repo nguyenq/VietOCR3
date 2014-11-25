@@ -689,6 +689,9 @@ public class Gui extends JFrame {
         jLabelStatus.setVisible(false); // use jProgressBar instead for (more animation) task status
         jProgressBar1 = new javax.swing.JProgressBar();
         jProgressBar1.setVisible(false);
+        jSeparatorDim = new javax.swing.JSeparator();
+        jLabelDimension = new javax.swing.JLabel();
+        jLabelDimensionValue = new javax.swing.JLabel();
         jSeparatorSM = new javax.swing.JSeparator();
         jLabelScreenshotMode = new javax.swing.JLabel();
         jLabelScreenshotModeValue = new javax.swing.JLabel();
@@ -1138,8 +1141,22 @@ public class Gui extends JFrame {
         jPanelStatus.add(jProgressBar1);
         jPanelStatus.add(Box.createHorizontalGlue());
 
+        jSeparatorDim.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparatorDim.setMaximumSize(new java.awt.Dimension(2, 14));
+        jPanelStatus.add(jSeparatorDim);
+        jPanelStatus.add(Box.createHorizontalStrut(4));
+
+        jLabelDimension.setText(bundle.getString("jLabelDimension.Text")); // NOI18N
+        jLabelDimension.setToolTipText(bundle.getString("jLabelDimension.ToolTipText")); // NOI18N
+        jPanelStatus.add(jLabelDimension);
+        jPanelStatus.add(Box.createHorizontalStrut(4));
+
+        jLabelDimensionValue.setText("0 × 0px");
+        jPanelStatus.add(jLabelDimensionValue);
+
         jSeparatorSM.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparatorSM.setMaximumSize(new java.awt.Dimension(2, 14));
+        jPanelStatus.add(Box.createHorizontalStrut(4));
         jPanelStatus.add(jSeparatorSM);
         jPanelStatus.add(Box.createHorizontalStrut(4));
 
@@ -1954,6 +1971,7 @@ public class Gui extends JFrame {
         imageIcon = imageList.get(imageIndex).clone();
         originalW = imageIcon.getIconWidth();
         originalH = imageIcon.getIconHeight();
+        this.jLabelDimensionValue.setText(String.format("%s × %spx", originalW, originalH));
 
         if (this.isFitImageSelected) {
             // scale image to fit the scrollpane
@@ -2437,6 +2455,8 @@ public class Gui extends JFrame {
     protected javax.swing.JComboBox jComboBoxLang;
     protected javax.swing.JFileChooser jFileChooser;
     protected javax.swing.JLabel jImageLabel;
+    private javax.swing.JLabel jLabelDimension;
+    private javax.swing.JLabel jLabelDimensionValue;
     private javax.swing.JLabel jLabelLanguage;
     private javax.swing.JLabel jLabelPSM;
     protected javax.swing.JLabel jLabelPSMvalue;
@@ -2513,6 +2533,7 @@ public class Gui extends JFrame {
     private javax.swing.JToolBar.Separator jSeparator8;
     private javax.swing.JToolBar.Separator jSeparator9;
     private javax.swing.JPopupMenu.Separator jSeparatorAbout;
+    private javax.swing.JSeparator jSeparatorDim;
     private javax.swing.JSeparator jSeparatorEnd;
     private javax.swing.JPopupMenu.Separator jSeparatorExit;
     private javax.swing.JPopupMenu.Separator jSeparatorInputMethod;
