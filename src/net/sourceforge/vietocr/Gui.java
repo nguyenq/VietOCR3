@@ -692,6 +692,7 @@ public class Gui extends JFrame {
         jSeparatorDim = new javax.swing.JSeparator();
         jLabelDimension = new javax.swing.JLabel();
         jLabelDimensionValue = new javax.swing.JLabel();
+        jSeparatorDimEnd = new javax.swing.JSeparator();
         jSeparatorSM = new javax.swing.JSeparator();
         jLabelScreenshotMode = new javax.swing.JLabel();
         jLabelScreenshotModeValue = new javax.swing.JLabel();
@@ -1139,10 +1140,10 @@ public class Gui extends JFrame {
         jProgressBar1.setMaximumSize(new java.awt.Dimension(146, 17));
         jProgressBar1.setStringPainted(true);
         jPanelStatus.add(jProgressBar1);
-        jPanelStatus.add(Box.createHorizontalGlue());
 
         jSeparatorDim.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparatorDim.setMaximumSize(new java.awt.Dimension(2, 14));
+        jPanelStatus.add(Box.createHorizontalStrut(250));
         jPanelStatus.add(jSeparatorDim);
         jPanelStatus.add(Box.createHorizontalStrut(4));
 
@@ -1153,6 +1154,12 @@ public class Gui extends JFrame {
 
         jLabelDimensionValue.setText("0 × 0px");
         jPanelStatus.add(jLabelDimensionValue);
+
+        jSeparatorDimEnd.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparatorDimEnd.setMaximumSize(new java.awt.Dimension(2, 14));
+        jPanelStatus.add(Box.createHorizontalStrut(4));
+        jPanelStatus.add(jSeparatorDimEnd);
+        jPanelStatus.add(Box.createHorizontalGlue());
 
         jSeparatorSM.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparatorSM.setMaximumSize(new java.awt.Dimension(2, 14));
@@ -2534,6 +2541,7 @@ public class Gui extends JFrame {
     private javax.swing.JToolBar.Separator jSeparator9;
     private javax.swing.JPopupMenu.Separator jSeparatorAbout;
     private javax.swing.JSeparator jSeparatorDim;
+    private javax.swing.JSeparator jSeparatorDimEnd;
     private javax.swing.JSeparator jSeparatorEnd;
     private javax.swing.JPopupMenu.Separator jSeparatorExit;
     private javax.swing.JPopupMenu.Separator jSeparatorInputMethod;
