@@ -1152,7 +1152,7 @@ public class Gui extends JFrame {
         jPanelStatus.add(jLabelDimension);
         jPanelStatus.add(Box.createHorizontalStrut(4));
 
-        jLabelDimensionValue.setText("0 × 0px");
+        jLabelDimensionValue.setText("0 × 0px  0bpp");
         jPanelStatus.add(jLabelDimensionValue);
 
         jSeparatorDimEnd.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -1978,7 +1978,7 @@ public class Gui extends JFrame {
         imageIcon = imageList.get(imageIndex).clone();
         originalW = imageIcon.getIconWidth();
         originalH = imageIcon.getIconHeight();
-        this.jLabelDimensionValue.setText(String.format("%s × %spx", originalW, originalH));
+        this.jLabelDimensionValue.setText(String.format("%s × %spx  %sbpp", originalW, originalH, ((BufferedImage)imageIcon.getImage()).getColorModel().getPixelSize()));
 
         if (this.isFitImageSelected) {
             // scale image to fit the scrollpane

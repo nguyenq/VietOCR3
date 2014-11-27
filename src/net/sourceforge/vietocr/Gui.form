@@ -1431,7 +1431,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelDimensionValue">
           <Properties>
-            <Property name="text" type="java.lang.String" value="0 &#xd7; 0px"/>
+            <Property name="text" type="java.lang.String" value="0 &#xd7; 0px  0bpp"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparatorDimEnd">
