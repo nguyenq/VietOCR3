@@ -821,8 +821,6 @@ public class Gui extends JFrame {
 
         jButtonScan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/scan.png"))); // NOI18N
         jButtonScan.setToolTipText(bundle.getString("jButtonScan.ToolTipText")); // NOI18N
-        jButtonScan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonScan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonScan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonScanActionPerformed(evt);
@@ -832,8 +830,6 @@ public class Gui extends JFrame {
 
         jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/save.png"))); // NOI18N
         jButtonSave.setToolTipText(bundle.getString("jButtonSave.ToolTipText")); // NOI18N
-        jButtonSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonSave.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSaveActionPerformed(evt);
@@ -852,8 +848,6 @@ public class Gui extends JFrame {
 
         jButtonCancelOCR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/cancel.png"))); // NOI18N
         jButtonCancelOCR.setToolTipText(bundle.getString("jButtonCancelOCR.ToolTipText")); // NOI18N
-        jButtonCancelOCR.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonCancelOCR.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonCancelOCR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelOCRActionPerformed(evt);
@@ -874,12 +868,10 @@ public class Gui extends JFrame {
         jButtonPrevPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/document_page_previous.png"))); // NOI18N
         jButtonPrevPage.setToolTipText(bundle.getString("jButtonPrevPage.ToolTipText")); // NOI18N
         jButtonPrevPage.setEnabled(false);
-        jButtonPrevPage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonPrevPage.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonPrevPage.setMaximumSize(new java.awt.Dimension(30, 25));
-        jButtonPrevPage.setMinimumSize(new java.awt.Dimension(30, 25));
-        jButtonPrevPage.setPreferredSize(new java.awt.Dimension(30, 23));
-        jButtonPrevPage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonPrevPage.setMaximumSize(new java.awt.Dimension(39, 39));
+        jButtonPrevPage.setMinimumSize(new java.awt.Dimension(39, 39));
+        jButtonPrevPage.setPreferredSize(new java.awt.Dimension(39, 39));
         jButtonPrevPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPrevPageActionPerformed(evt);
@@ -890,12 +882,10 @@ public class Gui extends JFrame {
         jButtonNextPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/document_page_next.png"))); // NOI18N
         jButtonNextPage.setToolTipText(bundle.getString("jButtonNextPage.ToolTipText")); // NOI18N
         jButtonNextPage.setEnabled(false);
-        jButtonNextPage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonNextPage.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonNextPage.setMaximumSize(new java.awt.Dimension(30, 25));
-        jButtonNextPage.setMinimumSize(new java.awt.Dimension(30, 25));
-        jButtonNextPage.setPreferredSize(new java.awt.Dimension(30, 23));
-        jButtonNextPage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonNextPage.setMaximumSize(new java.awt.Dimension(39, 39));
+        jButtonNextPage.setMinimumSize(new java.awt.Dimension(39, 39));
+        jButtonNextPage.setPreferredSize(new java.awt.Dimension(39, 39));
         jButtonNextPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNextPageActionPerformed(evt);
@@ -935,12 +925,10 @@ public class Gui extends JFrame {
         jButtonFitImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_fit.png"))); // NOI18N
         jButtonFitImage.setToolTipText(bundle.getString("jButtonFitImage.ToolTipText")); // NOI18N
         jButtonFitImage.setEnabled(false);
-        jButtonFitImage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonFitImage.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonFitImage.setMaximumSize(new java.awt.Dimension(30, 25));
-        jButtonFitImage.setMinimumSize(new java.awt.Dimension(30, 25));
-        jButtonFitImage.setPreferredSize(new java.awt.Dimension(30, 23));
-        jButtonFitImage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonFitImage.setMaximumSize(new java.awt.Dimension(39, 39));
+        jButtonFitImage.setMinimumSize(new java.awt.Dimension(39, 39));
+        jButtonFitImage.setPreferredSize(new java.awt.Dimension(39, 39));
         jButtonFitImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonFitImageActionPerformed(evt);
@@ -951,12 +939,10 @@ public class Gui extends JFrame {
         jButtonActualSize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_actual.png"))); // NOI18N
         jButtonActualSize.setToolTipText(bundle.getString("jButtonActualSize.ToolTipText")); // NOI18N
         jButtonActualSize.setEnabled(false);
-        jButtonActualSize.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonActualSize.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonActualSize.setMaximumSize(new java.awt.Dimension(30, 25));
-        jButtonActualSize.setMinimumSize(new java.awt.Dimension(30, 25));
-        jButtonActualSize.setPreferredSize(new java.awt.Dimension(30, 23));
-        jButtonActualSize.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonActualSize.setMaximumSize(new java.awt.Dimension(39, 39));
+        jButtonActualSize.setMinimumSize(new java.awt.Dimension(39, 39));
+        jButtonActualSize.setPreferredSize(new java.awt.Dimension(39, 39));
         jButtonActualSize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonActualSizeActionPerformed(evt);
@@ -968,12 +954,10 @@ public class Gui extends JFrame {
         jButtonZoomIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_in.png"))); // NOI18N
         jButtonZoomIn.setToolTipText(bundle.getString("jButtonZoomIn.ToolTipText")); // NOI18N
         jButtonZoomIn.setEnabled(false);
-        jButtonZoomIn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonZoomIn.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonZoomIn.setMaximumSize(new java.awt.Dimension(30, 25));
-        jButtonZoomIn.setMinimumSize(new java.awt.Dimension(30, 25));
-        jButtonZoomIn.setPreferredSize(new java.awt.Dimension(30, 23));
-        jButtonZoomIn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonZoomIn.setMaximumSize(new java.awt.Dimension(39, 39));
+        jButtonZoomIn.setMinimumSize(new java.awt.Dimension(39, 39));
+        jButtonZoomIn.setPreferredSize(new java.awt.Dimension(39, 39));
         jButtonZoomIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonZoomInActionPerformed(evt);
@@ -984,12 +968,10 @@ public class Gui extends JFrame {
         jButtonZoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_out.png"))); // NOI18N
         jButtonZoomOut.setToolTipText(bundle.getString("jButtonZoomOut.ToolTipText")); // NOI18N
         jButtonZoomOut.setEnabled(false);
-        jButtonZoomOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonZoomOut.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonZoomOut.setMaximumSize(new java.awt.Dimension(30, 25));
-        jButtonZoomOut.setMinimumSize(new java.awt.Dimension(30, 25));
-        jButtonZoomOut.setPreferredSize(new java.awt.Dimension(30, 23));
-        jButtonZoomOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonZoomOut.setMaximumSize(new java.awt.Dimension(39, 39));
+        jButtonZoomOut.setMinimumSize(new java.awt.Dimension(39, 39));
+        jButtonZoomOut.setPreferredSize(new java.awt.Dimension(39, 39));
         jButtonZoomOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonZoomOutActionPerformed(evt);
@@ -1001,12 +983,10 @@ public class Gui extends JFrame {
         jButtonRotateCCW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/rotate_ccw.png"))); // NOI18N
         jButtonRotateCCW.setToolTipText(bundle.getString("jButtonRotateCCW.ToolTipText")); // NOI18N
         jButtonRotateCCW.setEnabled(false);
-        jButtonRotateCCW.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonRotateCCW.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonRotateCCW.setMaximumSize(new java.awt.Dimension(30, 25));
-        jButtonRotateCCW.setMinimumSize(new java.awt.Dimension(30, 25));
-        jButtonRotateCCW.setPreferredSize(new java.awt.Dimension(30, 23));
-        jButtonRotateCCW.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonRotateCCW.setMaximumSize(new java.awt.Dimension(39, 39));
+        jButtonRotateCCW.setMinimumSize(new java.awt.Dimension(39, 39));
+        jButtonRotateCCW.setPreferredSize(new java.awt.Dimension(39, 39));
         jButtonRotateCCW.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRotateCCWActionPerformed(evt);
@@ -1017,11 +997,10 @@ public class Gui extends JFrame {
         jButtonRotateCW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/rotate_cw.png"))); // NOI18N
         jButtonRotateCW.setToolTipText(bundle.getString("jButtonRotateCW.ToolTipText")); // NOI18N
         jButtonRotateCW.setEnabled(false);
-        jButtonRotateCW.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonRotateCW.setMargin(new java.awt.Insets(2, 15, 2, 14));
-        jButtonRotateCW.setMaximumSize(new java.awt.Dimension(30, 25));
-        jButtonRotateCW.setMinimumSize(new java.awt.Dimension(30, 25));
-        jButtonRotateCW.setPreferredSize(new java.awt.Dimension(30, 23));
+        jButtonRotateCW.setMaximumSize(new java.awt.Dimension(39, 39));
+        jButtonRotateCW.setMinimumSize(new java.awt.Dimension(39, 39));
+        jButtonRotateCW.setPreferredSize(new java.awt.Dimension(39, 39));
         jButtonRotateCW.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonRotateCW.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
