@@ -890,8 +890,7 @@ public class Gui extends JFrame {
         jTextFieldCurPage.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldCurPage.setText("0");
         jTextFieldCurPage.setEnabled(false);
-        jTextFieldCurPage.setMaximumSize(new java.awt.Dimension(30, 24));
-        jTextFieldCurPage.setMinimumSize(new java.awt.Dimension(30, 20));
+        jTextFieldCurPage.setMaximumSize(new java.awt.Dimension(24, 24));
         jTextFieldCurPage.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextFieldCurPageFocusLost(evt);
@@ -907,8 +906,6 @@ public class Gui extends JFrame {
         jLabelPageMax.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPageMax.setText(" / 0");
         jLabelPageMax.setEnabled(false);
-        jLabelPageMax.setMaximumSize(new java.awt.Dimension(30, 14));
-        jLabelPageMax.setMinimumSize(new java.awt.Dimension(30, 14));
         jLabelPageMax.setPreferredSize(new java.awt.Dimension(30, 14));
         jToolBar2.add(jLabelPageMax);
         jToolBar2.add(Box.createHorizontalStrut(4));
