@@ -12,52 +12,52 @@
         <h3>REQUISITI DEL SISTEMA</h3>
         <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 6.0</a> o superiore.</p>
         <h3>INSTALLAZIONE</h3>
-        <p>Tesseract 3.03, eseguibile di Windows, è fornito assieme al programma. Un <a href="http://code.google.com/p/tesseract-ocr/downloads/list">  Pacchetto dati lingua</a> per Tesseract, il cui nome inizia con il codice ISO639-3, dovrebbe essere inserito nella sottocartella <tt>tessdata</tt>.</p>
+        <p>Tesseract 3.03, eseguibile di Windows, è fornito assieme al programma. Un <a href="http://code.google.com/p/tesseract-ocr/downloads/list">  Pacchetto dati lingua</a> per Tesseract, il cui nome inizia con il codice ISO639-3, dovrebbe essere inserito nella sottocartella <code>tessdata</code>.</p>
         <p>Per Linux, Tesseract ed i suoi pacchetti di dati linguistici si trovano nella cartella (universo) Grafica . Possono essere installati tramite Synaptic o con il seguente comando:</p>
         <blockquote>
-            <p><tt>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</tt></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
         </blockquote>
-        <p>I file saranno inseriti in <tt>/usr/bin</tt> e <tt>/usr/share/tesseract-ocr/tessdata</tt>,  rispettivamente. D'altra parte, se Tesseract è costruito e installato dai file<a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation"></a><a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">sorgenti </a>, saranno messi in <tt>/usr/local/bin</tt> e <tt>/usr/local/share/tessdata</tt>. Potrebbe essere necessario specificare la directory dell'eseguibile da Tesseract VietOCR nel menù <tt>Impostazioni</tt>. Se i dati sono in un percorso non standard, un link simbolico per <tt>tessdata</tt> può essere richiesto. È anche possibile lasciare che VietOCR riconosca automaticamente la posizione della cartella <tt>tessdata</tt> tramite la variabile <tt>TESSDATA_PREFIX</tt>:</p>
+        <p>I file saranno inseriti in <code>/usr/bin</code> e <code>/usr/share/tesseract-ocr/tessdata</code>,  rispettivamente. D'altra parte, se Tesseract è costruito e installato dai file<a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation"></a><a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">sorgenti </a>, saranno messi in <code>/usr/local/bin</code> e <code>/usr/local/share/tessdata</code>. Potrebbe essere necessario specificare la directory dell'eseguibile da Tesseract VietOCR nel menù <code>Impostazioni</code>. Se i dati sono in un percorso non standard, un link simbolico per <code>tessdata</code> può essere richiesto. È anche possibile lasciare che VietOCR riconosca automaticamente la posizione della cartella <code>tessdata</code> tramite la variabile <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
-            <p><tt>export TESSDATA_PREFIX=/usr/local/share/</tt></p>
+            <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
         <p>Per altre piattaforme consultare la pagina <a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">Tesseract Wiki</a>.</p>
-        <p>VietOCR fornisce anche il supporto per il download e l'installazione di Pacchetti Lingue selezionati attraverso <em>Download Pacchetti Dati</em> che si trova nel menù. A seconda della posizione della cartella  <tt>tessdata</tt>, potrebbe essere necessario eseguire il programma come root o admin  per essere in grado di installare i dati scaricati, come ad esempio in <tt>/usr</tt> su Linux o <tt>C:\Program Files</tt> in Windows.</p>
+        <p>VietOCR fornisce anche il supporto per il download e l'installazione di Pacchetti Lingue selezionati attraverso <em>Download Pacchetti Dati</em> che si trova nel menù. A seconda della posizione della cartella  <code>tessdata</code>, potrebbe essere necessario eseguire il programma come root o admin  per essere in grado di installare i dati scaricati, come ad esempio in <code>/usr</code> su Linux o <code>C:\Program Files</code> in Windows.</p>
         <p>Il supporto per lo scnnering viene fornito da Windows Image Acquisition Library v2.0, che richiede Windows XP Service Pack 1 (SP1) o superiore; la libreria è inclusa in Windows Vista e 7. Per installare la libreria WIA , copia il file
-             <tt>wiaaut.dll</tt> nella cartella <tt>System32</tt>  (posta in 
-             <tt>C:\Windows\System32</tt>) ed esegui tramite linea di comando:</p>
+             <code>wiaaut.dll</code> nella cartella <code>System32</code>  (posta in 
+             <code>C:\Windows\System32</code>) ed esegui tramite linea di comando:</p>
         <blockquote>
-            <p><tt>regsvr32 C:\Windows\System32\wiaaut.dll</tt></p>
+            <p><code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
         </blockquote>
         <p>Su Linux, la scansione richiede l'installazione di pacchetti di SANE:</p>
         <blockquote>
-            <p><tt>sudo apt-get install libsane sane sane-utils libsane-extras xsane</tt></p>
+            <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
         <p>Il supporto PDF è disponibile con <a href="http://sourceforge.net/projects/ghostscript/">GPL⏎
 Ghostscript</a>. Dopo l'intallazione della libreria, controlla che gli oggetti⏎
-(<tt>gsdll32.dll</tt> o <tt>libgs.so</tt>) siano presenti nel percorso di ricerca impostando nel campo variabile <tt>Path</tt>, (accessibile tramite il Pannello di controllo di Windows System &gt; Advanced tab &gt; Environment Variables) per GS version 9.14:</p>
+(<code>gsdll32.dll</code> o <code>libgs.so</code>) siano presenti nel percorso di ricerca impostando nel campo variabile <code>Path</code>, (accessibile tramite il Pannello di controllo di Windows System &gt; Advanced tab &gt; Environment Variables) per GS version 9.15:</p>
         <blockquote>
-            <p><tt>;C:\Program Files\gs\gs9.14\bin</tt></p>
+            <p><code>;C:\Program Files\gs\gs9.15\bin</code></p>
         </blockquote>Linux:<blockquote>
-            <p><tt>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</tt></p>
+            <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p>dove sono posti <tt>/usr/lib</tt>, <tt>libgs.so</tt> i collegamenti per 
+        <p>dove sono posti <code>/usr/lib</code>, <code>libgs.so</code> i collegamenti per 
 
-<tt>libgs.so.9.14</tt>
+<code>libgs.so.9.15</code>
 </p>
-        <p>La funzionalità di controllo ortografico è disponibile attraverso Hunspell, il cui <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">dizionario</a> (<tt>.aff</tt>, <tt>.dic</tt>) deve essere posto nella cartella <tt>dict</tt> di VietOCR. <tt>user.dic</tt> è un file criptato UTF-8 che contiene una lista di parole predefinite, una per linea.</p>
-        <p>Su Linux, Hunspell ed i suoi dizionari possono essere installati da Synaptic o  <tt>apt</tt>, come segue:</p>
-        <blockquote><tt>sudo apt-get install hunspell hunspell-en-us myspell-it</tt></blockquote>
+        <p>La funzionalità di controllo ortografico è disponibile attraverso Hunspell, il cui <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">dizionario</a> (<code>.aff</code>, <code>.dic</code>) deve essere posto nella cartella <code>dict</code> di VietOCR. <code>user.dic</code> è un file criptato UTF-8 che contiene una lista di parole predefinite, una per linea.</p>
+        <p>Su Linux, Hunspell ed i suoi dizionari possono essere installati da Synaptic o  <code>apt</code>, come segue:</p>
+        <blockquote><code>sudo apt-get install hunspell hunspell-en-us myspell-it</code></blockquote>
         <h3>ISTRUZIONI</h3>
         <p>Per lanciare il programma:</p>
         <blockquote>
-            <p><tt>java -jar VietOCR.jar</tt></p>
+            <p><code>java -jar VietOCR.jar</code></p>
         </blockquote>
-        <p><b><u>Note</u></b>: Se si verificano errori di out-of-memory , eseguire lo script<tt>ocr</tt> invece di utilizzare il .jar.</p>
+        <p><b><u>Note</u></b>: Se si verificano errori di out-of-memory , eseguire lo script<code>ocr</code> invece di utilizzare il .jar.</p>
         <p>I dati nella lingua vietnamita sono stati generati per  Times New Roman, Arial, Verdana,  e font Courier New. Pertanto, il riconoscimento risulta migliore per le immagini che hanno le grafie di caratteri simili. Per le immagini OCR che hanno grafia dei caratteri diversi dai caratteri supportati generalmente bisognerà <a href="http://code.google.com/p/tesseract-ocr/wiki/TrainingTesseract">creare</a> un altro pacchetto di lingua dati appositamente per  quei caratteri tipografici. Dati linguistici per alcune tipografie VNI e TCVN3 (ABC) sono stati anche  aggiunti nelle ultime versioni.</p>
         <p>Le immagini da acquisire devono essere scansionate ad una risoluzione di almeno 200 dpi fino a 400 DPI in modo monocromatico (bianco e nero) o in scala di grigi. La scansione a risoluzioni più elevate  non necessariamente si traduce in una migliore precisione del riconoscimento, che attualmente  può essere superiore al 97% per i linguaggi Vietnamiti, e che per la prossima versione di Tesseractsono previsti miglioramenti. Anche così, i risulatati effettivi dipendono ancora molto dalla qualità del  dell'immagine acquisita. Le impostazioni tipiche per la scansione sono 300 DPI e 1 bpp (bit per pixel ) in bianco e nero oppure in scala di grigi  a 8 bpp tramite immagini TIFF o PNG.</p>
         <p>La modalità <em>Screenshot</em>  offre risultati migliori per immagini con risoluzione più bassa, come serigrafie, che vengono riscalate a 300 DPI.</p>
-        <p>Oltre all' algoritmo integrato di post-elaborazione del testo, è possibile aggiungere il proprio schema personalizzato del testo tramite un file di testo denominato <tt>x.DangAmbigs.txt</tt>, dove x è il codice ISO639-3 della lingua. La codifica UTF-8 deve contenere lo stesso numero di coppie <tt>vecchiValori = nuoviValori</tt>.</p>
+        <p>Oltre all' algoritmo integrato di post-elaborazione del testo, è possibile aggiungere il proprio schema personalizzato del testo tramite un file di testo denominato <code>x.DangAmbigs.txt</code>, dove x è il codice ISO639-3 della lingua. La codifica UTF-8 deve contenere lo stesso numero di coppie <code>vecchiValori = nuoviValori</code>.</p>
         <p>Alcuni strumenti integrati sono forniti per unire più immagini o file PDF in un unico documento. Altre per comode operazioni di OCR, o per dividere un file PDF in qdocumenti più piccoli se è troppo grande, che può causare rallentamenti al programma.</p>
         <h3>POST ELABORAZIONE</h3>
         <p>Gli errori di riconoscimento possono generalmente essere classificati in tre categorie. Molti degli errori sono legati ai caratteri maiuscoli e minuscoli - per esempio: mamma, mAmma - che possono essere facilmente corretti da editor di testo Unicode. Molti altri errori sono il risultato del processo OCR, ad esempio mancano segni diacritici, lettere sbagliate con forme simili, ecc - cane - canè, patata - pataca, scur0 - scuro, la - 1a, è - é. Questi possono anche essere facilmente corretti dai programmi di controllo ortografico. La funzione di post elaborazione può aiutare a correggere gli errori elencati sopra.</p>

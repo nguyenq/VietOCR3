@@ -12,54 +12,54 @@
         <h3>SYSTEEM VEREISTEN</h3>
         <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 6.0</a> of nieuwer.</p>
         <h3>INSTALLATIE</h3>
-        <p>Tesseract 3.03 Windows uitvoerbestand word meegeleverd met dit programma. Je kunt als aanvulling nog extra <a href="http://code.google.com/p/tesseract-ocr/downloads/list"> taaldata pakketten</a> voor Tesseract downloaden. Alle bestanden die starten met de code; ISO639-3 kun je plaatsen in de submap <tt>tessdata</tt>.</p>
+        <p>Tesseract 3.03 Windows uitvoerbestand word meegeleverd met dit programma. Je kunt als aanvulling nog extra <a href="http://code.google.com/p/tesseract-ocr/downloads/list"> taaldata pakketten</a> voor Tesseract downloaden. Alle bestanden die starten met de code; ISO639-3 kun je plaatsen in de submap <code>tessdata</code>.</p>
         <p>Voor linux zijn Tesseract en de taaldata pakketten ook in verkrijgbaar in de grafische (universele) repository. Je kunt ze installeren via Synaptic of door het volgende commando:</p>
         <blockquote>
-            <p><tt>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</tt></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
         </blockquote>
-        <p>De bestanden zullen in <tt>/usr/bin</tt> en <tt>/usr/share/tesseract-ocr/tessdata</tt> geplaatst worden. Tenzij tesseract is gebouwd en geïnstalleerd vanaf de <a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">source</a>, zullen ze geplaatst worden in <tt>/usr/local/bin</tt> en <tt>/usr/local/share/tessdata</tt>. Je moet wel de map waarin het Tesseract uitvoerbestand zich bevind opgeven in het VietOCR <tt>Instellingen</tt> menu. Als de data op een niet standaard locatie staat zal een softlink naar <tt>tessdata</tt> vereist zijn. Je kunt de locatie van <tt>tessdata</tt> ook opgeven via de environment variabel <tt>TESSDATA_PREFIX</tt>:</p>
+        <p>De bestanden zullen in <code>/usr/bin</code> en <code>/usr/share/tesseract-ocr/tessdata</code> geplaatst worden. Tenzij tesseract is gebouwd en geïnstalleerd vanaf de <a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">source</a>, zullen ze geplaatst worden in <code>/usr/local/bin</code> en <code>/usr/local/share/tessdata</code>. Je moet wel de map waarin het Tesseract uitvoerbestand zich bevind opgeven in het VietOCR <code>Instellingen</code> menu. Als de data op een niet standaard locatie staat zal een softlink naar <code>tessdata</code> vereist zijn. Je kunt de locatie van <code>tessdata</code> ook opgeven via de environment variabel <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
-            <p><tt>export TESSDATA_PREFIX=/usr/local/share/</tt></p>
+            <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
         <p>Voor andere platformen, zie de <a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">Tesseract Wiki</a> pagina.</p>
-        <p>VietOCR ondersteund ook het downloaden en installeren van taaldata pakketten via het <em>Download taaldata</em> menu. Afhankelijk van de locatie van de <tt>tessdata</tt> map, kan het nodig zijn om het programma als root of admin uit te voeren om de gedownloade data te installeren. Zoals in de <tt>/usr</tt> map in Linux of de <tt>C:\Program Files</tt> map in Windows.</p>
+        <p>VietOCR ondersteund ook het downloaden en installeren van taaldata pakketten via het <em>Download taaldata</em> menu. Afhankelijk van de locatie van de <code>tessdata</code> map, kan het nodig zijn om het programma als root of admin uit te voeren om de gedownloade data te installeren. Zoals in de <code>/usr</code> map in Linux of de <code>C:\Program Files</code> map in Windows.</p>
         <p>Scanning support on Windows is provided via the Windows Image Acquisition Library
             v2.0, which requires Windows XP Service Pack 1 (SP1) or later. The library comes
             standard with Windows Vista and 7. To install the WIA Library on Windows XP, copy
-            the <tt>wiaaut.dll</tt> file to your <tt>System32</tt> directory (usually located
-            at <tt>C:\Windows\System32</tt>) and run from the command line:</p>
+            the <code>wiaaut.dll</code> file to your <code>System32</code> directory (usually located
+            at <code>C:\Windows\System32</code>) and run from the command line:</p>
         <blockquote>
-            <p><tt>regsvr32 C:\Windows\System32\wiaaut.dll</tt></p>
+            <p><code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
         </blockquote>
         <p>Op Linux, vereist scannen installatie van de volgende SANE pakketten:</p>
         <blockquote>
-            <p><tt>sudo apt-get install libsane sane sane-utils libsane-extras xsane</tt></p>
+            <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
         <p>PDF support is possible via <a href="http://sourceforge.net/projects/ghostscript/">GPL
                 Ghostscript</a>. After installation of the library, please ensure the shared
-            library object (<tt>gsdll32.dll</tt> or <tt>libgs.so</tt>) is in the search path
+            library object (<code>gsdll32.dll</code> or <code>libgs.so</code>) is in the search path
             by setting the appropriate environment variable. On Windows, append the following
-            to <tt>Path</tt> value (accessible through Control Panel &gt; System &gt; Advanced
-            tab &gt; Environment Variables) for GS version 9.14:</p>
+            to <code>Path</code> value (accessible through Control Panel &gt; System &gt; Advanced
+            tab &gt; Environment Variables) for GS version 9.15:</p>
         <blockquote>
-            <p><tt>;C:\Program Files\gs\gs9.14\bin</tt></p>
+            <p><code>;C:\Program Files\gs\gs9.15\bin</code></p>
         </blockquote>Op Linux:<blockquote>
-            <p><tt>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</tt></p>
+            <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p>where in <tt>/usr/lib</tt>, <tt>libgs.so</tt> link to <tt>libgs.so.9.14</tt>
+        <p>where in <code>/usr/lib</code>, <code>libgs.so</code> link to <code>libgs.so.9.15</code>
             is located.</p>
         <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
-                dictionary</a> files (<tt>.aff</tt>, <tt>.dic</tt>) should be placed in <tt>dict</tt>
-            folder of VietOCR. <tt>user.dic</tt> is an UTF-8-encoded file which contains a list
+                dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed in <code>dict</code>
+            folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded file which contains a list
             of custom words, one word per line.</p>
-        <p>Op linux, kunnen Hunspell en bijbehorende woordenlijsten worden geïnstalleerd door Synaptic of <tt>apt</tt> op de volgende manier:</p>
-        <blockquote><tt>sudo apt-get install hunspell hunspell-en-us</tt></blockquote>
+        <p>Op linux, kunnen Hunspell en bijbehorende woordenlijsten worden geïnstalleerd door Synaptic of <code>apt</code> op de volgende manier:</p>
+        <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
         <h3>INSTRUCTIES</h3>
         <p>Voer het volgende commando uit om het programma te starten:</p>
         <blockquote>
-            <p><tt>java -jar VietOCR.jar</tt></p>
+            <p><code>java -jar VietOCR.jar</code></p>
         </blockquote>
-        <p><b><u>Notitie</u></b>: Als er niet genoeg werkgeheugen beschikbaar is, voer dan het <tt>ocr</tt> script uit inplaats van het .jar bestand.</p>
+        <p><b><u>Notitie</u></b>: Als er niet genoeg werkgeheugen beschikbaar is, voer dan het <code>ocr</code> script uit inplaats van het .jar bestand.</p>
         <p>The Vietnamese language data were generated for Times New Roman, Arial, Verdana,
             and Courier New fonts. Therefore, the recognition would have better success rate
             for images having similar font glyphs. OCRing images that have font glyphs look
@@ -76,9 +76,9 @@
             per pixel) black&amp;white or 8 bpp grayscale uncompressed TIFF or PNG format.</p>
         <p>De <em>Schermafbeelding mode</em> zorgt voor betere herkenning bij lage-resolutie afbeeldingen zoals; schermafbeeldingen, door ze te herschalen naar 300 DPI.</p>
         <p>In addition to the built-in text postprocessing algorithm, you can add your own
-            custom text replacement scheme via a text file named <tt>x.DangAmbigs.txt</tt>,
+            custom text replacement scheme via a text file named <code>x.DangAmbigs.txt</code>,
             where x is the ISO639-3 language code. The UTF-8-encoded file should contain equal
-            sign-delimited <tt>oldValue=newValue</tt> pairs.</p>
+            sign-delimited <code>oldValue=newValue</code> pairs.</p>
         <p>Some built-in tools are provided to merge several images or PDF files into a single
             one for convenient OCR operations, or to split a PDF file into smaller ones if it
             is too large, which can cause out-of-memory exceptions.</p>
