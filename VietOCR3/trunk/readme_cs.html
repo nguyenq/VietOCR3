@@ -22,70 +22,70 @@
         <h3>INSTALACE</h3>
         <p>Windows verze Tesseract 3.03 je součástí programu. Další <a href="http://code.google.com/p/tesseract-ocr/downloads/list">
                 jazykové datové balíky</a> pro Tesseract, které začínají kódem ISO639-3, by
-            měly být umístěny do podadresáře <tt>tessdata</tt>.</p>
+            měly být umístěny do podadresáře <code>tessdata</code>.</p>
         <p>V Ubuntu jsou Tesseract a jeho jazyková data součástí Graphics (universe) repository.
             Můžete je nainstalovat pomocí Synaptic anebo příkazu:</p>
         <blockquote>
-            <p><tt>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</tt></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
         </blockquote>
-        <p>Soubory budou umístěny do <tt>/usr/bin</tt> resp. <tt>/usr/share/tesseract-ocr/tessdata</tt>.
+        <p>Soubory budou umístěny do <code>/usr/bin</code> resp. <code>/usr/share/tesseract-ocr/tessdata</code>.
             Pokud si Tesseract sestavíte sami <a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">
-                ze zdrojových kódov</a>, nainstaluje se do <tt>/usr/local/bin</tt> a <tt>/usr/local/share/tessdata</tt>.
+                ze zdrojových kódov</a>, nainstaluje se do <code>/usr/local/bin</code> a <code>/usr/local/share/tessdata</code>.
             Z tohoto důvodu může být potřebné nastavit umístění programu Tesseract v
-            <tt>Nastavení</tt> VietOCR. Pokud jsou data umístěna nestandardně, je potřeba je nalinkovat
-            do <tt>tessdata</tt>. Též je možné použít proměnnou prostředí <tt>TESSDATA_PREFIX</tt>
-            na informování VietOCR, kde jsou umístěna data:<a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation"><tt>export TESSDATA_PREFIX=/usr/local/share/</tt></a><a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">Informace k instalaci programu Tesseract na jiných platformách hledejte na stránce wiki
+            <code>Nastavení</code> VietOCR. Pokud jsou data umístěna nestandardně, je potřeba je nalinkovat
+            do <code>tessdata</code>. Též je možné použít proměnnou prostředí <code>TESSDATA_PREFIX</code>
+            na informování VietOCR, kde jsou umístěna data:<a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation"><code>export TESSDATA_PREFIX=/usr/local/share/</code></a><a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">Informace k instalaci programu Tesseract na jiných platformách hledejte na stránce wiki
             </a><a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">Tesseract</a>.</p>
         <blockquote>
             <p>VietOCR taktéž poskytuje podporu pro stahování a instalaci vybraných jazykových
             balíčků přes položku nabídky <em>Stáhnout jazyková data</em>. V závislosti na umístění složky
-            <tt>tessdata</tt>, může být potřeba spustit program jako superuživatel anebo administrátor,
+            <code>tessdata</code>, může být potřeba spustit program jako superuživatel anebo administrátor,
             aby bylo možné nainstalovat stáhnutá data do složky, pokud je v systému složek,
-            jako například v <tt>/usr</tt> na Linuxe anebo <tt>C:\Program Files</tt> v systému
+            jako například v <code>/usr</code> na Linuxe anebo <code>C:\Program Files</code> v systému
             Windows.</p>
         </blockquote>
         <p>Podpora snímání je poskytována přes knihovnu Windows Image Acquisition Library
             v2.0, která vyžaduje Windows XP Service Pack 1 (SP1) anebo vyšší verzi. Tato knihovna
             je standardní součástí Windows Vista a 7. Instalaci na Windows XP udělejte následovnými
-            kroky: zkopírujte soubor <tt>wiaaut.dll</tt> do složky <tt>System32</tt> (obyčejně
-            je to <tt>C:\Windows\System32</tt>) a spusťte následující příkaz v příkazovém řádku:</p>
+            kroky: zkopírujte soubor <code>wiaaut.dll</code> do složky <code>System32</code> (obyčejně
+            je to <code>C:\Windows\System32</code>) a spusťte následující příkaz v příkazovém řádku:</p>
         <blockquote>
-            <p><tt>regsvr32 C:\Windows\System32\wiaaut.dll</tt></p>
+            <p><code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
         </blockquote>
         <p>V systému Linux vyžaduje snímání instalaci balíčků SANE:</p>
         <blockquote>
-            <p><tt>sudo apt-get install libsane sane sane-utils libsane-extras xsane</tt></p>
+            <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
         <p>Podpora PDF je dostupná přes projekt <a href="http://sourceforge.net/projects/ghostscript/">
                 GPL Ghostscript</a>. Po jeho instalaci se, prosím, ujistěte, že sdílená knihovna
-            (<tt>gsdll32.dll</tt> anebo <tt>libgs.so</tt>) je v cestě (PATH), případně nastavte
-            patřičnou proměnnou prostředí. Ve Windows přidejte následující řetězec hodnotě <tt>Path</tt></p>
+            (<code>gsdll32.dll</code> anebo <code>libgs.so</code>) je v cestě (PATH), případně nastavte
+            patřičnou proměnnou prostředí. Ve Windows přidejte následující řetězec hodnotě <code>Path</code></p>
         <blockquote>
             <p>           (přístupná je přes Ovládací panel &gt; Systém &gt; Pokročilé nastavení &gt; Proměnné
-            prostředí) pro GS verze 9.14:</p>
+            prostředí) pro GS verze 9.15:</p>
         </blockquote>
         <p>PDF support is possible via <a href="http://sourceforge.net/projects/ghostscript/">GPL
                 Ghostscript</a>. Po instalaci knihovny se, prosím, ujistěte, že dynamické
-            sdílený předmět knihovny (<tt>gsdll32.dll</tt> nebo <tt>libgs.so</tt>) je v prohledávané cestě nastavením proměnné prostředí <tt>Path</tt>
+            sdílený předmět knihovny (<code>gsdll32.dll</code> nebo <code>libgs.so</code>) je v prohledávané cestě nastavením proměnné prostředí <code>Path</code>
             (přístupné přes ovládací panel Windows &gt;
             Systém &gt; Pokročilé karty &gt; Proměnné prostředí). Ve Windows připojte následující
-            k hodnotě proměnné <tt>Path</tt> pro GS verze 9.14:</p>
+            k hodnotě proměnné <code>Path</code> pro GS verze 9.15:</p>
         <blockquote>
-            <p><tt>;C:\Program Files\gs\gs9.14\bin</tt></p>
+            <p><code>;C:\Program Files\gs\gs9.15\bin</code></p>
         </blockquote>
         <blockquote>
-            <p>kde v <tt>/usr/lib</tt>, <tt>libgs.so</tt> je umístěn odkaz na <tt>libgs.so.9.14</tt>.</p>
+            <p>kde v <code>/usr/lib</code>, <code>libgs.so</code> je umístěn odkaz na <code>libgs.so.9.15</code>.</p>
         </blockquote>
-        <p><tt>sudo apt-get install hunspell hunspell-en-us</tt></p>
+        <p><code>sudo apt-get install hunspell hunspell-en-us</code></p>
         <p>POKYNY</p>
         <blockquote>Program spustíte příkazem:</blockquote>
-        <h3><tt>java -jar VietOCR.jar</tt></h3>
+        <h3><code>java -jar VietOCR.jar</code></h3>
         <p><b></b></p>
         <blockquote>
             <p>Poznámka:</p>
         </blockquote>
         <p>Pokud narazíte na problém „out-of-memory exception“, spusťte skript
-            <tt>ocr(.bat)</tt> namísto uvedeného příkazu.<u>Obrázky určené pro rozpoznávání by měly být snímány v rozlišení aspoň 200 DPI (bodů na palec - dots per inch)
+            <code>ocr(.bat)</code> namísto uvedeného příkazu.<u>Obrázky určené pro rozpoznávání by měly být snímány v rozlišení aspoň 200 DPI (bodů na palec - dots per inch)
             až 400 DPI v monochromatickém (černobílém) režimu anebo v odstínech šedé.
             Snímání ve vyšším rozlišení nepřináší při rozpoznávání znaků vyšší přesnost.
             Míra přesnosti však závisí hlavně na kvalitě nasnímaného obrázku. Typické nastavení
@@ -94,9 +94,9 @@
             nízkým rozlišením, jako např. snímky obrazovky, pomocí zvětšení rozlišení na 300
             DPI.</p>
         <p>Vedle vestavěného algoritmu pro další zpracování textu si můžete přidat vlastní
-            schéma nahrazování textu - textový soubor s názvem <tt>x.DangAmbigs.txt</tt>, kde
+            schéma nahrazování textu - textový soubor s názvem <code>x.DangAmbigs.txt</code>, kde
             x je kód jazyka ISO639-3. Tento soubor v kódovaní UTF-8 by měl obsahovat páry oddělené
-            znakem „rovná se“ ve tvaru <tt>staráHodnota=nováHodnota</tt>.</p>
+            znakem „rovná se“ ve tvaru <code>staráHodnota=nováHodnota</code>.</p>
         <p>Některé vestavěné nástroje poskytují funkce spojování (slučování) několika obrázků anebo
             souborů PDF do jednoho (pro pohodlnější rozpoznávání znaků), anebo dělení souborů PDF
             na menší, pokud jsou příliš veliké a způsobují „out-of-memory exceptions“.</p>

@@ -30,80 +30,80 @@
         <p>
             Tesseract 3.03 Windows executable đã được gói sẵn với chương trình. Các gói data
             ngôn ngữ (<a href="http://code.google.com/p/tesseract-ocr/downloads/list">language data
-                packs</a>) cho Tesseract, có tên bắt đầu với mã ISO639-3, nên được đặt vào <tt>tessdata</tt>
+                packs</a>) cho Tesseract, có tên bắt đầu với mã ISO639-3, nên được đặt vào <code>tessdata</code>
             subdirectory.</p>
         <p>
             Cho Linux, Tesseract và language data packages nằm trong Graphics (universe) repository.
             Chúng có thể được cài qua Synaptic hoặc từ lệnh sau:</p>
         <blockquote>
             <p>
-                <tt>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</tt></p>
+                <code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
         </blockquote>
         <p>
-            Files sẽ được đặt trong <tt>/usr/bin</tt> và <tt>/usr/share/tesseract-ocr/tessdata</tt>,
+            Files sẽ được đặt trong <code>/usr/bin</code> và <code>/usr/share/tesseract-ocr/tessdata</code>,
             trong thứ tự đó. Mặt khác, nếu Tesseract được xây dựng và cài từ <a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">
-                mã nguồn</a>, chúng sẽ được đặt trong <tt>/usr/local/bin</tt> và <tt>/usr/local/share/tessdata</tt>.
-            Bạn có thể cần chỉ định directory của Tesseract executable từ <tt>Settings</tt>
+                mã nguồn</a>, chúng sẽ được đặt trong <code>/usr/local/bin</code> và <code>/usr/local/share/tessdata</code>.
+            Bạn có thể cần chỉ định directory của Tesseract executable từ <code>Settings</code>
             menu của VietOCR. Nếu data nằm trong một directory khác tiêu chuẩn, một soft link
-            tới <tt>tessdata</tt> có thể cần thiết. Bạn cũng có thể cho VietOCR biết địa điểm
-            của <tt>tessdata</tt> qua environment variable <tt>TESSDATA_PREFIX</tt>:</p>
+            tới <code>tessdata</code> có thể cần thiết. Bạn cũng có thể cho VietOCR biết địa điểm
+            của <code>tessdata</code> qua environment variable <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
             <p>
-                <tt>export TESSDATA_PREFIX=/usr/local/share/</tt></p>
+                <code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
         <p>
             Cho nền tảng khác, xin tham khảo trang <a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">
                 Tesseract Wiki</a>.</p>
         <p>
             VietOCR cũng có cung cấp hỗ trợ tải xuống và cài đặt các language packs được chọn
-            qua <em>Tải dữ liệu ngôn ngữ</em> menu item. Tùy theo địa điểm của thư mục <tt>tessdata</tt>,
+            qua <em>Tải dữ liệu ngôn ngữ</em> menu item. Tùy theo địa điểm của thư mục <code>tessdata</code>,
             bạn có thể được yêu cầu chạy chương trình với quyền root hay admin để có thể cài
             đặt dữ liệu đã được tải vào thư mục đó nếu nó nằm trong một system folder, như là
-            trong <tt>/usr</tt> trên Linux hoặc <tt>C:\Program Files</tt> trên Windows.</p>
+            trong <code>/usr</code> trên Linux hoặc <code>C:\Program Files</code> trên Windows.</p>
         <p>
             Hỗ trợ quét văn bản trên Windows được cung cấp qua Windows Image Acquisition Library
             v2.0, thư viện này đòi hỏi Windows XP Service Pack 1 (SP1) hoặc mới hơn. Thư viện
             này đến tiêu chuẩn với Windows Vista và 7. Để cài đặt WIA Library trên Windows XP,
-            copy file <tt>wiaaut.dll</tt> vào <tt>System32</tt> directory (thường đặt ở <tt>C:\Windows\System32</tt>)
+            copy file <code>wiaaut.dll</code> vào <code>System32</code> directory (thường đặt ở <code>C:\Windows\System32</code>)
             và chạy lệnh từ command line:</p>
         <blockquote>
             <p>
-                <tt>regsvr32 C:\Windows\System32\wiaaut.dll</tt></p>
+                <code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
         </blockquote>
         <p>
             Trên Linux, scanning đòi hỏi cài đặt các gói SANE packages:</p>
         <blockquote>
             <p>
-                <tt>sudo apt-get install libsane sane sane-utils libsane-extras xsane</tt></p>
+                <code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
         <p>
             Hỗ trợ cho PDF được khả thi qua <a href="http://sourceforge.net/projects/ghostscript/">
                 GPL Ghostscript</a>. Sau khi cài đặt thư viện, hãy bảo đảm shared library object
-            (<tt>gsdll32.dll</tt> hoặc <tt>libgs.so</tt>) nằm trong search path bằng cách chỉnh
+            (<code>gsdll32.dll</code> hoặc <code>libgs.so</code>) nằm trong search path bằng cách chỉnh
             biến môi trường phù hợp. Trên Windows, tiếp đuôi (append) đoạn sau vào giá trị của
             biến Path (truy cập được qua Control Panel &gt; System &gt; Advanced tab &gt; Environment
-            Variables) cho GS phiên bản 9.14:</p>
+            Variables) cho GS phiên bản 9.15:</p>
         <blockquote>
             <p>
-                <tt>;C:\Program Files\gs\gs9.14\bin</tt></p>
+                <code>;C:\Program Files\gs\gs9.15\bin</code></p>
         </blockquote>
         Trên Linux:<blockquote>
             <p>
-                <tt>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</tt></p>
+                <code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
         <p>
-            nơi trong <tt>/usr/lib</tt>, <tt>libgs.so</tt> link tới <tt>libgs.so.9.14</tt> được
+            nơi trong <code>/usr/lib</code>, <code>libgs.so</code> link tới <code>libgs.so.9.15</code> được
             đặt.</p>
         <p>
             Tính năng Duyệt chính tả (spellcheck) có được qua Hunspell, mà các <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
-                dictionary</a> files trực thuộc (<tt>.aff</tt>, <tt>.dic</tt>) nên được đặt
-            trong <tt>dict</tt> folder của VietOCR. <tt>user.dic</tt> là một file được mã hóa
+                dictionary</a> files trực thuộc (<code>.aff</code>, <code>.dic</code>) nên được đặt
+            trong <code>dict</code> folder của VietOCR. <code>user.dic</code> là một file được mã hóa
             trong UTF-8 chứa một danh sách các từ riêng, một từ mỗi hàng.</p>
         <p>
-            Trên Linux, Hunspell và tự điển của nó có thể được cài đặt bởi Synaptic hoặc <tt>apt</tt>,
+            Trên Linux, Hunspell và tự điển của nó có thể được cài đặt bởi Synaptic hoặc <code>apt</code>,
             như sau:</p>
         <blockquote>
-            <tt>sudo apt-get install hunspell hunspell-en-us</tt>
+            <code>sudo apt-get install hunspell hunspell-en-us</code>
         </blockquote>
         <h3>
             HƯỚNG DẪN</h3>
@@ -111,10 +111,10 @@
             Để phóng chương trình:</p>
         <blockquote>
             <p>
-                <tt>java -jar VietOCR.jar</tt></p>
+                <code>java -jar VietOCR.jar</code></p>
         </blockquote>
         <p>
-            <u><b>Lưu ý</b></u>: Nếu bạn gặp out-of-memory exception, hãy chạy <tt>ocr</tt>
+            <u><b>Lưu ý</b></u>: Nếu bạn gặp out-of-memory exception, hãy chạy <code>ocr</code>
             script file thay vì sử dụng .jar.</p>
         <p>
             Bộ Vietnamese language data được tạo cho các font Times New Roman, Arial, Verdana,
@@ -138,12 +138,12 @@
             300 DPI.</p>
         <p>
             Ngoài thuật toán hậu xử lý xây trong chương trình, bạn có thể thêm cách thức thay
-            thế từ ngữ đặc riêng của bạn qua một tập tin text có tên <tt>x.DangAmbigs.txt</tt>,
+            thế từ ngữ đặc riêng của bạn qua một tập tin text có tên <code>x.DangAmbigs.txt</code>,
             mà x là ISO639-3 language code. File này, được mã hóa trong UTF-8, chứa các cặp
-            <tt>giáTrịCũ=giáTrịMới</tt> phân cách bởi dấu bằng.</p>
+            <code>giáTrịCũ=giáTrịMới</code> phân cách bởi dấu bằng.</p>
         <p>
             Bạn có thể đặt control parameters trong file <code>tessdata/configs/tess_configs</code> 
-            để chuyển hóa hành vi của Tesseract engine.</p>
+            để biến đổi hành vi của Tesseract engine.</p>
         <p>
             Vài công cụ gắn liền được cung cấp để nối nhiều file ảnh hoặc PDF vào một file đơn
             để thuận tiện cho các tác vụ OCR, hoặc tách một file TIFF hoặc PDF thành nhiều file nhỏ hơn

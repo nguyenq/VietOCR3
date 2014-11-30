@@ -22,67 +22,67 @@
         <h3>INSTAL·LACIÓ</h3>
         <p>Tesseract 3.03 Windows executable is bundled with the program. Additional <a href="http://code.google.com/p/tesseract-ocr/downloads/list">
                 language data packs</a> for Tesseract, whose names start with ISO639-3 codes,
-            should be placed into the <tt>tessdata</tt> subdirectory.</p>
+            should be placed into the <code>tessdata</code> subdirectory.</p>
         <p>Per a Linux, el Tesseract i els paquests de llengua es troben al dipòsit Graphics (universe). Es poden instal·lar usant el Synaptic o amb l'ordre següent:</p>
         <blockquote>
-            <p><tt>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</tt></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
         </blockquote>
-        <p>The files will be placed in <tt>/usr/bin</tt> and <tt>/usr/share/tesseract-ocr/tessdata</tt>,
+        <p>The files will be placed in <code>/usr/bin</code> and <code>/usr/share/tesseract-ocr/tessdata</code>,
             respectively. On the other hand, if Tesseract is built and installed from the<a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">source</a>,
-            they will be placed in <tt>/usr/local/bin</tt> and <tt>/usr/local/share/tessdata</tt>.
+            they will be placed in <code>/usr/local/bin</code> and <code>/usr/local/share/tessdata</code>.
             You may need to specify the directory of Tesseract executable from VietOCR's
-            <tt>Settings</tt> menu. If the data is in a non-standard location, a soft link to
-            <tt>tessdata</tt> may be required. You can also let VietOCR know the location of
-            <tt>tessdata</tt> via the environment variable <tt>TESSDATA_PREFIX</tt>:</p>
+            <code>Settings</code> menu. If the data is in a non-standard location, a soft link to
+            <code>tessdata</code> may be required. You can also let VietOCR know the location of
+            <code>tessdata</code> via the environment variable <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
-            <p><tt>export TESSDATA_PREFIX=/usr/local/share/</tt></p>
+            <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
         <p>For other platforms, please consult <a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">
                 Tesseract Wiki</a> page.</p>
         <p>VietOCR also provides support for downloading and installing selected language packs
             via <em>Download Language Data</em> menu item. Depending on the location of the
-            <tt>tessdata</tt> folder, you may be required to run the program as root or admin
+            <code>tessdata</code> folder, you may be required to run the program as root or admin
             to be able to install the downloaded data into the folder if it is inside a system
-            folder, such as in <tt>/usr</tt> on Linux or <tt>C:\Program Files</tt> on Windows.</p>
+            folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code> on Windows.</p>
         <p>Scanning support on Windows is provided via the Windows Image Acquisition Library
             v2.0, which requires Windows XP Service Pack 1 (SP1) or later. The library comes
             standard with Windows Vista and 7. To install the WIA Library on Windows XP, copy
-            the <tt>wiaaut.dll</tt> file to your <tt>System32</tt> directory (usually located
-            at <tt>C:\Windows\System32</tt>) and run from the command line:</p>
+            the <code>wiaaut.dll</code> file to your <code>System32</code> directory (usually located
+            at <code>C:\Windows\System32</code>) and run from the command line:</p>
         <blockquote>
-            <p><tt>regsvr32 C:\Windows\System32\wiaaut.dll</tt></p>
+            <p><code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
         </blockquote>
         <p>A Linux, l'escaneig requereix la instal·lació dels paquets SANE:</p>
         <blockquote>
-            <p><tt>sudo apt-get install libsane sane sane-utils libsane-extras xsane</tt></p>
+            <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
         <p>PDF support is possible via <a href="http://sourceforge.net/projects/ghostscript/">GPL
                 Ghostscript</a>. After installation of the library, please ensure the shared
-            library object (<tt>gsdll32.dll</tt> or <tt>libgs.so</tt>) is in the search path
+            library object (<code>gsdll32.dll</code> or <code>libgs.so</code>) is in the search path
             by setting the appropriate environment variable. On Windows, append the following
-            to <tt>Path</tt> value (accessible through Control Panel &gt; System &gt; Advanced
-            tab &gt; Environment Variables) for GS version 9.14:</p>
+            to <code>Path</code> value (accessible through Control Panel &gt; System &gt; Advanced
+            tab &gt; Environment Variables) for GS version 9.15:</p>
         <blockquote>
-            <p><tt>;C:\Program Files\gs\gs9.14\bin</tt></p>
+            <p><code>;C:\Program Files\gs\gs9.15\bin</code></p>
         </blockquote>
         A Linux:
         <blockquote>
-            <p><tt>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</tt></p>
+            <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p>where in <tt>/usr/lib</tt>, <tt>libgs.so</tt> link to <tt>libgs.so.9.14</tt>
+        <p>where in <code>/usr/lib</code>, <code>libgs.so</code> link to <code>libgs.so.9.15</code>
             is located.</p>
         <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
-                dictionary</a> files (<tt>.aff</tt>, <tt>.dic</tt>) should be placed in <tt>dict</tt>
-            folder of VietOCR. <tt>user.dic</tt> is an UTF-8-encoded file which contains a list
+                dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed in <code>dict</code>
+            folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded file which contains a list
             of custom words, one word per line.</p>
-        <p>A Linux, l'Hunspell i els seus diccionaris es poden instal·lar amb el Synaptic o <tt>apt</tt>, com segueix:</p>
-        <blockquote><tt>sudo apt-get install hunspell hunspell-en-us</tt></blockquote>
+        <p>A Linux, l'Hunspell i els seus diccionaris es poden instal·lar amb el Synaptic o <code>apt</code>, com segueix:</p>
+        <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
         <h3>INSTRUCCIONS</h3>
         <p>Per executar el programa:</p>
         <blockquote>
-            <p><tt>java -jar VietOCR.jar</tt></p>
+            <p><code>java -jar VietOCR.jar</code></p>
         </blockquote>
-        <p><b><u>Nota</u></b>: If you encounter out-of-memory exception, run <tt>ocr</tt> script
+        <p><b><u>Nota</u></b>: If you encounter out-of-memory exception, run <code>ocr</code> script
             file instead of using the .jar.</p>
         <p>The Vietnamese language data were generated for Times New Roman, Arial, Verdana,
             and Courier New fonts. Therefore, the recognition would have better success rate
@@ -101,9 +101,9 @@
         <p>The <em>Screenshot Mode</em> offers better recognition rates for low-resolution
             images, such as screen prints, by rescaling them to 300 DPI.</p>
         <p>In addition to the built-in text postprocessing algorithm, you can add your own
-            custom text replacement scheme via a text file named <tt>x.DangAmbigs.txt</tt>,
+            custom text replacement scheme via a text file named <code>x.DangAmbigs.txt</code>,
             where x is the ISO639-3 language code. The UTF-8-encoded file should contain equal
-            sign-delimited <tt>oldValue=newValue</tt> pairs.</p>
+            sign-delimited <code>oldValue=newValue</code> pairs.</p>
         <p>Some built-in tools are provided to merge several images or PDF files into a single
             one for convenient OCR operations, or to split a PDF file into smaller ones if it
             is too large, which can cause out-of-memory exceptions.</p>
