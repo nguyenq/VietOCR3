@@ -136,7 +136,7 @@ public class BulkDialog extends javax.swing.JDialog {
         jPanelImageFolder.add(jLabelOutputFormat, gridBagConstraints);
         jLabelOutputFormat.getAccessibleContext().setAccessibleName("jLabelOutputFormat");
 
-        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "text", "text+", "pdf", "hocr" }));
+        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "text", "text+", "hocr" }));
         jComboBoxOutputFormat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jComboBoxOutputFormatMouseEntered(evt);
