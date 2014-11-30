@@ -802,6 +802,7 @@ public class Gui extends JFrame {
         setIconImages(getIconImages());
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(500, 360));
+        setPreferredSize(new java.awt.Dimension(860, 600));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 formComponentResized(evt);
@@ -891,6 +892,8 @@ public class Gui extends JFrame {
         jTextFieldCurPage.setText("0");
         jTextFieldCurPage.setEnabled(false);
         jTextFieldCurPage.setMaximumSize(new java.awt.Dimension(24, 24));
+        jTextFieldCurPage.setMinimumSize(new java.awt.Dimension(24, 24));
+        jTextFieldCurPage.setPreferredSize(new java.awt.Dimension(24, 24));
         jTextFieldCurPage.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextFieldCurPageFocusLost(evt);
@@ -908,7 +911,6 @@ public class Gui extends JFrame {
         jLabelPageMax.setEnabled(false);
         jLabelPageMax.setPreferredSize(new java.awt.Dimension(30, 14));
         jToolBar2.add(jLabelPageMax);
-        jToolBar2.add(Box.createHorizontalStrut(4));
         jToolBar2.add(jSeparator7);
 
         jButtonFitImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_fit.png"))); // NOI18N
