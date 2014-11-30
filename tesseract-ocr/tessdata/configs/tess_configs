@@ -9,6 +9,8 @@
 #load_freq_dawg       F
 #user_words_suffix    user-words
 #user_patterns_suffix user-patterns
+#language_model_penalty_non_dict_word 0.15
+#language_model_penalty_non_freq_dict_word 0.1
 #tessedit_char_whitelist 0123456789-.
 #tessedit_create_hocr 1
 #tessedit_pageseg_mode 1
