@@ -799,7 +799,7 @@ public class Gui extends JFrame {
         setIconImages(getIconImages());
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(500, 360));
-        setPreferredSize(new java.awt.Dimension(860, 600));
+        setPreferredSize(new java.awt.Dimension(1200, 600));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 formComponentResized(evt);
@@ -1037,7 +1037,7 @@ public class Gui extends JFrame {
         });
         jToolBar1.add(jButtonPostProcess);
 
-        jButtonRemoveLineBreaks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/pilcrow.png"))); // NOI18N
+        jButtonRemoveLineBreaks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/pilcrow_delete.png"))); // NOI18N
         jButtonRemoveLineBreaks.setToolTipText(bundle.getString("jButtonRemoveLineBreaks.ToolTipText")); // NOI18N
         jButtonRemoveLineBreaks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
