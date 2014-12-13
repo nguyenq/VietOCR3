@@ -154,20 +154,10 @@ public class Gui extends JFrame {
             @Override
             public boolean dispatchKeyEvent(KeyEvent e) {
                 if (e.getID() == KeyEvent.KEY_PRESSED) {
-                    // Paste image from clipboard
                     if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) {
-                        try {
-                            Image image = ImageHelper.getClipboardImage();
-                            if (image != null) {
-                                File tempFile = File.createTempFile("tmp", ".png");
-                                ImageIO.write((BufferedImage) image, "png", tempFile);
-                                openFile(tempFile);
-                                tempFile.deleteOnExit();
-                                e.consume();
-//                            return true; // not dispatch the event to the component, in this case, the textarea
-                            }
-                        } catch (Exception ex) {
-                        }
+                        // Paste image from clipboard
+                        pasteImage();
+                        e.consume();
                     } else if (e.getKeyCode() == KeyEvent.VK_F7) {
                         jToggleButtonSpellCheck.doClick();
                     } else if (e.isControlDown() && e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_EQUALS || e.getKeyCode() == KeyEvent.VK_ADD)) {
@@ -605,14 +595,12 @@ public class Gui extends JFrame {
 
         popup = new javax.swing.JPopupMenu();
         jFileChooser = new javax.swing.JFileChooser();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jPanelImage = new javax.swing.JPanel();
         jToolBar2 = new javax.swing.JToolBar();
         jButtonOpen = new javax.swing.JButton();
         jButtonScan = new javax.swing.JButton();
-        jButtonSave = new javax.swing.JButton();
-        jButtonOCR = new javax.swing.JButton();
-        jButtonCancelOCR = new javax.swing.JButton();
-        jButtonCancelOCR.setVisible(false);
-        jButtonClear = new javax.swing.JButton();
+        jButtonPasteImage = new javax.swing.JButton();
         jSeparator14 = new javax.swing.JToolBar.Separator();
         jButtonPrevPage = new javax.swing.JButton();
         jButtonNextPage = new javax.swing.JButton();
@@ -629,12 +617,32 @@ public class Gui extends JFrame {
         jSeparator9 = new javax.swing.JToolBar.Separator();
         jButtonRotateCCW = new javax.swing.JButton();
         jButtonRotateCW = new javax.swing.JButton();
-        jSeparator15 = new javax.swing.JToolBar.Separator();
+        jSeparator16 = new javax.swing.JToolBar.Separator();
+        jButtonOCR = new javax.swing.JButton();
+        jButtonCancelOCR = new javax.swing.JButton();
+        jButtonCancelOCR.setVisible(false);
+        jSplitPaneImage = new javax.swing.JSplitPane();
+        jScrollPaneThumbnail = new javax.swing.JScrollPane();
+        jScrollPaneThumbnail.getVerticalScrollBar().setUnitIncrement(20);
+        jPanelThumb = new javax.swing.JPanel();
+        jScrollPaneImage = new javax.swing.JScrollPane();
+        jScrollPaneImage.getVerticalScrollBar().setUnitIncrement(20);
+        jScrollPaneImage.getHorizontalScrollBar().setUnitIncrement(20);
+        jImageLabel = new JImageLabel();
+        jPanelArrow = new javax.swing.JPanel();
+        jButtonCollapseExpand = new javax.swing.JButton();
+        jPanelTextArea = new javax.swing.JPanel();
+        jToolBar1 = new javax.swing.JToolBar();
         jToggleButtonSpellCheck = new javax.swing.JToggleButton();
+        jButtonPostProcess = new javax.swing.JButton();
+        jButtonRemoveLineBreaks = new javax.swing.JButton();
+        jSeparator17 = new javax.swing.JToolBar.Separator();
+        jButtonSave = new javax.swing.JButton();
+        jButtonClear = new javax.swing.JButton();
+        jSeparator15 = new javax.swing.JToolBar.Separator();
         jLabelLanguage = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(4, 0), new java.awt.Dimension(4, 0), new java.awt.Dimension(4, 32767));
         jComboBoxLang = new javax.swing.JComboBox();
-        jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPaneText = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jTextArea1.addMouseListener(new MouseAdapter() {
@@ -673,17 +681,6 @@ public class Gui extends JFrame {
         }
         jTextArea1.getCaret().setBlinkRate(blinkRate);
         jTextArea1.getDocument().putProperty(DefaultEditorKit.EndOfLineStringProperty, System.getProperty("line.separator"));
-        jPanelImage = new javax.swing.JPanel();
-        jSplitPaneImage = new javax.swing.JSplitPane();
-        jScrollPaneThumbnail = new javax.swing.JScrollPane();
-        jScrollPaneThumbnail.getVerticalScrollBar().setUnitIncrement(20);
-        jPanelThumb = new javax.swing.JPanel();
-        jScrollPaneImage = new javax.swing.JScrollPane();
-        jScrollPaneImage.getVerticalScrollBar().setUnitIncrement(20);
-        jScrollPaneImage.getHorizontalScrollBar().setUnitIncrement(20);
-        jImageLabel = new JImageLabel();
-        jPanelArrow = new javax.swing.JPanel();
-        jButtonCollapseExpand = new javax.swing.JButton();
         jPanelStatus = new javax.swing.JPanel();
         jLabelStatus = new javax.swing.JLabel();
         jLabelStatus.setVisible(false); // use jProgressBar instead for (more animation) task status
@@ -809,6 +806,11 @@ public class Gui extends JFrame {
             }
         });
 
+        jSplitPane1.setDividerLocation(250);
+        jSplitPane1.setDividerSize(2);
+
+        jPanelImage.setLayout(new java.awt.BorderLayout());
+
         jToolBar2.setFloatable(false);
 
         jButtonOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/open.png"))); // NOI18N
@@ -829,41 +831,14 @@ public class Gui extends JFrame {
         });
         jToolBar2.add(jButtonScan);
 
-        jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/save.png"))); // NOI18N
-        jButtonSave.setToolTipText(bundle.getString("jButtonSave.ToolTipText")); // NOI18N
-        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPasteImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/image_paste.png"))); // NOI18N
+        jButtonPasteImage.setToolTipText(bundle.getString("jButtonPasteImage.ToolTipText")); // NOI18N
+        jButtonPasteImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSaveActionPerformed(evt);
+                jButtonPasteImageActionPerformed(evt);
             }
         });
-        jToolBar2.add(jButtonSave);
-
-        jButtonOCR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/ocr.png"))); // NOI18N
-        jButtonOCR.setToolTipText(bundle.getString("jButtonOCR.ToolTipText")); // NOI18N
-        jButtonOCR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonOCRActionPerformed(evt);
-            }
-        });
-        jToolBar2.add(jButtonOCR);
-
-        jButtonCancelOCR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/cancel.png"))); // NOI18N
-        jButtonCancelOCR.setToolTipText(bundle.getString("jButtonCancelOCR.ToolTipText")); // NOI18N
-        jButtonCancelOCR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelOCRActionPerformed(evt);
-            }
-        });
-        jToolBar2.add(jButtonCancelOCR);
-
-        jButtonClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/draw_eraser.png"))); // NOI18N
-        jButtonClear.setToolTipText(bundle.getString("jButtonClear.ToolTipText")); // NOI18N
-        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClearActionPerformed(evt);
-            }
-        });
-        jToolBar2.add(jButtonClear);
+        jToolBar2.add(jButtonPasteImage);
         jToolBar2.add(jSeparator14);
 
         jButtonPrevPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/document_page_previous.png"))); // NOI18N
@@ -911,6 +886,7 @@ public class Gui extends JFrame {
         jLabelPageMax.setEnabled(false);
         jLabelPageMax.setPreferredSize(new java.awt.Dimension(30, 14));
         jToolBar2.add(jLabelPageMax);
+        jToolBar2.add(Box.createHorizontalStrut(4));
         jToolBar2.add(jSeparator7);
 
         jButtonFitImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/zoom_fit.png"))); // NOI18N
@@ -974,63 +950,27 @@ public class Gui extends JFrame {
             }
         });
         jToolBar2.add(jButtonRotateCW);
-        jToolBar2.add(jSeparator15);
-        jToolBar2.add(Box.createHorizontalGlue());
+        jToolBar2.add(jSeparator16);
 
-        jToggleButtonSpellCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/inline_spellcheck.png"))); // NOI18N
-        jToggleButtonSpellCheck.setToolTipText(bundle.getString("jToggleButtonSpellCheck.ToolTipText")); // NOI18N
-        jToggleButtonSpellCheck.addActionListener(new java.awt.event.ActionListener() {
+        jButtonOCR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/ocr.png"))); // NOI18N
+        jButtonOCR.setToolTipText(bundle.getString("jButtonOCR.ToolTipText")); // NOI18N
+        jButtonOCR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonSpellCheckActionPerformed(evt);
+                jButtonOCRActionPerformed(evt);
             }
         });
-        jToolBar2.add(jToggleButtonSpellCheck);
-        jToolBar2.add(Box.createHorizontalStrut(20));
-        jToggleButtonSpellCheck.getAccessibleContext().setAccessibleName("jToggleButtonSpellCheck");
+        jToolBar2.add(jButtonOCR);
 
-        jLabelLanguage.setLabelFor(jComboBoxLang);
-        jLabelLanguage.setText(bundle.getString("jLabelLanguage.Text")); // NOI18N
-        jLabelLanguage.setToolTipText(bundle.getString("jLabelLanguage.ToolTipText")); // NOI18N
-        jToolBar2.add(jLabelLanguage);
-        jToolBar2.add(filler1);
-
-        jComboBoxLang.setEditable(true);
-        jComboBoxLang.setMaximumSize(new java.awt.Dimension(100, 24));
-        jComboBoxLang.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBoxLangItemStateChanged(evt);
+        jButtonCancelOCR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/cancel.png"))); // NOI18N
+        jButtonCancelOCR.setToolTipText(bundle.getString("jButtonCancelOCR.ToolTipText")); // NOI18N
+        jButtonCancelOCR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelOCRActionPerformed(evt);
             }
         });
-        jToolBar2.add(jComboBoxLang);
+        jToolBar2.add(jButtonCancelOCR);
 
-        getContentPane().add(jToolBar2, java.awt.BorderLayout.NORTH);
-
-        jSplitPane1.setDividerLocation(250);
-        jSplitPane1.setDividerSize(2);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea1.setMargin(new java.awt.Insets(8, 8, 2, 2));
-        jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jTextArea1MouseEntered(evt);
-            }
-        });
-        jScrollPaneText.setViewportView(jTextArea1);
-        wordWrapOn = prefs.getBoolean(strWordWrap, false);
-        jTextArea1.setLineWrap(wordWrapOn);
-        jCheckBoxMenuWordWrap.setSelected(wordWrapOn);
-
-        font = new Font(
-            prefs.get(strFontName, MAC_OS_X ? "Lucida Grande" : "Tahoma"),
-            prefs.getInt(strFontStyle, Font.PLAIN),
-            prefs.getInt(strFontSize, 12));
-        jTextArea1.setFont(font);
-
-        jSplitPane1.setRightComponent(jScrollPaneText);
-
-        jPanelImage.setLayout(new java.awt.BorderLayout());
+        jPanelImage.add(jToolBar2, java.awt.BorderLayout.PAGE_START);
 
         jSplitPaneImage.setDividerLocation(120);
 
@@ -1073,6 +1013,100 @@ public class Gui extends JFrame {
         jPanelImage.add(jPanelArrow, java.awt.BorderLayout.WEST);
 
         jSplitPane1.setLeftComponent(jPanelImage);
+
+        jPanelTextArea.setLayout(new java.awt.BorderLayout());
+
+        jToolBar1.setRollover(true);
+
+        jToggleButtonSpellCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/inline_spellcheck.png"))); // NOI18N
+        jToggleButtonSpellCheck.setToolTipText(bundle.getString("jToggleButtonSpellCheck.ToolTipText")); // NOI18N
+        jToggleButtonSpellCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonSpellCheckActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jToggleButtonSpellCheck);
+        jToggleButtonSpellCheck.getAccessibleContext().setAccessibleName("jToggleButtonSpellCheck");
+
+        jButtonPostProcess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/gear_in.png"))); // NOI18N
+        jButtonPostProcess.setToolTipText(bundle.getString("jButtonPostProcess.ToolTipText")); // NOI18N
+        jButtonPostProcess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPostProcessActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonPostProcess);
+
+        jButtonRemoveLineBreaks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/pilcrow.png"))); // NOI18N
+        jButtonRemoveLineBreaks.setToolTipText(bundle.getString("jButtonRemoveLineBreaks.ToolTipText")); // NOI18N
+        jButtonRemoveLineBreaks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoveLineBreaksActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonRemoveLineBreaks);
+        jToolBar1.add(jSeparator17);
+
+        jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/save.png"))); // NOI18N
+        jButtonSave.setToolTipText(bundle.getString("jButtonSave.ToolTipText")); // NOI18N
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonSave);
+
+        jButtonClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/draw_eraser.png"))); // NOI18N
+        jButtonClear.setToolTipText(bundle.getString("jButtonClear.ToolTipText")); // NOI18N
+        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonClear);
+        jToolBar1.add(jSeparator15);
+        jToolBar1.add(Box.createHorizontalGlue());
+
+        jLabelLanguage.setLabelFor(jComboBoxLang);
+        jLabelLanguage.setText(bundle.getString("jLabelLanguage.Text")); // NOI18N
+        jLabelLanguage.setToolTipText(bundle.getString("jLabelLanguage.ToolTipText")); // NOI18N
+        jToolBar1.add(jLabelLanguage);
+        jToolBar1.add(filler1);
+
+        jComboBoxLang.setEditable(true);
+        jComboBoxLang.setMaximumSize(new java.awt.Dimension(100, 24));
+        jComboBoxLang.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxLangItemStateChanged(evt);
+            }
+        });
+        jToolBar1.add(jComboBoxLang);
+
+        jPanelTextArea.add(jToolBar1, java.awt.BorderLayout.PAGE_START);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setWrapStyleWord(true);
+        jTextArea1.setMargin(new java.awt.Insets(8, 8, 2, 2));
+        jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTextArea1MouseEntered(evt);
+            }
+        });
+        jScrollPaneText.setViewportView(jTextArea1);
+        wordWrapOn = prefs.getBoolean(strWordWrap, false);
+        jTextArea1.setLineWrap(wordWrapOn);
+        jCheckBoxMenuWordWrap.setSelected(wordWrapOn);
+
+        font = new Font(
+            prefs.get(strFontName, MAC_OS_X ? "Lucida Grande" : "Tahoma"),
+            prefs.getInt(strFontStyle, Font.PLAIN),
+            prefs.getInt(strFontSize, 12));
+        jTextArea1.setFont(font);
+
+        jPanelTextArea.add(jScrollPaneText, java.awt.BorderLayout.CENTER);
+
+        jSplitPane1.setRightComponent(jPanelTextArea);
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
 
@@ -1540,6 +1574,11 @@ public class Gui extends JFrame {
                 populatePopupMenu();
                 addUndoSupport();
             }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+                jButtonPasteImage.setEnabled(ImageHelper.getClipboardImage() != null);
+            }
         });
 
         setSize(
@@ -1921,7 +1960,7 @@ public class Gui extends JFrame {
         imageIcon = imageList.get(imageIndex).clone();
         originalW = imageIcon.getIconWidth();
         originalH = imageIcon.getIconHeight();
-        this.jLabelDimensionValue.setText(String.format("%s × %spx  %sbpp", originalW, originalH, ((BufferedImage)imageIcon.getImage()).getColorModel().getPixelSize()));
+        this.jLabelDimensionValue.setText(String.format("%s × %spx  %sbpp", originalW, originalH, ((BufferedImage) imageIcon.getImage()).getColorModel().getPixelSize()));
 
         if (this.isFitImageSelected) {
             // scale image to fit the scrollpane
@@ -2302,12 +2341,38 @@ public class Gui extends JFrame {
         this.jButtonCollapseExpand.setText(this.jButtonCollapseExpand.getText().equals("»") ? "«" : "»");
         boolean collapsed = this.jButtonCollapseExpand.getText().equals("»");
         this.jSplitPaneImage.setDividerLocation(collapsed ? 0 : this.jSplitPaneImage.getLastDividerLocation());
-        this.jSplitPaneImage.setDividerSize(collapsed? 0 : 5);
+        this.jSplitPaneImage.setDividerSize(collapsed ? 0 : 5);
     }//GEN-LAST:event_jButtonCollapseExpandActionPerformed
 
     void jCheckBoxMenuItemScreenshotModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemScreenshotModeActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jCheckBoxMenuItemScreenshotModeActionPerformed
+
+    private void jButtonPasteImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPasteImageActionPerformed
+        pasteImage();
+    }//GEN-LAST:event_jButtonPasteImageActionPerformed
+
+    void jButtonPostProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPostProcessActionPerformed
+        // to be implemented in subclass
+    }//GEN-LAST:event_jButtonPostProcessActionPerformed
+
+    void jButtonRemoveLineBreaksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveLineBreaksActionPerformed
+        // to be implemented in subclass
+    }//GEN-LAST:event_jButtonRemoveLineBreaksActionPerformed
+
+    void pasteImage() {
+        try {
+            Image image = ImageHelper.getClipboardImage();
+            if (image != null) {
+                File tempFile = File.createTempFile("tmp", ".png");
+                ImageIO.write((BufferedImage) image, "png", tempFile);
+                openFile(tempFile);
+                tempFile.deleteOnExit();
+            }
+        } catch (Exception e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
+        }
+    }
 
     /**
      * Loads thumbnails.
@@ -2393,7 +2458,10 @@ public class Gui extends JFrame {
     private javax.swing.JButton jButtonNextPage;
     protected javax.swing.JButton jButtonOCR;
     private javax.swing.JButton jButtonOpen;
+    private javax.swing.JButton jButtonPasteImage;
+    private javax.swing.JButton jButtonPostProcess;
     private javax.swing.JButton jButtonPrevPage;
+    private javax.swing.JButton jButtonRemoveLineBreaks;
     private javax.swing.JButton jButtonRotateCCW;
     private javax.swing.JButton jButtonRotateCW;
     private javax.swing.JButton jButtonSave;
@@ -2462,6 +2530,7 @@ public class Gui extends JFrame {
     private javax.swing.JPanel jPanelArrow;
     private javax.swing.JPanel jPanelImage;
     private javax.swing.JPanel jPanelStatus;
+    private javax.swing.JPanel jPanelTextArea;
     protected javax.swing.JPanel jPanelThumb;
     protected javax.swing.JProgressBar jProgressBar1;
     protected javax.swing.JScrollPane jScrollPaneImage;
@@ -2474,6 +2543,8 @@ public class Gui extends JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator13;
     private javax.swing.JToolBar.Separator jSeparator14;
     private javax.swing.JToolBar.Separator jSeparator15;
+    private javax.swing.JToolBar.Separator jSeparator16;
+    private javax.swing.JToolBar.Separator jSeparator17;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
@@ -2496,6 +2567,7 @@ public class Gui extends JFrame {
     protected javax.swing.JTextArea jTextArea1;
     protected javax.swing.JTextField jTextFieldCurPage;
     protected javax.swing.JToggleButton jToggleButtonSpellCheck;
+    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     protected javax.swing.JPopupMenu popup;
     // End of variables declaration//GEN-END:variables

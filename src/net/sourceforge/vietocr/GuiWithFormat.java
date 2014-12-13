@@ -1,17 +1,17 @@
 /**
  * Copyright @ 2008 Quan Nguyen
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sourceforge.vietocr;
 
@@ -31,7 +31,7 @@ public class GuiWithFormat extends GuiWithImage {
     private final String strChangeCaseX = "changeCaseX";
     private final String strChangeCaseY = "changeCaseY";
     private ChangeCaseDialog changeCaseDlg;
-    
+
     private final static Logger logger = Logger.getLogger(GuiWithFormat.class.getName());
 
     @Override
@@ -112,7 +112,7 @@ public class GuiWithFormat extends GuiWithImage {
     /**
      * Changes letter case.
      *
-     *@param  typeOfCase  The type that the case should be changed to
+     * @param typeOfCase The type that the case should be changed to
      */
     public void changeCase(String typeOfCase) {
         if (jTextArea1.getSelectedText() == null) {
@@ -135,11 +135,23 @@ public class GuiWithFormat extends GuiWithImage {
 
     /**
      * Removes extra line breaks.
-     * 
-     * @param evt 
+     *
+     * @param evt
      */
     @Override
     void jMenuItemRemoveLineBreaksActionPerformed(java.awt.event.ActionEvent evt) {
+        removeLineBreaks();
+    }
+
+    @Override
+    void jButtonRemoveLineBreaksActionPerformed(java.awt.event.ActionEvent evt) {
+        removeLineBreaks();
+    }
+
+    /**
+     * Removes line breaks to group lines into paragraphs.
+     */
+    void removeLineBreaks() {
         if (jTextArea1.getSelectedText() == null) {
             jTextArea1.selectAll();
 
