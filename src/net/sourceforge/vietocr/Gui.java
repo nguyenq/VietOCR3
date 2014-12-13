@@ -604,8 +604,7 @@ public class Gui extends JFrame {
         jSeparator14 = new javax.swing.JToolBar.Separator();
         jButtonPrevPage = new javax.swing.JButton();
         jButtonNextPage = new javax.swing.JButton();
-        jTextFieldCurPage = new javax.swing.JTextField();
-        jTextFieldCurPage.setFont(jTextFieldCurPage.getFont().deriveFont(Font.PLAIN, 13));
+        jComboBoxPageNum = new javax.swing.JComboBox();
         jLabelPageMax = new javax.swing.JLabel();
         jLabelPageMax.setFont(jLabelPageMax.getFont().deriveFont(Font.PLAIN, 13));
         jSeparator7 = new javax.swing.JToolBar.Separator();
@@ -861,25 +860,16 @@ public class Gui extends JFrame {
         });
         jToolBar2.add(jButtonNextPage);
 
-        jTextFieldCurPage.setColumns(3);
-        jTextFieldCurPage.setDocument(new LimitedLengthDocument(3));
-        jTextFieldCurPage.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldCurPage.setText("0");
-        jTextFieldCurPage.setEnabled(false);
-        jTextFieldCurPage.setMaximumSize(new java.awt.Dimension(24, 24));
-        jTextFieldCurPage.setMinimumSize(new java.awt.Dimension(24, 24));
-        jTextFieldCurPage.setPreferredSize(new java.awt.Dimension(24, 24));
-        jTextFieldCurPage.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldCurPageFocusLost(evt);
-            }
-        });
-        jTextFieldCurPage.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxPageNum.setEnabled(false);
+        jComboBoxPageNum.setMaximumSize(new java.awt.Dimension(40, 24));
+        jComboBoxPageNum.setMinimumSize(new java.awt.Dimension(40, 20));
+        jComboBoxPageNum.setPreferredSize(new java.awt.Dimension(40, 20));
+        jComboBoxPageNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCurPageActionPerformed(evt);
+                jComboBoxPageNumActionPerformed(evt);
             }
         });
-        jToolBar2.add(jTextFieldCurPage);
+        jToolBar2.add(jComboBoxPageNum);
 
         jLabelPageMax.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPageMax.setText(" / 0");
@@ -1922,6 +1912,15 @@ public class Gui extends JFrame {
         scaleX = scaleY = 1f;
         isFitImageSelected = false;
 
+        Integer[] pages = new Integer[imageTotal];
+        for (int i = 0; i < imageTotal; i++) {
+            pages[i] = i + 1;
+        }
+        this.jComboBoxPageNum.setModel(new DefaultComboBoxModel(pages));
+        this.jComboBoxPageNum.setEnabled(true);
+        this.jLabelPageMax.setEnabled(true);
+        this.jLabelPageMax.setText(" / " + imageTotal);
+        
         displayImage();
         loadThumbnails();
 
@@ -1953,10 +1952,7 @@ public class Gui extends JFrame {
      * Displays image.
      */
     void displayImage() {
-        this.jTextFieldCurPage.setEnabled(true);
-        this.jTextFieldCurPage.setText(String.valueOf(imageIndex + 1));
-        this.jLabelPageMax.setEnabled(true);
-        this.jLabelPageMax.setText(" / " + imageTotal);
+        this.jComboBoxPageNum.setSelectedItem(imageIndex + 1);
         imageIcon = imageList.get(imageIndex).clone();
         originalW = imageIcon.getIconWidth();
         originalH = imageIcon.getIconHeight();
@@ -2258,7 +2254,7 @@ public class Gui extends JFrame {
     }//GEN-LAST:event_jMenuItemDeskewActionPerformed
 
     private void jImageLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jImageLabelMouseEntered
-        if (!this.jImageLabel.isFocusOwner() && this.isActive() && !this.jTextFieldCurPage.isFocusOwner()) {
+        if (!this.jImageLabel.isFocusOwner() && this.isActive()) {
             jImageLabel.requestFocusInWindow();
         }
     }//GEN-LAST:event_jImageLabelMouseEntered
@@ -2307,36 +2303,6 @@ public class Gui extends JFrame {
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemSplitTiffActionPerformed
 
-    private void jTextFieldCurPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCurPageActionPerformed
-        int pageNum;
-        try {
-            pageNum = Integer.parseInt(jTextFieldCurPage.getText().trim());
-
-            if (pageNum == imageIndex + 1) {
-                return; // no change
-            } else if (pageNum < 1 || pageNum > imageTotal) {
-                throw new IllegalArgumentException(); // out of range
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, String.format(bundle.getString("InvalidPageMessage"), jTextFieldCurPage.getText()));
-            jTextFieldCurPage.setText(String.valueOf(imageIndex + 1));
-            return;
-        }
-
-        ((JImageLabel) jImageLabel).deselect();
-        imageIndex = pageNum - 1;
-        jLabelStatus.setText(null);
-        jProgressBar1.setString(null);
-        jProgressBar1.setVisible(false);
-        displayImage();
-        clearStack();
-        setButton();
-    }//GEN-LAST:event_jTextFieldCurPageActionPerformed
-
-    private void jTextFieldCurPageFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldCurPageFocusLost
-        jTextFieldCurPage.setText(String.valueOf(imageIndex + 1));
-    }//GEN-LAST:event_jTextFieldCurPageFocusLost
-
     private void jButtonCollapseExpandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCollapseExpandActionPerformed
         this.jButtonCollapseExpand.setText(this.jButtonCollapseExpand.getText().equals("»") ? "«" : "»");
         boolean collapsed = this.jButtonCollapseExpand.getText().equals("»");
@@ -2359,6 +2325,18 @@ public class Gui extends JFrame {
     void jButtonRemoveLineBreaksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveLineBreaksActionPerformed
         // to be implemented in subclass
     }//GEN-LAST:event_jButtonRemoveLineBreaksActionPerformed
+
+    private void jComboBoxPageNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPageNumActionPerformed
+        int pageNum = Integer.parseInt(this.jComboBoxPageNum.getSelectedItem().toString());
+        ((JImageLabel) jImageLabel).deselect();
+        imageIndex = pageNum - 1;
+        jLabelStatus.setText(null);
+        jProgressBar1.setString(null);
+        jProgressBar1.setVisible(false);
+        displayImage();
+        clearStack();
+        setButton();
+    }//GEN-LAST:event_jComboBoxPageNumActionPerformed
 
     void pasteImage() {
         try {
@@ -2471,6 +2449,7 @@ public class Gui extends JFrame {
     protected javax.swing.JCheckBoxMenuItem jCheckBoxMenuItemScreenshotMode;
     protected javax.swing.JCheckBoxMenuItem jCheckBoxMenuWordWrap;
     protected javax.swing.JComboBox jComboBoxLang;
+    private javax.swing.JComboBox jComboBoxPageNum;
     protected javax.swing.JFileChooser jFileChooser;
     protected javax.swing.JLabel jImageLabel;
     private javax.swing.JLabel jLabelDimension;
@@ -2565,7 +2544,6 @@ public class Gui extends JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPaneImage;
     protected javax.swing.JTextArea jTextArea1;
-    protected javax.swing.JTextField jTextFieldCurPage;
     protected javax.swing.JToggleButton jToggleButtonSpellCheck;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
