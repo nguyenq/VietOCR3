@@ -606,7 +606,6 @@ public class Gui extends JFrame {
         jButtonNextPage = new javax.swing.JButton();
         jComboBoxPageNum = new javax.swing.JComboBox();
         jLabelPageMax = new javax.swing.JLabel();
-        jLabelPageMax.setFont(jLabelPageMax.getFont().deriveFont(Font.PLAIN, 13));
         jSeparator7 = new javax.swing.JToolBar.Separator();
         jButtonFitImage = new javax.swing.JButton();
         jButtonActualSize = new javax.swing.JButton();
@@ -806,7 +805,7 @@ public class Gui extends JFrame {
         });
 
         jSplitPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(-2, 0, 0, 0));
-        jSplitPane1.setDividerLocation(250);
+        jSplitPane1.setDividerLocation(600);
         jSplitPane1.setDividerSize(2);
 
         jPanelImage.setLayout(new java.awt.BorderLayout());
@@ -876,6 +875,7 @@ public class Gui extends JFrame {
         jLabelPageMax.setText(" / 0");
         jLabelPageMax.setEnabled(false);
         jLabelPageMax.setPreferredSize(new java.awt.Dimension(30, 14));
+        jToolBar2.add(Box.createHorizontalStrut(4));
         jToolBar2.add(jLabelPageMax);
         jToolBar2.add(Box.createHorizontalStrut(4));
         jToolBar2.add(jSeparator7);
