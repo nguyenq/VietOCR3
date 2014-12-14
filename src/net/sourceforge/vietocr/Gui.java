@@ -805,6 +805,7 @@ public class Gui extends JFrame {
             }
         });
 
+        jSplitPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(-2, 0, 0, 0));
         jSplitPane1.setDividerLocation(250);
         jSplitPane1.setDividerSize(2);
 
@@ -2318,12 +2319,12 @@ public class Gui extends JFrame {
         pasteImage();
     }//GEN-LAST:event_jButtonPasteImageActionPerformed
 
-    void jButtonPostProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPostProcessActionPerformed
-        // to be implemented in subclass
+    private void jButtonPostProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPostProcessActionPerformed
+        this.jMenuItemPostProcess.doClick();
     }//GEN-LAST:event_jButtonPostProcessActionPerformed
 
-    void jButtonRemoveLineBreaksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveLineBreaksActionPerformed
-        // to be implemented in subclass
+    private void jButtonRemoveLineBreaksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveLineBreaksActionPerformed
+        this.jMenuItemRemoveLineBreaks.doClick();
     }//GEN-LAST:event_jButtonRemoveLineBreaksActionPerformed
 
     private void jComboBoxPageNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPageNumActionPerformed
