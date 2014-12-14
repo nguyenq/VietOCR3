@@ -15,11 +15,7 @@
  */
 package net.sourceforge.vietocr;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.IIOImage;
 //import net.sourceforge.tess4j.ITesseract.RenderedFormat;
@@ -34,8 +30,6 @@ import net.sourceforge.vietocr.util.Utils;
  * application.
  */
 public class OCRImages extends OCR<IIOImage> {
-
-    final String CONFIGS_FILE = "tess_configs";
 
     Tesseract instance;
     final String TESSDATA = "tessdata";
@@ -67,18 +61,20 @@ public class OCRImages extends OCR<IIOImage> {
 
     /**
      * Reads <code>tessdata/configs/tess_configs</code< and
-     * <code>setVariable</code> on Tesseract engine.
+     * <code>setVariable</code> on Tesseract engine. This only works for
+     * non-init parameters (@see
+     * <a href="https://code.google.com/p/tesseract-ocr/wiki/ControlParams">ControlParams</a>).
      *
      * @param instance
      */
     void controlParameters(Tesseract instance) throws Exception {
-        File configsFilePath = new File(tessPath, "tessdata/configs/" + CONFIGS_FILE);
+        File configsFilePath = new File(tessPath, "tessdata/configs/" + (this.getLanguage().startsWith("vie") ? VIET_CONFIGS_FILE : CONFIGS_FILE));
         if (!configsFilePath.exists()) {
             return;
         }
 
         String str = Utils.readTextFile(configsFilePath);
-        
+
         for (String line : str.split("\n")) {
             if (!line.trim().startsWith("#")) {
                 try {
