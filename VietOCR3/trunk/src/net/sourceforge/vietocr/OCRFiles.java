@@ -31,11 +31,10 @@ public class OCRFiles extends OCR<File> {
     private final String tessPath;
     final static String OUTPUT_FILE_NAME = "TessOutput";
     final static String TEXTFILE_EXTENSION = ".txt";
-    final static String CONFIGS_FILE = "tess_configs";
-    final static String VIET_CONFIGS_FILE = "viet";
 
     /**
      * Creates a new instance of OCR
+     *
      * @param tessPath
      */
     public OCRFiles(String tessPath) {
@@ -44,7 +43,7 @@ public class OCRFiles extends OCR<File> {
 
     /**
      * Recognizes TIFF files.
-     * 
+     *
      * @param tiffFiles
      * @return recognized text
      * @throws Exception
@@ -63,7 +62,7 @@ public class OCRFiles extends OCR<File> {
         cmd.add(PSM_OPTION);
         cmd.add(getPageSegMode());
         cmd.add(this.getLanguage().startsWith("vie") ? VIET_CONFIGS_FILE : CONFIGS_FILE);
-        
+
         ProcessBuilder pb = new ProcessBuilder();
         pb.directory(new File(tessPath));
         pb.redirectErrorStream(true);
@@ -105,10 +104,10 @@ public class OCRFiles extends OCR<File> {
 
     /**
      * Processes OCR for input file with specified output format.
-     * 
+     *
      * @param inputImage
      * @param outputFile
-     * @throws Exception 
+     * @throws Exception
      */
     @Override
     public void processPages(File inputImage, File outputFile) throws Exception {
@@ -122,11 +121,11 @@ public class OCRFiles extends OCR<File> {
         cmd.add(PSM_OPTION);
         cmd.add(getPageSegMode());
         cmd.add(this.getLanguage().startsWith("vie") ? VIET_CONFIGS_FILE : CONFIGS_FILE);
-        
+
         if ("hocr".equals(outputFormat) || "pdf".equals(outputFormat)) {
             cmd.add(outputFormat);
         }
-        
+
         ProcessBuilder pb = new ProcessBuilder();
         pb.directory(new File(tessPath));
         pb.redirectErrorStream(true);
@@ -158,7 +157,7 @@ class StreamGobbler extends Thread {
 
     InputStream is;
     StringBuilder outputMessage = new StringBuilder();
-    
+
     private final static Logger logger = Logger.getLogger(StreamGobbler.class.getName());
 
     StreamGobbler(InputStream is) {

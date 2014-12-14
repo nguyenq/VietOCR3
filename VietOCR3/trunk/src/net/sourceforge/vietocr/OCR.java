@@ -21,11 +21,14 @@ import java.util.List;
 
 public abstract class OCR<T> {
 
+    final static String CONFIGS_FILE = "tess_configs";
+    final static String VIET_CONFIGS_FILE = "viet";
+
     protected Rectangle rect = null;
     private String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)
     private String language = "eng";
     private String outputFormat = "text";
-    
+
     /**
      * Recognizes files or images.
      *
@@ -47,13 +50,13 @@ public abstract class OCR<T> {
      * @throws Exception
      */
     public abstract String recognizeText(List<T> imageEntities) throws Exception;
-    
+
     /**
      * Processes image file to output file.
-     * 
+     *
      * @param imageFile image file
      * @param outputFile output file
-     * @throws Exception 
+     * @throws Exception
      */
     public abstract void processPages(File imageFile, File outputFile) throws Exception;
 

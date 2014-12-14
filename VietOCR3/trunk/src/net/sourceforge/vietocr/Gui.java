@@ -1902,6 +1902,7 @@ public class Gui extends JFrame {
     /**
      * Loads image.
      */
+    @SuppressWarnings("unchecked")
     void loadImage() {
         if (imageList == null) {
             JOptionPane.showMessageDialog(this, bundle.getString("Cannotloadimage"), APP_NAME, JOptionPane.ERROR_MESSAGE);
