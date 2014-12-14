@@ -140,18 +140,6 @@ public class GuiWithFormat extends GuiWithImage {
      */
     @Override
     void jMenuItemRemoveLineBreaksActionPerformed(java.awt.event.ActionEvent evt) {
-        removeLineBreaks();
-    }
-
-    @Override
-    void jButtonRemoveLineBreaksActionPerformed(java.awt.event.ActionEvent evt) {
-        removeLineBreaks();
-    }
-
-    /**
-     * Removes line breaks to group lines into paragraphs.
-     */
-    void removeLineBreaks() {
         if (jTextArea1.getSelectedText() == null) {
             jTextArea1.selectAll();
 
