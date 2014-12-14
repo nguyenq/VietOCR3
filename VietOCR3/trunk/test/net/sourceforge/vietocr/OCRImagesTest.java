@@ -42,6 +42,7 @@ public class OCRImagesTest {
 
     /**
      * Test of recognizeText method, of class OCRImages.
+     * @throws java.lang.Exception
      */
     @Test
     public void testRecognizeText() throws Exception {

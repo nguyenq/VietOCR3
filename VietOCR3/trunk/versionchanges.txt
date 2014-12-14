@@ -87,12 +87,9 @@ Version 3.5 (25 January 2014)
 - Implement Undo function
 - Additional translations
 
-Version 4.0 Beta 4 (29 November 2014)
-- Upgrade to Tesseract 3.03 RC (r1127)
-- Upgrade Tess4J library
+Version 3.6 Beta (14 December 2014)
 - Update JNA to v4.1.0
 - Update Ghost4J to v0.5.1
 - Add Split TIFF function
-- Add support for searchable PDF output in bulk/batch mode
-- Add thumbnail bar for ease of navigation
+- Add thumbnail bar for ease of page navigation
 - Display useful info in statusbar

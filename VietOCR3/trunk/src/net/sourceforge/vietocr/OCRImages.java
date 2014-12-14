@@ -15,11 +15,14 @@
  */
 package net.sourceforge.vietocr;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.IIOImage;
-import net.sourceforge.tess4j.ITesseract.RenderedFormat;
+//import net.sourceforge.tess4j.ITesseract.RenderedFormat;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.vietocr.util.Utils;
 
@@ -32,44 +35,75 @@ import net.sourceforge.vietocr.util.Utils;
  */
 public class OCRImages extends OCR<IIOImage> {
 
+    final String CONFIGS_FILE = "tess_configs";
+
     Tesseract instance;
     final String TESSDATA = "tessdata";
+    String tessPath;
 
     public OCRImages(String tessPath) {
         instance = Tesseract.getInstance();
+        this.tessPath = tessPath;
         instance.setDatapath(new File(tessPath, TESSDATA).getPath());
     }
 
     /**
      * Recognizes images.
-     * 
+     *
      * @param images as IIOImage
      * @return recognized text
-     * @throws Exception 
+     * @throws Exception
      */
     @Override
     public String recognizeText(List<IIOImage> images) throws Exception {
         instance.setLanguage(this.getLanguage());
         instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
         instance.setHocr(this.getOutputFormat().equalsIgnoreCase("hocr"));
+        controlParameters(instance);
         String text = instance.doOCR(images, rect);
 
         return text;
     }
-    
+
+    /**
+     * Reads <code>tessdata/configs/tess_configs</code< and
+     * <code>setVariable</code> on Tesseract engine.
+     *
+     * @param instance
+     */
+    void controlParameters(Tesseract instance) throws Exception {
+        File configsFilePath = new File(tessPath, "tessdata/configs/" + CONFIGS_FILE);
+        if (!configsFilePath.exists()) {
+            return;
+        }
+
+        String str = Utils.readTextFile(configsFilePath);
+        
+        for (String line : str.split("\n")) {
+            if (!line.trim().startsWith("#")) {
+                try {
+                    String[] keyValuePair = line.trim().split("\\s+");
+                    instance.setTessVariable(keyValuePair[0], keyValuePair[1]);
+                } catch (Exception e) {
+                    //ignore and continue on
+                }
+            }
+        }
+    }
+
     /**
      * Processes OCR for input file with specified output format.
-     * 
+     *
      * @param inputImage
      * @param outputFile
-     * @throws Exception 
+     * @throws Exception
      */
     @Override
     public void processPages(File inputImage, File outputFile) throws Exception {
-        instance.setLanguage(this.getLanguage());
-        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
-        List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
-        formats.add(RenderedFormat.valueOf(this.getOutputFormat().toUpperCase()));
-        instance.createDocuments(inputImage.getPath(), Utils.stripExtension(outputFile.getPath()), formats);
+//        instance.setLanguage(this.getLanguage());
+//        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
+//        List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
+//        formats.add(RenderedFormat.valueOf(this.getOutputFormat().toUpperCase()));
+//        instance.createDocuments(inputImage.getPath(), Utils.stripExtension(outputFile.getPath()), formats);
     }
 }
