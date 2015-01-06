@@ -154,7 +154,7 @@ public class GuiWithTools extends GuiWithSpellcheck {
     void jMenuItemSplitTiffActionPerformed(java.awt.event.ActionEvent evt) {
         JFileChooser jf = new JFileChooser();
         jf.setDialogTitle(bundle.getString("Select_Input_TIFF"));
-        jf.setApproveButtonText("Split");
+//        jf.setApproveButtonText("Split");
         jf.setCurrentDirectory(imageFolder);
         FileFilter tiffFilter = new SimpleFilter("tif;tiff", "TIFF");
         jf.addChoosableFileFilter(tiffFilter);
