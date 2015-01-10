@@ -301,6 +301,11 @@ public class Hunspell {
                 suggestionsCount = hsl.Hunspell_suggest(
                         hunspellDict, suggestions, stringToBytes(word));
 
+                // prevent NPE
+                if (suggestions.getValue() == null) {
+                    return res;
+                }
+                
                 // Get each of the suggestions out of the pointer array.
                 Pointer[] pointerArray = suggestions.getValue().
                         getPointerArray(0, suggestionsCount);
