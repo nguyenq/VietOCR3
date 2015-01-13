@@ -130,9 +130,7 @@ public class GuiWithThumbnail extends Gui {
             jLabelStatus.setText(null);
             jProgressBar1.setString(null);
             jProgressBar1.setVisible(false);
-            displayImage();
-            clearStack();
-            setButton();
+            jComboBoxPageNum.setSelectedItem(imageIndex + 1);
         }
     }
 }
