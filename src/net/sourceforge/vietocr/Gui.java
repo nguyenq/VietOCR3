@@ -37,14 +37,13 @@ import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.JTextComponent;
 import javax.swing.undo.*;
 
-import net.sourceforge.tess4j.util.ImageHelper;
-import net.sourceforge.tess4j.util.ImageIOHelper;
+//import net.sourceforge.tess4j.util.ImageHelper;
+//import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.vietocr.components.*;
 import net.sourceforge.vietocr.util.FormLocalizer;
 import net.sourceforge.vietocr.util.Utils;
 import net.sourceforge.vietpad.components.*;
 import net.sourceforge.vietpad.inputmethod.VietKeyListener;
-import net.sourceforge.vietpad.utilities.LimitedLengthDocument;
 
 public class Gui extends JFrame {
 
@@ -1954,7 +1953,6 @@ public class Gui extends JFrame {
      * Displays image.
      */
     void displayImage() {
-        this.jComboBoxPageNum.setSelectedItem(imageIndex + 1);
         imageIcon = imageList.get(imageIndex).clone();
         originalW = imageIcon.getIconWidth();
         originalH = imageIcon.getIconHeight();
@@ -2451,7 +2449,7 @@ public class Gui extends JFrame {
     protected javax.swing.JCheckBoxMenuItem jCheckBoxMenuItemScreenshotMode;
     protected javax.swing.JCheckBoxMenuItem jCheckBoxMenuWordWrap;
     protected javax.swing.JComboBox jComboBoxLang;
-    private javax.swing.JComboBox jComboBoxPageNum;
+    protected javax.swing.JComboBox jComboBoxPageNum;
     protected javax.swing.JFileChooser jFileChooser;
     protected javax.swing.JLabel jImageLabel;
     private javax.swing.JLabel jLabelDimension;
