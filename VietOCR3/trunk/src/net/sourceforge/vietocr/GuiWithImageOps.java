@@ -27,7 +27,7 @@ import net.sourceforge.vietocr.components.JImageLabel;
 public class GuiWithImageOps extends GuiWithScan {
 
     private final float ZOOM_FACTOR = 1.25f;
-    
+
     private final static Logger logger = Logger.getLogger(GuiWithImageOps.class.getName());
 
     @Override
@@ -40,10 +40,8 @@ public class GuiWithImageOps extends GuiWithScan {
             this.jLabelStatus.setText(null);
             jProgressBar1.setString(null);
             jProgressBar1.setVisible(false);
-            displayImage();
-            clearStack();
+            jComboBoxPageNum.setSelectedItem(imageIndex + 1);
         }
-        setButton();
     }
 
     @Override
@@ -56,10 +54,8 @@ public class GuiWithImageOps extends GuiWithScan {
             this.jLabelStatus.setText(null);
             jProgressBar1.setString(null);
             jProgressBar1.setVisible(false);
-            displayImage();
-            clearStack();
+            jComboBoxPageNum.setSelectedItem(imageIndex + 1);
         }
-        setButton();
     }
 
     /**
