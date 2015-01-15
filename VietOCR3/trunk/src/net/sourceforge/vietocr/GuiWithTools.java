@@ -24,8 +24,8 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
-import net.sourceforge.tess4j.util.ImageIOHelper;
-import net.sourceforge.tess4j.util.PdfUtilities;
+//import net.sourceforge.tess4j.util.ImageIOHelper;
+//import net.sourceforge.tess4j.util.PdfUtilities;
 import net.sourceforge.vietocr.util.Utils;
 import net.sourceforge.vietpad.components.SimpleFilter;
 

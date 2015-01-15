@@ -1,6 +1,6 @@
 package net.sourceforge.vietocr;
 
-import net.sourceforge.tess4j.util.ImageIOHelper;
+//import net.sourceforge.tess4j.util.ImageIOHelper;
 import java.awt.event.*;
 import java.awt.image.RenderedImage;
 import java.util.Map;

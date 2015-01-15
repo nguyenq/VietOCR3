@@ -16,7 +16,6 @@
 package net.sourceforge.vietocr;
 
 import java.io.*;
-import net.sourceforge.tess4j.util.PdfUtilities;
 //import javax.imageio.IIOImage;
 import net.sourceforge.vietocr.postprocessing.*;
 import net.sourceforge.vietocr.util.Utils;
