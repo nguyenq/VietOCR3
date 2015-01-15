@@ -1,0 +1,6 @@
+# This text file contains non-init control parameters, specifically non-init variables, to modify Tesseract engine's behaviour.
+# https://code.google.com/p/tesseract-ocr/wiki/ControlParams
+# http://www.sk-spell.sk.cx/tesseract-ocr-parameters-in-302-version
+# Each key/value pair, delimited by spaces, takes one line. Comment lines start with # sign.
+# Ex:
+#tessedit_char_whitelist 0123456789-.
