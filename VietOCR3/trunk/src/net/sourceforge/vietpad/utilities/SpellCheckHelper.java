@@ -66,6 +66,9 @@ public class SpellCheckHelper {
             return;
         }
         try {
+            if (System.getProperty("os.name").startsWith("Windows 8"))  {
+                System.setProperty("jna.library.path", baseDir.getPath());
+            }
             spellDict = Hunspell.getInstance().getDictionary(new File(baseDir, "dict/" + localeId).getPath());
             loadUserDictionary();
 
