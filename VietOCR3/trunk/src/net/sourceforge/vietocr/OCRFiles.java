@@ -28,6 +28,7 @@ public class OCRFiles extends OCR<File> {
 
     private final String LANG_OPTION = "-l";
     private final String PSM_OPTION = "-psm";
+    private final String CONFIGVAR_OPTION = "-c";
     private final String tessPath;
     final static String OUTPUT_FILE_NAME = "TessOutput";
     final static String TEXTFILE_EXTENSION = ".txt";
@@ -60,8 +61,9 @@ public class OCRFiles extends OCR<File> {
         cmd.add(LANG_OPTION);
         cmd.add(this.getLanguage());
         cmd.add(PSM_OPTION);
-        cmd.add(getPageSegMode());
-        cmd.add(this.getLanguage().startsWith("vie") ? VIET_CONFIGS_FILE : CONFIGS_FILE);
+        cmd.add(this.getPageSegMode());
+        controlParameters(cmd);
+        cmd.add(CONFIGS_FILE);
 
         ProcessBuilder pb = new ProcessBuilder();
         pb.directory(new File(tessPath));
@@ -119,8 +121,9 @@ public class OCRFiles extends OCR<File> {
         cmd.add(LANG_OPTION);
         cmd.add(this.getLanguage());
         cmd.add(PSM_OPTION);
-        cmd.add(getPageSegMode());
-        cmd.add(this.getLanguage().startsWith("vie") ? VIET_CONFIGS_FILE : CONFIGS_FILE);
+        cmd.add(this.getPageSegMode());
+        controlParameters(cmd);
+        cmd.add(CONFIGS_FILE); // Note: On Linux, this is under TESSDATA_PREFIX dir 
 
         if ("hocr".equals(outputFormat) || "pdf".equals(outputFormat)) {
             cmd.add(outputFormat);
@@ -145,6 +148,35 @@ public class OCRFiles extends OCR<File> {
                 msg = "Errors occurred.";
             }
             throw new RuntimeException(msg);
+        }
+    }
+
+    /**
+     * Reads <code>tessdata/configs/tess_configvars</code> and
+     * <code>setVariable</code> on Tesseract engine. This only works for
+     * non-init parameters (@see
+     * <a href="https://code.google.com/p/tesseract-ocr/wiki/ControlParams">ControlParams</a>).
+     *
+     * @param instance
+     */
+    void controlParameters(List<String> cmd) throws Exception {
+        File configvarsFilePath = new File(tessPath, "tessdata/configs/" + CONFIGVARS_FILE); // Note: On Linux, this is under TESSDATA_PREFIX dir 
+        if (!configvarsFilePath.exists()) {
+            return;
+        }
+
+        String str = Utils.readTextFile(configvarsFilePath);
+
+        for (String line : str.split("\n")) {
+            if (!line.trim().startsWith("#")) {
+                try {
+                    String[] keyValuePair = line.trim().split("\\s+");
+                    cmd.add(CONFIGVAR_OPTION);
+                    cmd.add(keyValuePair[0] + "=" + keyValuePair[1]);
+                } catch (Exception e) {
+                    //ignore and continue on
+                }
+            }
         }
     }
 }
