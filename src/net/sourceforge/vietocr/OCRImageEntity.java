@@ -15,8 +15,8 @@
  */
 package net.sourceforge.vietocr;
 
-import net.sourceforge.tess4j.util.ImageIOHelper;
-import net.sourceforge.tess4j.util.ImageHelper;
+//import net.sourceforge.tess4j.util.ImageIOHelper;
+//import net.sourceforge.tess4j.util.ImageHelper;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
