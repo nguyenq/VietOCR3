@@ -1,7 +1,0 @@
-# This text file contains control parameters to modify Tesseract engine's behaviour.
-# https://code.google.com/p/tesseract-ocr/wiki/ControlParams
-# http://www.sk-spell.sk.cx/tesseract-ocr-parameters-in-302-version
-# Each key/value pair, delimited by spaces, takes one line. Comment lines start with # sign.
-# The default dictionaries has been found to cause lower accuracies for Vietnamese, so they are disabled here
-load_system_dawg     F
-load_freq_dawg       F
