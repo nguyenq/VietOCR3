@@ -22,7 +22,7 @@ import java.util.List;
 public abstract class OCR<T> {
 
     final static String CONFIGS_FILE = "tess_configs";
-    final static String VIET_CONFIGS_FILE = "viet";
+    final static String CONFIGVARS_FILE = "tess_configvars";
 
     protected Rectangle rect = null;
     private String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)

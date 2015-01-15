@@ -16,6 +16,7 @@
 package net.sourceforge.vietocr;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import javax.imageio.IIOImage;
 //import net.sourceforge.tess4j.ITesseract.RenderedFormat;
@@ -32,13 +33,12 @@ import net.sourceforge.vietocr.util.Utils;
 public class OCRImages extends OCR<IIOImage> {
 
     Tesseract instance;
-    final String TESSDATA = "tessdata";
     String tessPath;
 
     public OCRImages(String tessPath) {
         instance = Tesseract.getInstance();
         this.tessPath = tessPath;
-        instance.setDatapath(new File(tessPath, TESSDATA).getPath());
+        instance.setDatapath(tessPath);
     }
 
     /**
@@ -53,6 +53,8 @@ public class OCRImages extends OCR<IIOImage> {
         instance.setLanguage(this.getLanguage());
         instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
         instance.setHocr(this.getOutputFormat().equalsIgnoreCase("hocr"));
+        String[] configs = {CONFIGS_FILE};
+        instance.setConfigs(Arrays.asList(configs));
         controlParameters(instance);
         String text = instance.doOCR(images, rect);
 
@@ -60,7 +62,7 @@ public class OCRImages extends OCR<IIOImage> {
     }
 
     /**
-     * Reads <code>tessdata/configs/tess_configs</code< and
+     * Reads <code>tessdata/configs/tess_configvars</code> and
      * <code>setVariable</code> on Tesseract engine. This only works for
      * non-init parameters (@see
      * <a href="https://code.google.com/p/tesseract-ocr/wiki/ControlParams">ControlParams</a>).
@@ -68,12 +70,12 @@ public class OCRImages extends OCR<IIOImage> {
      * @param instance
      */
     void controlParameters(Tesseract instance) throws Exception {
-        File configsFilePath = new File(tessPath, "tessdata/configs/" + (this.getLanguage().startsWith("vie") ? VIET_CONFIGS_FILE : CONFIGS_FILE));
-        if (!configsFilePath.exists()) {
+        File configvarsFilePath = new File(tessPath, "tessdata/configs/" + CONFIGVARS_FILE);
+        if (!configvarsFilePath.exists()) {
             return;
         }
 
-        String str = Utils.readTextFile(configsFilePath);
+        String str = Utils.readTextFile(configvarsFilePath);
 
         for (String line : str.split("\n")) {
             if (!line.trim().startsWith("#")) {
