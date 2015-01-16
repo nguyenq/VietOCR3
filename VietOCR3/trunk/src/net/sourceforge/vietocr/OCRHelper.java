@@ -30,19 +30,21 @@ public class OCRHelper {
      * @param tessPath path to Tesseract executable
      * @param langCode language code
      * @param pageSegMode page segmentation mode
-     * @param outputFormat format of output file. Possible values: <code>text</code>, <code>text+</code> (with post-corrections), <code>hocr</code>, <code>pdf</code>
+     * @param outputFormat format of output file. Possible values:
+     * <code>text</code>, <code>text+</code> (with post-corrections),
+     * <code>hocr</code>
      * @throws Exception
      */
     public static void performOCR(File imageFile, File outputFile, String tessPath, String langCode, String pageSegMode, String outputFormat) throws Exception {
         File workingTiffFile = null;
-        
+
         try {
             // create parent folder if not yet exists
             File dir = outputFile.getParentFile();
-            if (!dir.exists()) {
+            if (dir != null && !dir.exists()) {
                 dir.mkdirs();
             }
-            
+
             boolean postprocess = "text+".equals(outputFormat);
 
             OCR<File> ocrEngine = new OCRFiles(tessPath);
