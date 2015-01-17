@@ -336,7 +336,7 @@ public class DownloadDialog extends javax.swing.JDialog {
                     if (Gui.WINDOWS || destFolder.equals(DICTIONARY_FOLDER)) {
                         destFolderPath = new File(baseDir, destFolder);
                     } else {
-                        destFolderPath = tessdataDir;
+                        destFolderPath = tessdataDir.getParentFile().getParentFile(); // for Linux, go back up 2 levels
                     }
                     FileExtractor.extractCompressedFile(downloadedFile.getPath(), destFolderPath.getPath());
                     if (destFolder.equals(TESSDATA_FOLDER)) {
