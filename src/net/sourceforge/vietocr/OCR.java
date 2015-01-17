@@ -23,11 +23,13 @@ public abstract class OCR<T> {
 
     final static String CONFIGS_FILE = "tess_configs";
     final static String CONFIGVARS_FILE = "tess_configvars";
+    final static String CONFIG_PATH = "tessdata/configs/";
 
     protected Rectangle rect = null;
-    private String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)
-    private String language = "eng";
-    private String outputFormat = "text";
+    protected String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)
+    protected String language = "eng";
+    protected String outputFormat = "text";
+    protected String datapath = "./";
 
     /**
      * Recognizes files or images.
@@ -104,5 +106,23 @@ public abstract class OCR<T> {
      */
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    /**
+     * Gets path to <code>tessdata</code>.
+     * 
+     * @return the datapath
+     */
+    public String getDatapath() {
+        return datapath;
+    }
+
+    /**
+     * Sets path to <code>tessdata</code>.
+     * 
+     * @param datapath the datapath to set
+     */
+    public void setDatapath(String datapath) {
+        this.datapath = datapath;
     }
 }
