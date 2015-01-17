@@ -24,12 +24,13 @@ public abstract class OCR<T> {
     final static String CONFIGS_FILE = "tess_configs";
     final static String CONFIGVARS_FILE = "tess_configvars";
     final static String CONFIG_PATH = "tessdata/configs/";
+    final static String TESSDATA = "tessdata";
 
     protected Rectangle rect = null;
     protected String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)
     protected String language = "eng";
     protected String outputFormat = "text";
-    protected String datapath = "./";
+    protected String datapath = ".";
 
     /**
      * Recognizes files or images.

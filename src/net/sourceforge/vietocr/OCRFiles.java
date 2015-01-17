@@ -70,8 +70,11 @@ public class OCRFiles extends OCR<File> {
         }
 
         ProcessBuilder pb = new ProcessBuilder();
-        Map<String, String> env = pb.environment();
-        env.put("TESSDATA_PREFIX", datapath);
+        if (new File(datapath, TESSDATA).exists()) {
+            Map<String, String> env = pb.environment();
+            env.put("TESSDATA_PREFIX", datapath);
+        }
+
         pb.directory(new File(tessPath));
         pb.redirectErrorStream(true);
 
@@ -138,8 +141,10 @@ public class OCRFiles extends OCR<File> {
         }
 
         ProcessBuilder pb = new ProcessBuilder();
-        Map<String, String> env = pb.environment();
-        env.put("TESSDATA_PREFIX", datapath);
+//        if (new File(datapath, TESSDATA).exists()) {
+//            Map<String, String> env = pb.environment();
+//            env.put("TESSDATA_PREFIX", datapath);
+//        }
         pb.directory(new File(tessPath));
         pb.redirectErrorStream(true);
         pb.command(cmd);

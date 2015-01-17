@@ -716,7 +716,7 @@
       <Dimension value="[500, 360]"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1200, 600]"/>
+      <Dimension value="[1340, 600]"/>
     </Property>
   </Properties>
   <SyntheticProperties>

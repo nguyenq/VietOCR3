@@ -16,7 +16,7 @@ public class OCRFilesTest {
     OCRImageEntity entity;
 
     public OCRFilesTest() {
-        tessPath = WINDOWS ? new File(System.getProperty("user.dir"), Gui.TESSERACT_PATH).getPath() : "/usr/local/bin";
+        tessPath = WINDOWS ? new File(System.getProperty("user.dir"), Gui.TESSERACT_PATH).getPath() : "/usr/bin";
         datapath = WINDOWS ? tessPath : "/usr/share/tesseract-ocr/";
         File selectedFile = new File("samples/vietsample1.tif");
         try {
