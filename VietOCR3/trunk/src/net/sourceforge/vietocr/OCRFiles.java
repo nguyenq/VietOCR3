@@ -29,9 +29,10 @@ public class OCRFiles extends OCR<File> {
     private final String LANG_OPTION = "-l";
     private final String PSM_OPTION = "-psm";
     private final String CONFIGVAR_OPTION = "-c";
-    private final String tessPath;
     final static String OUTPUT_FILE_NAME = "TessOutput";
     final static String TEXTFILE_EXTENSION = ".txt";
+    private final String tessPath;
+    private final String datapath;
 
     /**
      * Creates a new instance of OCR
@@ -40,6 +41,7 @@ public class OCRFiles extends OCR<File> {
      */
     public OCRFiles(String tessPath) {
         this.tessPath = tessPath;
+        this.datapath = "./";
     }
 
     /**
@@ -63,7 +65,11 @@ public class OCRFiles extends OCR<File> {
         cmd.add(PSM_OPTION);
         cmd.add(this.getPageSegMode());
         controlParameters(cmd);
-        cmd.add(CONFIGS_FILE);
+
+        File configsFilePath = new File(datapath, "tessdata/configs/" + CONFIGS_FILE); // Note: On Linux, this is under TESSDATA_PREFIX dir 
+        if (configsFilePath.exists()) {
+            cmd.add(CONFIGS_FILE);
+        }
 
         ProcessBuilder pb = new ProcessBuilder();
         pb.directory(new File(tessPath));
@@ -123,7 +129,10 @@ public class OCRFiles extends OCR<File> {
         cmd.add(PSM_OPTION);
         cmd.add(this.getPageSegMode());
         controlParameters(cmd);
-        cmd.add(CONFIGS_FILE); // Note: On Linux, this is under TESSDATA_PREFIX dir 
+        File configsFilePath = new File(datapath, "tessdata/configs/" + CONFIGS_FILE); // Note: On Linux, this is under TESSDATA_PREFIX dir 
+        if (configsFilePath.exists()) {
+            cmd.add(CONFIGS_FILE);
+        }
 
         if ("hocr".equals(outputFormat) || "pdf".equals(outputFormat)) {
             cmd.add(outputFormat);
@@ -160,7 +169,7 @@ public class OCRFiles extends OCR<File> {
      * @param instance
      */
     void controlParameters(List<String> cmd) throws Exception {
-        File configvarsFilePath = new File(tessPath, "tessdata/configs/" + CONFIGVARS_FILE); // Note: On Linux, this is under TESSDATA_PREFIX dir 
+        File configvarsFilePath = new File(datapath, "tessdata/configs/" + CONFIGVARS_FILE); // Note: On Linux, this is under TESSDATA_PREFIX dir 
         if (!configvarsFilePath.exists()) {
             return;
         }
