@@ -24,21 +24,23 @@ import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.vietocr.util.Utils;
 
 /**
- * Invokes Tesseract OCR API through JNA-based Tess4J wrapper.<br />This could
- * be faster than the existing method since it feeds image data directly to the
+ * Invokes Tesseract OCR API through JNA-based Tess4J wrapper. This could be
+ * faster than the command-line method since it feeds image data directly to the
  * OCR engine without creating intermediate working files (less I/O operations).
  * However, any exception from native code will result in hard crash of the
  * application.
  */
 public class OCRImages extends OCR<IIOImage> {
 
-    Tesseract instance;
-    String datapath;
+    private final Tesseract instance;
+    private final String datapath;
 
     public OCRImages(String datapath) {
-        instance = Tesseract.getInstance();
         this.datapath = datapath;
+        instance = Tesseract.getInstance();
         instance.setDatapath(datapath);
+        instance.setLanguage(this.getLanguage());
+        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
     }
 
     /**
@@ -50,8 +52,6 @@ public class OCRImages extends OCR<IIOImage> {
      */
     @Override
     public String recognizeText(List<IIOImage> images) throws Exception {
-        instance.setLanguage(this.getLanguage());
-        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
         instance.setHocr(this.getOutputFormat().equalsIgnoreCase("hocr"));
         String[] configs = {CONFIGS_FILE};
         instance.setConfigs(Arrays.asList(configs));
@@ -98,8 +98,6 @@ public class OCRImages extends OCR<IIOImage> {
      */
     @Override
     public void processPages(File inputImage, File outputFile) throws Exception {
-//        instance.setLanguage(this.getLanguage());
-//        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
 //        List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
 //        formats.add(RenderedFormat.valueOf(this.getOutputFormat().toUpperCase()));
 //        instance.createDocuments(inputImage.getPath(), Utils.stripExtension(outputFile.getPath()), formats);
