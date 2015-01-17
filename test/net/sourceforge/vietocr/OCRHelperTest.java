@@ -46,10 +46,10 @@ public class OCRHelperTest {
         String pageSegMode = "3";
         String outputFormat = "text";
         String inputFolder = "samples";
-        String outputFolder = "build/test/";
+        String outputFolder = "build/test/results";
         List<File> files = new ArrayList<File>();
         Utils.listImageFiles(files, new File(inputFolder));
-        
+
         for (File imageFile : files) {
             try {
                 System.out.println("Process " + imageFile.getPath());
@@ -59,7 +59,7 @@ public class OCRHelperTest {
                 System.out.println(e.getMessage());
             }
         }
-        
+
         assertTrue(new File(outputFolder).list().length > 0);
     }
 }
