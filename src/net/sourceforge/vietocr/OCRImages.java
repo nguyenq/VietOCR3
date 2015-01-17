@@ -39,8 +39,6 @@ public class OCRImages extends OCR<IIOImage> {
         this.datapath = datapath;
         instance = Tesseract.getInstance();
         instance.setDatapath(datapath);
-        instance.setLanguage(this.getLanguage());
-        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
     }
 
     /**
@@ -52,9 +50,16 @@ public class OCRImages extends OCR<IIOImage> {
      */
     @Override
     public String recognizeText(List<IIOImage> images) throws Exception {
+        instance.setLanguage(this.getLanguage());
+        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
         instance.setHocr(this.getOutputFormat().equalsIgnoreCase("hocr"));
-        String[] configs = {CONFIGS_FILE};
-        instance.setConfigs(Arrays.asList(configs));
+
+        File configsFilePath = new File(datapath, "tessdata/configs/" + CONFIGS_FILE);
+        if (configsFilePath.exists()) {
+            String[] configs = {CONFIGS_FILE};
+            instance.setConfigs(Arrays.asList(configs));
+        }
+
         controlParameters(instance);
         String text = instance.doOCR(images, rect);
 
@@ -98,6 +103,8 @@ public class OCRImages extends OCR<IIOImage> {
      */
     @Override
     public void processPages(File inputImage, File outputFile) throws Exception {
+//        instance.setLanguage(this.getLanguage());
+//        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
 //        List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
 //        formats.add(RenderedFormat.valueOf(this.getOutputFormat().toUpperCase()));
 //        instance.createDocuments(inputImage.getPath(), Utils.stripExtension(outputFile.getPath()), formats);
