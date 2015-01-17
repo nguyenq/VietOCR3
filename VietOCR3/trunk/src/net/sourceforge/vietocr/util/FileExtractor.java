@@ -28,7 +28,7 @@ public class FileExtractor {
 //                    new File(zipEntry.getName()).mkdirs();
                 continue;
             }
-            File outputFile = new File(destFolder, new File(zipEntry.getName()).getName());
+            File outputFile = new File(destFolder, zipEntry.getName());
             if (!outputFile.getParentFile().exists()) {
                 outputFile.getParentFile().mkdirs();
             }
@@ -67,7 +67,7 @@ public class FileExtractor {
 //                    new File(tarEntry.getName()).mkdirs();
                 continue;
             }
-            File outputFile = new File(destFolder, new File(tarEntry.getName()).getName());
+            File outputFile = new File(destFolder, tarEntry.getName());
             if (!outputFile.getParentFile().exists()) {
                 outputFile.getParentFile().mkdirs();
             }
