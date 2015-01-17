@@ -17,7 +17,7 @@ public class OCRHelperTest {
     String tessPath;
 
     public OCRHelperTest() {
-        tessPath = WINDOWS ? new File(System.getProperty("user.dir"), Gui.TESSERACT_PATH).getPath() : "/usr/local/bin";
+        tessPath = WINDOWS ? new File(System.getProperty("user.dir"), Gui.TESSERACT_PATH).getPath() : "/usr/bin";
     }
 
     @BeforeClass
@@ -45,8 +45,8 @@ public class OCRHelperTest {
         String langCode = "vie";
         String pageSegMode = "3";
         String outputFormat = "text";
-        String inputFolder = "C:\\Temp\\InputFiles";
-        String outputFolder = "C:\\Temp\\Output";
+        String inputFolder = "samples";
+        String outputFolder = "build/test/";
         List<File> files = new ArrayList<File>();
         Utils.listImageFiles(files, new File(inputFolder));
         

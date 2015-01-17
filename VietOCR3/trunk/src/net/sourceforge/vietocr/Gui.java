@@ -772,7 +772,7 @@ public class Gui extends JFrame {
         setIconImages(getIconImages());
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(500, 360));
-        setPreferredSize(new java.awt.Dimension(1200, 600));
+        setPreferredSize(new java.awt.Dimension(1340, 600));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 formComponentResized(evt);
