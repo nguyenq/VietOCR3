@@ -113,7 +113,6 @@ public class GuiWithSpellcheck extends GuiWithPSM {
 
     @Override
     void jToggleButtonSpellCheckActionPerformed(java.awt.event.ActionEvent evt) {
-        Properties lookupISO_3_1_Codes = getLookupISO_3_1_Codes();
         String localeId = null;
 
         if (lookupISO_3_1_Codes.containsKey(curLangCode)) {

@@ -48,17 +48,18 @@ public class DownloadDialog extends javax.swing.JDialog {
     private Properties availableDictionaries;
     private Properties lookupISO_3_1_Codes;
     private Properties lookupISO639;
+    private String[] installedLanguages;
     File baseDir;
     List<SwingWorker<File, Integer>> downloadTracker;
     int contentLength, byteCount, numberOfDownloads, numOfConcurrentTasks;
     ResourceBundle bundle;
     private File tessdataDir;
-    
+
     private final static Logger logger = Logger.getLogger(DownloadDialog.class.getName());
 
     /**
      * Creates new form DownloadDialog.
-     * 
+     *
      * @param parent
      * @param modal
      */
@@ -69,9 +70,6 @@ public class DownloadDialog extends javax.swing.JDialog {
 
         baseDir = Utils.getBaseDir(DownloadDialog.this);
         downloadTracker = new ArrayList<SwingWorker<File, Integer>>();
-        lookupISO639 = ((Gui) parent).getLookupISO639();
-        lookupISO_3_1_Codes = ((Gui) parent).getLookupISO_3_1_Codes();
-        tessdataDir = ((Gui) parent).getTessdataDir();
         availableLanguageCodes = new Properties();
         availableDictionaries = new Properties();
 
@@ -88,8 +86,8 @@ public class DownloadDialog extends javax.swing.JDialog {
 
         //  Handle escape key to hide the dialog
         KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
-        Action escapeAction =
-                new AbstractAction() {
+        Action escapeAction
+                = new AbstractAction() {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -234,7 +232,7 @@ public class DownloadDialog extends javax.swing.JDialog {
                 try {
                     URL url = new URL(availableLanguageCodes.getProperty(key));
                     downloadDataFile(url, TESSDATA_FOLDER); // download language data pack. In Tesseract 3.02, data is packaged under tesseract-ocr/tessdata folder
-                    
+
                     if (lookupISO_3_1_Codes.containsKey(key)) {
                         String iso_3_1_Code = lookupISO_3_1_Codes.getProperty(key); // vie -> vi_VN
                         if (availableDictionaries.containsKey(iso_3_1_Code)) {
@@ -258,7 +256,7 @@ public class DownloadDialog extends javax.swing.JDialog {
      */
     private boolean CheckDirectoryWriteAccess(File directory) {
         boolean writeAccess = false;
-        
+
         if (directory.exists()) {
             try {
                 File tempFile = File.createTempFile("tmp", null, directory);
@@ -271,7 +269,7 @@ public class DownloadDialog extends javax.swing.JDialog {
                 writeAccess = false;
             }
         }
-        
+
         return writeAccess;
     }
 
@@ -436,7 +434,7 @@ public class DownloadDialog extends javax.swing.JDialog {
         }
 
         this.jList1.setModel(model);
-        this.jList1.setCellRenderer(new CustomCellRenderer(((Gui) this.getParent()).getInstalledLanguages()));
+        this.jList1.setCellRenderer(new CustomCellRenderer(installedLanguages));
     }//GEN-LAST:event_formWindowOpened
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
@@ -485,6 +483,62 @@ public class DownloadDialog extends javax.swing.JDialog {
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the lookupISO_3_1_Codes
+     */
+    public Properties getLookupISO_3_1_Codes() {
+        return lookupISO_3_1_Codes;
+    }
+
+    /**
+     * @param lookupISO_3_1_Codes the lookupISO_3_1_Codes to set
+     */
+    public void setLookupISO_3_1_Codes(Properties lookupISO_3_1_Codes) {
+        this.lookupISO_3_1_Codes = lookupISO_3_1_Codes;
+    }
+
+    /**
+     * @return the lookupISO639
+     */
+    public Properties getLookupISO639() {
+        return lookupISO639;
+    }
+
+    /**
+     * @param lookupISO639 the lookupISO639 to set
+     */
+    public void setLookupISO639(Properties lookupISO639) {
+        this.lookupISO639 = lookupISO639;
+    }
+
+    /**
+     * @return the tessdataDir
+     */
+    public File getTessdataDir() {
+        return tessdataDir;
+    }
+
+    /**
+     * @param tessdataDir the tessdataDir to set
+     */
+    public void setTessdataDir(File tessdataDir) {
+        this.tessdataDir = tessdataDir;
+    }
+
+    /**
+     * @return the installedLanguages
+     */
+    public String[] getInstalledLanguages() {
+        return installedLanguages;
+    }
+
+    /**
+     * @param installedLanguages the installedLanguages to set
+     */
+    public void setInstalledLanguages(String[] installedLanguages) {
+        this.installedLanguages = installedLanguages;
+    }
 
     /**
      * A custom renderer which disables certain elements in list.

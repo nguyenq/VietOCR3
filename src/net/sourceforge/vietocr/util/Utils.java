@@ -49,6 +49,8 @@ public class Utils {
             logger.log(Level.WARNING, e.getMessage(), e);
         }
         return dbDir;
+
+//        return new File(Utils.class.getProtectionDomain().getCodeSource().getLocation().getPath()); // alternative
     }
 
     /**
