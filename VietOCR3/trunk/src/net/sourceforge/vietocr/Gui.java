@@ -57,6 +57,7 @@ public class Gui extends JFrame {
             + (MAC_OS_X ? "/Library/Application Support/" + APP_NAME : "/." + APP_NAME.toLowerCase()));
     static final String UTF8 = "UTF-8";
     static final String strUILanguage = "UILanguage";
+    static final String TESSDATA = "tessdata";
     private static final String strLookAndFeel = "lookAndFeel";
     private static final String strWindowState = "windowState";
     private static final String strLangCode = "langCode";
@@ -87,11 +88,11 @@ public class Gui extends JFrame {
     private String currentDirectory;
     private String outputDirectory;
     protected String tessPath;
-    private Properties lookupISO639;
-    private Properties lookupISO_3_1_Codes;
+    protected Properties lookupISO639;
+    protected Properties lookupISO_3_1_Codes;
     protected String curLangCode = "eng";
     private String[] installedLanguageCodes;
-    private String[] installedLanguages;
+    protected String[] installedLanguages;
     ImageIconScalable imageIcon;
     boolean isFitImageSelected;
     protected boolean wordWrapOn;
@@ -107,7 +108,7 @@ public class Gui extends JFrame {
     private RawListener rawListener;
     private final String DATAFILE_SUFFIX = ".traineddata";
     protected final File baseDir = Utils.getBaseDir(Gui.this);
-    private File tessdataDir;
+    protected String datapath;
 
     private final static Logger logger = Logger.getLogger(Gui.class.getName());
 
@@ -220,15 +221,17 @@ public class Gui extends JFrame {
     private void getInstalledLanguagePacks() {
         if (WINDOWS) {
             tessPath = new File(baseDir, TESSERACT_PATH).getPath();
+            datapath = tessPath;
         } else {
             tessPath = prefs.get(strTessDir, "/usr/bin");
+            datapath = "/usr/share/tesseract-ocr/";
         }
 
         lookupISO639 = new Properties();
         lookupISO_3_1_Codes = new Properties();
 
         try {
-            tessdataDir = new File(tessPath, "tessdata");
+            File tessdataDir = new File(tessPath, TESSDATA);
             if (!tessdataDir.exists()) {
                 String TESSDATA_PREFIX = System.getenv("TESSDATA_PREFIX");
                 if (TESSDATA_PREFIX == null && !WINDOWS) { // if TESSDATA_PREFIX env var not set
@@ -238,7 +241,8 @@ public class Gui extends JFrame {
                         TESSDATA_PREFIX = "/usr/local/share/"; // default make install path of tessdata on Linux
                     }
                 }
-                tessdataDir = new File(TESSDATA_PREFIX, "tessdata");
+                tessdataDir = new File(TESSDATA_PREFIX, TESSDATA);
+                datapath = TESSDATA_PREFIX;
             }
 
             installedLanguageCodes = tessdataDir.list(new FilenameFilter() {
@@ -503,34 +507,6 @@ public class Gui extends JFrame {
         actionCut.setEnabled(isTextSelected);
         actionCopy.setEnabled(isTextSelected);
         actionDelete.setEnabled(isTextSelected);
-    }
-
-    /**
-     * @return the lookupISO639
-     */
-    public Properties getLookupISO639() {
-        return lookupISO639;
-    }
-
-    /**
-     * @return the installedLanguages
-     */
-    public String[] getInstalledLanguages() {
-        return installedLanguages;
-    }
-
-    /**
-     * @return the lookupISO_3_1_Codes
-     */
-    public Properties getLookupISO_3_1_Codes() {
-        return lookupISO_3_1_Codes;
-    }
-
-    /**
-     * @return the tessdataDir
-     */
-    public File getTessdataDir() {
-        return tessdataDir;
     }
 
     /**

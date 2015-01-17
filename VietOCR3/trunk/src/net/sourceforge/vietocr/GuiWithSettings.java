@@ -15,6 +15,7 @@
  */
 package net.sourceforge.vietocr;
 
+import java.io.File;
 import java.util.*;
 import javax.swing.*;
 
@@ -68,11 +69,11 @@ public class GuiWithSettings extends GuiWithLaF {
             dangAmbigsOn = optionsDialog.isDangAmbigsEnabled();
             tessLibEnabled = optionsDialog.isTessLibEnabled();
             outputFormat = optionsDialog.getSelectedOutputFormat();
-            
+
             updateWatch(watchFolder, watchEnabled);
         }
     }
-    
+
     protected void updateWatch(String watchFolder, boolean watchEnabled) {
         // override in subclass
     }
@@ -80,6 +81,10 @@ public class GuiWithSettings extends GuiWithLaF {
     @Override
     void jMenuItemDownloadLangDataActionPerformed(java.awt.event.ActionEvent evt) {
         DownloadDialog dialog = new DownloadDialog(this, true);
+        dialog.setLookupISO639(lookupISO639);
+        dialog.setLookupISO_3_1_Codes(lookupISO_3_1_Codes);
+        dialog.setInstalledLanguages(installedLanguages);
+        dialog.setTessdataDir(new File(datapath, TESSDATA));
         dialog.setVisible(true);
     }
 
