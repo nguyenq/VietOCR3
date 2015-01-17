@@ -44,8 +44,8 @@ public class OCRHelperTest {
         System.out.println("performOCR");
         String langCode = "vie";
         String pageSegMode = "3";
-        String outputFormat = "pdf";
-        String inputFolder = "C:\\Temp\\Images";
+        String outputFormat = "text";
+        String inputFolder = "C:\\Temp\\InputFiles";
         String outputFolder = "C:\\Temp\\Output";
         List<File> files = new ArrayList<File>();
         Utils.listImageFiles(files, new File(inputFolder));

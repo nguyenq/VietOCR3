@@ -33,12 +33,11 @@ import net.sourceforge.vietocr.util.Utils;
 public class OCRImages extends OCR<IIOImage> {
 
     private final Tesseract instance;
-    private final String datapath;
+    private final String tessPath;
 
-    public OCRImages(String datapath) {
-        this.datapath = datapath;
+    public OCRImages(String tessPath) {
+        this.tessPath = tessPath;
         instance = Tesseract.getInstance();
-        instance.setDatapath(datapath);
     }
 
     /**
@@ -50,11 +49,12 @@ public class OCRImages extends OCR<IIOImage> {
      */
     @Override
     public String recognizeText(List<IIOImage> images) throws Exception {
-        instance.setLanguage(this.getLanguage());
-        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
-        instance.setHocr(this.getOutputFormat().equalsIgnoreCase("hocr"));
+        instance.setDatapath(datapath);
+        instance.setLanguage(language);
+        instance.setPageSegMode(Integer.parseInt(pageSegMode));
+        instance.setHocr(outputFormat.equalsIgnoreCase("hocr"));
 
-        File configsFilePath = new File(datapath, "tessdata/configs/" + CONFIGS_FILE);
+        File configsFilePath = new File(datapath, CONFIG_PATH + CONFIGS_FILE);
         if (configsFilePath.exists()) {
             String[] configs = {CONFIGS_FILE};
             instance.setConfigs(Arrays.asList(configs));
@@ -75,7 +75,7 @@ public class OCRImages extends OCR<IIOImage> {
      * @param instance
      */
     void controlParameters(Tesseract instance) throws Exception {
-        File configvarsFilePath = new File(datapath, "tessdata/configs/" + CONFIGVARS_FILE);
+        File configvarsFilePath = new File(datapath, CONFIG_PATH + CONFIGVARS_FILE);
         if (!configvarsFilePath.exists()) {
             return;
         }
@@ -103,10 +103,11 @@ public class OCRImages extends OCR<IIOImage> {
      */
     @Override
     public void processPages(File inputImage, File outputFile) throws Exception {
-//        instance.setLanguage(this.getLanguage());
-//        instance.setPageSegMode(Integer.parseInt(this.getPageSegMode()));
+//        instance.setDatapath(datapath);
+//        instance.setLanguage(language);
+//        instance.setPageSegMode(Integer.parseInt(pageSegMode));
 //        List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
-//        formats.add(RenderedFormat.valueOf(this.getOutputFormat().toUpperCase()));
+//        formats.add(RenderedFormat.valueOf(outputFormat.toUpperCase()));
 //        instance.createDocuments(inputImage.getPath(), Utils.stripExtension(outputFile.getPath()), formats);
     }
 }

@@ -32,7 +32,6 @@ public class OCRFiles extends OCR<File> {
     final static String OUTPUT_FILE_NAME = "TessOutput";
     final static String TEXTFILE_EXTENSION = ".txt";
     private final String tessPath;
-    private final String datapath;
 
     /**
      * Creates a new instance of OCR
@@ -41,7 +40,6 @@ public class OCRFiles extends OCR<File> {
      */
     public OCRFiles(String tessPath) {
         this.tessPath = tessPath;
-        this.datapath = "./";
     }
 
     /**
@@ -61,17 +59,19 @@ public class OCRFiles extends OCR<File> {
         cmd.add(""); // placeholder for inputfile
         cmd.add(outputFileName);
         cmd.add(LANG_OPTION);
-        cmd.add(this.getLanguage());
+        cmd.add(language);
         cmd.add(PSM_OPTION);
-        cmd.add(this.getPageSegMode());
+        cmd.add(pageSegMode);
         controlParameters(cmd);
 
-        File configsFilePath = new File(datapath, "tessdata/configs/" + CONFIGS_FILE); // Note: On Linux, this is under TESSDATA_PREFIX dir 
+        File configsFilePath = new File(datapath, CONFIG_PATH + CONFIGS_FILE);
         if (configsFilePath.exists()) {
             cmd.add(CONFIGS_FILE);
         }
 
         ProcessBuilder pb = new ProcessBuilder();
+        Map<String, String> env = pb.environment();
+        env.put("TESSDATA_PREFIX", datapath);
         pb.directory(new File(tessPath));
         pb.redirectErrorStream(true);
 
@@ -119,17 +119,16 @@ public class OCRFiles extends OCR<File> {
      */
     @Override
     public void processPages(File inputImage, File outputFile) throws Exception {
-        String outputFormat = this.getOutputFormat();
         List<String> cmd = new ArrayList<String>();
         cmd.add(tessPath + "/tesseract");
         cmd.add(inputImage.getAbsolutePath());
         cmd.add(outputFile.getAbsolutePath());
         cmd.add(LANG_OPTION);
-        cmd.add(this.getLanguage());
+        cmd.add(language);
         cmd.add(PSM_OPTION);
-        cmd.add(this.getPageSegMode());
+        cmd.add(pageSegMode);
         controlParameters(cmd);
-        File configsFilePath = new File(datapath, "tessdata/configs/" + CONFIGS_FILE); // Note: On Linux, this is under TESSDATA_PREFIX dir 
+        File configsFilePath = new File(datapath, CONFIG_PATH + CONFIGS_FILE);
         if (configsFilePath.exists()) {
             cmd.add(CONFIGS_FILE);
         }
@@ -139,6 +138,8 @@ public class OCRFiles extends OCR<File> {
         }
 
         ProcessBuilder pb = new ProcessBuilder();
+        Map<String, String> env = pb.environment();
+        env.put("TESSDATA_PREFIX", datapath);
         pb.directory(new File(tessPath));
         pb.redirectErrorStream(true);
         pb.command(cmd);
@@ -169,7 +170,7 @@ public class OCRFiles extends OCR<File> {
      * @param instance
      */
     void controlParameters(List<String> cmd) throws Exception {
-        File configvarsFilePath = new File(datapath, "tessdata/configs/" + CONFIGVARS_FILE); // Note: On Linux, this is under TESSDATA_PREFIX dir 
+        File configvarsFilePath = new File(getDatapath(), CONFIG_PATH + CONFIGVARS_FILE); // Note: On Linux, this is under TESSDATA_PREFIX dir 
         if (!configvarsFilePath.exists()) {
             return;
         }
