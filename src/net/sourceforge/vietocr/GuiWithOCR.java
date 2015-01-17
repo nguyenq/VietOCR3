@@ -158,7 +158,7 @@ public class GuiWithOCR extends GuiWithImageOps {
                     }
                 }
             } else {
-                OCR<IIOImage> ocrEngine = new OCRImages(tessPath); // for Tess4J
+                OCR<IIOImage> ocrEngine = new OCRImages(getTessdataDir().getParent()); // for Tess4J
                 ocrEngine.setPageSegMode(selectedPSM);
                 ocrEngine.setLanguage(lang);
                 imageList = entity.getSelectedOimages();

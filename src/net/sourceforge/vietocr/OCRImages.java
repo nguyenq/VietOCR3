@@ -33,12 +33,12 @@ import net.sourceforge.vietocr.util.Utils;
 public class OCRImages extends OCR<IIOImage> {
 
     Tesseract instance;
-    String tessPath;
+    String datapath;
 
-    public OCRImages(String tessPath) {
+    public OCRImages(String datapath) {
         instance = Tesseract.getInstance();
-        this.tessPath = tessPath;
-        instance.setDatapath(tessPath);
+        this.datapath = datapath;
+        instance.setDatapath(datapath);
     }
 
     /**
@@ -70,7 +70,7 @@ public class OCRImages extends OCR<IIOImage> {
      * @param instance
      */
     void controlParameters(Tesseract instance) throws Exception {
-        File configvarsFilePath = new File(tessPath, "tessdata/configs/" + CONFIGVARS_FILE);
+        File configvarsFilePath = new File(datapath, "tessdata/configs/" + CONFIGVARS_FILE);
         if (!configvarsFilePath.exists()) {
             return;
         }
