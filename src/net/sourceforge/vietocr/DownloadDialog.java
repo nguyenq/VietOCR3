@@ -42,7 +42,7 @@ public class DownloadDialog extends javax.swing.JDialog {
 
     final static int BUFFER_SIZE = 1024;
     final static String DICTIONARY_FOLDER = "dict";
-    final static String TESSDATA_FOLDER = "";
+    final static String TESSDATA_FOLDER = "tessdata";
     final String tmpdir = System.getProperty("java.io.tmpdir");
     private Properties availableLanguageCodes;
     private Properties availableDictionaries;
@@ -333,10 +333,10 @@ public class DownloadDialog extends javax.swing.JDialog {
                     File downloadedFile = get();
 
                     File destFolderPath;
-                    if (Gui.WINDOWS || destFolder.equals(DICTIONARY_FOLDER)) {
+                    if (destFolder.equals(DICTIONARY_FOLDER)) {
                         destFolderPath = new File(baseDir, destFolder);
                     } else {
-                        destFolderPath = tessdataDir.getParentFile().getParentFile(); // for Linux, go back up 2 levels
+                        destFolderPath = tessdataDir;
                     }
                     FileExtractor.extractCompressedFile(downloadedFile.getPath(), destFolderPath.getPath());
                     if (destFolder.equals(TESSDATA_FOLDER)) {
