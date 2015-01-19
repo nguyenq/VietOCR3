@@ -576,6 +576,7 @@ public class Gui extends JFrame {
         jButtonOpen = new javax.swing.JButton();
         jButtonScan = new javax.swing.JButton();
         jButtonPasteImage = new javax.swing.JButton();
+        jButtonSave = new javax.swing.JButton();
         jSeparator14 = new javax.swing.JToolBar.Separator();
         jButtonPrevPage = new javax.swing.JButton();
         jButtonNextPage = new javax.swing.JButton();
@@ -591,9 +592,6 @@ public class Gui extends JFrame {
         jButtonRotateCCW = new javax.swing.JButton();
         jButtonRotateCW = new javax.swing.JButton();
         jSeparator16 = new javax.swing.JToolBar.Separator();
-        jButtonOCR = new javax.swing.JButton();
-        jButtonCancelOCR = new javax.swing.JButton();
-        jButtonCancelOCR.setVisible(false);
         jSplitPaneImage = new javax.swing.JSplitPane();
         jScrollPaneThumbnail = new javax.swing.JScrollPane();
         jScrollPaneThumbnail.getVerticalScrollBar().setUnitIncrement(20);
@@ -606,12 +604,14 @@ public class Gui extends JFrame {
         jButtonCollapseExpand = new javax.swing.JButton();
         jPanelTextArea = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
+        jButtonOCR = new javax.swing.JButton();
+        jButtonCancelOCR = new javax.swing.JButton();
+        jButtonCancelOCR.setVisible(false);
+        jButtonClear = new javax.swing.JButton();
+        jSeparator17 = new javax.swing.JToolBar.Separator();
         jToggleButtonSpellCheck = new javax.swing.JToggleButton();
         jButtonPostProcess = new javax.swing.JButton();
         jButtonRemoveLineBreaks = new javax.swing.JButton();
-        jSeparator17 = new javax.swing.JToolBar.Separator();
-        jButtonSave = new javax.swing.JButton();
-        jButtonClear = new javax.swing.JButton();
         jSeparator15 = new javax.swing.JToolBar.Separator();
         jLabelLanguage = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(4, 0), new java.awt.Dimension(4, 0), new java.awt.Dimension(4, 32767));
@@ -813,6 +813,15 @@ public class Gui extends JFrame {
             }
         });
         jToolBar2.add(jButtonPasteImage);
+
+        jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/save.png"))); // NOI18N
+        jButtonSave.setToolTipText(bundle.getString("jButtonSave.ToolTipText")); // NOI18N
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButtonSave);
         jToolBar2.add(jSeparator14);
 
         jButtonPrevPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/document_page_previous.png"))); // NOI18N
@@ -918,24 +927,6 @@ public class Gui extends JFrame {
         jToolBar2.add(jButtonRotateCW);
         jToolBar2.add(jSeparator16);
 
-        jButtonOCR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/ocr.png"))); // NOI18N
-        jButtonOCR.setToolTipText(bundle.getString("jButtonOCR.ToolTipText")); // NOI18N
-        jButtonOCR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonOCRActionPerformed(evt);
-            }
-        });
-        jToolBar2.add(jButtonOCR);
-
-        jButtonCancelOCR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/cancel.png"))); // NOI18N
-        jButtonCancelOCR.setToolTipText(bundle.getString("jButtonCancelOCR.ToolTipText")); // NOI18N
-        jButtonCancelOCR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelOCRActionPerformed(evt);
-            }
-        });
-        jToolBar2.add(jButtonCancelOCR);
-
         jPanelImage.add(jToolBar2, java.awt.BorderLayout.PAGE_START);
 
         jSplitPaneImage.setDividerLocation(120);
@@ -984,6 +975,34 @@ public class Gui extends JFrame {
 
         jToolBar1.setRollover(true);
 
+        jButtonOCR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/ocr.png"))); // NOI18N
+        jButtonOCR.setToolTipText(bundle.getString("jButtonOCR.ToolTipText")); // NOI18N
+        jButtonOCR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOCRActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonOCR);
+
+        jButtonCancelOCR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/cancel.png"))); // NOI18N
+        jButtonCancelOCR.setToolTipText(bundle.getString("jButtonCancelOCR.ToolTipText")); // NOI18N
+        jButtonCancelOCR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelOCRActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonCancelOCR);
+
+        jButtonClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/draw_eraser.png"))); // NOI18N
+        jButtonClear.setToolTipText(bundle.getString("jButtonClear.ToolTipText")); // NOI18N
+        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonClear);
+        jToolBar1.add(jSeparator17);
+
         jToggleButtonSpellCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/inline_spellcheck.png"))); // NOI18N
         jToggleButtonSpellCheck.setToolTipText(bundle.getString("jToggleButtonSpellCheck.ToolTipText")); // NOI18N
         jToggleButtonSpellCheck.addActionListener(new java.awt.event.ActionListener() {
@@ -1011,25 +1030,6 @@ public class Gui extends JFrame {
             }
         });
         jToolBar1.add(jButtonRemoveLineBreaks);
-        jToolBar1.add(jSeparator17);
-
-        jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/save.png"))); // NOI18N
-        jButtonSave.setToolTipText(bundle.getString("jButtonSave.ToolTipText")); // NOI18N
-        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSaveActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButtonSave);
-
-        jButtonClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/draw_eraser.png"))); // NOI18N
-        jButtonClear.setToolTipText(bundle.getString("jButtonClear.ToolTipText")); // NOI18N
-        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClearActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButtonClear);
         jToolBar1.add(jSeparator15);
         jToolBar1.add(Box.createHorizontalGlue());
 
