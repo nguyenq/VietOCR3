@@ -96,4 +96,4 @@ Version 3.6 Beta (16 January 2015)
 - Display useful info in statusbar
 - Update URL of OpenOffice dictionaries
 - Update Hunspell to v1.3.3 and fix a NPE
-- Add support for reading specific configs file for setting control parameters
+- Add support for reading specific configs files for setting control parameters
