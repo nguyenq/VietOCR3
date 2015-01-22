@@ -107,6 +107,7 @@ public class GuiWithImageOps extends GuiWithScan {
         ((JImageLabel) jImageLabel).deselect();
         doChange(false);
         isFitImageSelected = false;
+        this.jButtonActualSize.setEnabled(true);
     }
 
     @Override
@@ -114,6 +115,7 @@ public class GuiWithImageOps extends GuiWithScan {
         ((JImageLabel) jImageLabel).deselect();
         doChange(true);
         isFitImageSelected = false;
+        this.jButtonActualSize.setEnabled(true);
     }
 
     /**
