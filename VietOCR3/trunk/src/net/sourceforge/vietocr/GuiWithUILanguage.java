@@ -55,7 +55,7 @@ public class GuiWithUILanguage extends GuiWithInputMethod {
     }
 
     private String[] getInstalledUILangs() {
-        String[] locales = {"bn", "ca", "cs", "en", "fa", "hi", "it", "ja", "lt", "nl", "pl", "ru", "sk", "tr", "vi"};
+        String[] locales = {"bn", "ca", "cs", "en", "ge", "fa", "hi", "it", "ja", "lt", "nl", "pl", "ru", "sk", "tr", "vi"};
         return locales;
     }
 }
