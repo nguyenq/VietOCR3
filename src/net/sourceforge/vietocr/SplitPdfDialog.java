@@ -126,7 +126,7 @@ public class SplitPdfDialog extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel1.add(jTextFieldOutputFile, gridBagConstraints);
 
-        jButtonInput.setText("...");
+        jButtonInput.setText("…");
         jButtonInput.setToolTipText(bundle.getString("jButtonInput.ToolTipText")); // NOI18N
         jButtonInput.setPreferredSize(new java.awt.Dimension(30, 23));
         jButtonInput.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +141,7 @@ public class SplitPdfDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 4, 0, 4);
         jPanel1.add(jButtonInput, gridBagConstraints);
 
-        jButtonOutput.setText("...");
+        jButtonOutput.setText("…");
         jButtonOutput.setToolTipText(bundle.getString("jButtonOutput.ToolTipText")); // NOI18N
         jButtonOutput.setPreferredSize(new java.awt.Dimension(30, 23));
         jButtonOutput.addActionListener(new java.awt.event.ActionListener() {
