@@ -15,7 +15,7 @@
         <p>Tesseract 3.02 Windows uitvoerbestand word meegeleverd met dit programma. Je kunt als aanvulling nog extra <a href="http://code.google.com/p/tesseract-ocr/downloads/list"> taaldata pakketten</a> voor Tesseract downloaden. Alle bestanden die starten met de code; ISO639-3 kun je plaatsen in de submap <code>tessdata</code>.</p>
         <p>Voor linux zijn Tesseract en de taaldata pakketten ook in verkrijgbaar in de grafische (universele) repository. Je kunt ze installeren via Synaptic of door het volgende commando:</p>
         <blockquote>
-            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-nld</code></p>
         </blockquote>
         <p>De bestanden zullen in <code>/usr/bin</code> en <code>/usr/share/tesseract-ocr/tessdata</code> geplaatst worden. Tenzij tesseract is gebouwd en geïnstalleerd vanaf de <a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">source</a>, zullen ze geplaatst worden in <code>/usr/local/bin</code> en <code>/usr/local/share/tessdata</code>. Je moet wel de map waarin het Tesseract uitvoerbestand zich bevind opgeven in het VietOCR <code>Instellingen</code> menu. Als de data op een niet standaard locatie staat zal een softlink naar <code>tessdata</code> vereist zijn. Je kunt de locatie van <code>tessdata</code> ook opgeven via de environment variabel <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
