@@ -87,7 +87,7 @@ Version 3.5 (25 January 2014)
 - Implement Undo function
 - Additional translations
 
-Version 3.6 Beta (25 January 2015)
+Version 3.6 RC (16 February 2015)
 - Update JNA to v4.1.0
 - Update Ghost4J to v0.5.1
 - Update Tess4J to 1.4.1
