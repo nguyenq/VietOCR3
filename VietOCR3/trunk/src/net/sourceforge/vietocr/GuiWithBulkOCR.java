@@ -43,7 +43,7 @@ public class GuiWithBulkOCR extends GuiWithPostprocess {
     public GuiWithBulkOCR() {
         inputFolder = prefs.get(strInputFolder, System.getProperty("user.home"));
         outputFolder = prefs.get(strBulkOutputFolder, System.getProperty("user.home"));
-        outputFormat = prefs.get(strBulkOutputFormat, "txt");
+        outputFormat = prefs.get(strBulkOutputFormat, "text");
         statusFrame = new StatusFrame();
         statusFrame.setTitle(bundle.getString("bulkStatusFrame.Title"));
     }

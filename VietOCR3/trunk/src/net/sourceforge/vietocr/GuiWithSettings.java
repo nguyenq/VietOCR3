@@ -37,7 +37,7 @@ public class GuiWithSettings extends GuiWithLaF {
         outputFolder = prefs.get(strOutputFolder, System.getProperty("user.home"));
         watchEnabled = prefs.getBoolean(strWatchEnabled, false);
         tessLibEnabled = prefs.getBoolean(strTessLibEnabled, false);
-        outputFormat = prefs.get(strBatchOutputFormat, "txt");
+        outputFormat = prefs.get(strBatchOutputFormat, "text");
     }
 
     @Override
