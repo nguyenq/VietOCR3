@@ -87,13 +87,13 @@ Version 3.5 (25 January 2014)
 - Implement Undo function
 - Additional translations
 
-Version 3.6 RC (16 February 2015)
+Version 3.6 (1 March 2015)
 - Update JNA to v4.1.0
 - Update Ghost4J to v0.5.1
-- Update Tess4J to 1.4.1
+- Update Tess4J to v1.4.1
 - Add Split TIFF function
 - Add thumbnail bar for ease of page navigation
 - Display useful info in statusbar
-- Update URL of OpenOffice dictionaries
+- Update links to OpenOffice dictionaries
 - Update Hunspell to v1.3.3 and fix a NPE
-- Add support for reading specific configs files for setting control parameters
+- Add support for reading specific configs files for setting Tesseract control parameters
