@@ -84,6 +84,7 @@ public class Gui extends JFrame {
     int imageTotal;
     List<ImageIconScalable> imageList;
     protected List<IIOImage> iioImageList;
+    protected String inputfilename;
     protected ResourceBundle bundle;
     private String currentDirectory;
     private String outputDirectory;
@@ -1832,6 +1833,7 @@ public class Gui extends JFrame {
             protected Void doInBackground() throws Exception {
                 iioImageList = ImageIOHelper.getIIOImageList(selectedFile);
                 imageList = ImageIconScalable.getImageList(iioImageList);
+                inputfilename = selectedFile.getPath();
                 return null;
             }
 
@@ -2314,6 +2316,9 @@ public class Gui extends JFrame {
         setButton();
     }//GEN-LAST:event_jComboBoxPageNumActionPerformed
 
+    /**
+     * Pastes image from clipboard.
+     */
     void pasteImage() {
         try {
             Image image = ImageHelper.getClipboardImage();

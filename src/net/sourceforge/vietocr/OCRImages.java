@@ -44,11 +44,12 @@ public class OCRImages extends OCR<IIOImage> {
      * Recognizes images.
      *
      * @param images as IIOImage
+     * @param inputfilename input filename
      * @return recognized text
      * @throws Exception
      */
     @Override
-    public String recognizeText(List<IIOImage> images) throws Exception {
+    public String recognizeText(List<IIOImage> images, String inputfilename) throws Exception {
         instance.setDatapath(datapath);
         instance.setLanguage(language);
         instance.setPageSegMode(Integer.parseInt(pageSegMode));
@@ -61,7 +62,7 @@ public class OCRImages extends OCR<IIOImage> {
         }
 
         controlParameters(instance);
-        String text = instance.doOCR(images, rect);
+        String text = instance.doOCR(images, inputfilename, rect);
 
         return text;
     }

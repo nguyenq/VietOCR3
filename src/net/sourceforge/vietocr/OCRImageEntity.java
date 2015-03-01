@@ -32,6 +32,8 @@ public class OCRImageEntity {
     private List<IIOImage> oimages;
     /** input image File */
     private File imageFile;
+    /** input filename */
+    private String inputfilename;
     /** index of pages, such as in multi-page TIFF image */
     private final int index;
     /** bounding rectangle */
@@ -46,12 +48,14 @@ public class OCRImageEntity {
     /**
      * Constructor.
      * @param oimages a list of <code>IIOImage</code> objects
+     * @param inputfilename input filename
      * @param index index of images
      * @param rect the bounding rectangle defines the region of the image to be recognized. A rectangle of zero dimension or <code>null</code> indicates the whole image.
      * @param lang language code, which follows ISO 639-3 standard
      */
-    public OCRImageEntity(List<IIOImage> oimages, int index, Rectangle rect, String lang) {
+    public OCRImageEntity(List<IIOImage> oimages, String inputfilename, int index, Rectangle rect, String lang) {
         this.oimages = oimages;
+        this.inputfilename = inputfilename;
         this.index = index;
         this.rect = rect;
         this.lang = lang;
@@ -66,6 +70,7 @@ public class OCRImageEntity {
      */
     public OCRImageEntity(File imageFile, int index, Rectangle rect, String lang) {
         this.imageFile = imageFile;
+        this.inputfilename = imageFile.getPath();
         this.index = index;
         this.rect = rect;
         this.lang = lang;
@@ -193,5 +198,14 @@ public class OCRImageEntity {
      */
     public String getLanguage() {
         return lang;
+    }
+
+    /**
+     * Gets input filename.
+     * 
+     * @return the input filename
+     */
+    public String getInputfilename() {
+        return inputfilename;
     }
 }

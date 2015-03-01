@@ -46,11 +46,12 @@ public class OCRFiles extends OCR<File> {
      * Recognizes TIFF files.
      *
      * @param tiffFiles
+     * @param inputfilename input filename; not used.
      * @return recognized text
      * @throws Exception
      */
     @Override
-    public String recognizeText(final List<File> tiffFiles) throws Exception {
+    public String recognizeText(List<File> tiffFiles, String inputfilename) throws Exception {
         File tempTessOutputFile = File.createTempFile(OUTPUT_FILE_NAME, TEXTFILE_EXTENSION);
         String outputFileName = Utils.stripExtension(tempTessOutputFile.getPath()); // chop the file extension
 
