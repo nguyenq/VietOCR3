@@ -62,7 +62,7 @@ public class GuiWithOCR extends GuiWithImageOps {
                 //move this part to the image entity
 //                ArrayList<IIOImage> tempList = new ArrayList<IIOImage>();
 //                tempList.add(new IIOImage(bi, null, null));
-                performOCR(iioImageList, imageIndex, rect);
+                performOCR(iioImageList, inputfilename, imageIndex, rect);
             } catch (RasterFormatException rfe) {
                 logger.log(Level.SEVERE, rfe.getMessage(), rfe);
                 JOptionPane.showMessageDialog(this, rfe.getMessage(), APP_NAME, JOptionPane.ERROR_MESSAGE);
@@ -70,7 +70,7 @@ public class GuiWithOCR extends GuiWithImageOps {
                 logger.log(Level.SEVERE, e.getMessage(), e);
             }
         } else {
-            performOCR(iioImageList, imageIndex, null);
+            performOCR(iioImageList, inputfilename, imageIndex, null);
         }
     }
 
@@ -84,16 +84,18 @@ public class GuiWithOCR extends GuiWithImageOps {
         this.jButtonOCR.setVisible(false);
         this.jButtonCancelOCR.setVisible(true);
         this.jButtonCancelOCR.setEnabled(true);
-        performOCR(iioImageList, -1, null);
+        performOCR(iioImageList, inputfilename, -1, null);
     }
 
     /**
      * Perform OCR on images represented by IIOImage.
      *
-     * @param list List of IIOImage
+     * @param iioImageList the value of iioImageList
+     * @param inputfilename the value of inputfilename
      * @param index Index of page to be OCRed: -1 for all pages
+     * @param rect the value of rect
      */
-    void performOCR(final List<IIOImage> iioImageList, final int index, Rectangle rect) {
+    void performOCR(final List<IIOImage> iioImageList, String inputfilename, final int index, Rectangle rect) {
         if (curLangCode.trim().length() == 0) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_select_a_language."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -109,7 +111,7 @@ public class GuiWithOCR extends GuiWithImageOps {
         this.jMenuItemOCR.setEnabled(false);
         this.jMenuItemOCRAll.setEnabled(false);
 
-        OCRImageEntity entity = new OCRImageEntity(iioImageList, index, rect, curLangCode);
+        OCRImageEntity entity = new OCRImageEntity(iioImageList, inputfilename, index, rect, curLangCode);
         entity.setScreenshotMode(this.jCheckBoxMenuItemScreenshotMode.isSelected());
 
         // instantiate SwingWorker for OCR
@@ -154,7 +156,7 @@ public class GuiWithOCR extends GuiWithImageOps {
 
                 for (int i = 0; i < workingFiles.size(); i++) {
                     if (!isCancelled()) {
-                        String result = ocrEngine.recognizeText(workingFiles.subList(i, i + 1));
+                        String result = ocrEngine.recognizeText(workingFiles.subList(i, i + 1), entity.getInputfilename());
                         publish(result); // interim result
                     }
                 }
@@ -167,7 +169,7 @@ public class GuiWithOCR extends GuiWithImageOps {
 
                 for (int i = 0; i < imageList.size(); i++) {
                     if (!isCancelled()) {
-                        String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), entity.getRect());
+                        String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), entity.getInputfilename(), entity.getRect());
                         publish(result); // interim result
                     }
                 }

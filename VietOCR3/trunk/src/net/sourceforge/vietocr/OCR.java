@@ -36,23 +36,25 @@ public abstract class OCR<T> {
      * Recognizes files or images.
      *
      * @param imageEntities List of files or images
+     * @param inputfilename input filename
      * @param selection Region of Interest
      * @return
      * @throws Exception
      */
-    public String recognizeText(List<T> imageEntities, Rectangle selection) throws Exception {
+    public String recognizeText(List<T> imageEntities, String inputfilename, Rectangle selection) throws Exception {
         rect = selection;
-        return recognizeText(imageEntities);
+        return recognizeText(imageEntities, inputfilename);
     }
 
     /**
      * Recognizes files or images.
      *
      * @param imageEntities List of files or images
+     * @param inputfilename input filename
      * @return
      * @throws Exception
      */
-    public abstract String recognizeText(List<T> imageEntities) throws Exception;
+    public abstract String recognizeText(List<T> imageEntities, String inputfilename) throws Exception;
 
     /**
      * Processes image file to output file.

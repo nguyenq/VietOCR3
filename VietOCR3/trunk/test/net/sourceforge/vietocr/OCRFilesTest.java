@@ -21,7 +21,7 @@ public class OCRFilesTest {
         File selectedFile = new File("samples/vietsample1.tif");
         try {
             List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(selectedFile);
-            entity = new OCRImageEntity(iioImageList, -1, null, "vie");
+            entity = new OCRImageEntity(iioImageList, selectedFile.getPath(), -1, null, "vie");
         } catch (Exception e) {
         }
     }
@@ -48,12 +48,11 @@ public class OCRFilesTest {
     @Test
     public void testRecognizeText() throws Exception {
         System.out.println("recognizeText with Tesseract executable");
-        List<File> tiffFiles = entity.getClonedImageFiles();
         OCR<File> instance = new OCRFiles(tessPath);
         instance.setDatapath(datapath);
         instance.setLanguage(lang);
         String expResult = "Tôi từ chinh chiến cũng ra đi";
-        String result = instance.recognizeText(tiffFiles);
+        String result = instance.recognizeText(entity.getClonedImageFiles(), entity.getInputfilename());
         System.out.println(result);
         assertTrue(result.toLowerCase().contains(expResult.toLowerCase()));
     }
