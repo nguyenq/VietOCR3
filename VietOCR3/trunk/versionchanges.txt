@@ -95,5 +95,5 @@ Version 3.6 (3 March 2015)
 - Add thumbnail bar for ease of page navigation
 - Display useful info in statusbar
 - Update links to OpenOffice dictionaries
-- Update Hunspell to v1.3.3 and fix a NPE
+- Update Hunspell to v1.3.3 and fix a NPE; add Windows 64-bit support
 - Add support for reading specific configs files for setting Tesseract control parameters
