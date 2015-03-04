@@ -15,9 +15,7 @@
  */
 package net.sourceforge.vietpad.utilities;
 
-import com.stibocatalog.hunspell.Hunspell;
 import java.awt.Color;
-//import java.util.logging.*;
 import java.io.*;
 import java.text.BreakIterator;
 import java.util.ArrayList;
@@ -29,11 +27,16 @@ import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.*;
+
 import net.sourceforge.vietocr.Gui;
 import net.sourceforge.vietocr.util.Utils;
 
+import com.stibocatalog.hunspell.Hunspell;
+import com.sun.jna.Platform;
+
 public class SpellCheckHelper {
 
+    private static final String JNA_LIBRARY_PATH = "jna.library.path";
     JTextComponent textComp;
     // define the highlighter
     Highlighter.HighlightPainter myPainter = new WavyLineHighlighter(Color.red);
@@ -43,7 +46,7 @@ public class SpellCheckHelper {
     Hunspell.Dictionary spellDict;
     static List<String> userWordList = new ArrayList<String>();
     static long mapLastModified = Long.MIN_VALUE;
-    
+
     private final static Logger logger = Logger.getLogger(SpellCheckHelper.class.getName());
 
     /**
@@ -66,8 +69,9 @@ public class SpellCheckHelper {
             return;
         }
         try {
-            if (System.getProperty("os.name").startsWith("Windows 8"))  {
-                System.setProperty("jna.library.path", baseDir.getPath());
+            if (Platform.isWindows()) {
+                String hunspellDllLocation = baseDir.getPath() + "/lib/" + Platform.RESOURCE_PREFIX;
+                System.setProperty(JNA_LIBRARY_PATH, hunspellDllLocation);
             }
             spellDict = Hunspell.getInstance().getDictionary(new File(baseDir, "dict/" + localeId).getPath());
             loadUserDictionary();

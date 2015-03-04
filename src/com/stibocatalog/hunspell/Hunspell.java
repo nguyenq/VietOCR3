@@ -149,9 +149,7 @@ public class Hunspell {
         boolean amd64 = arch.equals("x86_64") || arch.equals("amd64") || arch.equals("ia64n");
 
         if (os.startsWith("windows")) {
-            if (x86) {
-                return "libhunspell";
-            }
+            return "libhunspell";
             //if (amd64) {
             // Note: No bindings exist for this yet (no JNA support).
             //	return "hunspell-win-x86-64";
