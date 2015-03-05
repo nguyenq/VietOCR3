@@ -52,7 +52,7 @@ public class Gui extends JFrame {
     public static final String TO_BE_IMPLEMENTED = "To be implemented in subclass";
     static final boolean MAC_OS_X = System.getProperty("os.name").startsWith("Mac");
     static final boolean WINDOWS = System.getProperty("os.name").toLowerCase().startsWith("windows");
-//    static final boolean LINUX = System.getProperty("os.name").equals("Linux");
+    static final boolean LINUX = System.getProperty("os.name").equals("Linux");
     protected final File supportDir = new File(System.getProperty("user.home")
             + (MAC_OS_X ? "/Library/Application Support/" + APP_NAME : "/." + APP_NAME.toLowerCase()));
     static final String UTF8 = "UTF-8";
@@ -1521,6 +1521,9 @@ public class Gui extends JFrame {
         jMenuBar2.add(jMenuHelp);
 
         setJMenuBar(jMenuBar2);
+        if (LINUX) {
+            setPreferredSize(new java.awt.Dimension(1340, 600));
+        }
 
         // DnD support
         new DropTarget(this.jImageLabel, new FileDropTargetListener(Gui.this));
