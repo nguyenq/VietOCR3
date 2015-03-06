@@ -288,6 +288,7 @@ public class Gui extends JFrame {
         }
 
         DefaultComboBoxModel model = new DefaultComboBoxModel(installedLanguages);
+        model.setSelectedItem(null);
         jComboBoxLang.setModel(model);
         jComboBoxLang.setSelectedItem(prefs.get(strLangCode, null));
         final JTextComponent textField = (JTextComponent) jComboBoxLang.getEditor().getEditorComponent();
