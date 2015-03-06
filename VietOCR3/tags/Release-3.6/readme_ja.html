@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>VietOCR - Tesseract OCRのJava製GUIフロントエンド</title>
+</head>
+<body>
+    <div class="Section1">
+        <h2 align="center">VietOCR</h2>
+        <h3>概要</h3>
+        <p><a href="http://vietocr.sourceforge.net">VietOCR</a>はJavaで書かれた<a href="http://code.google.com/p/tesseract-ocr/">Tesseract OCRエンジン</a>のGUIフロントエンドです。一般的な画像形式やマルチページTIFF形式の文字認識をサポートします。プログラムはOCR処理に付き物の誤認識を修正する後処理をし、認識結果の正解率を向上させます。コマンドラインから実行すればコンソールアプリケーションとしても機能します。</p>
+        <p>バッチ処理がサポートされるようになりました。このプログラムは監視フォルダ内の新しい画像ファイルを監視し、OCRエンジンを通してそれを自動処理し出力フォルダへ認識結果を出力します。</p>
+        <h3>システム要件</h3>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Javaランタイム環境6.0</a>以降。</p>
+        <h3>インストール</h3>
+        <p>Tesseract 3.02のWindows実行ファイルがプログラムにバンドルされています。Tesseractの追加<a href="http://code.google.com/p/tesseract-ocr/downloads/list">言語データパック</a>はサブディレクトリ<code>tessdata</code>に配置してください。そのファイル名はISO639-3コードで始まります。</p>
+        <p>LinuxではTesseractとその言語データパックはGraphics(universe)リポジトリにあります。Synapticを使用するか次のコマンドでそれらをインストールできます。</p>
+        <blockquote>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-jpn</code></p>
+        </blockquote>
+        <p>ファイルはそれぞれ<code>/usr/bin</code>と<code>/usr/share/tesseract-ocr/tessdata</code>リポジトリに配置されます。もしTesseractをソースからビルドしインストールした場合は<a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation"></a><code>/usr/local/bin</code>と<code>/usr/local/share/tessdata</code>に配置されます。 VietOCRの<code>設定</code>メニューでTesseractの実行ファイルのディレクトリを指定してください。データが標準の場所以外にある場合は<code>tessdata</code>へのソフトリンクを要求されます。環境変数<code>TESSDATA_PREFIX</code>を設定してVietOCRに<code>tessdata</code>の位置を知らせます。</p>
+        <blockquote>
+            <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
+        </blockquote>
+        <p>他のプラットフォームの場合は<a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">Tesseract Wiki</a>ページを調べてください。</p>
+        <p>VietOCRでは<em>言語データをダウンロード</em>メニューを通して、言語パックの選択、ダウンロード、インストールのサポートを提供します。<code>tessdata</code>フォルダがLinuxの<code>/usr</code>やWindowsの<code>C:\Program Files</code>のようなシステムフォルダ内にある場合は、ダウンロードしたデータをフォルダにインストールできるようにするために、rootまたは管理者としてプログラムを実行してください。</p>
+        <p>WindowsではWindows Image Acquisition v2.0ライブラリを通してスキャンをサポートします。これにはWindows XPのService Pack 1(SP1)以降が必要です。Windows Vista/7ではライブラリが標準実装されています。Windows XPにWIAライブラリをインストールするには<code>wiaaut.dll</code>ファイルを<code>System32</code>ディレクトリ（通常は<code>C:\Windows\System32</code>）にコピーしてコマンドラインから実行します。</p>
+        <blockquote>
+            <p><code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
+        </blockquote>
+        <p>LinuxでスキャンするにはSANEパッケージをインストールします。</p>
+        <blockquote>
+            <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
+        </blockquote>
+        <p><a href="http://www.ghostscript.com/">GPL Ghostscript</a>を通したPDFサポートが可能です。ライブラリのインストール後に適切な環境変数を設定し、共有ライブラリオブジェクト（<code>gsdll32.dll</code>または<code>libgs.so</code>）が検索パス内にあることを確認してください。Windows上でGSバージョン9.15の場合は<code>Path</code>（［コントロールパネル］&gt;［システム］&gt;［詳細設定タブ］&gt;［環境変数］からアクセス）に次のように追加します。</p>
+        <blockquote>
+            <p><code>;C:\Program Files\gs\gs9.15\bin</code></p>
+        </blockquote>Linuxでは<blockquote>
+            <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
+        </blockquote>
+        <p><code>/usr/lib</code>には<code>libgs.so.9.15</code>への<code>libgs.so</code>リンクがあります。</p>
+        <p>Hunspellを通してスペルチェック機能を利用できます。その<a href="http://wiki.services.openoffice.org/wiki/Dictionaries">辞書ファイル</a>（<code>.aff</code>、<code>.dic</code>）をVietOCRの<code>dict</code>フォルダに配置してください。<code>user.dic</code>は1行につき1単語ずつカスタム単語リストを含むUTF-8エンコードのファイルです。</p>
+        <p>LinuxではHunspellとその辞書をSynapticまたは次のように<code>apt</code>でインストールします。</p>
+        <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
+        <h3>説明</h3>
+        <p>プログラムを起動するには、</p>
+        <blockquote>
+            <p><code>java -jar VietOCR.jar</code></p>
+        </blockquote>
+        <p><b><u>注意</u></b> メモリ不足例外が発生した場合は、jarファイルを使用せずに<code>OCR</code>のスクリプトファイルを実行します。</p>
+        <p>ベトナム語の言語データはTimes New Roman、Arial、Verdana、Courier Newのフォントで生成されています。そのためよく似たフォントグリフを持つ画像ではより良い認識成功率を示すでしょう。サポートしているフォントと違った見かけのフォントグリフを持つ画像のOCRでは、一般的に、特別にそれらの書体をTesseractに<a href="http://code.google.com/p/tesseract-ocr/wiki/TrainingTesseract">学習</a>させた別の言語データパックの生成が必要です。一部のVNI、TCVN3(ABC)フォントの言語データも最新バージョンにバンドルしています。</p>
+        <p>OCR画像はモノクロ（白黒）またはグレースケールで少なくとも200dpi（1インチあたりのドット数）から400dpiの解像度でスキャンしてください。優れた認識精度を求めて高解像度でスキャンする必要はありません。現在ベトナム語の認識精度は97％以上であり、それはTesseractの次のリリースでさらに改善されるかもしれません。もしそうなったとしても実際の認識率はまだスキャンされた画像の品質に大きく依存します。典型的なスキャン設定は300dpi、1bit（=1bpp 1ピクセルあたり1ビット）白黒または8bitグレースケール、無圧縮TIFFまたはPNG形式です。</p>
+        <p><em>スクリーンショット モード</em>は低解像度の画像に対して、スクリーン プリントのように300dpiで再スケーリングしてより良い認識率を提供します。</p>
+        <p>組込みのテキスト後処理アルゴリズムに加え、<code>x.DangAmbigs.txt</code>という名前のテキストファイルを使用した独自のカスタムテキスト置換スキームを追加できます。xはISO639-3言語コードです。 UTF-8エンコードしたファイルには、イコールで区切られた<code>oldValue=newValue</code>のペアを含めます。</p>
+        <p>組込みツールではOCR操作を便利にするように複数の画像やPDFファイルを単一のものに結合したり、メモリ不足例外が発生しそうな大きなPDFファイルを小さく分割したりする機能を提供します。</p>
+        <h3>後処理</h3>
+        <p>誤認識は一般的に3つのカテゴリに分類できます。誤認識の多くは文字の大文字/小文字に関係し（例 HOA、nhắC）、一般的なUnicode用テキストエディタで簡単に修正できます。他の多くの誤認識は、ダイアクリティカルマークの欠落、似ている形状の間違った文字など（huu – hưu、mang – marg、h0a – hoa、la – 1a、uhìu - nhìn）のOCR処理結果です。またこれらはスペルチェッカプログラムによって簡単に修正できます。組込みの後処理機能は前述の誤りの多くを修正するのに役立ちます。</p>
+        <p>誤認識の最後のカテゴリはセマンティックエラーであり、検出するのが最も困難です。これはその単語が辞書内では有効なエントリですが、文脈としては間違っていることを意味します。（例 tinh – tình、vân – vấn）これらのエラーはエディタを通して読み、元画像に応じてそれらを手作業で修正する必要があります。</p>
+        <p>組込み機能を使用してOCR誤認識の最初の2つのカテゴリを修正する方法は次のとおりです。</p>
+        <ol style="margin-top: 0in" start="1" type="1">
+<li>行をグループ化します。各行が別々の1行段落としてOCRされるように、行が属する段落にグループ化してください。<i>書式</i>メニュー下の<i>改行を削除</i>機能を使用します。詩ではこの操作が必要ない場合がありますので注意してください。</li>
+            <li>同じく<i>書式</i>メニュー下の<i>文字ケースを変更</i>を選択し、文字ケースエラーの大部分を修正するために<i>センテンスケース</i>を選択します。残りの文字ケースエラー部分を見つけて修正します。</li>
+            <li>統合<i>スペルチェック</i>を使用してスペルミスエラーを修正します。</li>
+        </ol>
+<p>以上の処理により一般的な誤認識の大部分を除去できます。残るセマンティックエラーは少ないですが、人間がエディタを通して読み、スキャン元の文書のようにその文書を編集する必要があります。必要なければエラーなしです。</p>
+        <p>質問がある場合は <a href="http://sourceforge.net/projects/vietocr/forums">VietOCRフォーラム</a>に投稿してください。</p>
+        <hr>
+</div>
+</body>
+</html>
