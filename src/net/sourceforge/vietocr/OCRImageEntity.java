@@ -15,8 +15,6 @@
  */
 package net.sourceforge.vietocr;
 
-//import net.sourceforge.tess4j.util.ImageIOHelper;
-//import net.sourceforge.tess4j.util.ImageHelper;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,6 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.imageio.IIOImage;
+
+import net.sourceforge.tess4j.util.ImageIOHelper;
+import net.sourceforge.tess4j.util.ImageHelper;
 
 public class OCRImageEntity {
 

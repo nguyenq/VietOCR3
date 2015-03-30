@@ -16,10 +16,12 @@
 package net.sourceforge.vietocr;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.imageio.IIOImage;
-//import net.sourceforge.tess4j.ITesseract.RenderedFormat;
+
+import net.sourceforge.tess4j.ITesseract.RenderedFormat;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.vietocr.util.Utils;
 
@@ -37,7 +39,7 @@ public class OCRImages extends OCR<IIOImage> {
 
     public OCRImages(String tessPath) {
         this.tessPath = tessPath;
-        instance = Tesseract.getInstance();
+        instance = new Tesseract();
     }
 
     /**
@@ -104,11 +106,11 @@ public class OCRImages extends OCR<IIOImage> {
      */
     @Override
     public void processPages(File inputImage, File outputFile) throws Exception {
-//        instance.setDatapath(datapath);
-//        instance.setLanguage(language);
-//        instance.setPageSegMode(Integer.parseInt(pageSegMode));
-//        List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
-//        formats.add(RenderedFormat.valueOf(outputFormat.toUpperCase()));
-//        instance.createDocuments(inputImage.getPath(), Utils.stripExtension(outputFile.getPath()), formats);
+        instance.setDatapath(datapath);
+        instance.setLanguage(language);
+        instance.setPageSegMode(Integer.parseInt(pageSegMode));
+        List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
+        formats.add(RenderedFormat.valueOf(outputFormat.toUpperCase()));
+        instance.createDocuments(inputImage.getPath(), Utils.stripExtension(outputFile.getPath()), formats);
     }
 }

@@ -90,10 +90,10 @@ public class GuiWithOCR extends GuiWithImageOps {
     /**
      * Perform OCR on images represented by IIOImage.
      *
-     * @param iioImageList the value of iioImageList
-     * @param inputfilename the value of inputfilename
+     * @param iioImageList list of IIOImage
+     * @param inputfilename input filename
      * @param index Index of page to be OCRed: -1 for all pages
-     * @param rect the value of rect
+     * @param rect region of interest
      */
     void performOCR(final List<IIOImage> iioImageList, String inputfilename, final int index, Rectangle rect) {
         if (curLangCode.trim().length() == 0) {
