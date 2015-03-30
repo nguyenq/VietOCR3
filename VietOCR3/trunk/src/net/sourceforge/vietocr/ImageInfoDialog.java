@@ -1,11 +1,12 @@
 package net.sourceforge.vietocr;
 
-//import net.sourceforge.tess4j.util.ImageIOHelper;
 import java.awt.event.*;
 import java.awt.image.RenderedImage;
 import java.util.Map;
 import javax.imageio.IIOImage;
 import javax.swing.*;
+
+import net.sourceforge.tess4j.util.ImageIOHelper;
 
 public class ImageInfoDialog extends javax.swing.JDialog {
 

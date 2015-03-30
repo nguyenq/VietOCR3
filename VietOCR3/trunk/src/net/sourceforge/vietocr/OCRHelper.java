@@ -16,9 +16,11 @@
 package net.sourceforge.vietocr;
 
 import java.io.*;
-//import javax.imageio.IIOImage;
+
 import net.sourceforge.vietocr.postprocessing.*;
 import net.sourceforge.vietocr.util.Utils;
+
+import net.sourceforge.tess4j.util.PdfUtilities;
 
 public class OCRHelper {
 

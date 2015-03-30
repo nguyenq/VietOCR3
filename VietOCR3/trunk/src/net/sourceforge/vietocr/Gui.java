@@ -37,8 +37,8 @@ import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.JTextComponent;
 import javax.swing.undo.*;
 
-//import net.sourceforge.tess4j.util.ImageHelper;
-//import net.sourceforge.tess4j.util.ImageIOHelper;
+import net.sourceforge.tess4j.util.ImageHelper;
+import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.vietocr.components.*;
 import net.sourceforge.vietocr.util.FormLocalizer;
 import net.sourceforge.vietocr.util.Utils;

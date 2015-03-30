@@ -265,7 +265,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints.gridy = 2;
         jPanelWatchFolder.add(jLabelOutputFormat, gridBagConstraints);
 
-        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "text", "text+", "hocr" }));
+        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "text", "text+", "hocr", "pdf" }));
         jComboBoxOutputFormat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jComboBoxOutputFormatMouseEntered(evt);

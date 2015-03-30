@@ -23,7 +23,8 @@ import java.beans.PropertyChangeListener;
 import java.util.Deque;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-//import net.sourceforge.tess4j.util.ImageHelper;
+
+import net.sourceforge.tess4j.util.ImageHelper;
 import net.sourceforge.vietocr.components.ImageIconScalable;
 import net.sourceforge.vietocr.util.FixedSizeStack;
 

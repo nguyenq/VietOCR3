@@ -24,8 +24,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import net.sourceforge.tess4j.util.ImageIOHelper;
+
 import net.sourceforge.vietocr.components.ImageIconScalable;
-//import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.vietocr.wia.*;
 
 import uk.co.mmscomputing.device.scanner.*;

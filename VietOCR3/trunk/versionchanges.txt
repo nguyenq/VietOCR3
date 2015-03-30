@@ -97,3 +97,8 @@ Version 3.6 (4 March 2015)
 - Update links to OpenOffice dictionaries
 - Update Hunspell to v1.3.3 and fix a NPE; add Windows 64-bit support
 - Add support for reading specific configs files for setting Tesseract control parameters
+
+Version 4.0 (30 March 2015)
+- Upgrade to Tesseract 3.03 RC (r1127)
+- Upgrade Tess4J to v2.0
+- Add support for searchable PDF output in bulk/batch mode

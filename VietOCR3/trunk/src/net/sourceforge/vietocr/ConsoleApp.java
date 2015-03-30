@@ -36,7 +36,7 @@ public class ConsoleApp {
         if (args[0].equals("-?") || args[0].equals("-help") || args.length == 1 || args.length >= 8) {
             System.out.println("Usage: java -jar VietOCR.jar\n"
                     + "       (to launch the program in GUI mode)\n\n"
-                    + "   or  java -jar VietOCR.jar imagefile outputfile [-l lang] [-psm pagesegmode] [hocr]\n"
+                    + "   or  java -jar VietOCR.jar imagefile outputfile [-l lang] [-psm pagesegmode] [hocr] [pdf]\n"
                     + "       (to execute the program in command-line mode)");
             return;
         }
@@ -45,8 +45,8 @@ public class ConsoleApp {
         for (String arg : args) {
             if ("hocr".equals(arg)) {
                 outputFormat = "hocr";
-//            } else if ("pdf".equals(arg)) {
-//                outputFormat = "pdf";
+            } else if ("pdf".equals(arg)) {
+                outputFormat = "pdf";
             } else if ("text+".equals(arg)) {
                 outputFormat = "text+";
             }

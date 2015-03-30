@@ -1,6 +1,5 @@
 package net.sourceforge.vietocr.util;
 
-import net.sourceforge.vietocr.util.FixedSizeStack;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -9,22 +8,22 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class FixedSizeStackTest {
-    
+
     public FixedSizeStackTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -40,7 +39,7 @@ public class FixedSizeStackTest {
         for (int i = 0; i < 10; i++) {
             instance.push(String.valueOf(i));
         }
-        
+
         String actual = instance.pop();
         assertEquals(expected, actual);
     }

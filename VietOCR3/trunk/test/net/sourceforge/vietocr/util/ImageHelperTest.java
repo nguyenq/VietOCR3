@@ -1,12 +1,9 @@
 package net.sourceforge.vietocr.util;
 
-import net.sourceforge.vietocr.util.ImageHelper;
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,23 +14,24 @@ import static org.junit.Assert.*;
 import org.junit.Ignore;
 
 public class ImageHelperTest {
+
     File file = new File("samples/vietsample2.png");
-    
+
     public ImageHelperTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -72,6 +70,7 @@ public class ImageHelperTest {
 
     /**
      * Test of autoCrop method, of class ImageHelper.
+     *
      * @throws java.io.IOException
      */
     @Test
