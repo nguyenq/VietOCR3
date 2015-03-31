@@ -51,7 +51,7 @@ public class OCRHelper {
 
             OCR<File> ocrEngine = new OCRFiles(tessPath);
 //            OCR<IIOImage> ocrEngine = new OCRImages(tessPath); // 14% faster
-//            ocrEngine.setDatapath(datapath);
+//            ocrEngine.setDatapath(tessPath);
             ocrEngine.setPageSegMode(pageSegMode);
             ocrEngine.setLanguage(langCode);
             ocrEngine.setOutputFormat(outputFormat.replace("+", ""));
