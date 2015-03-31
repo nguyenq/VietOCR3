@@ -7,138 +7,72 @@
     <div class="Section1">
         <h2 align="center">विएतओसीआर</h2>
         <h3>विवरण</h3>
-        <p><a href="http://vietocr.sourceforge.net">VietOCR</a> is a Java GUI frontend for
-            <a href="http://code.google.com/p/tesseract-ocr/">Tesseract OCR engine</a>, providing
-            character recognition support for common image formats, and multi-page images. The
-            program has postprocessing which helps correct errors regularly encountered in the
-            OCR process, boosting the accuracy rate on the result. The program can also function
-            as a console application, executing from the command line.</p>
-        <p>Batch processing is now supported. The program monitors a watch folder for new image
-            files, automatically processes them through the OCR engine, and outputs recognition
-            results to an output folder.</p>
+        <p><a href="http://vietocr.sourceforge.net">विएतओसीआर</a> 
+<a href="http://code.google.com/p/tesseract-ocr/">टेसेरक्ट ओसीआर इंजन</a> का एक जावा में बना जीयूआई फ्रंटएण्ड है , जो सामान्य फॉर्मेट की छवियों और कई-पेज वाली छवियों के अक्षर पहचानने में मदद करता है . इस प्रोग्राम में पोस्टप्रोसेसिंग है जिससे ओसीआर प्रक्रिया से होने वाले कई सामान्य गलतियाँ सुधारी जा सकती है, जिससे सफलता की दर बढ़ जाती है . प्रोग्राम को कॉन्सोल एप्लीकेशन के रूप में कमांड लाइन से भी चलाया जा सकता है .</p>
+        <p>अब बैच प्रोसेसिंग भी सपोर्टेड है . प्रोग्राम एक वाच फोल्डर को नयी छवि फाइलों के लिए चेक करता है औए उन्हें स्वतः ओसीआर करके रिकग्निशन की आउटपुट को आउटपुट फोल्डर में सहेजता है .</p>
         <h3>सिस्टम की ज़रूरतें</h3>
-        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 6.0</a>
-            or later.</p>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">जावा  रनटाइम
+एनवायरनमेंट 6.0</a> या  उसके बादका.</p>
         <h3>इंस्टालेशन</h3>
-        <p>Tesseract 3.03RC Windows executable is bundled with the program. Additional <a href="http://code.google.com/p/tesseract-ocr/downloads/list">
-                language data packs</a> for Tesseract, whose names start with ISO639-3 codes,
-            should be placed into the <code>tessdata</code> subdirectory.</p>
-        <p>For Linux, Tesseract and its language data packages are in the Graphics (universe)
-            repository. They can be installed using Synaptic or by the following command:</p>
+        <p>टेसेरक्ट 3.03आरसी विंडोज़ एक्सीक्यूटिबल इस प्रोग्राम के साथ बण्डल किया गया है . टेसेरक्ट के अन्य <a href="http://code.google.com/p/tesseract-ocr/downloads/list">लैंग्वेज  डेटा पैक</a>, जिनके नाम आईएसओ639-3 कोड्स से शुरू होते हैं, <code>tessdata</code> सबडाइरेक्टरी में रखे जाने चाहिए .</p>
+        <p>लिनक्स के लिए, टेसेरक्ट और इसके  लैंग्वेज डेटा पैकेज Graphics (universe) रिपोसिटरी में हैं. इनको सेनेप्टिक या निम्न कमांड से इनस्टॉल किया जा सकता है .</p>
         <blockquote>
             <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-hin</code></p>
         </blockquote>
-        <p>The files will be placed in <code>/usr/bin</code> and <code>/usr/share/tesseract-ocr/tessdata</code>,
-            respectively. On the other hand, if Tesseract is built and installed from the <a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">source</a>,
-            they will be placed in <code>/usr/local/bin</code> and <code>/usr/local/share/tessdata</code>.
-            You may need to specify the directory of Tesseract executable from VietOCR&#39;s
-            <code>Settings</code> menu. If the data is in a non-standard location, a soft link to
-            <code>tessdata</code> may be required. You can also let VietOCR know the location of
-            <code>tessdata</code> via the environment variable <code>TESSDATA_PREFIX</code>:</p>
+        <p>फाइलें क्रमशः <code>/usr/bin</code> और  <code>/usr/share/tesseract-ocr/tessdata</code>में रखी जायेंगी . दूसरी तरफ, अगर टेसेरक्ट को <a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">सोर्स</a> से बिल्ड और इनस्टॉल किया जाएगा तो, वे <code>/usr/local/bin</code> और  <code>/usr/local/share/tessdata</code>में रखी जायेंगी </p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
-        <p>For other platforms, please consult <a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">
-                Tesseract Wiki</a> page.</p>
-        <p>VietOCR also provides support for downloading and installing selected language packs
-            via <em>Download Language Data</em> menu item. Depending on the location of the
-            <code>tessdata</code> folder, you may be required to run the program as root or admin
-            to be able to install the downloaded data into the folder if it is inside a system
-            folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code> on Windows.</p>
-        <p>Scanning support on Windows is provided via the Windows Image Acquisition Library
-            v2.0, which requires Windows XP Service Pack 1 (SP1) or later. The library comes
-            standard with Windows Vista and 7. To install the WIA Library on Windows XP, copy
-            the <code>wiaaut.dll</code> file to your <code>System32</code> directory (usually located
-            at <code>C:\Windows\System32</code>) and run from the command line:</p>
+        <p>अन्य प्लेटफार्म के लिए, कृपया <a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">
+ टेसेरक्ट विकी</a> पेज देखें ..</p>
+        <p>विएतओसीआर चुने हुए लैंग्वेज पैक को डाउनलोड और इनस्टॉल करने की सुविधा  <em>Download Language Data</em> मेनू आइटम द्वारा प्रदान करता है . <code>tessdata</code> फोल्डर की लोकेशन के अनुसार, अगर डाउनलोड किया हुआ डेटा सिस्टम फोल्डर जैसे कि, लिनक्स में  <code>/usr</code> या विंडोज में <code>C:\Program Files</code> में है, तो डाउनलोड किये  डेटा को इंस्टाल करने के लिए आप को रूट या एडमिन के रूप में प्रोग्राम चलाना पडेगा .</p>
+        <p>विंडोज में स्कैनिंग सपोर्ट विंडोज इमेज एक्वज़िशन लाइब्रेरी v2.0 द्वारा प्रदान किया जाता है जिसके लिए विंडोज एक्सपी सर्विस पैक 1 (एसपी1) या नए की आवशयकता है . यह लाइब्रेरी विंडोज विस्टा और 7 के साथ स्वतः आती है . विंडोज एक्सपी में डब्ल्यूआईए लाइब्रेरी इनस्टॉल करने के लिए <code>wiaaut.dll</code> फाइल को अपने <code>System32</code> डाइरेक्टरी  (जो कि अधिकतर <code>C:\Windows\System32</code>) में पायी जाती है, कॉपी करें और कमांड लाइन से चलायें .</p>
         <blockquote>
             <p><code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
         </blockquote>
-        <p>On Linux, scanning requires installation of SANE packages:</p>
+        <p>लिनक्स में, स्कैनिंग के लिए SANE  पैकेज इंस्टाल करना आवश्यक है .</p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL
-                Ghostscript</a>. After installation of the library, please ensure the shared
-            library object (<code>gsdll32.dll</code> or <code>libgs.so</code>) is in the search path
-            by setting the appropriate environment variable. On Windows, append the following
-            to <code>Path</code> value (accessible through Control Panel &gt; System &gt; Advanced
-            tab &gt; Environment Variables) for GS version 9.15:</p>
+        <p>पीडीऍफ़ सपोर्ट <a href="http://www.ghostscript.com/">GPL Ghostscript</a> द्वारा मिल सकता है . लाइब्रेरी इंस्टाल करने के बाद, एप्रोप्रियेट एनवायरनमेंट वेरिएबल को  सेट करके  कृपया पक्का करें कि शेयर्ड लाइब्रेरी ऑब्जेक्ट (<code>gsdll32.dll</code>
+या  <code>libgs.so</code>) आपके सर्च पाथ में है . विंडोज में जीएस वर्शन 9.15 के लिए, निम्न लाइन को <code>Path</code> के अंत में जोड़ें, (ये वैल्यू कंट्रोल पैनल &gt; सिस्टम &gt; एडवांस्ड टैब &gt; एनवायरनमेंट वेरिएबल  में पाई जाएगी).</p>
         <blockquote>
             <p><code>;C:\Program Files\gs\gs9.15\bin</code></p>
-        </blockquote>On Linux:<blockquote>
+        </blockquote>लिनक्स में :<blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p>where in <code>/usr/lib</code>, <code>libgs.so</code> link to <code>libgs.so.9.15</code>
-            is located.</p>
-        <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
-                dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed in <code>dict</code>
-            folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded file which contains a list
-            of custom words, one word per line.</p>
-        <p>On Linux, Hunspell and its dictionaries can be installed by Synaptic or <code>apt</code>,
-            as follows:</p>
-        <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
+        <p>जहां <code>/usr/lib</code>, <code>libgs.so</code> में  <code>libgs.so.9.15</code> को लिंक दिया गया है .</p>
+        <p>स्पेलचेक सुविधा हन्स्पेल्ल द्वारा उपलब्ध है , जिसके  <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
+शब्दकोश </a> की  (<code>.aff</code>, <code>.dic</code>) फाइलें विएतओसीआर के  <code>dict</code> फोल्डर में डालनी चाहियें. <code>user.dic</code> एक  UTF-8-एन्कोडिंग वाली फाइल है जिसमे कस्टम शब्दों की सूची डाली जा सकती है, हर लाइन में एक शब्द .</p>
+        <p>लिनक्स में, हनस्पेल और इसके शब्दकोशों को सिनेप्टिक या <code>apt</code> द्वारा निम्न तरीके से इंस्टाल किया जा सकता है :</p>
+        <blockquote><code>sudo apt-get install hunspell hunspell-hi-in</code></blockquote>
         <h3>अनुदेश</h3>
-        <p>To launch the program:</p>
+        <p>प्रोग्राम चलाने  के लिए :</p>
         <blockquote>
             <p><code>java -jar VietOCR.jar</code></p>
         </blockquote>
-        <p><b><u>Note</u></b>: If you encounter out-of-memory exception, run <code>ocr</code> script
-            file instead of using the .jar.</p>
-        <p>The Vietnamese language data were generated for Times New Roman, Arial, Verdana,
-            and Courier New fonts. Therefore, the recognition would have better success rate
-            for images having similar font glyphs. OCRing images that have font glyphs look
-            different from the supported fonts generally will require <a href="http://code.google.com/p/tesseract-ocr/wiki/TrainingTesseract">
-                training</a> Tesseract to create another language data pack specifically for
-            those typefaces. Language data for some VNI and TCVN3 (ABC) fonts have also been
-            bundled in latest versions.</p>
-        <p>Images to be OCRed should be scanned at resolution from at least 200 DPI (dot per
-            inch) to 400 DPI in monochrome (black&amp;white) or grayscale. Scanning at higher
-            resolutions will not necessarily result in better recognition accuracy, which currently
-            can be higher than 97% for Vietnamese, and the next release of Tesseract may improve
-            it even further. Even so, the actual rates still depend greatly on the quality of
-            the scanned image. The typical settings for scanning are 300 DPI and 1 bpp (bit
-            per pixel) black&amp;white or 8 bpp grayscale uncompressed TIFF or PNG format.</p>
-        <p>The <em>Screenshot Mode</em> offers better recognition rates for low-resolution
-            images, such as screen prints, by rescaling them to 300 DPI.</p>
-        <p>In addition to the built-in text postprocessing algorithm, you can add your own
-            custom text replacement scheme via a text file named <code>x.DangAmbigs.txt</code>,
-            where x is the ISO639-3 language code. The UTF-8-encoded file should contain equal
-            sign-delimited <code>oldValue=newValue</code> pairs.</p>
-        <p>You can put control parameters in <code>tessdata/configs/tess_configs</code> 
-            file to modify Tesseract&#39;s behaviour.</p>
-        <p>Some built-in tools are provided to merge several images or PDF files into a single
-            one for convenient OCR operations, or to split a TIFF or PDF file into smaller 
-            ones if it contains too many pages, which can cause out-of-memory exceptions.</p>
+        <p><b><u>नोट</u></b>: अगर आपको आउट-ऑफ़-मेमोरी एक्सेप्शन मिले तो जार के बजाय <code>ocr</code> स्क्रिप्ट फाइल चलायें ..</p>
+        <p>वियतनामी लैंग्वेज डेटा टाइम्स न्यू रोमन, एरियल, वेर्दाना और कुरियर न्यू फ़ॉन्ट्स से बनाया गया है . जिन छवियों के फॉन्ट ग्लिफ इनसे मिलते जुलते हैं उनके रिकग्निशन का अच्छा चांस रहेगा . उन छवियों को ओसीआर करने के लिए जिनके फॉन्ट ग्लिफ इनसे अलग हैं, टेसेरक्ट को उन टाइपफेसेस का लैंग्वेज डेटा बनाने के लिए  <a href="http://code.google.com/p/tesseract-ocr/wiki/TrainingTesseract">ट्रेनिंग</a> की ज़रूरत पड़ेगी. लेटेस्ट वर्शन के साथ कुछ VNI और  TCVN3 (ABC) फ़ॉन्ट्स का लैंग्वेज डेटा भी दिया गया है .</p>
+        <p>ओसीआर की जाने वाली  छवियों को कम से कम 200 डीपीआई (डॉट पर इंच) से 400 डीपीआई रिसोल्यूशन तक मोनोक्रोम (ब्लैक एंड वाइट) या ग्रेस्केल में स्कैन करना चाहिए . ज्यादा ऊंचे रिसोल्यूशन पर स्कैन करने से पहचान में बेहतर सफलता   मिलेगी ऐसा ज़रूरी नही है . अभी वियतनामी के लिए एक्यूरेसी 97% तक हो सकती है और हो सकता है की टेसेरक्ट की अगली रिलीस में ये और बढ़ जाए . फिर भी वास्तविक दर स्कैन् की हुई छवि की गुणवत्ता पर काफी निर्भर करती है . स्कैनिंग के लिए टिपिकल सेटिंग है 300 डीपीआई और ब्लैकएंडवाइट के लिए 1 बीपीपी (बिट पर पिक्स़ल) या ग्रेस्केल के लिए 8 बीपीपी अनकंप्रेस्ड टिफ या पीएनजी फॉर्मेट .</p>
+        <p><em>स्क्रीनशॉट मोड</em> कम रिसोल्युशन की छवियो, जैसे कि स्क्रीन प्रिंट, को 300 डीपीआई तक रिस्केल करके ज्यादा बेहतर रिकग्निशन देता है .</p>
+        <p>बिल्ट-इन टेक्स्ट पोस्टप्रोसेसिंग अल्गोरिथम के साथ साथ आप <code>x.DangAmbigs.txt</code> टेक्स्ट फाइल द्वारा अपनी कस्टम टेक्स्ट रिप्लेसमेंट स्कीम भी बना सकते हैं, जहां x  ISO639-3 भाषा कोड है . इस UTF-8 एन्कोडिंग की फाइल में बराबर के चिन्ह लगी  <code>oldValue=newValue</code> जोडियाँ होनी चाहियें .</p>
+        <p>आप टेसेरक्ट का व्यवहार बदलने के लिए, इनिट-ओन्ली और नॉन-इनिट कंट्रोल पैरामीटर्स को क्रमशः <code>tessdata/configs/tess_configs</code>
+और  <code>tess_configvars</code> फाइलों में डाल  सकते हैं.</p>
+        <p>कुछ बिल्ट-इन औजार भी उपलब्ध हैं जिनसे सुविधाजनक ओसीआर करने के लिए अलग छवियों या पीडीऍफ़ फाइलों को जोड़ कर एक बनाया जा सकता है या बहुत से पेजों वाली छवियों या पीडीऍफ़ फाइलों को, जिनसे आउट-ऑफ़-मेमोरी एक्सेप्शन हो सकता है, विभाजित कर छोटा बनाया जा सकता है .</p>
         <h3>पोस्ट प्रोसेसिंग</h3>
-        <p>The recognition errors can generally be classified into three categories. Many of
-            the errors are related to the letter cases — for example: hOa, nhắC — which can
-            be easily corrected by popular Unicode text editors. Many other errors are a result
-            of the OCR process, such as missing diacritical marks, wrong letters with similar
-            shape, etc. — huu – hưu, mang – marg, h0a – hoa, la – 1a, uhìu - nhìn. These can
-            also be easily fixed by spell checker programs. The built-in Postprocessing function
-            can help correct many of the aforementioned errors.</p>
-        <p>The last category of errors is the most difficult to detect because they are semantic
-            errors, which means that the words are valid entries in the dictionary but are wrong
-            in the context — e.g., tinh – tình, vân – vấn. These errors require the editor to
-            read though and manually correct them according to the original image.</p>
-        <p>Following are instructions on how to correct the first two categories of OCR errors
-            using the built-in functionality:</p>
+        <p>पहचानने में गलतियों को तीन श्रेणियों में विभाजित किया जा सकता है . कई गलतियाँ लैटर केस से सम्बंधित हैं, उदाहरण के लिए hOa, nhắC — इनको पॉपुलर यूनिकोड टेक्स्ट एडिटरों द्वारा आसानी से ठीक किया जा सकता है . अन्य कई गलतियाँ ओसीआर प्रक्रिया के फलस्वरूप हैं जैसे कि गलत मात्राएँ, या मिलतेजुलते रूप वाला दूसरा कोई लैटर — huu – hưu, mang – marg, h0a – hoa, la – 1a, uhìu - nhìn. ये सब भी स्पेल चेकर प्रोग्रामों द्वारा आसानी से ठीक किये जा सकते हैं . बिल्ट-इन पोस्टप्रोसेसिंग फंक्शन से उपरलिखित कई गलतियाँ ठीक की जा सकती हैं .</p>
+        <p>आखिरी तरह की गलतियाँ पहचानने में सबसे मुश्किल है क्योंकि ये सेमांटिक हैं, मतलब की ये शब्द शब्दकोष में पाए जायेंगे पर इस कॉन्टेक्स्ट में उनका प्रयोग गलत है  जैसे कि  tinh – tình, vân – vấn.ऎसी गलतियों को एडिटर द्वारा पढ़ कर ओरिजिनल छवि के अनुरूप सही करने की आवश्यकता होगी .</p>
+        <p>निम्न तरीका बताता है कि बिल्ट-इन फंक्शनलिटी से पहेल दो तरह की ओसीआर त्रुटियों को किस तरह सुधारा जाय .</p>
         <ol style="margin-top: 0in" start="1" type="1">
-<li>Group lines. The lines need to be grouped to the paragraph they belong, as being
-                OCRed, each line becomes a separate 1-line paragraph. Use <i>Remove Line Breaks</i>
-                function under <i>Format</i> menu. Note that this operation may not be needed for
-                poems.</li>
-            <li>Select <i>Change Case</i>, also under <i>Format</i> menu, and choose <i>Sentence
-                case</i> to correct most of the letter case errors. Locate and fix the rest of remaining
-                letter case errors.</li>
+<li>लाइने ग्रुप करें . लाइनों को पैराग्राफ के अनुसार एक साथ ग्रुप करना पड़ेगा, क्योकि ओसीआर होने पर हर लाइन एक लाइन का पैराग्राफ बन जाती है . <i>Format</i>  मेनू के <i>Remove Line Breaks</i> फंक्शन का प्रयोग करें . नोट करें की कविताओं के लिए इसकी आवश्यकता नहीं होगी .</li>
+            <li> (अधिकतर लैटर केस  की त्रुटियाँ सुधारने के लिए <i>फॉर्मेट </i> मेनू के अन्दर <i>केस  बदलें</i> को चुनें  और फिर <i>वाक्य केस</i> को चुनें, फिर बाक़ी लैटर केस  की त्रुटियाँ को खोजें और सुधारें.)</li>
             <li>एकीकृत <i>वर्तनी जांचक</i> से वर्तनी की गलतियाँ सुधारें </li>
         </ol>
-<p>Through the above process, most of common errors can be eliminated. The remaining,
-            semantic errors are few, but it requires a human editor to read though and make
-            necessary edits to make the document like the original scanned document, and error-free
-            if desired.</p>
-        <p>If there is any questions, please post in <a href="http://sourceforge.net/projects/vietocr/forums">
-                VietOCR Forum</a>.</p>
+<p>ऊपर लिखी प्रक्रिया से अधिकतर सामान्य त्रुटियाँ हटाई जा सकती हैं, 
+बाकी सेमंटिक त्रुटियाँ थोड़ी हैं, पर उन्हें दूर कर डॉक्यूमेंट को ओरिजिनल स्कैन्ड डॉक्यूमेंट जैसा बनाने के लिए, ह्यूमन एडिटर को पढ़ कर गलतियाँ सुधारनी होंगी,
+अगर चाहिए तो.</p>
+        <p>अगर कोई प्रश्न हैं तो  <a href="http://sourceforge.net/projects/vietocr/forums">
+ विएतओसीआर फोरम</a>. में पोस्ट करें .</p>
         <hr>
 </div>
 </body>
