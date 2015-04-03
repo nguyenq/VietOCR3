@@ -122,21 +122,21 @@ public class ImageHelper {
             minY -= margin;
         }
 
-        if ((maxX + margin) <= width) {
+        if ((maxX + margin) < width) {
             maxX += margin;
         }
 
-        if ((maxY + margin) <= height) {
+        if ((maxY + margin) < height) {
             maxY += margin;
-        }
-
-        // if same size, return the original
-        if (minX == 0 && minY == 0 && maxX == width && maxY == height) {
-            return source;
         }
 
         int newWidth = maxX - minX + 1;
         int newHeight = maxY - minY + 1;
+        
+        // if same size, return the original
+        if (newWidth == width && newHeight == height) {
+            return source;
+        }
 
         BufferedImage target = new BufferedImage(newWidth, newHeight, source.getType());
 
