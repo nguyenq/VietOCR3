@@ -103,7 +103,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
         stack.push(originalImage);
-        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.autoCrop(originalImage));
+        imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.autoCrop(originalImage, 0.1));
         imageList.set(imageIndex, imageIcon);
         iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
         displayImage();
