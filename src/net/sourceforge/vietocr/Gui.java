@@ -1278,6 +1278,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemContrast);
 
+        jMenuItemGrayscale.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemGrayscale.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemGrayscale.Mnemonic").charAt(0));
         jMenuItemGrayscale.setText(bundle.getString("jMenuItemGrayscale.Text")); // NOI18N
         jMenuItemGrayscale.addActionListener(new java.awt.event.ActionListener() {
@@ -1287,6 +1288,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemGrayscale);
 
+        jMenuItemMonochrome.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemMonochrome.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemMonochrome.Mnemonic").charAt(0));
         jMenuItemMonochrome.setText(bundle.getString("jMenuItemMonochrome.Text")); // NOI18N
         jMenuItemMonochrome.addActionListener(new java.awt.event.ActionListener() {
@@ -1326,6 +1328,7 @@ public class Gui extends JFrame {
 
         jMenuImage.add(jMenuFilter);
 
+        jMenuItemDeskew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemDeskew.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemDeskew.Mnemonic").charAt(0));
         jMenuItemDeskew.setText(bundle.getString("jMenuItemDeskew.Text")); // NOI18N
         jMenuItemDeskew.addActionListener(new java.awt.event.ActionListener() {
@@ -1335,6 +1338,7 @@ public class Gui extends JFrame {
         });
         jMenuImage.add(jMenuItemDeskew);
 
+        jMenuItemAutocrop.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemAutocrop.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemAutocrop.Mnemonic").charAt(0));
         jMenuItemAutocrop.setText(bundle.getString("jMenuItemAutocrop.Text")); // NOI18N
         jMenuItemAutocrop.addActionListener(new java.awt.event.ActionListener() {
@@ -1345,7 +1349,7 @@ public class Gui extends JFrame {
         jMenuImage.add(jMenuItemAutocrop);
         jMenuImage.add(jSeparator12);
 
-        jMenuItemUndo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemUndo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemUndo.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemUndo.Mnemonic").charAt(0));
         jMenuItemUndo.setText(bundle.getString("jMenuItemUndo.Text")); // NOI18N
         jMenuItemUndo.addActionListener(new java.awt.event.ActionListener() {
