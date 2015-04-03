@@ -91,6 +91,9 @@ public class ImageHelper {
             }
         }
 
+        // Get lower-left pixel color as the "baseline" for cropping
+        baseColor = source.getRGB(minX, height - 1);
+
         lable3:
         for (int y = height - 1; y >= minY; y--) {
             for (int x = minX; x < width; x++) {
