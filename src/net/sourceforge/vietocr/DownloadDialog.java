@@ -51,7 +51,8 @@ public class DownloadDialog extends javax.swing.JDialog {
     private String[] installedLanguages;
     File baseDir;
     List<SwingWorker<File, Integer>> downloadTracker;
-    int contentLength, byteCount, numberOfDownloads, numOfConcurrentTasks;
+    long contentLength, byteCount;
+    int numberOfDownloads, numOfConcurrentTasks;
     ResourceBundle bundle;
     private File tessdataDir;
 
@@ -314,7 +315,7 @@ public class DownloadDialog extends javax.swing.JDialog {
                     bout.write(buffer, 0, bytesRead);
                     byteCount += bytesRead;
                     if (contentLength != 0) {
-                        int progressPercent = 100 * byteCount / contentLength;
+                        int progressPercent = (int) (100 * byteCount / contentLength);
                         if (progressPercent > 100) {
                             progressPercent = 100;
                         }

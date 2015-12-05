@@ -16,6 +16,9 @@ public class FileExtractor {
             extractTGZ(compressedArchiveName, destFolder);
         } else if (compressedArchiveName.toLowerCase().endsWith(".gz")) {
             extractGZip(compressedArchiveName, destFolder);
+        } else {
+            File source = new File(compressedArchiveName);
+            source.renameTo(new File(destFolder, source.getName()));
         }
     }
 
