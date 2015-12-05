@@ -24,10 +24,10 @@
     <entry key="cop">Coptic</entry>
     <entry key="cym">Welsh</entry>
     <entry key="dan">Danish</entry>
-    <entry key="dan-frak">Danish (Fraktur)</entry>
+    <entry key="dan_frak">Danish (Fraktur)</entry>
     <entry key="deu">German</entry>
-    <entry key="deu-f">Fraktur</entry>
-    <entry key="deu-frak">German (Fraktur)</entry>
+    <entry key="deu_f">Fraktur</entry>
+    <entry key="deu_frak">German (Fraktur)</entry>
     <entry key="dzo">Dzongkha</entry>
     <entry key="frk">Frankish</entry>
     <entry key="ell">Greek</entry>
@@ -49,7 +49,7 @@
     <entry key="guj">Gujarati</entry>
     <entry key="hat">Haitian</entry>
     <entry key="heb">Hebrew</entry>
-    <entry key="heb-com">Hebrew (community)</entry>
+    <entry key="heb_com">Hebrew (community)</entry>
     <entry key="hin">Hindi</entry>
     <entry key="hrv">Croatian</entry>
     <entry key="hun">Hungarian</entry>
@@ -93,7 +93,7 @@
     <entry key="sic">Quechua</entry>
     <entry key="sin">Sinhala</entry>
     <entry key="slk">Slovak</entry>
-    <entry key="slk-frak">Slovakian Fraktur</entry>
+    <entry key="slk_frak">Slovakian Fraktur</entry>
     <entry key="slv">Slovenian</entry>
     <entry key="spa">Spanish</entry>
     <entry key="spa_old">Old Spanish</entry>
@@ -102,7 +102,7 @@
     <entry key="srp_latn">Serbian Latin</entry>
     <entry key="swa">Swahili</entry>
     <entry key="swe">Swedish</entry>
-    <entry key="swe-frak">Swedish (Fraktur)</entry>
+    <entry key="swe_frak">Swedish (Fraktur)</entry>
     <entry key="syr">Syriac</entry>
     <entry key="tam">Tamil</entry>
     <entry key="tel">Telugu</entry>
