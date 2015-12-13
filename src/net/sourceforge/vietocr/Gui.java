@@ -940,6 +940,12 @@ public class Gui extends JFrame {
 
         jSplitPaneImage.setLeftComponent(jScrollPaneThumbnail);
 
+        jScrollPaneImage.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jScrollPaneImageMouseWheelMoved(evt);
+            }
+        });
+
         jImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jImageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -1912,7 +1918,7 @@ public class Gui extends JFrame {
         this.jComboBoxPageNum.setEnabled(true);
         this.jLabelPageMax.setEnabled(true);
         this.jLabelPageMax.setText(" / " + imageTotal);
-        
+
         displayImage();
         loadThumbnails();
 
@@ -2328,6 +2334,45 @@ public class Gui extends JFrame {
         clearStack();
         setButton();
     }//GEN-LAST:event_jComboBoxPageNumActionPerformed
+
+    private void jScrollPaneImageMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jScrollPaneImageMouseWheelMoved
+        if (evt.isControlDown()) {
+            final float delta = 0.12f * evt.getWheelRotation();
+
+            if (delta <= 0) {
+                // set minimum size to zoom
+                if (imageIcon.getIconWidth() < 100) {
+                    return;
+                }
+            } else // set maximum size to zoom
+             if (imageIcon.getIconWidth() > 10000) {
+                    return;
+                }
+
+            ((JImageLabel) jImageLabel).deselect();
+
+            SwingUtilities.invokeLater(new Runnable() {
+
+                @Override
+                public void run() {
+                    int width = imageIcon.getIconWidth();
+                    int height = imageIcon.getIconHeight();
+                    width += width * delta;
+                    height += height * delta;
+                    imageIcon.setScaledSize(width, height);
+
+                    jImageLabel.revalidate();
+                    jScrollPaneImage.repaint();
+
+                    scaleX = originalW / (float)width;
+                    scaleY = originalH / (float)height;
+                }
+            });
+
+            isFitImageSelected = false;
+            this.jButtonActualSize.setEnabled(true);
+        }
+    }//GEN-LAST:event_jScrollPaneImageMouseWheelMoved
 
     /**
      * Pastes image from clipboard.
