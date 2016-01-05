@@ -15,6 +15,8 @@
  */
 package net.sourceforge.vietocr;
 
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,6 +69,18 @@ public class OCRImages extends OCR<IIOImage> {
         String text = instance.doOCR(images, inputfilename, rect);
 
         return text;
+    }
+
+    /**
+     * Gets segmented regions.
+     * 
+     * @return segmented regions
+     * @throws java.io.IOException
+     */
+    @Override
+    public List<Rectangle> getSegmentedRegions(IIOImage image, int tessPageIteratorLevel) throws Exception {
+        instance.setDatapath(datapath);
+        return instance.getSegmentedRegions((BufferedImage)image.getRenderedImage(), tessPageIteratorLevel);
     }
 
     /**

@@ -15,10 +15,12 @@
  */
 package net.sourceforge.vietocr;
 
+import java.awt.Rectangle;
 import java.io.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.IIOImage;
 import net.sourceforge.vietocr.util.Utils;
 
 /**
@@ -112,6 +114,17 @@ public class OCRFiles extends OCR<File> {
 
         tempTessOutputFile.delete();
         return result.toString();
+    }
+
+    /**
+     * Gets segmented regions.
+     * 
+     * @return segmented regions
+     * @throws java.io.IOException
+     */
+    @Override
+    public List<Rectangle> getSegmentedRegions(IIOImage image, int tessPageIteratorLevel) throws IOException {
+        return null;
     }
 
     /**

@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package net.sourceforge.vietocr.components;
 
 import java.awt.event.*;
@@ -24,7 +23,8 @@ import java.util.*;
 /**
  *
  * @author Quan Nguyen (nguyenq@users.sf.net)
- * @note: Part of this class is from http://forum.java.sun.com/thread.jspa?threadID=634438&messageID=3691163
+ * @note: Part of this class is from
+ * http://forum.java.sun.com/thread.jspa?threadID=634438&messageID=3691163
  */
 public class JImageLabel extends JLabel implements MouseMotionListener, MouseListener {
 
@@ -36,12 +36,16 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
     boolean moving;
     protected int frameWidth = 5;
     protected int minSize = 5;
-    protected int startDragX,  startDragY;
-    protected boolean resizeLeft,  resizeTop,  resizeRight,  resizeBottom,  move;
+    protected int startDragX, startDragY;
+    protected boolean resizeLeft, resizeTop, resizeRight, resizeBottom, move;
     int selX, selY, selW, selH;
     int count;
 
-    /** Creates a new instance of JImageLabel */
+    HashMap<Color, java.util.List<Rectangle>> map;
+
+    /**
+     * Creates a new instance of JImageLabel
+     */
     public JImageLabel() {
         addMouseListener(this);
         addMouseMotionListener(this);
@@ -84,7 +88,8 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
 
     /**
      * Gets bounding box.
-     * @return 
+     *
+     * @return
      */
     public Rectangle getRect() {
         return rect;
@@ -98,12 +103,23 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
         rect = null;
     }
 
+    /**
+     * Sets segmented regions.
+     * 
+     * @param map 
+     */
+    public void setSegmentedRegions(HashMap<Color, java.util.List<Rectangle>> map) {
+        this.map = map;
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         // automatically called when repaint
         super.paintComponent(g);
-        
-        if (this.getIcon() == null) return;
+
+        if (this.getIcon() == null) {
+            return;
+        }
 
         if (rect != null) {
             Graphics2D g2d = (Graphics2D) g;
@@ -115,6 +131,19 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
             g2d.setStroke(bs);
             //g2d.setPaint(gp);
             g2d.draw(rect);
+        }
+
+        // draw segmented regions
+        if (map != null) {
+            Graphics2D g2d = (Graphics2D) g;
+
+            for (Color c : map.keySet()) {
+                g2d.setColor(c);
+
+                for (Rectangle region : map.get(c)) {
+                    g2d.draw(region);
+                }
+            }
         }
     }
 
@@ -315,8 +344,9 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
     }
 
     /**
-     * Invoked when the mouse cursor has been moved onto a component
-     * but no buttons have been pushed.
+     * Invoked when the mouse cursor has been moved onto a component but no
+     * buttons have been pushed.
+     *
      * @param e
      */
     @Override

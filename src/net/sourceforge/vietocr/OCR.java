@@ -18,6 +18,7 @@ package net.sourceforge.vietocr;
 import java.awt.Rectangle;
 import java.io.File;
 import java.util.List;
+import javax.imageio.IIOImage;
 
 public abstract class OCR<T> {
 
@@ -30,7 +31,7 @@ public abstract class OCR<T> {
     protected String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)
     protected String language = "eng";
     protected String outputFormat = "text";
-    protected String datapath = ".";
+    protected String datapath = "./tesseract-ocr";
 
     /**
      * Recognizes files or images.
@@ -64,6 +65,16 @@ public abstract class OCR<T> {
      * @throws Exception
      */
     public abstract void processPages(File imageFile, File outputFile) throws Exception;
+
+    /**
+     * Gets segmented regions.
+     * 
+     * @param image
+     * @param tessPageIteratorLevel
+     * @return segmented regions
+     * @throws java.io.IOException
+     */
+    public abstract List<Rectangle> getSegmentedRegions(IIOImage image, int tessPageIteratorLevel) throws Exception;
 
     /**
      * Gets page segmentation mode.

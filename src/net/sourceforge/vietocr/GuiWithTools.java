@@ -337,17 +337,18 @@ public class GuiWithTools extends GuiWithSpellcheck {
 
                 @Override
                 protected String doInBackground() throws Exception {
-                    String inputFilename = args.getInputFilename();
+                    File inputFile = new File(args.getInputFilename());
                     String outputFilename = args.getOutputFilename();
+                    File outputFile = new File(outputFilename);
 
                     if (args.isPages()) {
-                        PdfUtilities.splitPdf(inputFilename, outputFilename, args.getFromPage(), args.getToPage());
+                        PdfUtilities.splitPdf(inputFile, outputFile, Integer.parseInt(args.getFromPage()), Integer.parseInt(args.getToPage()));
                     } else {
                         if (outputFilename.endsWith(".pdf")) {
                             outputFilename = outputFilename.substring(0, outputFilename.lastIndexOf(".pdf"));
                         }
 
-                        int pageCount = PdfUtilities.getPdfPageCount(inputFilename);
+                        int pageCount = PdfUtilities.getPdfPageCount(inputFile);
                         if (pageCount == 0) {
                             throw new RuntimeException("Split PDF failed.");
                         }
@@ -357,8 +358,8 @@ public class GuiWithTools extends GuiWithSpellcheck {
 
                         while (startPage <= pageCount) {
                             int endPage = startPage + pageRange - 1;
-                            String outputFile = outputFilename + startPage + ".pdf";
-                            PdfUtilities.splitPdf(inputFilename, outputFile, String.valueOf(startPage), String.valueOf(endPage));
+                            outputFile = new File(outputFilename + startPage + ".pdf");
+                            PdfUtilities.splitPdf(inputFile, outputFile, startPage, endPage);
                             startPage = endPage + 1;
                         }
                     }
