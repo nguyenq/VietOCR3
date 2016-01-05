@@ -36,6 +36,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.JTextComponent;
 import javax.swing.undo.*;
+import net.sourceforge.tess4j.ITessAPI;
 
 import net.sourceforge.tess4j.util.ImageHelper;
 import net.sourceforge.tess4j.util.ImageIOHelper;
@@ -74,6 +75,12 @@ public class Gui extends JFrame {
     private static final String strFontStyle = "fontStyle";
     private static final String strWordWrap = "wordWrap";
     private static final String strFilterIndex = "filterIndex";
+    private static final String strSegmentedRegions = "SegmentedRegions";
+    private static final String strSegmentedRegionsPara = "SegmentedRegionsPara";
+    private static final String strSegmentedRegionsTextLine = "SegmentedRegionsTextLine";
+    private static final String strSegmentedRegionsSymbol = "SegmentedRegionsSymbol";
+    private static final String strSegmentedRegionsBlock = "SegmentedRegionsBlock";
+    private static final String strSegmentedRegionsWord = "SegmentedRegionsWord";
     public final String EOL = System.getProperty("line.separator");
     static final Preferences prefs = Preferences.userRoot().node("/net/sourceforge/vietocr3");
     private int filterIndex;
@@ -665,6 +672,18 @@ public class Gui extends JFrame {
         jLabelDimension = new javax.swing.JLabel();
         jLabelDimensionValue = new javax.swing.JLabel();
         jSeparatorDimEnd = new javax.swing.JSeparator();
+        jPanelSegmentedRegions = new javax.swing.JPanel();
+        jLabelRegions = new javax.swing.JLabel();
+        jCheckBoxWord = new javax.swing.JCheckBox();
+        jCheckBoxWord.setSelected(prefs.getBoolean(strSegmentedRegionsWord, false));
+        jCheckBoxSymbol = new javax.swing.JCheckBox();
+        jCheckBoxSymbol.setSelected(prefs.getBoolean(strSegmentedRegionsSymbol, false));
+        jCheckBoxPara = new javax.swing.JCheckBox();
+        jCheckBoxPara.setSelected(prefs.getBoolean(strSegmentedRegionsPara, false));
+        jCheckBoxTextLine = new javax.swing.JCheckBox();
+        jCheckBoxTextLine.setSelected(prefs.getBoolean(strSegmentedRegionsTextLine, false));
+        jCheckBoxBlock = new javax.swing.JCheckBox();
+        jCheckBoxBlock.setSelected(prefs.getBoolean(strSegmentedRegionsBlock, false));
         jSeparatorSM = new javax.swing.JSeparator();
         jLabelScreenshotMode = new javax.swing.JLabel();
         jLabelScreenshotModeValue = new javax.swing.JLabel();
@@ -706,6 +725,9 @@ public class Gui extends JFrame {
         jMenuItemUndo = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jCheckBoxMenuItemScreenshotMode = new javax.swing.JCheckBoxMenuItem();
+        jSeparator18 = new javax.swing.JPopupMenu.Separator();
+        jCheckBoxMenuItemSegmentedRegions = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItemSegmentedRegions.setSelected(prefs.getBoolean(strSegmentedRegions, false));
         jMenuFormat = new javax.swing.JMenu();
         jCheckBoxMenuWordWrap = new javax.swing.JCheckBoxMenuItem();
         jMenuItemFont = new javax.swing.JMenuItem();
@@ -774,7 +796,6 @@ public class Gui extends JFrame {
         setIconImages(getIconImages());
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(500, 360));
-        setPreferredSize(new java.awt.Dimension(1200, 600));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 formComponentResized(evt);
@@ -1112,8 +1133,58 @@ public class Gui extends JFrame {
         jPanelStatus.add(jSeparatorDimEnd);
         jPanelStatus.add(Box.createHorizontalGlue());
 
+        jPanelSegmentedRegions.setVisible(this.jCheckBoxMenuItemSegmentedRegions.isSelected());
+        jPanelSegmentedRegions.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+
+        jLabelRegions.setText("Segmented Regions:");
+        jPanelSegmentedRegions.add(jLabelRegions);
+
+        jCheckBoxWord.setText("Word");
+        jCheckBoxWord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxWordActionPerformed(evt);
+            }
+        });
+        jPanelSegmentedRegions.add(jCheckBoxWord);
+        jCheckBoxWord.getAccessibleContext().setAccessibleName("jCheckBoxWord");
+
+        jCheckBoxSymbol.setText("Symbol");
+        jCheckBoxSymbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxSymbolActionPerformed(evt);
+            }
+        });
+        jPanelSegmentedRegions.add(jCheckBoxSymbol);
+
+        jCheckBoxPara.setText("Paragraph");
+        jCheckBoxPara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxParaActionPerformed(evt);
+            }
+        });
+        jPanelSegmentedRegions.add(jCheckBoxPara);
+
+        jCheckBoxTextLine.setText("Text Line");
+        jCheckBoxTextLine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxTextLineActionPerformed(evt);
+            }
+        });
+        jPanelSegmentedRegions.add(jCheckBoxTextLine);
+
+        jCheckBoxBlock.setText("Block");
+        jCheckBoxBlock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxBlockActionPerformed(evt);
+            }
+        });
+        jPanelSegmentedRegions.add(jCheckBoxBlock);
+
+        jPanelStatus.add(jPanelSegmentedRegions);
+
         jSeparatorSM.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparatorSM.setMaximumSize(new java.awt.Dimension(2, 14));
+        jPanelStatus.add(Box.createHorizontalGlue());
         jPanelStatus.add(Box.createHorizontalStrut(4));
         jPanelStatus.add(jSeparatorSM);
         jPanelStatus.add(Box.createHorizontalStrut(4));
@@ -1372,7 +1443,6 @@ public class Gui extends JFrame {
         jMenuImage.add(jSeparator2);
 
         jCheckBoxMenuItemScreenshotMode.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jCheckBoxMenuItemScreenshotMode.Mnemonic").charAt(0));
-        jCheckBoxMenuItemScreenshotMode.setSelected(true);
         jCheckBoxMenuItemScreenshotMode.setText(bundle.getString("jCheckBoxMenuItemScreenshotMode.Text")); // NOI18N
         jCheckBoxMenuItemScreenshotMode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1380,6 +1450,15 @@ public class Gui extends JFrame {
             }
         });
         jMenuImage.add(jCheckBoxMenuItemScreenshotMode);
+        jMenuImage.add(jSeparator18);
+
+        jCheckBoxMenuItemSegmentedRegions.setText("Segmented Regions");
+        jCheckBoxMenuItemSegmentedRegions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItemSegmentedRegionsActionPerformed(evt);
+            }
+        });
+        jMenuImage.add(jCheckBoxMenuItemSegmentedRegions);
 
         jMenuBar2.add(jMenuImage);
 
@@ -1783,6 +1862,12 @@ public class Gui extends JFrame {
         }
 
         prefs.putInt(strFilterIndex, filterIndex);
+        prefs.putBoolean(strSegmentedRegions, this.jCheckBoxMenuItemSegmentedRegions.isSelected());
+        prefs.putBoolean(strSegmentedRegionsPara, this.jCheckBoxPara.isSelected());
+        prefs.putBoolean(strSegmentedRegionsSymbol, this.jCheckBoxSymbol.isSelected());
+        prefs.putBoolean(strSegmentedRegionsTextLine, this.jCheckBoxTextLine.isSelected());
+        prefs.putBoolean(strSegmentedRegionsBlock, this.jCheckBoxBlock.isSelected());
+        prefs.putBoolean(strSegmentedRegionsWord, this.jCheckBoxWord.isSelected());
 
         System.exit(0);
     }
@@ -1967,7 +2052,53 @@ public class Gui extends JFrame {
 
         jImageLabel.setIcon(imageIcon);
         this.jScrollPaneImage.getViewport().setViewPosition(curScrollPos = new Point());
-        jImageLabel.revalidate();
+        setSegmentedRegions();
+//        jImageLabel.revalidate();
+    }
+
+    void setSegmentedRegions() {
+        if (!this.jCheckBoxMenuItemSegmentedRegions.isSelected() || iioImageList == null) {
+            ((JImageLabel) jImageLabel).setSegmentedRegions(null);
+            return;
+        }
+
+        try {
+            OCR<IIOImage> ocrEngine = new OCRImages(tessPath); // for Tess4J
+            HashMap<Color, List<Rectangle>> map = new HashMap<Color, List<Rectangle>>();
+            IIOImage image = iioImageList.get(imageIndex);
+
+            List<Rectangle> regions;
+            if (this.jCheckBoxBlock.isSelected()) {
+                regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_BLOCK);
+                map.put(Color.GRAY, regions);
+            }
+
+            if (this.jCheckBoxPara.isSelected()) {
+                regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_PARA);
+                map.put(Color.GREEN, regions);
+            }
+
+            if (this.jCheckBoxTextLine.isSelected()) {
+                regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE);
+                map.put(Color.RED, regions);
+            }
+
+            if (this.jCheckBoxSymbol.isSelected()) {
+                regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_SYMBOL);
+                map.put(Color.LIGHT_GRAY, regions);
+            }
+
+            if (this.jCheckBoxWord.isSelected()) {
+                regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_WORD);
+                map.put(Color.BLUE, regions);
+            }
+
+            ((JImageLabel) jImageLabel).setSegmentedRegions(map);
+            jImageLabel.repaint();
+            jImageLabel.revalidate();
+        } catch (Exception ex) {
+            Logger.getLogger(Gui.class.getName()).log(Level.INFO, null, ex);
+        }
     }
 
     void clearStack() {
@@ -2335,6 +2466,31 @@ public class Gui extends JFrame {
         setButton();
     }//GEN-LAST:event_jComboBoxPageNumActionPerformed
 
+    private void jCheckBoxMenuItemSegmentedRegionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemSegmentedRegionsActionPerformed
+        this.jPanelSegmentedRegions.setVisible(this.jCheckBoxMenuItemSegmentedRegions.isSelected());
+        setSegmentedRegions();
+    }//GEN-LAST:event_jCheckBoxMenuItemSegmentedRegionsActionPerformed
+
+    private void jCheckBoxWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxWordActionPerformed
+        setSegmentedRegions();
+    }//GEN-LAST:event_jCheckBoxWordActionPerformed
+
+    private void jCheckBoxSymbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSymbolActionPerformed
+        setSegmentedRegions();
+    }//GEN-LAST:event_jCheckBoxSymbolActionPerformed
+
+    private void jCheckBoxParaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxParaActionPerformed
+        setSegmentedRegions();
+    }//GEN-LAST:event_jCheckBoxParaActionPerformed
+
+    private void jCheckBoxTextLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxTextLineActionPerformed
+        setSegmentedRegions();
+    }//GEN-LAST:event_jCheckBoxTextLineActionPerformed
+
+    private void jCheckBoxBlockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxBlockActionPerformed
+        setSegmentedRegions();
+    }//GEN-LAST:event_jCheckBoxBlockActionPerformed
+
     private void jScrollPaneImageMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jScrollPaneImageMouseWheelMoved
         if (evt.isControlDown()) {
             final float delta = 0.12f * evt.getWheelRotation();
@@ -2485,8 +2641,14 @@ public class Gui extends JFrame {
     protected javax.swing.JButton jButtonScan;
     javax.swing.JButton jButtonZoomIn;
     javax.swing.JButton jButtonZoomOut;
+    private javax.swing.JCheckBox jCheckBoxBlock;
     protected javax.swing.JCheckBoxMenuItem jCheckBoxMenuItemScreenshotMode;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItemSegmentedRegions;
     protected javax.swing.JCheckBoxMenuItem jCheckBoxMenuWordWrap;
+    private javax.swing.JCheckBox jCheckBoxPara;
+    private javax.swing.JCheckBox jCheckBoxSymbol;
+    private javax.swing.JCheckBox jCheckBoxTextLine;
+    private javax.swing.JCheckBox jCheckBoxWord;
     protected javax.swing.JComboBox jComboBoxLang;
     protected javax.swing.JComboBox jComboBoxPageNum;
     protected javax.swing.JFileChooser jFileChooser;
@@ -2497,6 +2659,7 @@ public class Gui extends JFrame {
     private javax.swing.JLabel jLabelPSM;
     protected javax.swing.JLabel jLabelPSMvalue;
     private javax.swing.JLabel jLabelPageMax;
+    private javax.swing.JLabel jLabelRegions;
     private javax.swing.JLabel jLabelScreenshotMode;
     protected javax.swing.JLabel jLabelScreenshotModeValue;
     protected javax.swing.JLabel jLabelStatus;
@@ -2547,6 +2710,7 @@ public class Gui extends JFrame {
     protected javax.swing.JMenu jMenuUILang;
     private javax.swing.JPanel jPanelArrow;
     private javax.swing.JPanel jPanelImage;
+    private javax.swing.JPanel jPanelSegmentedRegions;
     private javax.swing.JPanel jPanelStatus;
     private javax.swing.JPanel jPanelTextArea;
     protected javax.swing.JPanel jPanelThumb;
@@ -2563,6 +2727,7 @@ public class Gui extends JFrame {
     private javax.swing.JToolBar.Separator jSeparator15;
     private javax.swing.JToolBar.Separator jSeparator16;
     private javax.swing.JToolBar.Separator jSeparator17;
+    private javax.swing.JPopupMenu.Separator jSeparator18;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;

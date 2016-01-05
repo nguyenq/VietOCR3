@@ -434,7 +434,6 @@
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.i18n.form.FormI18nMnemonicEditor">
                   <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jCheckBoxMenuItemScreenshotMode.Mnemonic" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
-                <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jCheckBoxMenuItemScreenshotMode.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
                 </Property>
@@ -444,6 +443,19 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+              </AuxValues>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator18">
+            </MenuItem>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItemSegmentedRegions">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Segmented Regions"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxMenuItemSegmentedRegionsActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jCheckBoxMenuItemSegmentedRegions.setSelected(prefs.getBoolean(strSegmentedRegions, false));"/>
               </AuxValues>
             </MenuItem>
           </SubComponents>
@@ -741,9 +753,6 @@
     <Property name="locationByPlatform" type="boolean" value="true"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[500, 360]"/>
-    </Property>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1200, 600]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -1420,6 +1429,81 @@
             <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="jPanelStatus.add(Box.createHorizontalStrut(4));"/>
           </AuxValues>
         </Component>
+        <Container class="javax.swing.JPanel" name="jPanelSegmentedRegions">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jPanelSegmentedRegions.setVisible(this.jCheckBoxMenuItemSegmentedRegions.isSelected());"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
+            <Property name="horizontalGap" type="int" value="0"/>
+            <Property name="verticalGap" type="int" value="0"/>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabelRegions">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Segmented Regions:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCheckBoxWord">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Word"/>
+              </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jCheckBoxWord"/>
+              </AccessibilityProperties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxWordActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jCheckBoxWord.setSelected(prefs.getBoolean(strSegmentedRegionsWord, false));"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCheckBoxSymbol">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Symbol"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxSymbolActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jCheckBoxSymbol.setSelected(prefs.getBoolean(strSegmentedRegionsSymbol, false));"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCheckBoxPara">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Paragraph"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxParaActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jCheckBoxPara.setSelected(prefs.getBoolean(strSegmentedRegionsPara, false));"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCheckBoxTextLine">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Text Line"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxTextLineActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jCheckBoxTextLine.setSelected(prefs.getBoolean(strSegmentedRegionsTextLine, false));"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCheckBoxBlock">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Block"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxBlockActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jCheckBoxBlock.setSelected(prefs.getBoolean(strSegmentedRegionsBlock, false));"/>
+              </AuxValues>
+            </Component>
+          </SubComponents>
+        </Container>
         <Component class="javax.swing.JSeparator" name="jSeparatorSM">
           <Properties>
             <Property name="orientation" type="int" value="1"/>
@@ -1429,7 +1513,7 @@
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jPanelStatus.add(Box.createHorizontalStrut(4));"/>
-            <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="jPanelStatus.add(Box.createHorizontalStrut(4));"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="jPanelStatus.add(Box.createHorizontalGlue());&#xd;&#xa;jPanelStatus.add(Box.createHorizontalStrut(4));"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelScreenshotMode">
