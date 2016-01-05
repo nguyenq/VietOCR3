@@ -103,9 +103,11 @@ Version 4.0 (30 March 2015)
 - Upgrade Tess4J to v2.0
 - Add support for searchable PDF output in bulk/batch mode
 
-Version 4.1 (14 November 2015)
+Version 4.1 (5 January 2016)
 - Upgrade to Tesseract 3.04 (953523b)
+- Upgrade to Tess4J 3.0
+- Image zoom with mousewheel and Ctrl key
+- Display segmented regions
 - Update JNA to 4.2.1
-- Update Tess4J to 2.1
 - Update JACOB to 1.8
 - Update translations
