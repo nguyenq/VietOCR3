@@ -1137,6 +1137,7 @@ public class Gui extends JFrame {
         jPanelSegmentedRegions.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
         jLabelSegmentedRegions.setText(bundle.getString("jLabelSegmentedRegions.Text")); // NOI18N
+        jLabelSegmentedRegions.setToolTipText(bundle.getString("jLabelSegmentedRegions.ToolTipText")); // NOI18N
         jPanelSegmentedRegions.add(jLabelSegmentedRegions);
 
         jCheckBoxSymbol.setText(bundle.getString("jCheckBoxSymbol.Text")); // NOI18N
