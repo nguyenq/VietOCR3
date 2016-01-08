@@ -60,8 +60,8 @@ public class GuiWithImageOps extends GuiWithScan {
 
     /**
      * Fits image to the container while retaining aspect ratio.
-     * 
-     * @param evt 
+     *
+     * @param evt
      */
     @Override
     void jButtonFitImageActionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +70,7 @@ public class GuiWithImageOps extends GuiWithScan {
         this.jButtonZoomIn.setEnabled(false);
         this.jButtonZoomOut.setEnabled(false);
         ((JImageLabel) jImageLabel).deselect();
+        ((JImageLabel) jImageLabel).setSegmentedRegions(null);
         curScrollPos = this.jScrollPaneImage.getViewport().getViewPosition();
         int w = this.jScrollPaneImage.getViewport().getWidth();
         if (this.jScrollPaneImage.getVerticalScrollBar().isVisible()) {
@@ -87,8 +88,8 @@ public class GuiWithImageOps extends GuiWithScan {
 
     /**
      * Reverts to actual image size.
-     * 
-     * @param evt 
+     *
+     * @param evt
      */
     @Override
     void jButtonActualSizeActionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +98,7 @@ public class GuiWithImageOps extends GuiWithScan {
         this.jButtonZoomIn.setEnabled(true);
         this.jButtonZoomOut.setEnabled(true);
         ((JImageLabel) jImageLabel).deselect();
+        setSegmentedRegions();
         fitImageChange(originalW, originalH);
         scaleX = scaleY = 1f;
         isFitImageSelected = false;
@@ -105,6 +107,7 @@ public class GuiWithImageOps extends GuiWithScan {
     @Override
     void jButtonZoomOutActionPerformed(java.awt.event.ActionEvent evt) {
         ((JImageLabel) jImageLabel).deselect();
+        ((JImageLabel) jImageLabel).setSegmentedRegions(null);
         doChange(false);
         isFitImageSelected = false;
         this.jButtonActualSize.setEnabled(true);
@@ -113,6 +116,7 @@ public class GuiWithImageOps extends GuiWithScan {
     @Override
     void jButtonZoomInActionPerformed(java.awt.event.ActionEvent evt) {
         ((JImageLabel) jImageLabel).deselect();
+        ((JImageLabel) jImageLabel).setSegmentedRegions(null);
         doChange(true);
         isFitImageSelected = false;
         this.jButtonActualSize.setEnabled(true);
@@ -120,8 +124,8 @@ public class GuiWithImageOps extends GuiWithScan {
 
     /**
      * Performs the change on image.
-     * 
-     * @param isZoomIn 
+     *
+     * @param isZoomIn
      */
     void doChange(final boolean isZoomIn) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -136,6 +140,7 @@ public class GuiWithImageOps extends GuiWithScan {
                 } else {
                     imageIcon.setScaledSize((int) (width / ZOOM_FACTOR), (int) (height / ZOOM_FACTOR));
                 }
+
                 jImageLabel.revalidate();
                 jScrollPaneImage.repaint();
 
@@ -152,8 +157,8 @@ public class GuiWithImageOps extends GuiWithScan {
 
     /**
      * Rotates left.
-     * 
-     * @param evt 
+     *
+     * @param evt
      */
     @Override
     void jButtonRotateCCWActionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,8 +168,8 @@ public class GuiWithImageOps extends GuiWithScan {
 
     /**
      * Rotates right.
-     * 
-     * @param evt 
+     *
+     * @param evt
      */
     @Override
     void jButtonRotateCWActionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +179,7 @@ public class GuiWithImageOps extends GuiWithScan {
 
     /**
      * Rotates image.
-     * 
+     *
      * @param angle the degree of rotation
      */
     void rotateImage(double angle) {

@@ -2057,7 +2057,7 @@ public class Gui extends JFrame {
     }
 
     void setSegmentedRegions() {
-        if (!this.jCheckBoxMenuItemSegmentedRegions.isSelected() || iioImageList == null) {
+        if (!this.jCheckBoxMenuItemSegmentedRegions.isSelected() || iioImageList == null || this.jButtonActualSize.isEnabled()) {
             ((JImageLabel) jImageLabel).setSegmentedRegions(null);
             return;
         }
@@ -2506,6 +2506,7 @@ public class Gui extends JFrame {
                 }
 
             ((JImageLabel) jImageLabel).deselect();
+            ((JImageLabel) jImageLabel).setSegmentedRegions(null);
 
             SwingUtilities.invokeLater(new Runnable() {
 
