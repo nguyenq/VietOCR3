@@ -105,8 +105,8 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
 
     /**
      * Sets segmented regions.
-     * 
-     * @param map 
+     *
+     * @param map
      */
     public void setSegmentedRegions(HashMap<Color, java.util.List<Rectangle>> map) {
         this.map = map;
@@ -135,13 +135,16 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
 
         // draw segmented regions
         if (map != null) {
+            int x = (this.getWidth() - this.getIcon().getIconWidth()) / 2;
+            int y = (this.getHeight() - this.getIcon().getIconHeight()) / 2;
+
             Graphics2D g2d = (Graphics2D) g;
 
             for (Color c : map.keySet()) {
                 g2d.setColor(c);
 
                 for (Rectangle region : map.get(c)) {
-                    g2d.draw(region);
+                    g2d.drawRect(region.x + x, region.y + y, region.width, region.height);
                 }
             }
         }
