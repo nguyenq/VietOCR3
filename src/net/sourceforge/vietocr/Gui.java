@@ -2084,16 +2084,16 @@ public class Gui extends JFrame {
                 map.put(Color.RED, regions);
             }
 
-            if (this.jCheckBoxSymbol.isSelected()) {
-                regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_SYMBOL);
-                map.put(Color.LIGHT_GRAY, regions);
-            }
-
             if (this.jCheckBoxWord.isSelected()) {
                 regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_WORD);
                 map.put(Color.BLUE, regions);
             }
 
+            if (this.jCheckBoxSymbol.isSelected()) {
+                regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_SYMBOL);
+                map.put(Color.MAGENTA, regions);
+            }
+            
             ((JImageLabel) jImageLabel).setSegmentedRegions(map);
             jImageLabel.repaint();
             jImageLabel.revalidate();
