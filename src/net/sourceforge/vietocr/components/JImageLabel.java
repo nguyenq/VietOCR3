@@ -121,8 +121,28 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
             return;
         }
 
+        // draw segmented regions
+        if (map != null) {
+            int x = (this.getWidth() - this.getIcon().getIconWidth()) / 2;
+            int y = (this.getHeight() - this.getIcon().getIconHeight()) / 2;
+
+            Graphics2D g2d = (Graphics2D) g;
+            
+            for (Color c : map.keySet()) {
+                g2d.setColor(c);
+
+                for (Rectangle region : map.get(c)) {
+                    g2d.drawRect(region.x + x, region.y + y, region.width, region.height);
+                }
+            }
+        }
+
+        // draw selection box
         if (rect != null) {
             Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.BLACK);
+            
+            // draw handles
             java.util.List<Rectangle> squares = createSquares(rect);
             for (Rectangle square : squares) {
                 g2d.draw(square);
@@ -131,22 +151,6 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
             g2d.setStroke(bs);
             //g2d.setPaint(gp);
             g2d.draw(rect);
-        }
-
-        // draw segmented regions
-        if (map != null) {
-            int x = (this.getWidth() - this.getIcon().getIconWidth()) / 2;
-            int y = (this.getHeight() - this.getIcon().getIconHeight()) / 2;
-
-            Graphics2D g2d = (Graphics2D) g;
-
-            for (Color c : map.keySet()) {
-                g2d.setColor(c);
-
-                for (Rectangle region : map.get(c)) {
-                    g2d.drawRect(region.x + x, region.y + y, region.width, region.height);
-                }
-            }
         }
     }
 
