@@ -673,15 +673,15 @@ public class Gui extends JFrame {
         jLabelDimensionValue = new javax.swing.JLabel();
         jSeparatorDimEnd = new javax.swing.JSeparator();
         jPanelSegmentedRegions = new javax.swing.JPanel();
-        jLabelRegions = new javax.swing.JLabel();
-        jCheckBoxWord = new javax.swing.JCheckBox();
-        jCheckBoxWord.setSelected(prefs.getBoolean(strSegmentedRegionsWord, false));
+        jLabelSegmentedRegions = new javax.swing.JLabel();
         jCheckBoxSymbol = new javax.swing.JCheckBox();
         jCheckBoxSymbol.setSelected(prefs.getBoolean(strSegmentedRegionsSymbol, false));
-        jCheckBoxPara = new javax.swing.JCheckBox();
-        jCheckBoxPara.setSelected(prefs.getBoolean(strSegmentedRegionsPara, false));
+        jCheckBoxWord = new javax.swing.JCheckBox();
+        jCheckBoxWord.setSelected(prefs.getBoolean(strSegmentedRegionsWord, false));
         jCheckBoxTextLine = new javax.swing.JCheckBox();
         jCheckBoxTextLine.setSelected(prefs.getBoolean(strSegmentedRegionsTextLine, false));
+        jCheckBoxPara = new javax.swing.JCheckBox();
+        jCheckBoxPara.setSelected(prefs.getBoolean(strSegmentedRegionsPara, false));
         jCheckBoxBlock = new javax.swing.JCheckBox();
         jCheckBoxBlock.setSelected(prefs.getBoolean(strSegmentedRegionsBlock, false));
         jSeparatorSM = new javax.swing.JSeparator();
@@ -1136,10 +1136,18 @@ public class Gui extends JFrame {
         jPanelSegmentedRegions.setVisible(this.jCheckBoxMenuItemSegmentedRegions.isSelected());
         jPanelSegmentedRegions.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
 
-        jLabelRegions.setText("Segmented Regions:");
-        jPanelSegmentedRegions.add(jLabelRegions);
+        jLabelSegmentedRegions.setText(bundle.getString("jLabelSegmentedRegions.Text")); // NOI18N
+        jPanelSegmentedRegions.add(jLabelSegmentedRegions);
 
-        jCheckBoxWord.setText("Word");
+        jCheckBoxSymbol.setText(bundle.getString("jCheckBoxSymbol.Text")); // NOI18N
+        jCheckBoxSymbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxSymbolActionPerformed(evt);
+            }
+        });
+        jPanelSegmentedRegions.add(jCheckBoxSymbol);
+
+        jCheckBoxWord.setText(bundle.getString("jCheckBoxWord.Text")); // NOI18N
         jCheckBoxWord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxWordActionPerformed(evt);
@@ -1148,23 +1156,7 @@ public class Gui extends JFrame {
         jPanelSegmentedRegions.add(jCheckBoxWord);
         jCheckBoxWord.getAccessibleContext().setAccessibleName("jCheckBoxWord");
 
-        jCheckBoxSymbol.setText("Symbol");
-        jCheckBoxSymbol.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxSymbolActionPerformed(evt);
-            }
-        });
-        jPanelSegmentedRegions.add(jCheckBoxSymbol);
-
-        jCheckBoxPara.setText("Paragraph");
-        jCheckBoxPara.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxParaActionPerformed(evt);
-            }
-        });
-        jPanelSegmentedRegions.add(jCheckBoxPara);
-
-        jCheckBoxTextLine.setText("Text Line");
+        jCheckBoxTextLine.setText(bundle.getString("jCheckBoxTextLine.Text")); // NOI18N
         jCheckBoxTextLine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxTextLineActionPerformed(evt);
@@ -1172,7 +1164,15 @@ public class Gui extends JFrame {
         });
         jPanelSegmentedRegions.add(jCheckBoxTextLine);
 
-        jCheckBoxBlock.setText("Block");
+        jCheckBoxPara.setText(bundle.getString("jCheckBoxPara.Text")); // NOI18N
+        jCheckBoxPara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxParaActionPerformed(evt);
+            }
+        });
+        jPanelSegmentedRegions.add(jCheckBoxPara);
+
+        jCheckBoxBlock.setText(bundle.getString("jCheckBoxBlock.Text")); // NOI18N
         jCheckBoxBlock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxBlockActionPerformed(evt);
@@ -1452,7 +1452,7 @@ public class Gui extends JFrame {
         jMenuImage.add(jCheckBoxMenuItemScreenshotMode);
         jMenuImage.add(jSeparator18);
 
-        jCheckBoxMenuItemSegmentedRegions.setText("Segmented Regions");
+        jCheckBoxMenuItemSegmentedRegions.setText(bundle.getString("jCheckBoxMenuItemSegmentedRegions.Text")); // NOI18N
         jCheckBoxMenuItemSegmentedRegions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxMenuItemSegmentedRegionsActionPerformed(evt);
@@ -2660,9 +2660,9 @@ public class Gui extends JFrame {
     private javax.swing.JLabel jLabelPSM;
     protected javax.swing.JLabel jLabelPSMvalue;
     private javax.swing.JLabel jLabelPageMax;
-    private javax.swing.JLabel jLabelRegions;
     private javax.swing.JLabel jLabelScreenshotMode;
     protected javax.swing.JLabel jLabelScreenshotModeValue;
+    private javax.swing.JLabel jLabelSegmentedRegions;
     protected javax.swing.JLabel jLabelStatus;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu jMenuCommand;
