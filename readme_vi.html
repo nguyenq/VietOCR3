@@ -11,7 +11,7 @@
             MÔ TẢ</h3>
         <p>
             <a href="http://vietocr.sourceforge.net">VietOCR</a> là một Java GUI frontend cho
-            <a href="http://code.google.com/p/tesseract-ocr/">Tesseract OCR engine</a>, cung
+            <a href="https://github.com/tesseract-ocr">Tesseract OCR engine</a>, cung
             cấp hỗ trợ nhận dạng ký tự cho các dạng ảnh phổ thông, và ảnh chứa nhiều trang.
             Chương trình có phần hậu xử lý giúp sửa chữa các lỗi thường gặp trong quy trình
             OCR, tăng độ chính xác trên kết quả. Chương trình còn có khả năng vận hành như một
@@ -29,7 +29,7 @@
             CÀI ĐẶT</h3>
         <p>
             Tesseract 3.04 Windows executable đã được gói sẵn với chương trình. Các gói data
-            ngôn ngữ (<a href="http://code.google.com/p/tesseract-ocr/downloads/list">language data
+            ngôn ngữ (<a href="https://github.com/tesseract-ocr/tessdata">language data
                 packs</a>) cho Tesseract, có tên bắt đầu với mã ISO639-3, nên được đặt vào <code>tessdata</code>
             subdirectory.</p>
         <p>
@@ -41,7 +41,7 @@
         </blockquote>
         <p>
             Files sẽ được đặt trong <code>/usr/bin</code> và <code>/usr/share/tesseract-ocr/tessdata</code>,
-            trong thứ tự đó. Mặt khác, nếu Tesseract được xây dựng và cài từ <a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">
+            trong thứ tự đó. Mặt khác, nếu Tesseract được xây dựng và cài từ <a href="https://github.com/tesseract-ocr/tesseract/wiki/TesseractGitInstallation">
                 mã nguồn</a>, chúng sẽ được đặt trong <code>/usr/local/bin</code> và <code>/usr/local/share/tessdata</code>.
             Bạn có thể cần chỉ định directory của Tesseract executable từ <code>Settings</code>
             menu của VietOCR. Nếu data nằm trong một directory khác tiêu chuẩn, một soft link
@@ -52,7 +52,7 @@
                 <code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
         <p>
-            Cho nền tảng khác, xin tham khảo trang <a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">
+            Cho nền tảng khác, xin tham khảo trang <a href="https://github.com/tesseract-ocr/tesseract/wiki">
                 Tesseract Wiki</a>.</p>
         <p>
             VietOCR cũng có cung cấp hỗ trợ tải xuống và cài đặt các language packs được chọn
@@ -82,17 +82,17 @@
             (<code>gsdll32.dll</code> hoặc <code>libgs.so</code>) nằm trong search path bằng cách chỉnh
             biến môi trường phù hợp. Trên Windows, tiếp đuôi (append) đoạn sau vào giá trị của
             biến Path (truy cập được qua Control Panel &gt; System &gt; Advanced tab &gt; Environment
-            Variables) cho GS phiên bản 9.15:</p>
+            Variables) cho GS phiên bản 9.16:</p>
         <blockquote>
             <p>
-                <code>;C:\Program Files\gs\gs9.15\bin</code></p>
+                <code>;C:\Program Files\gs\gs9.16\bin</code></p>
         </blockquote>
         Trên Linux:<blockquote>
             <p>
                 <code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
         <p>
-            nơi trong <code>/usr/lib</code>, <code>libgs.so</code> link tới <code>libgs.so.9.15</code> được
+            nơi trong <code>/usr/lib</code>, <code>libgs.so</code> link tới <code>libgs.so.9.16</code> được
             đặt.</p>
         <p>
             Tính năng Duyệt chính tả (spellcheck) có được qua Hunspell, mà các <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
@@ -120,7 +120,7 @@
             Bộ Vietnamese language data được tạo cho các font Times New Roman, Arial, Verdana,
             và Courier New. Do đó, việc nhận dạng sẽ có kết quả cao hơn cho các ảnh có font
             glyphs tương tự. OCR ảnh có font glyph trông khác các font hỗ trợ thông thường sẽ
-            đòi hỏi <a href="http://code.google.com/p/tesseract-ocr/wiki/TrainingTesseract">tập
+            đòi hỏi <a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">tập
                 huấn</a> Tesseract để tạo một bộ language data khác cụ thể cho những mặt chữ
             đó. Language data cho một số VNI và TCVN3 (ABC) fonts cũng đã được bó kèm trong
             các phiên bản mới nhất.</p>

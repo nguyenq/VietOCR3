@@ -8,7 +8,7 @@
         <h2 align="center">VietOCR </h2>
         <h3>OPIS</h3>
         <p><a href="http://vietocr.sourceforge.net">VietOCR</a>jest nakładka GUI dla Javy
-<a href="http://code.google.com/p/tesseract-ocr/">Silnik Tesseract OCR</a>, zapewnia
+<a href="https://github.com/tesseract-ocr">Silnik Tesseract OCR</a>, zapewnia
 wsparcie rozpoznawania znaków dla popularnych formatów obrazu i obrazów wielostronicowych.
 Program posiada mechanizm, który pomaga poprawiać błędy napotykane regularnie
 Protokół OCR, zwiększa stopień dokładności, który ma wpływ na wynik.Program może również działać
@@ -21,16 +21,16 @@ jako aplikacja w konsoli, wykonując linie poleceń.
         <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 6.0</a>
 lub wyższą wersję.</p>
         <h3>INSTALACJA</h3>
-        <p>Pliki wykonywalne Tesseract 3.04 dla Windows są w zestawie z programem. Dodatkowe <a href="http://code.google.com/p/tesseract-ocr/downloads/list">pakiety językowe</a> dla Tesseract, których nazwy zaczynają się kodem ISO639-3, powinny być umieszczone w katalogu <code>tessdata</code>.</p>
+        <p>Pliki wykonywalne Tesseract 3.04 dla Windows są w zestawie z programem. Dodatkowe <a href="https://github.com/tesseract-ocr/tessdata">pakiety językowe</a> dla Tesseract, których nazwy zaczynają się kodem ISO639-3, powinny być umieszczone w katalogu <code>tessdata</code>.</p>
         <p>Dla Linuksa, Tesseract i jego pakiety językowe są w Graficznym (ogólnodostępnym) repozytorium. Mogą być zainstalowane przy użyciu Menedżera pakietów Synaptic lub poniższego polecenia:</p>
         <blockquote>
             <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-pol</code></p>
         </blockquote>
-        <p>Pliki bedą umieszczone odpowiednio w katalogach&nbsp;<code>/usr/bin</code>&nbsp;i&nbsp;<code>/usr/share/tesseract-ocr/tessdata</code>. Z drugiej strony, jeśli Tesseract jest skompilowany i zainstalowany ze&nbsp;<a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">źródła</a>, będą one umieszczone w <code>/usr/local/bin</code>&nbsp;i&nbsp;<code>/usr/local/share/tessdata</code>. Byćmoże będziesz musiał wskazać katalog z plikami wykonywalnymi Tesseract z menu <code>Ustawień</code> programu VietOCR'&nbsp;Jeśli dane nie są w standardowej lokalizacji, byćmoże będzie wymagane dowiązanie miękkie do &nbsp;<code>tessdata.</code>&nbsp;Będziesz także musiał zadbać by VietOCR znał lokalizację &nbsp;<code>tessdata</code>&nbsp;poprzez zmienną&nbsp;<code>TESSDATA_PREFIX</code>:</p>
+        <p>Pliki bedą umieszczone odpowiednio w katalogach&nbsp;<code>/usr/bin</code>&nbsp;i&nbsp;<code>/usr/share/tesseract-ocr/tessdata</code>. Z drugiej strony, jeśli Tesseract jest skompilowany i zainstalowany ze&nbsp;<a href="https://github.com/tesseract-ocr/tesseract/wiki/TesseractGitInstallation">źródła</a>, będą one umieszczone w <code>/usr/local/bin</code>&nbsp;i&nbsp;<code>/usr/local/share/tessdata</code>. Byćmoże będziesz musiał wskazać katalog z plikami wykonywalnymi Tesseract z menu <code>Ustawień</code> programu VietOCR'&nbsp;Jeśli dane nie są w standardowej lokalizacji, byćmoże będzie wymagane dowiązanie miękkie do &nbsp;<code>tessdata.</code>&nbsp;Będziesz także musiał zadbać by VietOCR znał lokalizację &nbsp;<code>tessdata</code>&nbsp;poprzez zmienną&nbsp;<code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
-        <p>Dla innych platform zasięgnij wiedzy na stronie&nbsp;<a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">Tesseract Wiki</a>&nbsp;.</p>
+        <p>Dla innych platform zasięgnij wiedzy na stronie&nbsp;<a href="https://github.com/tesseract-ocr/tesseract/wiki">Tesseract Wiki</a>&nbsp;.</p>
         <p>VietOCR również umożliwia &nbsp;ściąganie i instalowanie wybranych pakietów językowych poprzez element menu <em>Pobierz pakiet językowy</em>. W zależności od lokalizacji folderu &nbsp;<code>tessdata</code>&nbsp;, może będzie wymagane uruchomienie programu jako root albo admin by było możliwe zainstalowanie ściągniętych danych do folderu, zwłaszcza jeśli jest to wewnątrz katalogu systemowego takiego jak &nbsp;<code>/usr</code>&nbsp;w Linuksie lub&nbsp;<code>C:\Program Files</code>&nbsp;w Windows.</p>
         <p>Skanowanie na platformie Windows jest wspierane przez bibliotekę Windows Image Acquisition Library
             v2.0, &nbsp;która wymaga Windows XP Service Pack 1 (SP1) lub nowszego. Biblioteka ta stała się standardem począwszy od Windows Vista i 7. By zainstalować Bibliotekę WIA Library na Windows XP, skopiuj plik&nbsp;<code>wiaaut.dll</code> do katalogu&nbsp;<code>System32</code>&nbsp; (zwykle umiejscowionego w &nbsp;<code>C:\Windows\System32</code>) i uruchom następujące polecenie z linii poleceń:</p>
@@ -42,13 +42,13 @@ lub wyższą wersję.</p>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
         <p>Obsługa plików PDF jest możliwa dzięki <a href="http://www.ghostscript.com/">GPL
-                Ghostscript</a>. Po zainstalowaniu bibliotek upewnij się, że udostępnione biblioteki (<code>gsdll32.dll</code> or <code>libgs.so</code>) &nbsp;są w ścieżce wyszukiwania poprzez ustawienie odpowiednich zmiennych systemowych. W Windows dla GS w wersji 9.15, dodaj poniższy wpis do&nbsp;zmiennej&nbsp;<code>Path</code>&nbsp;(dostępnej poprzez Panel Kontrolny &gt; System &gt; zakładka Zaawansowane &gt; Zmienne środowiskowe...) :</p>
+                Ghostscript</a>. Po zainstalowaniu bibliotek upewnij się, że udostępnione biblioteki (<code>gsdll32.dll</code> or <code>libgs.so</code>) &nbsp;są w ścieżce wyszukiwania poprzez ustawienie odpowiednich zmiennych systemowych. W Windows dla GS w wersji 9.16, dodaj poniższy wpis do&nbsp;zmiennej&nbsp;<code>Path</code>&nbsp;(dostępnej poprzez Panel Kontrolny &gt; System &gt; zakładka Zaawansowane &gt; Zmienne środowiskowe...) :</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.15\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.16\bin</code></p>
         </blockquote>W systemie Linux: <blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p>gdzie w&nbsp;<code>/usr/lib&nbsp;</code>jest zlokalizowany link&nbsp;<code>libgs.so</code>&nbsp;do <code>libgs.so.9.15</code>.</p>
+        <p>gdzie w&nbsp;<code>/usr/lib&nbsp;</code>jest zlokalizowany link&nbsp;<code>libgs.so</code>&nbsp;do <code>libgs.so.9.16</code>.</p>
         <p>Funkcjonalność sprawdzania pisowni jest dostępna poprzez Hunspell, którego pliki <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">słownika (</a><code>.aff</code> <code>.dic</code>) powinny być umieszczone w folderze <code>dict</code> programu VietOCR. <code>user.dic</code> jest plikiem z kodowaniem UTF-8, który zawiera listę słów, po jednym słowie na linię.</p>
         <p>W systemie Linux, Hunspell wraz ze słownikami może być zainstalowany za pomocą Menedżera pakietów Synaptic lub polecenia&nbsp;<code>apt</code>, jak poniżej:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
@@ -59,7 +59,7 @@ lub wyższą wersję.</p>
         </blockquote>
         <p><b><u> Uwaga</u>: Jeśli wystąpi wyjątek "out-of-memory", uruchom plik skryptowy&nbsp;<code>ocr</code> w zamian użycia &nbsp;.jar.</b></p>
         <p>Dane dla języka wietnamskiego zostały wygenerowane dla czcionek: Times New Roman, Arial, Verdana,
-            and Courier New. Dlatego, rozpoznawanie powinno mieć lepsze rezultaty dla obrazów posiadających podobne glify. OCRowane obrazy, które mają glify wyglądające inaczej niż obsługiwane czcionki, zwykle będą wymagały &nbsp;<a href="http://code.google.com/p/tesseract-ocr/wiki/TrainingTesseract">treningu</a>&nbsp;Tesseract &nbsp;do utworzenia innego pakietu językowego specyficznego dla tych krojów czcionek. Dane językowe dla niektórych fontów VNI i TCVN3 (ABC) zostały również dołączone do ostatnich wersji.</p>
+            and Courier New. Dlatego, rozpoznawanie powinno mieć lepsze rezultaty dla obrazów posiadających podobne glify. OCRowane obrazy, które mają glify wyglądające inaczej niż obsługiwane czcionki, zwykle będą wymagały &nbsp;<a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">treningu</a>&nbsp;Tesseract &nbsp;do utworzenia innego pakietu językowego specyficznego dla tych krojów czcionek. Dane językowe dla niektórych fontów VNI i TCVN3 (ABC) zostały również dołączone do ostatnich wersji.</p>
         <p>Obrazy, które mają być OCRed powinny być zeskanowane w rozdzielczości co najmniej 200 DPI (na
 cal) do 400 DPI w trybie monochromatycznym (czarno&amp;białym) w skali szarości. Ustawienie skanowania na wyższy poziom
 nie musi skutkować lepszą dokładność rozpoznawania znaków, które obecnie

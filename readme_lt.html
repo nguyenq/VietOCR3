@@ -11,7 +11,7 @@
             PROGRAMOS APRAŠAS</h3>
         <p>
             „<a href="http://vietocr.sourceforge.net">VietOCR</a>“ yra „Java“ technologija pagrįsta
-            grafinė aplinka, leidžianti naudotis „<a href="http://code.google.com/p/tesseract-ocr/">Tesseract
+            grafinė aplinka, leidžianti naudotis „<a href="https://github.com/tesseract-ocr">Tesseract
                 OCR</a>“ optinio ženklų atpažinimo moduliu ir yra skirta automatiškai atpažinti
             nuskenuoto rašto ženklus. Programa numato populiariausius vaizdų formatus, leidžia
             naudoti kelis ar daugiau puslapių viename vaizdo faile. Be to, programa gali papildomai
@@ -31,7 +31,7 @@
             PROGRAMOS ĮDIEGIMAS</h3>
         <p>
             „Tesseract 3.04“ vykdomasis failas „Windows“ aplinkai pateikiamas kartu su programa.
-            Papildomi <a href="http://code.google.com/p/tesseract-ocr/downloads/list">kalbinių duomenų
+            Papildomi <a href="https://github.com/tesseract-ocr/tessdata">kalbinių duomenų
                 paketai</a>, kurių vardai prasideda ISO639-3 kodais, turėtų būti talpinami į
             poaplankį <code>tessdata</code>.</p>
         <p>
@@ -45,7 +45,7 @@
         <p>
             Įvykdžius šią komandą, programos failai bus įdiegti į aplanką <code>/usr/bin</code>,
             o kalbiniai duomenys – į <code>/usr/share/tesseract-ocr/tessdata</code>. Tuo atveju,
-            jeigu „Tesseract“ kompiliuosite ir diegsite iš <a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">
+            jeigu „Tesseract“ kompiliuosite ir diegsite iš <a href="https://github.com/tesseract-ocr/tesseract/wiki/TesseractGitInstallation">
                 pirminių tekstų</a>, šie failai bus patalpinti atitinkamai į aplankus <code>/usr/local/bin</code>
             ir <code>/usr/local/share/tessdata</code>. „Tesseract“ vykdomojo failo kelią galite
             nurodyti „VietOCR“ nuostatose. Jeigu kalbiniai duomenys yra neįprastesnėje vietoje,
@@ -57,7 +57,7 @@
                 <code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
         <p>
-            Jeigu naudojatės čia nepaminėta platforma, išsamesnės informacijos rasite <a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">
+            Jeigu naudojatės čia nepaminėta platforma, išsamesnės informacijos rasite <a href="https://github.com/tesseract-ocr/tesseract/wiki">
                 „Tesseract“ vikyje</a>.</p>
         <p>
             „VietOCR“ geba parsiųsti ir įdiegti kalbinių duomenų paketus kai kurioms kalboms;
@@ -90,10 +90,10 @@
             atitinkamą aplinkos kintamąjį. „Windows“ sistemoje tai yra kintamasis <code>Path</code>,
             kurį galite redaguoti, atvėrę Valdymo skydą, jame spustelėję piktogramą „Sistema“,
             tada atverę kortelę „Išsamiau“ ir spustelėję mygtuką „Aplinkos kintamieji“. Pavyzdžiui,
-            „GhostScript 9.15“ atveju, šį kintamąjį reikėtų papildyti tokia eilute:</p>
+            „GhostScript 9.16“ atveju, šį kintamąjį reikėtų papildyti tokia eilute:</p>
         <blockquote>
             <p>
-                <code>;C:\Program Files\gs\gs9.15\bin</code></p>
+                <code>;C:\Program Files\gs\gs9.16\bin</code></p>
         </blockquote>
         „Linux“ sistemoje:<blockquote>
             <p>
@@ -101,7 +101,7 @@
         </blockquote>
         <p>
             kur <code>/usr/lib</code> aplanke yra nuoroda <code>libgs.so</code>, nurodanti failą
-            <code>libgs.so.9.15</code>.</p>
+            <code>libgs.so.9.16</code>.</p>
         <p>
             Rašybos tikrinimo funkcija galima panaudojant „Hunspell“ tikrintuvę, kurios <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
                 žodynų</a> failai (<code>.aff</code>, <code>.dic</code>) turėtų būti patalpinti
@@ -128,7 +128,7 @@
             Kalbinių duomenų failai yra generuojami konkretiems šriftams, todėl programai geriausiai
             sekasi atpažinti jai žinomais ar panašių glifų šriftais rašytus tekstus. Prireikus
             vaizduose atpažinti kitais šriftais rašytą tekstą, reikės „Tesseract“ programą papildomai
-            <a href="http://code.google.com/p/tesseract-ocr/wiki/TrainingTesseract">apmokyti</a>,
+            <a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">apmokyti</a>,
             sukuriant naujus kalbos duomenų failus. Kiek išsamiau lietuviškai apie „Tesseract“
             galite paskaityti <a href="http://dg.lapas.info/?page_id=239">Donato Glodenio tinklaraštyje</a>.</p>
         <p>

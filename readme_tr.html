@@ -8,7 +8,7 @@
         <h2 align="center">VietOCR</h2>
         <h3>AÇIKLAMA</h3>
         <p><a href="http://vietocr.sourceforge.net">VietOCR</a> is a Java GUI frontend for
-            <a href="http://code.google.com/p/tesseract-ocr/">Tesseract OCR engine</a>, providing
+            <a href="https://github.com/tesseract-ocr">Tesseract OCR engine</a>, providing
             character recognition support for common image formats, and multi-page images. The
             program has postprocessing which helps correct errors regularly encountered in the
             OCR process, boosting the accuracy rate on the result. The program can also function
@@ -20,7 +20,7 @@
         <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 6.0</a>
             or later.</p>
         <h3>KURULUM</h3>
-        <p>Tesseract 3.04 Windows executable is bundled with the program. Additional <a href="http://code.google.com/p/tesseract-ocr/downloads/list">
+        <p>Tesseract 3.04 Windows executable is bundled with the program. Additional <a href="https://github.com/tesseract-ocr/tessdata">
                 language data packs</a> for Tesseract, whose names start with ISO639-3 codes,
             should be placed into the <code>tessdata</code> subdirectory.</p>
         <p>For Linux, Tesseract and its language data packages are in the Graphics (universe)
@@ -29,7 +29,7 @@
             <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-tur</code></p>
         </blockquote>
         <p>The files will be placed in <code>/usr/bin</code> and <code>/usr/share/tesseract-ocr/tessdata</code>,
-            respectively. On the other hand, if Tesseract is built and installed from the<a href="http://code.google.com/p/tesseract-ocr/wiki/TesseractSvnInstallation">source</a>,
+            respectively. On the other hand, if Tesseract is built and installed from the<a href="https://github.com/tesseract-ocr/tesseract/wiki/TesseractGitInstallation">source</a>,
             they will be placed in <code>/usr/local/bin</code> and <code>/usr/local/share/tessdata</code>.
             You may need to specify the directory of Tesseract executable from VietOCR's
             <code>Settings</code> menu. If the data is in a non-standard location, a soft link to
@@ -38,7 +38,7 @@
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
-        <p>For other platforms, please consult <a href="http://code.google.com/p/tesseract-ocr/wiki/ReadMe">
+        <p>For other platforms, please consult <a href="https://github.com/tesseract-ocr/tesseract/wiki">
                 Tesseract Wiki</a> page.</p>
         <p>VietOCR also provides support for downloading and installing selected language packs
             via <em>Download Language Data</em> menu item. Depending on the location of the
@@ -62,13 +62,13 @@
             library object (<code>gsdll32.dll</code> or <code>libgs.so</code>) is in the search path
             by setting the appropriate environment variable. On Windows, append the following
             to <code>Path</code> value (accessible through Control Panel &gt; System &gt; Advanced
-            tab &gt; Environment Variables) for GS version 9.15:</p>
+            tab &gt; Environment Variables) for GS version 9.16:</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.15\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.16\bin</code></p>
         </blockquote>Linux'ta:<blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p>where in <code>/usr/lib</code>, <code>libgs.so</code> link to <code>libgs.so.9.15</code>
+        <p>where in <code>/usr/lib</code>, <code>libgs.so</code> link to <code>libgs.so.9.16</code>
             is located.</p>
         <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
                 dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed in <code>dict</code>
@@ -86,7 +86,7 @@
         <p>The Vietnamese language data were generated for Times New Roman, Arial, Verdana,
             and Courier New fonts. Therefore, the recognition would have better success rate
             for images having similar font glyphs. OCRing images that have font glyphs look
-            different from the supported fonts generally will require <a href="http://code.google.com/p/tesseract-ocr/wiki/TrainingTesseract">
+            different from the supported fonts generally will require <a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">
                 training</a> Tesseract to create another language data pack specifically for
             those typefaces. Language data for some VNI and TCVN3 (ABC) fonts have also been
             bundled in latest versions.</p>
