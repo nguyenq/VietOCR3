@@ -2011,8 +2011,6 @@ public class Gui extends JFrame {
         // clear undo buffer
         clearStack();
 
-        ((JImageLabel) jImageLabel).deselect();
-
         this.jButtonFitImage.setEnabled(true);
         this.jButtonActualSize.setEnabled(false);
         this.jButtonZoomIn.setEnabled(true);
@@ -2053,6 +2051,8 @@ public class Gui extends JFrame {
 
         jImageLabel.setIcon(imageIcon);
         this.jScrollPaneImage.getViewport().setViewPosition(curScrollPos = new Point());
+        ((JImageLabel) jImageLabel).deselect();
+        ((JImageLabel) jImageLabel).setSegmentedRegions(null);
         setSegmentedRegions();
 //        jImageLabel.revalidate();
     }
@@ -2066,35 +2066,60 @@ public class Gui extends JFrame {
         try {
             OCR<IIOImage> ocrEngine = new OCRImages(tessPath); // for Tess4J
             ocrEngine.setDatapath(datapath);
-            HashMap<Color, List<Rectangle>> map = new HashMap<Color, List<Rectangle>>();
+            HashMap<Color, List<Rectangle>> map = ((JImageLabel) jImageLabel).getSegmentedRegions();
+            if (map == null) {
+                map = new HashMap<Color, List<Rectangle>>();
+            }
+
             IIOImage image = iioImageList.get(imageIndex);
 
             List<Rectangle> regions;
-            if (this.jCheckBoxBlock.isSelected()) {
-                regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_BLOCK);
-                map.put(Color.GRAY, regions);
+
+            if (jCheckBoxBlock.isSelected()) {
+                if (!map.containsKey(Color.GRAY)) {
+                    regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_BLOCK);
+                    map.put(Color.GRAY, regions);
+                }
+            } else {
+                map.remove(Color.GRAY);
             }
 
-            if (this.jCheckBoxPara.isSelected()) {
-                regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_PARA);
-                map.put(Color.GREEN, regions);
+            if (jCheckBoxPara.isSelected()) {
+                if (!map.containsKey(Color.GREEN)) {
+                    regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_PARA);
+                    map.put(Color.GREEN, regions);
+                }
+            } else {
+                map.remove(Color.GREEN);
             }
 
-            if (this.jCheckBoxTextLine.isSelected()) {
-                regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE);
-                map.put(Color.RED, regions);
+            if (jCheckBoxTextLine.isSelected()) {
+                if (!map.containsKey(Color.RED)) {
+                    regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE);
+                    map.put(Color.RED, regions);
+                }
+            } else {
+                map.remove(Color.RED);
             }
 
-            if (this.jCheckBoxWord.isSelected()) {
-                regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_WORD);
-                map.put(Color.BLUE, regions);
+            if (jCheckBoxWord.isSelected()) {
+                if (!map.containsKey(Color.BLUE)) {
+                    regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_WORD);
+                    map.put(Color.BLUE, regions);
+                }
+            } else {
+                map.remove(Color.BLUE);
             }
 
-            if (this.jCheckBoxSymbol.isSelected()) {
-                regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_SYMBOL);
-                map.put(Color.MAGENTA, regions);
+            if (jCheckBoxSymbol.isSelected()) {
+                if (!map.containsKey(Color.MAGENTA)) {
+                    regions = ocrEngine.getSegmentedRegions(image, ITessAPI.TessPageIteratorLevel.RIL_SYMBOL);
+                    map.put(Color.MAGENTA, regions);
+                }
+            } else {
+                map.remove(Color.MAGENTA);
             }
-            
+
             ((JImageLabel) jImageLabel).setSegmentedRegions(map);
             jImageLabel.repaint();
             jImageLabel.revalidate();
@@ -2503,9 +2528,9 @@ public class Gui extends JFrame {
                     return;
                 }
             } else // set maximum size to zoom
-             if (imageIcon.getIconWidth() > 10000) {
-                    return;
-                }
+            if (imageIcon.getIconWidth() > 10000) {
+                return;
+            }
 
             ((JImageLabel) jImageLabel).deselect();
             ((JImageLabel) jImageLabel).setSegmentedRegions(null);
@@ -2523,8 +2548,8 @@ public class Gui extends JFrame {
                     jImageLabel.revalidate();
                     jScrollPaneImage.repaint();
 
-                    scaleX = originalW / (float)width;
-                    scaleY = originalH / (float)height;
+                    scaleX = originalW / (float) width;
+                    scaleY = originalH / (float) height;
                 }
             });
 

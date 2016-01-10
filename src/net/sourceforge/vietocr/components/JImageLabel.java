@@ -104,6 +104,15 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
     }
 
     /**
+     * Gets segmented regions.
+     * 
+     * @return map
+     */
+    public HashMap<Color, java.util.List<Rectangle>> getSegmentedRegions() {
+        return map;
+    }
+    
+    /**
      * Sets segmented regions.
      *
      * @param map
