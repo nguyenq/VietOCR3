@@ -31,7 +31,7 @@ public abstract class OCR<T> {
     protected String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)
     protected String language = "eng";
     protected String outputFormat = "text";
-    protected String datapath = "./tesseract-ocr";
+    protected String datapath = "./";
 
     /**
      * Recognizes files or images.

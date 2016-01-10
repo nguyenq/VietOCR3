@@ -2065,6 +2065,7 @@ public class Gui extends JFrame {
 
         try {
             OCR<IIOImage> ocrEngine = new OCRImages(tessPath); // for Tess4J
+            ocrEngine.setDatapath(datapath);
             HashMap<Color, List<Rectangle>> map = new HashMap<Color, List<Rectangle>>();
             IIOImage image = iioImageList.get(imageIndex);
 
