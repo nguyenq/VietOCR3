@@ -103,7 +103,7 @@ Version 4.0 (30 March 2015)
 - Upgrade Tess4J to v2.0
 - Add support for searchable PDF output in bulk/batch mode
 
-Version 4.1 (9 January 2016)
+Version 4.1 (18 January 2016)
 - Upgrade to Tesseract 3.04 (953523b)
 - Upgrade to Tess4J 3.0
 - Image zoom with mousewheel and Ctrl key
