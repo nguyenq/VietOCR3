@@ -112,7 +112,7 @@ Version 4.1 (18 January 2016)
 - Update JACOB to 1.8
 - Update translations
 
-Version 4.2 (26 March 2016)
+Version 4.2 (2 April 2016)
 - Upgrade to Tesseract 3.04.01 (4ef68a0)
 - Upgrade to Tess4J 3.1
 - Update various dependency versions
