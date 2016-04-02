@@ -119,7 +119,11 @@ public class Utils {
                 return file.getName().toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp|pdf)$") || file.isDirectory();
             }
         });
-
+        
+        if (files == null) {
+            return;
+        }
+        
         List<File> dirs = new ArrayList<File>();
         
         // process files first
