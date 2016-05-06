@@ -1433,6 +1433,7 @@ public class Gui extends JFrame {
         jMenuImage.add(jMenuItemAutocrop);
 
         jMenuItemRemoveLines.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemRemoveLines.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemRemoveLines.Mnemonic").charAt(0));
         jMenuItemRemoveLines.setText(bundle.getString("jMenuItemRemoveLines.Text")); // NOI18N
         jMenuItemRemoveLines.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
