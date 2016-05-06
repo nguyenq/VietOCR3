@@ -721,6 +721,7 @@ public class Gui extends JFrame {
         jMenuItemSmooth = new javax.swing.JMenuItem();
         jMenuItemDeskew = new javax.swing.JMenuItem();
         jMenuItemAutocrop = new javax.swing.JMenuItem();
+        jMenuItemRemoveLines = new javax.swing.JMenuItem();
         jSeparator12 = new javax.swing.JPopupMenu.Separator();
         jMenuItemUndo = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -1430,6 +1431,15 @@ public class Gui extends JFrame {
             }
         });
         jMenuImage.add(jMenuItemAutocrop);
+
+        jMenuItemRemoveLines.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemRemoveLines.setText("Remove Lines");
+        jMenuItemRemoveLines.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRemoveLinesActionPerformed(evt);
+            }
+        });
+        jMenuImage.add(jMenuItemRemoveLines);
         jMenuImage.add(jSeparator12);
 
         jMenuItemUndo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
@@ -1737,7 +1747,7 @@ public class Gui extends JFrame {
     }//GEN-LAST:event_jComboBoxLangItemStateChanged
 
     void jMenuItemOCRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemOCRActionPerformed
-        // to be implemented in subclas
+        // to be implemented in subclass
     }//GEN-LAST:event_jMenuItemOCRActionPerformed
     void jMenuItemOCRAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemOCRAllActionPerformed
         // to be implemented in subclass
@@ -2558,6 +2568,10 @@ public class Gui extends JFrame {
         }
     }//GEN-LAST:event_jScrollPaneImageMouseWheelMoved
 
+    void jMenuItemRemoveLinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRemoveLinesActionPerformed
+        // to be implemented in subclass
+    }//GEN-LAST:event_jMenuItemRemoveLinesActionPerformed
+
     /**
      * Pastes image from clipboard.
      */
@@ -2722,6 +2736,7 @@ public class Gui extends JFrame {
     private javax.swing.JMenuItem jMenuItemOptions;
     protected javax.swing.JMenuItem jMenuItemPostProcess;
     private javax.swing.JMenuItem jMenuItemRemoveLineBreaks;
+    private javax.swing.JMenuItem jMenuItemRemoveLines;
     private javax.swing.JMenuItem jMenuItemSave;
     private javax.swing.JMenuItem jMenuItemSaveAs;
     protected javax.swing.JMenuItem jMenuItemScan;

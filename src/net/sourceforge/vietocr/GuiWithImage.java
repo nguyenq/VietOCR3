@@ -23,6 +23,9 @@ import java.beans.PropertyChangeListener;
 import java.util.Deque;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import net.sourceforge.lept4j.Leptonica1;
+import net.sourceforge.lept4j.Pix;
+import net.sourceforge.lept4j.util.LeptUtils;
 
 import net.sourceforge.tess4j.util.ImageHelper;
 import net.sourceforge.vietocr.components.ImageIconScalable;
@@ -110,6 +113,41 @@ public class GuiWithImage extends GuiWithBulkOCR {
             imageList.set(imageIndex, imageIcon);
             iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
             displayImage();
+        }
+
+        getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        getGlassPane().setVisible(false);
+    }
+
+    @Override
+    void jMenuItemRemoveLinesActionPerformed(java.awt.event.ActionEvent evt) {
+        if (iioImageList == null) {
+            JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        getGlassPane().setVisible(true);
+        
+        try {
+            originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+            Pix pix = LeptUtils.convertImageToPix(originalImage);
+            Pix pix1 = LeptUtils.removeLines(pix); // horizontal lines
+            Pix pix2 = Leptonica1.pixRotate90(pix1, 1); // rotate 90 deg CW
+            Pix pix3 = LeptUtils.removeLines(pix2); // effectively vertical lines
+            Pix pix4 = Leptonica1.pixRotate90(pix3, -1);  // rotate 90 deg CCW
+            BufferedImage imageLinesRemoved = LeptUtils.convertPixToImage(pix4);
+            LeptUtils.disposePix(pix);
+            LeptUtils.disposePix(pix1);
+            LeptUtils.disposePix(pix2);
+            LeptUtils.disposePix(pix3);
+            LeptUtils.disposePix(pix4);
+            stack.push(originalImage);
+            imageIcon = new ImageIconScalable(imageLinesRemoved);
+            imageList.set(imageIndex, imageIcon);
+            iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
+            displayImage();
+        } catch (Exception e) {
+            // ignore
         }
 
         getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
