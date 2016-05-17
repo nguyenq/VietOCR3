@@ -117,5 +117,7 @@ Version 4.2 (2 April 2016)
 - Upgrade to Tess4J 3.1
 - Update various dependency versions
 
-Version 4.3 (6 May 2016)
+Version 4.3 (16 May 2016)
 - Implement remove lines function
+- Update Tess4J to 3.2
+- Update various dependency versions
