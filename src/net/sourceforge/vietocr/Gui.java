@@ -1464,6 +1464,7 @@ public class Gui extends JFrame {
         jMenuImage.add(jCheckBoxMenuItemScreenshotMode);
         jMenuImage.add(jSeparator18);
 
+        jCheckBoxMenuItemSegmentedRegions.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jCheckBoxMenuItemSegmentedRegions.Mnemonic").charAt(0));
         jCheckBoxMenuItemSegmentedRegions.setText(bundle.getString("jCheckBoxMenuItemSegmentedRegions.Text")); // NOI18N
         jCheckBoxMenuItemSegmentedRegions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
