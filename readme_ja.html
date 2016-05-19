@@ -10,7 +10,7 @@
         <p><a href="http://vietocr.sourceforge.net">VietOCR</a>はJavaで書かれた<a href="https://github.com/tesseract-ocr">Tesseract OCRエンジン</a>のGUIフロントエンドです。一般的な画像形式やマルチページTIFF形式の文字認識をサポートします。プログラムはOCR処理に付き物の誤認識を修正する後処理をし、認識結果の正解率を向上させます。コマンドラインから実行すればコンソールアプリケーションとしても機能します。</p>
         <p>バッチ処理がサポートされるようになりました。このプログラムは監視フォルダ内の新しい画像ファイルを監視し、OCRエンジンを通してそれを自動処理し出力フォルダへ認識結果を出力します。</p>
         <h3>システム要件</h3>
-        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Javaランタイム環境6.0</a>以降。</p>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Javaランタイム環境7.0</a>以降。</p>
         <h3>インストール</h3>
         <p>Tesseract 3.04.01のWindows実行ファイルがプログラムにバンドルされています。Tesseractの追加<a href="https://github.com/tesseract-ocr/tessdata">言語データパック</a>はサブディレクトリ<code>tessdata</code>に配置してください。そのファイル名はISO639-3コードで始まります。</p>
         <p>LinuxではTesseractとその言語データパックはGraphics(universe)リポジトリにあります。Synapticを使用するか次のコマンドでそれらをインストールできます。</p>
@@ -31,13 +31,13 @@
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p><a href="http://www.ghostscript.com/">GPL Ghostscript</a>を通したPDFサポートが可能です。ライブラリのインストール後に適切な環境変数を設定し、共有ライブラリオブジェクト（<code>gsdll32.dll</code>または<code>libgs.so</code>）が検索パス内にあることを確認してください。Windows上でGSバージョン9.16の場合は<code>Path</code>（［コントロールパネル］&gt;［システム］&gt;［詳細設定タブ］&gt;［環境変数］からアクセス）に次のように追加します。</p>
+        <p><a href="http://www.ghostscript.com/">GPL Ghostscript</a>を通したPDFサポートが可能です。ライブラリのインストール後に適切な環境変数を設定し、共有ライブラリオブジェクト（<code>gsdll32.dll</code>または<code>libgs.so</code>）が検索パス内にあることを確認してください。Windows上でGSバージョン9.19の場合は<code>Path</code>（［コントロールパネル］&gt;［システム］&gt;［詳細設定タブ］&gt;［環境変数］からアクセス）に次のように追加します。</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.16\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.19\bin</code></p>
         </blockquote>Linuxでは<blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p><code>/usr/lib</code>には<code>libgs.so.9.16</code>への<code>libgs.so</code>リンクがあります。</p>
+        <p><code>/usr/lib</code>には<code>libgs.so.9.19</code>への<code>libgs.so</code>リンクがあります。</p>
         <p>Hunspellを通してスペルチェック機能を利用できます。その<a href="http://wiki.services.openoffice.org/wiki/Dictionaries">辞書ファイル</a>（<code>.aff</code>、<code>.dic</code>）をVietOCRの<code>dict</code>フォルダに配置してください。<code>user.dic</code>は1行につき1単語ずつカスタム単語リストを含むUTF-8エンコードのファイルです。</p>
         <p>LinuxではHunspellとその辞書をSynapticまたは次のように<code>apt</code>でインストールします。</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>

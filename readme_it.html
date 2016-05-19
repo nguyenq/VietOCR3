@@ -10,7 +10,7 @@
         <p><a href="http://vietocr.sourceforge.net">VietOCR</a> è un'interfaccia grafica per<a href="https://github.com/tesseract-ocr">Tesseract OCR engine</a>, fornisce supporto per il riconoscimento dei caratteri per i formati immagine più comuni. Il programma dispone di software di post-elaborazione che aiuta a correggere gli errori che susseguono nel processo di riconoscimento, aumentando il grado di precisione del risultato. Il programma può anche funzionare come applicazione console, eseguendo i comandi tramite linea di comando.</p>
         <p>L'elaborazione in batch è ora supportata. Il programma controlla una cartella per ricercare il file della nuova immagine, che elabora automaticamente attraverso il motore OCR, e salva i risultati in una cartella di output.</p>
         <h3>REQUISITI DEL SISTEMA</h3>
-        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 6.0</a> o superiore.</p>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 7.0</a> o superiore.</p>
         <h3>INSTALLAZIONE</h3>
         <p>Tesseract 3.04.01, eseguibile di Windows, è fornito assieme al programma. Un <a href="https://github.com/tesseract-ocr/tessdata">  Pacchetto dati lingua</a> per Tesseract, il cui nome inizia con il codice ISO639-3, dovrebbe essere inserito nella sottocartella <code>tessdata</code>.</p>
         <p>Per Linux, Tesseract ed i suoi pacchetti di dati linguistici si trovano nella cartella (universo) Grafica . Possono essere installati tramite Synaptic o con il seguente comando:</p>
@@ -35,15 +35,15 @@
         </blockquote>
         <p>Il supporto PDF è disponibile con <a href="http://www.ghostscript.com/">GPL⏎
 Ghostscript</a>. Dopo l'intallazione della libreria, controlla che gli oggetti⏎
-(<code>gsdll32.dll</code> o <code>libgs.so</code>) siano presenti nel percorso di ricerca impostando nel campo variabile <code>Path</code>, (accessibile tramite il Pannello di controllo di Windows System &gt; Advanced tab &gt; Environment Variables) per GS version 9.16:</p>
+(<code>gsdll32.dll</code> o <code>libgs.so</code>) siano presenti nel percorso di ricerca impostando nel campo variabile <code>Path</code>, (accessibile tramite il Pannello di controllo di Windows System &gt; Advanced tab &gt; Environment Variables) per GS version 9.19:</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.16\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.19\bin</code></p>
         </blockquote>Linux:<blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
         <p>dove sono posti <code>/usr/lib</code>, <code>libgs.so</code> i collegamenti per 
 
-<code>libgs.so.9.16</code>
+<code>libgs.so.9.19</code>
 </p>
         <p>La funzionalità di controllo ortografico è disponibile attraverso Hunspell, il cui <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">dizionario</a> (<code>.aff</code>, <code>.dic</code>) deve essere posto nella cartella <code>dict</code> di VietOCR. <code>user.dic</code> è un file criptato UTF-8 che contiene una lista di parole predefinite, una per linea.</p>
         <p>Su Linux, Hunspell ed i suoi dizionari possono essere installati da Synaptic o  <code>apt</code>, come segue:</p>

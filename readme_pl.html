@@ -18,7 +18,7 @@ jako aplikacja w konsoli, wykonując linie poleceń.
 </p>
         <p>Przetwarzanie wsadowe jest już dostępne. Program przeszukuje obserwowany folder celem znalezienia nowych plików z obrazami i automatycznie przetwarza je przez silnik OCR, następnie wysyła wyniki procesu do folderu wyjściowego.</p>
         <h3>WYMAGANIA SYSTEMOWE</h3>
-        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 6.0</a>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 7.0</a>
 lub wyższą wersję.</p>
         <h3>INSTALACJA</h3>
         <p>Pliki wykonywalne Tesseract 3.04.01 dla Windows są w zestawie z programem. Dodatkowe <a href="https://github.com/tesseract-ocr/tessdata">pakiety językowe</a> dla Tesseract, których nazwy zaczynają się kodem ISO639-3, powinny być umieszczone w katalogu <code>tessdata</code>.</p>
@@ -42,13 +42,13 @@ lub wyższą wersję.</p>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
         <p>Obsługa plików PDF jest możliwa dzięki <a href="http://www.ghostscript.com/">GPL
-                Ghostscript</a>. Po zainstalowaniu bibliotek upewnij się, że udostępnione biblioteki (<code>gsdll32.dll</code> or <code>libgs.so</code>) &nbsp;są w ścieżce wyszukiwania poprzez ustawienie odpowiednich zmiennych systemowych. W Windows dla GS w wersji 9.16, dodaj poniższy wpis do&nbsp;zmiennej&nbsp;<code>Path</code>&nbsp;(dostępnej poprzez Panel Kontrolny &gt; System &gt; zakładka Zaawansowane &gt; Zmienne środowiskowe...) :</p>
+                Ghostscript</a>. Po zainstalowaniu bibliotek upewnij się, że udostępnione biblioteki (<code>gsdll32.dll</code> or <code>libgs.so</code>) &nbsp;są w ścieżce wyszukiwania poprzez ustawienie odpowiednich zmiennych systemowych. W Windows dla GS w wersji 9.19, dodaj poniższy wpis do&nbsp;zmiennej&nbsp;<code>Path</code>&nbsp;(dostępnej poprzez Panel Kontrolny &gt; System &gt; zakładka Zaawansowane &gt; Zmienne środowiskowe...) :</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.16\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.19\bin</code></p>
         </blockquote>W systemie Linux: <blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p>gdzie w&nbsp;<code>/usr/lib&nbsp;</code>jest zlokalizowany link&nbsp;<code>libgs.so</code>&nbsp;do <code>libgs.so.9.16</code>.</p>
+        <p>gdzie w&nbsp;<code>/usr/lib&nbsp;</code>jest zlokalizowany link&nbsp;<code>libgs.so</code>&nbsp;do <code>libgs.so.9.19</code>.</p>
         <p>Funkcjonalność sprawdzania pisowni jest dostępna poprzez Hunspell, którego pliki <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">słownika (</a><code>.aff</code> <code>.dic</code>) powinny być umieszczone w folderze <code>dict</code> programu VietOCR. <code>user.dic</code> jest plikiem z kodowaniem UTF-8, który zawiera listę słów, po jednym słowie na linię.</p>
         <p>W systemie Linux, Hunspell wraz ze słownikami może być zainstalowany za pomocą Menedżera pakietów Synaptic lub polecenia&nbsp;<code>apt</code>, jak poniżej:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
