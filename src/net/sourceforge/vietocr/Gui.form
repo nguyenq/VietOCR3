@@ -26,6 +26,69 @@
         <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="FileFilter allImageFilter = new SimpleFilter(&quot;bmp;gif;jpg;jpeg;jp2;png;pnm;pbm;pgm;ppm;tif;tiff;pdf&quot;, bundle.getString(&quot;All_Image_Files&quot;));&#xa;        FileFilter bmpFilter = new SimpleFilter(&quot;bmp&quot;, &quot;Bitmap&quot;);&#xa;        FileFilter gifFilter = new SimpleFilter(&quot;gif&quot;, &quot;GIF&quot;);&#xa;        FileFilter jpegFilter = new SimpleFilter(&quot;jpg;jpeg&quot;, &quot;JPEG&quot;);&#xa;        FileFilter jpeg2000Filter = new SimpleFilter(&quot;jp2&quot;, &quot;JPEG 2000&quot;);&#xa;        FileFilter pngFilter = new SimpleFilter(&quot;png&quot;, &quot;PNG&quot;);&#xa;        FileFilter pnmFilter = new SimpleFilter(&quot;pnm;pbm;pgm;ppm&quot;, &quot;PNM&quot;);&#xa;        FileFilter tiffFilter = new SimpleFilter(&quot;tif;tiff&quot;, &quot;TIFF&quot;);&#xa;&#xa;        FileFilter pdfFilter = new SimpleFilter(&quot;pdf&quot;, &quot;PDF&quot;);&#xa;        FileFilter textFilter = new SimpleFilter(&quot;txt&quot;, bundle.getString(&quot;UTF-8_Text&quot;));&#xa;&#xa;        jFileChooser.setAcceptAllFileFilterUsed(false);&#xa;        jFileChooser.addChoosableFileFilter(allImageFilter);&#xa;        jFileChooser.addChoosableFileFilter(bmpFilter);&#xa;        jFileChooser.addChoosableFileFilter(gifFilter);&#xa;        jFileChooser.addChoosableFileFilter(jpegFilter);&#xa;        jFileChooser.addChoosableFileFilter(jpeg2000Filter);&#xa;        jFileChooser.addChoosableFileFilter(pngFilter);&#xa;        jFileChooser.addChoosableFileFilter(pnmFilter);&#xa;        jFileChooser.addChoosableFileFilter(tiffFilter);&#xa;        jFileChooser.addChoosableFileFilter(pdfFilter);&#xa;        jFileChooser.addChoosableFileFilter(textFilter);&#xa;&#xa;        filterIndex = prefs.getInt(strFilterIndex, 0);&#xa;        fileFilters = jFileChooser.getChoosableFileFilters();&#xa;        if (filterIndex &lt; fileFilters.length) {&#xa;            jFileChooser.setFileFilter(fileFilters[filterIndex]);&#xa;        }"/>
       </AuxValues>
     </Component>
+    <Container class="javax.swing.JPopupMenu" name="jPopupMenuSegmentedRegions">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItemSymbol">
+          <Properties>
+            <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="prefs.getBoolean(strSegmentedRegionsSymbol, false)" type="code"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Symbol"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxMenuItemSymbolActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItemWord">
+          <Properties>
+            <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="prefs.getBoolean(strSegmentedRegionsWord, false)" type="code"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Word"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxMenuItemWordActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItemTextLine">
+          <Properties>
+            <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="prefs.getBoolean(strSegmentedRegionsTextLine, false)" type="code"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Text Line"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxMenuItemTextLineActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItemPara">
+          <Properties>
+            <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="prefs.getBoolean(strSegmentedRegionsPara, false)" type="code"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Para"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxMenuItemParaActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItemBlock">
+          <Properties>
+            <Property name="selected" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="prefs.getBoolean(strSegmentedRegionsBlock, false)" type="code"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Block"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxMenuItemBlockActionPerformed"/>
+          </Events>
+        </MenuItem>
+      </SubComponents>
+    </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="        if (LINUX) {&#xa;            setPreferredSize(new java.awt.Dimension(1340, 600));&#xa;        }&#xa;&#xa;        // DnD support&#xa;        new DropTarget(this.jImageLabel, new FileDropTargetListener(Gui.this));&#xa;        new DropTarget(this.jTextArea1, new FileDropTargetListener(Gui.this));&#xa;&#xa;        this.addWindowListener(new WindowAdapter() {&#xa;&#xa;            @Override&#xa;            public void windowClosing(WindowEvent e) {&#xa;                quit();&#xa;            }&#xa;&#xa;            @Override&#xa;            public void windowOpened(WindowEvent e) {&#xa;                updateSave(false);&#xa;                setExtendedState(prefs.getInt(strWindowState, Frame.NORMAL));&#xa;                populateMRUList();&#xa;                populatePopupMenu();&#xa;                addUndoSupport();&#xa;            }&#xa;        &#xa;            @Override&#xa;            public void windowActivated(WindowEvent e) {&#xa;                jButtonPasteImage.setEnabled(ImageHelper.getClipboardImage() != null);&#xa;            }&#xa;        });&#xa;&#xa;        setSize(&#xa;                snap(prefs.getInt(strFrameWidth, 500), 300, screen.width),&#xa;                snap(prefs.getInt(strFrameHeight, 360), 150, screen.height));&#xa;        setLocation(&#xa;                snap(prefs.getInt(strFrameX, (screen.width - getWidth()) / 2),&#xa;                        screen.x, screen.x + screen.width - getWidth()),&#xa;                snap(prefs.getInt(strFrameY, screen.y + (screen.height - getHeight()) / 3),&#xa;                        screen.y, screen.y + screen.height - getHeight()));"/>
@@ -1460,83 +1523,13 @@
             <Property name="verticalGap" type="int" value="0"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabelSegmentedRegions">
+            <Component class="javax.swing.JButton" name="jButtonSegmentedRegions">
               <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jLabelSegmentedRegions.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jLabelSegmentedRegions.ToolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBoxSymbol">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jCheckBoxSymbol.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Segmented Regions"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxSymbolActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonSegmentedRegionsMouseClicked"/>
               </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jCheckBoxSymbol.setSelected(prefs.getBoolean(strSegmentedRegionsSymbol, false));"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBoxWord">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jCheckBoxWord.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-              <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jCheckBoxWord"/>
-              </AccessibilityProperties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxWordActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jCheckBoxWord.setSelected(prefs.getBoolean(strSegmentedRegionsWord, false));"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBoxTextLine">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jCheckBoxTextLine.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxTextLineActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jCheckBoxTextLine.setSelected(prefs.getBoolean(strSegmentedRegionsTextLine, false));"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBoxPara">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jCheckBoxPara.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxParaActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jCheckBoxPara.setSelected(prefs.getBoolean(strSegmentedRegionsPara, false));"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBoxBlock">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jCheckBoxBlock.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxBlockActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jCheckBoxBlock.setSelected(prefs.getBoolean(strSegmentedRegionsBlock, false));"/>
-              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
