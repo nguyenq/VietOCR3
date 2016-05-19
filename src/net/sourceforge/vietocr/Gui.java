@@ -1180,11 +1180,6 @@ public class Gui extends JFrame {
         jButtonSegmentedRegions.setVisible(jCheckBoxMenuItemSegmentedRegions.isSelected());
         jButtonSegmentedRegions.setContentAreaFilled(false);
         jButtonSegmentedRegions.setBorderPainted(false);
-        jButtonSegmentedRegions.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonSegmentedRegionsMouseClicked(evt);
-            }
-        });
         jButtonSegmentedRegions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSegmentedRegionsActionPerformed(evt);
@@ -2567,10 +2562,6 @@ public class Gui extends JFrame {
     void jMenuItemRemoveLinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRemoveLinesActionPerformed
         // to be implemented in subclass
     }//GEN-LAST:event_jMenuItemRemoveLinesActionPerformed
-
-    private void jButtonSegmentedRegionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSegmentedRegionsMouseClicked
-        jPopupMenuSegmentedRegions.show(evt.getComponent(), 0, 0 - (int) jPopupMenuSegmentedRegions.getPreferredSize().getHeight());
-    }//GEN-LAST:event_jButtonSegmentedRegionsMouseClicked
 
     private void jCheckBoxMenuItemSymbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemSymbolActionPerformed
         setSegmentedRegions();
