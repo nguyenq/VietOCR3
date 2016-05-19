@@ -1523,30 +1523,28 @@
             <AuxValue name="JavaCodeGenerator_AddingCodePre" type="java.lang.String" value="jPanelStatus.add(Box.createHorizontalStrut(4));"/>
           </AuxValues>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanelSegmentedRegions">
+        <Component class="javax.swing.JButton" name="jButtonSegmentedRegions">
+          <Properties>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jButtonSegmentedRegions.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jButtonSegmentedRegions.ToolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonSegmentedRegionsMouseClicked"/>
+          </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jPanelSegmentedRegions.setVisible(this.jCheckBoxMenuItemSegmentedRegions.isSelected());"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jButtonSegmentedRegions.setVisible(jCheckBoxMenuItemSegmentedRegions.isSelected());"/>
           </AuxValues>
+        </Component>
+        <Container class="javax.swing.JPanel" name="jPanelSegmentedRegions">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
             <Property name="horizontalGap" type="int" value="0"/>
             <Property name="verticalGap" type="int" value="0"/>
           </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JButton" name="jButtonSegmentedRegions">
-              <Properties>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jButtonSegmentedRegions.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jButtonSegmentedRegions.ToolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonSegmentedRegionsMouseClicked"/>
-              </Events>
-            </Component>
-          </SubComponents>
         </Container>
         <Component class="javax.swing.JSeparator" name="jSeparatorSM">
           <Properties>

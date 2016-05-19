@@ -678,8 +678,8 @@ public class Gui extends JFrame {
         jLabelDimension = new javax.swing.JLabel();
         jLabelDimensionValue = new javax.swing.JLabel();
         jSeparatorDimEnd = new javax.swing.JSeparator();
-        jPanelSegmentedRegions = new javax.swing.JPanel();
         jButtonSegmentedRegions = new javax.swing.JButton();
+        jPanelSegmentedRegions = new javax.swing.JPanel();
         jSeparatorSM = new javax.swing.JSeparator();
         jLabelScreenshotMode = new javax.swing.JLabel();
         jLabelScreenshotModeValue = new javax.swing.JLabel();
@@ -1175,18 +1175,17 @@ public class Gui extends JFrame {
         jPanelStatus.add(jSeparatorDimEnd);
         jPanelStatus.add(Box.createHorizontalGlue());
 
-        jPanelSegmentedRegions.setVisible(this.jCheckBoxMenuItemSegmentedRegions.isSelected());
-        jPanelSegmentedRegions.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
-
         jButtonSegmentedRegions.setText(bundle.getString("jButtonSegmentedRegions.Text")); // NOI18N
         jButtonSegmentedRegions.setToolTipText(bundle.getString("jButtonSegmentedRegions.ToolTipText")); // NOI18N
+        jButtonSegmentedRegions.setVisible(jCheckBoxMenuItemSegmentedRegions.isSelected());
         jButtonSegmentedRegions.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonSegmentedRegionsMouseClicked(evt);
             }
         });
-        jPanelSegmentedRegions.add(jButtonSegmentedRegions);
+        jPanelStatus.add(jButtonSegmentedRegions);
 
+        jPanelSegmentedRegions.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
         jPanelStatus.add(jPanelSegmentedRegions);
 
         jSeparatorSM.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -2511,7 +2510,7 @@ public class Gui extends JFrame {
     }//GEN-LAST:event_jComboBoxPageNumActionPerformed
 
     private void jCheckBoxMenuItemSegmentedRegionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemSegmentedRegionsActionPerformed
-        this.jPanelSegmentedRegions.setVisible(this.jCheckBoxMenuItemSegmentedRegions.isSelected());
+        this.jButtonSegmentedRegions.setVisible(this.jCheckBoxMenuItemSegmentedRegions.isSelected());
         setSegmentedRegions();
     }//GEN-LAST:event_jCheckBoxMenuItemSegmentedRegionsActionPerformed
 
