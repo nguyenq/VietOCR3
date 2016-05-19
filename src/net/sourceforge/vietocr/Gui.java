@@ -133,7 +133,7 @@ public class Gui extends JFrame {
 
         bundle = java.util.ResourceBundle.getBundle("net.sourceforge.vietocr.Gui");
         initComponents();
-
+        
         if (MAC_OS_X) {
             new MacOSXApplication(Gui.this);
 
@@ -1173,17 +1173,25 @@ public class Gui extends JFrame {
         jSeparatorDimEnd.setMaximumSize(new java.awt.Dimension(2, 14));
         jPanelStatus.add(Box.createHorizontalStrut(4));
         jPanelStatus.add(jSeparatorDimEnd);
-        jPanelStatus.add(Box.createHorizontalGlue());
 
         jButtonSegmentedRegions.setText(bundle.getString("jButtonSegmentedRegions.Text")); // NOI18N
         jButtonSegmentedRegions.setToolTipText(bundle.getString("jButtonSegmentedRegions.ToolTipText")); // NOI18N
+        jButtonSegmentedRegions.setMargin(new java.awt.Insets(2, 10, 2, 6));
         jButtonSegmentedRegions.setVisible(jCheckBoxMenuItemSegmentedRegions.isSelected());
+        jButtonSegmentedRegions.setContentAreaFilled(false);
+        jButtonSegmentedRegions.setBorderPainted(false);
         jButtonSegmentedRegions.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonSegmentedRegionsMouseClicked(evt);
             }
         });
+        jButtonSegmentedRegions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSegmentedRegionsActionPerformed(evt);
+            }
+        });
         jPanelStatus.add(jButtonSegmentedRegions);
+        jPanelStatus.add(Box.createHorizontalGlue());
 
         jPanelSegmentedRegions.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
         jPanelStatus.add(jPanelSegmentedRegions);
@@ -2583,6 +2591,10 @@ public class Gui extends JFrame {
     private void jCheckBoxMenuItemTextLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemTextLineActionPerformed
         setSegmentedRegions();
     }//GEN-LAST:event_jCheckBoxMenuItemTextLineActionPerformed
+
+    private void jButtonSegmentedRegionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSegmentedRegionsActionPerformed
+        jPopupMenuSegmentedRegions.show(jButtonSegmentedRegions, 0, 0 - (int) jPopupMenuSegmentedRegions.getPreferredSize().getHeight());
+    }//GEN-LAST:event_jButtonSegmentedRegionsActionPerformed
 
     /**
      * Pastes image from clipboard.
