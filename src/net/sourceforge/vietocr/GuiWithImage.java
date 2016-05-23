@@ -190,11 +190,11 @@ public class GuiWithImage extends GuiWithBulkOCR {
             iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
             displayImage();
         } catch (Exception e) {
-            // ignore
+            JOptionPane.showMessageDialog(this, bundle.getString("Image_may_require_conversion_to_grayscale"), APP_NAME, JOptionPane.ERROR_MESSAGE);
+        } finally {
+            getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            getGlassPane().setVisible(false);
         }
-
-        getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        getGlassPane().setVisible(false);
     }
 
     @Override
