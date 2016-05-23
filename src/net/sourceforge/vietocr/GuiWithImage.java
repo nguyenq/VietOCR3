@@ -152,14 +152,11 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
         originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
         BufferedImage croppedImage = net.sourceforge.vietocr.util.ImageHelper.crop(originalImage, rect);
-        // if same image, skip
-        if (originalImage != croppedImage) {
-            stack.push(originalImage);
-            imageIcon = new ImageIconScalable(croppedImage);
-            imageList.set(imageIndex, imageIcon);
-            iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
-            displayImage();
-        }
+        stack.push(originalImage);
+        imageIcon = new ImageIconScalable(croppedImage);
+        imageList.set(imageIndex, imageIcon);
+        iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
+        displayImage();
 
         getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         getGlassPane().setVisible(false);
