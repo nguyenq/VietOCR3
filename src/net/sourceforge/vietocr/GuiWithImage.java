@@ -17,10 +17,12 @@ package net.sourceforge.vietocr;
 
 import com.recognition.software.jdeskew.ImageDeskew;
 import java.awt.Cursor;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Deque;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import net.sourceforge.lept4j.Leptonica1;
@@ -29,6 +31,7 @@ import net.sourceforge.lept4j.util.LeptUtils;
 
 import net.sourceforge.tess4j.util.ImageHelper;
 import net.sourceforge.vietocr.components.ImageIconScalable;
+import net.sourceforge.vietocr.components.JImageLabel;
 import net.sourceforge.vietocr.util.FixedSizeStack;
 
 public class GuiWithImage extends GuiWithBulkOCR {
@@ -120,6 +123,49 @@ public class GuiWithImage extends GuiWithBulkOCR {
     }
 
     @Override
+    void jMenuItemCropActionPerformed(java.awt.event.ActionEvent evt) {
+        if (iioImageList == null) {
+            JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        Rectangle rect = ((JImageLabel) jImageLabel).getRect();
+        if (rect == null) {
+            return;
+        }
+
+        ImageIcon ii = (ImageIcon) this.jImageLabel.getIcon();
+        int offsetX = 0;
+        int offsetY = 0;
+        if (ii.getIconWidth() < this.jScrollPaneImage.getWidth()) {
+            offsetX = (this.jScrollPaneImage.getViewport().getWidth() - ii.getIconWidth()) / 2;
+        }
+        if (ii.getIconHeight() < this.jScrollPaneImage.getHeight()) {
+            offsetY = (this.jScrollPaneImage.getViewport().getHeight() - ii.getIconHeight()) / 2;
+        }
+
+        // create a new rectangle with scale factors and offets factored in
+        rect = new Rectangle((int) ((rect.x - offsetX) * scaleX), (int) ((rect.y - offsetY) * scaleY), (int) (rect.width * scaleX), (int) (rect.height * scaleY));
+
+        getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        getGlassPane().setVisible(true);
+
+        originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+        BufferedImage croppedImage = net.sourceforge.vietocr.util.ImageHelper.crop(originalImage, rect);
+        // if same image, skip
+        if (originalImage != croppedImage) {
+            stack.push(originalImage);
+            imageIcon = new ImageIconScalable(croppedImage);
+            imageList.set(imageIndex, imageIcon);
+            iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
+            displayImage();
+        }
+
+        getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        getGlassPane().setVisible(false);
+    }
+
+    @Override
     void jMenuItemRemoveLinesActionPerformed(java.awt.event.ActionEvent evt) {
         if (iioImageList == null) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
@@ -127,7 +173,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
         }
         getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         getGlassPane().setVisible(true);
-        
+
         try {
             originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
             Pix pix = LeptUtils.convertImageToPix(originalImage);

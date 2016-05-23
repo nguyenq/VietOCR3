@@ -717,6 +717,7 @@ public class Gui extends JFrame {
         jMenuItemSmooth = new javax.swing.JMenuItem();
         jMenuItemDeskew = new javax.swing.JMenuItem();
         jMenuItemAutocrop = new javax.swing.JMenuItem();
+        jMenuItemCrop = new javax.swing.JMenuItem();
         jMenuItemRemoveLines = new javax.swing.JMenuItem();
         jSeparator12 = new javax.swing.JPopupMenu.Separator();
         jMenuItemUndo = new javax.swing.JMenuItem();
@@ -1438,6 +1439,17 @@ public class Gui extends JFrame {
             }
         });
         jMenuImage.add(jMenuItemAutocrop);
+
+        jMenuItemCrop.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemCrop.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemCrop.Mnemonic").charAt(0));
+        jMenuItemCrop.setText(bundle.getString("jMenuItemCrop.Text")); // NOI18N
+        jMenuItemCrop.setToolTipText("");
+        jMenuItemCrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCropActionPerformed(evt);
+            }
+        });
+        jMenuImage.add(jMenuItemCrop);
 
         jMenuItemRemoveLines.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemRemoveLines.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemRemoveLines.Mnemonic").charAt(0));
@@ -2587,6 +2599,10 @@ public class Gui extends JFrame {
         jPopupMenuSegmentedRegions.show(jButtonSegmentedRegions, 0, 0 - (int) jPopupMenuSegmentedRegions.getPreferredSize().getHeight());
     }//GEN-LAST:event_jButtonSegmentedRegionsActionPerformed
 
+    void jMenuItemCropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCropActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemCropActionPerformed
+
     /**
      * Pastes image from clipboard.
      */
@@ -2734,6 +2750,7 @@ public class Gui extends JFrame {
     protected javax.swing.JMenuItem jMenuItemBulkOCR;
     private javax.swing.JMenuItem jMenuItemChangeCase;
     private javax.swing.JMenuItem jMenuItemContrast;
+    private javax.swing.JMenuItem jMenuItemCrop;
     private javax.swing.JMenuItem jMenuItemDeskew;
     private javax.swing.JMenuItem jMenuItemDownloadLangData;
     private javax.swing.JMenuItem jMenuItemExit;

@@ -132,7 +132,7 @@ public class ImageHelper {
 
         int newWidth = maxX - minX + 1;
         int newHeight = maxY - minY + 1;
-        
+
         // if same size, return the original
         if (newWidth == width && newHeight == height) {
             return source;
@@ -179,6 +179,22 @@ public class ImageHelper {
         double percentAway = distance / 510.0d;
 
         return (percentAway > tolerance);
+    }
+
+    /**
+     * Crops an image to a given region.
+     *
+     * @param src
+     * @param rect
+     * @return
+     */
+    public static BufferedImage crop(BufferedImage src, Rectangle rect) {
+        BufferedImage dest = new BufferedImage((int)rect.getWidth(), (int)rect.getHeight(), src.getType());
+        Graphics g = dest.getGraphics();
+        g.drawImage(src, 0, 0, (int)rect.getWidth(), (int)rect.getHeight(), 
+                (int)rect.getX(), (int)rect.getY(), (int)(rect.getX() + rect.getWidth()), (int)(rect.getY() + rect.getHeight()), null);
+        g.dispose();
+        return dest;
     }
 
     /**
