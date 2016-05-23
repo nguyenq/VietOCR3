@@ -163,7 +163,7 @@ public class Hunspell {
                 return "hunspell-darwin-ppc-32";
             }
 
-        } else if (os.startsWith("linux")) {
+        } else if (os.startsWith("linux") || os.contains("bsd")) {
             if (x86) {
                 return "hunspell-1.3";
             }
