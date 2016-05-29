@@ -104,8 +104,9 @@
             custom text replacement scheme via a text file named <code>x.DangAmbigs.txt</code>,
             where x is the ISO639-3 language code. The UTF-8-encoded file should contain equal
             sign-delimited <code>oldValue=newValue</code> pairs.</p>
-        <p>You can put control parameters in <code>tessdata/configs/tess_configs</code> 
-            file to modify Tesseract&#39;s behaviour.</p>
+        <p>You can put init-only and non-init control parameters in <code>tessdata/configs/tess_configs</code>
+            and <code>tess_configvars</code> files, respectively, to modify Tesseract&#39;s
+            behaviour.</p>
         <p>Some built-in tools are provided to merge several images or PDF files into a single
             one for convenient OCR operations, or to split a TIFF or PDF file into smaller 
             ones if it contains too many pages, which can cause out-of-memory exceptions.</p>

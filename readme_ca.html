@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>VietOCR - Java GUI Frontend for Tesseract OCR</title>
+<title>VietOCR - Interfície gràfica d'usuari Java per al Tesseract OCR</title>
 </head>
 <body>
     <div class="Section1">
@@ -28,7 +28,7 @@
             <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-cat</code></p>
         </blockquote>
         <p>The files will be placed in <code>/usr/bin</code> and <code>/usr/share/tesseract-ocr/tessdata</code>,
-            respectively. On the other hand, if Tesseract is built and installed from the<a href="https://github.com/tesseract-ocr/tesseract/wiki/TesseractGitInstallation">source</a>,
+            respectively. On the other hand, if Tesseract is built and installed from the <a href="https://github.com/tesseract-ocr/tesseract/wiki/TesseractGitInstallation">source</a>,
             they will be placed in <code>/usr/local/bin</code> and <code>/usr/local/share/tessdata</code>.
             You may need to specify the directory of Tesseract executable from VietOCR's
             <code>Settings</code> menu. If the data is in a non-standard location, a soft link to
@@ -104,9 +104,12 @@
             custom text replacement scheme via a text file named <code>x.DangAmbigs.txt</code>,
             where x is the ISO639-3 language code. The UTF-8-encoded file should contain equal
             sign-delimited <code>oldValue=newValue</code> pairs.</p>
+        <p>You can put init-only and non-init control parameters in <code>tessdata/configs/tess_configs</code>
+            and <code>tess_configvars</code> files, respectively, to modify Tesseract&#39;s
+            behaviour.</p>
         <p>Some built-in tools are provided to merge several images or PDF files into a single
-            one for convenient OCR operations, or to split a PDF file into smaller ones if it
-            is too large, which can cause out-of-memory exceptions.</p>
+            one for convenient OCR operations, or to split a TIFF or PDF file into smaller ones
+            if it contains too many pages, which can cause out-of-memory exceptions.</p>
         <h3>POSTPROCESSAMENT</h3>
         <p>The recognition errors can generally be classified into three categories. Many of
             the errors are related to the letter cases — for example: hOa, nhắC — which can
@@ -129,14 +132,14 @@
             <li>Select <i>Change Case</i>, also under <i>Format</i> menu, and choose <i>Sentence
                 case</i> to correct most of the letter case errors. Locate and fix the rest of remaining
                 letter case errors.</li>
-            <li>Correct the misspelled errors using the integrated <i>Spell Check</i>.</li>
+            <li>Corregiu els errors d'ortografia usant el <i>corrector ortogràfic</i> integrat.</li>
         </ol>
 <p>Through the above process, most of common errors can be eliminated. The remaining,
             semantic errors are few, but it requires a human editor to read though and make
             necessary edits to make the document like the original scanned document, and error-free
             if desired.</p>
-        <p>If there is any questions, please post in <a href="http://sourceforge.net/projects/vietocr/forums">
-                VietOCR Forum</a>.</p>
+        <p>Si teniu cap pregunta, escriviu al <a href="http://sourceforge.net/projects/vietocr/forums">
+                fòrum del VietOCR</a>.</p>
         <hr>
 </div>
 </body>

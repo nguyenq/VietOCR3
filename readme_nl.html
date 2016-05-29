@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>VietOCR - Java GUI Frontend for Tesseract OCR</title>
+<title>VietOCR - Java GUI Frontend voor Tesseract OCR</title>
 </head>
 <body>
     <div class="Section1">
@@ -13,7 +13,7 @@
         <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 7.0</a> of nieuwer.</p>
         <h3>INSTALLATIE</h3>
         <p>Tesseract 3.04.01 Windows uitvoerbestand word meegeleverd met dit programma. Je kunt als aanvulling nog extra <a href="https://github.com/tesseract-ocr/tessdata"> taaldata pakketten</a> voor Tesseract downloaden. Alle bestanden die starten met de code; ISO639-3 kun je plaatsen in de submap <code>tessdata</code>.</p>
-        <p>Voor linux zijn Tesseract en de taaldata pakketten ook in verkrijgbaar in de grafische (universele) repository. Je kunt ze installeren via Synaptic of door het volgende commando:</p>
+        <p>Voor Linux zijn Tesseract en de taaldata pakketten ook verkrijgbaar in de grafische (universele) repository. Je kunt ze installeren via Synaptic of door het volgende commando:</p>
         <blockquote>
             <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-nld</code></p>
         </blockquote>
@@ -31,7 +31,7 @@
         <blockquote>
             <p><code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
         </blockquote>
-        <p>Op Linux, vereist scannen installatie van de volgende SANE pakketten:</p>
+        <p>Om gebruik te maken van de scanfunctionaliteit zijn de volgende SANE pakketten vereist op Linux systemen:</p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
@@ -59,7 +59,7 @@
         <blockquote>
             <p><code>java -jar VietOCR.jar</code></p>
         </blockquote>
-        <p><b><u>Notitie</u></b>: Als er niet genoeg werkgeheugen beschikbaar is, voer dan het <code>ocr</code> script uit inplaats van het .jar bestand.</p>
+        <p><b><u>Opmerking</u></b>: Als u geheugen problemen ervaart kunt u beter het script <code>ocr</code> gebruiken in plaats van het JAR bestand.</p>
         <p>The Vietnamese language data were generated for Times New Roman, Arial, Verdana,
             and Courier New fonts. Therefore, the recognition would have better success rate
             for images having similar font glyphs. OCRing images that have font glyphs look
@@ -74,14 +74,17 @@
             it even further. Even so, the actual rates still depend greatly on the quality of
             the scanned image. The typical settings for scanning are 300 DPI and 1 bpp (bit
             per pixel) black&amp;white or 8 bpp grayscale uncompressed TIFF or PNG format.</p>
-        <p>De <em>Schermafbeelding mode</em> zorgt voor betere herkenning bij lage-resolutie afbeeldingen zoals; schermafbeeldingen, door ze te herschalen naar 300 DPI.</p>
+        <p>De schermafbeelding modus zorgt voor betere herkenning bij afbeeldingen met een lage resolutie zoals schermafbeeldingen. In Schermafbeelding modus worden afbeeldingen geschaald naar 300 DPI.</p>
         <p>In addition to the built-in text postprocessing algorithm, you can add your own
             custom text replacement scheme via a text file named <code>x.DangAmbigs.txt</code>,
             where x is the ISO639-3 language code. The UTF-8-encoded file should contain equal
             sign-delimited <code>oldValue=newValue</code> pairs.</p>
+        <p>You can put init-only and non-init control parameters in <code>tessdata/configs/tess_configs</code>
+            and <code>tess_configvars</code> files, respectively, to modify Tesseract&#39;s
+            behaviour.</p>
         <p>Some built-in tools are provided to merge several images or PDF files into a single
-            one for convenient OCR operations, or to split a PDF file into smaller ones if it
-            is too large, which can cause out-of-memory exceptions.</p>
+            one for convenient OCR operations, or to split a TIFF or PDF file into smaller ones
+            if it contains too many pages, which can cause out-of-memory exceptions.</p>
         <h3>NABEWERKING</h3>
         <p>The recognition errors can generally be classified into three categories. Many of
             the errors are related to the letter cases — for example: hOa, nhắC — which can
@@ -94,7 +97,8 @@
             errors, which means that the words are valid entries in the dictionary but are wrong
             in the context — e.g., tinh – tình, vân – vấn. These errors require the editor to
             read though and manually correct them according to the original image.</p>
-        <p>Hieronder instructies over hoe de OCR fouten uit de eerste twee categorieën te corrigeren zijn, met behulp van de ingebouwde functionaliteit:</p>
+        <p>Hieronder instructies over hoe de OCR fouten uit de eerste twee categorieën te corrigeren
+            zijn, met behulp van de ingebouwde functionaliteit:</p>
         <ol style="margin-top: 0in" start="1" type="1">
 <li>Group lines. The lines need to be grouped to the paragraph they belong, as being
                 OCRed, each line becomes a separate 1-line paragraph. Use <i>Remove Line Breaks</i>
@@ -109,7 +113,8 @@
             semantic errors are few, but it requires a human editor to read though and make
             necessary edits to make the document like the original scanned document, and error-free
             if desired.</p>
-        <p>Voor alle vragen kun je een bericht achter laten op het <a href="http://sourceforge.net/projects/vietocr/forums">VietOCR Forum</a>.</p>
+        <p>Voor vragen kunt u een bericht achter laten op het <a href="http://sourceforge.net/projects/vietocr/forums">
+                VietOCR Forum</a>.</p>
         <hr>
 </div>
 </body>
