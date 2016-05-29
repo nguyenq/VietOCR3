@@ -20,9 +20,9 @@
         <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 7.0</a>
             anebo vyšší verze.</p>
         <h3>INSTALACE</h3>
-        <p>Windows veriza Tesseract 3.04.01 je súčasťou programu. Ďalšie <a href="https://github.com/tesseract-ocr/tessdata">
-                jazykové dátové balíky</a> pre Tesseract, ktoré začínajú s ISO639-3 kódom, by
-            mali byť umiestnené do podriečinka <code>tessdata</code>.</p>
+        <p>Windows verze Tesseract 3.04.01 je součástí programu. Další <a href="http://code.google.com/p/tesseract-ocr/downloads/list">
+                jazykové datové balíky</a> pro Tesseract, které začínají kódem ISO639-3, by
+            měly být umístěny do podadresáře <code>tessdata</code>.</p>
         <p>V Ubuntu jsou Tesseract a jeho jazyková data součástí Graphics (universe) repository.
             Můžete je nainstalovat pomocí Synaptic anebo příkazu:</p>
         <blockquote>
@@ -38,11 +38,8 @@
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
-        <p>Podpora snímání je poskytována přes knihovnu Windows Image Acquisition Library
-            v2.0, která vyžaduje Windows XP Service Pack 1 (SP1) anebo vyšší verzi. Tato knihovna
-            je standardní součástí Windows Vista a 7. Instalaci na Windows XP udělejte následovnými
-            kroky: zkopírujte soubor <tt>wiaaut.dll</tt> do složky <tt>System32</tt> (obyčejně
-            je to <tt>C:\Windows\System32</tt>) a spusťte následující příkaz v příkazovém řádku:</p>
+        <p>For other platforms, please consult <a href="https://github.com/tesseract-ocr/tesseract/wiki">
+                Tesseract Wiki</a> page.</p>
         <p>VietOCR also provides support for downloading and installing selected language packs
             via <em>Download Language Data</em> menu item. Depending on the location of the
             <code>tessdata</code> folder, you may be required to run the program as root or admin
@@ -113,8 +110,9 @@
             custom text replacement scheme via a text file named <code>x.DangAmbigs.txt</code>,
             where x is the ISO639-3 language code. The UTF-8-encoded file should contain equal
             sign-delimited <code>oldValue=newValue</code> pairs.</p>
-        <p>You can put control parameters in <code>tessdata/configs/tess_configs</code> 
-            file to modify Tesseract&#39;s behaviour.</p>
+        <p>You can put init-only and non-init control parameters in <code>tessdata/configs/tess_configs</code>
+            and <code>tess_configvars</code> files, respectively, to modify Tesseract&#39;s
+            behaviour.</p>
         <p>Some built-in tools are provided to merge several images or PDF files into a single
             one for convenient OCR operations, or to split a TIFF or PDF file into smaller 
             ones if it contains too many pages, which can cause out-of-memory exceptions.</p>
@@ -122,19 +120,22 @@
             chyby, což znamená, že daná slova se nacházejí ve slovníku, ale jsou chybná z hlediska
             souvislosti napr. „cíp“ — „cip“ a pod. Tyto chyby si žádají, aby je opravil opravce
             ručně podle původního obrázku.</h3>
-        <p>Zde jsou pokyny, jak opravit první dvě skupiny chyb vzniklých při rozpoznávání s pomocí zabudovaných
-            funkcí:</p>
+        <p>Další chyby jsou způsobeny procesem rozpoznávání - například chybějící diakritická
+            znaménka, zaměněné znaky („1“ — „l“). Takové chyby je možné poměrně lehce opravit
+            pomocí ověření pravopisu - kontroly překlepů (spellechecker). Vestavěné funkce pro
+            další zpracování vám mohou pomoci s výše uvedeným chybami.</p>
         <p>Seskupení řádků. Řádky je potřeba seskupit tak, aby odpovídali odstavcům, ke
                 kterým patří (1 odstavec = 1 řádek). Použijte na to funkci <i>Odstranit zalomení řádků</i>,
                 která se nachází v nabídce <i>Formát</i>. Taková operace není potřebná pro básně.</p>
-        <p>Vyberte <i>Změnit velikost písmen</i>, z nabídky <i>Formát</i>, a potom <i>První velké</i>
-                na opravu chyb velikosti písmen. Následně opravte ostatní chyby velikosti písmen (např.
-                jména, názvy).</p>
+        <p>Zde jsou pokyny, jak opravit první dvě skupiny chyb vzniklých při rozpoznávání s
+            pomocí zabudovaných funkcí:</p>
         <ol style="margin-top: 0in" start="1" type="1">
-<li>Opravte překlepy pomocí <i>Ověření pravopisu</i>.</li>
-            <li>Výše uvedené kroky by měly vyloučit většinu běžných chyb. Zůstávající sémantické
-            chyby však musí opravit lidský opravce/vydavatel pozorným čtením a opravováním, aby byl výsledný
-            dokument bez chyb.</li>
+<li>Seskupení řádků. Řádky je potřeba seskupit tak, aby odpovídali odstavcům, ke kterým
+                patří (1 odstavec = 1 řádek). Použijte na to funkci <i>Odstranit zalomení řádků</i>,
+                která se nachází v nabídce <i>Formát</i>. Taková operace není potřebná pro básně.</li>
+            <li>Vyberte <i>Změnit velikost písmen</i>, z nabídky <i>Formát</i>, a potom <i>První
+                velké</i> na opravu chyb velikosti písmen. Následně opravte ostatní chyby velikosti
+                písmen (např. jména, názvy).</li>
             <li>Pokud máte nějaké otázky, položte je ve <a href="http://sourceforge.net/projects/vietocr/forums">
                 fóru VietOCR</a>.</li>
         </ol>

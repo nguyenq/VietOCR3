@@ -1,21 +1,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>VietOCR - interfejs użytkownika w języku Java Tesseract OCR </title>
+<title>VietOCR - interfejs użytkownika w języku Java dla Tesseract OCR </title>
 </head>
 <body>
     <div class="Section1">
         <h2 align="center">VietOCR </h2>
         <h3>OPIS</h3>
-        <p><a href="http://vietocr.sourceforge.net">VietOCR</a>jest nakładka GUI dla Javy
-<a href="https://github.com/tesseract-ocr">Silnik Tesseract OCR</a>, zapewnia
+        <p><a href="http://vietocr.sourceforge.net">VietOCR</a> jest nakładką GUI w Javie dla
+<a href="https://github.com/tesseract-ocr">Silnika Tesseract OCR</a>, zapewnia
 wsparcie rozpoznawania znaków dla popularnych formatów obrazu i obrazów wielostronicowych.
-Program posiada mechanizm, który pomaga poprawiać błędy napotykane regularnie
-Protokół OCR, zwiększa stopień dokładności, który ma wpływ na wynik.Program może również działać
-jako aplikacja w konsoli, wykonując linie poleceń.
-
-
-</p>
+Program posiada mechanizm przetwarzania wtórnego, który pomaga poprawiać błędy napotykane regularnie w procesie rozpoznawania znaków OCR, zwiększając tym samym stopień dokładności, który ma wpływ na ostateczny wynik. Program może również działać jako aplikacja w konsoli, wykonując polecenia bezpośrednio z linii poleceń.</p>
         <p>Przetwarzanie wsadowe jest już dostępne. Program przeszukuje obserwowany folder celem znalezienia nowych plików z obrazami i automatycznie przetwarza je przez silnik OCR, następnie wysyła wyniki procesu do folderu wyjściowego.</p>
         <h3>WYMAGANIA SYSTEMOWE</h3>
         <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 7.0</a>
@@ -26,14 +21,15 @@ lub wyższą wersję.</p>
         <blockquote>
             <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-pol</code></p>
         </blockquote>
-        <p>Pliki bedą umieszczone odpowiednio w katalogach&nbsp;<code>/usr/bin</code>&nbsp;i&nbsp;<code>/usr/share/tesseract-ocr/tessdata</code>. Z drugiej strony, jeśli Tesseract jest skompilowany i zainstalowany ze&nbsp;<a href="https://github.com/tesseract-ocr/tesseract/wiki/TesseractGitInstallation">źródła</a>, będą one umieszczone w <code>/usr/local/bin</code>&nbsp;i&nbsp;<code>/usr/local/share/tessdata</code>. Byćmoże będziesz musiał wskazać katalog z plikami wykonywalnymi Tesseract z menu <code>Ustawień</code> programu VietOCR'&nbsp;Jeśli dane nie są w standardowej lokalizacji, byćmoże będzie wymagane dowiązanie miękkie do &nbsp;<code>tessdata.</code>&nbsp;Będziesz także musiał zadbać by VietOCR znał lokalizację &nbsp;<code>tessdata</code>&nbsp;poprzez zmienną&nbsp;<code>TESSDATA_PREFIX</code>:</p>
+        <p>Pliki bedą umieszczone odpowiednio w katalogach <code>/usr/bin</code> i <code>/usr/share/tesseract-ocr/tessdata</code>. Z drugiej strony, jeśli Tesseract jest skompilowany i zainstalowany ze<a href="https://github.com/tesseract-ocr/tesseract/wiki/TesseractGitInstallation">źródła</a>, będą one umieszczone w <code>/usr/local/bin</code> i <code>/usr/local/share/tessdata</code>. Byćmoże będziesz musiał wskazać katalog z plikami wykonywalnymi Tesseract z menu <code>Ustawień</code> programu VietOCR. Jeśli dane nie są w standardowej lokalizacji, byćmoże będzie wymagane dowiązanie miękkie do <code>tessdata.</code> Będziesz także musiał zadbać by VietOCR znał lokalizację <code>tessdata</code> poprzez zmienną <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
         <p>Dla innych platform zasięgnij wiedzy na stronie&nbsp;<a href="https://github.com/tesseract-ocr/tesseract/wiki">Tesseract Wiki</a>&nbsp;.</p>
-        <p>VietOCR również umożliwia &nbsp;ściąganie i instalowanie wybranych pakietów językowych poprzez element menu <em>Pobierz pakiet językowy</em>. W zależności od lokalizacji folderu &nbsp;<code>tessdata</code>&nbsp;, może będzie wymagane uruchomienie programu jako root albo admin by było możliwe zainstalowanie ściągniętych danych do folderu, zwłaszcza jeśli jest to wewnątrz katalogu systemowego takiego jak &nbsp;<code>/usr</code>&nbsp;w Linuksie lub&nbsp;<code>C:\Program Files</code>&nbsp;w Windows.</p>
-        <p>Skanowanie na platformie Windows jest wspierane przez bibliotekę Windows Image Acquisition Library
-            v2.0, &nbsp;która wymaga Windows XP Service Pack 1 (SP1) lub nowszego. Biblioteka ta stała się standardem począwszy od Windows Vista i 7. By zainstalować Bibliotekę WIA Library na Windows XP, skopiuj plik&nbsp;<code>wiaaut.dll</code> do katalogu&nbsp;<code>System32</code>&nbsp; (zwykle umiejscowionego w &nbsp;<code>C:\Windows\System32</code>) i uruchom następujące polecenie z linii poleceń:</p>
+        <p>VietOCR również umożliwia ściąganie i instalowanie wybranych pakietów językowych poprzez element menu <em>Pobierz pakiet językowy</em>. W zależności od lokalizacji folderu <code>tessdata</code> może będzie wymagane uruchomienie programu jako root albo admin 
+by było możliwe zainstalowanie ściągniętych danych do folderu, zwłaszcza jeśli jest to wewnątrz katalogu systemowego takiego jak <code>/usr</code> w Linuksie lub <code>C:\Program Files</code> w Windows.</p>
+        <p>Skanowanie na platformie Windows jest wspierane przez bibliotekę Windows Image
+Acquisition Library v2.0, która wymaga Windows XP Service Pack 1 (SP1) lub nowszego. Biblioteka ta stała się standardem począwszy od Windows Vista i 7. By zainstalować Bibliotekę WIA Library na Windows XP, skopiuj plik <code>wiaaut.dll</code> do katalogu <code>System32</code> (zwykle umiejscowionego w <code>C:\Windows\System32</code>) i uruchom następujące polecenie z linii poleceń:</p>
         <blockquote>
             <p><code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
         </blockquote>
@@ -57,36 +53,34 @@ lub wyższą wersję.</p>
         <blockquote>
             <p><code>java -jar VietOCR.jar</code></p>
         </blockquote>
-        <p><b><u> Uwaga</u>: Jeśli wystąpi wyjątek "out-of-memory", uruchom plik skryptowy&nbsp;<code>ocr</code> w zamian użycia &nbsp;.jar.</b></p>
-        <p>Dane dla języka wietnamskiego zostały wygenerowane dla czcionek: Times New Roman, Arial, Verdana,
-            and Courier New. Dlatego, rozpoznawanie powinno mieć lepsze rezultaty dla obrazów posiadających podobne glify. OCRowane obrazy, które mają glify wyglądające inaczej niż obsługiwane czcionki, zwykle będą wymagały &nbsp;<a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">treningu</a>&nbsp;Tesseract &nbsp;do utworzenia innego pakietu językowego specyficznego dla tych krojów czcionek. Dane językowe dla niektórych fontów VNI i TCVN3 (ABC) zostały również dołączone do ostatnich wersji.</p>
-        <p>Obrazy, które mają być OCRed powinny być zeskanowane w rozdzielczości co najmniej 200 DPI (na
-cal) do 400 DPI w trybie monochromatycznym (czarno&amp;białym) w skali szarości. Ustawienie skanowania na wyższy poziom
-nie musi skutkować lepszą dokładność rozpoznawania znaków, które obecnie
-wynosi  97% dla Wietnamczyków, a następne wydanie Tesseract może poprawić
+        <p><b><u>Uwaga</u></b>: Jeżeli wystąpi wyjątek "out-of-memory", uruchom plik skryptowy <code>ocr</code>
+w zamian użycia .jar.</p>
+        <p>Dane dla języka wietnamskiego zostały wygenerowane dla czcionek: Times New Roman, Arial, Verdana
+i Courier New. Dlatego, rozpoznawanie powinno mieć lepsze rezultaty dla obrazów posiadających podobne glify. OCRowane obrazy, które mają glify wyglądające inaczej niż obsługiwane czcionki, zwykle będą wymagały <a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">treningu</a> Tesseract do utworzenia innego pakietu językowego specyficznego dla tych krojów czcionek. Dane językowe dla niektórych fontów VNI i TCVN3 (ABC) zostały również dołączone do ostatnich wersji.</p>
+        <p>Obrazy, dla których ma być przeprowadzony proces rozpoznawania znaków OCR powinny być zeskanowane w rozdzielczości co najmniej w rozdzielczości 200 DPI (punktów na
+cal) do 400 DPI w trybie monochromatycznym (czarno-białym) lub w skali szarości. Skanowanie w wyższych rozdzielczościach nie musi skutkować większą dokładnością rozpoznawania znaków, które obecnie
+wynosi  97% dla języka wietnamskiego, a następne wydanie Tesseract może poprawić
 to jeszcze bardziej. Mimo to, wciąż aktualne wyniki, zależą w dużym stopniu od jakości
-zeskanowanego obrazu. Typowe ustawienia skanowania na 300 DPI i 1 bpp (bit 
-na piksel) black&amp;white or 8 bpp grayscale uncompressed TIFF or PNG format.
-
-</p>
-        <p><em>Tryb Zrzutu Ekranu</em>&nbsp;zapewnia lepsze rezultaty dla obrazów niskiej rozdzielczości takich jak wydruki z ekranów, poprzez zmiany ich skali do 300 DPI.</p>
-        <p>W dodatku do wbudowanego algorytmu przetwarzania wtórnego tekstu, można dodać własny zmodyfikowany schemat podmiany tekstu poprzez plik z nazwą <code>x.DangAmbigs.txt</code>, gdzie x jest kodem języka w standardzie ISO639-3, np. pol.DangAmbigs.txt dla języka polskiego. Pliki takie kodowane za pomocą UTF-8 powinny zawierać pary <code>oldValue=newValue</code>&nbsp;rozdzielone znakiem równości - często ściągnięte z internetu pliki x.DangAmbigs.txt z projektu Tesseract nie mają wymaganej struktury.</p>
-        <p>Można wprowadzić parametry kontrolne w plik <code>tessdata/configs/tess_configs</code>&nbsp;by zmodyfikować zachowanie silnika Tesseract.</p>
+zeskanowanego obrazu. Typowe ustawienia skanowania to 300 DPI i 1 bpp (bit 
+na piksel) obraz czarno-biały lub 8-bitowa skala szarości w formacie nieskompresowany TIFF lub PNG.</p>
+        <p><em>Tryb Zrzutu Ekranu</em> zapewnia lepsze rezultaty dla obrazów niskiej rozdzielczości takich jak wydruki z ekranów, poprzez przeskalowanie ich do rozdzielczości 300 DPI.</p>
+        <p>W dodatku do wbudowanego algorytmu przetwarzania wtórnego tekstu, można dodać własny zmodyfikowany schemat podmiany tekstu poprzez plik z nazwą <code>x.DangAmbigs.txt</code>, gdzie x jest kodem języka w standardzie ISO639-3. Pliki takie kodowane za pomocą UTF-8 powinny zawierać pary <code>oldValue=newValue</code> rozdzielone znakiem równości.</p>
+        <p>By zmodifikować zachowanie silnika Tesseract możesz wpisać startowe i bieżące parametry kontrolne w pliki konfiguracyjne  - odpowiednio: <code>tessdata/configs/tess_configs</code>
+oraz <code>tess_configvars</code>.</p>
         <p>Niektóre wbudowane narzędzia są przewidziane do łączenia kilku obrazów lub plików PDF
 w jeden celem przygotowania do operacji OCR, lub dzielenia plików TIFF lub PDF
-zawierających zbyt wiele stron (co może powodować błędy "out-of-memory") na mniejsze,</p>
-        <h3>PRZETWARZANIE WTÓRNE</h3>
-        <p>Błędy rozpoznawania generalnie mogą być zakwalifikowane w trzy kategorie. Wiele błędów związane są z wielkością liter — na przykład: hOa, nhắC — które moga być łatwo poprawione przez popularne edytory tekstu obsługujące Unicode. Wiele innych błędów są rezultatem procesu OCR, takie jak brak znaków diakrytycznych, niepoprawne litery o podobnym kształcie itp. — huu – hưu, mang – marg, h0a – hoa, la – 1a, uhìu - nhìn. To też może być łatwo poprawione poprzez programy sprawdzające pisownie. Wbudowana funkcja Przetwarzania wtórnego może pomóc poprawić wiele wyżej wymienionych błędów.</p>
-        <p>Ostatnią kategorią błędów najtrudniejszą do wykrycia są błędy semantyczne, co oznacza, że słowa stanowią poprawny termin w słowniku, ale są niepoprawne w danym kontekście — np., kat – kąt, vân – vấn. Te błędy wymagają od edytora by przeczytał tekst i ręcznie je poprawił, stosownie do oryginalnego obrazu.</p>
+zawierających zbyt wiele stron &#40;co może powodować błędy &bdquo;out-of-memory"&#41; na mniejsze,</p>
+        <h3>PRZETWARZANIE WTÓRNE </h3>
+        <p>Błędy rozpoznawania generalnie mogą być zakwalifikowane w trzy kategorie. Wiele błędów związane są z wielkością liter — na przykład: hOa, nhắC — które mogą być łatwo poprawione przez popularne edytory tekstu obsługujące Unicode. Wiele innych błędów, są rezultatem procesu OCR, takie jak brak znaków diakrytycznych, niepoprawne litery o podobnym kształcie itp. — huu – hưu, mang – marg, h0a – hoa, la – 1a, uhìu - nhìn. To też może być łatwo poprawione poprzez programy sprawdzające pisownie. Wbudowana funkcja Przetwarzania wtórnego może pomóc poprawić wiele wyżej wymienionych błędów.</p>
+        <p>Ostatnią kategorią błędów najtrudniejszą do wykrycia, są błędy semantyczne, co oznacza, że słowa stanowią poprawny termin w słowniku, ale są niepoprawne w danym kontekście — np., kat – kąt, vân – vấn. Te błędy wymagają od edytora by przeczytał tekst i ręcznie je poprawił, stosownie do oryginalnego obrazu.</p>
         <p>Podążając dalej, poniżej są instrukcje jak poprawić pierwsze dwie kategorie błędów używając wbudowanych funkcji:</p>
         <ol style="margin-top: 0in" start="1" type="1">
-<li>Grupuj linie. Linie muszą być pogrupowane w akapity, do których należą. Jak są OCR-owane każda linia staje się odseparowanym 1-liniowym ustępem. Użyj funkcji  <i>Usuń podziały wiersza</i> spod menu <i>Format</i>. Zwróć uwagę, że operacja ta może być niepotrzebna dla wierszy.&nbsp;</li>
-            <li>Wybierz&nbsp;<span>Zmień wielkość liter</span>, także spod menu&nbsp;<i>Format</i>&nbsp; i wybierz&nbsp;<span>Zdanie wielką</span>&nbsp;aby została poprawiona większość błędów związanych z wielkością liter. Zlokalizuj i popraw resztę z pozostałych błędów użycia małych i wielkich liter.</li>
-            <li>Skoryguj błędy za pomocą zintegrowanego <i>Sprawdzania pisowni</i>.</li>
+<li>Grupuj linie. Linie muszą być pogrupowane w akapity, do których należą. Jak są OCR-owane każda linia staje się odseparowanym 1-liniowym ustępem. Użyj funkcji  <i>Usuń podziały wiersza</i> spod menu <i>Format</i>. Zwróć uwagę, że operacja ta może być niepotrzebna dla wierszy.</li>
+            <li>Wybierz <i>Zmień wielkość liter</i>, także spod menu <i>Format</i> i wybierz <i>Zdanie wielką</i> aby została poprawiona większość błędów związanych z wielkością liter. Zlokalizuj i popraw resztę z pozostałych błędów użycia małych i wielkich liter.</li>
+            <li>Skoryguj literówki za pomocą zintegrowanego <i>Sprawdzania pisowni</i>.</li>
         </ol>
-<p>Przez powyższe procesy, większość pospolitych błędów może być wyeliminowana. Pozostałych, semantycznych błędów jest niewiele, ale wymagają człowieka, który chociażby przeczyta i wykona najistotniejszą edycję by dokument był jak oryginalny zeskanowany i wolny od błędów, o ile jest taka potrzeba.</p>
-        <p>Jeśli masz jakieś problemy lub pytania, proszę zgłosić je na <a href="http://sourceforge.net/projects/vietocr/forums">
-forum VietOCR</a>.</p>
+<p>Większość pospolitych błędów, może być wyeliminowana przez powyższe procesy. Pozostałych, semantycznych błędów jest niewiele i o ile jest taka potrzeba to wymagają ręki człowieka, który chociażby przeczyta i wykona najistotniejsze poprawki by dokument był jak oryginalny zeskanowany i wolny od błędów.</p>
+        <p>Jeśli masz jakieś problemy lub pytania, proszę zgłosić je na<a href="http://sourceforge.net/projects/vietocr/forums"> forum VietOCR </a>.</p>
         <hr>
 </div>
 </body>
