@@ -49,7 +49,7 @@ public final class WiaScannerAdapter {
 
             // WIA may not return the scanned image in the requested format; if so, convert to the target image format
             // https://msdn.microsoft.com/en-us/library/windows/desktop/ms630826(v=vs.85).aspx#SharedSample002
-            Variant formatID = Dispatch.call(imageObject, "FormatID");
+            Variant formatID = Dispatch.get(imageObject, "FormatID");
 
             if (!formatID.getString().equals(outputFormat.getValue())) {
                 if (_imageProcess == null) {
@@ -59,7 +59,7 @@ public final class WiaScannerAdapter {
 //                imageProcess.Filters.Add(imageProcess.FilterInfos("Convert").FilterID)
                 Dispatch filterInfos = _imageProcess.getProperty("FilterInfos").toDispatch();
                 Dispatch convertFilterInfo = Dispatch.call(filterInfos, "Item", new Variant("Convert")).toDispatch();
-                Variant filterID = Dispatch.call(convertFilterInfo, "FilterID");
+                Variant filterID = Dispatch.get(convertFilterInfo, "FilterID");
                 Dispatch filters = _imageProcess.getProperty("Filters").toDispatch();
                 Dispatch.call(filters, "Add", filterID);
 //                imageProcess.Filters(1).Properties("FormatID").Value = outputFormat;
