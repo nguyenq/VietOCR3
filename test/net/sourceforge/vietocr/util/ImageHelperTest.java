@@ -1,5 +1,6 @@
 package net.sourceforge.vietocr.util;
 
+import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -81,6 +82,21 @@ public class ImageHelperTest {
         BufferedImage result = ImageHelper.autoCrop(source, 0.1);
         //verify dimension
         assertEquals(expResult, new Rectangle(result.getWidth(), result.getHeight()));
+    }
+
+    /**
+     * Test of crop method, of class ImageHelper.
+     *
+     * @throws java.io.IOException
+     */
+    @Test
+    public void testCrop() throws IOException {
+        System.out.println("crop");
+        BufferedImage source = ImageIO.read(file);
+        Rectangle expResult = new Rectangle(100, 100);
+        Rectangle cropArea = new Rectangle(100, 100, 100, 100);
+        BufferedImage result = ImageHelper.crop(source, cropArea);
+        assertEquals(expResult.getSize(), new Dimension(result.getWidth(), result.getHeight()));
     }
 
     /**

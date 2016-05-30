@@ -55,7 +55,7 @@ public class OCRImagesTest {
         OCR<IIOImage> instance = new OCRImages(tessPath);
         instance.setDatapath(datapath);
         instance.setLanguage(lang);
-        String expResult = "Tôi từ chinh chiến cũng ra đi";
+        String expResult = "Đôi Mắt Người Sơn Tây";
         String result = instance.recognizeText(entity.getSelectedOimages(), entity.getInputfilename());
         System.out.println(result);
         assertTrue(result.toLowerCase().contains(expResult.toLowerCase()));
