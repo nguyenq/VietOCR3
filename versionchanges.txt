@@ -121,3 +121,4 @@ Version 4.3 (30 May 2016)
 - Implement remove lines & crop image function
 - Update Tess4J to 3.2.1
 - Update various dependency versions
+- Convert WIA scanned image BMP to PNG

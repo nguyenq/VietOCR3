@@ -61,16 +61,15 @@ public class GuiWithScan extends GuiWithThumbnail implements ScannerListener {
             public void run() {
                 try {
                     if (WINDOWS) {
-                        File tempImageFile = File.createTempFile("tmp", WINDOWS ? ".bmp" : ".png");
+                        File scannedImageFile = File.createTempFile("tmp", ".png");
 
-                        if (tempImageFile.exists()) {
-                            tempImageFile.delete();
+                        if (scannedImageFile.exists()) {
+                            scannedImageFile.delete();
                         }
                         WiaScannerAdapter adapter = new WiaScannerAdapter(); // with MS WIA
-                        // The reason for not using PNG format is that jai-imageio library would throw an "I/O error reading PNG header" error.
-                        tempImageFile = adapter.ScanImage(FormatID.wiaFormatBMP, tempImageFile.getCanonicalPath());
-                        openFile(tempImageFile);
-                        tempImageFile.deleteOnExit();
+                        scannedImageFile = adapter.ScanImage(FormatID.wiaFormatPNG, scannedImageFile.getCanonicalPath());
+                        openFile(scannedImageFile);
+                        scannedImageFile.deleteOnExit();
                     } else { // Linux
                         scanner = Scanner.getDevice();
                         scanner.addListener(GuiWithScan.this);
