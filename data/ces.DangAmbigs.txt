@@ -3,6 +3,17 @@
 0	l<	k
 0	lx	h
 0	xn	m
+0	()	o
+0	a'	á
+0	e'	é
+0	y'	ý
+0	d'	ď
+0	t'	ť
+0	7“	?“
+0	7"	?"
+0	f“	.“
+0	f"	."
+0	 & 	 a 
 
 # Regular expression replaces. Character "1" in the first column indicates a regex replace. Delimiter is <TAB> (\t) character.
 # Correct common errors caused by OCR

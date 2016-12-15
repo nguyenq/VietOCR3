@@ -61,20 +61,32 @@ public class SpellCheckHelper {
         baseDir = Utils.getBaseDir(SpellCheckHelper.this);
     }
 
-    /**
-     * Enables spellcheck.
-     */
-    public void enableSpellCheck() {
-        if (localeId == null) {
-            return;
-        }
+    public boolean initializeSpellCheck() {
+        if (localeId == null)
+            return false;
+
         try {
             if (Platform.isWindows()) {
                 String hunspellDllLocation = baseDir.getPath() + "/lib/" + Platform.RESOURCE_PREFIX;
                 System.setProperty(JNA_LIBRARY_PATH, hunspellDllLocation);
             }
             spellDict = Hunspell.getInstance().getDictionary(new File(baseDir, "dict/" + localeId).getPath());
-            loadUserDictionary();
+            if (!loadUserDictionary())
+                return false;
+        } catch (Exception e) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Enables spellcheck.
+     */
+    public void enableSpellCheck() {
+        try {
+            if (!initializeSpellCheck())
+                throw new Exception("Spellcheck initialization error!");
 
             SpellcheckDocumentListener docListener = new SpellcheckDocumentListener();
             lstList.add(docListener);
@@ -130,8 +142,16 @@ public class SpellCheckHelper {
         }
     }
 
+    public boolean isMispelled(String word) {
+        if (spellDict.misspelled(word))
+            if (!userWordList.contains(word.toLowerCase()))
+                return true;
+        
+        return false;
+    }
+    
     /**
-     * Spellhecks list of words.
+     * Spellchecks list of words.
      *
      * @param words
      * @return
@@ -139,14 +159,9 @@ public class SpellCheckHelper {
     List<String> spellCheck(List<String> words) {
         List<String> misspelled = new ArrayList<String>();
 
-        for (String word : words) {
-            if (spellDict.misspelled(word)) {
-                // is misspelled word in user.dic?
-                if (!userWordList.contains(word.toLowerCase())) {
-                    misspelled.add(word);
-                }
-            }
-        }
+        for (String word : words)
+            if (isMispelled(word))
+                misspelled.add(word);
 
         return misspelled;
     }
@@ -227,13 +242,13 @@ public class SpellCheckHelper {
     /**
      * Loads user dictionary only once.
      */
-    void loadUserDictionary() {
+    boolean loadUserDictionary() {
         try {
             File userDict = new File(baseDir, "dict/user.dic");
             long fileLastModified = userDict.lastModified();
 
             if (fileLastModified <= mapLastModified) {
-                return;// no need to reload dictionary
+                return true;// no need to reload dictionary
             }
 
             mapLastModified = fileLastModified;
@@ -245,9 +260,9 @@ public class SpellCheckHelper {
             }
             in.close();
         } catch (IOException e) {
-            logger.log(Level.SEVERE, e.getMessage(), e);
-            JOptionPane.showMessageDialog(null, e.getMessage(), Gui.APP_NAME, JOptionPane.ERROR_MESSAGE);
+            return false;
         }
+        return true;
     }
 
     class SpellcheckDocumentListener implements DocumentListener {

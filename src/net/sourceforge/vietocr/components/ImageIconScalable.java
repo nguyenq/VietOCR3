@@ -5,12 +5,10 @@
 package net.sourceforge.vietocr.components;
 
 import java.awt.*;
-import java.awt.RenderingHints.Key;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 import java.net.*;
-import java.util.HashMap;
-import java.util.Map;
 import javax.imageio.IIOImage;
 
 public class ImageIconScalable extends ImageIcon {
@@ -124,24 +122,23 @@ public class ImageIconScalable extends ImageIcon {
         int h = this.getIconHeight();
         int newW = (int) Math.floor(w * cos + h * sin);
         int newH = (int) Math.floor(h * cos + w * sin);
-        GraphicsConfiguration gc = getDefaultConfiguration();
-        BufferedImage result = gc.createCompatibleImage(newW, newH);
 
-        Graphics2D g2d = result.createGraphics();
+        BufferedImage image = (BufferedImage) this.getImage();
+        BufferedImage outputImage = new BufferedImage(newW, newH, image.getType());
+
+        Graphics2D g2d = outputImage.createGraphics();
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
         g2d.setColor(UIManager.getColor("Label.background"));
         g2d.fillRect(0, 0, newW, newH);
 
-        g2d.translate((newW - w) / 2, (newH - h) / 2);
-        g2d.rotate(angle, w / 2, h / 2);
-        g2d.drawRenderedImage((BufferedImage) this.getImage(), null);
-
-        // Alternative for 3 lines above
-//        AffineTransform at = AffineTransform.getRotateInstance(angle, newW / 2, newH / 2);
-//        at.translate((newW - w) / 2, (newH - h) / 2);
-//        g2d.drawRenderedImage((BufferedImage) this.getImage(), at);
+        AffineTransform at = AffineTransform.getRotateInstance(angle, newW / 2, newH / 2);
+        at.translate((newW - w) / 2, (newH - h) / 2);
+        g2d.drawRenderedImage(image, at);
         g2d.dispose();
 
-        return new ImageIconScalable(result);
+        return new ImageIconScalable(outputImage);
     }
 
     /**
@@ -179,30 +176,16 @@ public class ImageIconScalable extends ImageIcon {
             BufferedImage tempImage = rescaleImage(image, image.getWidth() / 2, image.getHeight() / 2);
             return rescaleImage(tempImage, targetWidth, targetHeight);
         } else {
-            BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D graphics = outputImage.createGraphics();
-            Map<Key, Object> hints = new HashMap<RenderingHints.Key, Object>();
-            hints.put(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_ENABLE);
-            hints.put(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-            hints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-            hints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            hints.put(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
-            graphics.setRenderingHints(hints);
-            graphics.drawImage(image, 0, 0, outputImage.getWidth(), outputImage.getHeight(), null);
-            graphics.dispose();
+            BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, image.getType());
+            Graphics2D g2d = outputImage.createGraphics();
+            
+            g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+            g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            g2d.drawImage(image, 0, 0, outputImage.getWidth(), outputImage.getHeight(), null);
+            g2d.dispose();
+            
             return outputImage;
         }
-    }
-
-    /**
-     * Gets graphic default configuration.
-     *
-     * @return
-     */
-    private GraphicsConfiguration getDefaultConfiguration() {
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gd = ge.getDefaultScreenDevice();
-        return gd.getDefaultConfiguration();
     }
 
     /**

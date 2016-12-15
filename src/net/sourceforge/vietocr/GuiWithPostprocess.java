@@ -62,7 +62,7 @@ public class GuiWithPostprocess extends GuiWithOCR {
             @Override
             public String doInBackground() throws Exception {
                 selectedText = jTextArea1.getSelectedText();
-                return Processor.postProcess((selectedText != null) ? selectedText : jTextArea1.getText(), curLangCode, dangAmbigsPath, dangAmbigsOn);
+                return Processor.postProcess((selectedText != null) ? selectedText : jTextArea1.getText(), curLangCode, dangAmbigsPath, dangAmbigsOn, false);
             }
 
             @Override

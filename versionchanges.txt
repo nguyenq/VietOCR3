@@ -122,3 +122,6 @@ Version 4.3 (30 May 2016)
 - Update Tess4J to 3.2.1
 - Update various dependency versions
 - Convert WIA scanned image BMP to PNG
+
+Version 4.4 (14 December 2016)
+- Improvements by John Helour

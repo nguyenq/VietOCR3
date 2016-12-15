@@ -19,9 +19,14 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.*;
 
+import net.sourceforge.vietocr.Gui;
+import net.sourceforge.vietpad.utilities.SpellCheckHelper;
+
 public class TextUtilities {
 
-    private static Map<String, String> map;
+    public static final String SOFT_HYPHEN = "\u00AD";
+
+    private static ArrayList<LinkedHashMap<String, String>> map;
     private static long mapLastModified = Long.MIN_VALUE;
 
     /**
@@ -52,28 +57,17 @@ public class TextUtilities {
     }
 
     /**
-     * Corrects common Tesseract OCR errors.
-     *
-     * @param input
-     * @return
+     * Loads map from dangAmbigsFile.txt file.
+     * 
+     * @param dangAmbigsFile
+     * @return 
      */
-    public static String correctOCRErrors(String input) {
-        // substitute letters frequently misrecognized by Tesseract 2.03
-        return input.replaceAll("\\b1(?=\\p{L}+\\b)", "l") // 1 to l
-                .replaceAll("\\b11(?=\\p{L}+\\b)", "n") // 11 to n
-                .replaceAll("\\bI(?![mn]+\\b)", "l") // I to l
-                .replaceAll("(?<=\\b\\p{L}*)0(?=\\p{L}*\\b)", "o") // 0 to o
-                //                .replaceAll("(?<!\\.) S(?=\\p{L}*\\b)", " s") // S to s
-                //                .replaceAll("(?<![cn])h\\b", "n")
-                ;
-    }
-
-    public static Map<String, String> loadMap(String dangAmbigsFile) {
+    public static List<LinkedHashMap<String, String>> loadMap(String dangAmbigsFile) {
         try {
             File dataFile = new File(dangAmbigsFile);
             long fileLastModified = dataFile.lastModified();
             if (map == null) {
-                map = new LinkedHashMap<String, String>();
+                map = new ArrayList<LinkedHashMap<String, String>>();
             } else {
                 if (fileLastModified <= mapLastModified) {
                     return map; // no need to reload map
@@ -82,27 +76,46 @@ public class TextUtilities {
             }
             mapLastModified = fileLastModified;
 
+            for (int i = Processor.PLAIN; i <= Processor.REGEX; i++) {
+                map.add(new LinkedHashMap<String, String>());
+            }
+
             InputStreamReader stream = new InputStreamReader(new FileInputStream(dangAmbigsFile), "UTF8");
             BufferedReader bs = new BufferedReader(stream);
             String str;
             while ((str = bs.readLine()) != null) {
                 // strip BOM character
-                if (str.length() > 0 && str.charAt(0) == '\ufeff') {
+                if (str.length() > 0 && str.charAt(0) == '\uFEFF') {
                     str = str.substring(1);
                 }
                 // skip empty line or line starts with #
                 if (str.trim().length() == 0 || str.trim().startsWith("#")) {
                     continue;
                 }
-                int index = str.indexOf('=');
-                if (index <= 0) {
+
+                if (!str.contains("\t")) {
                     continue;
                 }
 
-                String key = str.substring(0, index);
-                String value = str.substring(index + 1);
-                map.put(key, value);
+                str = str.replaceAll("(\t)+", "\t");
+                String[] parts = str.split("\t");
+                if (parts.length < 3) {
+                    continue;
+                }
+
+                Integer type = Integer.parseInt(parts[0]);
+                String key = parts[1];
+                String value = parts[2];
+
+                if (type < Processor.PLAIN || type > Processor.REGEX) {
+                    continue;
+                }
+
+                LinkedHashMap<String, String> hmap = map.get(type);
+                hmap.put(key, value);
+                map.set(type, hmap);
             }
+
             bs.close();
             stream.close();
         } catch (Exception e) {
@@ -110,5 +123,37 @@ public class TextUtilities {
         }
 
         return map;
+    }
+
+    /**
+     * Replaces hard hyphens at end of line with soft hyphens.
+     *
+     * @param input
+     * @return
+     */
+    public static String replaceHyphensWithSoftHyphens(String input) {
+        SpellCheckHelper spellCheck = new SpellCheckHelper(null, Gui.getCurrentLocaleId());
+        if (!spellCheck.initializeSpellCheck()) {
+            return null;
+        }
+
+        Matcher m = Pattern.compile("(\\b\\p{L}+)(-|\u2010|\u2011|\u2012|\u2013|\u2014|\u2015)\n(\\p{L}+\\b)").matcher(input);
+        StringBuffer StrB = new StringBuffer();
+
+        while (m.find()) {
+            String before = m.group(1);
+            String after = m.group(3);
+            char last = before.charAt(before.length() - 1);
+            char first = after.charAt(0);
+            if (Character.isUpperCase(first) && Character.isUpperCase(last) || Character.isLowerCase(first) && Character.isLowerCase(last)) {
+                String word = before + after;
+                if (!spellCheck.isMispelled(word)) {
+                    m.appendReplacement(StrB, before + SOFT_HYPHEN + "\n" + after);
+                }
+            }
+        }
+        m.appendTail(StrB);
+
+        return StrB.toString();
     }
 }

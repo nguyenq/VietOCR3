@@ -1,4 +1,7 @@
-अा=आ
-श्ा=श
-ण्ा=ण
-हाा=हा
+# Plain replaces. Character "0" in the first column indicates a plain replace. Delimiter is <TAB> (\t) character.
+0	अा	आ
+0	श्ा	श
+0	ण्ा	ण
+0	हाा	हा
+
+# Regular expression replaces. Character "1" in the first column indicates a regex replace. Delimiter is <TAB> (\t) character.

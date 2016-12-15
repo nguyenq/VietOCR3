@@ -66,9 +66,15 @@ public class TextUtilities {
     /**
      * Removes line breaks.
      * @param text
+     * @param removeSoftHyphens
      * @return
      */
-    public static String removeLineBreaks(String text) {
-        return text.replaceAll("(?<=\n|^)[\t ]+|[\t ]+(?=$|\n)", "").replaceAll("(?<=.)\n(?=.)", " ");
+    public static String removeLineBreaks(String text, boolean removeSoftHyphens) {
+        text = text.replaceAll("(?<=\n|^)[\t ]+|[\t ]+(?=$|\n)", "");
+        text = text.replaceAll("(?<=.)(-|\u2010|\u2011|\u2012|\u2013|\u2014|\u2015|\u00AD)\n(?=.)", "$1");
+        text = text.replaceAll("(?<=.)\n(?=.)", " ");
+        if (removeSoftHyphens)
+            text = text.replaceAll("\u00AD", "");
+        return text;
     }
 }

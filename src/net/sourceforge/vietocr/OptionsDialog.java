@@ -42,6 +42,8 @@ public class OptionsDialog extends javax.swing.JDialog {
     private boolean watchEnabled;
     private boolean tessLibEnabled;
     private boolean dangAmbigsOn;
+    private boolean replaceHyphensEnabled;
+    private boolean removeHyphensEnabled;
     protected ResourceBundle bundle;
 
     /** Creates new form OptionsDialog */
@@ -106,6 +108,9 @@ public class OptionsDialog extends javax.swing.JDialog {
         jComboBoxOutputFormat = new javax.swing.JComboBox();
         jButtonWatch = new javax.swing.JButton();
         jButtonOutput = new javax.swing.JButton();
+        jPanelHyphens = new javax.swing.JPanel();
+        jCheckBoxReplaceHyphens = new javax.swing.JCheckBox();
+        jCheckBoxRemoveHyphens = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/OptionsDialog"); // NOI18N
@@ -303,6 +308,29 @@ public class OptionsDialog extends javax.swing.JDialog {
 
         jTabbedPane1.addTab(bundle.getString("Watch"), jPanelWatchFolder); // NOI18N
 
+        jPanelHyphens.setLayout(new java.awt.GridBagLayout());
+
+        jCheckBoxReplaceHyphens.setText("Replace hyphens with soft hyphens");
+        jCheckBoxReplaceHyphens.setToolTipText("Replace hyphens at the end of lines with soft hyphens using spellcheck dictionary");
+        jCheckBoxReplaceHyphens.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCheckBoxReplaceHyphens.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanelHyphens.add(jCheckBoxReplaceHyphens, gridBagConstraints);
+        jCheckBoxReplaceHyphens.getAccessibleContext().setAccessibleName("ReplaceHyphens");
+
+        jCheckBoxRemoveHyphens.setText("Remove soft hyphens");
+        jCheckBoxRemoveHyphens.setToolTipText("Remove soft hyphens after removing line breaks");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanelHyphens.add(jCheckBoxRemoveHyphens, gridBagConstraints);
+
+        jTabbedPane1.addTab("Hyphens", jPanelHyphens);
+
         getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
         jTabbedPane1.getAccessibleContext().setAccessibleName("Watch");
 
@@ -383,6 +411,8 @@ public class OptionsDialog extends javax.swing.JDialog {
         this.jTextFieldDangAmbigs.setText(dangAmbigsPath);
         this.jCheckBoxDangAmbigs.setSelected(dangAmbigsOn);
         this.jCheckBoxTessLib.setSelected(tessLibEnabled);
+        this.jCheckBoxReplaceHyphens.setSelected(replaceHyphensEnabled);
+        this.jCheckBoxRemoveHyphens.setSelected(removeHyphensEnabled);
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
@@ -392,6 +422,8 @@ public class OptionsDialog extends javax.swing.JDialog {
         tessPath = this.jTextFieldTess.getText();
         dangAmbigsPath = this.jTextFieldDangAmbigs.getText();
         dangAmbigsOn = this.jCheckBoxDangAmbigs.isSelected();
+        replaceHyphensEnabled = this.jCheckBoxReplaceHyphens.isSelected();
+        removeHyphensEnabled = this.jCheckBoxRemoveHyphens.isSelected();
     }//GEN-LAST:event_formWindowDeactivated
 
     private void jComboBoxOutputFormatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxOutputFormatMouseEntered
@@ -458,6 +490,8 @@ public class OptionsDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonTess;
     private javax.swing.JButton jButtonWatch;
     private javax.swing.JCheckBox jCheckBoxDangAmbigs;
+    private javax.swing.JCheckBox jCheckBoxRemoveHyphens;
+    private javax.swing.JCheckBox jCheckBoxReplaceHyphens;
     private javax.swing.JCheckBox jCheckBoxTessLib;
     private javax.swing.JCheckBox jCheckBoxWatch;
     private javax.swing.JComboBox jComboBoxOutputFormat;
@@ -468,6 +502,7 @@ public class OptionsDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelWatch;
     private javax.swing.JPanel jPanelCommand;
     private javax.swing.JPanel jPanelDangAmbigsPath;
+    private javax.swing.JPanel jPanelHyphens;
     private javax.swing.JPanel jPanelTessPath;
     private javax.swing.JPanel jPanelWatchFolder;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -597,5 +632,35 @@ public class OptionsDialog extends javax.swing.JDialog {
      */
     public void setSelectedOutputFormat(String selectedFormat) {
         this.jComboBoxOutputFormat.setSelectedItem(selectedFormat);
+    }
+    
+    /**
+     * @return 
+     */
+    public boolean isReplaceHyphensEnabled() {
+        replaceHyphensEnabled = this.jCheckBoxReplaceHyphens.isSelected();
+        return replaceHyphensEnabled;
+    }
+
+    /**
+     * @param replaceHyphensEnabled
+     */
+    public void setReplaceHyphensEnabled(boolean replaceHyphensEnabled) {
+        this.replaceHyphensEnabled = replaceHyphensEnabled;
+    }
+
+    /**
+     * @return 
+     */
+    public boolean isRemoveHyphensEnabled() {
+        removeHyphensEnabled = this.jCheckBoxRemoveHyphens.isSelected();
+        return removeHyphensEnabled;
+    }
+
+    /**
+     * @param removeHyphensEnabled
+     */
+    public void setRemoveHyphensEnabled(boolean removeHyphensEnabled) {
+        this.removeHyphensEnabled = removeHyphensEnabled;
     }
 }

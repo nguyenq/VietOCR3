@@ -55,6 +55,8 @@ public class GuiWithSettings extends GuiWithLaF {
         optionsDialog.setCurLangCode(curLangCode);
         optionsDialog.setTessLibEnabled(tessLibEnabled);
         optionsDialog.setSelectedOutputFormat(outputFormat);
+//        optionsDialog.setRemoveHyphensEnabled(false);
+//        optionsDialog.setReplaceHyphensEnabled(false);
 
         if (optionsDialog.showDialog() == JOptionPane.OK_OPTION) {
             watchFolder = optionsDialog.getWatchFolder();
@@ -69,6 +71,8 @@ public class GuiWithSettings extends GuiWithLaF {
             dangAmbigsOn = optionsDialog.isDangAmbigsEnabled();
             tessLibEnabled = optionsDialog.isTessLibEnabled();
             outputFormat = optionsDialog.getSelectedOutputFormat();
+//            optionsDialog.isRemoveHyphensEnabled();
+//            optionsDialog.isReplaceHyphensEnabled();
 
             updateWatch(watchFolder, watchEnabled);
         }

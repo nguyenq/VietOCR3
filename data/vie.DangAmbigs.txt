@@ -1,24 +1,27 @@
-tmg=úng
-rl=n
-rr=n
-êĩ-=ết
-âỳ=ấy
-oĩ=ơi
-ôỈ=ỡi
-u1I=ưn
-q1I=qu
-II=u
-êf=ết
-fâ=rầ
-fê=iề
-xiê =về 
-ýê=yề
-lc=k
-vđi=với
-cũa=của
-phãi=phải
-—-=—
--—=—
-––=—
-Ð=Đ
-âÍ=ấ
+# Plain replaces. Character "0" in the first column indicates a plain replace. Delimiter is <TAB> (\t) character.
+0	tmg	úng
+0	rl	n
+0	rr	n
+0	êĩ-	ết
+0	âỳ	ấy
+0	oĩ	ơi
+0	ôỈ	ỡi
+0	u1I	ưn
+0	q1I	qu
+0	II	u
+0	êf	ết
+0	fâ	rầ
+0	fê	iề
+0	xiê 	về 
+0	ýê	yề
+0	lc	k
+0	vđi	với
+0	cũa	của
+0	phãi	phải
+0	—-	—
+0	-—	—
+0	––	—
+0	Ð	Đ
+0	âÍ	ấ
+
+# Regular expression replaces. Character "1" in the first column indicates a regex replace. Delimiter is <TAB> (\t) character.

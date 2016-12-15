@@ -1,8 +1,11 @@
-iii=m
-l<=k
-lx=h
-xn=m
- - =—
-l'=ľ
-d'=ď
-t'=ť
+# Plain replaces. Character "0" in the first column indicates a plain replace. Delimiter is <TAB> (\t) character.
+0	iii	m
+0	l<	k
+0	lx	h
+0	xn	m
+0	 - 	—
+0	l'	ľ
+0	d'	ď
+0	t'	ť
+
+# Regular expression replaces. Character "1" in the first column indicates a regex replace. Delimiter is <TAB> (\t) character.

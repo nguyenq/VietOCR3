@@ -23,11 +23,7 @@ public class ImageUtil {
         if (image.getType() == BufferedImage.TYPE_BYTE_BINARY) {
             WritableRaster raster = image.getRaster();
             int pixelRGBValue = raster.getSample(x, y, 0);
-            if (pixelRGBValue == 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return pixelRGBValue == 0;
         }
 
         int luminanceValue = 140;

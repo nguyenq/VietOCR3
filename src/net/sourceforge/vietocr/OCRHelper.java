@@ -72,8 +72,6 @@ public class OCRHelper {
 
                 // postprocess to correct common OCR errors
                 result = Processor.postProcess(result, langCode);
-                // correct common errors caused by OCR
-                result = TextUtilities.correctOCRErrors(result);
                 // correct letter cases
                 result = TextUtilities.correctLetterCases(result);
 

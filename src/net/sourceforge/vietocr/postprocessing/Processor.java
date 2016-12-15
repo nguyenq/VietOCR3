@@ -17,9 +17,11 @@ package net.sourceforge.vietocr.postprocessing;
 
 import java.io.File;
 import java.util.*;
-import org.apache.jetspeed.util.StringUtils;
 
 public class Processor {
+
+    public static final int PLAIN = 0;  // plain replaces
+    public static final int REGEX = 1;  // regex replaces
 
     public static String postProcess(String text, String langCode) {
         try {
@@ -30,17 +32,19 @@ public class Processor {
         }
     }
 
-    public static String postProcess(String text, String langCode, String dangAmbigsPath, boolean dangAmbigsOn) throws Exception {
+    public static String postProcess(String text, String langCode, String dangAmbigsPath, boolean dangAmbigsOn, boolean replaceHyphens) throws Exception {
         if (text.trim().length() == 0) {
             return text;
         }
 
+        if (replaceHyphens) {
+            text = TextUtilities.replaceHyphensWithSoftHyphens(text);
+        }
+
         // correct using external x.DangAmbigs.txt file first, if enabled
         if (dangAmbigsOn) {
-            StringBuffer strB = new StringBuffer(text);
-
             // replace text based on entries read from an x.DangAmbigs.txt file
-            Map<String, String> replaceRules = TextUtilities.loadMap(new File(dangAmbigsPath, langCode + ".DangAmbigs.txt").getPath());
+            List<LinkedHashMap<String, String>> replaceRules = TextUtilities.loadMap(new File(dangAmbigsPath, langCode + ".DangAmbigs.txt").getPath());
             if (replaceRules.isEmpty() && langCode.length() > 3) {
                 replaceRules = TextUtilities.loadMap(new File(dangAmbigsPath, langCode.substring(0, 3) + ".DangAmbigs.txt").getPath()); // falls back on base
             }
@@ -49,21 +53,25 @@ public class Processor {
                 throw new UnsupportedOperationException(langCode);
             }
 
-            Iterator<String> iter = replaceRules.keySet().iterator();
-
-            while (iter.hasNext()) {
-                String key = iter.next();
-                String value = replaceRules.get(key);
-                strB = StringUtils.replaceAll(strB, key, value);
+            LinkedHashMap<String, String> replaceRulesPlain = replaceRules.get(PLAIN);
+            Iterator<String> iterPlain = replaceRulesPlain.keySet().iterator();
+            while (iterPlain.hasNext()) {
+                String key = iterPlain.next();
+                String value = replaceRulesPlain.get(key);
+                text = text.replace(key, value);
             }
-            text = strB.toString();
+
+            LinkedHashMap<String, String> replaceRulesRegex = replaceRules.get(REGEX);
+            Iterator<String> iterRegex = replaceRulesRegex.keySet().iterator();
+            while (iterRegex.hasNext()) {
+                String key = iterRegex.next();
+                String value = replaceRulesRegex.get(key);
+                text = text.replaceAll(key, value);
+            }
         }
 
         // postprocessor
         text = postProcess(text, langCode);
-        
-        // correct common errors caused by OCR
-        text = TextUtilities.correctOCRErrors(text);
 
         // correct letter cases
         return TextUtilities.correctLetterCases(text);

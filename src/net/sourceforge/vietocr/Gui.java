@@ -19,6 +19,8 @@ import java.awt.*;
 import java.awt.datatransfer.*;
 import java.awt.dnd.DropTarget;
 import java.awt.event.*;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.channels.*;
@@ -83,6 +85,10 @@ public class Gui extends JFrame {
     private static final String strSegmentedRegionsWord = "SegmentedRegionsWord";
     public final String EOL = System.getProperty("line.separator");
     static final Preferences prefs = Preferences.userRoot().node("/net/sourceforge/vietocr3");
+    protected static String curLangCode = "eng";
+    protected static String selectedUILang = "en";
+    protected static Properties lookupISO639;
+    protected static Properties lookupISO_3_1_Codes;
     private int filterIndex;
     private FileFilter[] fileFilters;
     protected Font font;
@@ -96,9 +102,6 @@ public class Gui extends JFrame {
     private String currentDirectory;
     private String outputDirectory;
     protected String tessPath;
-    protected Properties lookupISO639;
-    protected Properties lookupISO_3_1_Codes;
-    protected String curLangCode = "eng";
     private String[] installedLanguageCodes;
     protected String[] installedLanguages;
     ImageIconScalable imageIcon;
@@ -106,7 +109,6 @@ public class Gui extends JFrame {
     protected boolean wordWrapOn;
     protected float scaleX = 1f;
     protected float scaleY = 1f;
-    protected static String selectedUILang = "en";
     int originalW, originalH;
     Point curScrollPos;
     private File textFile;
@@ -117,7 +119,9 @@ public class Gui extends JFrame {
     private final String DATAFILE_SUFFIX = ".traineddata";
     protected final File baseDir = Utils.getBaseDir(Gui.this);
     protected String datapath;
-
+    private static final int FONT_MIN_SIZE = 6;
+    private static final int FONT_MAX_SIZE = 50;
+    
     private final static Logger logger = Logger.getLogger(Gui.class.getName());
 
     /**
@@ -133,7 +137,7 @@ public class Gui extends JFrame {
 
         bundle = java.util.ResourceBundle.getBundle("net.sourceforge.vietocr.Gui");
         initComponents();
-        
+
         if (MAC_OS_X) {
             new MacOSXApplication(Gui.this);
 
@@ -161,31 +165,39 @@ public class Gui extends JFrame {
 
             @Override
             public boolean dispatchKeyEvent(KeyEvent e) {
-                if (e.getID() == KeyEvent.KEY_PRESSED) {
-                    if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) {
-                        // Paste image from clipboard
-                        pasteImage();
+                if ((e.getID() == KeyEvent.KEY_PRESSED)) {
+                    if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) { // Don't catch this event inside the JTextArea
+                        pasteImage(); // Paste image from clipboard
                         e.consume();
-                    } else if (e.getKeyCode() == KeyEvent.VK_F7) {
-                        jToggleButtonSpellCheck.doClick();
-                    } else if (e.isControlDown() && e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_EQUALS || e.getKeyCode() == KeyEvent.VK_ADD)) {
-                        jButtonRotateCW.doClick();
-                    } else if (e.isControlDown() && e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == KeyEvent.VK_SUBTRACT)) {
-                        jButtonRotateCCW.doClick();
-                    } else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_EQUALS || e.getKeyCode() == KeyEvent.VK_ADD)) {
-                        jButtonZoomIn.doClick();
-                    } else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == KeyEvent.VK_SUBTRACT)) {
-                        jButtonZoomOut.doClick();
-                    } else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_1 || e.getKeyCode() == KeyEvent.VK_NUMPAD1)) {
-                        jButtonActualSize.doClick();
-                    } else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD2)) {
-                        jButtonFitImage.doClick();
-                    } else if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_LEFT) {
-                        jButtonPrevPage.doClick();
-                    } else if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                        jButtonNextPage.doClick();
                     }
+                    else if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_LEFT)
+                        jButtonPrevPage.doClick();
+                    else if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_RIGHT) 
+                        jButtonNextPage.doClick();
+
+                    else if (e.getKeyCode() == KeyEvent.VK_F7)
+                        jToggleButtonSpellCheck.doClick();
+                    else if (e.isControlDown() && e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_EQUALS || e.getKeyCode() == KeyEvent.VK_ADD))
+                        jButtonRotateCW.doClick();
+                    else if (e.isControlDown() && e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == KeyEvent.VK_SUBTRACT))
+                        jButtonRotateCCW.doClick();
+                    else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_EQUALS || e.getKeyCode() == KeyEvent.VK_ADD))
+                        jButtonZoomIn.doClick();
+                    else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == KeyEvent.VK_SUBTRACT))
+                        jButtonZoomOut.doClick();
+                    else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_1 || e.getKeyCode() == KeyEvent.VK_NUMPAD1))
+                        jButtonActualSize.doClick();
+                    else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD2))
+                        jButtonFitImage.doClick();
+                    
+                    else if (jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_Z)
+                        m_undoAction.actionPerformed(null);
+                    else if (jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_Y)
+                        m_redoAction.actionPerformed(null);
+                    else if (jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_X)
+                        actionCut.actionPerformed(null);
                 }
+                
                 return false;
             }
         };
@@ -200,6 +212,19 @@ public class Gui extends JFrame {
 //                jToggleButtonSpellCheck.doClick();
 //            }
 //        });
+    }
+    
+    public static String getCurrentLangCode() {
+        return curLangCode;
+    }
+
+    public static String getCurrentLocaleId() {
+        if (lookupISO_3_1_Codes.containsKey(curLangCode))
+            return lookupISO_3_1_Codes.getProperty(curLangCode);
+        else if (lookupISO_3_1_Codes.containsKey(curLangCode.substring(0, 3)))
+            return lookupISO_3_1_Codes.getProperty(curLangCode.substring(0, 3));
+        else 
+            return null;
     }
 
     @Override
@@ -352,11 +377,25 @@ public class Gui extends JFrame {
         popup.add(actionSelectAll);
     }
 
+    private String menuItemStringBuild(String text, String shorcut, int width) {
+        AffineTransform at = new AffineTransform();     
+        FontRenderContext frc = new FontRenderContext(at, true, false);     
+        Font f = popup.getFont();
+        
+        String spaces = "";
+        while ((int)(f.getStringBounds(text + spaces + shorcut, frc).getWidth()) < width)
+            spaces += " ";
+            
+        return text + spaces + shorcut;
+    }
+    
     /**
      * Builds context menu for textarea.
      */
     private void populatePopupMenu() {
-        m_undoAction = new AbstractAction(bundle.getString("jMenuItemUndo.Text")) {
+        final int POPUP_TEXT_WIDTH = 120;
+        
+        m_undoAction = new AbstractAction(menuItemStringBuild(bundle.getString("jMenuItemUndo.Text"), "CTRL+Z", POPUP_TEXT_WIDTH)) {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -371,7 +410,7 @@ public class Gui extends JFrame {
 
         popup.add(m_undoAction);
 
-        m_redoAction = new AbstractAction(bundle.getString("jMenuItemRedo.Text")) {
+        m_redoAction = new AbstractAction(menuItemStringBuild(bundle.getString("jMenuItemRedo.Text"), "CTRL+Y", POPUP_TEXT_WIDTH)) {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -387,7 +426,7 @@ public class Gui extends JFrame {
         popup.add(m_redoAction);
         popup.addSeparator();
 
-        actionCut = new AbstractAction(bundle.getString("jMenuItemCut.Text")) {
+        actionCut = new AbstractAction(menuItemStringBuild(bundle.getString("jMenuItemCut.Text"), "CTRL+X", POPUP_TEXT_WIDTH)) {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -398,7 +437,7 @@ public class Gui extends JFrame {
 
         popup.add(actionCut);
 
-        actionCopy = new AbstractAction(bundle.getString("jMenuItemCopy.Text")) {
+        actionCopy = new AbstractAction(menuItemStringBuild(bundle.getString("jMenuItemCopy.Text"), "CTRL+C", POPUP_TEXT_WIDTH)) {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -409,7 +448,7 @@ public class Gui extends JFrame {
 
         popup.add(actionCopy);
 
-        actionPaste = new AbstractAction(bundle.getString("jMenuItemPaste.Text")) {
+        actionPaste = new AbstractAction(menuItemStringBuild(bundle.getString("jMenuItemPaste.Text"), "CTRL+V", POPUP_TEXT_WIDTH)) {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -421,7 +460,7 @@ public class Gui extends JFrame {
 
         popup.add(actionPaste);
 
-        actionDelete = new AbstractAction(bundle.getString("jMenuItemDelete.Text")) {
+        actionDelete = new AbstractAction(menuItemStringBuild(bundle.getString("jMenuItemDelete.Text"), "Del", POPUP_TEXT_WIDTH)) {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -432,7 +471,7 @@ public class Gui extends JFrame {
         popup.add(actionDelete);
         popup.addSeparator();
 
-        actionSelectAll = new AbstractAction(bundle.getString("jMenuItemSelectAll.Text"), null) {
+        actionSelectAll = new AbstractAction(menuItemStringBuild(bundle.getString("jMenuItemSelectAll.Text"), "CTRL+A", POPUP_TEXT_WIDTH)) {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -710,11 +749,14 @@ public class Gui extends JFrame {
         jMenuFilter = new javax.swing.JMenu();
         jMenuItemBrightness = new javax.swing.JMenuItem();
         jMenuItemContrast = new javax.swing.JMenuItem();
+        jMenuItemGamma = new javax.swing.JMenuItem();
+        jMenuItemThreshold = new javax.swing.JMenuItem();
         jMenuItemGrayscale = new javax.swing.JMenuItem();
         jMenuItemMonochrome = new javax.swing.JMenuItem();
         jMenuItemInvert = new javax.swing.JMenuItem();
         jMenuItemSharpen = new javax.swing.JMenuItem();
         jMenuItemSmooth = new javax.swing.JMenuItem();
+        jMenuItemBilateralFiltering = new javax.swing.JMenuItem();
         jMenuItemDeskew = new javax.swing.JMenuItem();
         jMenuItemAutocrop = new javax.swing.JMenuItem();
         jMenuItemCrop = new javax.swing.JMenuItem();
@@ -1126,6 +1168,11 @@ public class Gui extends JFrame {
         jTextArea1.setRows(5);
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setMargin(new java.awt.Insets(8, 8, 2, 2));
+        jTextArea1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jTextArea1MouseWheelMoved(evt);
+            }
+        });
         jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jTextArea1MouseEntered(evt);
@@ -1367,6 +1414,26 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemContrast);
 
+        jMenuItemGamma.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemGamma.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemGamma.Mnemonic").charAt(0));
+        jMenuItemGamma.setText(bundle.getString("jMenuItemGamma.Text")); // NOI18N
+        jMenuItemGamma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemGammaActionPerformed(evt);
+            }
+        });
+        jMenuFilter.add(jMenuItemGamma);
+
+        jMenuItemThreshold.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemThreshold.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemThreshold.Mnemonic").charAt(0));
+        jMenuItemThreshold.setText(bundle.getString("jMenuItemThreshold.Text")); // NOI18N
+        jMenuItemThreshold.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemThresholdActionPerformed(evt);
+            }
+        });
+        jMenuFilter.add(jMenuItemThreshold);
+
         jMenuItemGrayscale.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemGrayscale.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemGrayscale.Mnemonic").charAt(0));
         jMenuItemGrayscale.setText(bundle.getString("jMenuItemGrayscale.Text")); // NOI18N
@@ -1410,7 +1477,6 @@ public class Gui extends JFrame {
         jMenuItemSmooth.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemSmooth.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemSmooth.Mnemonic").charAt(0));
         jMenuItemSmooth.setText(bundle.getString("jMenuItemSmooth.Text")); // NOI18N
-        jMenuItemSmooth.setToolTipText("");
         jMenuItemSmooth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemSmoothActionPerformed(evt);
@@ -1418,9 +1484,20 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemSmooth);
 
+        jMenuItemBilateralFiltering.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemBilateralFiltering.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemBilateralFiltering.Mnemonic").charAt(0));
+        jMenuItemBilateralFiltering.setText(bundle.getString("jMenuItemBilateralFiltering.Text")); // NOI18N
+        jMenuItemBilateralFiltering.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemBilateralFilteringActionPerformed(evt);
+            }
+        });
+        jMenuFilter.add(jMenuItemBilateralFiltering);
+
         jMenuImage.add(jMenuFilter);
 
         jMenuItemDeskew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemDeskew.setFont(new java.awt.Font("Noto Sans", 0, 12)); // NOI18N
         jMenuItemDeskew.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemDeskew.Mnemonic").charAt(0));
         jMenuItemDeskew.setText(bundle.getString("jMenuItemDeskew.Text")); // NOI18N
         jMenuItemDeskew.addActionListener(new java.awt.event.ActionListener() {
@@ -2461,6 +2538,14 @@ public class Gui extends JFrame {
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemContrastActionPerformed
 
+    void jMenuItemGammaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGammaActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemGammaActionPerformed
+
+    void jMenuItemThresholdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemThresholdActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemThresholdActionPerformed
+
     void jMenuItemGrayscaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGrayscaleActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemGrayscaleActionPerformed
@@ -2480,6 +2565,10 @@ public class Gui extends JFrame {
     void jMenuItemSmoothActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSmoothActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemSmoothActionPerformed
+
+    void jMenuItemBilateralFilteringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBilateralFilteringActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemBilateralFilteringActionPerformed
 
     void jMenuItemUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUndoActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
@@ -2531,7 +2620,7 @@ public class Gui extends JFrame {
 
     private void jScrollPaneImageMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jScrollPaneImageMouseWheelMoved
         if (evt.isControlDown()) {
-            final float delta = 0.12f * evt.getWheelRotation();
+            final float delta = -0.12f * evt.getWheelRotation();
 
             if (delta <= 0) {
                 // set minimum size to zoom
@@ -2602,6 +2691,19 @@ public class Gui extends JFrame {
     void jMenuItemCropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCropActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemCropActionPerformed
+
+    private void jTextArea1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTextArea1MouseWheelMoved
+        if (evt.isControlDown()) {
+            Font f = jTextArea1.getFont();
+            int newSize = f.getSize() - evt.getWheelRotation();
+            if (newSize > FONT_MIN_SIZE && newSize < FONT_MAX_SIZE)
+                f = new Font(f.getFontName(), f.getStyle(), newSize);
+            jTextArea1.setFont(f);
+            jTextArea1.validate();
+        }
+        else
+            ((Component)evt.getSource()).getParent().dispatchEvent(evt);
+    }//GEN-LAST:event_jTextArea1MouseWheelMoved
 
     /**
      * Pastes image from clipboard.
@@ -2746,6 +2848,7 @@ public class Gui extends JFrame {
     protected javax.swing.JMenu jMenuInputMethod;
     private javax.swing.JMenuItem jMenuItemAbout;
     private javax.swing.JMenuItem jMenuItemAutocrop;
+    javax.swing.JMenuItem jMenuItemBilateralFiltering;
     private javax.swing.JMenuItem jMenuItemBrightness;
     protected javax.swing.JMenuItem jMenuItemBulkOCR;
     private javax.swing.JMenuItem jMenuItemChangeCase;
@@ -2755,6 +2858,7 @@ public class Gui extends JFrame {
     private javax.swing.JMenuItem jMenuItemDownloadLangData;
     private javax.swing.JMenuItem jMenuItemExit;
     private javax.swing.JMenuItem jMenuItemFont;
+    private javax.swing.JMenuItem jMenuItemGamma;
     private javax.swing.JMenuItem jMenuItemGrayscale;
     private javax.swing.JMenuItem jMenuItemHelp;
     private javax.swing.JMenuItem jMenuItemInvert;
@@ -2776,6 +2880,7 @@ public class Gui extends JFrame {
     private javax.swing.JMenuItem jMenuItemSmooth;
     private javax.swing.JMenuItem jMenuItemSplitPdf;
     private javax.swing.JMenuItem jMenuItemSplitTiff;
+    private javax.swing.JMenuItem jMenuItemThreshold;
     protected javax.swing.JMenuItem jMenuItemUndo;
     protected javax.swing.JMenu jMenuLookAndFeel;
     protected javax.swing.JMenu jMenuPSM;
