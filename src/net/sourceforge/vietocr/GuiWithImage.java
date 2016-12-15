@@ -265,6 +265,75 @@ public class GuiWithImage extends GuiWithBulkOCR {
     }
 
     @Override
+    void jMenuItemGammaActionPerformed(java.awt.event.ActionEvent evt) {
+        if (iioImageList == null) {
+            JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        SliderDialog dialog = new SliderDialog(this, true);
+        dialog.setLabelText(bundle.getString("Gamma"));
+        dialog.setForGamma();
+        dialog.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (evt.getPropertyName().equals(SliderDialog.VALUE_CHANGED)) {
+                    int value = (Integer) evt.getNewValue();
+                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.gamma(originalImage, value * 0.1f));
+                    imageList.set(imageIndex, imageIcon);
+                    iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
+                    displayImage();
+                }
+            }
+        });
+
+        originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+        stack.push(originalImage);
+        if (dialog.showDialog() == JOptionPane.CANCEL_OPTION) {
+            //restore image
+            originalImage = stack.pop();
+            imageIcon = new ImageIconScalable(originalImage);
+            imageList.set(imageIndex, imageIcon);
+            iioImageList.get(imageIndex).setRenderedImage(originalImage);
+            displayImage();
+        }      
+    }
+
+    @Override
+    void jMenuItemThresholdActionPerformed(java.awt.event.ActionEvent evt) {
+        if (iioImageList == null) {
+            JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        DoubleSliderDialog dialog = new DoubleSliderDialog(this, true);
+        dialog.setLabelText(bundle.getString("Threshold"));
+        dialog.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (evt.getPropertyName().equals(DoubleSliderDialog.VALUE_CHANGED)) {
+                    int value1 = (Integer) evt.getOldValue();
+                    int value2 = (Integer) evt.getNewValue();
+                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.adaptiveThreshold(originalImage, 
+                            value1 * (0.75f / 100f) + 0.25f, (100 - value2) * (1.65f / 100f) + 0.25f));
+                    imageList.set(imageIndex, imageIcon);
+                    iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
+                    displayImage();
+                }
+            }
+        });
+
+        originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+        stack.push(originalImage);
+        if (dialog.showDialog() == JOptionPane.CANCEL_OPTION) {
+            //restore image
+            originalImage = stack.pop();
+            imageIcon = new ImageIconScalable(originalImage);
+            imageList.set(imageIndex, imageIcon);
+            iioImageList.get(imageIndex).setRenderedImage(originalImage);
+            displayImage();
+        }
+    }
+    
+    @Override
     void jMenuItemGrayscaleActionPerformed(java.awt.event.ActionEvent evt) {
         if (iioImageList == null) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
@@ -343,6 +412,33 @@ public class GuiWithImage extends GuiWithBulkOCR {
     }
 
     @Override
+    void jMenuItemBilateralFilteringActionPerformed(java.awt.event.ActionEvent evt) {
+        if (iioImageList == null) {
+            JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        getGlassPane().setVisible(true);
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+                stack.push(originalImage);
+                imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.bilateralFiltering(originalImage, 3.0, 3.0));
+                imageList.set(imageIndex, imageIcon);
+                iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
+
+                displayImage();
+                
+                getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                getGlassPane().setVisible(false);
+            }
+        });
+    }
+
+    @Override
     void jMenuItemUndoActionPerformed(java.awt.event.ActionEvent evt) {
         if (stack.isEmpty()) {
             return;
@@ -367,7 +463,6 @@ public class GuiWithImage extends GuiWithBulkOCR {
     @Override
     void quit() {
         prefs.putBoolean(strScreenshotMode, this.jCheckBoxMenuItemScreenshotMode.isSelected());
-
         super.quit();
     }
 }

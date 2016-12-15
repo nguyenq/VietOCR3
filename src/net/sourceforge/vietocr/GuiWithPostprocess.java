@@ -31,14 +31,20 @@ public class GuiWithPostprocess extends GuiWithOCR {
 
     private final String strDangAmbigsPath = "DangAmbigsPath";
     private final String strDangAmbigs = "DangAmbigs";
+    private final String strReplaceHyphensEnabled = "ReplaceHyphensEnabled";
+    private final String strRemoveHyphensEnabled = "RemoveHyphensEnabled";
     protected String dangAmbigsPath;
     protected boolean dangAmbigsOn;
+    protected boolean replaceHyphensEnabled;
+    protected boolean removeHyphensEnabled;
     
     private final static Logger logger = Logger.getLogger(GuiWithPostprocess.class.getName());
 
     public GuiWithPostprocess() {
         dangAmbigsPath = prefs.get(strDangAmbigsPath, new File(baseDir, "data").getPath());
         dangAmbigsOn = prefs.getBoolean(strDangAmbigs, true);
+        replaceHyphensEnabled = prefs.getBoolean(strReplaceHyphensEnabled, false);
+        removeHyphensEnabled = prefs.getBoolean(strRemoveHyphensEnabled, false);
     }
 
     @Override
@@ -62,7 +68,7 @@ public class GuiWithPostprocess extends GuiWithOCR {
             @Override
             public String doInBackground() throws Exception {
                 selectedText = jTextArea1.getSelectedText();
-                return Processor.postProcess((selectedText != null) ? selectedText : jTextArea1.getText(), curLangCode, dangAmbigsPath, dangAmbigsOn, false);
+                return Processor.postProcess((selectedText != null) ? selectedText : jTextArea1.getText(), curLangCode, dangAmbigsPath, dangAmbigsOn, replaceHyphensEnabled);
             }
 
             @Override
@@ -114,7 +120,8 @@ public class GuiWithPostprocess extends GuiWithOCR {
     void quit() {
         prefs.put(strDangAmbigsPath, dangAmbigsPath);
         prefs.putBoolean(strDangAmbigs, dangAmbigsOn);
-
+        prefs.putBoolean(strReplaceHyphensEnabled, replaceHyphensEnabled);
+        prefs.putBoolean(strRemoveHyphensEnabled, removeHyphensEnabled);
         super.quit();
     }
 }

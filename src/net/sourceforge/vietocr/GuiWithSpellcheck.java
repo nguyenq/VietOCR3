@@ -113,13 +113,7 @@ public class GuiWithSpellcheck extends GuiWithPSM {
 
     @Override
     void jToggleButtonSpellCheckActionPerformed(java.awt.event.ActionEvent evt) {
-        String localeId = null;
-
-        if (lookupISO_3_1_Codes.containsKey(curLangCode)) {
-            localeId = lookupISO_3_1_Codes.getProperty(curLangCode);
-        } else if (lookupISO_3_1_Codes.containsKey(curLangCode.substring(0, 3))) {
-            localeId = lookupISO_3_1_Codes.getProperty(curLangCode.substring(0, 3));
-        }
+        String localeId = Gui.getCurrentLocaleId();
         if (localeId == null) {
             JOptionPane.showMessageDialog(null, "Need to add an entry in data/ISO639-1.xml file.", Gui.APP_NAME, JOptionPane.ERROR_MESSAGE);
             return;
