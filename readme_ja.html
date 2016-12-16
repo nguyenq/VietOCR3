@@ -31,13 +31,13 @@
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p><a href="http://www.ghostscript.com/">GPL Ghostscript</a>を通したPDFサポートが可能です。ライブラリのインストール後に適切な環境変数を設定し、共有ライブラリオブジェクト（<code>gsdll32.dll</code>または<code>libgs.so</code>）が検索パス内にあることを確認してください。Windows上でGSバージョン9.19の場合は<code>Path</code>（［コントロールパネル］&gt;［システム］&gt;［詳細設定タブ］&gt;［環境変数］からアクセス）に次のように追加します。</p>
+        <p><a href="http://www.ghostscript.com/">GPL Ghostscript</a>を通したPDFサポートが可能です。ライブラリのインストール後に適切な環境変数を設定し、共有ライブラリオブジェクト（<code>gsdll32.dll</code>または<code>libgs.so</code>）が検索パス内にあることを確認してください。Windows上でGSバージョン9.20の場合は<code>Path</code>（［コントロールパネル］&gt;［システム］&gt;［詳細設定タブ］&gt;［環境変数］からアクセス）に次のように追加します。</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.19\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.20\bin</code></p>
         </blockquote>Linuxでは<blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p><code>/usr/lib</code>には<code>libgs.so.9.19</code>への<code>libgs.so</code>リンクがあります。</p>
+        <p><code>/usr/lib</code>には<code>libgs.so.9.20</code>への<code>libgs.so</code>リンクがあります。</p>
         <p>Hunspellを通してスペルチェック機能を利用できます。その<a href="http://wiki.services.openoffice.org/wiki/Dictionaries">辞書ファイル</a>（<code>.aff</code>、<code>.dic</code>）をVietOCRの<code>dict</code>フォルダに配置してください。<code>user.dic</code>は1行につき1単語ずつカスタム単語リストを含むUTF-8エンコードのファイルです。</p>
         <p>LinuxではHunspellとその辞書をSynapticまたは次のように<code>apt</code>でインストールします。</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
@@ -50,7 +50,7 @@
         <p>ベトナム語の言語データはTimes New Roman、Arial、Verdana、Courier Newのフォントで生成されています。そのためよく似たフォントグリフを持つ画像ではより良い認識成功率を示すでしょう。サポートしているフォントと違った見かけのフォントグリフを持つ画像のOCRでは、一般的に、特別にそれらの書体をTesseractに<a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">学習</a>させた別の言語データパックの生成が必要です。一部のVNI、TCVN3(ABC)フォントの言語データも最新バージョンにバンドルしています。</p>
         <p>OCR画像はモノクロ（白黒）またはグレースケールで少なくとも200dpi（1インチあたりのドット数）から400dpiの解像度でスキャンしてください。優れた認識精度を求めて高解像度でスキャンする必要はありません。現在ベトナム語の認識精度は97％以上であり、それはTesseractの次のリリースでさらに改善されるかもしれません。もしそうなったとしても実際の認識率はまだスキャンされた画像の品質に大きく依存します。典型的なスキャン設定は300dpi、1bit（=1bpp 1ピクセルあたり1ビット）白黒または8bitグレースケール、無圧縮TIFFまたはPNG形式です。</p>
         <p><em>スクリーンショット モード</em>は低解像度の画像に対して、スクリーン プリントのように300dpiで再スケーリングしてより良い認識率を提供します。</p>
-        <p>組込みのテキスト後処理アルゴリズムに加え、<code>x.DangAmbigs.txt</code>という名前のテキストファイルを使用した独自のカスタムテキスト置換スキームを追加できます。xはISO639-3言語コードです。 UTF-8エンコードしたファイルには、イコールで区切られた<code>oldValue=newValue</code>のペアを含めます。</p>
+        <p>組込みのテキスト後処理アルゴリズムに加え、UTF-8-encoded tab-delimited <code>x.DangAmbigs.txt</code>という名前のテキストファイルを使用した独自のカスタムテキスト置換スキームを追加できます。xはISO639-3言語コードです。 プレーンテキスト置換とRegexテキスト置換の両方がサポートされています。</p>
         <p>組込みツールではOCR操作を便利にするように複数の画像やPDFファイルを単一のものに結合したり、メモリ不足例外が発生しそうな大きなPDFファイルを小さく分割したりする機能を提供します。</p>
         <h3>後処理</h3>
         <p>誤認識は一般的に3つのカテゴリに分類できます。誤認識の多くは文字の大文字/小文字に関係し（例 HOA、nhắC）、一般的なUnicode用テキストエディタで簡単に修正できます。他の多くの誤認識は、ダイアクリティカルマークの欠落、似ている形状の間違った文字など（huu – hưu、mang – marg、h0a – hoa、la – 1a、uhìu - nhìn）のOCR処理結果です。またこれらはスペルチェッカプログラムによって簡単に修正できます。組込みの後処理機能は前述の誤りの多くを修正するのに役立ちます。</p>

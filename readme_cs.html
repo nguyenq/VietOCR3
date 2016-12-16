@@ -65,14 +65,14 @@
             library object (<code>gsdll32.dll</code> or <code>libgs.so</code>) is in the search path
             by setting the appropriate environment variable. On Windows, append the following
             to <code>Path</code> value (accessible through Control Panel &gt; System &gt; Advanced
-            tab &gt; Environment Variables) for GS version 9.19:</p>
+            tab &gt; Environment Variables) for GS version 9.20:</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.19\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.20\bin</code></p>
         </blockquote>
 <tt>;C:\Program Files\gs\gs9.07\bin</tt><blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p>where in <code>/usr/lib</code>, <code>libgs.so</code> link to <code>libgs.so.9.19</code>
+        <p>where in <code>/usr/lib</code>, <code>libgs.so</code> link to <code>libgs.so.9.20</code>
             is located.</p>
         <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
                 dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed in <code>dict</code>
@@ -107,9 +107,8 @@
             per pixel) black&amp;white or 8 bpp grayscale uncompressed TIFF or PNG format.</p>
         <p>DALŠÍ ZPRACOVÁNÍ</p>
         <p>In addition to the built-in text postprocessing algorithm, you can add your own
-            custom text replacement scheme via a text file named <code>x.DangAmbigs.txt</code>,
-            where x is the ISO639-3 language code. The UTF-8-encoded file should contain equal
-            sign-delimited <code>oldValue=newValue</code> pairs.</p>
+            custom text replacement scheme via a UTF-8-encoded tab-delimited text file named <code>x.DangAmbigs.txt</code>,
+            where x is the ISO639-3 language code. Both plain and Regex text replacements are supported.</p>
         <p>You can put init-only and non-init control parameters in <code>tessdata/configs/tess_configs</code>
             and <code>tess_configvars</code> files, respectively, to modify Tesseract&#39;s
             behaviour.</p>

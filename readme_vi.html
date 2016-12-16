@@ -82,17 +82,17 @@
             (<code>gsdll32.dll</code> hoặc <code>libgs.so</code>) nằm trong search path bằng cách chỉnh
             biến môi trường phù hợp. Trên Windows, tiếp đuôi (append) đoạn sau vào giá trị của
             biến Path (truy cập được qua Control Panel &gt; System &gt; Advanced tab &gt; Environment
-            Variables) cho GS phiên bản 9.19:</p>
+            Variables) cho GS phiên bản 9.20:</p>
         <blockquote>
             <p>
-                <code>;C:\Program Files\gs\gs9.19\bin</code></p>
+                <code>;C:\Program Files\gs\gs9.20\bin</code></p>
         </blockquote>
         Trên Linux:<blockquote>
             <p>
                 <code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
         <p>
-            nơi trong <code>/usr/lib</code>, <code>libgs.so</code> link tới <code>libgs.so.9.19</code> được
+            nơi trong <code>/usr/lib</code>, <code>libgs.so</code> link tới <code>libgs.so.9.20</code> được
             đặt.</p>
         <p>
             Tính năng Duyệt chính tả (spellcheck) có được qua Hunspell, mà các <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
@@ -138,9 +138,8 @@
             300 DPI.</p>
         <p>
             Ngoài thuật toán hậu xử lý xây trong chương trình, bạn có thể thêm cách thức thay
-            thế từ ngữ đặc riêng của bạn qua một tập tin text có tên <code>x.DangAmbigs.txt</code>,
-            mà x là ISO639-3 language code. File này, được mã hóa trong UTF-8, chứa các cặp
-            <code>giáTrịCũ=giáTrịMới</code> phân cách bởi dấu bằng.</p>
+            thế từ ngữ đặc riêng của bạn qua một tập tin text UTF-8-encoded tab-delimited có tên <code>x.DangAmbigs.txt</code>,
+            mà x là ISO639-3 language code. Cả hai cách thay thế text đơn giản và Regex đều được hỗ trợ.</p>
         <p>
             Bạn có thể đặt control parameters init-only và non-init trong các file <code>tessdata/configs/tess_configs</code>
             và <code>tess_configvars</code> để biến đổi hành vi của Tesseract engine.</p>

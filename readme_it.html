@@ -37,15 +37,15 @@
         </blockquote>
         <p>Il supporto PDF è disponibile con <a href="http://www.ghostscript.com/">GPL⏎
 Ghostscript</a>. Dopo l'intallazione della libreria, controlla che gli oggetti⏎
-(<code>gsdll32.dll</code> o <code>libgs.so</code>) siano presenti nel percorso di ricerca impostando nel campo variabile <code>Path</code>, (accessibile tramite il Pannello di controllo di Windows System &gt; Advanced tab &gt; Environment Variables) per GS version 9.19:</p>
+(<code>gsdll32.dll</code> o <code>libgs.so</code>) siano presenti nel percorso di ricerca impostando nel campo variabile <code>Path</code>, (accessibile tramite il Pannello di controllo di Windows System &gt; Advanced tab &gt; Environment Variables) per GS version 9.20:</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.19\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.20\bin</code></p>
         </blockquote>Linux:<blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
         <p>dove sono posti <code>/usr/lib</code>, <code>libgs.so</code> i collegamenti per 
 
-<code>libgs.so.9.19</code>
+<code>libgs.so.9.20</code>
 </p>
         <p>La funzionalità di controllo ortografico è disponibile attraverso Hunspell, il cui <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">dizionario</a> (<code>.aff</code>, <code>.dic</code>) deve essere posto nella cartella <code>dict</code> di VietOCR. <code>user.dic</code> è un file criptato UTF-8 che contiene una lista di parole predefinite, una per linea.</p>
         <p>Su Linux, Hunspell ed i suoi dizionari possono essere installati da Synaptic o  <code>apt</code>, come segue:</p>
@@ -59,7 +59,7 @@ Ghostscript</a>. Dopo l'intallazione della libreria, controlla che gli oggetti�
         <p>I dati nella lingua vietnamita sono stati generati per  Times New Roman, Arial, Verdana,  e font Courier New. Pertanto, il riconoscimento risulta migliore per le immagini che hanno le grafie di caratteri simili. Per le immagini OCR che hanno grafia dei caratteri diversi dai caratteri supportati generalmente bisognerà <a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">creare</a> un altro pacchetto di lingua dati appositamente per  quei caratteri tipografici. Dati linguistici per alcune tipografie VNI e TCVN3 (ABC) sono stati anche  aggiunti nelle ultime versioni.</p>
         <p>Le immagini da acquisire devono essere scansionate ad una risoluzione di almeno 200 dpi fino a 400 DPI in modo monocromatico (bianco e nero) o in scala di grigi. La scansione a risoluzioni più elevate  non necessariamente si traduce in una migliore precisione del riconoscimento, che attualmente  può essere superiore al 97% per i linguaggi Vietnamiti, e che per la prossima versione di Tesseractsono previsti miglioramenti. Anche così, i risulatati effettivi dipendono ancora molto dalla qualità del  dell'immagine acquisita. Le impostazioni tipiche per la scansione sono 300 DPI e 1 bpp (bit per pixel ) in bianco e nero oppure in scala di grigi  a 8 bpp tramite immagini TIFF o PNG.</p>
         <p>La modalità <em>Screenshot</em>  offre risultati migliori per immagini con risoluzione più bassa, come serigrafie, che vengono riscalate a 300 DPI.</p>
-        <p>Oltre all' algoritmo integrato di post-elaborazione del testo, è possibile aggiungere il proprio schema personalizzato del testo tramite un file di testo denominato <code>x.DangAmbigs.txt</code>, dove x è il codice ISO639-3 della lingua. La codifica UTF-8 deve contenere lo stesso numero di coppie <code>vecchiValori = nuoviValori</code>.</p>
+        <p>Oltre all' algoritmo integrato di post-elaborazione del testo, è possibile aggiungere il proprio schema personalizzato del testo tramite un file di testo denominato UTF-8-encoded tab-delimited <code>x.DangAmbigs.txt</code>, dove x è il codice ISO639-3 della lingua. Entrambe le sostituzioni di testo normale e Regex sono supportati.</p>
         <p>Alcuni strumenti integrati sono forniti per unire più immagini o file PDF in un unico documento. Altre per comode operazioni di OCR, o per dividere un file PDF in qdocumenti più piccoli se è troppo grande, che può causare rallentamenti al programma.</p>
         <h3>POST ELABORAZIONE</h3>
         <p>Gli errori di riconoscimento possono generalmente essere classificati in tre categorie.

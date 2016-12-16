@@ -60,13 +60,13 @@ repository. Sie können installiert werden via Synaptic oder durch folgenden Bef
 Stellen Sie sicher, dass nach der Installation die Dateien
 (<code>gsdll32.dll</code> oder <code>libgs.so</code>) sich in dem Suchpfad der Umgebungsvariable befindet (welches auch erreichbar ist durch Windows&#39; Systemsteuerung &gt; System &gt; Erweiterte Systemeinstellungen &gt; Umgebungsvariablen).
 Fügen Sie folgenden Wert ein zu der
-<code>Path</code> Variable für die GS-Version 9.19:</p>
+<code>Path</code> Variable für die GS-Version 9.20:</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.19\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.20\bin</code></p>
         </blockquote>Auf Linux:<blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p>wo in <code>/usr/lib</code>, <code>libgs.so</code> verlinkt zu <code>libgs.so.9.19</code>
+        <p>wo in <code>/usr/lib</code>, <code>libgs.so</code> verlinkt zu <code>libgs.so.9.20</code>
             sich befindet.</p>
         <p>Die Rechtschreibprüfung ist wird mit Hunspell umgesetzt <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
 Wörterbücher-Dateien</a> (<code>.aff</code>, <code>.dic</code>) sollten in dem Ordner <code>dict</code> aus dem VietOCR abgelegt werden.  <code>user.dic</code> ist eine
@@ -98,9 +98,8 @@ UTF-8 kodierte Datei die eine Liste von angepassten Wörter beinhaltet, ein Wort
         <p>The <em>Screenshot Mode</em> offers better recognition rates for low-resolution
             images, such as screen prints, by rescaling them to 300 DPI.</p>
         <p>In addition to the built-in text postprocessing algorithm, you can add your own
-            custom text replacement scheme via a text file named <code>x.DangAmbigs.txt</code>,
-            where x is the ISO639-3 language code. The UTF-8-encoded file should contain equal
-            sign-delimited <code>oldValue=newValue</code> pairs.</p>
+            custom text replacement scheme via a UTF-8-encoded tab-delimited text file named <code>x.DangAmbigs.txt</code>,
+            where x is the ISO639-3 language code. Both plain and Regex text replacements are supported.</p>
         <p>You can put init-only and non-init control parameters in <code>tessdata/configs/tess_configs</code>
             and <code>tess_configvars</code> files, respectively, to modify Tesseract&#39;s
             behaviour.</p>

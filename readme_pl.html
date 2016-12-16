@@ -38,13 +38,13 @@ Acquisition Library v2.0, która wymaga Windows XP Service Pack 1 (SP1) lub nows
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
         <p>Obsługa plików PDF jest możliwa dzięki <a href="http://www.ghostscript.com/">GPL
-                Ghostscript</a>. Po zainstalowaniu bibliotek upewnij się, że udostępnione biblioteki (<code>gsdll32.dll</code> or <code>libgs.so</code>) &nbsp;są w ścieżce wyszukiwania poprzez ustawienie odpowiednich zmiennych systemowych. W Windows dla GS w wersji 9.19, dodaj poniższy wpis do&nbsp;zmiennej&nbsp;<code>Path</code>&nbsp;(dostępnej poprzez Panel Kontrolny &gt; System &gt; zakładka Zaawansowane &gt; Zmienne środowiskowe...) :</p>
+                Ghostscript</a>. Po zainstalowaniu bibliotek upewnij się, że udostępnione biblioteki (<code>gsdll32.dll</code> or <code>libgs.so</code>) &nbsp;są w ścieżce wyszukiwania poprzez ustawienie odpowiednich zmiennych systemowych. W Windows dla GS w wersji 9.20, dodaj poniższy wpis do&nbsp;zmiennej&nbsp;<code>Path</code>&nbsp;(dostępnej poprzez Panel Kontrolny &gt; System &gt; zakładka Zaawansowane &gt; Zmienne środowiskowe...) :</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.19\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.20\bin</code></p>
         </blockquote>W systemie Linux: <blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p>gdzie w&nbsp;<code>/usr/lib&nbsp;</code>jest zlokalizowany link&nbsp;<code>libgs.so</code>&nbsp;do <code>libgs.so.9.19</code>.</p>
+        <p>gdzie w&nbsp;<code>/usr/lib&nbsp;</code>jest zlokalizowany link&nbsp;<code>libgs.so</code>&nbsp;do <code>libgs.so.9.20</code>.</p>
         <p>Funkcjonalność sprawdzania pisowni jest dostępna poprzez Hunspell, którego pliki <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">słownika (</a><code>.aff</code> <code>.dic</code>) powinny być umieszczone w folderze <code>dict</code> programu VietOCR. <code>user.dic</code> jest plikiem z kodowaniem UTF-8, który zawiera listę słów, po jednym słowie na linię.</p>
         <p>W systemie Linux, Hunspell wraz ze słownikami może być zainstalowany za pomocą Menedżera pakietów Synaptic lub polecenia&nbsp;<code>apt</code>, jak poniżej:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
@@ -64,7 +64,7 @@ to jeszcze bardziej. Mimo to, wciąż aktualne wyniki, zależą w dużym stopniu
 zeskanowanego obrazu. Typowe ustawienia skanowania to 300 DPI i 1 bpp (bit 
 na piksel) obraz czarno-biały lub 8-bitowa skala szarości w formacie nieskompresowany TIFF lub PNG.</p>
         <p><em>Tryb Zrzutu Ekranu</em> zapewnia lepsze rezultaty dla obrazów niskiej rozdzielczości takich jak wydruki z ekranów, poprzez przeskalowanie ich do rozdzielczości 300 DPI.</p>
-        <p>W dodatku do wbudowanego algorytmu przetwarzania wtórnego tekstu, można dodać własny zmodyfikowany schemat podmiany tekstu poprzez plik z nazwą <code>x.DangAmbigs.txt</code>, gdzie x jest kodem języka w standardzie ISO639-3. Pliki takie kodowane za pomocą UTF-8 powinny zawierać pary <code>oldValue=newValue</code> rozdzielone znakiem równości.</p>
+        <p>W dodatku do wbudowanego algorytmu przetwarzania wtórnego tekstu, można dodać własny zmodyfikowany schemat podmiany tekstu poprzez plik z nazwą UTF-8-encoded tab-delimited <code>x.DangAmbigs.txt</code>, gdzie x jest kodem języka w standardzie ISO639-3. Zarówno naturalne i Regex zamienniki tekstowe są obsługiwane.</p>
         <p>By zmodifikować zachowanie silnika Tesseract możesz wpisać startowe i bieżące parametry kontrolne w pliki konfiguracyjne  - odpowiednio: <code>tessdata/configs/tess_configs</code>
 oraz <code>tess_configvars</code>.</p>
         <p>Niektóre wbudowane narzędzia są przewidziane do łączenia kilku obrazów lub plików PDF

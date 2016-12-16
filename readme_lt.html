@@ -43,13 +43,13 @@ yra neįprastesnėje vietoje, <code>tessdata</code> aplanke gali tekti sukurti s
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>PDF failų palaikymas galimas naudojant „<a href="http://www.ghostscript.com/">GPL Ghostscript</a>“ priemonę. Ją įdiegus, reikia užtikrinti, kad dinaminė biblioteka (<code>gsdll32.dll</code> arba <code>libgs.so</code>) patektų į sisteminės failų paieškos kelią, papildant atitinkamą aplinkos kintamąjį. „Windows“ sistemoje tai yra kintamasis <code>Path</code>, kurį galite redaguoti, atvėrę Valdymo skydą, jame spustelėję piktogramą „Sistema“, tada atverę kortelę „Išsamiau“ ir spustelėję mygtuką „Aplinkos kintamieji“. Pavyzdžiui, „GhostScript 9.19“ atveju, šį kintamąjį reikėtų papildyti tokia eilute:</p>
+        <p>PDF failų palaikymas galimas naudojant „<a href="http://www.ghostscript.com/">GPL Ghostscript</a>“ priemonę. Ją įdiegus, reikia užtikrinti, kad dinaminė biblioteka (<code>gsdll32.dll</code> arba <code>libgs.so</code>) patektų į sisteminės failų paieškos kelią, papildant atitinkamą aplinkos kintamąjį. „Windows“ sistemoje tai yra kintamasis <code>Path</code>, kurį galite redaguoti, atvėrę Valdymo skydą, jame spustelėję piktogramą „Sistema“, tada atverę kortelę „Išsamiau“ ir spustelėję mygtuką „Aplinkos kintamieji“. Pavyzdžiui, „GhostScript 9.20“ atveju, šį kintamąjį reikėtų papildyti tokia eilute:</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.19\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.20\bin</code></p>
         </blockquote>„Linux“ sistemoje:<blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p>kur <code>/usr/lib</code> aplanke yra nuoroda <code>libgs.so</code>, nurodanti failą <code>libgs.so.9.19</code>.</p>
+        <p>kur <code>/usr/lib</code> aplanke yra nuoroda <code>libgs.so</code>, nurodanti failą <code>libgs.so.9.20</code>.</p>
         <p>Rašybos tikrinimo funkcija galima panaudojant „Hunspell“ tikrintuvę, kurios <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">žodynų</a> failai (<code>.aff</code>, <code>.dic</code>) turėtų būti patalpinti į aplanką <code>dict</code>, esantį „VietOCR“ programos aplanke. Be to, šiame aplanke galite sukurti UTF-8 koduoto teksto failą <code>user.dic</code> su papildomais žodžiais, nesančiais žodyne (vienas žodis eilutėje).</p>
         <p>„Linux“ sistemoje „Hunspell“ bei žodynus galite įdiegti, naudodamiesi programa „Synaptic“ arba <code>apt</code> įrankiu:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us myspell-lt</code></blockquote>
@@ -76,7 +76,7 @@ paskaityti <a href="http://dg.lapas.info/?page_id=239">Donato Glodenio tinklara�
         <p><em>Žemos raiškos (ekranvaizdžio) veiksena</em> įgalina pagerinti žemos raiškos vaizdų 
 atpažinimo kokybę. Šioje veiksenoje, prieš atpažįstant tekstą, žemos raiškos (pvz. ekrano)
 vaizdų raiška padidinama iki 300 taškų colyje.</p>
-        <p>Programa numato galimybę jau esamą teksto apdorojimo algoritmą papildyti savuoju. Pridėkite savo pritaikytą teksto ženklų pakeitimo schemą įrašytą faile <code>x.DangAmbigs.txt</code>, simbolį „x“ pakeisdami ISO639-3 standarto kalbos kodu (pvz., lietuvių kalbos kodas – „lit“). UTF-8 koduotės teksto faile lygybės ženklu „=“ atskirkite keistinų teksto fragmentų poras taip: <code>senaReikšmė=naujaReikšmė</code>.</p>
+        <p>Programa numato galimybę jau esamą teksto apdorojimo algoritmą papildyti savuoju. Pridėkite savo pritaikytą teksto ženklų pakeitimo schemą įrašytą faile UTF-8-encoded tab-delimited <code>x.DangAmbigs.txt</code>, simbolį „x“ pakeisdami ISO639-3 standarto kalbos kodu (pvz., lietuvių kalbos kodas – „lit“). Tiek paprasti ir Reguliariai išraiška teksto endoprotezai yra palaikomi.</p>
         <p>Papildomai įtakoti „Tesseract“ veikimą galite, įrašydami papildomus valdymo parametrus Į failus <code>tessdata/configs/tess_configs</code> (tik inicijavimo parametrus) ir <code>tess_configvars</code> (ne inicijavimo parametrus).</p>
         <p>Programoje įtaisyti įtankiai, kuriais galite sujungti keletą vaizdų arba PDF failų į vieną arba išskaidyti per daug puslapių turinčius TIFF ar PDF failus. Kartais patogiau apdoroti vieną failą, bet ne daug smulkių, o kartais, siekiant išvengti atminties stygiaus problemų, tenka padalinti vieną didelį failą į mažesnes dalis.</p>
         <h3>NUSKAITYTO TEKSTO APDOROJIMAS</h3>
