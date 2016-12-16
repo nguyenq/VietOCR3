@@ -25,3 +25,15 @@
 0	âÍ	ấ
 
 # Regular expression replaces. Character "1" in the first column indicates a regex replace. Delimiter is <TAB> (\t) character.
+1	(?i)(?<=đ)ă\b	ã
+1	(?i)(?<=[ch])ă\b	ả
+1	(?i)ă(?![cmnpt])	à
+1	(?i)ẵ(?=[cpt])	ắ
+1	(?<=\b[Tt])m	rư
+1	(?i)\bl(?=[rh])	t
+1	(u|ll|r)(?=[gh])	n
+1	(iii|ln|rn)	m
+1	(?i)(?<=[qrgsv])ll	u
+1	(?i)(?<=[cnpt])ll	h
+1	(?i)[oe](?=h)	c
+1	\Bđ	ớ

@@ -165,7 +165,7 @@ public class Gui extends JFrame {
 
             @Override
             public boolean dispatchKeyEvent(KeyEvent e) {
-                if ((e.getID() == KeyEvent.KEY_PRESSED)) {
+                if (e.getID() == KeyEvent.KEY_PRESSED) {
                     if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) { // Don't catch this event inside the JTextArea
                         pasteImage(); // Paste image from clipboard
                         e.consume();

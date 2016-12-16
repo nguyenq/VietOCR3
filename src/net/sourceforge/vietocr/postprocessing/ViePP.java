@@ -34,20 +34,20 @@ public class ViePP implements IPostProcessor {
 //                .replace("tmg", "úng")
 //                ;
         
-        text = text
-                .replaceAll("(?i)(?<=đ)ă\\b", "ã")
-                .replaceAll("(?i)(?<=[ch])ă\\b", "ả")
-                .replaceAll("(?i)ă(?![cmnpt])", "à")
-                .replaceAll("(?i)ẵ(?=[cpt])", "ắ")
-                .replaceAll("(?<=\\b[Tt])m", "rư")
-                .replaceAll("(?i)\\bl(?=[rh])", "t")
-                .replaceAll("(u|ll|r)(?=[gh])", "n")
-                .replaceAll("(iii|ln|rn)", "m")
-                .replaceAll("(?i)(?<=[qrgsv])ll", "u")
-                .replaceAll("(?i)(?<=[cnpt])ll", "h")
-                .replaceAll("(?i)[oe](?=h)", "c")
-                .replaceAll("\\Bđ", "ớ")
-                ;
+//        text = text
+//                .replaceAll("(?i)(?<=đ)ă\\b", "ã")
+//                .replaceAll("(?i)(?<=[ch])ă\\b", "ả")
+//                .replaceAll("(?i)ă(?![cmnpt])", "à")
+//                .replaceAll("(?i)ẵ(?=[cpt])", "ắ")
+//                .replaceAll("(?<=\\b[Tt])m", "rư")
+//                .replaceAll("(?i)\\bl(?=[rh])", "t")
+//                .replaceAll("(u|ll|r)(?=[gh])", "n")
+//                .replaceAll("(iii|ln|rn)", "m")
+//                .replaceAll("(?i)(?<=[qrgsv])ll", "u")
+//                .replaceAll("(?i)(?<=[cnpt])ll", "h")
+//                .replaceAll("(?i)[oe](?=h)", "c")
+//                .replaceAll("\\Bđ", "ớ")
+//                ;
 
         String nfdText = Normalizer.normalize(text, Normalizer.Form.NFD)
                 .replaceAll("(?i)(?<![q])(u)(?=o\u031B" + TONE + "\\p{L})", "$1\u031B") // uo+n to u+o+n
