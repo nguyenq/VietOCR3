@@ -3,16 +3,17 @@ package net.sourceforge.vietpad.utilities;
 import java.util.regex.*;
 
 /**
- *  Text utilities
+ * Text utilities.
  *
- *@author     Quan Nguyen
- *@author     Gero Herrmann
- *@version    1.1, 24 February 2010
+ * @author Quan Nguyen
+ * @author Gero Herrmann
+ * @version 1.1, 24 February 2010
  */
 public class TextUtilities {
 
     /**
      * Changes letter case.
+     *
      * @param text
      * @param typeOfCase
      * @return
@@ -65,6 +66,7 @@ public class TextUtilities {
 
     /**
      * Removes line breaks.
+     *
      * @param text
      * @param removeSoftHyphens
      * @return
@@ -73,8 +75,9 @@ public class TextUtilities {
         text = text.replaceAll("(?<=\n|^)[\t ]+|[\t ]+(?=$|\n)", "");
         text = text.replaceAll("(?<=.)(-|\u2010|\u2011|\u2012|\u2013|\u2014|\u2015|\u00AD)\n(?=.)", "$1");
         text = text.replaceAll("(?<=.)\n(?=.)", " ");
-        if (removeSoftHyphens)
+        if (removeSoftHyphens) {
             text = text.replaceAll("\u00AD", "");
+        }
         return text;
     }
 }

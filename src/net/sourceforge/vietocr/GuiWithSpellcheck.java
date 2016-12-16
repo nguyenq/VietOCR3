@@ -32,7 +32,7 @@ public class GuiWithSpellcheck extends GuiWithPSM {
 
     private int start, end;
     private SpellCheckHelper speller;
-    
+
     private final static Logger logger = Logger.getLogger(GuiWithSpellcheck.class.getName());
 
     @Override

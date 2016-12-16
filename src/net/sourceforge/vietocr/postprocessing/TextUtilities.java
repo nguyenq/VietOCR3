@@ -58,9 +58,9 @@ public class TextUtilities {
 
     /**
      * Loads map from dangAmbigsFile.txt file.
-     * 
+     *
      * @param dangAmbigsFile
-     * @return 
+     * @return
      */
     public static List<LinkedHashMap<String, String>> loadMap(String dangAmbigsFile) {
         try {
@@ -138,7 +138,7 @@ public class TextUtilities {
         }
 
         Matcher m = Pattern.compile("(\\b\\p{L}+)(-|\u2010|\u2011|\u2012|\u2013|\u2014|\u2015)\n(\\p{L}+\\b)").matcher(input);
-        StringBuffer StrB = new StringBuffer();
+        StringBuffer strB = new StringBuffer();
 
         while (m.find()) {
             String before = m.group(1);
@@ -148,12 +148,12 @@ public class TextUtilities {
             if (Character.isUpperCase(first) && Character.isUpperCase(last) || Character.isLowerCase(first) && Character.isLowerCase(last)) {
                 String word = before + after;
                 if (!spellCheck.isMispelled(word)) {
-                    m.appendReplacement(StrB, before + SOFT_HYPHEN + "\n" + after);
+                    m.appendReplacement(strB, before + SOFT_HYPHEN + "\n" + after);
                 }
             }
         }
-        m.appendTail(StrB);
+        m.appendTail(strB);
 
-        return StrB.toString();
+        return strB.toString();
     }
 }

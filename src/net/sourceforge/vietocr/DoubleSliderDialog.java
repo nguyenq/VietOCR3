@@ -25,7 +25,7 @@ import javax.swing.JSlider;
 import javax.swing.KeyStroke;
 
 /**
- * 
+ *
  * @author John Helour
  */
 public class DoubleSliderDialog extends javax.swing.JDialog {
@@ -39,7 +39,7 @@ public class DoubleSliderDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form SliderDialog.
-     * 
+     *
      * @param parent
      * @param modal
      */
@@ -165,7 +165,7 @@ public class DoubleSliderDialog extends javax.swing.JDialog {
 
     private void jSlider2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider2StateChanged
         JSlider slider = (JSlider) evt.getSource();
-        
+
         //reduce # of unnecessary update events
         value2 = slider.getValue();
         if (Math.abs(value2 - prevValue) >= smallChange) {
@@ -177,7 +177,7 @@ public class DoubleSliderDialog extends javax.swing.JDialog {
     public void setLabelText(String text) {
         jLabel.setText(text);
     }
-    
+
     /**
      * Displays dialog.
      *
@@ -185,7 +185,7 @@ public class DoubleSliderDialog extends javax.swing.JDialog {
      */
     public int showDialog() {
         setLocationRelativeTo(getOwner());
-        
+
         //  Handle escape key to hide the dialog
         KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
         Action escapeAction = new AbstractAction() {
@@ -196,7 +196,7 @@ public class DoubleSliderDialog extends javax.swing.JDialog {
         };
 
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escapeKeyStroke, "ESCAPE");
-        getRootPane().getActionMap().put("ESCAPE", escapeAction);        
+        getRootPane().getActionMap().put("ESCAPE", escapeAction);
 
         prevValue = jSlider1.getValue();
         setVisible(true);

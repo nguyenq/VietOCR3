@@ -121,7 +121,7 @@ public class Gui extends JFrame {
     protected String datapath;
     private static final int FONT_MIN_SIZE = 6;
     private static final int FONT_MAX_SIZE = 50;
-    
+
     private final static Logger logger = Logger.getLogger(Gui.class.getName());
 
     /**
@@ -169,35 +169,33 @@ public class Gui extends JFrame {
                     if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) { // Don't catch this event inside the JTextArea
                         pasteImage(); // Paste image from clipboard
                         e.consume();
-                    }
-                    else if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_LEFT)
+                    } else if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_LEFT) {
                         jButtonPrevPage.doClick();
-                    else if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_RIGHT) 
+                    } else if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_RIGHT) {
                         jButtonNextPage.doClick();
-
-                    else if (e.getKeyCode() == KeyEvent.VK_F7)
+                    } else if (e.getKeyCode() == KeyEvent.VK_F7) {
                         jToggleButtonSpellCheck.doClick();
-                    else if (e.isControlDown() && e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_EQUALS || e.getKeyCode() == KeyEvent.VK_ADD))
+                    } else if (e.isControlDown() && e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_EQUALS || e.getKeyCode() == KeyEvent.VK_ADD)) {
                         jButtonRotateCW.doClick();
-                    else if (e.isControlDown() && e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == KeyEvent.VK_SUBTRACT))
+                    } else if (e.isControlDown() && e.isShiftDown() && (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == KeyEvent.VK_SUBTRACT)) {
                         jButtonRotateCCW.doClick();
-                    else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_EQUALS || e.getKeyCode() == KeyEvent.VK_ADD))
+                    } else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_EQUALS || e.getKeyCode() == KeyEvent.VK_ADD)) {
                         jButtonZoomIn.doClick();
-                    else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == KeyEvent.VK_SUBTRACT))
+                    } else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_MINUS || e.getKeyCode() == KeyEvent.VK_SUBTRACT)) {
                         jButtonZoomOut.doClick();
-                    else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_1 || e.getKeyCode() == KeyEvent.VK_NUMPAD1))
+                    } else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_1 || e.getKeyCode() == KeyEvent.VK_NUMPAD1)) {
                         jButtonActualSize.doClick();
-                    else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD2))
+                    } else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD2)) {
                         jButtonFitImage.doClick();
-                    
-                    else if (jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_Z)
+                    } else if (jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_Z) {
                         m_undoAction.actionPerformed(null);
-                    else if (jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_Y)
+                    } else if (jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_Y) {
                         m_redoAction.actionPerformed(null);
-                    else if (jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_X)
+                    } else if (jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_X) {
                         actionCut.actionPerformed(null);
+                    }
                 }
-                
+
                 return false;
             }
         };
@@ -213,18 +211,19 @@ public class Gui extends JFrame {
 //            }
 //        });
     }
-    
+
     public static String getCurrentLangCode() {
         return curLangCode;
     }
 
     public static String getCurrentLocaleId() {
-        if (lookupISO_3_1_Codes.containsKey(curLangCode))
+        if (lookupISO_3_1_Codes.containsKey(curLangCode)) {
             return lookupISO_3_1_Codes.getProperty(curLangCode);
-        else if (lookupISO_3_1_Codes.containsKey(curLangCode.substring(0, 3)))
+        } else if (lookupISO_3_1_Codes.containsKey(curLangCode.substring(0, 3))) {
             return lookupISO_3_1_Codes.getProperty(curLangCode.substring(0, 3));
-        else 
+        } else {
             return null;
+        }
     }
 
     @Override
@@ -378,23 +377,24 @@ public class Gui extends JFrame {
     }
 
     private String menuItemStringBuild(String text, String shorcut, int width) {
-        AffineTransform at = new AffineTransform();     
-        FontRenderContext frc = new FontRenderContext(at, true, false);     
+        AffineTransform at = new AffineTransform();
+        FontRenderContext frc = new FontRenderContext(at, true, false);
         Font f = popup.getFont();
-        
+
         String spaces = "";
-        while ((int)(f.getStringBounds(text + spaces + shorcut, frc).getWidth()) < width)
+        while ((int) (f.getStringBounds(text + spaces + shorcut, frc).getWidth()) < width) {
             spaces += " ";
-            
+        }
+
         return text + spaces + shorcut;
     }
-    
+
     /**
      * Builds context menu for textarea.
      */
     private void populatePopupMenu() {
         final int POPUP_TEXT_WIDTH = 120;
-        
+
         m_undoAction = new AbstractAction(menuItemStringBuild(bundle.getString("jMenuItemUndo.Text"), "CTRL+Z", POPUP_TEXT_WIDTH)) {
 
             @Override
@@ -2696,13 +2696,14 @@ public class Gui extends JFrame {
         if (evt.isControlDown()) {
             Font f = jTextArea1.getFont();
             int newSize = f.getSize() - evt.getWheelRotation();
-            if (newSize > FONT_MIN_SIZE && newSize < FONT_MAX_SIZE)
+            if (newSize > FONT_MIN_SIZE && newSize < FONT_MAX_SIZE) {
                 f = new Font(f.getFontName(), f.getStyle(), newSize);
+            }
             jTextArea1.setFont(f);
             jTextArea1.validate();
+        } else {
+            ((Component) evt.getSource()).getParent().dispatchEvent(evt);
         }
-        else
-            ((Component)evt.getSource()).getParent().dispatchEvent(evt);
     }//GEN-LAST:event_jTextArea1MouseWheelMoved
 
     /**

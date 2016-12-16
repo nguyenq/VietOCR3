@@ -295,7 +295,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
             imageList.set(imageIndex, imageIcon);
             iioImageList.get(imageIndex).setRenderedImage(originalImage);
             displayImage();
-        }      
+        }
     }
 
     @Override
@@ -312,7 +312,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
                 if (evt.getPropertyName().equals(DoubleSliderDialog.VALUE_CHANGED)) {
                     int value1 = (Integer) evt.getOldValue();
                     int value2 = (Integer) evt.getNewValue();
-                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.adaptiveThreshold(originalImage, 
+                    imageIcon = new ImageIconScalable(net.sourceforge.vietocr.util.ImageHelper.adaptiveThreshold(originalImage,
                             value1 * (0.75f / 100f) + 0.25f, (100 - value2) * (1.65f / 100f) + 0.25f));
                     imageList.set(imageIndex, imageIcon);
                     iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
@@ -332,7 +332,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
             displayImage();
         }
     }
-    
+
     @Override
     void jMenuItemGrayscaleActionPerformed(java.awt.event.ActionEvent evt) {
         if (iioImageList == null) {
@@ -431,7 +431,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
                 iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
 
                 displayImage();
-                
+
                 getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 getGlassPane().setVisible(false);
             }

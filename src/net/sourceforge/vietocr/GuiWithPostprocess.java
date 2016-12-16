@@ -37,7 +37,7 @@ public class GuiWithPostprocess extends GuiWithOCR {
     protected boolean dangAmbigsOn;
     protected boolean replaceHyphensEnabled;
     protected boolean removeHyphensEnabled;
-    
+
     private final static Logger logger = Logger.getLogger(GuiWithPostprocess.class.getName());
 
     public GuiWithPostprocess() {

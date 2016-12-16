@@ -62,8 +62,9 @@ public class SpellCheckHelper {
     }
 
     public boolean initializeSpellCheck() {
-        if (localeId == null)
+        if (localeId == null) {
             return false;
+        }
 
         try {
             if (Platform.isWindows()) {
@@ -71,22 +72,24 @@ public class SpellCheckHelper {
                 System.setProperty(JNA_LIBRARY_PATH, hunspellDllLocation);
             }
             spellDict = Hunspell.getInstance().getDictionary(new File(baseDir, "dict/" + localeId).getPath());
-            if (!loadUserDictionary())
+            if (!loadUserDictionary()) {
                 return false;
+            }
         } catch (Exception e) {
             return false;
         }
-        
+
         return true;
     }
-    
+
     /**
      * Enables spellcheck.
      */
     public void enableSpellCheck() {
         try {
-            if (!initializeSpellCheck())
+            if (!initializeSpellCheck()) {
                 throw new Exception("Spellcheck initialization error!");
+            }
 
             SpellcheckDocumentListener docListener = new SpellcheckDocumentListener();
             lstList.add(docListener);
@@ -143,13 +146,15 @@ public class SpellCheckHelper {
     }
 
     public boolean isMispelled(String word) {
-        if (spellDict.misspelled(word))
-            if (!userWordList.contains(word.toLowerCase()))
+        if (spellDict.misspelled(word)) {
+            if (!userWordList.contains(word.toLowerCase())) {
                 return true;
-        
+            }
+        }
+
         return false;
     }
-    
+
     /**
      * Spellchecks list of words.
      *
@@ -159,9 +164,11 @@ public class SpellCheckHelper {
     List<String> spellCheck(List<String> words) {
         List<String> misspelled = new ArrayList<String>();
 
-        for (String word : words)
-            if (isMispelled(word))
+        for (String word : words) {
+            if (isMispelled(word)) {
                 misspelled.add(word);
+            }
+        }
 
         return misspelled;
     }

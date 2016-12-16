@@ -30,20 +30,22 @@ public class ImageHelper {
 
         int len = table.length;
         short table_[][] = new short[numBands][len];
-        
-        if (source.getColorModel().hasAlpha())
-            numColorComponents--;
-            
-        for (int n = 0; n < numColorComponents; n++)
-            table_[n] = table;
-        
+
         if (source.getColorModel().hasAlpha()) {
-            table_[numBands-1] = new short[len];
-            Arrays.fill(table_[numBands-1], (short)(len - 1));
+            numColorComponents--;
         }
-        
+
+        for (int n = 0; n < numColorComponents; n++) {
+            table_[n] = table;
+        }
+
+        if (source.getColorModel().hasAlpha()) {
+            table_[numBands - 1] = new short[len];
+            Arrays.fill(table_[numBands - 1], (short) (len - 1));
+        }
+
         BufferedImage target = new BufferedImage(source.getWidth(), source.getHeight(), source.getType());
-        
+
         ShortLookupTable lookupTable = new ShortLookupTable(0, table_);
         return new LookupOp(lookupTable, null).filter(source, target);
     }
@@ -51,13 +53,14 @@ public class ImageHelper {
     public static BufferedImage gamma(BufferedImage src, double gamma) {
         gamma = 1.0 / gamma;
         short table[] = new short[256];
-        for (int i = 0; i < 256; i++) 
-            table[i] = (short)(255.0 * Math.pow(i / 255.0, gamma) + 0.5);
+        for (int i = 0; i < 256; i++) {
+            table[i] = (short) (255.0 * Math.pow(i / 255.0, gamma) + 0.5);
+        }
 
         return lookupOp(src, table);
     }
 
-   /**
+    /**
      * @param source
      * @param scale
      * @param offset
@@ -68,22 +71,23 @@ public class ImageHelper {
         int numColorComponents = numBands;
         float scale_[] = new float[numBands];
         float offset_[] = new float[numBands];
-        
-        if (source.getColorModel().hasAlpha())
+
+        if (source.getColorModel().hasAlpha()) {
             numColorComponents--;
-        
+        }
+
         for (int n = 0; n < numColorComponents; n++) {
             scale_[n] = scale;
             offset_[n] = offset;
         }
         if (source.getColorModel().hasAlpha()) {
-            scale_[numBands-1] = 1;
-            offset_[numBands-1] = 1;
-        }        
+            scale_[numBands - 1] = 1;
+            offset_[numBands - 1] = 1;
+        }
 
         return new RescaleOp(scale_, offset_, null).filter(source, null);
     }
-            
+
     /**
      * Returns the supplied src image brightened by a float value from 0 to 10.
      * Float values below 1.0f actually darken the source image.
@@ -248,10 +252,10 @@ public class ImageHelper {
      * @return
      */
     public static BufferedImage crop(BufferedImage src, Rectangle rect) {
-        BufferedImage dest = new BufferedImage((int)rect.getWidth(), (int)rect.getHeight(), src.getType());
+        BufferedImage dest = new BufferedImage((int) rect.getWidth(), (int) rect.getHeight(), src.getType());
         Graphics g = dest.getGraphics();
-        g.drawImage(src, 0, 0, (int)rect.getWidth(), (int)rect.getHeight(), 
-                (int)rect.getX(), (int)rect.getY(), (int)(rect.getX() + rect.getWidth()), (int)(rect.getY() + rect.getHeight()), null);
+        g.drawImage(src, 0, 0, (int) rect.getWidth(), (int) rect.getHeight(),
+                (int) rect.getX(), (int) rect.getY(), (int) (rect.getX() + rect.getWidth()), (int) (rect.getY() + rect.getHeight()), null);
         g.dispose();
         return dest;
     }
@@ -266,13 +270,13 @@ public class ImageHelper {
     public static BufferedImage sharpen(BufferedImage image) {
         // A 5x5 kernel that sharpens an image
         float k = 179.0f;
-        Kernel kernel = new Kernel(5, 5, new float[] {
-                     0/k,   0/k,  -1/k,   0/k,  0/k,
-                     0/k,  -8/k, -21/k,  -8/k,  0/k,
-                    -1/k, -21/k, 299/k, -21/k, -1/k,
-                     0/k,  -8/k, -21/k,  -8/k,  0/k,
-                     0/k,   0/k,  -1/k,   0/k,  0/k
-                });
+        Kernel kernel = new Kernel(5, 5, new float[]{
+            0 / k, 0 / k, -1 / k, 0 / k, 0 / k,
+            0 / k, -8 / k, -21 / k, -8 / k, 0 / k,
+            -1 / k, -21 / k, 299 / k, -21 / k, -1 / k,
+            0 / k, -8 / k, -21 / k, -8 / k, 0 / k,
+            0 / k, 0 / k, -1 / k, 0 / k, 0 / k
+        });
 
         BufferedImageOp op = new ConvolveOp(kernel);
 
@@ -289,60 +293,70 @@ public class ImageHelper {
     public static BufferedImage smoothen(BufferedImage image) {
         // A 5x5 kernel that smoothens an image
         float k = 179.0f;
-        Kernel kernel = new Kernel(5, 5, new float[] {
-                    0/k,  0/k,  1/k,  0/k, 0/k,
-                    0/k,  8/k, 21/k,  8/k, 0/k,
-                    1/k, 21/k, 59/k, 21/k, 1/k,
-                    0/k,  8/k, 21/k,  8/k, 0/k,
-                    0/k,  0/k,  1/k,  0/k, 0/k
-                });
+        Kernel kernel = new Kernel(5, 5, new float[]{
+            0 / k, 0 / k, 1 / k, 0 / k, 0 / k,
+            0 / k, 8 / k, 21 / k, 8 / k, 0 / k,
+            1 / k, 21 / k, 59 / k, 21 / k, 1 / k,
+            0 / k, 8 / k, 21 / k, 8 / k, 0 / k,
+            0 / k, 0 / k, 1 / k, 0 / k, 0 / k
+        });
 
         BufferedImageOp op = new ConvolveOp(kernel);
 
         return op.filter(image, null);
     }
-        
+
     public static int[] gaussianSmooth(int input[], int width, int height, int defaultVal) {
         // sigma = 1.0, kernel size = 5, radius = 2
         int radius = 2;
         double kernel[] = {0.054488684549642945, 0.24420134200323335, 0.40261994689424746, 0.24420134200323335, 0.054488684549642945};
-                
+
         double sum;
         int output[] = new int[width * height];
         Arrays.fill(output, defaultVal);
-        
-        for (int x = radius; x < width - radius; x++)
+
+        for (int x = radius; x < width - radius; x++) {
             for (int y = radius; y < height - radius; y++) {
                 sum = 0.0;
-                for(int i = -radius; i <= radius; i++)
+                for (int i = -radius; i <= radius; i++) {
                     sum += kernel[i + radius] * input[(y - i) * width + x];
-                output[y * width + x] = (int)(sum + 0.5);
+                }
+                output[y * width + x] = (int) (sum + 0.5);
             }
-        
-        for (int x = radius; x < width - radius; x++)
+        }
+
+        for (int x = radius; x < width - radius; x++) {
             for (int y = radius; y < height - radius; y++) {
                 sum = 0.0;
-                for(int i = -radius; i <= radius; i++)
+                for (int i = -radius; i <= radius; i++) {
                     sum += kernel[i + radius] * output[y * width + (x - i)];
-                output[y * width + x] = (int)(sum + 0.5);
+                }
+                output[y * width + x] = (int) (sum + 0.5);
             }
+        }
 
         return output;
     }
-    
+
     public static int[] calculateNewColor(int inputPixel[], int maskVal, int numColorComponents) {
         if (maskVal == 127) // 127: don't change pixel intensity
+        {
             return inputPixel;
-        
+        }
+
         int numBands = inputPixel.length;
         int outputPixel[] = new int[numBands];
-        
+
         outputPixel[numBands - 1] = inputPixel[numBands - 1];
-        for (int n = 0; n < numColorComponents; n++)
-            if (maskVal >= 0 && maskVal <= 126)        // 0 - 126: darken a pixel; 0 = max level, 126 = min level
-                outputPixel[n] = (int)((maskVal / 126.0) * inputPixel[n] + 0.5);
-            else if (maskVal >= 128 && maskVal <= 255) // 128 - 255: lighten a pixel; 128 = min level, 255 = max level
-                outputPixel[n] = (int)(255.0 - (255 - inputPixel[n]) * (255 - maskVal) / 127.0 + 0.5);
+        for (int n = 0; n < numColorComponents; n++) {
+            if (maskVal >= 0 && maskVal <= 126) // 0 - 126: darken a pixel; 0 = max level, 126 = min level
+            {
+                outputPixel[n] = (int) ((maskVal / 126.0) * inputPixel[n] + 0.5);
+            } else if (maskVal >= 128 && maskVal <= 255) // 128 - 255: lighten a pixel; 128 = min level, 255 = max level
+            {
+                outputPixel[n] = (int) (255.0 - (255 - inputPixel[n]) * (255 - maskVal) / 127.0 + 0.5);
+            }
+        }
 
         return outputPixel;
     }
@@ -350,29 +364,29 @@ public class ImageHelper {
     /**
      * Bradley adaptive threshold.
      * http://github.com/rmtheis/bradley-adaptive-thresholding
-     * 
+     *
      * @param source
      * @param blackLevel
      * @param whiteLevel
-     * @return 
+     * @return
      */
     public static BufferedImage adaptiveThreshold(BufferedImage source, float blackLevel, float whiteLevel) {
         int width = source.getWidth();
         int height = source.getHeight();
-        
+
         BufferedImage sourceInGray;
         if (source.getType() != BufferedImage.TYPE_BYTE_GRAY) {
             // RGB to Gray conversion with the best performance ???
             sourceInGray = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
-            Graphics g = sourceInGray.getGraphics();  
-            g.drawImage(source, 0, 0, null);  
-            g.dispose();  
-        }
-        else
+            Graphics g = sourceInGray.getGraphics();
+            g.drawImage(source, 0, 0, null);
+            g.dispose();
+        } else {
             sourceInGray = source;
-      
+        }
+
         int inputGrayPixelBuffer[] = sourceInGray.getRaster().getPixels(0, 0, width, height, (int[]) null);
-        
+
         // prepare the integral image
         long integralImg[] = new long[width * height];
         for (int i = 0; i < width; i++) {
@@ -380,13 +394,14 @@ public class ImageHelper {
             for (int j = 0; j < height; j++) {
                 int index = j * width + i;
                 sum += inputGrayPixelBuffer[index];
-                if (i == 0)
+                if (i == 0) {
                     integralImg[index] = sum;
-                else
-                    integralImg[index] = integralImg[index-1] + sum;
+                } else {
+                    integralImg[index] = integralImg[index - 1] + sum;
+                }
             }
         }
-        
+
         int x1, y1, x2, y2;
         int s2 = width / (8 * 2);
 
@@ -394,47 +409,56 @@ public class ImageHelper {
         Arrays.fill(maskArray, 127); // 0 - 126: darken a pixel; 127: don't change; 128 - 255: lighten a pixel
 
         // perform thresholding
-        for (int i = 0; i < width; i++)
+        for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 int index = j * width + i;
                 // set the SxS region
-                x1 = i - s2; x2 = i + s2;
-                y1 = j - s2; y2 = j + s2;
+                x1 = i - s2;
+                x2 = i + s2;
+                y1 = j - s2;
+                y2 = j + s2;
                 // check the border
-                if (x1 < 0)
+                if (x1 < 0) {
                     x1 = 0;
-                if (x2 >= width)
+                }
+                if (x2 >= width) {
                     x2 = width - 1;
-                if (y1 < 0) 
+                }
+                if (y1 < 0) {
                     y1 = 0;
-                if (y2 >= height)
+                }
+                if (y2 >= height) {
                     y2 = height - 1;
+                }
 
                 long count = (x2 - x1) * (y2 - y1);
                 // I(x, y) = s(x2, y2) - s(x1, y2) - s(x2, y1) + s(x1, x1)
-                long sum = integralImg[y2 * width + x2] - integralImg[y1 * width + x2] -
-                           integralImg[y2 * width + x1] + integralImg[y1 * width + x1];
+                long sum = integralImg[y2 * width + x2] - integralImg[y1 * width + x2]
+                        - integralImg[y2 * width + x1] + integralImg[y1 * width + x1];
 
-                if (inputGrayPixelBuffer[index] * count < sum * blackLevel)
+                if (inputGrayPixelBuffer[index] * count < sum * blackLevel) {
                     maskArray[index] = 0;
-                else if (inputGrayPixelBuffer[index] * count > sum * whiteLevel)
+                } else if (inputGrayPixelBuffer[index] * count > sum * whiteLevel) {
                     maskArray[index] = 255;
                 }
-        
+            }
+        }
+
         // smooth the mask
         maskArray = gaussianSmooth(maskArray, width, height, 127);
-        
+
         WritableRaster sourceRaster = source.getRaster();
         int numBands = sourceRaster.getNumBands();
         int numColorComponents = numBands;
-        if (source.getColorModel().hasAlpha())
+        if (source.getColorModel().hasAlpha()) {
             numColorComponents--;
-        
+        }
+
         int inputPixelBuffer[] = sourceRaster.getPixels(0, 0, width, height, (int[]) null);
         int outputPixelBuffer[] = new int[width * height * numBands];
-        
+
         // apply the mask
-         for (int i = 0; i < width; i++)
+        for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 int index = j * width + i;
                 int pixel[] = new int[numBands];
@@ -442,7 +466,8 @@ public class ImageHelper {
                 int newColor[] = calculateNewColor(pixel, maskArray[index], numColorComponents);
                 System.arraycopy(newColor, 0, outputPixelBuffer, index * numBands, numBands);
             }
-       
+        }
+
         BufferedImage target = new BufferedImage(width, height, source.getType());
         target.getRaster().setPixels(0, 0, width, height, outputPixelBuffer);
 
@@ -461,32 +486,35 @@ public class ImageHelper {
     public static BufferedImage bilateralFiltering(BufferedImage source, double sigmaD, double sigmaR) {
         int width = source.getWidth();
         int height = source.getHeight();
-	
+
         double sigmaMax = Math.max(sigmaD, sigmaR);
-        int kernelRadius = (int)Math.ceil(2 * sigmaMax);
+        int kernelRadius = (int) Math.ceil(2 * sigmaMax);
         double twoSigmaDSquared = 2 * sigmaD * sigmaD;
         double twoSigmaRSquared = 2 * sigmaR * sigmaR;
 
-	int kernelSize = kernelRadius * 2 + 1;
-	double kernelD[][] = new double[kernelSize][kernelSize];
-	int center = (kernelSize - 1) / 2;
-        for (int x = -center; x < -center + kernelSize; x++)
-            for (int y = -center; y < -center + kernelSize; y++)
+        int kernelSize = kernelRadius * 2 + 1;
+        double kernelD[][] = new double[kernelSize][kernelSize];
+        int center = (kernelSize - 1) / 2;
+        for (int x = -center; x < -center + kernelSize; x++) {
+            for (int y = -center; y < -center + kernelSize; y++) {
                 kernelD[x + center][y + center] = Math.exp(-(x * x + y * y) / twoSigmaDSquared);
-	
-	double gaussSimilarity[] = new double[256];
-        for (int i = 0; i < 256; i++)
+            }
+        }
+
+        double gaussSimilarity[] = new double[256];
+        for (int i = 0; i < 256; i++) {
             gaussSimilarity[i] = Math.exp(-i / twoSigmaRSquared);
-              
+        }
+
         WritableRaster sourceRaster = source.getRaster();
         BufferedImage target = new BufferedImage(width, height, source.getType());
         WritableRaster targetRaster = target.getRaster();
         int numBands = sourceRaster.getNumBands();
         int inputPixelBuffer[] = sourceRaster.getPixels(0, 0, width, height, (int[]) null);
         int outputPixelBuffer[] = new int[width * height * numBands];
-        
-        for(int i = 1; i < width - 1; i++)
-            for(int j = 1; j < height - 1; j++) {
+
+        for (int i = 1; i < width - 1; i++) {
+            for (int j = 1; j < height - 1; j++) {
                 int pixelCenter[] = new int[numBands];
                 int targetColor[] = new int[numBands];
                 System.arraycopy(inputPixelBuffer, (j * width + i) * numBands, pixelCenter, 0, numBands);
@@ -502,22 +530,24 @@ public class ImageHelper {
                     double sum = 0;
                     double totalWeight = 0;
                     int intensityCenter = pixelCenter[band];
-                    for (int m = mMin; m <= mMax; m++)
+                    for (int m = mMin; m <= mMax; m++) {
                         for (int n = nMin; n <= nMax; n++) {
                             int pos = ((n - nMin) * kernelWidth + (m - mMin)) * numBands + band;
                             int intensityKernelPos = pixelKernelPosBuffer[pos];
-                            weight = kernelD[i-m + kernelRadius][j-n + kernelRadius] * 
-                                gaussSimilarity[Math.abs(intensityKernelPos - intensityCenter)];
+                            weight = kernelD[i - m + kernelRadius][j - n + kernelRadius]
+                                    * gaussSimilarity[Math.abs(intensityKernelPos - intensityCenter)];
                             totalWeight += weight;
                             sum += weight * intensityKernelPos;
                         }
-                    targetColor[band] = (int)Math.floor(sum / totalWeight);
+                    }
+                    targetColor[band] = (int) Math.floor(sum / totalWeight);
                 }
-            System.arraycopy(targetColor, 0, outputPixelBuffer, (j * width + i) * numBands, numBands);
+                System.arraycopy(targetColor, 0, outputPixelBuffer, (j * width + i) * numBands, numBands);
             }
-        
+        }
+
         targetRaster.setPixels(0, 0, width, height, outputPixelBuffer);
-        
+
         return target;
     }
 }
