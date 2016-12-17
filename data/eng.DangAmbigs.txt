@@ -6,7 +6,10 @@
 
 # Regular expression replaces. Character "1" in the first column indicates a regex replace. Delimiter is <TAB> (\t) character.
 # Correct common errors caused by OCR
+# 11 to n
+1	\b11(?=\p{L}+\b)	n
 # 1 to l
+1	\b1(?=\p{L}+\b)	l
 1	(?<=\p{L}*)1(?=\p{L}+)		l
 1	(?<=\p{L}+)1(?=\p{L}*)		l
 # ] to l
@@ -15,14 +18,9 @@
 # | to l
 1	(?<=\p{L}*)\|(?=\p{L}+)		l
 1	(?<=\p{L}+)\|(?=\p{L}*)		l
-# 0 to o
-1	(?<=\p{L}*)0(?=\p{L}+)		o
-1	(?<=\p{L}+)0(?=\p{L}*)		o
-# 1 to l
-1	\b1(?=\p{L}+\b)	l
-# 11 to n
-1	\b11(?=\p{L}+\b)	n
 # I to l
 1	\bI(?![mn]+\b)	l
 # 0 to o
 1	(?<=\b\p{L}*)0(?=\p{L}*\b)	o
+1	(?<=\p{L}*)0(?=\p{L}+)		o
+1	(?<=\p{L}+)0(?=\p{L}*)		o
