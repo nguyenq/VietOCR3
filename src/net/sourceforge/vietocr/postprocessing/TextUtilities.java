@@ -26,7 +26,7 @@ public class TextUtilities {
 
     public static final String SOFT_HYPHEN = "\u00AD";
 
-    private static ArrayList<LinkedHashMap<String, String>> map;
+    private static ArrayList<LinkedHashMap<String, String>> maps;
     private static long mapLastModified = Long.MIN_VALUE;
 
     /**
@@ -57,7 +57,7 @@ public class TextUtilities {
     }
 
     /**
-     * Loads map from dangAmbigsFile.txt file.
+     * Loads text replacement rules from <code>dangAmbigsFile.txt</code> file.
      *
      * @param dangAmbigsFile
      * @return
@@ -66,18 +66,18 @@ public class TextUtilities {
         try {
             File dataFile = new File(dangAmbigsFile);
             long fileLastModified = dataFile.lastModified();
-            if (map == null) {
-                map = new ArrayList<LinkedHashMap<String, String>>();
+            if (maps == null) {
+                maps = new ArrayList<LinkedHashMap<String, String>>();
             } else {
                 if (fileLastModified <= mapLastModified) {
-                    return map; // no need to reload map
+                    return maps; // no need to reload map
                 }
-                map.clear();
+                maps.clear();
             }
             mapLastModified = fileLastModified;
 
             for (int i = Processor.PLAIN; i <= Processor.REGEX; i++) {
-                map.add(new LinkedHashMap<String, String>());
+                maps.add(new LinkedHashMap<String, String>());
             }
 
             InputStreamReader stream = new InputStreamReader(new FileInputStream(dangAmbigsFile), "UTF8");
@@ -88,16 +88,12 @@ public class TextUtilities {
                 if (str.length() > 0 && str.charAt(0) == '\uFEFF') {
                     str = str.substring(1);
                 }
-                // skip empty line or line starts with #
-                if (str.trim().length() == 0 || str.trim().startsWith("#")) {
+                // skip empty line or line starts with # or without tab delimiters
+                if (str.trim().length() == 0 || str.trim().startsWith("#") || !str.contains("\t")) {
                     continue;
                 }
 
-                if (!str.contains("\t")) {
-                    continue;
-                }
-
-                str = str.replaceAll("(\t)+", "\t");
+                str = str.replaceAll("\t+", "\t");
                 String[] parts = str.split("\t");
                 if (parts.length < 3) {
                     continue;
@@ -111,9 +107,8 @@ public class TextUtilities {
                     continue;
                 }
 
-                LinkedHashMap<String, String> hmap = map.get(type);
+                LinkedHashMap<String, String> hmap = maps.get(type);
                 hmap.put(key, value);
-                map.set(type, hmap);
             }
 
             bs.close();
@@ -122,7 +117,7 @@ public class TextUtilities {
             System.err.println(e.getMessage());
         }
 
-        return map;
+        return maps;
     }
 
     /**

@@ -400,8 +400,12 @@
           <SubComponents>
             <Component class="javax.swing.JCheckBox" name="jCheckBoxReplaceHyphens">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Replace hyphens with soft hyphens"/>
-                <Property name="toolTipText" type="java.lang.String" value="Replace hyphens at the end of lines with soft hyphens using spellcheck dictionary"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="net/sourceforge/vietocr/OptionsDialog.properties" key="jCheckBoxReplaceHyphens.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="net/sourceforge/vietocr/OptionsDialog.properties" key="jCheckBoxReplaceHyphens.ToolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="horizontalTextPosition" type="int" value="4"/>
               </Properties>
@@ -416,8 +420,12 @@
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBoxRemoveHyphens">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Remove soft hyphens"/>
-                <Property name="toolTipText" type="java.lang.String" value="Remove soft hyphens after removing line breaks"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="net/sourceforge/vietocr/OptionsDialog.properties" key="jCheckBoxRemoveHyphens.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="net/sourceforge/vietocr/OptionsDialog.properties" key="jCheckBoxRemoveHyphens.ToolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

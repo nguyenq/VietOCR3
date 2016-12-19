@@ -312,8 +312,8 @@ public class OptionsDialog extends javax.swing.JDialog {
 
         jPanelHyphens.setLayout(new java.awt.GridBagLayout());
 
-        jCheckBoxReplaceHyphens.setText("Replace hyphens with soft hyphens");
-        jCheckBoxReplaceHyphens.setToolTipText("Replace hyphens at the end of lines with soft hyphens using spellcheck dictionary");
+        jCheckBoxReplaceHyphens.setText(bundle.getString("jCheckBoxReplaceHyphens.Text")); // NOI18N
+        jCheckBoxReplaceHyphens.setToolTipText(bundle.getString("jCheckBoxReplaceHyphens.ToolTipText")); // NOI18N
         jCheckBoxReplaceHyphens.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jCheckBoxReplaceHyphens.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -323,8 +323,8 @@ public class OptionsDialog extends javax.swing.JDialog {
         jPanelHyphens.add(jCheckBoxReplaceHyphens, gridBagConstraints);
         jCheckBoxReplaceHyphens.getAccessibleContext().setAccessibleName("ReplaceHyphens");
 
-        jCheckBoxRemoveHyphens.setText("Remove soft hyphens");
-        jCheckBoxRemoveHyphens.setToolTipText("Remove soft hyphens after removing line breaks");
+        jCheckBoxRemoveHyphens.setText(bundle.getString("jCheckBoxRemoveHyphens.Text")); // NOI18N
+        jCheckBoxRemoveHyphens.setToolTipText(bundle.getString("jCheckBoxRemoveHyphens.ToolTipText")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
