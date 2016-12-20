@@ -129,7 +129,7 @@ public class TextUtilities {
     public static String replaceHyphensWithSoftHyphens(String input) {
         SpellCheckHelper spellCheck = new SpellCheckHelper(null, Gui.getCurrentLocaleId());
         if (!spellCheck.initializeSpellCheck()) {
-            return null;
+            return input;
         }
 
         Matcher m = Pattern.compile("(\\b\\p{L}+)(-|\u2010|\u2011|\u2012|\u2013|\u2014|\u2015)\n(\\p{L}+\\b)").matcher(input);

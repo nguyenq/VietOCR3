@@ -212,10 +212,6 @@ public class Gui extends JFrame {
 //        });
     }
 
-    public static String getCurrentLangCode() {
-        return curLangCode;
-    }
-
     public static String getCurrentLocaleId() {
         if (lookupISO_3_1_Codes.containsKey(curLangCode)) {
             return lookupISO_3_1_Codes.getProperty(curLangCode);
