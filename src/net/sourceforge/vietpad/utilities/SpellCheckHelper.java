@@ -23,12 +23,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.*;
-import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.*;
 
-import net.sourceforge.vietocr.Gui;
 import net.sourceforge.vietocr.util.Utils;
 
 import com.stibocatalog.hunspell.Hunspell;
@@ -71,7 +69,8 @@ public class SpellCheckHelper {
                 String hunspellDllLocation = baseDir.getPath() + "/lib/" + Platform.RESOURCE_PREFIX;
                 System.setProperty(JNA_LIBRARY_PATH, hunspellDllLocation);
             }
-            spellDict = Hunspell.getInstance().getDictionary(new File(baseDir, "dict/" + localeId).getPath());
+            String dictPath = new File(baseDir, "dict/" + localeId).getPath();
+            spellDict = Hunspell.getInstance().getDictionary(dictPath);
             if (!loadUserDictionary()) {
                 return false;
             }
@@ -85,20 +84,15 @@ public class SpellCheckHelper {
     /**
      * Enables spellcheck.
      */
-    public void enableSpellCheck() {
-        try {
-            if (!initializeSpellCheck()) {
-                throw new Exception("Spellcheck initialization error!");
-            }
-
-            SpellcheckDocumentListener docListener = new SpellcheckDocumentListener();
-            lstList.add(docListener);
-            this.textComp.getDocument().addDocumentListener(docListener);
-            spellCheck();
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, e.getMessage(), e);
-            JOptionPane.showMessageDialog(null, e.getMessage(), Gui.APP_NAME, JOptionPane.ERROR_MESSAGE);
+    public void enableSpellCheck() throws Exception {
+        if (!initializeSpellCheck()) {
+            throw new Exception("Spellcheck initialization error!");
         }
+
+        SpellcheckDocumentListener docListener = new SpellcheckDocumentListener();
+        lstList.add(docListener);
+        this.textComp.getDocument().addDocumentListener(docListener);
+        spellCheck();
     }
 
     /**

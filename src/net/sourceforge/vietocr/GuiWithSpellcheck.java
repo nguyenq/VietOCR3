@@ -20,7 +20,6 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JMenuItem;
@@ -121,7 +120,12 @@ public class GuiWithSpellcheck extends GuiWithPSM {
 
         speller = new SpellCheckHelper(this.jTextArea1, localeId);
         if (this.jToggleButtonSpellCheck.isSelected()) {
-            speller.enableSpellCheck();
+            try {
+                speller.enableSpellCheck();
+            } catch (Exception e) {
+                logger.log(Level.WARNING, e.getMessage(), e);
+                JOptionPane.showMessageDialog(null, e.getMessage(), Gui.APP_NAME, JOptionPane.ERROR_MESSAGE);
+            }
         } else {
             speller.disableSpellCheck();
         }
