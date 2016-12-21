@@ -1480,7 +1480,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemSmooth);
 
-        jMenuItemBilateralFiltering.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemBilateralFiltering.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemBilateralFiltering.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemBilateralFiltering.Mnemonic").charAt(0));
         jMenuItemBilateralFiltering.setText(bundle.getString("jMenuItemBilateralFiltering.Text")); // NOI18N
         jMenuItemBilateralFiltering.addActionListener(new java.awt.event.ActionListener() {

@@ -488,7 +488,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItemBilateralFiltering">
                   <Properties>
                     <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                      <KeyStroke key="Shift+Ctrl+F"/>
+                      <KeyStroke key="Shift+Ctrl+R"/>
                     </Property>
                     <Property name="mnemonic" type="int" editor="org.netbeans.modules.i18n.form.FormI18nMnemonicEditor">
                       <ResourceString bundle="net/sourceforge/vietocr/Gui.properties" key="jMenuItemBilateralFiltering.Mnemonic" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
