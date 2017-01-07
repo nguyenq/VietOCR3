@@ -412,7 +412,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
     }
 
     @Override
-    void jMenuItemBilateralFilteringActionPerformed(java.awt.event.ActionEvent evt) {
+    void jMenuItemBilateralActionPerformed(java.awt.event.ActionEvent evt) {
         if (iioImageList == null) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;

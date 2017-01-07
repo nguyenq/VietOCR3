@@ -752,7 +752,7 @@ public class Gui extends JFrame {
         jMenuItemInvert = new javax.swing.JMenuItem();
         jMenuItemSharpen = new javax.swing.JMenuItem();
         jMenuItemSmooth = new javax.swing.JMenuItem();
-        jMenuItemBilateralFiltering = new javax.swing.JMenuItem();
+        jMenuItemBilateral = new javax.swing.JMenuItem();
         jMenuItemDeskew = new javax.swing.JMenuItem();
         jMenuItemAutocrop = new javax.swing.JMenuItem();
         jMenuItemCrop = new javax.swing.JMenuItem();
@@ -1480,15 +1480,15 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemSmooth);
 
-        jMenuItemBilateralFiltering.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemBilateralFiltering.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemBilateralFiltering.Mnemonic").charAt(0));
-        jMenuItemBilateralFiltering.setText(bundle.getString("jMenuItemBilateralFiltering.Text")); // NOI18N
-        jMenuItemBilateralFiltering.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemBilateral.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemBilateral.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemBilateral.Mnemonic").charAt(0));
+        jMenuItemBilateral.setText(bundle.getString("jMenuItemBilateral.Text")); // NOI18N
+        jMenuItemBilateral.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemBilateralFilteringActionPerformed(evt);
+                jMenuItemBilateralActionPerformed(evt);
             }
         });
-        jMenuFilter.add(jMenuItemBilateralFiltering);
+        jMenuFilter.add(jMenuItemBilateral);
 
         jMenuImage.add(jMenuFilter);
 
@@ -2562,9 +2562,9 @@ public class Gui extends JFrame {
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemSmoothActionPerformed
 
-    void jMenuItemBilateralFilteringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBilateralFilteringActionPerformed
+    void jMenuItemBilateralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBilateralActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
-    }//GEN-LAST:event_jMenuItemBilateralFilteringActionPerformed
+    }//GEN-LAST:event_jMenuItemBilateralActionPerformed
 
     void jMenuItemUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUndoActionPerformed
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
@@ -2844,7 +2844,7 @@ public class Gui extends JFrame {
     protected javax.swing.JMenu jMenuInputMethod;
     private javax.swing.JMenuItem jMenuItemAbout;
     private javax.swing.JMenuItem jMenuItemAutocrop;
-    javax.swing.JMenuItem jMenuItemBilateralFiltering;
+    javax.swing.JMenuItem jMenuItemBilateral;
     private javax.swing.JMenuItem jMenuItemBrightness;
     protected javax.swing.JMenuItem jMenuItemBulkOCR;
     private javax.swing.JMenuItem jMenuItemChangeCase;
