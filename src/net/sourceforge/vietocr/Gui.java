@@ -2690,13 +2690,12 @@ public class Gui extends JFrame {
 
     private void jTextArea1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTextArea1MouseWheelMoved
         if (evt.isControlDown()) {
-            Font f = jTextArea1.getFont();
-            int newSize = f.getSize() - evt.getWheelRotation();
+            Font curFont = jTextArea1.getFont();
+            int newSize = curFont.getSize() - evt.getWheelRotation();
             if (newSize > FONT_MIN_SIZE && newSize < FONT_MAX_SIZE) {
-                f = new Font(f.getFontName(), f.getStyle(), newSize);
+                jTextArea1.setFont(new Font(curFont.getFontName(), curFont.getStyle(), newSize));
+                jTextArea1.validate();
             }
-            jTextArea1.setFont(f);
-            jTextArea1.validate();
         } else {
             ((Component) evt.getSource()).getParent().dispatchEvent(evt);
         }
