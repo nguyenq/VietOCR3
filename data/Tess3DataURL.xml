@@ -4,7 +4,7 @@
     <comment>Tesseract 3.04 language data packs</comment>
     <entry key="afr">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/afr.traineddata</entry>
     <entry key="amh">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/amh.traineddata</entry>
-    <entry key="ara">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/ara.traineddata</entry>
+    <entry key="ara">https://github.com/Shreeshrii/tessdata/raw/master/tesseract-ocr-3.02.ara.tar.gz</entry>
     <entry key="asm">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/asm.traineddata</entry>
     <entry key="aze">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/aze.traineddata</entry>
     <entry key="aze_cyrl">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/aze_cyrl.traineddata</entry>
@@ -43,7 +43,7 @@
     <entry key="guj">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/guj.traineddata</entry>
     <entry key="hat">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/hat.traineddata</entry>
     <entry key="heb">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/heb.traineddata</entry>
-    <entry key="hin">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/hin.traineddata</entry>
+    <entry key="hin">https://github.com/Shreeshrii/tessdata/raw/master/tesseract-ocr-3.02.hin.tar.gz</entry>
     <entry key="hrv">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/hrv.traineddata</entry>
     <entry key="hun">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/hun.traineddata</entry>
     <entry key="iku">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/iku.traineddata</entry>
