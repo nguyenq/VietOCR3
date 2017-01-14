@@ -5,10 +5,13 @@
 package net.sourceforge.vietocr.components;
 
 import java.awt.*;
+import java.awt.RenderingHints.Key;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 import java.net.*;
+import java.util.HashMap;
+import java.util.Map;
 import javax.imageio.IIOImage;
 
 public class ImageIconScalable extends ImageIcon {
@@ -176,34 +179,19 @@ public class ImageIconScalable extends ImageIcon {
             BufferedImage tempImage = rescaleImage(image, image.getWidth() / 2, image.getHeight() / 2);
             return rescaleImage(tempImage, targetWidth, targetHeight);
         } else {
-            BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, image.getType());
+            BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2d = outputImage.createGraphics();
-            
-            g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-            g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+            Map<Key, Object> hints = new HashMap<RenderingHints.Key, Object>();
+            hints.put(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_ENABLE);
+            hints.put(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            hints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            hints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            hints.put(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+            g2d.setRenderingHints(hints);
             g2d.drawImage(image, 0, 0, outputImage.getWidth(), outputImage.getHeight(), null);
             g2d.dispose();
-                                    
-//            BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
-//            Graphics2D graphics = outputImage.createGraphics();
-//
-//            Map<Key, Object> hints = new HashMap<RenderingHints.Key, Object>();
-//            hints.put(RenderingHints.KEY_DITHERING,
-//                    RenderingHints.VALUE_DITHER_ENABLE);
-//            hints.put(RenderingHints.KEY_INTERPOLATION,
-//                    RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-//            hints.put(RenderingHints.KEY_RENDERING,
-//                    RenderingHints.VALUE_RENDER_QUALITY);
-//            hints.put(RenderingHints.KEY_ANTIALIASING,
-//                    RenderingHints.VALUE_ANTIALIAS_ON);
-//            hints.put(RenderingHints.KEY_ALPHA_INTERPOLATION,
-//                    RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
-//
-//            graphics.setRenderingHints(hints);
-//
-//            graphics.drawImage(image, 0, 0, outputImage.getWidth(), outputImage.getHeight(), null);
-//            graphics.dispose();
-            
+
             return outputImage;
         }
     }
