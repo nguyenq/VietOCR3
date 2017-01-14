@@ -123,7 +123,7 @@ Version 4.3 (30 May 2016)
 - Update various dependency versions
 - Convert WIA scanned image BMP to PNG
 
-Version 4.4 Beta (8 January 2017)
+Version 4.4 (14 January 2017)
 Improvements by John Helour, including:
 - Additional image filters
 - Expand support to include Regex text replacements from DangAmbigs.txt file
