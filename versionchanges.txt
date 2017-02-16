@@ -128,3 +128,6 @@ Improvements by John Helour, including:
 - Additional image filters
 - Expand support to include Regex text replacements from DangAmbigs.txt file
 - Hyphen replacements
+
+Version 4.5 Beta (11 February 2017)
+- Update Tesseract to 3.04.02Dev (5afface)
