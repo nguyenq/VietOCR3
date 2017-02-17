@@ -129,5 +129,5 @@ Improvements by John Helour, including:
 - Expand support to include Regex text replacements from DangAmbigs.txt file
 - Hyphen replacements
 
-Version 4.5 Beta (11 February 2017)
-- Update Tesseract to 3.04.02Dev (5afface)
+Version 4.5 (16 February 2017)
+- Update Tesseract to 3.05 (5afface)
