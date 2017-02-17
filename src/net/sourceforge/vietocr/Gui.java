@@ -1905,13 +1905,12 @@ public class Gui extends JFrame {
         try {
             Properties config = new Properties();
             config.loadFromXML(getClass().getResourceAsStream("config.xml"));
-            String tessVersion = config.getProperty("TessVersion");
             String version = config.getProperty("Version");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             Date releaseDate = sdf.parse(config.getProperty("ReleaseDate"));
 
             JOptionPane.showMessageDialog(this, APP_NAME + " " + version + " \u00a9 2007\n"
-                    + String.format(bundle.getString("program_desc"), tessVersion) + "\n"
+                    + String.format(bundle.getString("program_desc"), config.getProperty("TessVersion")) + "\n"
                     + DateFormat.getDateInstance(DateFormat.LONG).format(releaseDate)
                     + "\nhttp://vietocr.sourceforge.net", jMenuItemAbout.getText(), JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
