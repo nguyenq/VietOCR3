@@ -34,21 +34,19 @@
     <entry key="eng">English</entry>
     <entry key="enm">Middle English</entry>
     <entry key="epo">Esperanto</entry>
-    <entry key="epo_alt">Esperanto alternative</entry>
     <entry key="est">Estonian</entry>
     <entry key="eus">Basque</entry>
     <entry key="fas">Persian</entry>
-    <entry key="fin">Finish</entry>
+    <entry key="fin">Finnish</entry>
     <entry key="fra">French</entry>
     <entry key="frk">Frankish</entry>
     <entry key="frm">Middle French</entry>
     <entry key="gle">Irish</entry>
-    <entry key="grc">Ancient Greek</entry>
     <entry key="glg">Galician</entry>
+    <entry key="grc">Ancient Greek</entry>
     <entry key="guj">Gujarati</entry>
     <entry key="hat">Haitian</entry>
     <entry key="heb">Hebrew</entry>
-    <entry key="heb_com">Hebrew (community)</entry>
     <entry key="hin">Hindi</entry>
     <entry key="hrv">Croatian</entry>
     <entry key="hun">Hungarian</entry>
@@ -116,6 +114,5 @@
     <entry key="uzb">Uzbek</entry>
     <entry key="uzb_cyrl">Uzbek Cyrillic</entry>
     <entry key="vie">Vietnamese</entry>
-    <entry key="vie-1">Viet VNI-TCVN3</entry>
     <entry key="yid">Yiddish</entry>
 </properties>

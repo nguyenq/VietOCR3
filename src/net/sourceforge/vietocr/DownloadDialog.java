@@ -75,7 +75,7 @@ public class DownloadDialog extends javax.swing.JDialog {
         availableDictionaries = new Properties();
 
         try {
-            File xmlFile = new File(baseDir, "data/Tess3DataURL.xml");
+            File xmlFile = new File(baseDir, "data/TessLangDataURL.xml");
             availableLanguageCodes.loadFromXML(new FileInputStream(xmlFile));
             xmlFile = new File(baseDir, "data/OO-SpellDictionaries.xml");
             availableDictionaries.loadFromXML(new FileInputStream(xmlFile));
