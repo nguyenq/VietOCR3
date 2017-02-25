@@ -46,30 +46,13 @@
             to be able to install the downloaded data into the folder if it is inside a system
             folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code> on Windows.</p>
         <p>Scanning support on Windows is provided via the Windows Image Acquisition Library
-            v2.0, which requires Windows XP Service Pack 1 (SP1) or later. The library comes
-            standard with Windows Vista and 7. To install the WIA Library on Windows XP, copy
-            the <code>wiaaut.dll</code> file to your <code>System32</code> directory (usually located
-            at <code>C:\Windows\System32</code>) and run from the command line:</p>
-        <blockquote>
-            <p><code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
-        </blockquote>
+            v2.0.</p>
         <p>Linux'ta, tarama için SANE paketlerinin kurulumu gerektirir</p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
         <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL
-                Ghostscript</a>. After installation of the library, please ensure the shared
-            library object (<code>gsdll32.dll</code> or <code>libgs.so</code>) is in the search path
-            by setting the appropriate environment variable. On Windows, append the following
-            to <code>Path</code> value (accessible through Control Panel &gt; System &gt; Advanced
-            tab &gt; Environment Variables) for GS version 9.20:</p>
-        <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.20\bin</code></p>
-        </blockquote>Linux'ta:<blockquote>
-            <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
-        </blockquote>
-        <p>where in <code>/usr/lib</code>, <code>libgs.so</code> link to <code>libgs.so.9.20</code>
-            is located.</p>
+                Ghostscript</a>.</p>
         <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
                 dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed in <code>dict</code>
             folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded file which contains a list

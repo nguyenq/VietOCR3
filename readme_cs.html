@@ -26,7 +26,7 @@
         <p>V Ubuntu jsou Tesseract a jeho jazyková data součástí Graphics (universe) repository.
             Můžete je nainstalovat pomocí Synaptic anebo příkazu:</p>
         <blockquote>
-            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-ces</code></p>
         </blockquote>
         <p>The files will be placed in <code>/usr/bin</code> and <code>/usr/share/tesseract-ocr/tessdata</code>,
             respectively. On the other hand, if Tesseract is built and installed from the <a href="https://github.com/tesseract-ocr/tesseract/wiki/TesseractGitInstallation">source</a>,
@@ -46,34 +46,13 @@
             to be able to install the downloaded data into the folder if it is inside a system
             folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code> on Windows.</p>
         <p>Scanning support on Windows is provided via the Windows Image Acquisition Library
-            v2.0, which requires Windows XP Service Pack 1 (SP1) or later. The library comes
-            standard with Windows Vista and 7. To install the WIA Library on Windows XP, copy
-            the <code>wiaaut.dll</code> file to your <code>System32</code> directory (usually located
-            at <code>C:\Windows\System32</code>) and run from the command line:</p>
-        <blockquote>
-            <p><code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
-        </blockquote>
-        <p>Podpora PDF je dostupná přes projekt <a href="http://sourceforge.net/projects/ghostscript/">
-                GPL Ghostscript</a>. Po jeho instalaci se, prosím, ujistěte, že sdílená knihovna
-            (<tt>gsdll32.dll</tt> anebo <tt>libgs.so</tt>) je v cestě (PATH), případně nastavte
-            patřičnou proměnnou prostředí. Ve Windows přidejte následující řetězec hodnotě <tt>Path</tt></p>
+            v2.0.</p>
+        <p>On Linux, scanning requires installation of SANE packages:</p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL
-                Ghostscript</a>. After installation of the library, please ensure the shared
-            library object (<code>gsdll32.dll</code> or <code>libgs.so</code>) is in the search path
-            by setting the appropriate environment variable. On Windows, append the following
-            to <code>Path</code> value (accessible through Control Panel &gt; System &gt; Advanced
-            tab &gt; Environment Variables) for GS version 9.20:</p>
-        <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.20\bin</code></p>
-        </blockquote>
-<tt>;C:\Program Files\gs\gs9.07\bin</tt><blockquote>
-            <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
-        </blockquote>
-        <p>where in <code>/usr/lib</code>, <code>libgs.so</code> link to <code>libgs.so.9.20</code>
-            is located.</p>
+        <p>Podpora PDF je dostupná přes projekt <a href="http://sourceforge.net/projects/ghostscript/">
+                GPL Ghostscript</a>. </p>
         <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
                 dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed in <code>dict</code>
             folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded file which contains a list
@@ -81,18 +60,17 @@
         <p>On Linux, Hunspell and its dictionaries can be installed by Synaptic or <code>apt</code>,
             as follows:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
-        <h3><tt>java -jar VietOCR.jar</tt></h3>
-        <p><b></b></p>
+        <h3>INSTRUCTIONS</h3>
         <blockquote>
             <p><code>java -jar VietOCR.jar</code></p>
         </blockquote>
         <p>Pokud narazíte na problém „out-of-memory exception“, spusťte skript
-            <tt>ocr(.bat)</tt> namísto uvedeného příkazu.<u>Obrázky určené pro rozpoznávání by měly být snímány v rozlišení aspoň 200 DPI (bodů na palec - dots per inch)
+            <tt>ocr(.bat)</tt> namísto uvedeného příkazu. Obrázky určené pro rozpoznávání by měly být snímány v rozlišení aspoň 200 DPI (bodů na palec - dots per inch)
             až 400 DPI v monochromatickém (černobílém) režimu anebo v odstínech šedé.
             Snímání ve vyšším rozlišení nepřináší při rozpoznávání znaků vyšší přesnost.
             Míra přesnosti však závisí hlavně na kvalitě nasnímaného obrázku. Typické nastavení
             pro snímání je 300 DPI a 1 bpp (bit per pixel) černo-bílo anebo 8 bpp (odstíny
-            šedé) do nekomprimovaného TIFF anebo PNG formátu.</u>: If you encounter out-of-memory exception, run <code>ocr</code> script
+            šedé) do nekomprimovaného TIFF anebo PNG formátu. If you encounter out-of-memory exception, run <code>ocr</code> script
             file instead of using the .jar.</p>
         <p>Vedle vestavěného algoritmu pro další zpracování textu si můžete přidat vlastní
             schéma nahrazování textu - textový soubor s názvem <tt>x.DangAmbigs.txt</tt>, kde
@@ -104,7 +82,7 @@
             it even further. Even so, the actual rates still depend greatly on the quality of
             the scanned image. The typical settings for scanning are 300 DPI and 1 bpp (bit
             per pixel) black&amp;white or 8 bpp grayscale uncompressed TIFF or PNG format.</p>
-        <p>DALŠÍ ZPRACOVÁNÍ</p>
+        <h3>DALŠÍ ZPRACOVÁNÍ</h3>
         <p>In addition to the built-in text postprocessing algorithm, you can add your own
             custom text replacement scheme via a UTF-8-encoded tab-delimited text file named <code>x.DangAmbigs.txt</code>,
             where x is the ISO639-3 language code. Both plain and Regex text replacements are supported.</p>
@@ -114,10 +92,10 @@
         <p>Some built-in tools are provided to merge several images or PDF files into a single
             one for convenient OCR operations, or to split a TIFF or PDF file into smaller 
             ones if it contains too many pages, which can cause out-of-memory exceptions.</p>
-        <h3>Poslední skupinou jsou chyby, které je těžké zjistit, protože jsoú to sémantické
+        <p>Poslední skupinou jsou chyby, které je těžké zjistit, protože jsoú to sémantické
             chyby, což znamená, že daná slova se nacházejí ve slovníku, ale jsou chybná z hlediska
             souvislosti napr. „cíp“ — „cip“ a pod. Tyto chyby si žádají, aby je opravil opravce
-            ručně podle původního obrázku.</h3>
+            ručně podle původního obrázku.</p>
         <p>Další chyby jsou způsobeny procesem rozpoznávání - například chybějící diakritická
             znaménka, zaměněné znaky („1“ — „l“). Takové chyby je možné poměrně lehce opravit
             pomocí ověření pravopisu - kontroly překlepů (spellechecker). Vestavěné funkce pro
@@ -137,8 +115,6 @@
             <li>Pokud máte nějaké otázky, položte je ve <a href="http://sourceforge.net/projects/vietocr/forums">
                 fóru VietOCR</a>.</li>
         </ol>
-<p>-</p>
-        <p>-</p>
         <hr>
 </div>
 </body>

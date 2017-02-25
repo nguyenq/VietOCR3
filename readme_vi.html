@@ -62,15 +62,8 @@
             trong <code>/usr</code> trên Linux hoặc <code>C:\Program Files</code> trên Windows.</p>
         <p>
             Hỗ trợ quét văn bản trên Windows được cung cấp qua Windows Image Acquisition Library
-            v2.0, thư viện này đòi hỏi Windows XP Service Pack 1 (SP1) hoặc mới hơn. Thư viện
-            này đến tiêu chuẩn với Windows Vista và 7. Để cài đặt WIA Library trên Windows XP,
-            copy file <code>wiaaut.dll</code> vào <code>System32</code> directory (thường đặt ở <code>C:\Windows\System32</code>)
-            và chạy lệnh từ command line:</p>
-        <blockquote>
-            <p>
-                <code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
-        </blockquote>
-        <p>
+            v2.0.</p>
+		<p>
             Trên Linux, scanning đòi hỏi cài đặt các gói SANE packages:</p>
         <blockquote>
             <p>
@@ -78,23 +71,8 @@
         </blockquote>
         <p>
             Hỗ trợ cho PDF được khả thi qua <a href="http://www.ghostscript.com/">
-                GPL Ghostscript</a>. Sau khi cài đặt thư viện, hãy bảo đảm shared library object
-            (<code>gsdll32.dll</code> hoặc <code>libgs.so</code>) nằm trong search path bằng cách chỉnh
-            biến môi trường phù hợp. Trên Windows, tiếp đuôi (append) đoạn sau vào giá trị của
-            biến Path (truy cập được qua Control Panel &gt; System &gt; Advanced tab &gt; Environment
-            Variables) cho GS phiên bản 9.20:</p>
-        <blockquote>
-            <p>
-                <code>;C:\Program Files\gs\gs9.20\bin</code></p>
-        </blockquote>
-        Trên Linux:<blockquote>
-            <p>
-                <code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
-        </blockquote>
-        <p>
-            nơi trong <code>/usr/lib</code>, <code>libgs.so</code> link tới <code>libgs.so.9.20</code> được
-            đặt.</p>
-        <p>
+                GPL Ghostscript</a>.</p>
+		<p>
             Tính năng Duyệt chính tả (spellcheck) có được qua Hunspell, mà các <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
                 dictionary</a> files trực thuộc (<code>.aff</code>, <code>.dic</code>) nên được đặt
             trong <code>dict</code> folder của VietOCR. <code>user.dic</code> là một file được mã hóa

@@ -46,12 +46,8 @@
             aby bolo možné nainštalovať stiahnutých dát do priečinka, ak je vnútri systému zložky,
             ako napríklad v <code>/usr</code> na Linuxe alebo <code>C:\Program Files</code> v systéme
             Windows.</p>
-        <p>Podpora skenovania je poskytovaná cez knižnicu Windows Image Acquisition Library
-            v2.0, ktorá vyžaduje Windows XP Service Pack 1 (SP1) alebo vyššiu verziu. Táto knižnica
-            je štandardnou súčasťou Windows Vista a 7. Inštaláciu na Windows XP urobte nasledovnými
-            krokmi: skopírujte súbor <code>wiaaut.dll</code> do priečinka <code>System32</code> (zvyčajne
-            je to <code>C:\Windows\System32</code>) a spustite nasledovný príkaz v príkazovom riadku:</p>
-        <p><code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
+        <p>Podpora skenovania je poskytovaná cez knižnicu Windows Image 
+		Acquisition Library v2.0.</p>
         <blockquote>
             <p>V systéme Linux, skenovanie vyžaduje inštaláciu balíčkov SANE:</p>
         </blockquote>
@@ -65,28 +61,13 @@
             prostredia) pre GS verzie 9.20:</p>
         </blockquote>
         <p>PDF podpora je možná vďaka <a href="http://www.ghostscript.com/">GPL
-Ghostscript</a>. Po nainštalovaní knižnice sa uistite, že zdieľaná knižnica 
-(<code>gsdll32.dll</code> alebo <code>libgs.so</code>) je v ceste vyhľadávania, prípadne nastavte
-patričnú premennú prostredia. Vo Windows to znamená pridanie nasledovanej hodnoty
-premennej <code>Path</code> (dostupná cez Ovládací panel &gt; Systém &gt; 
-Rozšírené systémové nastavenia &gt; Premenné prostredia) pre GS verzie 9.20:</p>
-        <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.20\bin</code></p>
-        </blockquote>
-<code>;C:\Program Files\gs\gs9.20\bin</code><blockquote>
-            <p>ak je odkaz <code>libgs.so</code> na <code>libgs.so.9.20</code> umiestnený v <code>/usr/lib</code>.</p>
-        </blockquote>
-        <p>kde v <code>/usr/lib</code>, <code>libgs.so</code> odkazuje na umiestnenie
-<code>libgs.so.9.20</code>.</p>
+Ghostscript</a>.</p>
         <p>V Ubuntu je Hunspell a jeho slovníky možné nainštalovať cez Synaptic alebo <code>apt</code>,
             takto:</p>
         <p><code>sudo apt-get install hunspell hunspell-en-us</code></p>
         <blockquote>INŠTRUKCIE</blockquote>
         <h3>Program spustíte príkazom:</h3>
         <p><code>java -jar VietOCR.jar</code></p>
-        <blockquote>
-            <p><b></b></p>
-        </blockquote>
         <p>Poznámka<u>: Ak narazíte na problém „out-of-memory exception“, spustite
             <code>ocr(.bat)</code> skript namiesto uvedeného príkazu.</u>Obrázky určené na OCR by mali byť skenované v rozlíšení aspoň 200 DPI (dot per inch)
             až 400 DPI v monochromatickom (čierno&amp;bielom) režime alebo v odtieňoch šedej.

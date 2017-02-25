@@ -25,28 +25,13 @@
         </blockquote>
         <p>Per altre piattaforme consultare la pagina <a href="https://github.com/tesseract-ocr/tesseract/wiki">Tesseract Wiki</a>.</p>
         <p>VietOCR fornisce anche il supporto per il download e l'installazione di Pacchetti Lingue selezionati attraverso <em>Download Pacchetti Dati</em> che si trova nel menù. A seconda della posizione della cartella  <code>tessdata</code>, potrebbe essere necessario eseguire il programma come root o admin  per essere in grado di installare i dati scaricati, come ad esempio in <code>/usr</code> su Linux o <code>C:\Program Files</code> in Windows.</p>
-        <p>Il supporto per lo scnnering viene fornito da Windows Image Acquisition Library v2.0, che richiede Windows XP Service Pack 1 (SP1) o superiore; la libreria è inclusa in Windows Vista e 7. Per installare la libreria WIA , copia il file
-             <code>wiaaut.dll</code> nella cartella <code>System32</code>  (posta in 
-             <code>C:\Windows\System32</code>) ed esegui tramite linea di comando:</p>
-        <blockquote>
-            <p><code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
-        </blockquote>
+        <p>Il supporto per lo scnnering viene fornito da Windows Image Acquisition Library v2.0.</p>
         <p>Su Linux, la scansione richiede l'installazione di pacchetti di SANE:</p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>Il supporto PDF è disponibile con <a href="http://www.ghostscript.com/">GPL⏎
-Ghostscript</a>. Dopo l'intallazione della libreria, controlla che gli oggetti⏎
-(<code>gsdll32.dll</code> o <code>libgs.so</code>) siano presenti nel percorso di ricerca impostando nel campo variabile <code>Path</code>, (accessibile tramite il Pannello di controllo di Windows System &gt; Advanced tab &gt; Environment Variables) per GS version 9.20:</p>
-        <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.20\bin</code></p>
-        </blockquote>Linux:<blockquote>
-            <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
-        </blockquote>
-        <p>dove sono posti <code>/usr/lib</code>, <code>libgs.so</code> i collegamenti per 
-
-<code>libgs.so.9.20</code>
-</p>
+        <p>Il supporto PDF è disponibile con <a href="http://www.ghostscript.com/">GPL
+Ghostscript</a>.</p>
         <p>La funzionalità di controllo ortografico è disponibile attraverso Hunspell, il cui <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">dizionario</a> (<code>.aff</code>, <code>.dic</code>) deve essere posto nella cartella <code>dict</code> di VietOCR. <code>user.dic</code> è un file criptato UTF-8 che contiene una lista di parole predefinite, una per linea.</p>
         <p>Su Linux, Hunspell ed i suoi dizionari possono essere installati da Synaptic o  <code>apt</code>, come segue:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us myspell-it</code></blockquote>
