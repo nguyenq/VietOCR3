@@ -6,7 +6,7 @@
 <body>
     <div class="Section1">
         <h2 align="center">VietOCR</h2>
-        <h3>DESCRIPTION</h3>
+        <h3>ОПИСАНИЕ</h3>
         <p><a href="http://vietocr.sourceforge.net">VietOCR</a> is a Java GUI frontend for
             <a href="https://github.com/tesseract-ocr">Tesseract OCR engine</a>, providing
             character recognition support for common image formats, and multi-page images. The
@@ -16,10 +16,10 @@
         <p>Batch processing is now supported. The program monitors a watch folder for new image
             files, automatically processes them through the OCR engine, and outputs recognition
             results to an output folder.</p>
-        <h3>SYSTEM REQUIREMENTS</h3>
-        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 8</a>
-            or later.</p>
-        <h3>INSTALLATION</h3>
+        <h3>СИСТЕМНЫЕ ТРЕБОВАНИЯ</h3>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime
+                Environment 8</a> or later.</p>
+        <h3>УСТАНОВКА</h3>
         <p>Tesseract 4.0 Windows executable is bundled with the program. Additional <a href="https://github.com/tesseract-ocr/tessdata">
                 language data packs</a> for Tesseract, whose names start with ISO639-3 codes,
             should be placed into the <code>tessdata</code> subdirectory.</p>
@@ -32,9 +32,9 @@
             respectively. On the other hand, if Tesseract is built and installed from the <a href="https://github.com/tesseract-ocr/tesseract/wiki/TesseractGitInstallation">source</a>,
             they will be placed in <code>/usr/local/bin</code> and <code>/usr/local/share/tessdata</code>.
             You may need to specify the directory of Tesseract executable from VietOCR&#39;s
-            <code>Settings</code> menu. If the data is in a non-standard location, a soft link to
-            <code>tessdata</code> may be required. You can also let VietOCR know the location of
-            <code>tessdata</code> via the environment variable <code>TESSDATA_PREFIX</code>:</p>
+            <code>Settings</code> menu. If the data is in a non-standard location, a soft link
+            to <code>tessdata</code> may be required. You can also let VietOCR know the location
+            of <code>tessdata</code> via the environment variable <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
@@ -42,21 +42,21 @@
                 Tesseract Wiki</a> page.</p>
         <p>VietOCR also provides support for downloading and installing selected language packs
             via <em>Download Language Data</em> menu item. Depending on the location of the
-            <code>tessdata</code> folder, you may be required to run the program as root or admin
-            to be able to install the downloaded data into the folder if it is inside a system
-            folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code> on Windows.</p>
-        <p>Scanning support on Windows is provided via the Windows Image Acquisition Library
-            v2.0.</p>
-		<p>On Linux, scanning requires installation of SANE packages:</p>
+            <code>tessdata</code> folder, you may be required to run the program as root or
+            admin to be able to install the downloaded data into the folder if it is inside
+            a system folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code>
+            on Windows.</p>
+        <p>Scanning support on Windows is provided via the Windows Image 
+			Acquisition Library v2.0.</p>
+        <p>On Linux, scanning requires installation of SANE packages:</p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL
-                Ghostscript</a>.</p>
+        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL Ghostscript</a>.</p>
         <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
-                dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed in <code>dict</code>
-            folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded file which contains a list
-            of custom words, one word per line.</p>
+                dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed
+            in <code>dict</code> folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded
+            file which contains a list of custom words, one word per line.</p>
         <p>On Linux, Hunspell and its dictionaries can be installed by Synaptic or <code>apt</code>,
             as follows:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
@@ -65,8 +65,8 @@
         <blockquote>
             <p><code>java -jar VietOCR.jar</code></p>
         </blockquote>
-        <p><b><u>Note</u></b>: If you encounter out-of-memory exception, run <code>ocr</code> script
-            file instead of using the .jar.</p>
+        <p><b><u>Note</u></b>: If you encounter out-of-memory exception, run <code>ocr</code>
+            script file instead of using the .jar.</p>
         <p>The Vietnamese language data were generated for Times New Roman, Arial, Verdana,
             and Courier New fonts. Therefore, the recognition would have better success rate
             for images having similar font glyphs. OCRing images that have font glyphs look
@@ -90,8 +90,8 @@
             and <code>tess_configvars</code> files, respectively, to modify Tesseract&#39;s
             behaviour.</p>
         <p>Some built-in tools are provided to merge several images or PDF files into a single
-            one for convenient OCR operations, or to split a TIFF or PDF file into smaller 
-            ones if it contains too many pages, which can cause out-of-memory exceptions.</p>
+            one for convenient OCR operations, or to split a TIFF or PDF file into smaller ones
+            if it contains too many pages, which can cause out-of-memory exceptions.</p>
         <h3>ПОСТОБРАБОТКА</h3>
         <p>The recognition errors can generally be classified into three categories. Many of
             the errors are related to the letter cases — for example: hOa, nhắC — which can
