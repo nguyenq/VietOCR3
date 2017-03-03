@@ -721,6 +721,9 @@ public class Gui extends JFrame {
         jSeparatorPSM = new javax.swing.JSeparator();
         jLabelPSM = new javax.swing.JLabel();
         jLabelPSMvalue = new javax.swing.JLabel();
+        jSeparatorOEM = new javax.swing.JSeparator();
+        jLabelOEM = new javax.swing.JLabel();
+        jLabelOEMvalue = new javax.swing.JLabel();
         jSeparatorEnd = new javax.swing.JSeparator();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
@@ -779,6 +782,7 @@ public class Gui extends JFrame {
         jMenuItemDownloadLangData = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
         jMenuPSM = new javax.swing.JMenu();
+        jMenuOEM = new javax.swing.JMenu();
         jSeparatorOptions = new javax.swing.JPopupMenu.Separator();
         jMenuItemOptions = new javax.swing.JMenuItem();
         jMenuTools = new javax.swing.JMenu();
@@ -1260,6 +1264,18 @@ public class Gui extends JFrame {
         jPanelStatus.add(Box.createHorizontalStrut(4));
         jPanelStatus.add(jLabelPSMvalue);
 
+        jSeparatorOEM.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparatorOEM.setMaximumSize(new java.awt.Dimension(2, 14));
+        jPanelStatus.add(Box.createHorizontalStrut(4));
+        jPanelStatus.add(jSeparatorOEM);
+        jPanelStatus.add(Box.createHorizontalStrut(4));
+
+        jLabelOEM.setText("OEM:");
+        jLabelOEM.setToolTipText(bundle.getString("jLabelOEM.ToolTipText")); // NOI18N
+        jPanelStatus.add(jLabelOEM);
+        jPanelStatus.add(Box.createHorizontalStrut(4));
+        jPanelStatus.add(jLabelOEMvalue);
+
         jSeparatorEnd.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparatorEnd.setMaximumSize(new java.awt.Dimension(2, 14));
         jPanelStatus.add(Box.createHorizontalStrut(4));
@@ -1641,6 +1657,10 @@ public class Gui extends JFrame {
         jMenuPSM.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuPSM.Mnemonic").charAt(0));
         jMenuPSM.setText(bundle.getString("jMenuPSM.Text")); // NOI18N
         jMenuSettings.add(jMenuPSM);
+
+        jMenuOEM.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuOEM.Mnemonic").charAt(0));
+        jMenuOEM.setText(bundle.getString("jMenuOEM.Text")); // NOI18N
+        jMenuSettings.add(jMenuOEM);
         jMenuSettings.add(jSeparatorOptions);
 
         jMenuItemOptions.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemOptions.Mnemonic").charAt(0));
@@ -2828,6 +2848,8 @@ public class Gui extends JFrame {
     private javax.swing.JLabel jLabelDimension;
     private javax.swing.JLabel jLabelDimensionValue;
     private javax.swing.JLabel jLabelLanguage;
+    private javax.swing.JLabel jLabelOEM;
+    protected javax.swing.JLabel jLabelOEMvalue;
     private javax.swing.JLabel jLabelPSM;
     protected javax.swing.JLabel jLabelPSMvalue;
     private javax.swing.JLabel jLabelPageMax;
@@ -2879,6 +2901,7 @@ public class Gui extends JFrame {
     private javax.swing.JMenuItem jMenuItemThreshold;
     protected javax.swing.JMenuItem jMenuItemUndo;
     protected javax.swing.JMenu jMenuLookAndFeel;
+    protected javax.swing.JMenu jMenuOEM;
     protected javax.swing.JMenu jMenuPSM;
     private javax.swing.JMenu jMenuRecentFiles;
     private javax.swing.JMenu jMenuSettings;
@@ -2919,6 +2942,7 @@ public class Gui extends JFrame {
     private javax.swing.JSeparator jSeparatorEnd;
     private javax.swing.JPopupMenu.Separator jSeparatorExit;
     private javax.swing.JPopupMenu.Separator jSeparatorInputMethod;
+    private javax.swing.JSeparator jSeparatorOEM;
     private javax.swing.JPopupMenu.Separator jSeparatorOptions;
     private javax.swing.JSeparator jSeparatorPSM;
     private javax.swing.JSeparator jSeparatorSM;

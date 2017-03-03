@@ -46,10 +46,10 @@ public enum PageSegMode {
     PSM_SINGLE_LINE("7", "7 - Treat the image as a single text line"),
     PSM_SINGLE_WORD("8", "8 - Treat the image as a single word"),
     PSM_CIRCLE_WORD("9", "9 - Treat the image as a single word in a circle"),
-    PSM_SINGLE_CHAR("10", "10 - Treat the image as a single character");
-//    PSM_SPARSE_TEXT("11", "11 - Find as much text as possible in no particular order"),
-//    PSM_SPARSE_TEXT_OSD("12", "12 - Sparse text with orientation and script detection"),
-//    PSM_COUNT("13", "13 - Number of enum entries");
+    PSM_SINGLE_CHAR("10", "10 - Treat the image as a single character"),
+    PSM_SPARSE_TEXT("11", "11 - Find as much text as possible in no particular order"),
+    PSM_SPARSE_TEXT_OSD("12", "12 - Sparse text with orientation and script detection"),
+    PSM_COUNT("13", "13 - Raw line. Treat the image as a single text line, bypassing hacks that are Tesseract-specific");
     
     private final String val;
     private final String desc;

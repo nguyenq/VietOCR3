@@ -30,6 +30,7 @@ public class GuiWithOCR extends GuiWithImageOps {
 
     private OcrWorker ocrWorker;
     protected String selectedPSM = "3"; // 3 - Fully automatic page segmentation, but no OSD (default)
+    protected String selectedOEM = "3"; // Default, based on what is available
     protected boolean tessLibEnabled;
     
     private final static Logger logger = Logger.getLogger(GuiWithOCR.class.getName());

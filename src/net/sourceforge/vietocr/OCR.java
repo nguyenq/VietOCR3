@@ -29,6 +29,7 @@ public abstract class OCR<T> {
 
     protected Rectangle rect = null;
     protected String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)
+    protected String ocrEngineMode = "3"; // Default, based on what is available
     protected String language = "eng";
     protected String outputFormat = "text";
     protected String datapath = "./";
@@ -138,5 +139,19 @@ public abstract class OCR<T> {
      */
     public void setDatapath(String datapath) {
         this.datapath = datapath;
+    }
+
+    /**
+     * @return the ocrEngineMode
+     */
+    public String getOcrEngineMode() {
+        return ocrEngineMode;
+    }
+
+    /**
+     * @param ocrEngineMode the ocrEngineMode to set
+     */
+    public void setOcrEngineMode(String ocrEngineMode) {
+        this.ocrEngineMode = ocrEngineMode;
     }
 }

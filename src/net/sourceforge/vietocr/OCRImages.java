@@ -57,6 +57,7 @@ public class OCRImages extends OCR<IIOImage> {
         instance.setDatapath(datapath);
         instance.setLanguage(language);
         instance.setPageSegMode(Integer.parseInt(pageSegMode));
+        instance.setOcrEngineMode(Integer.parseInt(ocrEngineMode));
         instance.setHocr(outputFormat.equalsIgnoreCase("hocr"));
 
         File configsFilePath = new File(datapath, CONFIG_PATH + CONFIGS_FILE);
@@ -123,6 +124,7 @@ public class OCRImages extends OCR<IIOImage> {
         instance.setDatapath(datapath);
         instance.setLanguage(language);
         instance.setPageSegMode(Integer.parseInt(pageSegMode));
+        instance.setOcrEngineMode(Integer.parseInt(ocrEngineMode));
         List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
         formats.add(RenderedFormat.valueOf(outputFormat.toUpperCase()));
         instance.createDocuments(inputImage.getPath(), Utils.stripExtension(outputFile.getPath()), formats);

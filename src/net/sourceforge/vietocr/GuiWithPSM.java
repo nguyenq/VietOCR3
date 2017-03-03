@@ -53,7 +53,7 @@ public class GuiWithPSM extends GuiWithBatch {
      * @param val
      * @return 
      */
-    final String enumOf(String val) {
+    private String enumOf(String val) {
         return PageSegMode.enumOf(val).name().replace("PSM_", "").replace("_", " ");
     }
 

@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
 import net.sourceforge.vietpad.utilities.SpellCheckHelper;
 
-public class GuiWithSpellcheck extends GuiWithPSM {
+public class GuiWithSpellcheck extends GuiWithOEM {
 
     private int start, end;
     private SpellCheckHelper speller;
