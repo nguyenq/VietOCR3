@@ -24,6 +24,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.channels.*;
+import java.nio.charset.StandardCharsets;
 import java.text.*;
 import java.util.List;
 import java.util.*;
@@ -2027,8 +2028,7 @@ public class Gui extends JFrame {
                 return;
             }
             try {
-                BufferedReader in = new BufferedReader(new InputStreamReader(
-                        new FileInputStream(selectedFile), "UTF8"));
+                BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(selectedFile), StandardCharsets.UTF_8));
                 this.jTextArea1.read(in, null);
                 in.close();
                 this.textFile = selectedFile;

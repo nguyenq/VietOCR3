@@ -23,8 +23,8 @@ import java.util.*;
 /**
  *
  * @author Quan Nguyen (nguyenq@users.sf.net)
- * @note: Part of this class is from
- * http://forum.java.sun.com/thread.jspa?threadID=634438&messageID=3691163
+ * Note: Part of this class is from
+ * http://forum.java.sun.com/thread.jspa?threadID=634438&amp;messageID=3691163
  */
 public class JImageLabel extends JLabel implements MouseMotionListener, MouseListener {
 

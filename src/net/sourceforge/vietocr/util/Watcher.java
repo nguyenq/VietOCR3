@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * Adapted from http://forums.sun.com/thread.jspa?forumID=31&threadID=5316582
+ * Adapted from http://forums.sun.com/thread.jspa?forumID=31&amp;threadID=5316582
  */
 public class Watcher implements Runnable {
 

@@ -16,6 +16,7 @@
 package net.sourceforge.vietocr.postprocessing;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.regex.*;
 
@@ -80,7 +81,7 @@ public class TextUtilities {
                 maps.add(new LinkedHashMap<String, String>());
             }
 
-            InputStreamReader stream = new InputStreamReader(new FileInputStream(dangAmbigsFile), "UTF8");
+            InputStreamReader stream = new InputStreamReader(new FileInputStream(dangAmbigsFile), StandardCharsets.UTF_8);
             BufferedReader bs = new BufferedReader(stream);
             String str;
             while ((str = bs.readLine()) != null) {

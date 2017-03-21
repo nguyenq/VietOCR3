@@ -31,6 +31,7 @@ import net.sourceforge.vietocr.util.Utils;
 
 import com.stibocatalog.hunspell.Hunspell;
 import com.sun.jna.Platform;
+import java.nio.charset.StandardCharsets;
 
 public class SpellCheckHelper {
 
@@ -230,7 +231,7 @@ public class SpellCheckHelper {
             userWordList.add(word.toLowerCase());
             try {
                 File userDict = new File(baseDir, "dict/user.dic");
-                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(userDict, true), "UTF8"));
+                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(userDict, true), StandardCharsets.UTF_8));
                 out.write(word);
                 out.newLine();
                 out.close();
@@ -254,7 +255,7 @@ public class SpellCheckHelper {
 
             mapLastModified = fileLastModified;
             userWordList.clear();
-            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(userDict), "UTF8"));
+            BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(userDict), StandardCharsets.UTF_8));
             String str;
             while ((str = in.readLine()) != null) {
                 userWordList.add(str.toLowerCase());

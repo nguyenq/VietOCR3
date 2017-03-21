@@ -27,7 +27,7 @@ import java.util.logging.Logger;
  *
  *@author     Quan Nguyen (nguyenq@users.sf.net)
  *@version    1.1, 23 December 2007
- *@see        http://vietpad.sourceforge.net
+ *See <a href="http://vietpad.sourceforge.net">http://vietpad.sourceforge.net</a>
  */
 public class FileDropTargetListener extends DropTargetAdapter {
     private final Gui holder;

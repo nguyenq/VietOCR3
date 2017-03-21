@@ -20,7 +20,7 @@ import java.awt.Point;
 import javax.swing.text.*;
 
 /**
- * Adapted from http://forums.sun.com/thread.jspa?forumID=57&threadID=708866
+ * Adapted from http://forums.sun.com/thread.jspa?forumID=57&amp;threadID=708866
  */
 public class WavyLineHighlighter extends DefaultHighlighter.DefaultHighlightPainter {
 
