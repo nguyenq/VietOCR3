@@ -133,6 +133,6 @@ Version 4.5 (17 February 2017)
 - Upgrade to Tesseract 3.05 (5afface)
 - Upgrade to Tess4J 3.3.0
 
-Version 5.0 alpha (20 May 2017)
+Version 5.0 alpha (21 May 2017)
 - Upgrade to Tesseract 4.00alpha (5a06417) and language data
 - Upgrade to Tess4J 4.0.0-SNAPSHOT
