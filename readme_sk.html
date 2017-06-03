@@ -20,7 +20,7 @@
         <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 8</a>
             alebo vyššia verzia.</p>
         <h3>INŠTALÁCIA</h3>
-        <p>Windows veriza Tesseract 3.05 je súčasťou programu. Ďalšie <a href="https://github.com/tesseract-ocr/tessdata">
+        <p>Windows veriza Tesseract 3.05.01 je súčasťou programu. Ďalšie <a href="https://github.com/tesseract-ocr/tessdata">
                 jazykové dátové balíky</a> pre Tesseract, ktoré začínajú s ISO639-3 kódom, by
             mali byť umiestnené do podriečinka <code>tessdata</code>.</p>
         <p>V Ubuntu sú Tesseract a jeho jazykové dáta súčasťou Graphics (universe) repository.
@@ -62,22 +62,22 @@
             (<code>gsdll32.dll</code> alebo <code>libgs.so</code>) je v ceste (PATH), prípadne nastavte
             patričnú premennú prostredia. Vo Windows, pridajte nasledovný reťazec hodnote <code>Path</code>
             (prístupná je cez Kontrolný panel &gt; Systém &gt; Pokročilé nastavenia &gt; Premenné
-            prostredia) pre GS verzie 9.20:</p>
+            prostredia) pre GS verzie 9.21:</p>
         </blockquote>
         <p>PDF podpora je možná vďaka <a href="http://www.ghostscript.com/">GPL
 Ghostscript</a>. Po nainštalovaní knižnice sa uistite, že zdieľaná knižnica 
 (<code>gsdll32.dll</code> alebo <code>libgs.so</code>) je v ceste vyhľadávania, prípadne nastavte
 patričnú premennú prostredia. Vo Windows to znamená pridanie nasledovanej hodnoty
 premennej <code>Path</code> (dostupná cez Ovládací panel &gt; Systém &gt; 
-Rozšírené systémové nastavenia &gt; Premenné prostredia) pre GS verzie 9.20:</p>
+Rozšírené systémové nastavenia &gt; Premenné prostredia) pre GS verzie 9.21:</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.20\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.21\bin</code></p>
         </blockquote>
-<code>;C:\Program Files\gs\gs9.20\bin</code><blockquote>
-            <p>ak je odkaz <code>libgs.so</code> na <code>libgs.so.9.20</code> umiestnený v <code>/usr/lib</code>.</p>
+<code>;C:\Program Files\gs\gs9.21\bin</code><blockquote>
+            <p>ak je odkaz <code>libgs.so</code> na <code>libgs.so.9.21</code> umiestnený v <code>/usr/lib</code>.</p>
         </blockquote>
         <p>kde v <code>/usr/lib</code>, <code>libgs.so</code> odkazuje na umiestnenie
-<code>libgs.so.9.20</code>.</p>
+<code>libgs.so.9.21</code>.</p>
         <p>V Ubuntu je Hunspell a jeho slovníky možné nainštalovať cez Synaptic alebo <code>apt</code>,
             takto:</p>
         <p><code>sudo apt-get install hunspell hunspell-en-us</code></p>

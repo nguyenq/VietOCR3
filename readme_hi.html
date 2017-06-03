@@ -35,13 +35,13 @@
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
         <p>पीडीऍफ़ सपोर्ट <a href="http://www.ghostscript.com/">GPL Ghostscript</a> द्वारा मिल सकता है . लाइब्रेरी इंस्टाल करने के बाद, एप्रोप्रियेट एनवायरनमेंट वेरिएबल को  सेट करके  कृपया पक्का करें कि शेयर्ड लाइब्रेरी ऑब्जेक्ट (<code>gsdll32.dll</code>
-या  <code>libgs.so</code>) आपके सर्च पाथ में है . विंडोज में जीएस वर्शन 9.20 के लिए, निम्न लाइन को <code>Path</code> के अंत में जोड़ें, (ये वैल्यू कंट्रोल पैनल &gt; सिस्टम &gt; एडवांस्ड टैब &gt; एनवायरनमेंट वेरिएबल  में पाई जाएगी).</p>
+या  <code>libgs.so</code>) आपके सर्च पाथ में है . विंडोज में जीएस वर्शन 9.21 के लिए, निम्न लाइन को <code>Path</code> के अंत में जोड़ें, (ये वैल्यू कंट्रोल पैनल &gt; सिस्टम &gt; एडवांस्ड टैब &gt; एनवायरनमेंट वेरिएबल  में पाई जाएगी).</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.20\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.21\bin</code></p>
         </blockquote>लिनक्स में :<blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p>जहां <code>/usr/lib</code>, <code>libgs.so</code> में  <code>libgs.so.9.20</code> को लिंक दिया गया है .</p>
+        <p>जहां <code>/usr/lib</code>, <code>libgs.so</code> में  <code>libgs.so.9.21</code> को लिंक दिया गया है .</p>
         <p>स्पेलचेक सुविधा हन्स्पेल्ल द्वारा उपलब्ध है , जिसके  <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
 शब्दकोश </a> की  (<code>.aff</code>, <code>.dic</code>) फाइलें विएतओसीआर के  <code>dict</code> फोल्डर में डालनी चाहियें. <code>user.dic</code> एक  UTF-8-एन्कोडिंग वाली फाइल है जिसमे कस्टम शब्दों की सूची डाली जा सकती है, हर लाइन में एक शब्द .</p>
         <p>लिनक्स में, हनस्पेल और इसके शब्दकोशों को सिनेप्टिक या <code>apt</code> द्वारा निम्न तरीके से इंस्टाल किया जा सकता है :</p>
