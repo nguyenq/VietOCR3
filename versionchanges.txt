@@ -132,3 +132,7 @@ Improvements by John Helour, including:
 Version 4.5 (17 February 2017)
 - Upgrade to Tesseract 3.05 (5afface)
 - Upgrade to Tess4J 3.3.0
+
+Version 4.6 (4 September 2017)
+- Upgrade to Tesseract 3.05.01 (2158661)
+- Upgrade to Tess4J 3.4.0
