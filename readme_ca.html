@@ -37,15 +37,10 @@
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
-        <p>For other platforms, please consult <a href="https://github.com/tesseract-ocr/tesseract/wiki">
-                Tesseract Wiki</a> page.</p>
-        <p>VietOCR also provides support for downloading and installing selected language packs
-            via <em>Download Language Data</em> menu item. Depending on the location of the
-            <code>tessdata</code> folder, you may be required to run the program as root or admin
-            to be able to install the downloaded data into the folder if it is inside a system
-            folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code> on Windows.</p>
-        <p>Scanning support on Windows is provided via the Windows Image Acquisition Library
-            v2.0.</p>
+        <p>Per a altres plataformes, consulteu la pàgina wiki del <a href="https://github.com/tesseract-ocr/tesseract/wiki">Tesseract</a>.</p>
+        <p>El VietOCR també permet baixar i instal·lar paquets de llengua via l'element del menú <em>Baixa dates de llengua</em>. Depenent de la ubicació de la carpeta <code>tessdata</code>, se us demanarà d'executar el programa com a usuari root o administrador per a poder instal·lar les dades baixades a la carpeta si es troba a la carpeta del sistema, per exemple a <code>/usr</code> en el Linux o  <code>C:\Program Files</code> en el Windows.</p>
+        <p>Scanning support on Windows is provided via the Windows Image 
+			Acquisition Library v2.0.</p>
         <p>A Linux, l'escaneig requereix la instal·lació dels paquets SANE:</p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
@@ -59,12 +54,12 @@
         <p>A Linux, l'Hunspell i els seus diccionaris es poden instal·lar amb el Synaptic o <code>apt</code>, com segueix:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
         <h3>INSTRUCCIONS</h3>
-        <p>Per executar el programa:</p>
+        <p>Per a executar el programa:</p>
         <blockquote>
             <p><code>java -jar VietOCR.jar</code></p>
         </blockquote>
-        <p><b><u>Nota</u></b>: If you encounter out-of-memory exception, run <code>ocr</code> script
-            file instead of using the .jar.</p>
+        <p><b><u>Nota</u></b>: Si trobeu una exepció d'esgotament de memòria, executeu <code>ocr</code>
+            fitxer script en comptes d'usar el .jar.</p>
         <p>The Vietnamese language data were generated for Times New Roman, Arial, Verdana,
             and Courier New fonts. Therefore, the recognition would have better success rate
             for images having similar font glyphs. OCRing images that have font glyphs look

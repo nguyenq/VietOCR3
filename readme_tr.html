@@ -7,24 +7,24 @@
     <div class="Section1">
         <h2 align="center">VietOCR</h2>
         <h3>AÇIKLAMA</h3>
-        <p><a href="http://vietocr.sourceforge.net">VietOCR</a> is a Java GUI frontend for
-            <a href="https://github.com/tesseract-ocr">Tesseract OCR engine</a>, providing
-            character recognition support for common image formats, and multi-page images. The
-            program has postprocessing which helps correct errors regularly encountered in the
-            OCR process, boosting the accuracy rate on the result. The program can also function
-            as a console application, executing from the command line.</p>
+        <p><a href="http://vietocr.sourceforge.net"> VietOCR </a>, için bir Java arayüzüdür.
+<a href="https://github.com/tesseract-ocr"> Tesseract OCR motoru </a>, sağlayarak
+ortak görüntü formatları için karakter tanıma desteği ve çok sayfalı görüntüler. Bu
+programı düzenli olarak karşılaşılan hataları düzeltmeye yardımcı olan postprocessing'e sahiptir.
+OCR işlemi, sonuç üzerindeki doğruluğunu artırır. Program ayrıca
+bir konsol uygulaması olarak, komut satırından çalıştırılabilir.</p>
         <p>Batch processing is now supported. The program monitors a watch folder for new image
             files, automatically processes them through the OCR engine, and outputs recognition
             results to an output folder.</p>
         <h3>SİSTEM GEREKSİNİMLERİ</h3>
-        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 8</a>
-            or later.</p>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime
+                Environment 8</a> veya sonrası.</p>
         <h3>KURULUM</h3>
         <p>Tesseract Windows executable is bundled with the program. Additional <a href="https://github.com/tesseract-ocr/tessdata">
                 language data packs</a> for Tesseract, whose names start with ISO639-3 codes,
             should be placed into the <code>tessdata</code> subdirectory.</p>
-        <p>For Linux, Tesseract and its language data packages are in the Graphics (universe)
-            repository. They can be installed using Synaptic or by the following command:</p>
+        <p>Linux için Tesseract ve dil veri paketleri Grafikler (universe)'de deposunda bulunur.
+Synaptic'i kullanarak veya aşağıdaki komutu kullanarak yüklenebilirler:</p>
         <blockquote>
             <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-tur</code></p>
         </blockquote>
@@ -38,27 +38,28 @@
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
-        <p>For other platforms, please consult <a href="https://github.com/tesseract-ocr/tesseract/wiki">
-                Tesseract Wiki</a> page.</p>
+        <p>Diğer platformlar için lütfen <a href="https://github.com/tesseract-ocr/tesseract/wiki"> 
+sayfasına bakın. Tesseract Wiki </a> sayfası.</p>
         <p>VietOCR also provides support for downloading and installing selected language packs
             via <em>Download Language Data</em> menu item. Depending on the location of the
             <code>tessdata</code> folder, you may be required to run the program as root or admin
             to be able to install the downloaded data into the folder if it is inside a system
             folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code> on Windows.</p>
-        <p>Scanning support on Windows is provided via the Windows Image Acquisition Library
-            v2.0.</p>
+        <p>Windows'da tarama işlemi,
+Windows Image 
+			Acquisition Library v2.0
+desteği ile taranmıştır.</p>
         <p>Linux'ta, tarama için SANE paketlerinin kurulumu gerektirir</p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL
-                Ghostscript</a>.</p>
+        <p>PDF desteği<a href="http://www.ghostscript.com/">GPL Ghostscript</a> aracılığıyla mümkündür.</p>
         <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
                 dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed in <code>dict</code>
             folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded file which contains a list
             of custom words, one word per line.</p>
-        <p>On Linux, Hunspell and its dictionaries can be installed by Synaptic or <code>apt</code>,
-            as follows:</p>
+        <p>Linux'ta Hunspell ve sözlükleri Synaptic veya <code> apt </code> tarafından kurulabilir,  
+aşağıdaki gibi:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
         <h3>TALİMATLAR</h3>
         <p>Programı başlatmak için:</p>
@@ -73,21 +74,20 @@
                 training</a> Tesseract to create another language data pack specifically for
             those typefaces. Language data for some VNI and TCVN3 (ABC) fonts have also been
             bundled in latest versions.</p>
-        <p>Images to be OCRed should be scanned at resolution from at least 200 DPI (dot per
-            inch) to 400 DPI in monochrome (black&amp;white) or grayscale. Scanning at higher
-            resolutions will not necessarily result in better recognition accuracy, which currently
-            can be higher than 97% for Vietnamese, and the next release of Tesseract may improve
-            it even further. Even so, the actual rates still depend greatly on the quality of
-            the scanned image. The typical settings for scanning are 300 DPI and 1 bpp (bit
-            per pixel) black&amp;white or 8 bpp grayscale uncompressed TIFF or PNG format.</p>
+        <p>OCR'lenecek görüntüler en az 200 DPI çözünürlükte taranmalıdır (nokta başına
+Inç) 400 DPI'ye tek renkli (siyah beyaz) veya gri tonlamalı olarak ayarlayın. Daha yüksek tarama
+daha iyi tanıma doğruluğu ile sonuçlanmayacaktır, şu anda
+Vietnamca için% 97'den daha yüksek olabilir ve Tesseract'in bir sonraki sürümü artırabilir
+ve daha da ileri gidebilir. Buna rağmen, gerçek tanıma oranı halen taranan görüntünün kalitesine büyük ölçüde bağlıdır.
+Tarama için tipik ayarlar 300 DPI ve 1 bpp'dir (bit
+Piksel başına) siyah beyaz veya 8 bpp gri tonlamalı sıkıştırılmamış TIFF veya PNG biçimidir.</p>
         <p>The <em>Screenshot Mode</em> offers better recognition rates for low-resolution
             images, such as screen prints, by rescaling them to 300 DPI.</p>
         <p>In addition to the built-in text postprocessing algorithm, you can add your own
             custom text replacement scheme via a UTF-8-encoded tab-delimited text file named <code>x.DangAmbigs.txt</code>,
             where x is the ISO639-3 language code. Both plain and Regex text replacements are supported.</p>
-        <p>Some built-in tools are provided to merge several images or PDF files into a single
-            one for convenient OCR operations, or to split a PDF file into smaller ones if it
-            is too large, which can cause out-of-memory exceptions.</p>
+        <p>Bazı dahili araçlar, daha düzgün bir OCR için birkaç görüntüyü veya PDF dosyalarını tek bir sayfaya birleştirmeyi sağlar
+veya bellek yetersizliğine neden olan çok fazla sayfa içeriyorsa, TIFF veya PDF dosyasını daha küçük şekilde bölebilmeyi sağlar</p>
         <h3>POSTPROCESSING</h3>
         <p>The recognition errors can generally be classified into three categories. Many of
             the errors are related to the letter cases — for example: hOa, nhắC — which can
@@ -112,10 +112,9 @@
                 letter case errors.</li>
             <li>Entegre <i>Yazım Denetimi</i> kullanarak yanlış hataları düzeltin.</li>
         </ol>
-<p>Through the above process, most of common errors can be eliminated. The remaining,
-            semantic errors are few, but it requires a human editor to read though and make
-            necessary edits to make the document like the original scanned document, and error-free
-            if desired.</p>
+<p>Yukarıdaki işlem sayesinde, ortak hataların çoğunu ortadan kaldırabilirsiniz.
+Geriye kalan semantik hatalar azdır ancak eğer hatasız bir döküman istenirse
+orijinal taranan belgede gerekli düzenlemeleri yapmak için  insan elinin değmesi gerekir.</p>
         <p>Herhangi bir sorunuz varsa, lütfen bildirin <a href="http://sourceforge.net/projects/vietocr/forums">
                 VietOCR Forumu</a>.</p>
         <hr>

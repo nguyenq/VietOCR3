@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VietOCR - Tesseract ओसीआर को लागि जावा जीयूआई फ्रन्टएण्ड</title>
@@ -17,8 +17,8 @@
             files, automatically processes them through the OCR engine, and outputs recognition
             results to an output folder.</p>
         <h3>प्रणाली आवश्यकताहरू</h3>
-        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime
-                Environment 8</a> or later.</p>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">जाभा रनटाइम
+वातावरण 8</a> अथवा नयाँ।</p>
         <h3>स्थापन</h3>
         <p>Tesseract Windows executable is bundled with the program. Additional <a href="https://github.com/tesseract-ocr/tessdata">
                 language data packs</a> for Tesseract, whose names start with ISO639-3 codes,
@@ -52,7 +52,7 @@
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL Ghostscript</a>.</p>
+        <p>पीडीएफ समर्थन <a href="http://www.ghostscript.com/">जीपीएल घोस्टस्क्रिप्ट</a> मार्फत सम्भव छ।</p>
         <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
                 dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed
             in <code>dict</code> folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded
@@ -65,8 +65,7 @@
         <blockquote>
             <p><code>java -jar VietOCR.jar</code></p>
         </blockquote>
-        <p><b><u>Note</u></b>: If you encounter out-of-memory exception, run <code>ocr</code>
-            script file instead of using the .jar.</p>
+        <p><b><u>द्रष्टव्य</u></b>: यदि तपाईंले आउट-अफ-मेमोरी एक्सेप्सन सामना गर्नुभएमा, .jarको सट्टामा <code>ocr</code> स्क्रीप्ट फाइल प्रयोग गर्नुहोस्।</p>
         <p>The Vietnamese language data were generated for Times New Roman, Arial, Verdana,
             and Courier New fonts. Therefore, the recognition would have better success rate
             for images having similar font glyphs. OCRing images that have font glyphs look
@@ -92,7 +91,7 @@
         <p>Some built-in tools are provided to merge several images or PDF files into a single
             one for convenient OCR operations, or to split a TIFF or PDF file into smaller ones
             if it contains too many pages, which can cause out-of-memory exceptions.</p>
-        <h3>POSTPROCESSING</h3>
+        <h3>पश्च-प्रशोधन</h3>
         <p>The recognition errors can generally be classified into three categories. Many of
             the errors are related to the letter cases — for example: hOa, nhắC — which can
             be easily corrected by popular Unicode text editors. Many other errors are a result
@@ -114,14 +113,14 @@
             <li>Select <i>Change Case</i>, also under <i>Format</i> menu, and choose <i>Sentence
                 case</i> to correct most of the letter case errors. Locate and fix the rest of remaining
                 letter case errors.</li>
-            <li>Correct the misspelled errors using the integrated <i>Spell Check</i>.</li>
+            <li>गलतहिज्जे त्रुटीहरूलाई एकीकृत <i>हिज्जे जाँच</i>द्वारा सच्याउनुहोस्।</li>
         </ol>
 <p>Through the above process, most of common errors can be eliminated. The remaining,
             semantic errors are few, but it requires a human editor to read though and make
             necessary edits to make the document like the original scanned document, and error-free
             if desired.</p>
-        <p>If there is any questions, please post in <a href="http://sourceforge.net/projects/vietocr/forums">
-                VietOCR Forum</a>.</p>
+        <p>यदि कुनै प्रश्‍न भए, कृपया <a href="http://sourceforge.net/projects/vietocr/forums">
+VietOCR Forum</a>मा पोष्ट गर्नुहोस्।</p>
         <hr>
 </div>
 </body>
