@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>„VietOCR“ – „Java“ pagrįsta grafinė sąsaja „Tesseract OCR“ moduliui</title>
@@ -21,35 +21,26 @@ tekstus įrašyti į rezultatams talpinti nurodytą aplanką.</p>
         <h3>REIKALAVIMAI SISTEMAI</h3>
         <p>„<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 8</a>“ ar vėlesnė laida.</p>
         <h3>PROGRAMOS ĮDIEGIMAS</h3>
-        <p>„Tesseract 3.05“ vykdomasis failas „Windows“ aplinkai pateikiamas kartu su programa. Papildomi <a href="https://github.com/tesseract-ocr/tessdata">kalbinių duomenų paketai</a>, kurių vardai prasideda ISO639-3 kodais, turėtų būti talpinami į poaplankį <code>tessdata</code>.</p>
+        <p>„Tesseract“ vykdomasis failas „Windows“ aplinkai pateikiamas kartu su programa. Papildomi <a href="https://github.com/tesseract-ocr/tessdata">kalbinių duomenų paketai</a>, kurių vardai prasideda ISO639-3 kodais, turėtų būti talpinami į poaplankį <code>tessdata</code>.</p>
         <p>„Ubuntu Linux“ atveju „Tesseract“ ir šiai programai skirti kalbinių duomenų paketai
 yra paketų saugykloje „Grafika (universe)“. Juos galite įdiegti, pasinaudodami „Synaptic“
 arba šia komanda:</p>
         <blockquote>
             <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-lit</code></p>
         </blockquote>
-        <p>Įvykdžius šią komandą, programos failai bus įdiegti į aplanką <code>/usr/bin</code>, o kalbiniai duomenys – į <code>/usr/share/tesseract-ocr/tessdata</code>. Tuo atveju, jeigu „Tesseract“ kompiliuosite ir diegsite iš <a href="https://github.com/tesseract-ocr/tesseract/wiki/TesseractGitInstallation">pirminių tekstų</a>, šie failai bus patalpinti atitinkamai į aplankus <code>/usr/local/bin</code> ir <code>/usr/local/share/tessdata</code>. „Tesseract“ vykdomojo failo kelią galite nurodyti „VietOCR“ nuostatose. Jeigu kalbiniai duomenys
+        <p>Įvykdžius šią komandą, programos failai bus įdiegti į aplanką <code>/usr/bin</code>, o kalbiniai duomenys – į <code>/usr/share/tesseract-ocr/tessdata</code>. Tuo atveju, jeigu „Tesseract“ kompiliuosite ir diegsite iš <a href="https://github.com/tesseract-ocr/tesseract/wiki/TesseractGitInstallation">pirminių tekstų</a>, šie failai bus patalpinti atitinkamai į aplankus <code>/usr/local/bin</code> ir <code>/usr/local/share/tessdata</code>. „Tesseract“ vykdomojo failo kelią galite nurodyti „VietOCR“ nustatymų lange. Jeigu kalbiniai duomenys
 yra neįprastesnėje vietoje, <code>tessdata</code> aplanke gali tekti sukurti simbolinę nuorodą į juos. Taip pat apie <code>tessdata</code> aplanko vietą programą „VietOCR“ galite informuoti, nustatydami <code>TESSDATA_PREFIX</code> aplinkos kintamojo reikšmę:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
         <p>Jeigu naudojatės čia nepaminėta platforma, išsamesnės informacijos rasite <a href="https://github.com/tesseract-ocr/tesseract/wiki">„Tesseract“ vikyje</a>.</p>
-        <p>„VietOCR“ geba parsiųsti ir įdiegti kalbinių duomenų paketus kai kurioms kalboms; šia funkcija galite pasinaudoti, iškviesdami meniu <em>Nuostatos</em> punktą <em>Parsiųsti kalbinius duomenis</em>. Jeigu <code>tessdata</code> aplankas yra sisteminio aplanko (pvz., <code>/usr</code> „Linux“ sistemoje ar <code>C:\Program Files</code> „Windows“ sistemoje) viduje, kalbiniams duomenims įdiegti programą gali reikėti vykdyti administratoriaus teisėmis.</p>
-        <p>Skenerio programiniam palaikymui „Windows“ sistemose yra naudojama „Windows Image Acquisition Library (WIA) v2.0“ biblioteka, kuriai būtina „Windows XP SP1“ ar naujesnė šios operacinės sistemos laida. Su „Windows Vista“ ir „Windows 7“ ši biblioteka pateikiama iškart, o į „Windows XP“ ji įdiegiama, nukopijuojant failą <code>wiaaut.dll</code> į sistemos <code>System32</code> aplanką (dažniausiai jo kelias – <code>C:\Windows\System32</code>) ir jį užregistruojant tokia komanda:</p>
-        <blockquote>
-            <p><code>regsvr32 C:\Windows\System32\wiaaut.dll</code></p>
-        </blockquote>
+        <p>„VietOCR“ geba parsiųsti ir įdiegti kalbinių duomenų paketus kai kurioms kalboms; šia funkcija galite pasinaudoti, iškviesdami meniu <em>Nustatymai</em> punktą <em>Parsiųsti kalbinius duomenis</em>. Jeigu <code>tessdata</code> aplankas yra sisteminio aplanko (pvz., <code>/usr</code> „Linux“ sistemoje ar <code>C:\Program Files</code> „Windows“ sistemoje) viduje, kalbiniams duomenims įdiegti programą gali reikėti vykdyti administratoriaus teisėmis.</p>
+        <p>Skenerio programiniam palaikymui yra naudojama „Windows Image Acquisition Library 2.0“ biblioteka.</p>
         <p>„Linux“ sistemoje, skenavimui reikia įdiegti SANE paketus:</p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>PDF failų palaikymas galimas naudojant „<a href="http://www.ghostscript.com/">GPL Ghostscript</a>“ priemonę. Ją įdiegus, reikia užtikrinti, kad dinaminė biblioteka (<code>gsdll32.dll</code> arba <code>libgs.so</code>) patektų į sisteminės failų paieškos kelią, papildant atitinkamą aplinkos kintamąjį. „Windows“ sistemoje tai yra kintamasis <code>Path</code>, kurį galite redaguoti, atvėrę Valdymo skydą, jame spustelėję piktogramą „Sistema“, tada atverę kortelę „Išsamiau“ ir spustelėję mygtuką „Aplinkos kintamieji“. Pavyzdžiui, „GhostScript 9.21“ atveju, šį kintamąjį reikėtų papildyti tokia eilute:</p>
-        <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.21\bin</code></p>
-        </blockquote>„Linux“ sistemoje:<blockquote>
-            <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
-        </blockquote>
-        <p>kur <code>/usr/lib</code> aplanke yra nuoroda <code>libgs.so</code>, nurodanti failą <code>libgs.so.9.21</code>.</p>
+        <p>PDF failų palaikymui naudojama „<a href="http://www.ghostscript.com/">GPL Ghostscript</a>“ priemonė.</p>
         <p>Rašybos tikrinimo funkcija galima panaudojant „Hunspell“ tikrintuvę, kurios <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">žodynų</a> failai (<code>.aff</code>, <code>.dic</code>) turėtų būti patalpinti į aplanką <code>dict</code>, esantį „VietOCR“ programos aplanke. Be to, šiame aplanke galite sukurti UTF-8 koduoto teksto failą <code>user.dic</code> su papildomais žodžiais, nesančiais žodyne (vienas žodis eilutėje).</p>
         <p>„Linux“ sistemoje „Hunspell“ bei žodynus galite įdiegti, naudodamiesi programa „Synaptic“ arba <code>apt</code> įrankiu:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us myspell-lt</code></blockquote>
@@ -69,14 +60,14 @@ paskaityti <a href="http://dg.lapas.info/?page_id=239">Donato Glodenio tinklara�
             colyje raiška, naudojant juodai baltą arba pilkumo tonų veikseną. Aukštesnės raiškos
             vaizdai nebūtinai pagerins ženklų atpažinimo kokybę, kuri ir taip yra pakankamai
             aukšta, ir kitose „Tesseract“ laidose gali dar pagerėti. Reali ženklų atpažinimo
-            kokybė priklauso nuo nuskenuoto vaizdo kokybės. Rekomenduojamos nuostatos skenuojamam
+            kokybė priklauso nuo nuskenuoto vaizdo kokybės. Rekomenduojami parametrai skenuojamam
             vaizdui yra tokios: 300 taškų colyje, 1 bitas taškui (1bpp; juodai balta veiksena)
             arba 8 bitai taškui (8bpp; pilkumo tonai), vaizdą įrašant į neglaudintą TIFF arba
             PNG formato failą.</p>
         <p><em>Žemos raiškos (ekranvaizdžio) veiksena</em> įgalina pagerinti žemos raiškos vaizdų 
 atpažinimo kokybę. Šioje veiksenoje, prieš atpažįstant tekstą, žemos raiškos (pvz. ekrano)
 vaizdų raiška padidinama iki 300 taškų colyje.</p>
-        <p>Programa numato galimybę jau esamą teksto apdorojimo algoritmą papildyti savuoju. Pridėkite savo pritaikytą teksto ženklų pakeitimo schemą įrašytą faile UTF-8-encoded tab-delimited <code>x.DangAmbigs.txt</code>, simbolį „x“ pakeisdami ISO639-3 standarto kalbos kodu (pvz., lietuvių kalbos kodas – „lit“). Tiek paprasti ir Reguliariai išraiška teksto endoprotezai yra palaikomi.</p>
+        <p>Programa numato galimybę jau esamą teksto apdorojimo algoritmą papildyti savuoju. Pridėkite savo pritaikytą teksto ženklų pakeitimo schemą įrašytą UTF-8 koduotės faile <code>x.DangAmbigs.txt</code>, simbolį „x“ pakeisdami ISO639-3 standarto kalbos kodu (pvz., lietuvių kalbos kodas – „lit“). Keistinus teksto fragmentus nuo pakaitalų faile turėtų skirti tabuliacijos ženklas. Faile galima naudoti tiek paprastus keitinius, tiek reguliariuosius reiškinius.</p>
         <p>Papildomai įtakoti „Tesseract“ veikimą galite, įrašydami papildomus valdymo parametrus Į failus <code>tessdata/configs/tess_configs</code> (tik inicijavimo parametrus) ir <code>tess_configvars</code> (ne inicijavimo parametrus).</p>
         <p>Programoje įtaisyti įtankiai, kuriais galite sujungti keletą vaizdų arba PDF failų į vieną arba išskaidyti per daug puslapių turinčius TIFF ar PDF failus. Kartais patogiau apdoroti vieną failą, bet ne daug smulkių, o kartais, siekiant išvengti atminties stygiaus problemų, tenka padalinti vieną didelį failą į mažesnes dalis.</p>
         <h3>NUSKAITYTO TEKSTO APDOROJIMAS</h3>
