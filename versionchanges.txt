@@ -139,4 +139,7 @@ Version 4.6 (4 September 2017)
 
 Version 4.6.1 (22 September 2017)
 - Update Tesseract 3.05.01 (e2e79c4)
-- Upgrade to Tess4J 3.4.1
+- Update to Tess4J 3.4.1
+
+Version 4.6.2 (14 November 2017)
+- Update to Tess4J 3.4.2
