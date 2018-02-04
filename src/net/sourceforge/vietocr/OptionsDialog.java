@@ -44,6 +44,7 @@ public class OptionsDialog extends javax.swing.JDialog {
     private boolean dangAmbigsOn;
     private boolean replaceHyphensEnabled;
     private boolean removeHyphensEnabled;
+    private boolean watchDeskewEnabled;
     protected ResourceBundle bundle;
 
     /**
@@ -106,6 +107,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         jLabelOutput = new javax.swing.JLabel();
         jTextFieldOutput = new javax.swing.JTextField();
         jCheckBoxWatch = new javax.swing.JCheckBox();
+        jCheckBoxWatchDeskew = new javax.swing.JCheckBox();
         jLabelOutputFormat = new javax.swing.JLabel();
         jComboBoxOutputFormat = new javax.swing.JComboBox();
         jButtonWatch = new javax.swing.JButton();
@@ -262,8 +264,16 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
         jPanelWatchFolder.add(jCheckBoxWatch, gridBagConstraints);
+
+        jCheckBoxWatchDeskew.setText(bundle.getString("jCheckBoxWatchDeskew.Text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanelWatchFolder.add(jCheckBoxWatchDeskew, gridBagConstraints);
 
         jLabelOutputFormat.setLabelFor(jComboBoxOutputFormat);
         jLabelOutputFormat.setText(bundle.getString("jComboBoxOutputFormat.Text")); // NOI18N
@@ -415,6 +425,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         this.jCheckBoxTessLib.setSelected(tessLibEnabled);
         this.jCheckBoxReplaceHyphens.setSelected(replaceHyphensEnabled);
         this.jCheckBoxRemoveHyphens.setSelected(removeHyphensEnabled);
+        this.jCheckBoxWatchDeskew.setSelected(watchDeskewEnabled);
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
@@ -426,6 +437,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         dangAmbigsOn = this.jCheckBoxDangAmbigs.isSelected();
         replaceHyphensEnabled = this.jCheckBoxReplaceHyphens.isSelected();
         removeHyphensEnabled = this.jCheckBoxRemoveHyphens.isSelected();
+        watchDeskewEnabled = this.jCheckBoxWatchDeskew.isSelected();
     }//GEN-LAST:event_formWindowDeactivated
 
     private void jComboBoxOutputFormatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxOutputFormatMouseEntered
@@ -496,6 +508,7 @@ public class OptionsDialog extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBoxReplaceHyphens;
     private javax.swing.JCheckBox jCheckBoxTessLib;
     private javax.swing.JCheckBox jCheckBoxWatch;
+    private javax.swing.JCheckBox jCheckBoxWatchDeskew;
     private javax.swing.JComboBox jComboBoxOutputFormat;
     private javax.swing.JLabel jLabelDangAmbigs;
     private javax.swing.JLabel jLabelOutput;
@@ -664,5 +677,19 @@ public class OptionsDialog extends javax.swing.JDialog {
      */
     public void setRemoveHyphensEnabled(boolean removeHyphensEnabled) {
         this.removeHyphensEnabled = removeHyphensEnabled;
+    }
+
+    /**
+     * @return the watchDeskewEnabled
+     */
+    public boolean isWatchDeskewEnabled() {
+        return watchDeskewEnabled;
+    }
+
+    /**
+     * @param watchDeskewEnabled the watchDeskewEnabled to set
+     */
+    public void setWatchDeskewEnabled(boolean watchDeskewEnabled) {
+        this.watchDeskewEnabled = watchDeskewEnabled;
     }
 }

@@ -93,7 +93,7 @@ public class ConsoleApp {
         }
 
         try {
-            OCRHelper.performOCR(imageFile, outputFile, tessPath, curLangCode, psm, outputFormat);
+            OCRHelper.performOCR(imageFile, outputFile, tessPath, curLangCode, psm, outputFormat, false);
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
         }

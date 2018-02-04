@@ -54,7 +54,7 @@ public class OCRHelperTest {
             try {
                 System.out.println("Process " + imageFile.getPath());
                 String outputFilename = imageFile.getPath().substring(inputFolder.length() + 1);
-                OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename), tessPath, langCode, pageSegMode, outputFormat);
+                OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename), tessPath, langCode, pageSegMode, outputFormat, false);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

@@ -24,11 +24,14 @@ public class GuiWithSettings extends GuiWithLaF {
     private final String strWatchFolder = "WatchFolder";
     private final String strOutputFolder = "OutputFolder";
     private final String strWatchEnabled = "WatchEnabled";
+    private final String strWatchDeskewEnable = "WatchDeskewEnable";
     private final String strTessLibEnabled = "TessLibEnabled";
     private final String strBatchOutputFormat = "BatchOutputFormat";
+    
     protected String watchFolder;
     protected String outputFolder;
     protected boolean watchEnabled;
+    protected boolean watchDeskewEnabled;
     protected String outputFormat;
     private OptionsDialog optionsDialog;
 
@@ -36,6 +39,7 @@ public class GuiWithSettings extends GuiWithLaF {
         watchFolder = prefs.get(strWatchFolder, System.getProperty("user.home"));
         outputFolder = prefs.get(strOutputFolder, System.getProperty("user.home"));
         watchEnabled = prefs.getBoolean(strWatchEnabled, false);
+        watchDeskewEnabled = prefs.getBoolean(strWatchDeskewEnable, false);
         tessLibEnabled = prefs.getBoolean(strTessLibEnabled, false);
         outputFormat = prefs.get(strBatchOutputFormat, "text");
     }
@@ -49,6 +53,7 @@ public class GuiWithSettings extends GuiWithLaF {
         optionsDialog.setWatchFolder(watchFolder);
         optionsDialog.setOutputFolder(outputFolder);
         optionsDialog.setWatchEnabled(watchEnabled);
+        optionsDialog.setWatchDeskewEnabled(watchDeskewEnabled);
         optionsDialog.setTessPath(tessPath);
         optionsDialog.setDangAmbigsPath(dangAmbigsPath);
         optionsDialog.setDangAmbigsEnabled(dangAmbigsOn);
@@ -62,6 +67,7 @@ public class GuiWithSettings extends GuiWithLaF {
             watchFolder = optionsDialog.getWatchFolder();
             outputFolder = optionsDialog.getOutputFolder();
             watchEnabled = optionsDialog.isWatchEnabled();
+            watchDeskewEnabled = optionsDialog.isWatchDeskewEnabled();
 
             if (!tessPath.equals(optionsDialog.getTessPath())) {
                 tessPath = optionsDialog.getTessPath();
@@ -97,6 +103,7 @@ public class GuiWithSettings extends GuiWithLaF {
         prefs.put(strWatchFolder, watchFolder);
         prefs.put(strOutputFolder, outputFolder);
         prefs.putBoolean(strWatchEnabled, watchEnabled);
+        prefs.putBoolean(strWatchDeskewEnable, watchDeskewEnabled);
         prefs.putBoolean(strTessLibEnabled, tessLibEnabled);
         prefs.put(strBatchOutputFormat, outputFormat);
         super.quit();

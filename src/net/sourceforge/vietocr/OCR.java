@@ -32,6 +32,7 @@ public abstract class OCR<T> {
     protected String ocrEngineMode = "3"; // Default, based on what is available
     protected String language = "eng";
     protected String outputFormat = "text";
+    protected boolean deskew;
     protected String datapath = "./";
 
     /**
@@ -153,5 +154,19 @@ public abstract class OCR<T> {
      */
     public void setOcrEngineMode(String ocrEngineMode) {
         this.ocrEngineMode = ocrEngineMode;
+    }
+
+    /**
+     * @return the deskew
+     */
+    public boolean isDeskew() {
+        return deskew;
+    }
+
+    /**
+     * @param deskew the deskew to set
+     */
+    public void setDeskew(boolean deskew) {
+        this.deskew = deskew;
     }
 }
