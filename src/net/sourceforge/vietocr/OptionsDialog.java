@@ -263,16 +263,15 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
         jPanelWatchFolder.add(jCheckBoxWatch, gridBagConstraints);
 
         jCheckBoxWatchDeskew.setText(bundle.getString("jCheckBoxWatchDeskew.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
         jPanelWatchFolder.add(jCheckBoxWatchDeskew, gridBagConstraints);
 
         jLabelOutputFormat.setLabelFor(jComboBoxOutputFormat);

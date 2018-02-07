@@ -155,7 +155,7 @@ public class BulkDialog extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
         jPanelImageFolder.add(jCheckBoxDeskew, gridBagConstraints);
 
         jButtonInput.setText("...");
