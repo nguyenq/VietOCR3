@@ -26,6 +26,7 @@ public abstract class OCR<T> {
     final static String CONFIGVARS_FILE = "tess_configvars";
     final static String CONFIG_PATH = "tessdata/configs/";
     final static String TESSDATA = "tessdata";
+    final static double MINIMUM_DESKEW_THRESHOLD = 0.05d;
 
     protected Rectangle rect = null;
     protected String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)

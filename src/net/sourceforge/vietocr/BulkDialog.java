@@ -27,7 +27,6 @@ public class BulkDialog extends javax.swing.JDialog {
     private int actionSelected = -1;
     private String inputFolder;
     private String outputFolder;
-    private boolean deskewEnabled;
     protected ResourceBundle bundle;
 
     /**
@@ -252,13 +251,13 @@ public class BulkDialog extends javax.swing.JDialog {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         this.jTextFieldFolder.setText(inputFolder);
         this.jTextFieldOutput.setText(outputFolder);
-        this.jCheckBoxDeskew.setSelected(deskewEnabled);
+        this.jCheckBoxDeskew.setSelected(isDeskewEnabled());
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
         inputFolder = this.jTextFieldFolder.getText();
         outputFolder = this.jTextFieldOutput.getText();
-        deskewEnabled = this.jCheckBoxDeskew.isSelected();
+        setDeskewEnabled(this.jCheckBoxDeskew.isSelected());
     }//GEN-LAST:event_formWindowDeactivated
 
     private void jComboBoxOutputFormatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxOutputFormatMouseEntered
@@ -401,13 +400,13 @@ public class BulkDialog extends javax.swing.JDialog {
      * @return the deskewEnabled
      */
     public boolean isDeskewEnabled() {
-        return deskewEnabled;
+        return this.jCheckBoxDeskew.isSelected();
     }
 
     /**
      * @param deskewEnabled the deskewEnabled to set
      */
     public void setDeskewEnabled(boolean deskewEnabled) {
-        this.deskewEnabled = deskewEnabled;
+        this.jCheckBoxDeskew.setSelected(deskewEnabled);
     }
 }

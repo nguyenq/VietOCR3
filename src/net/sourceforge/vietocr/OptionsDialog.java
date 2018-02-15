@@ -417,7 +417,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         this.jCheckBoxTessLib.setSelected(tessLibEnabled);
         this.jCheckBoxReplaceHyphens.setSelected(replaceHyphensEnabled);
         this.jCheckBoxRemoveHyphens.setSelected(removeHyphensEnabled);
-        this.jCheckBoxWatchDeskew.setSelected(watchDeskewEnabled);
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
@@ -429,7 +428,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         dangAmbigsOn = this.jCheckBoxDangAmbigs.isSelected();
         replaceHyphensEnabled = this.jCheckBoxReplaceHyphens.isSelected();
         removeHyphensEnabled = this.jCheckBoxRemoveHyphens.isSelected();
-        watchDeskewEnabled = this.jCheckBoxWatchDeskew.isSelected();
     }//GEN-LAST:event_formWindowDeactivated
 
     private void jComboBoxOutputFormatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxOutputFormatMouseEntered
@@ -676,13 +674,13 @@ public class OptionsDialog extends javax.swing.JDialog {
      * @return the watchDeskewEnabled
      */
     public boolean isWatchDeskewEnabled() {
-        return watchDeskewEnabled;
+        return this.jCheckBoxWatchDeskew.isSelected();
     }
 
     /**
      * @param watchDeskewEnabled the watchDeskewEnabled to set
      */
     public void setWatchDeskewEnabled(boolean watchDeskewEnabled) {
-        this.watchDeskewEnabled = watchDeskewEnabled;
+        this.jCheckBoxWatchDeskew.setSelected(watchDeskewEnabled);
     }
 }

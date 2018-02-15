@@ -25,6 +25,7 @@ import javax.imageio.IIOImage;
 
 import net.sourceforge.tess4j.ITesseract.RenderedFormat;
 import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.vietocr.util.Utils;
 
 /**
@@ -74,14 +75,14 @@ public class OCRImages extends OCR<IIOImage> {
 
     /**
      * Gets segmented regions.
-     * 
+     *
      * @return segmented regions
      * @throws java.io.IOException
      */
     @Override
     public List<Rectangle> getSegmentedRegions(IIOImage image, int tessPageIteratorLevel) throws Exception {
         instance.setDatapath(datapath);
-        return instance.getSegmentedRegions((BufferedImage)image.getRenderedImage(), tessPageIteratorLevel);
+        return instance.getSegmentedRegions((BufferedImage) image.getRenderedImage(), tessPageIteratorLevel);
     }
 
     /**
@@ -115,18 +116,30 @@ public class OCRImages extends OCR<IIOImage> {
     /**
      * Processes OCR for input file with specified output format.
      *
-     * @param inputImage
+     * @param imageFile
      * @param outputFile
      * @throws Exception
      */
     @Override
-    public void processPages(File inputImage, File outputFile) throws Exception {
+    public void processPages(File imageFile, File outputFile) throws Exception {
         instance.setDatapath(datapath);
         instance.setLanguage(language);
         instance.setPageSegMode(Integer.parseInt(pageSegMode));
         instance.setOcrEngineMode(Integer.parseInt(ocrEngineMode));
         List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
         formats.add(RenderedFormat.valueOf(outputFormat.toUpperCase()));
-        instance.createDocuments(inputImage.getPath(), Utils.stripExtension(outputFile.getPath()), formats);
+
+        File tempImageFile = null;
+
+        if (deskew) {
+            tempImageFile = ImageIOHelper.deskewImage(imageFile, MINIMUM_DESKEW_THRESHOLD);
+            tempImageFile.deleteOnExit();
+        }
+
+        instance.createDocuments(deskew ? tempImageFile.getPath() : imageFile.getPath(), Utils.stripExtension(outputFile.getPath()), formats);
+
+        if (tempImageFile != null && tempImageFile.exists()) {
+            tempImageFile.delete();
+        }
     }
 }

@@ -21,6 +21,8 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.IIOImage;
+
+import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.vietocr.util.Utils;
 
 /**
@@ -121,7 +123,7 @@ public class OCRFiles extends OCR<File> {
 
     /**
      * Gets segmented regions.
-     * 
+     *
      * @return segmented regions
      * @throws java.io.IOException
      */
@@ -133,15 +135,23 @@ public class OCRFiles extends OCR<File> {
     /**
      * Processes OCR for input file with specified output format.
      *
-     * @param inputImage
+     * @param imageFile
      * @param outputFile
      * @throws Exception
      */
     @Override
-    public void processPages(File inputImage, File outputFile) throws Exception {
+    public void processPages(File imageFile, File outputFile) throws Exception {
         List<String> cmd = new ArrayList<String>();
         cmd.add(tessPath + "/tesseract");
-        cmd.add(inputImage.getAbsolutePath());
+
+        File tempImageFile = null;
+
+        if (deskew) {
+            tempImageFile = ImageIOHelper.deskewImage(imageFile, MINIMUM_DESKEW_THRESHOLD);
+            tempImageFile.deleteOnExit();
+        }
+
+        cmd.add(deskew ? tempImageFile.getAbsolutePath() : imageFile.getAbsolutePath());
         cmd.add(outputFile.getAbsolutePath());
         cmd.add(LANG_OPTION);
         cmd.add(language);
@@ -175,6 +185,10 @@ public class OCRFiles extends OCR<File> {
 
         int w = process.waitFor();
         System.out.println("Exit value = " + w);
+        
+        if (tempImageFile != null && tempImageFile.exists()) {
+            tempImageFile.delete();
+        }
 
         if (w != 0) {
             String msg = outputGobbler.getMessage(); // get actual message from the engine;
