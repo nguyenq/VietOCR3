@@ -70,6 +70,7 @@ public class BulkDialog extends javax.swing.JDialog {
         jLabelOutput = new javax.swing.JLabel();
         jTextFieldOutput = new javax.swing.JTextField();
         jLabelOutputFormat = new javax.swing.JLabel();
+        jPanelOutput = new javax.swing.JPanel();
         jComboBoxOutputFormat = new javax.swing.JComboBox();
         jCheckBoxDeskew = new javax.swing.JCheckBox();
         jButtonInput = new javax.swing.JButton();
@@ -144,19 +145,18 @@ public class BulkDialog extends javax.swing.JDialog {
                 jComboBoxOutputFormatMouseEntered(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 0);
-        jPanelImageFolder.add(jComboBoxOutputFormat, gridBagConstraints);
+        jPanelOutput.add(jComboBoxOutputFormat);
 
         jCheckBoxDeskew.setText(bundle.getString("jCheckBoxDeskew.Text")); // NOI18N
+        jCheckBoxDeskew.setMargin(new java.awt.Insets(2, 20, 2, 2));
+        jPanelOutput.add(jCheckBoxDeskew);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
-        jPanelImageFolder.add(jCheckBoxDeskew, gridBagConstraints);
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        jPanelImageFolder.add(jPanelOutput, gridBagConstraints);
 
         jButtonInput.setText("...");
         jButtonInput.setToolTipText(bundle.getString("jButtonInput.ToolTipText")); // NOI18N
@@ -378,6 +378,7 @@ public class BulkDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelOutputFormat;
     private javax.swing.JPanel jPanelCommand;
     private javax.swing.JPanel jPanelImageFolder;
+    private javax.swing.JPanel jPanelOutput;
     private javax.swing.JTextField jTextFieldFolder;
     private javax.swing.JTextField jTextFieldOutput;
     // End of variables declaration//GEN-END:variables

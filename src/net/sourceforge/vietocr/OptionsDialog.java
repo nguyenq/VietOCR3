@@ -106,10 +106,11 @@ public class OptionsDialog extends javax.swing.JDialog {
         jTextFieldWatch = new javax.swing.JTextField();
         jLabelOutput = new javax.swing.JLabel();
         jTextFieldOutput = new javax.swing.JTextField();
+        jLabelOutputFormat = new javax.swing.JLabel();
+        jPanelWatch = new javax.swing.JPanel();
+        jComboBoxOutputFormat = new javax.swing.JComboBox();
         jCheckBoxWatch = new javax.swing.JCheckBox();
         jCheckBoxWatchDeskew = new javax.swing.JCheckBox();
-        jLabelOutputFormat = new javax.swing.JLabel();
-        jComboBoxOutputFormat = new javax.swing.JComboBox();
         jButtonWatch = new javax.swing.JButton();
         jButtonOutput = new javax.swing.JButton();
         jPanelHyphens = new javax.swing.JPanel();
@@ -259,21 +260,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
         jPanelWatchFolder.add(jTextFieldOutput, gridBagConstraints);
 
-        jCheckBoxWatch.setText(bundle.getString("jCheckBoxWatch.Text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
-        jPanelWatchFolder.add(jCheckBoxWatch, gridBagConstraints);
-
-        jCheckBoxWatchDeskew.setText(bundle.getString("jCheckBoxWatchDeskew.Text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
-        jPanelWatchFolder.add(jCheckBoxWatchDeskew, gridBagConstraints);
-
         jLabelOutputFormat.setLabelFor(jComboBoxOutputFormat);
         jLabelOutputFormat.setText(bundle.getString("jComboBoxOutputFormat.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -287,12 +273,19 @@ public class OptionsDialog extends javax.swing.JDialog {
                 jComboBoxOutputFormatMouseEntered(evt);
             }
         });
+        jPanelWatch.add(jComboBoxOutputFormat);
+
+        jCheckBoxWatch.setText(bundle.getString("jCheckBoxWatch.Text")); // NOI18N
+        jPanelWatch.add(jCheckBoxWatch);
+
+        jCheckBoxWatchDeskew.setText(bundle.getString("jCheckBoxWatchDeskew.Text")); // NOI18N
+        jPanelWatch.add(jCheckBoxWatchDeskew);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 0);
-        jPanelWatchFolder.add(jComboBoxOutputFormat, gridBagConstraints);
+        gridBagConstraints.gridwidth = 2;
+        jPanelWatchFolder.add(jPanelWatch, gridBagConstraints);
 
         jButtonWatch.setText("...");
         jButtonWatch.setToolTipText(bundle.getString("jButtonWatch.ToolTipText")); // NOI18N
@@ -518,6 +511,7 @@ public class OptionsDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelDangAmbigsPath;
     private javax.swing.JPanel jPanelHyphens;
     private javax.swing.JPanel jPanelTessPath;
+    private javax.swing.JPanel jPanelWatch;
     private javax.swing.JPanel jPanelWatchFolder;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextFieldDangAmbigs;
