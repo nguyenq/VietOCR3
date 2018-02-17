@@ -136,7 +136,7 @@ public class OCRImages extends OCR<IIOImage> {
             tempImageFile.deleteOnExit();
         }
 
-        instance.createDocuments(deskew ? tempImageFile.getPath() : imageFile.getPath(), Utils.stripExtension(outputFile.getPath()), formats);
+        instance.createDocuments(deskew ? tempImageFile.getPath() : imageFile.getPath(), outputFile.getPath(), formats);
 
         if (tempImageFile != null && tempImageFile.exists()) {
             tempImageFile.delete();
