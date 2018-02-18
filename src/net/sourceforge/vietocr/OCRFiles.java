@@ -31,8 +31,8 @@ import net.sourceforge.vietocr.util.Utils;
 public class OCRFiles extends OCR<File> {
 
     private final String LANG_OPTION = "-l";
-    private final String PSM_OPTION = "-psm";
-    private final String OEM_OPTION = "-oem";
+    private final String PSM_OPTION = "--psm";
+    private final String OEM_OPTION = "--oem";
     private final String CONFIGVAR_OPTION = "-c";
     final static String OUTPUT_FILE_NAME = "TessOutput";
     final static String TEXTFILE_EXTENSION = ".txt";
