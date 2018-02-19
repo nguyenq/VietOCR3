@@ -21,9 +21,9 @@ package net.sourceforge.vietocr;
  */
 public enum OcrEngineMode {
     
-    OEM_TESSERACT_ONLY("0", "0 - Original Tesseract only"),
-    OEM_LSTM_ONLY("1", "1 - Neural nets LSTM only"),
-    OEM_TESSERACT_LSTM("2", "2 - Tesseract + LSTM"),
+    OEM_TESSERACT_ONLY("0", "0 - Legacy engine only"),
+    OEM_LSTM_ONLY("1", "1 - Neural nets LSTM engine only"),
+    OEM_TESSERACT_LSTM("2", "2 - Legacy + LSTM engines"),
     OEM_DEFAULT("3", "3 - Default, based on what is available");
     
     private final String val;
