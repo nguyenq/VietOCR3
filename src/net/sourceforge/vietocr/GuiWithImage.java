@@ -439,6 +439,72 @@ public class GuiWithImage extends GuiWithBulkOCR {
     }
 
     @Override
+    void jMenuItemDespeckle2x2ActionPerformed(java.awt.event.ActionEvent evt) {
+        if (iioImageList == null) {
+            JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        getGlassPane().setVisible(true);
+
+        try {
+            originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+            Pix pix = LeptUtils.convertImageToPix(originalImage);
+            Pix pix1 = LeptUtils.despeckle(pix, LeptUtils.SEL_STR2, 2);
+            if (pix1 == null) {
+                LeptUtils.dispose(pix);
+                return;
+            }
+            BufferedImage imageDespeckled = LeptUtils.convertPixToImage(pix1);
+            LeptUtils.dispose(pix);
+            LeptUtils.dispose(pix1);
+            stack.push(originalImage);
+            imageIcon = new ImageIconScalable(imageDespeckled);
+            imageList.set(imageIndex, imageIcon);
+            iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
+            displayImage();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), APP_NAME, JOptionPane.ERROR_MESSAGE);
+        } finally {
+            getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            getGlassPane().setVisible(false);
+        }
+    }
+
+    @Override
+    void jMenuItemDespeckle3x3ActionPerformed(java.awt.event.ActionEvent evt) {
+        if (iioImageList == null) {
+            JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        getGlassPane().setVisible(true);
+
+        try {
+            originalImage = (BufferedImage) iioImageList.get(imageIndex).getRenderedImage();
+            Pix pix = LeptUtils.convertImageToPix(originalImage);
+            Pix pix1 = LeptUtils.despeckle(pix, LeptUtils.SEL_STR3, 3);
+            if (pix1 == null) {
+                LeptUtils.dispose(pix);
+                return;
+            }
+            BufferedImage imageDespeckled = LeptUtils.convertPixToImage(pix1);
+            LeptUtils.dispose(pix);
+            LeptUtils.dispose(pix1);
+            stack.push(originalImage);
+            imageIcon = new ImageIconScalable(imageDespeckled);
+            imageList.set(imageIndex, imageIcon);
+            iioImageList.get(imageIndex).setRenderedImage((BufferedImage) imageIcon.getImage());
+            displayImage();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), APP_NAME, JOptionPane.ERROR_MESSAGE);
+        } finally {
+            getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            getGlassPane().setVisible(false);
+        }
+    }
+
+    @Override
     void jMenuItemUndoActionPerformed(java.awt.event.ActionEvent evt) {
         if (stack.isEmpty()) {
             return;

@@ -761,6 +761,9 @@ public class Gui extends JFrame {
         jMenuItemAutocrop = new javax.swing.JMenuItem();
         jMenuItemCrop = new javax.swing.JMenuItem();
         jMenuItemRemoveLines = new javax.swing.JMenuItem();
+        jMenuDespeckle = new javax.swing.JMenu();
+        jMenuItemDespeckle2x2 = new javax.swing.JMenuItem();
+        jMenuItemDespeckle3x3 = new javax.swing.JMenuItem();
         jSeparator12 = new javax.swing.JPopupMenu.Separator();
         jMenuItemUndo = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -1550,6 +1553,32 @@ public class Gui extends JFrame {
             }
         });
         jMenuImage.add(jMenuItemRemoveLines);
+
+        jMenuDespeckle.setText(bundle.getString("jMenuDespeckle.Text")); // NOI18N
+
+        jMenuItemDespeckle2x2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItemDespeckle2x2.setMnemonic('2');
+        jMenuItemDespeckle2x2.setText(bundle.getString("jMenuItemDespeckle2x2.Text")); // NOI18N
+        jMenuItemDespeckle2x2.setActionCommand("up to 2x2");
+        jMenuItemDespeckle2x2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDespeckle2x2ActionPerformed(evt);
+            }
+        });
+        jMenuDespeckle.add(jMenuItemDespeckle2x2);
+
+        jMenuItemDespeckle3x3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItemDespeckle3x3.setMnemonic('3');
+        jMenuItemDespeckle3x3.setText(bundle.getString("jMenuItemDespeckle3x3.Text")); // NOI18N
+        jMenuItemDespeckle3x3.setActionCommand("up to 3x3");
+        jMenuItemDespeckle3x3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDespeckle3x3ActionPerformed(evt);
+            }
+        });
+        jMenuDespeckle.add(jMenuItemDespeckle3x3);
+
+        jMenuImage.add(jMenuDespeckle);
         jMenuImage.add(jSeparator12);
 
         jMenuItemUndo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -2721,6 +2750,14 @@ public class Gui extends JFrame {
         }
     }//GEN-LAST:event_jTextArea1MouseWheelMoved
 
+    void jMenuItemDespeckle2x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDespeckle2x2ActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemDespeckle2x2ActionPerformed
+
+    void jMenuItemDespeckle3x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDespeckle3x3ActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemDespeckle3x3ActionPerformed
+
     /**
      * Pastes image from clipboard.
      */
@@ -2858,6 +2895,7 @@ public class Gui extends JFrame {
     protected javax.swing.JLabel jLabelStatus;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu jMenuCommand;
+    private javax.swing.JMenu jMenuDespeckle;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenu jMenuFilter;
     private javax.swing.JMenu jMenuFormat;
@@ -2873,6 +2911,8 @@ public class Gui extends JFrame {
     private javax.swing.JMenuItem jMenuItemContrast;
     private javax.swing.JMenuItem jMenuItemCrop;
     private javax.swing.JMenuItem jMenuItemDeskew;
+    private javax.swing.JMenuItem jMenuItemDespeckle2x2;
+    private javax.swing.JMenuItem jMenuItemDespeckle3x3;
     private javax.swing.JMenuItem jMenuItemDownloadLangData;
     private javax.swing.JMenuItem jMenuItemExit;
     private javax.swing.JMenuItem jMenuItemFont;
