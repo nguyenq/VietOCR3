@@ -149,3 +149,6 @@ Version 4.6.3 (22 February 2018)
 
 Version 4.7 (24 March 2018)
 - Update to Tess4J 3.4.5; remove Ghostscript DLL and use PDFBox if Ghostscript not available
+
+Version 4.7.1 (25 March 2018)
+- Update PDFBox dependencies
