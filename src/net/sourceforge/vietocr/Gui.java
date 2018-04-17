@@ -250,10 +250,10 @@ public class Gui extends JFrame {
     private void getInstalledLanguagePacks() {
         if (WINDOWS) {
             tessPath = new File(baseDir, TESSERACT_PATH).getPath();
-            datapath = tessPath;
+            datapath = tessPath + "/tessdata";
         } else {
             tessPath = prefs.get(strTessDir, "/usr/bin");
-            datapath = "/usr/share/tesseract-ocr/";
+            datapath = "/usr/share/tesseract-ocr/tessdata";
         }
 
         lookupISO639 = new Properties();

@@ -78,7 +78,7 @@ public class OCRFiles extends OCR<File> {
         }
 
         ProcessBuilder pb = new ProcessBuilder();
-        if (new File(datapath, TESSDATA).exists()) {
+        if (new File(datapath).exists()) {
             Map<String, String> env = pb.environment();
             env.put("TESSDATA_PREFIX", datapath);
         }

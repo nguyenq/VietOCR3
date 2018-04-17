@@ -133,8 +133,32 @@ Version 4.5 (17 February 2017)
 - Upgrade to Tesseract 3.05 (5afface)
 - Upgrade to Tess4J 3.3.0
 
-Version 5.0 alpha (1 March 2018)
-- Upgrade to Tesseract 4.00alpha (0d1365a) and language data
+Version 4.6 (4 September 2017)
+- Upgrade to Tesseract 3.05.01 (2158661)
+- Upgrade to Tess4J 3.4.0
+
+Version 4.6.1 (22 September 2017)
+- Update Tesseract 3.05.01 (e2e79c4)
+- Update to Tess4J 3.4.1
+
+Version 4.6.2 (14 November 2017)
+- Update to Tess4J 3.4.2
+
+Version 4.6.3 (22 February 2018)
+- Update to Tess4J 3.4.4 and Lept4J 1.6.3
+
+Version 4.7 (24 March 2018)
+- Update to Tess4J 3.4.5; remove Ghostscript DLL and use PDFBox if Ghostscript not available
+
+Version 4.7.1 (25 March 2018)
+- Update PDFBox dependencies
+
+Version 4.7.2 (16 April 2018)
+- Update jai-imageio-core to 1.4.0 for Java 9 fixes
+- Update to Tess4J 3.4.7 and Lept4J 1.6.4
+
+Version 5.0 alpha (16 April 2018)
+- Upgrade to Tesseract 4.00alpha (69c8292d) and language data
 - Upgrade to Tess4J 4.0.0-SNAPSHOT
 - Upgrade Tesseract 4.00 fast language packs
 - Autodeskew for batch and bulk processes
