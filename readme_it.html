@@ -37,15 +37,15 @@
         </blockquote>
         <p>Il supporto PDF è disponibile con <a href="http://www.ghostscript.com/">GPL⏎
 Ghostscript</a>. Dopo l'intallazione della libreria, controlla che gli oggetti⏎
-(<code>gsdll32.dll</code> o <code>libgs.so</code>) siano presenti nel percorso di ricerca impostando nel campo variabile <code>Path</code>, (accessibile tramite il Pannello di controllo di Windows System &gt; Advanced tab &gt; Environment Variables) per GS version 9.20:</p>
+(<code>gsdll32.dll</code> o <code>libgs.so</code>) siano presenti nel percorso di ricerca impostando nel campo variabile <code>Path</code>, (accessibile tramite il Pannello di controllo di Windows System &gt; Advanced tab &gt; Environment Variables) per GS version 9.23:</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.20\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.23\bin</code></p>
         </blockquote>Linux:<blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
         <p>dove sono posti <code>/usr/lib</code>, <code>libgs.so</code> i collegamenti per 
 
-<code>libgs.so.9.20</code>
+<code>libgs.so.9.23</code>
 </p>
         <p>La funzionalità di controllo ortografico è disponibile attraverso Hunspell, il cui <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">dizionario</a> (<code>.aff</code>, <code>.dic</code>) deve essere posto nella cartella <code>dict</code> di VietOCR. <code>user.dic</code> è un file criptato UTF-8 che contiene una lista di parole predefinite, una per linea.</p>
         <p>Su Linux, Hunspell ed i suoi dizionari possono essere installati da Synaptic o  <code>apt</code>, come segue:</p>

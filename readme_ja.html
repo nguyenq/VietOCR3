@@ -31,13 +31,13 @@
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p><a href="http://www.ghostscript.com/">GPL Ghostscript</a>を通したPDFサポートが可能です。ライブラリのインストール後に適切な環境変数を設定し、共有ライブラリオブジェクト（<code>gsdll32.dll</code>または<code>libgs.so</code>）が検索パス内にあることを確認してください。Windows上でGSバージョン9.22の場合は<code>Path</code>（［コントロールパネル］&gt;［システム］&gt;［詳細設定タブ］&gt;［環境変数］からアクセス）に次のように追加します。</p>
+        <p><a href="http://www.ghostscript.com/">GPL Ghostscript</a>を通したPDFサポートが可能です。ライブラリのインストール後に適切な環境変数を設定し、共有ライブラリオブジェクト（<code>gsdll32.dll</code>または<code>libgs.so</code>）が検索パス内にあることを確認してください。Windows上でGSバージョン9.23の場合は<code>Path</code>（［コントロールパネル］&gt;［システム］&gt;［詳細設定タブ］&gt;［環境変数］からアクセス）に次のように追加します。</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.22\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.23\bin</code></p>
         </blockquote>Linuxでは<blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p><code>/usr/lib</code>には<code>libgs.so.9.22</code>への<code>libgs.so</code>リンクがあります。</p>
+        <p><code>/usr/lib</code>には<code>libgs.so.9.23</code>への<code>libgs.so</code>リンクがあります。</p>
         <p>Hunspellを通してスペルチェック機能を利用できます。その<a href="http://wiki.services.openoffice.org/wiki/Dictionaries">辞書ファイル</a>（<code>.aff</code>、<code>.dic</code>）をVietOCRの<code>dict</code>フォルダに配置してください。<code>user.dic</code>は1行につき1単語ずつカスタム単語リストを含むUTF-8エンコードのファイルです。</p>
         <p>LinuxではHunspellとその辞書をSynapticまたは次のように<code>apt</code>でインストールします。</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>

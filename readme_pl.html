@@ -38,13 +38,13 @@ Acquisition Library v2.0, która wymaga Windows XP Service Pack 1 (SP1) lub nows
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
         <p>Obsługa plików PDF jest możliwa dzięki <a href="http://www.ghostscript.com/">GPL
-                Ghostscript</a>. Po zainstalowaniu bibliotek upewnij się, że udostępnione biblioteki (<code>gsdll32.dll</code> or <code>libgs.so</code>) &nbsp;są w ścieżce wyszukiwania poprzez ustawienie odpowiednich zmiennych systemowych. W Windows dla GS w wersji 9.22, dodaj poniższy wpis do&nbsp;zmiennej&nbsp;<code>Path</code>&nbsp;(dostępnej poprzez Panel Kontrolny &gt; System &gt; zakładka Zaawansowane &gt; Zmienne środowiskowe...) :</p>
+                Ghostscript</a>. Po zainstalowaniu bibliotek upewnij się, że udostępnione biblioteki (<code>gsdll32.dll</code> or <code>libgs.so</code>) &nbsp;są w ścieżce wyszukiwania poprzez ustawienie odpowiednich zmiennych systemowych. W Windows dla GS w wersji 9.23, dodaj poniższy wpis do&nbsp;zmiennej&nbsp;<code>Path</code>&nbsp;(dostępnej poprzez Panel Kontrolny &gt; System &gt; zakładka Zaawansowane &gt; Zmienne środowiskowe...) :</p>
         <blockquote>
-            <p><code>;C:\Program Files\gs\gs9.22\bin</code></p>
+            <p><code>;C:\Program Files\gs\gs9.23\bin</code></p>
         </blockquote>W systemie Linux: <blockquote>
             <p><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib</code></p>
         </blockquote>
-        <p>gdzie w&nbsp;<code>/usr/lib&nbsp;</code>jest zlokalizowany link&nbsp;<code>libgs.so</code>&nbsp;do <code>libgs.so.9.22</code>.</p>
+        <p>gdzie w&nbsp;<code>/usr/lib&nbsp;</code>jest zlokalizowany link&nbsp;<code>libgs.so</code>&nbsp;do <code>libgs.so.9.23</code>.</p>
         <p>Funkcjonalność sprawdzania pisowni jest dostępna poprzez Hunspell, którego pliki <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">słownika (</a><code>.aff</code> <code>.dic</code>) powinny być umieszczone w folderze <code>dict</code> programu VietOCR. <code>user.dic</code> jest plikiem z kodowaniem UTF-8, który zawiera listę słów, po jednym słowie na linię.</p>
         <p>W systemie Linux, Hunspell wraz ze słownikami może być zainstalowany za pomocą Menedżera pakietów Synaptic lub polecenia&nbsp;<code>apt</code>, jak poniżej:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
