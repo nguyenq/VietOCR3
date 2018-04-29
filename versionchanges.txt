@@ -157,9 +157,9 @@ Version 4.7.2 (16 April 2018)
 - Update jai-imageio-core to 1.4.0 for Java 9 fixes
 - Update to Tess4J 3.4.7 and Lept4J 1.6.4
 
-Version 5.0 alpha (16 April 2018)
-- Upgrade to Tesseract 4.00alpha (69c8292d) and language data
-- Upgrade to Tess4J 4.0.0-SNAPSHOT
+Version 5.0 (28 April 2018)
+- Upgrade to Tesseract 4.0.0-beta.1 (69c8292d) and language data
+- Upgrade to Tess4J 4.0.0 and Lept4J 1.7.3
 - Upgrade Tesseract 4.00 fast language packs
 - Autodeskew for batch and bulk processes
 - Implement despeckle function
