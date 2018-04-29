@@ -250,7 +250,7 @@ public class Gui extends JFrame {
     private void getInstalledLanguagePacks() {
         if (WINDOWS) {
             tessPath = new File(baseDir, TESSERACT_PATH).getPath();
-            datapath = tessPath + "/tessdata";
+            datapath = tessPath + "/4.00/tessdata";
         } else {
             tessPath = prefs.get(strTessDir, "/usr/bin");
             datapath = "/usr/share/tesseract-ocr/4.00/tessdata";
@@ -260,7 +260,7 @@ public class Gui extends JFrame {
         lookupISO_3_1_Codes = new Properties();
 
         try {
-            File tessdataDir = new File(tessPath, TESSDATA);
+            File tessdataDir = new File(tessPath, "4.00/" + TESSDATA);
             if (!tessdataDir.exists()) {
                 String TESSDATA_PREFIX = System.getenv("TESSDATA_PREFIX");
                 if (TESSDATA_PREFIX == null && !WINDOWS) { // if TESSDATA_PREFIX env var not set

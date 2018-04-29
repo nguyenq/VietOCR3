@@ -94,7 +94,7 @@ public class GuiWithSettings extends GuiWithLaF {
         dialog.setLookupISO639(lookupISO639);
         dialog.setLookupISO_3_1_Codes(lookupISO_3_1_Codes);
         dialog.setInstalledLanguages(installedLanguages);
-        dialog.setTessdataDir(new File(datapath, TESSDATA));
+        dialog.setTessdataDir(new File(datapath));
         dialog.setVisible(true);
     }
 
