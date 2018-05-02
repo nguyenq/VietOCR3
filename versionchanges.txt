@@ -163,3 +163,6 @@ Version 5.0 (28 April 2018)
 - Upgrade Tesseract 4.00 fast language packs
 - Autodeskew for batch and bulk processes
 - Implement despeckle function
+
+Version 5.0.1 (2 May 2018)
+- Update Tess4J to 4.0.1
