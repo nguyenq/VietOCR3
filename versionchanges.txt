@@ -158,4 +158,4 @@ Version 4.7.2 (16 April 2018)
 - Update to Tess4J 3.4.7 and Lept4J 1.6.4
 
 Version 4.7.3 (2 May 2018)
-- Update Tess4J to 3.4.8
+- Update Tess4J 3.4.9 and Lept4J 1.6.5
