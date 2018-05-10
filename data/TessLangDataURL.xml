@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-    <comment>Tesseract 4.00 best language data packs</comment>
+    <comment>Tesseract 4.00 fast language data packs</comment>
     <entry key="afr">https://github.com/tesseract-ocr/tessdata_fast/raw/master/afr.traineddata</entry>
     <entry key="amh">https://github.com/tesseract-ocr/tessdata_fast/raw/master/amh.traineddata</entry>
     <entry key="ara">https://github.com/tesseract-ocr/tessdata_fast/raw/master/ara.traineddata</entry>

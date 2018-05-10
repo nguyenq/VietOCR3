@@ -1878,7 +1878,7 @@ public class Gui extends JFrame {
                 curLangCode = jComboBoxLang.getSelectedItem().toString();
             }
             // Hide Viet Input Method submenu if selected OCR Language is not Vietnamese
-            boolean vie = curLangCode.contains("vie");
+            boolean vie = curLangCode.contains("vie") || curLangCode.contains("Vietnamese");
             VietKeyListener.setVietModeEnabled(vie);
             this.jMenuInputMethod.setVisible(vie);
             this.jSeparatorInputMethod.setVisible(vie);
