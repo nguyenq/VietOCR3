@@ -70,7 +70,7 @@
     <entry key="kir">https://github.com/tesseract-ocr/tessdata_fast/raw/master/kir.traineddata</entry>
     <entry key="kor">https://github.com/tesseract-ocr/tessdata_fast/raw/master/kor.traineddata</entry>
     <entry key="kor_vert">https://github.com/tesseract-ocr/tessdata_fast/raw/master/kor_vert.traineddata</entry>
-    <entry key="kur_ara">https://github.com/tesseract-ocr/tessdata_fast/raw/master/kur_ara.traineddata</entry>
+    <entry key="kmr">https://github.com/tesseract-ocr/tessdata_fast/raw/master/kmr.traineddata</entry>
     <entry key="lao">https://github.com/tesseract-ocr/tessdata_fast/raw/master/lao.traineddata</entry>
     <entry key="lat">https://github.com/tesseract-ocr/tessdata_fast/raw/master/lat.traineddata</entry>
     <entry key="lav">https://github.com/tesseract-ocr/tessdata_fast/raw/master/lav.traineddata</entry>
