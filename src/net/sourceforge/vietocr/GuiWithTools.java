@@ -17,6 +17,8 @@ package net.sourceforge.vietocr;
 
 import java.awt.Cursor;
 import java.io.File;
+import java.nio.file.Files;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -34,7 +36,9 @@ public class GuiWithTools extends GuiWithSpellcheck {
     private final String strImageFolder = "ImageFolder";
     File imageFolder;
     FileFilter selectedFilter;
-    
+    FileFilter tiffFilter = new SimpleFilter("tif;tiff", "TIFF");
+    FileFilter pdfFilter = new SimpleFilter("pdf", "PDF");
+
     private final static Logger logger = Logger.getLogger(GuiWithTools.class.getName());
 
     public GuiWithTools() {
@@ -52,7 +56,6 @@ public class GuiWithTools extends GuiWithSpellcheck {
         jf.setDialogTitle(bundle.getString("Select_Input_Images"));
         jf.setCurrentDirectory(imageFolder);
         jf.setMultiSelectionEnabled(true);
-        FileFilter tiffFilter = new SimpleFilter("tif;tiff", "TIFF");
         FileFilter jpegFilter = new SimpleFilter("jpg;jpeg", "JPEG");
         FileFilter gifFilter = new SimpleFilter("gif", "GIF");
         FileFilter pngFilter = new SimpleFilter("png", "PNG");
@@ -156,7 +159,6 @@ public class GuiWithTools extends GuiWithSpellcheck {
         jf.setDialogTitle(bundle.getString("Select_Input_TIFF"));
 //        jf.setApproveButtonText("Split");
         jf.setCurrentDirectory(imageFolder);
-        FileFilter tiffFilter = new SimpleFilter("tif;tiff", "TIFF");
         jf.addChoosableFileFilter(tiffFilter);
 
         if (selectedFilter != null) {
@@ -241,7 +243,6 @@ public class GuiWithTools extends GuiWithSpellcheck {
         jf.setDialogTitle(bundle.getString("Select_Input_PDFs"));
         jf.setCurrentDirectory(imageFolder);
         jf.setMultiSelectionEnabled(true);
-        FileFilter pdfFilter = new SimpleFilter("pdf", "PDF");
         jf.addChoosableFileFilter(pdfFilter);
         jf.setAcceptAllFileFilterUsed(false);
 
@@ -401,6 +402,85 @@ public class GuiWithTools extends GuiWithSpellcheck {
             };
 
             worker.execute();
+        }
+    }
+
+    @Override
+    void jMenuItemConvertPdfActionPerformed(java.awt.event.ActionEvent evt) {
+        JFileChooser jf = new JFileChooser();
+        jf.setDialogTitle(bundle.getString("Select_Input_PDF"));
+        jf.setCurrentDirectory(imageFolder);
+        jf.addChoosableFileFilter(pdfFilter);
+        jf.setAcceptAllFileFilterUsed(false);
+
+        if (jf.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            final File inputPdf = jf.getSelectedFile();
+            imageFolder = jf.getCurrentDirectory();
+
+            jf = new JFileChooser();
+            jf.setDialogTitle(bundle.getString("Save_Multi-page_TIFF_Image"));
+            jf.setCurrentDirectory(imageFolder);
+            jf.setFileFilter(tiffFilter);
+            jf.setAcceptAllFileFilterUsed(false);
+            if (jf.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = jf.getSelectedFile();
+                if (!(selectedFile.getName().endsWith(".tif") || selectedFile.getName().endsWith(".tiff"))) {
+                    selectedFile = new File(selectedFile.getParent(), selectedFile.getName() + ".tif");
+                }
+
+                final File targetFile = selectedFile;
+
+                jLabelStatus.setText(bundle.getString("ConvertPDF_running..."));
+                jProgressBar1.setIndeterminate(true);
+                jProgressBar1.setString(bundle.getString("ConvertPDF_running..."));
+                jProgressBar1.setVisible(true);
+                getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                getGlassPane().setVisible(true);
+
+                SwingWorker worker = new SwingWorker<File, Void>() {
+
+                    @Override
+                    protected File doInBackground() throws Exception {
+                        File outputTiffFile = PdfUtilities.convertPdf2Tiff(inputPdf);
+                        Files.move(outputTiffFile.toPath(), targetFile.toPath(), REPLACE_EXISTING);
+                        return targetFile;
+                    }
+
+                    @Override
+                    protected void done() {
+                        jLabelStatus.setText(bundle.getString("ConvertPDF_completed"));
+                        jProgressBar1.setIndeterminate(false);
+                        jProgressBar1.setString(bundle.getString("ConvertPDF_completed"));
+
+                        try {
+                            File result = get();
+                            JOptionPane.showMessageDialog(GuiWithTools.this, bundle.getString("ConvertPDF_completed") + result.getName() + bundle.getString("created"), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+                        } catch (InterruptedException ignore) {
+                            logger.log(Level.WARNING, ignore.getMessage(), ignore);
+                        } catch (java.util.concurrent.ExecutionException e) {
+                            String why;
+                            Throwable cause = e.getCause();
+                            if (cause != null) {
+                                if (cause instanceof OutOfMemoryError) {
+                                    why = bundle.getString("OutOfMemoryError");
+                                } else {
+                                    why = cause.getMessage();
+                                }
+                            } else {
+                                why = e.getMessage();
+                            }
+                            logger.log(Level.SEVERE, why, e);
+                            JOptionPane.showMessageDialog(GuiWithTools.this, why, APP_NAME, JOptionPane.ERROR_MESSAGE);
+                        } finally {
+                            jProgressBar1.setVisible(false);
+                            getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                            getGlassPane().setVisible(false);
+                        }
+                    }
+                };
+
+                worker.execute();
+            }
         }
     }
 

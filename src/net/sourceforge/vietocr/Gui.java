@@ -795,6 +795,7 @@ public class Gui extends JFrame {
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
         jMenuItemMergePdf = new javax.swing.JMenuItem();
         jMenuItemSplitPdf = new javax.swing.JMenuItem();
+        jMenuItemConvertPdf = new javax.swing.JMenuItem();
         jMenuHelp = new javax.swing.JMenu();
         jMenuItemHelp = new javax.swing.JMenuItem();
         jSeparatorAbout = new javax.swing.JPopupMenu.Separator();
@@ -1743,6 +1744,15 @@ public class Gui extends JFrame {
             }
         });
         jMenuTools.add(jMenuItemSplitPdf);
+
+        jMenuItemConvertPdf.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemConvertPdf.Mnemonic").charAt(0));
+        jMenuItemConvertPdf.setText(bundle.getString("jMenuItemConvertPdf.Text")); // NOI18N
+        jMenuItemConvertPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemConvertPdfActionPerformed(evt);
+            }
+        });
+        jMenuTools.add(jMenuItemConvertPdf);
 
         jMenuBar2.add(jMenuTools);
 
@@ -2758,6 +2768,10 @@ public class Gui extends JFrame {
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemDespeckle3x3ActionPerformed
 
+    void jMenuItemConvertPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConvertPdfActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jMenuItemConvertPdfActionPerformed
+
     /**
      * Pastes image from clipboard.
      */
@@ -2909,6 +2923,7 @@ public class Gui extends JFrame {
     protected javax.swing.JMenuItem jMenuItemBulkOCR;
     private javax.swing.JMenuItem jMenuItemChangeCase;
     private javax.swing.JMenuItem jMenuItemContrast;
+    private javax.swing.JMenuItem jMenuItemConvertPdf;
     private javax.swing.JMenuItem jMenuItemCrop;
     private javax.swing.JMenuItem jMenuItemDeskew;
     private javax.swing.JMenuItem jMenuItemDespeckle2x2;
