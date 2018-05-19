@@ -29,6 +29,7 @@ import javax.swing.filechooser.FileFilter;
 import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.tess4j.util.PdfUtilities;
 import net.sourceforge.vietocr.util.Utils;
+import net.sourceforge.vietpad.components.JFileChooserWithConfirm;
 import net.sourceforge.vietpad.components.SimpleFilter;
 
 public class GuiWithTools extends GuiWithSpellcheck {
@@ -79,18 +80,15 @@ public class GuiWithTools extends GuiWithSpellcheck {
             final File[] inputs = jf.getSelectedFiles();
             imageFolder = jf.getCurrentDirectory();
 
-            jf = new JFileChooser();
+            jf = new JFileChooserWithConfirm();
+            ((JFileChooserWithConfirm) jf).setLocalizedMessage(bundle.getString("file_already_exist"));
             jf.setDialogTitle(bundle.getString("Save_Multi-page_TIFF_Image"));
             jf.setCurrentDirectory(imageFolder);
             jf.setFileFilter(tiffFilter);
             jf.setAcceptAllFileFilterUsed(false);
             if (jf.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = jf.getSelectedFile();
-                if (!(selectedFile.getName().endsWith(".tif") || selectedFile.getName().endsWith(".tiff"))) {
-                    selectedFile = new File(selectedFile.getParent(), selectedFile.getName() + ".tif");
-                }
+                final File outputTiff = jf.getSelectedFile();
 
-                final File outputTiff = selectedFile;
                 if (outputTiff.exists()) {
                     outputTiff.delete();
                 }
@@ -250,7 +248,8 @@ public class GuiWithTools extends GuiWithSpellcheck {
             final File[] inputPdfs = jf.getSelectedFiles();
             imageFolder = jf.getCurrentDirectory();
 
-            jf = new JFileChooser();
+            jf = new JFileChooserWithConfirm();
+            ((JFileChooserWithConfirm) jf).setLocalizedMessage(bundle.getString("file_already_exist"));
             jf.setDialogTitle(bundle.getString("Save_Merged_PDF"));
             jf.setCurrentDirectory(imageFolder);
             jf.setFileFilter(pdfFilter);
@@ -417,18 +416,14 @@ public class GuiWithTools extends GuiWithSpellcheck {
             final File inputPdf = jf.getSelectedFile();
             imageFolder = jf.getCurrentDirectory();
 
-            jf = new JFileChooser();
+            jf = new JFileChooserWithConfirm();
+            ((JFileChooserWithConfirm) jf).setLocalizedMessage(bundle.getString("file_already_exist"));
             jf.setDialogTitle(bundle.getString("Save_Multi-page_TIFF_Image"));
             jf.setCurrentDirectory(imageFolder);
             jf.setFileFilter(tiffFilter);
             jf.setAcceptAllFileFilterUsed(false);
             if (jf.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = jf.getSelectedFile();
-                if (!(selectedFile.getName().endsWith(".tif") || selectedFile.getName().endsWith(".tiff"))) {
-                    selectedFile = new File(selectedFile.getParent(), selectedFile.getName() + ".tif");
-                }
-
-                final File targetFile = selectedFile;
+                final File targetFile = jf.getSelectedFile();
 
                 jLabelStatus.setText(bundle.getString("ConvertPDF_running..."));
                 jProgressBar1.setIndeterminate(true);
