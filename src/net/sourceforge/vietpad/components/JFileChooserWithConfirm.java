@@ -27,6 +27,18 @@ import javax.swing.filechooser.FileFilter;
 public class JFileChooserWithConfirm extends JFileChooser {
 
     private String localizedMessage = "%1$s already exists.\nDo you want to replace it?";
+    
+    public JFileChooserWithConfirm() {
+        super();
+    }
+    
+    public JFileChooserWithConfirm(String currentDirectoryPath) {
+        super(currentDirectoryPath);
+    }
+
+    public JFileChooserWithConfirm(File currentDirectory) {
+        super(currentDirectory);
+    }
 
     @Override
     public void approveSelection() {
@@ -47,7 +59,7 @@ public class JFileChooserWithConfirm extends JFileChooser {
         }
 
         if (selectedFile.exists() && getDialogType() == JFileChooser.SAVE_DIALOG) {
-            int dialogResult = JOptionPane.showConfirmDialog(this, String.format(getLocalizedMessage(), selectedFile.getPath()), this.getDialogTitle(), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            int dialogResult = JOptionPane.showConfirmDialog(this, String.format(getLocalizedMessage(), selectedFile.getName()), "Confirm " + this.getDialogTitle(), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             switch (dialogResult) {
                 case JOptionPane.YES_OPTION:
                     super.approveSelection();
