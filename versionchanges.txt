@@ -159,3 +159,7 @@ Version 4.7.2 (16 April 2018)
 
 Version 4.7.3 (2 May 2018)
 - Update Tess4J 3.4.9 and Lept4J 1.6.5
+
+Version 4.8 (30 June 2018)
+- Upgrade to Tesseract 3.05.02 (7e5f0d6)
+- Upgrade to Tess4J 3.5.0
