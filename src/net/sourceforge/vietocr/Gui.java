@@ -2263,7 +2263,8 @@ public class Gui extends JFrame {
      * @return
      */
     boolean saveFileDlg() {
-        JFileChooser saveChooser = new JFileChooser(outputDirectory);
+        JFileChooser saveChooser = new JFileChooserWithConfirm(outputDirectory);
+        ((JFileChooserWithConfirm) saveChooser).setLocalizedMessage(bundle.getString("file_already_exist"));
         FileFilter textFilter = new SimpleFilter("txt", bundle.getString("UTF-8_Text"));
         saveChooser.addChoosableFileFilter(textFilter);
         saveChooser.setFileFilter(textFilter);
@@ -2274,25 +2275,7 @@ public class Gui extends JFrame {
 
         if (saveChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             outputDirectory = saveChooser.getCurrentDirectory().getPath();
-            File f = saveChooser.getSelectedFile();
-            if (saveChooser.getFileFilter() == textFilter) {
-                if (!f.getName().endsWith(".txt")) {
-                    f = new File(f.getPath() + ".txt");
-                }
-                if (textFile != null && textFile.getPath().equals(f.getPath())) {
-                    if (JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(
-                            Gui.this,
-                            String.format(bundle.getString("file_already_exist"), textFile.getName()),
-                            bundle.getString("Confirm_Save_As"), JOptionPane.YES_NO_OPTION,
-                            JOptionPane.WARNING_MESSAGE)) {
-                        return false;
-                    }
-                } else {
-                    textFile = f;
-                }
-            } else {
-                textFile = f;
-            }
+            textFile = saveChooser.getSelectedFile();
             return saveTextFile();
         } else {
             return false;
