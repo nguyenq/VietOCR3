@@ -174,7 +174,7 @@ Version 5.0.2 (10 May 2018)
 Version 5.0.3 (19 May 2018)
 - Add support for Convert PDF to TIFF
 
-Version 5.1.0-Beta (3 July 2018)
+Version 5.1.0 (22 July 2018)
 - Upgrade to Tesseract 4.0.0-beta.3 (b502bbf) and language data
-- Upgrade to Tess4J 4.1.0-SNAPSHOT and Lept4J 1.10.0
+- Upgrade to Tess4J 4.1.0 and Lept4J 1.10.0
 - Update dependencies
