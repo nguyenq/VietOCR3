@@ -178,3 +178,6 @@ Version 5.1.0 (22 July 2018)
 - Upgrade to Tesseract 4.0.0-beta.3 (b502bbf) and language data
 - Upgrade to Tess4J 4.1.0 and Lept4J 1.10.0
 - Update dependencies
+
+Version 5.1.1 (28 July 2018)
+- Update Tess4J 4.1.1
