@@ -61,7 +61,7 @@ public class Gui extends JFrame {
             + (MAC_OS_X ? "/Library/Application Support/" + APP_NAME : "/." + APP_NAME.toLowerCase()));
     static final String UTF8 = "UTF-8";
     static final String strUILanguage = "UILanguage";
-    static final String TESSDATA = "tessdata";
+    static final String TESSDATA = "/tessdata";
     private static final String strLookAndFeel = "lookAndFeel";
     private static final String strWindowState = "windowState";
     private static final String strLangCode = "langCode";
@@ -250,7 +250,7 @@ public class Gui extends JFrame {
     private void getInstalledLanguagePacks() {
         if (WINDOWS) {
             tessPath = new File(baseDir, TESSERACT_PATH).getPath();
-            datapath = tessPath + "/4.00/tessdata";
+            datapath = tessPath + TESSDATA;
         } else {
             tessPath = prefs.get(strTessDir, "/usr/bin");
             datapath = "/usr/share/tesseract-ocr/4.00/tessdata";
@@ -260,7 +260,7 @@ public class Gui extends JFrame {
         lookupISO_3_1_Codes = new Properties();
 
         try {
-            File tessdataDir = new File(tessPath, "4.00/" + TESSDATA);
+            File tessdataDir = new File(tessPath, TESSDATA);
             if (!tessdataDir.exists()) {
                 String TESSDATA_PREFIX = System.getenv("TESSDATA_PREFIX");
                 if (TESSDATA_PREFIX == null && !WINDOWS) { // if TESSDATA_PREFIX env var not set
