@@ -167,3 +167,7 @@ Version 4.8 (30 June 2018)
 Version 4.8.1 (2 July 2018)
 - Link Tesseract against Leptonica 1.75.3
 - Update to Tess4J 3.5.1
+
+Version 4.8.2 (3 September 2018)
+- Update to Tess4J 3.5.3
+- Update dependencies
