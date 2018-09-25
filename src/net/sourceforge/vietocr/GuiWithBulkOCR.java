@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import net.sourceforge.vietocr.util.Utils;
 
-public class GuiWithBulkOCR extends GuiWithPostprocess {
+public class GuiWithBulkOCR extends GuiWithFindReplace {
 
     private BulkOcrWorker ocrWorker;
     private final StatusFrame statusFrame;

@@ -660,6 +660,7 @@ public class Gui extends JFrame {
         jButtonCancelOCR.setVisible(false);
         jButtonClear = new javax.swing.JButton();
         jSeparator17 = new javax.swing.JToolBar.Separator();
+        jButtonFind = new javax.swing.JButton();
         jToggleButtonSpellCheck = new javax.swing.JToggleButton();
         jButtonPostProcess = new javax.swing.JButton();
         jButtonRemoveLineBreaks = new javax.swing.JButton();
@@ -1121,6 +1122,18 @@ public class Gui extends JFrame {
         });
         jToolBar1.add(jButtonClear);
         jToolBar1.add(jSeparator17);
+
+        jButtonFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/Find.png"))); // NOI18N
+        jButtonFind.setToolTipText(bundle.getString("jButtonFind.ToolTipText")); // NOI18N
+        jButtonFind.setFocusable(false);
+        jButtonFind.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonFind.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFindActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonFind);
 
         jToggleButtonSpellCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/inline_spellcheck.png"))); // NOI18N
         jToggleButtonSpellCheck.setToolTipText(bundle.getString("jToggleButtonSpellCheck.ToolTipText")); // NOI18N
@@ -2756,6 +2769,10 @@ public class Gui extends JFrame {
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemConvertPdfActionPerformed
 
+    void jButtonFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFindActionPerformed
+        JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
+    }//GEN-LAST:event_jButtonFindActionPerformed
+
     /**
      * Pastes image from clipboard.
      */
@@ -2853,6 +2870,7 @@ public class Gui extends JFrame {
     protected javax.swing.JButton jButtonCancelOCR;
     private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonCollapseExpand;
+    private javax.swing.JButton jButtonFind;
     javax.swing.JButton jButtonFitImage;
     private javax.swing.JButton jButtonNextPage;
     protected javax.swing.JButton jButtonOCR;
