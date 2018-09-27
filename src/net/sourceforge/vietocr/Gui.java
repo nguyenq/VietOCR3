@@ -1123,11 +1123,8 @@ public class Gui extends JFrame {
         jToolBar1.add(jButtonClear);
         jToolBar1.add(jSeparator17);
 
-        jButtonFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/Find.png"))); // NOI18N
+        jButtonFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/find.png"))); // NOI18N
         jButtonFind.setToolTipText(bundle.getString("jButtonFind.ToolTipText")); // NOI18N
-        jButtonFind.setFocusable(false);
-        jButtonFind.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonFind.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonFindActionPerformed(evt);

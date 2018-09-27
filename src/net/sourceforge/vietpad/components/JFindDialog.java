@@ -281,6 +281,7 @@ public class JFindDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindDialog"); // NOI18N
         setTitle(bundle.getString("this.Title")); // NOI18N
+        setResizable(false);
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
 
