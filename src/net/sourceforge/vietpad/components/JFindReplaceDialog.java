@@ -57,7 +57,7 @@ import net.sourceforge.vietpad.utilities.VietUtilities;
 /**
  * Find and Replace Dialog.
  */
-public class JFindDialog extends javax.swing.JDialog {
+public class JFindReplaceDialog extends javax.swing.JDialog {
 
     final boolean LINUX = System.getProperty("os.name").equals("Linux");
     private final JTextComponent txtbox;
@@ -67,16 +67,16 @@ public class JFindDialog extends javax.swing.JDialog {
     private ResourceBundle bundle;
 
     static private boolean mouse = false;
-    private final static Logger logger = Logger.getLogger(JFindDialog.class.getName());
+    private final static Logger logger = Logger.getLogger(JFindReplaceDialog.class.getName());
 
     /**
-     * Creates new form FindDialog
+     * Creates new form JFindReplaceDialog
      */
-    public JFindDialog(java.awt.Frame parent, boolean modal, JTextComponent txtbox) {
+    public JFindReplaceDialog(java.awt.Frame parent, boolean modal, JTextComponent txtbox) {
         super(parent, modal);
         initComponents();
         setLocale(parent.getLocale());
-        bundle = ResourceBundle.getBundle("net.sourceforge.vietpad.components.JFindDialog");
+        bundle = ResourceBundle.getBundle("net.sourceforge.vietpad.components.JFindReplaceDialog");
         this.txtbox = txtbox;
 
         ActionListener findAction = new ActionListener() {
@@ -279,7 +279,7 @@ public class JFindDialog extends javax.swing.JDialog {
         jButtonClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindDialog"); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog"); // NOI18N
         setTitle(bundle.getString("this.Title")); // NOI18N
         setResizable(false);
 
@@ -325,14 +325,14 @@ public class JFindDialog extends javax.swing.JDialog {
         jPanelOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("Options"))); // NOI18N
         jPanelOptions.setLayout(new java.awt.GridBagLayout());
 
-        jCheckBoxMatchCase.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindDialog").getString("jCheckBoxMatchCase.Mnemonic").charAt(0));
+        jCheckBoxMatchCase.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jCheckBoxMatchCase.Mnemonic").charAt(0));
         jCheckBoxMatchCase.setText(bundle.getString("jCheckBoxMatchCase.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(2, 4, 2, 4);
         jPanelOptions.add(jCheckBoxMatchCase, gridBagConstraints);
 
-        jCheckBoxMatchWholeWord.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindDialog").getString("jCheckBoxMatchWholeWord.Mnemonic").charAt(0));
+        jCheckBoxMatchWholeWord.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jCheckBoxMatchWholeWord.Mnemonic").charAt(0));
         jCheckBoxMatchWholeWord.setText(bundle.getString("jCheckBoxMatchWholeWord.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -341,7 +341,7 @@ public class JFindDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(2, 4, 2, 4);
         jPanelOptions.add(jCheckBoxMatchWholeWord, gridBagConstraints);
 
-        jCheckBoxMatchDiacritics.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindDialog").getString("jCheckBoxMatchDiacritics.Mnemonic").charAt(0));
+        jCheckBoxMatchDiacritics.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jCheckBoxMatchDiacritics.Mnemonic").charAt(0));
         jCheckBoxMatchDiacritics.setText(bundle.getString("jCheckBoxMatchDiacritics.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -350,7 +350,7 @@ public class JFindDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(2, 4, 2, 4);
         jPanelOptions.add(jCheckBoxMatchDiacritics, gridBagConstraints);
 
-        jCheckBoxRegex.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindDialog").getString("jCheckBoxRegex.Mnemonic").charAt(0));
+        jCheckBoxRegex.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jCheckBoxRegex.Mnemonic").charAt(0));
         jCheckBoxRegex.setText(bundle.getString("jCheckBoxRegex.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -359,14 +359,14 @@ public class JFindDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(2, 20, 2, 4);
         jPanelOptions.add(jCheckBoxRegex, gridBagConstraints);
 
-        jRadioButtonSearchUp.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindDialog").getString("jRadioButtonSearchUp.Mnemonic").charAt(0));
+        jRadioButtonSearchUp.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jRadioButtonSearchUp.Mnemonic").charAt(0));
         jRadioButtonSearchUp.setText(bundle.getString("jRadioButtonSearchUp.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(2, 20, 2, 4);
         jPanelOptions.add(jRadioButtonSearchUp, gridBagConstraints);
 
-        jRadioButtonSearchDown.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindDialog").getString("jRadioButtonSearchDown.Mnemonic").charAt(0));
+        jRadioButtonSearchDown.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jRadioButtonSearchDown.Mnemonic").charAt(0));
         jRadioButtonSearchDown.setSelected(true);
         jRadioButtonSearchDown.setText(bundle.getString("jRadioButtonSearchDown.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -386,19 +386,19 @@ public class JFindDialog extends javax.swing.JDialog {
         jPanelButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 3, 50, 7));
         jPanelButton.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
 
-        jButtonFindNext.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindDialog").getString("jButtonFindNext.Mnemonic").charAt(0));
+        jButtonFindNext.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jButtonFindNext.Mnemonic").charAt(0));
         jButtonFindNext.setText(bundle.getString("jButtonFindNext.Text")); // NOI18N
         jPanelButton.add(jButtonFindNext);
 
-        jButtonReplace.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindDialog").getString("jButtonReplace.Mnemonic").charAt(0));
+        jButtonReplace.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jButtonReplace.Mnemonic").charAt(0));
         jButtonReplace.setText(bundle.getString("jButtonReplace.Text")); // NOI18N
         jPanelButton.add(jButtonReplace);
 
-        jButtonReplaceAll.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindDialog").getString("jButtonReplaceAll.Mnemonic").charAt(0));
+        jButtonReplaceAll.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jButtonReplaceAll.Mnemonic").charAt(0));
         jButtonReplaceAll.setText(bundle.getString("jButtonReplaceAll.Text")); // NOI18N
         jPanelButton.add(jButtonReplaceAll);
 
-        jButtonClose.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindDialog").getString("jButtonClose.Mnemonic").charAt(0));
+        jButtonClose.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jButtonClose.Mnemonic").charAt(0));
         jButtonClose.setText(bundle.getString("jButtonClose.Text")); // NOI18N
         jButtonClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -773,12 +773,12 @@ public class JFindDialog extends javax.swing.JDialog {
     
     public void changeUILanguage(final Locale locale) {
         Locale.setDefault(locale);
-        bundle = ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindDialog");
+        bundle = ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog");
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FormLocalizer localizer = new FormLocalizer(JFindDialog.this, JFindDialog.class);
+                FormLocalizer localizer = new FormLocalizer(JFindReplaceDialog.this, JFindReplaceDialog.class);
                 localizer.ApplyCulture(bundle);
             }
         });
@@ -801,21 +801,23 @@ public class JFindDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFindDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFindReplaceDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFindDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFindReplaceDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFindDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFindReplaceDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFindDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFindReplaceDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JFindDialog dialog = new JFindDialog(new javax.swing.JFrame(), true, new javax.swing.JTextArea());
+                JFindReplaceDialog dialog = new JFindReplaceDialog(new javax.swing.JFrame(), true, new javax.swing.JTextArea());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

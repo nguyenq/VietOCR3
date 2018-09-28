@@ -19,21 +19,21 @@ import java.util.Locale;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
-import net.sourceforge.vietpad.components.JFindDialog;
+import net.sourceforge.vietpad.components.JFindReplaceDialog;
 
 public class GuiWithFindReplace extends GuiWithPostprocess {
 
-    private JDialog findDialog;
+    private JDialog frDialog;
     private final static Logger logger = Logger.getLogger(GuiWithFindReplace.class.getName());
 
     @Override
     void jButtonFindActionPerformed(java.awt.event.ActionEvent evt) {
-        if (findDialog == null) {
-            findDialog = new JFindDialog(this, false, this.jTextArea1);
-            findDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
-            findDialog.setLocationRelativeTo(this);
+        if (frDialog == null) {
+            frDialog = new JFindReplaceDialog(this, false, this.jTextArea1);
+            frDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+            frDialog.setLocationRelativeTo(this);
         }
-        findDialog.setVisible(true);
+        frDialog.setVisible(true);
     }
 
     @Override
@@ -43,8 +43,8 @@ public class GuiWithFindReplace extends GuiWithPostprocess {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                if (findDialog != null) {
-                    ((JFindDialog) findDialog).changeUILanguage(locale);
+                if (frDialog != null) {
+                    ((JFindReplaceDialog) frDialog).changeUILanguage(locale);
                 }
             }
         });

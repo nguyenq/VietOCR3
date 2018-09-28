@@ -188,6 +188,8 @@ public class Gui extends JFrame {
                         jButtonActualSize.doClick();
                     } else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD2)) {
                         jButtonFitImage.doClick();
+                    } else if (e.isControlDown() && (e.getKeyCode() == KeyEvent.VK_F)) {
+                        jButtonFind.doClick();
                     } else if (jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_Z) {
                         m_undoAction.actionPerformed(null);
                     } else if (jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_Y) {
