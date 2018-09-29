@@ -23,8 +23,16 @@ import net.sourceforge.vietpad.components.JFindReplaceDialog;
 
 public class GuiWithFindReplace extends GuiWithPostprocess {
 
-    private JDialog frDialog;
+    private JFindReplaceDialog frDialog;
+    private final boolean bMatchDiacritics, bMatchWholeWord, bMatchCase, bMatchRegex;
     private final static Logger logger = Logger.getLogger(GuiWithFindReplace.class.getName());
+
+    public GuiWithFindReplace() {
+        bMatchDiacritics = prefs.getBoolean("MatchDiacritics", false);
+        bMatchWholeWord = prefs.getBoolean("MatchWholeWord", false);
+        bMatchCase = prefs.getBoolean("MatchCase", false);
+        bMatchRegex = prefs.getBoolean("MatchRegex", false);
+    }
 
     @Override
     void jButtonFindActionPerformed(java.awt.event.ActionEvent evt) {
@@ -32,6 +40,10 @@ public class GuiWithFindReplace extends GuiWithPostprocess {
             frDialog = new JFindReplaceDialog(this, false, this.jTextArea1);
             frDialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
             frDialog.setLocationRelativeTo(this);
+            frDialog.setMatchDiacritics(bMatchDiacritics);
+            frDialog.setMatchWholeWord(bMatchWholeWord);
+            frDialog.setMatchCase(bMatchCase);
+            frDialog.setMatchRegex(bMatchRegex);
         }
         frDialog.setVisible(true);
     }
@@ -48,5 +60,17 @@ public class GuiWithFindReplace extends GuiWithPostprocess {
                 }
             }
         });
+    }
+
+    @Override
+    void quit() {
+        if (frDialog != null) {
+            prefs.putBoolean("MatchDiacritics", frDialog.isMatchDiacritics());
+            prefs.putBoolean("MatchWholeWord", frDialog.isMatchWholeWord());
+            prefs.putBoolean("MatchRegex", frDialog.isMatchRegex());
+            prefs.putBoolean("MatchCase", frDialog.isMatchCase());
+        }
+
+        super.quit();
     }
 }

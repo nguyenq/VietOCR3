@@ -1,17 +1,12 @@
 /**
- * Copyright @ 2018 Quan Nguyen
+ *  Copyright 1999-2002 Matthew Robinson and Pavel Vorobiev.
+ *  All Rights Reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  ===================================================
+ *  This program contains code from the book "Swing"
+ *  2nd Edition by Matthew Robinson and Pavel Vorobiev
+ *  http://www.spindoczine.com/sbe
+ *  ===================================================
  */
 package net.sourceforge.vietpad.components;
 
@@ -56,6 +51,11 @@ import net.sourceforge.vietpad.utilities.VietUtilities;
 
 /**
  * Find and Replace Dialog.
+ *
+ * @author Quan Nguyen
+ * @author Gero Herrmann
+ * @version 2.0, 28 September 2018
+ * @see "http://vietpad.sourceforge.net"
  */
 public class JFindReplaceDialog extends javax.swing.JDialog {
 
@@ -114,7 +114,7 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
                 boolean textExists = m_docFind.getLength() > 0;
                 jButtonFindNext.setEnabled(textExists);
                 jButtonReplace.setEnabled(textExists);
-                jButtonReplaceAll.setEnabled(textExists && !(jCheckBoxRegex.isSelected() && !jCheckBoxMatchDiacritics.isSelected()));
+                jButtonReplaceAll.setEnabled(textExists && !(jCheckBoxMatchRegex.isSelected() && !jCheckBoxMatchDiacritics.isSelected()));
             }
         });
 
@@ -123,7 +123,7 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
         m_txtReplace.addActionListener(findAction);
         m_txtReplace.addMouseListener(mouseLst);
         m_txtReplace.addKeyListener(new VietKeyListener(m_txtReplace));
-        
+
         KeyListener findKeyLst = new KeyAdapter() {
 
             @Override
@@ -133,10 +133,10 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
                 }
             }
         };
-                
+
         jButtonFindNext.addActionListener(findAction);
         jButtonFindNext.addKeyListener(findKeyLst);
-        
+
         ActionListener replaceAction = new ActionListener() {
 
             @Override
@@ -158,8 +158,8 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
 
         jButtonReplace.addActionListener(replaceAction);
         jButtonReplace.addKeyListener(replaceKeyLst);
-        
-                ActionListener replaceAllAction = new ActionListener() {
+
+        ActionListener replaceAllAction = new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -178,11 +178,11 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
             public void itemStateChanged(ItemEvent e) {
                 jButtonFindNext.requestFocusInWindow();
                 Object source = e.getItemSelectable();
-                if (source == jCheckBoxMatchDiacritics || source == jCheckBoxRegex) {
-                    jButtonReplaceAll.setEnabled(m_docFind.getLength() > 0 && !(jCheckBoxRegex.isSelected() && !jCheckBoxMatchDiacritics.isSelected()));
+                if (source == jCheckBoxMatchDiacritics || source == jCheckBoxMatchRegex) {
+                    jButtonReplaceAll.setEnabled(m_docFind.getLength() > 0 && !(jCheckBoxMatchRegex.isSelected() && !jCheckBoxMatchDiacritics.isSelected()));
                 }
-                if (source == jCheckBoxRegex) {
-                    jCheckBoxMatchWholeWord.setEnabled(!jCheckBoxRegex.isSelected());
+                if (source == jCheckBoxMatchRegex) {
+                    jCheckBoxMatchWholeWord.setEnabled(!jCheckBoxMatchRegex.isSelected());
                 }
             }
         };
@@ -190,7 +190,7 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
         jCheckBoxMatchCase.addItemListener(focus4Find2);
         jCheckBoxMatchWholeWord.addItemListener(focus4Find2);
         jCheckBoxMatchDiacritics.addItemListener(focus4Find2);
-        jCheckBoxRegex.addItemListener(focus4Find2);
+        jCheckBoxMatchRegex.addItemListener(focus4Find2);
         jRadioButtonSearchUp.addItemListener(focus4Find2);
         jRadioButtonSearchDown.addItemListener(focus4Find2);
 
@@ -227,7 +227,7 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
                 boolean textExists = m_docFind.getLength() > 0;
                 jButtonFindNext.setEnabled(textExists);
                 jButtonReplace.setEnabled(textExists);
-                jButtonReplaceAll.setEnabled(textExists && !(jCheckBoxRegex.isSelected() && !jCheckBoxMatchDiacritics.isSelected()));
+                jButtonReplaceAll.setEnabled(textExists && !(jCheckBoxMatchRegex.isSelected() && !jCheckBoxMatchDiacritics.isSelected()));
             }
 
             @Override
@@ -269,7 +269,7 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
         jCheckBoxMatchCase = new javax.swing.JCheckBox();
         jCheckBoxMatchWholeWord = new javax.swing.JCheckBox();
         jCheckBoxMatchDiacritics = new javax.swing.JCheckBox();
-        jCheckBoxRegex = new javax.swing.JCheckBox();
+        jCheckBoxMatchRegex = new javax.swing.JCheckBox();
         jRadioButtonSearchUp = new javax.swing.JRadioButton();
         jRadioButtonSearchDown = new javax.swing.JRadioButton();
         jPanelButton = new javax.swing.JPanel();
@@ -350,14 +350,14 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(2, 4, 2, 4);
         jPanelOptions.add(jCheckBoxMatchDiacritics, gridBagConstraints);
 
-        jCheckBoxRegex.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jCheckBoxRegex.Mnemonic").charAt(0));
-        jCheckBoxRegex.setText(bundle.getString("jCheckBoxRegex.Text")); // NOI18N
+        jCheckBoxMatchRegex.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jCheckBoxMatchRegex.Mnemonic").charAt(0));
+        jCheckBoxMatchRegex.setText(bundle.getString("jCheckBoxMatchRegex.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(2, 20, 2, 4);
-        jPanelOptions.add(jCheckBoxRegex, gridBagConstraints);
+        jPanelOptions.add(jCheckBoxMatchRegex, gridBagConstraints);
 
         jRadioButtonSearchUp.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jRadioButtonSearchUp.Mnemonic").charAt(0));
         jRadioButtonSearchUp.setText(bundle.getString("jRadioButtonSearchUp.Text")); // NOI18N
@@ -467,7 +467,7 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
         if (jRadioButtonSearchDown.isSelected()) {
             int iStart = txtbox.getSelectionEnd();
 
-            if (jCheckBoxRegex.isSelected() || jCheckBoxMatchWholeWord.isSelected()) {
+            if (jCheckBoxMatchRegex.isSelected() || jCheckBoxMatchWholeWord.isSelected()) {
                 if (jCheckBoxMatchWholeWord.isSelected() && jCheckBoxMatchWholeWord.isEnabled()) {
                     strFind = "\\b" + Pattern.quote(strFind) + "\\b";
                 }
@@ -495,7 +495,7 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
                 }
             }
         } else {
-            if (jCheckBoxRegex.isSelected() || jCheckBoxMatchWholeWord.isSelected()) {
+            if (jCheckBoxMatchRegex.isSelected() || jCheckBoxMatchWholeWord.isSelected()) {
                 if (jCheckBoxMatchWholeWord.isSelected() && jCheckBoxMatchWholeWord.isEnabled()) {
                     strFind = "\\b" + Pattern.quote(strFind) + "\\b";
                 }
@@ -580,7 +580,7 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
 
         String strReplace = this.m_txtReplace.getText();
         int start = txtbox.getSelectionStart();
-        if (jCheckBoxRegex.isSelected()) {
+        if (jCheckBoxMatchRegex.isSelected()) {
             try {
                 Pattern regex = Pattern.compile((jCheckBoxMatchCase.isSelected() ? "" : "(?i)") + strFind, Pattern.MULTILINE);
                 txtbox.replaceSelection(regex.matcher(selectedText).replaceAll(unescape(strReplace)));
@@ -619,9 +619,9 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
         String strReplace = this.m_txtReplace.getText();
         int count = 0;
 
-        if (jCheckBoxRegex.isSelected() || jCheckBoxMatchDiacritics.isSelected()) {
+        if (jCheckBoxMatchRegex.isSelected() || jCheckBoxMatchDiacritics.isSelected()) {
             // only for MatchDiacritics
-            String patt = jCheckBoxRegex.isSelected() ? strFind : Pattern.quote(strFind);
+            String patt = jCheckBoxMatchRegex.isSelected() ? strFind : Pattern.quote(strFind);
             if (jCheckBoxMatchWholeWord.isSelected() && jCheckBoxMatchWholeWord.isEnabled()) {
                 patt = "\\b" + patt + "\\b";
             }
@@ -744,17 +744,17 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
     }
 
     /**
-     * @return the state of regEx chkbox
+     * @return the state of matchRegex chkbox
      */
-    public boolean isRegEx() {
-        return this.jCheckBoxRegex.isSelected();
+    public boolean isMatchRegex() {
+        return this.jCheckBoxMatchRegex.isSelected();
     }
 
     /**
-     * @param regEx the regEx to set
+     * @param matchRegex the matchRegex to set
      */
-    public void setRegEx(boolean regEx) {
-        this.jCheckBoxRegex.setSelected(regEx);
+    public void setMatchRegex(boolean matchRegex) {
+        this.jCheckBoxMatchRegex.setSelected(matchRegex);
     }
 
     /**
@@ -770,7 +770,7 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
     public void setMatchWholeWord(boolean matchWholeWord) {
         this.jCheckBoxMatchWholeWord.setSelected(matchWholeWord);
     }
-    
+
     public void changeUILanguage(final Locale locale) {
         Locale.setDefault(locale);
         bundle = ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog");
@@ -836,8 +836,8 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonReplaceAll;
     private javax.swing.JCheckBox jCheckBoxMatchCase;
     private javax.swing.JCheckBox jCheckBoxMatchDiacritics;
+    private javax.swing.JCheckBox jCheckBoxMatchRegex;
     private javax.swing.JCheckBox jCheckBoxMatchWholeWord;
-    private javax.swing.JCheckBox jCheckBoxRegex;
     private javax.swing.JComboBox<String> jComboBoxFind;
     private javax.swing.JComboBox<String> jComboBoxReplace;
     private javax.swing.JLabel jLabelReplaceWith;
