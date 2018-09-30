@@ -114,7 +114,7 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
                 boolean textExists = m_docFind.getLength() > 0;
                 jButtonFindNext.setEnabled(textExists);
                 jButtonReplace.setEnabled(textExists);
-                jButtonReplaceAll.setEnabled(textExists && !(jCheckBoxMatchRegex.isSelected() && !jCheckBoxMatchDiacritics.isSelected()));
+                jButtonReplaceAll.setEnabled(textExists && (!isMatchRegex() || isMatchDiacritics()));
             }
         });
 
@@ -500,21 +500,6 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
                 int iEnd = txtbox.getSelectionStart();
 
                 try {
-//                    Pattern regex = Pattern.compile((jCheckBoxMatchCase.isSelected() ? "" : "(?i)") + strFind, Pattern.MULTILINE);
-//                    Matcher m = regex.matcher(searchData);
-//                    m.region(0, iEnd);
-//                    int s = 0, e = 0;
-//                    boolean bTemp = false;
-//                    while (m.find()) {
-//                        s = m.start();
-//                        e = m.end();
-//                        bTemp = true;
-//                    }
-//
-//                    if (bTemp) {
-//                        txtbox.select(s, e);
-//                        return true;
-//                    }
                     Pattern regex = Pattern.compile((jCheckBoxMatchCase.isSelected() ? "" : "(?i)") + String.format("%1$s(?!.*%1$s)", strFind), Pattern.MULTILINE | Pattern.DOTALL);
                     Matcher m = regex.matcher(searchData);
                     m.region(0, iEnd);
@@ -543,7 +528,7 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
         int n = JOptionPane.showConfirmDialog(this,
                 bundle.getString("Cannot_find_\"") + m_txtFind.getText() + "\".\n"
                 + bundle.getString("Continue_search_from_") + (jRadioButtonSearchDown.isSelected() ? bundle.getString("beginning") : bundle.getString("end")) + "?",
-                "VietPad",
+                this.getTitle(),
                 JOptionPane.YES_NO_OPTION);
 
         if (n == JOptionPane.YES_OPTION) {
@@ -709,7 +694,7 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
      */
     protected void warning(String message) {
         JOptionPane.showMessageDialog(this,
-                message, "VietOCR",
+                message, this.getTitle(),
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
