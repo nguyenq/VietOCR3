@@ -167,9 +167,12 @@ public class Gui extends JFrame {
             @Override
             public boolean dispatchKeyEvent(KeyEvent e) {
                 if (e.getID() == KeyEvent.KEY_PRESSED) {
-                    if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) { // Don't catch this event inside the JTextArea
-                        pasteImage(); // Paste image from clipboard
-                        e.consume();
+                    if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_V) {
+                        Component comp = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+                        if (comp != null && !(comp instanceof JTextComponent)) {
+                            pasteImage(); // Paste image from clipboard
+                            e.consume();
+                        }
                     } else if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_LEFT) {
                         jButtonPrevPage.doClick();
                     } else if (!jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_RIGHT) {
