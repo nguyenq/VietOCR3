@@ -34,7 +34,7 @@ public abstract class OCR<T> {
     protected String language = "eng";
     protected String outputFormat = "text";
     protected boolean deskew;
-    protected String datapath = "4.00/tessdata";
+    protected String datapath = "tessdata";
 
     /**
      * Recognizes files or images.

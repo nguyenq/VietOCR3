@@ -193,3 +193,6 @@ Version 5.3.0 (29 September 2018)
 
 Version 5.3.1 (18 October 2018)
 - Update Tess4J 4.2.3 & pdfbox dependencies
+
+Version 5.4.0 (30 October 2018)
+- Upgrade to Tesseract 4.0.0 (5131699)

@@ -6,7 +6,7 @@
     <description>Builds, tests, and runs the project VietOCR.</description>
     <import file="nbproject/build-impl.xml"/>
     <!-- set global properties for this build -->
-    <property name="version" value="5.3.1"/>
+    <property name="version" value="5.4.0"/>
 
     <target name="-post-compile">
         <copy todir="${build.classes.dir}">

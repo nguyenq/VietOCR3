@@ -258,7 +258,7 @@ public class Gui extends JFrame {
             datapath = tessPath + TESSDATA;
         } else {
             tessPath = prefs.get(strTessDir, "/usr/bin");
-            datapath = "/usr/share/tesseract-ocr/4.00/tessdata";
+            datapath = "/usr/share/tesseract-ocr/tessdata";
         }
 
         lookupISO639 = new Properties();
@@ -270,9 +270,9 @@ public class Gui extends JFrame {
                 String TESSDATA_PREFIX = System.getenv("TESSDATA_PREFIX");
                 if (TESSDATA_PREFIX == null && !WINDOWS) { // if TESSDATA_PREFIX env var not set
                     if (tessPath.equals("/usr/bin")) { // default install path of Tesseract on Linux
-                        TESSDATA_PREFIX = "/usr/share/tesseract-ocr/4.00/"; // default install path of tessdata on Linux
+                        TESSDATA_PREFIX = "/usr/share/tesseract-ocr/"; // default install path of tessdata on Linux
                     } else {
-                        TESSDATA_PREFIX = "/usr/local/share/4.00/"; // default make install path of tessdata on Linux
+                        TESSDATA_PREFIX = "/usr/local/share/"; // default make install path of tessdata on Linux
                     }
                 }
                 tessdataDir = new File(TESSDATA_PREFIX, TESSDATA);
