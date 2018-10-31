@@ -964,9 +964,9 @@ public class Gui extends JFrame {
         jToolBar2.add(jButtonNextPage);
 
         jComboBoxPageNum.setEnabled(false);
-        jComboBoxPageNum.setMaximumSize(new java.awt.Dimension(40, 24));
-        jComboBoxPageNum.setMinimumSize(new java.awt.Dimension(40, 20));
-        jComboBoxPageNum.setPreferredSize(new java.awt.Dimension(40, 20));
+        jComboBoxPageNum.setMaximumSize(new java.awt.Dimension(49, 28));
+        jComboBoxPageNum.setMinimumSize(new java.awt.Dimension(49, 28));
+        jComboBoxPageNum.setPreferredSize(new java.awt.Dimension(49, 28));
         jComboBoxPageNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxPageNumActionPerformed(evt);
