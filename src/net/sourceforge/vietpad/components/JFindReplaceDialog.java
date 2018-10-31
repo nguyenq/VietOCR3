@@ -276,15 +276,19 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanelSearchBox.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 1, 1, 1));
-        jPanelSearchBox.setLayout(new java.awt.GridBagLayout());
+        jPanelSearchBox.setPreferredSize(new java.awt.Dimension(319, 80));
+        java.awt.GridBagLayout jPanelSearchBoxLayout = new java.awt.GridBagLayout();
+        jPanelSearchBoxLayout.columnWidths = new int[] {0, 14, 0};
+        jPanelSearchBoxLayout.rowHeights = new int[] {0, 6, 0};
+        jPanelSearchBox.setLayout(jPanelSearchBoxLayout);
 
         jLabelSearchFor.setDisplayedMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jLabelSearchFor.Mnemonic").charAt(0));
         jLabelSearchFor.setLabelFor(jComboBoxFind);
         jLabelSearchFor.setText(bundle.getString("jLabelSearchFor.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(6, 9, 6, 9);
         jPanelSearchBox.add(jLabelSearchFor, gridBagConstraints);
 
         jLabelReplaceWith.setDisplayedMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietpad/components/JFindReplaceDialog").getString("jLabelReplaceWith.Mnemonic").charAt(0));
@@ -292,27 +296,24 @@ public class JFindReplaceDialog extends javax.swing.JDialog {
         jLabelReplaceWith.setText(bundle.getString("jLabelReplaceWith.Text")); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(6, 9, 6, 9);
         jPanelSearchBox.add(jLabelReplaceWith, gridBagConstraints);
 
         jComboBoxFind.setEditable(true);
-        jComboBoxFind.setPreferredSize(new java.awt.Dimension(190, 20));
+        jComboBoxFind.setPreferredSize(new java.awt.Dimension(220, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(4, 8, 4, 4);
         jPanelSearchBox.add(jComboBoxFind, gridBagConstraints);
 
         jComboBoxReplace.setEditable(true);
-        jComboBoxReplace.setPreferredSize(new java.awt.Dimension(190, 20));
+        jComboBoxReplace.setPreferredSize(new java.awt.Dimension(220, 24));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(4, 8, 4, 4);
         jPanelSearchBox.add(jComboBoxReplace, gridBagConstraints);
 
         jPanel2.add(jPanelSearchBox);
