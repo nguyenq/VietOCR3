@@ -13,6 +13,7 @@ VietOCR is released and distributed under the [Apache License, v2.0](http://www.
 * Selection box
 * File drag-and-drop
 * Paste image from clipboard
+* Text search and replace
 * Postprocessing for Vietnamese to boost accuracy rate
 * Vietnamese input methods
 * Localized user interface for many languages ([Localization project](https://www.transifex.com/projects/p/vietocr/))
@@ -21,3 +22,14 @@ VietOCR is released and distributed under the [Apache License, v2.0](http://www.
 * Custom text replacement in postprocessing
 * Spellcheck with Hunspell
 * Support for downloading and installing language data packs and appropriate spell dictionaries
+
+## Instructions
+
+To launch the program from the command line:
+```
+java -jar VietOCR.jar
+```
+On Linux or Unix-based systems, you may need to set the proper locale first:
+```
+export LC_ALL=C
+```
