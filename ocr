@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export LC_ALL=C
+
 PROGRAM="VietOCR"
 PROGDIR=`dirname $0` 
 
