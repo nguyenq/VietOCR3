@@ -198,4 +198,5 @@ Version 5.4.0 (30 October 2018)
 - Upgrade to Tesseract 4.0.0 (5131699)
 
 Version 5.4.1 (27 December 2018)
+- Rebuilt Tesseract Windows executable without /arch:AVX flag
 - Update Tess4J 4.3.1
