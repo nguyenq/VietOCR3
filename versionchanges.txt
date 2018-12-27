@@ -196,3 +196,6 @@ Version 5.3.1 (18 October 2018)
 
 Version 5.4.0 (30 October 2018)
 - Upgrade to Tesseract 4.0.0 (5131699)
+
+Version 5.4.1 (27 December 2018)
+- Update Tess4J 4.3.1
