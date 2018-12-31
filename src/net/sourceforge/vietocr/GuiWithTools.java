@@ -411,71 +411,65 @@ public class GuiWithTools extends GuiWithSpellcheck {
         jf.setCurrentDirectory(imageFolder);
         jf.addChoosableFileFilter(pdfFilter);
         jf.setAcceptAllFileFilterUsed(false);
+        jf.setMultiSelectionEnabled(true);
 
         if (jf.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            final File inputPdf = jf.getSelectedFile();
+            final File[] inputFiles = jf.getSelectedFiles();
             imageFolder = jf.getCurrentDirectory();
+            jLabelStatus.setText(bundle.getString("ConvertPDF_running..."));
+            jProgressBar1.setIndeterminate(true);
+            jProgressBar1.setString(bundle.getString("ConvertPDF_running..."));
+            jProgressBar1.setVisible(true);
+            getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            getGlassPane().setVisible(true);
 
-            jf = new JFileChooserWithConfirm();
-            ((JFileChooserWithConfirm) jf).setLocalizedMessage(bundle.getString("file_already_exist"));
-            jf.setDialogTitle(bundle.getString("Save_Multi-page_TIFF_Image"));
-            jf.setCurrentDirectory(imageFolder);
-            jf.setFileFilter(tiffFilter);
-            jf.setAcceptAllFileFilterUsed(false);
-            if (jf.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-                final File targetFile = jf.getSelectedFile();
+            SwingWorker worker = new SwingWorker<File, Void>() {
 
-                jLabelStatus.setText(bundle.getString("ConvertPDF_running..."));
-                jProgressBar1.setIndeterminate(true);
-                jProgressBar1.setString(bundle.getString("ConvertPDF_running..."));
-                jProgressBar1.setVisible(true);
-                getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                getGlassPane().setVisible(true);
-
-                SwingWorker worker = new SwingWorker<File, Void>() {
-
-                    @Override
-                    protected File doInBackground() throws Exception {
-                        File outputTiffFile = PdfUtilities.convertPdf2Tiff(inputPdf);
-                        Files.move(outputTiffFile.toPath(), targetFile.toPath(), REPLACE_EXISTING);
-                        return targetFile;
+                @Override
+                protected File doInBackground() throws Exception {
+                    for (File inputFile : inputFiles) {
+                        File outputTiffFile = PdfUtilities.convertPdf2Tiff(inputFile);
+                        String targetFile = Utils.stripExtension(inputFile.getPath()) + ".tif";
+                        Files.move(outputTiffFile.toPath(), new File(targetFile).toPath(), REPLACE_EXISTING);                       
                     }
 
-                    @Override
-                    protected void done() {
-                        jLabelStatus.setText(bundle.getString("ConvertPDF_completed"));
-                        jProgressBar1.setIndeterminate(false);
-                        jProgressBar1.setString(bundle.getString("ConvertPDF_completed"));
+                    return imageFolder;
+                }
 
-                        try {
-                            File result = get();
-                            JOptionPane.showMessageDialog(GuiWithTools.this, bundle.getString("ConvertPDF_completed") + result.getName() + bundle.getString("created"), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
-                        } catch (InterruptedException ignore) {
-                            logger.log(Level.WARNING, ignore.getMessage(), ignore);
-                        } catch (java.util.concurrent.ExecutionException e) {
-                            String why;
-                            Throwable cause = e.getCause();
-                            if (cause != null) {
-                                if (cause instanceof OutOfMemoryError) {
-                                    why = bundle.getString("OutOfMemoryError");
-                                } else {
-                                    why = cause.getMessage();
-                                }
+                @Override
+                protected void done() {
+                    jLabelStatus.setText(bundle.getString("ConvertPDF_completed"));
+                    jProgressBar1.setIndeterminate(false);
+                    jProgressBar1.setString(bundle.getString("ConvertPDF_completed"));
+
+                    try {
+                        File result = get();
+                        JOptionPane.showMessageDialog(GuiWithTools.this, bundle.getString("ConvertPDF_completed") + bundle.getString("check_output_in") + "\n" + result.getPath(), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+                    } catch (InterruptedException ignore) {
+                        logger.log(Level.WARNING, ignore.getMessage(), ignore);
+                    } catch (java.util.concurrent.ExecutionException e) {
+                        String why;
+                        Throwable cause = e.getCause();
+                        if (cause != null) {
+                            if (cause instanceof OutOfMemoryError) {
+                                why = bundle.getString("OutOfMemoryError");
                             } else {
-                                why = e.getMessage();
+                                why = cause.getMessage();
                             }
-                            logger.log(Level.SEVERE, why, e);
-                            JOptionPane.showMessageDialog(GuiWithTools.this, why, APP_NAME, JOptionPane.ERROR_MESSAGE);
-                        } finally {
-                            jProgressBar1.setVisible(false);
-                            getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                            getGlassPane().setVisible(false);
+                        } else {
+                            why = e.getMessage();
                         }
+                        logger.log(Level.SEVERE, why, e);
+                        JOptionPane.showMessageDialog(GuiWithTools.this, why, APP_NAME, JOptionPane.ERROR_MESSAGE);
+                    } finally {
+                        jProgressBar1.setVisible(false);
+                        getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        getGlassPane().setVisible(false);
                     }
-                };
+                }
+            };
 
-                worker.execute();
-            }
+            worker.execute();
         }
     }
 

@@ -200,3 +200,6 @@ Version 5.4.0 (30 October 2018)
 Version 5.4.1 (27 December 2018)
 - Rebuilt Tesseract Windows executable without /arch:AVX flag
 - Update Tess4J 4.3.1
+
+Version 5.4.2 (31 December 2018)
+- Improve Convert PDF to TIFF for multiple files
