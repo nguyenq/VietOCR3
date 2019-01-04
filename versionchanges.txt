@@ -203,3 +203,6 @@ Version 5.4.1 (27 December 2018)
 
 Version 5.4.2 (31 December 2018)
 - Improve Convert PDF to TIFF for multiple files
+
+Version 5.4.3 (3 January 2019)
+- Update Ghost4J to have Unicode filename/path support
