@@ -1,1 +1,1 @@
-start javaw -Xms128m -Xmx1024m -jar VietOCR.jar
+start javaw -Xms128m -Xmx2048m -jar VietOCR.jar

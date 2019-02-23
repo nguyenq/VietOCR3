@@ -20,4 +20,4 @@ if [ -z "$JAVACMD" ] ; then
   fi
 fi
 
-$JAVACMD -Xms128m -Xmx1024m -cp "$PROGDIR/$PROGRAM.jar":lib/* $PROGRAM $@
+$JAVACMD -Xms128m -Xmx2048m -cp "$PROGDIR/$PROGRAM.jar":lib/* $PROGRAM $@

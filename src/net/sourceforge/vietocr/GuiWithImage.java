@@ -37,13 +37,16 @@ import net.sourceforge.vietocr.util.FixedSizeStack;
 public class GuiWithImage extends GuiWithBulkOCR {
 
     private final String strScreenshotMode = "ScreenshotMode";
+    private final String strPageSide = "PageSide";
     private static final double MINIMUM_DESKEW_THRESHOLD = 0.05d;
     private BufferedImage originalImage;
     Deque<BufferedImage> stack = new FixedSizeStack<BufferedImage>(10);
 
     GuiWithImage() {
         this.jCheckBoxMenuItemScreenshotMode.setSelected(prefs.getBoolean(strScreenshotMode, false));
-        jLabelScreenshotModeValue.setText(this.jCheckBoxMenuItemScreenshotMode.isSelected() ? "On" : "Off");
+        this.jLabelScreenshotModeValue.setText(this.jCheckBoxMenuItemScreenshotMode.isSelected() ? "On" : "Off");
+        this.jCheckBoxMenuItemDoubleSidedPage.setSelected(prefs.getBoolean(strPageSide, false));
+        this.jLabelPageValue.setText(this.jCheckBoxMenuItemDoubleSidedPage.isSelected() ? bundle.getString("Double_sided") : bundle.getString("Single_sided"));
     }
 
     /**
@@ -522,13 +525,9 @@ public class GuiWithImage extends GuiWithBulkOCR {
     }
 
     @Override
-    void jCheckBoxMenuItemScreenshotModeActionPerformed(java.awt.event.ActionEvent evt) {
-        jLabelScreenshotModeValue.setText(this.jCheckBoxMenuItemScreenshotMode.isSelected() ? "On" : "Off");
-    }
-
-    @Override
     void quit() {
         prefs.putBoolean(strScreenshotMode, this.jCheckBoxMenuItemScreenshotMode.isSelected());
+        prefs.putBoolean(strPageSide, this.jCheckBoxMenuItemDoubleSidedPage.isSelected());
         super.quit();
     }
 }

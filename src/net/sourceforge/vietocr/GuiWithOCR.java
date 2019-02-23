@@ -112,7 +112,7 @@ public class GuiWithOCR extends GuiWithImageOps {
         this.jMenuItemOCR.setEnabled(false);
         this.jMenuItemOCRAll.setEnabled(false);
 
-        OCRImageEntity entity = new OCRImageEntity(iioImageList, inputfilename, index, rect, curLangCode);
+        OCRImageEntity entity = new OCRImageEntity(iioImageList, inputfilename, index, rect, this.jCheckBoxMenuItemDoubleSidedPage.isSelected(), curLangCode);
         entity.setScreenshotMode(this.jCheckBoxMenuItemScreenshotMode.isSelected());
 
         // instantiate SwingWorker for OCR

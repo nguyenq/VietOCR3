@@ -23,7 +23,7 @@ public class OCRImagesTest {
         File selectedFile = new File("samples/vietsample1.tif");
         try {
             List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(selectedFile);
-            entity = new OCRImageEntity(iioImageList, selectedFile.getPath(), -1, null, "vie");
+            entity = new OCRImageEntity(iioImageList, selectedFile.getPath(), -1, null, false, "vie");
         } catch (Exception e) {
         }
     }

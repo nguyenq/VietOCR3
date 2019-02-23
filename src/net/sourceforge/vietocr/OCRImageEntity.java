@@ -17,6 +17,7 @@ package net.sourceforge.vietocr;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,44 +30,71 @@ import net.sourceforge.tess4j.util.ImageHelper;
 
 public class OCRImageEntity {
 
-    /** input images */
+    /**
+     * input images
+     */
     private List<IIOImage> oimages;
-    /** input image File */
+    /**
+     * input image File
+     */
     private File imageFile;
-    /** input filename */
+    /**
+     * input filename
+     */
     private String inputfilename;
-    /** index of pages, such as in multi-page TIFF image */
+    /**
+     * index of pages, such as in multi-page TIFF image
+     */
     private final int index;
-    /** bounding rectangle */
+    /**
+     * bounding rectangle
+     */
     private final Rectangle rect;
-    /** Language code, which follows ISO 639-3 standard */
+    /**
+     * double-sided page
+     */
+    private boolean doublesided;
+    /**
+     * Language code, which follows ISO 639-3 standard
+     */
     private final String lang;
-    /** Horizontal Resolution */
+    /**
+     * Horizontal Resolution
+     */
     private int dpiX;
-    /** Vertical Resolution */
+    /**
+     * Vertical Resolution
+     */
     private int dpiY;
 
     /**
      * Constructor.
+     *
      * @param oimages a list of <code>IIOImage</code> objects
      * @param inputfilename input filename
      * @param index index of images
-     * @param rect the bounding rectangle defines the region of the image to be recognized. A rectangle of zero dimension or <code>null</code> indicates the whole image.
+     * @param rect the bounding rectangle defines the region of the image to be
+     * recognized. A rectangle of zero dimension or <code>null</code> indicates
+     * the whole image.
      * @param lang language code, which follows ISO 639-3 standard
      */
-    public OCRImageEntity(List<IIOImage> oimages, String inputfilename, int index, Rectangle rect, String lang) {
+    public OCRImageEntity(List<IIOImage> oimages, String inputfilename, int index, Rectangle rect, boolean doublesided, String lang) {
         this.oimages = oimages;
         this.inputfilename = inputfilename;
         this.index = index;
         this.rect = rect;
+        this.doublesided = doublesided;
         this.lang = lang;
     }
 
     /**
      * Constructor.
+     *
      * @param imageFile an image file
      * @param index index of images
-     * @param rect the bounding rectangle defines the region of the image to be recognized. A rectangle of zero dimension or <code>null</code> indicates the whole image.
+     * @param rect the bounding rectangle defines the region of the image to be
+     * recognized. A rectangle of zero dimension or <code>null</code> indicates
+     * the whole image.
      * @param lang language code, which follows ISO 639-3 standard
      */
     public OCRImageEntity(File imageFile, int index, Rectangle rect, String lang) {
@@ -79,25 +107,40 @@ public class OCRImageEntity {
 
     /**
      * Gets oimages.
-     * 
+     *
      * @return the list of oimages
      */
     public List<IIOImage> getOimages() {
         return oimages;
     }
-    
+
     /**
      * Gets selected oimages.
-     * 
+     *
      * @return the list of selected oimages
      */
     public List<IIOImage> getSelectedOimages() {
-        return index == -1 ? oimages : oimages.subList(index, index + 1);
+        if (doublesided) {
+            List<IIOImage> tempList = new ArrayList<IIOImage>();
+            for (IIOImage image : (index == -1 ? oimages : oimages.subList(index, index + 1))) {
+                // split image in half
+                RenderedImage ri = image.getRenderedImage();
+                Rectangle cropRect = new Rectangle(0, 0, ri.getWidth() / 2, ri.getHeight());
+                BufferedImage bi = ImageHelper.getSubImage((BufferedImage) ri, cropRect.x, cropRect.y, cropRect.width, cropRect.height);
+                tempList.add(new IIOImage(bi, null, null));
+                cropRect = new Rectangle(ri.getWidth() / 2, 0, ri.getWidth() / 2, ri.getHeight());
+                bi = ImageHelper.getSubImage((BufferedImage) ri, cropRect.x, cropRect.y, cropRect.width, cropRect.height);
+                tempList.add(new IIOImage(bi, null, null));
+            }
+            return tempList;
+        } else {
+            return index == -1 ? oimages : oimages.subList(index, index + 1);
+        }
     }
 
     /**
      * Gets image file.
-     * 
+     *
      * @return the imageFile
      */
     public File getImageFile() {
@@ -106,7 +149,7 @@ public class OCRImageEntity {
 
     /**
      * Gets cloned image files.
-     * 
+     *
      * @return the ClonedImageFiles
      * @throws java.io.IOException
      */
@@ -155,7 +198,7 @@ public class OCRImageEntity {
 
     /**
      * Gets the index.
-     * 
+     *
      * @return the index
      */
     public int getIndex() {
@@ -164,7 +207,7 @@ public class OCRImageEntity {
 
     /**
      * Gets bounding rectangle.
-     * 
+     *
      * @return the bounding rectangle
      */
     public Rectangle getRect() {
@@ -173,8 +216,9 @@ public class OCRImageEntity {
 
     /**
      * Sets screenshot mode.
-     * 
-     * @param mode true for resampling the input image; false for no manipulation of the image
+     *
+     * @param mode true for resampling the input image; false for no
+     * manipulation of the image
      */
     public void setScreenshotMode(boolean mode) {
         dpiX = mode ? 300 : 0;
@@ -183,7 +227,7 @@ public class OCRImageEntity {
 
     /**
      * Sets resolution (DPI).
-     * 
+     *
      * @param dpiX horizontal resolution
      * @param dpiY vertical resolution
      */
@@ -194,7 +238,7 @@ public class OCRImageEntity {
 
     /**
      * Gets language code.
-     * 
+     *
      * @return the language code
      */
     public String getLanguage() {
@@ -203,7 +247,7 @@ public class OCRImageEntity {
 
     /**
      * Gets input filename.
-     * 
+     *
      * @return the input filename
      */
     public String getInputfilename() {

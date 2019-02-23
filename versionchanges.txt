@@ -206,3 +206,6 @@ Version 5.4.2 (31 December 2018)
 
 Version 5.4.3 (3 January 2019)
 - Update Ghost4J to have Unicode filename/path support
+
+Version 5.4.4 (23 February 2019)
+- Add support for double-sided pages
