@@ -1327,7 +1327,7 @@ public class Gui extends JFrame {
         jMenuFile.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuFile.Mnemonic").charAt(0));
         jMenuFile.setText(bundle.getString("jMenuFile.Text")); // NOI18N
 
-        jMenuItemOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemOpen.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemOpen.Mnemonic").charAt(0));
         jMenuItemOpen.setText(bundle.getString("jMenuItemOpen.Text")); // NOI18N
         jMenuItemOpen.addActionListener(new java.awt.event.ActionListener() {
@@ -1346,7 +1346,7 @@ public class Gui extends JFrame {
         });
         jMenuFile.add(jMenuItemScan);
 
-        jMenuItemSave.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemSave.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemSave.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemSave.Mnemonic").charAt(0));
         jMenuItemSave.setText(bundle.getString("jMenuItemSave.Text")); // NOI18N
         jMenuItemSave.addActionListener(new java.awt.event.ActionListener() {
@@ -1356,7 +1356,7 @@ public class Gui extends JFrame {
         });
         jMenuFile.add(jMenuItemSave);
 
-        jMenuItemSaveAs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemSaveAs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemSaveAs.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemSaveAs.Mnemonic").charAt(0));
         jMenuItemSaveAs.setText(bundle.getString("jMenuItemSaveAs.Text")); // NOI18N
         jMenuItemSaveAs.addActionListener(new java.awt.event.ActionListener() {
@@ -1386,7 +1386,7 @@ public class Gui extends JFrame {
         jMenuCommand.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuCommand.Mnemonic").charAt(0));
         jMenuCommand.setText(bundle.getString("jMenuCommand.Text")); // NOI18N
 
-        jMenuItemOCR.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemOCR.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemOCR.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemOCR.Mnemonic").charAt(0));
         jMenuItemOCR.setText(bundle.getString("jMenuItemOCR.Text")); // NOI18N
         jMenuItemOCR.addActionListener(new java.awt.event.ActionListener() {
@@ -1418,7 +1418,7 @@ public class Gui extends JFrame {
 
         jMenuCommand.add(jSeparator1);
 
-        jMenuItemPostProcess.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemPostProcess.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemPostProcess.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemPostProcess.Mnemonic").charAt(0));
         jMenuItemPostProcess.setText(bundle.getString("jMenuItemPostProcess.Text")); // NOI18N
         jMenuItemPostProcess.addActionListener(new java.awt.event.ActionListener() {
@@ -1446,7 +1446,7 @@ public class Gui extends JFrame {
         jMenuFilter.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuFilter.Mnemonic").charAt(0));
         jMenuFilter.setText(bundle.getString("jMenuFilter.Text")); // NOI18N
 
-        jMenuItemBrightness.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemBrightness.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemBrightness.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemBrightness.Mnemonic").charAt(0));
         jMenuItemBrightness.setText(bundle.getString("jMenuItemBrightness.Text")); // NOI18N
         jMenuItemBrightness.addActionListener(new java.awt.event.ActionListener() {
@@ -1456,7 +1456,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemBrightness);
 
-        jMenuItemContrast.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemContrast.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemContrast.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemContrast.Mnemonic").charAt(0));
         jMenuItemContrast.setText(bundle.getString("jMenuItemContrast.Text")); // NOI18N
         jMenuItemContrast.addActionListener(new java.awt.event.ActionListener() {
@@ -1466,7 +1466,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemContrast);
 
-        jMenuItemGamma.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemGamma.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemGamma.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemGamma.Mnemonic").charAt(0));
         jMenuItemGamma.setText(bundle.getString("jMenuItemGamma.Text")); // NOI18N
         jMenuItemGamma.addActionListener(new java.awt.event.ActionListener() {
@@ -1476,7 +1476,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemGamma);
 
-        jMenuItemThreshold.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemThreshold.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemThreshold.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemThreshold.Mnemonic").charAt(0));
         jMenuItemThreshold.setText(bundle.getString("jMenuItemThreshold.Text")); // NOI18N
         jMenuItemThreshold.addActionListener(new java.awt.event.ActionListener() {
@@ -1486,7 +1486,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemThreshold);
 
-        jMenuItemGrayscale.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemGrayscale.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemGrayscale.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemGrayscale.Mnemonic").charAt(0));
         jMenuItemGrayscale.setText(bundle.getString("jMenuItemGrayscale.Text")); // NOI18N
         jMenuItemGrayscale.addActionListener(new java.awt.event.ActionListener() {
@@ -1496,7 +1496,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemGrayscale);
 
-        jMenuItemMonochrome.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemMonochrome.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemMonochrome.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemMonochrome.Mnemonic").charAt(0));
         jMenuItemMonochrome.setText(bundle.getString("jMenuItemMonochrome.Text")); // NOI18N
         jMenuItemMonochrome.addActionListener(new java.awt.event.ActionListener() {
@@ -1506,7 +1506,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemMonochrome);
 
-        jMenuItemInvert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemInvert.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemInvert.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemInvert.Mnemonic").charAt(0));
         jMenuItemInvert.setText(bundle.getString("jMenuItemInvert.Text")); // NOI18N
         jMenuItemInvert.addActionListener(new java.awt.event.ActionListener() {
@@ -1516,7 +1516,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemInvert);
 
-        jMenuItemSharpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemSharpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemSharpen.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemSharpen.Mnemonic").charAt(0));
         jMenuItemSharpen.setText(bundle.getString("jMenuItemSharpen.Text")); // NOI18N
         jMenuItemSharpen.addActionListener(new java.awt.event.ActionListener() {
@@ -1526,7 +1526,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemSharpen);
 
-        jMenuItemSmooth.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemSmooth.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemSmooth.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemSmooth.Mnemonic").charAt(0));
         jMenuItemSmooth.setText(bundle.getString("jMenuItemSmooth.Text")); // NOI18N
         jMenuItemSmooth.addActionListener(new java.awt.event.ActionListener() {
@@ -1536,7 +1536,7 @@ public class Gui extends JFrame {
         });
         jMenuFilter.add(jMenuItemSmooth);
 
-        jMenuItemBilateral.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemBilateral.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemBilateral.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemBilateral.Mnemonic").charAt(0));
         jMenuItemBilateral.setText(bundle.getString("jMenuItemBilateral.Text")); // NOI18N
         jMenuItemBilateral.addActionListener(new java.awt.event.ActionListener() {
@@ -1548,7 +1548,7 @@ public class Gui extends JFrame {
 
         jMenuImage.add(jMenuFilter);
 
-        jMenuItemDeskew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemDeskew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemDeskew.setFont(new java.awt.Font("Noto Sans", 0, 12)); // NOI18N
         jMenuItemDeskew.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemDeskew.Mnemonic").charAt(0));
         jMenuItemDeskew.setText(bundle.getString("jMenuItemDeskew.Text")); // NOI18N
@@ -1559,7 +1559,7 @@ public class Gui extends JFrame {
         });
         jMenuImage.add(jMenuItemDeskew);
 
-        jMenuItemAutocrop.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemAutocrop.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemAutocrop.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemAutocrop.Mnemonic").charAt(0));
         jMenuItemAutocrop.setText(bundle.getString("jMenuItemAutocrop.Text")); // NOI18N
         jMenuItemAutocrop.addActionListener(new java.awt.event.ActionListener() {
@@ -1569,7 +1569,7 @@ public class Gui extends JFrame {
         });
         jMenuImage.add(jMenuItemAutocrop);
 
-        jMenuItemCrop.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemCrop.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemCrop.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemCrop.Mnemonic").charAt(0));
         jMenuItemCrop.setText(bundle.getString("jMenuItemCrop.Text")); // NOI18N
         jMenuItemCrop.setToolTipText("");
@@ -1580,7 +1580,7 @@ public class Gui extends JFrame {
         });
         jMenuImage.add(jMenuItemCrop);
 
-        jMenuItemRemoveLines.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemRemoveLines.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemRemoveLines.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemRemoveLines.Mnemonic").charAt(0));
         jMenuItemRemoveLines.setText(bundle.getString("jMenuItemRemoveLines.Text")); // NOI18N
         jMenuItemRemoveLines.addActionListener(new java.awt.event.ActionListener() {
@@ -1592,7 +1592,7 @@ public class Gui extends JFrame {
 
         jMenuDespeckle.setText(bundle.getString("jMenuDespeckle.Text")); // NOI18N
 
-        jMenuItemDespeckle2x2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemDespeckle2x2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemDespeckle2x2.setMnemonic('2');
         jMenuItemDespeckle2x2.setText(bundle.getString("jMenuItemDespeckle2x2.Text")); // NOI18N
         jMenuItemDespeckle2x2.setActionCommand("up to 2x2");
@@ -1603,7 +1603,7 @@ public class Gui extends JFrame {
         });
         jMenuDespeckle.add(jMenuItemDespeckle2x2);
 
-        jMenuItemDespeckle3x3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemDespeckle3x3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemDespeckle3x3.setMnemonic('3');
         jMenuItemDespeckle3x3.setText(bundle.getString("jMenuItemDespeckle3x3.Text")); // NOI18N
         jMenuItemDespeckle3x3.setActionCommand("up to 3x3");
@@ -1617,7 +1617,7 @@ public class Gui extends JFrame {
         jMenuImage.add(jMenuDespeckle);
         jMenuImage.add(jSeparator12);
 
-        jMenuItemUndo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemUndo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemUndo.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemUndo.Mnemonic").charAt(0));
         jMenuItemUndo.setText(bundle.getString("jMenuItemUndo.Text")); // NOI18N
         jMenuItemUndo.addActionListener(new java.awt.event.ActionListener() {
@@ -1670,7 +1670,7 @@ public class Gui extends JFrame {
         });
         jMenuFormat.add(jCheckBoxMenuWordWrap);
 
-        jMenuItemFont.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemFont.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemFont.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemFont.Mnemonic").charAt(0));
         jMenuItemFont.setText(bundle.getString("jMenuItemFont.Text")); // NOI18N
         jMenuItemFont.addActionListener(new java.awt.event.ActionListener() {
@@ -1690,7 +1690,7 @@ public class Gui extends JFrame {
         });
         jMenuFormat.add(jMenuItemChangeCase);
 
-        jMenuItemRemoveLineBreaks.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemRemoveLineBreaks.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItemRemoveLineBreaks.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemRemoveLineBreaks.Mnemonic").charAt(0));
         jMenuItemRemoveLineBreaks.setText(bundle.getString("jMenuItemRemoveLineBreaks.Text")); // NOI18N
         jMenuItemRemoveLineBreaks.addActionListener(new java.awt.event.ActionListener() {

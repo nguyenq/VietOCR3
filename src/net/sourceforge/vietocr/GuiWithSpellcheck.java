@@ -39,7 +39,7 @@ public class GuiWithSpellcheck extends GuiWithOEM {
         try {
             popup.removeAll();
             if (this.jToggleButtonSpellCheck.isSelected()) {
-                int offset = jTextArea1.viewToModel(pointClicked);
+                int offset = jTextArea1.viewToModel2D(pointClicked);
                 start = javax.swing.text.Utilities.getWordStart(jTextArea1, offset);
                 end = javax.swing.text.Utilities.getWordEnd(jTextArea1, offset);
                 String curWord = jTextArea1.getDocument().getText(start, end - start);
