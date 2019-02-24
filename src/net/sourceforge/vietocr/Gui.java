@@ -505,7 +505,12 @@ public class Gui extends JFrame {
                         jMenuRecentFiles.removeAll();
                         jMenuRecentFiles.add(bundle.getString("No_Recent_Files"));
                     } else {
-                        openFile(new File(fileName));
+                        File recentFile = new File(fileName);
+                        openFile(recentFile);
+                        if (!recentFile.exists()) {
+                            mruList.remove(fileName);
+                            jMenuRecentFiles.remove(item);
+                        }
                     }
                 }
             };
