@@ -124,13 +124,7 @@ public class OCRImageEntity {
             List<IIOImage> tempList = new ArrayList<IIOImage>();
             for (IIOImage image : (index == -1 ? oimages : oimages.subList(index, index + 1))) {
                 // split image in half
-                RenderedImage ri = image.getRenderedImage();
-                Rectangle cropRect = new Rectangle(0, 0, ri.getWidth() / 2, ri.getHeight());
-                BufferedImage bi = ImageHelper.getSubImage((BufferedImage) ri, cropRect.x, cropRect.y, cropRect.width, cropRect.height);
-                tempList.add(new IIOImage(bi, null, null));
-                cropRect = new Rectangle(ri.getWidth() / 2, 0, ri.getWidth() / 2, ri.getHeight());
-                bi = ImageHelper.getSubImage((BufferedImage) ri, cropRect.x, cropRect.y, cropRect.width, cropRect.height);
-                tempList.add(new IIOImage(bi, null, null));
+                tempList.addAll(splitImage(image));
             }
             return tempList;
         } else {
@@ -157,6 +151,14 @@ public class OCRImageEntity {
         if (oimages != null) {
             if (dpiX == 0 || dpiY == 0) {
                 if (rect == null || rect.isEmpty()) {
+                    if (doublesided) {
+                        List<IIOImage> oimageList = new ArrayList<IIOImage>();
+                        for (IIOImage image : (index == -1 ? oimages : oimages.subList(index, index + 1))) {
+                            // split image in half
+                            oimageList.addAll(splitImage(image));
+                        }
+                        return ImageIOHelper.createTiffFiles(oimageList, -1);
+                    }
                     return ImageIOHelper.createTiffFiles(oimages, index);
                 } else {
                     // rectangular region
@@ -178,7 +180,17 @@ public class OCRImageEntity {
                         bi = ImageHelper.getScaledInstance(bi, (int) (bi.getWidth() * scale), (int) (bi.getHeight() * scale));
                         tempList.add(new IIOImage(bi, null, null));
                     }
-                    return ImageIOHelper.createTiffFiles(tempList, (index == -1 ? index : 0), dpiX, dpiY);
+                    
+                    if (doublesided) {
+                        List<IIOImage> oimageList = new ArrayList<IIOImage>();
+                        for (IIOImage image : tempList) {
+                            // split image in half
+                            oimageList.addAll(splitImage(image));
+                        }
+                        return ImageIOHelper.createTiffFiles(oimageList, -1);
+                    }
+                    
+                    return ImageIOHelper.createTiffFiles(tempList, -1, dpiX, dpiY);
                 } else {
                     // rectangular region
                     //Cut out the subimage first and rescale that
@@ -252,5 +264,24 @@ public class OCRImageEntity {
      */
     public String getInputfilename() {
         return inputfilename;
+    }
+    
+    /**
+     * Splits image in halves (as in double-sided pages).
+     * 
+     * @param image
+     * @return two half images
+     */
+    public List<IIOImage> splitImage(IIOImage image) {
+        List<IIOImage> tempList = new ArrayList<IIOImage>();
+        RenderedImage ri = image.getRenderedImage();
+        Rectangle cropRect = new Rectangle(0, 0, ri.getWidth() / 2, ri.getHeight());
+        BufferedImage bi = ImageHelper.getSubImage((BufferedImage) ri, cropRect.x, cropRect.y, cropRect.width, cropRect.height);
+        tempList.add(new IIOImage(bi, null, null));
+        cropRect = new Rectangle(ri.getWidth() / 2, 0, ri.getWidth() / 2, ri.getHeight());
+        bi = ImageHelper.getSubImage((BufferedImage) ri, cropRect.x, cropRect.y, cropRect.width, cropRect.height);
+        tempList.add(new IIOImage(bi, null, null));
+
+        return tempList;
     }
 }
