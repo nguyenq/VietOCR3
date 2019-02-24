@@ -187,7 +187,7 @@ public class OCRImageEntity {
                             // split image in half
                             oimageList.addAll(splitImage(image));
                         }
-                        return ImageIOHelper.createTiffFiles(oimageList, -1);
+                        return ImageIOHelper.createTiffFiles(oimageList, -1, dpiX, dpiY);
                     }
                     
                     return ImageIOHelper.createTiffFiles(tempList, -1, dpiX, dpiY);
