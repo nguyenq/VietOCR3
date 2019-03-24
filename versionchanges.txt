@@ -207,3 +207,8 @@ Version 5.4.2 (31 December 2018)
 Version 5.4.3 (23 February 2019)
 - Add support for double-sided pages
 - Update Ghost4J to have Unicode filename/path support
+
+Version 5.5.0-beta (25 March 2019)
+- Update Tess4J 4.4.0-SNAPSHOT (Tesseract 4.1.0)
+- Update dependencies
+- Replace deprecated methods
