@@ -59,7 +59,7 @@ public class Hunspell {
     }
 
     protected void tryLoad(String libFile) throws UnsupportedOperationException {
-        hsl = (HunspellLibrary) Native.loadLibrary(libFile, HunspellLibrary.class);
+        hsl = (HunspellLibrary) Native.load(libFile, HunspellLibrary.class);
     }
 
     /**
@@ -77,7 +77,7 @@ public class Hunspell {
 
         String libFile = libDir != null ? libDir + "/" + libName() : libNameBare();
         try {
-            hsl = (HunspellLibrary) Native.loadLibrary(libFile, HunspellLibrary.class);
+            hsl = (HunspellLibrary) Native.load(libFile, HunspellLibrary.class);
         } catch (UnsatisfiedLinkError urgh) {
 
             // Oh dear, the library was not found in the file system, let's try the classpath
@@ -118,7 +118,7 @@ public class Hunspell {
                 }
             }
             System.out.println("Loading temp lib: " + lib.getAbsolutePath());
-            hsl = (HunspellLibrary) Native.loadLibrary(lib.getAbsolutePath(), HunspellLibrary.class);
+            hsl = (HunspellLibrary) Native.load(lib.getAbsolutePath(), HunspellLibrary.class);
         }
     }
 
