@@ -36,15 +36,12 @@ public class OptionsDialog extends javax.swing.JDialog {
     private int actionSelected = -1;
     private String watchFolder;
     private String outputFolder;
-    private String tessPath;
     private String dangAmbigsPath;
     private String curLangCode;
     private boolean watchEnabled;
-    private boolean tessLibEnabled;
     private boolean dangAmbigsOn;
     private boolean replaceHyphensEnabled;
     private boolean removeHyphensEnabled;
-    private boolean watchDeskewEnabled;
     protected ResourceBundle bundle;
 
     /**
@@ -53,11 +50,6 @@ public class OptionsDialog extends javax.swing.JDialog {
     public OptionsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
-        if (Gui.WINDOWS) {
-//            jTabbedPane1.remove(jPanelTessPath);
-            this.jButtonTess.setEnabled(false);
-        }
 
         bundle = ResourceBundle.getBundle("net/sourceforge/vietocr/OptionsDialog");
 
@@ -91,11 +83,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         jButtonOK = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanelTessPath = new javax.swing.JPanel();
-        jLabelTess = new javax.swing.JLabel();
-        jTextFieldTess = new javax.swing.JTextField();
-        jButtonTess = new javax.swing.JButton();
-        jCheckBoxTessLib = new javax.swing.JCheckBox();
         jPanelDangAmbigsPath = new javax.swing.JPanel();
         jLabelDangAmbigs = new javax.swing.JLabel();
         jButtonDangAmbigs = new javax.swing.JButton();
@@ -150,41 +137,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         jPanelCommand.add(jButtonCancel);
 
         getContentPane().add(jPanelCommand, java.awt.BorderLayout.SOUTH);
-
-        jPanelTessPath.setLayout(new java.awt.GridBagLayout());
-
-        jLabelTess.setLabelFor(jTextFieldTess);
-        jLabelTess.setText(bundle.getString("jLabelTess.Text")); // NOI18N
-        jPanelTessPath.add(jLabelTess, new java.awt.GridBagConstraints());
-
-        jTextFieldTess.setEditable(false);
-        jTextFieldTess.setPreferredSize(new java.awt.Dimension(200, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
-        jPanelTessPath.add(jTextFieldTess, gridBagConstraints);
-
-        jButtonTess.setText("...");
-        jButtonTess.setToolTipText(bundle.getString("jButtonTess.ToolTipText")); // NOI18N
-        jButtonTess.setPreferredSize(new java.awt.Dimension(30, 23));
-        jButtonTess.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTessActionPerformed(evt);
-            }
-        });
-        jPanelTessPath.add(jButtonTess, new java.awt.GridBagConstraints());
-
-        jCheckBoxTessLib.setText(bundle.getString("jCheckBoxTessLib.Text")); // NOI18N
-        jCheckBoxTessLib.setActionCommand("libtesseract302");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
-        jPanelTessPath.add(jCheckBoxTessLib, gridBagConstraints);
-        jCheckBoxTessLib.getAccessibleContext().setAccessibleName("");
-
-        jTabbedPane1.addTab("Tesseract", jPanelTessPath);
 
         jPanelDangAmbigsPath.setLayout(new java.awt.GridBagLayout());
 
@@ -367,20 +319,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButtonOutputActionPerformed
 
-    private void jButtonTessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTessActionPerformed
-        JFileChooser pathchooser = new JFileChooser(tessPath);
-        pathchooser.setAcceptAllFileFilterUsed(false);
-        pathchooser.setApproveButtonText(bundle.getString("Set"));
-        pathchooser.setDialogTitle(bundle.getString("Locate_Tesseract"));
-        int returnVal = pathchooser.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            String path = pathchooser.getCurrentDirectory().getPath();
-            if (!tessPath.equals(path)) {
-                setTessPath(path);
-            }
-        }
-    }//GEN-LAST:event_jButtonTessActionPerformed
-
     private void jButtonDangAmbigsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDangAmbigsActionPerformed
         JFileChooser pathchooser = new JFileChooser(dangAmbigsPath);
         FileFilter txtFilter = new SimpleFilter("txt", "Text");
@@ -411,10 +349,8 @@ public class OptionsDialog extends javax.swing.JDialog {
         this.jTextFieldWatch.setText(watchFolder);
         this.jTextFieldOutput.setText(outputFolder);
         this.jCheckBoxWatch.setSelected(watchEnabled);
-        this.jTextFieldTess.setText(tessPath);
         this.jTextFieldDangAmbigs.setText(dangAmbigsPath);
         this.jCheckBoxDangAmbigs.setSelected(dangAmbigsOn);
-        this.jCheckBoxTessLib.setSelected(tessLibEnabled);
         this.jCheckBoxReplaceHyphens.setSelected(replaceHyphensEnabled);
         this.jCheckBoxRemoveHyphens.setSelected(removeHyphensEnabled);
     }//GEN-LAST:event_formWindowActivated
@@ -423,7 +359,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         watchFolder = this.jTextFieldWatch.getText();
         outputFolder = this.jTextFieldOutput.getText();
         watchEnabled = this.jCheckBoxWatch.isSelected();
-        tessPath = this.jTextFieldTess.getText();
         dangAmbigsPath = this.jTextFieldDangAmbigs.getText();
         dangAmbigsOn = this.jCheckBoxDangAmbigs.isSelected();
         replaceHyphensEnabled = this.jCheckBoxReplaceHyphens.isSelected();
@@ -491,30 +426,25 @@ public class OptionsDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonDangAmbigs;
     private javax.swing.JButton jButtonOK;
     private javax.swing.JButton jButtonOutput;
-    private javax.swing.JButton jButtonTess;
     private javax.swing.JButton jButtonWatch;
     private javax.swing.JCheckBox jCheckBoxDangAmbigs;
     private javax.swing.JCheckBox jCheckBoxRemoveHyphens;
     private javax.swing.JCheckBox jCheckBoxReplaceHyphens;
-    private javax.swing.JCheckBox jCheckBoxTessLib;
     private javax.swing.JCheckBox jCheckBoxWatch;
     private javax.swing.JCheckBox jCheckBoxWatchDeskew;
     private javax.swing.JComboBox jComboBoxOutputFormat;
     private javax.swing.JLabel jLabelDangAmbigs;
     private javax.swing.JLabel jLabelOutput;
     private javax.swing.JLabel jLabelOutputFormat;
-    private javax.swing.JLabel jLabelTess;
     private javax.swing.JLabel jLabelWatch;
     private javax.swing.JPanel jPanelCommand;
     private javax.swing.JPanel jPanelDangAmbigsPath;
     private javax.swing.JPanel jPanelHyphens;
-    private javax.swing.JPanel jPanelTessPath;
     private javax.swing.JPanel jPanelWatch;
     private javax.swing.JPanel jPanelWatchFolder;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextFieldDangAmbigs;
     private javax.swing.JTextField jTextFieldOutput;
-    private javax.swing.JTextField jTextFieldTess;
     private javax.swing.JTextField jTextFieldWatch;
     // End of variables declaration//GEN-END:variables
 
@@ -562,20 +492,6 @@ public class OptionsDialog extends javax.swing.JDialog {
     }
 
     /**
-     * @return the tessPath
-     */
-    public String getTessPath() {
-        return tessPath;
-    }
-
-    /**
-     * @param tessPath the tessPath to set
-     */
-    public void setTessPath(String tessPath) {
-        this.tessPath = tessPath;
-    }
-
-    /**
      * @return the dangAmbigsPath
      */
     public String getDangAmbigsPath() {
@@ -609,21 +525,6 @@ public class OptionsDialog extends javax.swing.JDialog {
      */
     public void setDangAmbigsEnabled(boolean dangAmbigsOn) {
         this.dangAmbigsOn = dangAmbigsOn;
-    }
-
-    /**
-     * @return the tessLibEnabled
-     */
-    public boolean isTessLibEnabled() {
-        tessLibEnabled = this.jCheckBoxTessLib.isSelected();
-        return tessLibEnabled;
-    }
-
-    /**
-     * @param tessLibEnabled the tessLibEnabled to set
-     */
-    public void setTessLibEnabled(boolean tessLibEnabled) {
-        this.tessLibEnabled = tessLibEnabled;
     }
 
     /**

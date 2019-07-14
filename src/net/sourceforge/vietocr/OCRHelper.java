@@ -16,6 +16,7 @@
 package net.sourceforge.vietocr;
 
 import java.io.*;
+import javax.imageio.IIOImage;
 
 import net.sourceforge.vietocr.postprocessing.*;
 import net.sourceforge.vietocr.util.Utils;
@@ -50,8 +51,7 @@ public class OCRHelper {
 
             boolean postprocess = "text+".equals(outputFormat);
 
-            OCR<File> ocrEngine = new OCRFiles(tessPath);
-//            OCR<IIOImage> ocrEngine = new OCRImages(tessPath); // 14% faster
+            OCR<IIOImage> ocrEngine = new OCRImages(tessPath);
             ocrEngine.setDatapath(new File(tessPath, "tessdata").getPath());
             ocrEngine.setPageSegMode(pageSegMode);
             ocrEngine.setLanguage(langCode);

@@ -17,7 +17,7 @@ public class OCRHelperTest {
     String tessPath;
 
     public OCRHelperTest() {
-        tessPath = WINDOWS ? new File(System.getProperty("user.dir"), Gui.TESSERACT_PATH).getPath() : "/usr/bin";
+        tessPath = WINDOWS ? System.getProperty("user.dir") : "/usr/bin";
     }
 
     @BeforeClass

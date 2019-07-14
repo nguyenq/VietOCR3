@@ -32,7 +32,7 @@ public class GuiWithOCR extends GuiWithImageOps {
     protected String selectedPSM = "3"; // 3 - Fully automatic page segmentation, but no OSD (default)
     protected String selectedOEM = "3"; // Default, based on what is available
     protected boolean tessLibEnabled;
-    
+
     private final static Logger logger = Logger.getLogger(GuiWithOCR.class.getName());
 
     @Override
@@ -147,32 +147,16 @@ public class GuiWithOCR extends GuiWithImageOps {
         @Override
         protected Void doInBackground() throws Exception {
             String lang = entity.getLanguage();
+            OCR<IIOImage> ocrEngine = new OCRImages(tessPath); // for Tess4J
+            ocrEngine.setDatapath(datapath);
+            ocrEngine.setPageSegMode(selectedPSM);
+            ocrEngine.setLanguage(lang);
+            imageList = entity.getSelectedOimages();
 
-            if (!tessLibEnabled) {
-                OCR<File> ocrEngine = new OCRFiles(tessPath);
-                ocrEngine.setDatapath(datapath);
-                ocrEngine.setPageSegMode(selectedPSM);
-                ocrEngine.setLanguage(lang);
-                workingFiles = entity.getClonedImageFiles();
-
-                for (int i = 0; i < workingFiles.size(); i++) {
-                    if (!isCancelled()) {
-                        String result = ocrEngine.recognizeText(workingFiles.subList(i, i + 1), entity.getInputfilename());
-                        publish(result); // interim result
-                    }
-                }
-            } else {
-                OCR<IIOImage> ocrEngine = new OCRImages(tessPath); // for Tess4J
-                ocrEngine.setDatapath(datapath);
-                ocrEngine.setPageSegMode(selectedPSM);
-                ocrEngine.setLanguage(lang);
-                imageList = entity.getSelectedOimages();
-
-                for (int i = 0; i < imageList.size(); i++) {
-                    if (!isCancelled()) {
-                        String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), entity.getInputfilename(), entity.getRect());
-                        publish(result); // interim result
-                    }
+            for (int i = 0; i < imageList.size(); i++) {
+                if (!isCancelled()) {
+                    String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), entity.getInputfilename(), entity.getRect());
+                    publish(result); // interim result
                 }
             }
 

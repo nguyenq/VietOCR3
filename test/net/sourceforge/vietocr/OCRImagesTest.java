@@ -18,8 +18,8 @@ public class OCRImagesTest {
     OCRImageEntity entity;
 
     public OCRImagesTest() {
-        tessPath = WINDOWS ? new File(System.getProperty("user.dir"), Gui.TESSERACT_PATH).getPath() : "/usr/local/bin";
-        datapath = WINDOWS ? tessPath : "/usr/share/tesseract-ocr/";
+        tessPath = WINDOWS ? new File(System.getProperty("user.dir")).getPath() : "/usr/local/bin";
+        datapath = WINDOWS ? tessPath + "/tessdata" : "/usr/share/tesseract-ocr/tessdata";
         File selectedFile = new File("samples/vietsample1.tif");
         try {
             List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(selectedFile);

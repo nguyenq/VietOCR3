@@ -54,11 +54,9 @@ public class GuiWithSettings extends GuiWithLaF {
         optionsDialog.setOutputFolder(outputFolder);
         optionsDialog.setWatchEnabled(watchEnabled);
         optionsDialog.setWatchDeskewEnabled(watchDeskewEnabled);
-        optionsDialog.setTessPath(tessPath);
         optionsDialog.setDangAmbigsPath(dangAmbigsPath);
         optionsDialog.setDangAmbigsEnabled(dangAmbigsOn);
         optionsDialog.setCurLangCode(curLangCode);
-        optionsDialog.setTessLibEnabled(tessLibEnabled);
         optionsDialog.setReplaceHyphensEnabled(replaceHyphensEnabled);
         optionsDialog.setRemoveHyphensEnabled(removeHyphensEnabled);
         optionsDialog.setSelectedOutputFormat(outputFormat);
@@ -68,14 +66,8 @@ public class GuiWithSettings extends GuiWithLaF {
             outputFolder = optionsDialog.getOutputFolder();
             watchEnabled = optionsDialog.isWatchEnabled();
             watchDeskewEnabled = optionsDialog.isWatchDeskewEnabled();
-
-            if (!tessPath.equals(optionsDialog.getTessPath())) {
-                tessPath = optionsDialog.getTessPath();
-                JOptionPane.showMessageDialog(this, bundle.getString("Please_restart_the_application_for_the_change_to_take_effect."), Gui.APP_NAME, JOptionPane.INFORMATION_MESSAGE);
-            }
             dangAmbigsPath = optionsDialog.getDangAmbigsPath();
             dangAmbigsOn = optionsDialog.isDangAmbigsEnabled();
-            tessLibEnabled = optionsDialog.isTessLibEnabled();
             replaceHyphensEnabled = optionsDialog.isReplaceHyphensEnabled();
             removeHyphensEnabled = optionsDialog.isRemoveHyphensEnabled();
             outputFormat = optionsDialog.getSelectedOutputFormat();
