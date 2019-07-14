@@ -21,7 +21,7 @@ lub wyższą wersję.</p>
         <blockquote>
             <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-pol</code></p>
         </blockquote>
-        <p>Pliki bedą umieszczone odpowiednio w katalogach <code>/usr/bin</code> i <code>/usr/share/tesseract-ocr/tessdata</code>. Z drugiej strony, jeśli Tesseract jest skompilowany i zainstalowany ze<a href="https://github.com/tesseract-ocr/tesseract/wiki/TesseractGitInstallation">źródła</a>, będą one umieszczone w <code>/usr/local/bin</code> i <code>/usr/local/share/tessdata</code>. Byćmoże będziesz musiał wskazać katalog z plikami wykonywalnymi Tesseract z menu <code>Ustawień</code> programu VietOCR. Jeśli dane nie są w standardowej lokalizacji, byćmoże będzie wymagane dowiązanie miękkie do <code>tessdata.</code> Będziesz także musiał zadbać by VietOCR znał lokalizację <code>tessdata</code> poprzez zmienną <code>TESSDATA_PREFIX</code>:</p>
+        <p>Pliki bedą umieszczone odpowiednio w katalogach <code>/usr/bin</code> i <code>/usr/share/tesseract-ocr/tessdata</code>. Z drugiej strony, jeśli Tesseract jest skompilowany i zainstalowany ze<a href="https://github.com/tesseract-ocr/tesseract/wiki">źródła</a>, będą one umieszczone w <code>/usr/local/bin</code> i <code>/usr/local/share/tessdata</code>. Byćmoże będziesz musiał wskazać katalog z plikami wykonywalnymi Tesseract z menu <code>Ustawień</code> programu VietOCR. Jeśli dane nie są w standardowej lokalizacji, byćmoże będzie wymagane dowiązanie miękkie do <code>tessdata.</code> Będziesz także musiał zadbać by VietOCR znał lokalizację <code>tessdata</code> poprzez zmienną <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
