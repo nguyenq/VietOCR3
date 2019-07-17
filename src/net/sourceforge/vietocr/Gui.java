@@ -250,7 +250,7 @@ public class Gui extends JFrame {
         updateCutCopyDelete(false);
     }
 
-    public static File getDatapath(File baseDir) {
+    public static String getDatapath(File baseDir) {
         String TESSDATA_PREFIX = System.getenv("TESSDATA_PREFIX"); // env var takes precedence
         
         // not defined
@@ -266,7 +266,7 @@ public class Gui extends JFrame {
             }
         }
 
-        return new File(TESSDATA_PREFIX, TESSDATA);
+        return new File(TESSDATA_PREFIX, TESSDATA).getPath();
     }
 
     /**
@@ -277,8 +277,8 @@ public class Gui extends JFrame {
         lookupISO_3_1_Codes = new Properties();
 
         try {
-            File tessdataDir = getDatapath(baseDir);
-            datapath = tessdataDir.getPath();
+            datapath = getDatapath(baseDir);
+            File tessdataDir = new File(datapath);
             installedLanguageCodes = tessdataDir.list(new FilenameFilter() {
 
                 @Override

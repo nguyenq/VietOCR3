@@ -14,10 +14,10 @@ import static org.junit.Assert.*;
 public class OCRHelperTest {
 
     static final boolean WINDOWS = System.getProperty("os.name").toLowerCase().startsWith("windows");
-    File tessdataDir;
+    String tessdataPath;
 
     public OCRHelperTest() {
-        tessdataDir = Gui.getDatapath(Utils.getBaseDir(OCRHelperTest.this));
+        tessdataPath = Gui.getDatapath(Utils.getBaseDir(OCRHelperTest.this));
     }
 
     @BeforeClass
@@ -54,7 +54,7 @@ public class OCRHelperTest {
             try {
                 System.out.println("Process " + imageFile.getPath());
                 String outputFilename = imageFile.getPath().substring(inputFolder.length() + 1);
-                OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename), tessdataDir.getPath(), langCode, pageSegMode, outputFormat, false);
+                OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename), tessdataPath, langCode, pageSegMode, outputFormat, false);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

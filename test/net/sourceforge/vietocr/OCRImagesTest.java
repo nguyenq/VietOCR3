@@ -13,12 +13,12 @@ import static org.junit.Assert.*;
 public class OCRImagesTest {
 
     static final boolean WINDOWS = System.getProperty("os.name").toLowerCase().startsWith("windows");
-    File tessdataDir;
+    String tessdataPath;
     String lang = "vie";
     OCRImageEntity entity;
 
     public OCRImagesTest() {
-        tessdataDir = Gui.getDatapath(Utils.getBaseDir(OCRImagesTest.this));
+        tessdataPath = Gui.getDatapath(Utils.getBaseDir(OCRImagesTest.this));
         File selectedFile = new File("samples/vietsample1.tif");
         try {
             List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(selectedFile);
@@ -52,7 +52,7 @@ public class OCRImagesTest {
     public void testRecognizeText() throws Exception {
         System.out.println("recognizeText with Tesseract API");
         OCR<IIOImage> instance = new OCRImages();
-        instance.setDatapath(tessdataDir.getPath());
+        instance.setDatapath(tessdataPath);
         instance.setLanguage(lang);
         String expResult = "Đôi Mắt Người Sơn Tây";
         String result = instance.recognizeText(entity.getSelectedOimages(), entity.getInputfilename());
@@ -71,7 +71,7 @@ public class OCRImagesTest {
         File inputImage = new File("samples/vietsample1.tif");
         File outputFile = new File("build/test/results/vietsample1");
         OCRImages instance = new OCRImages();
-        instance.setDatapath(tessdataDir.getPath());
+        instance.setDatapath(tessdataPath);
         instance.setLanguage(lang);
         instance.setOutputFormat("text");
         instance.processPages(inputImage, outputFile);

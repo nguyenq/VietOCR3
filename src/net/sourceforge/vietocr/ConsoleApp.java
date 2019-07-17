@@ -82,10 +82,10 @@ public class ConsoleApp {
             }
         }
 
-        File tessdataDir = Gui.getDatapath(Utils.getBaseDir(ConsoleApp.this));
+        String tessdataPath = Gui.getDatapath(Utils.getBaseDir(ConsoleApp.this));
 
         try {
-            OCRHelper.performOCR(imageFile, outputFile, tessdataDir.getPath(), curLangCode, psm, outputFormat, false);
+            OCRHelper.performOCR(imageFile, outputFile, tessdataPath, curLangCode, psm, outputFormat, false);
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
         }
