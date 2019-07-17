@@ -103,7 +103,6 @@ public class Gui extends JFrame {
     protected ResourceBundle bundle;
     private String currentDirectory;
     private String outputDirectory;
-    protected String tessPath;
     private String[] installedLanguageCodes;
     protected String[] installedLanguages;
     ImageIconScalable imageIcon;
@@ -2040,10 +2039,6 @@ public class Gui extends JFrame {
         }
         if (outputDirectory != null) {
             prefs.put(strOutputDirectory, outputDirectory);
-        }
-
-        if (!WINDOWS) {
-            prefs.put(strTessDir, tessPath);
         }
 
         prefs.put(strFontName, font.getName());

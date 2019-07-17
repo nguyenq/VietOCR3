@@ -147,7 +147,7 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
                     publish(imageFile.getPath()); // interim result
                     try {
                         String outputFilename = imageFile.getPath().substring(inputFolder.length() + 1);
-                        OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename), tessPath, curLangCode, selectedPSM, outputFormat, bulkDeskewEnabled);
+                        OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename), datapath, curLangCode, selectedPSM, outputFormat, bulkDeskewEnabled);
                     } catch (Exception e) {
                         logger.log(Level.WARNING, e.getMessage(), e);
                         publish("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **");
