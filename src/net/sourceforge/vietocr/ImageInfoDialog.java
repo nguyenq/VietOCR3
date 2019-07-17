@@ -108,6 +108,7 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         jTextFieldWidth.setPreferredSize(new java.awt.Dimension(40, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 2, 5);
         jPanel1.add(jTextFieldWidth, gridBagConstraints);
 
@@ -117,6 +118,7 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 2, 5);
         jPanel1.add(jTextFieldHeight, gridBagConstraints);
 
@@ -126,6 +128,7 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 2, 5);
         jPanel1.add(jTextFieldXRes, gridBagConstraints);
 
@@ -135,6 +138,7 @@ public class ImageInfoDialog extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 2, 5);
         jPanel1.add(jTextFieldYRes, gridBagConstraints);
 
@@ -182,10 +186,12 @@ public class ImageInfoDialog extends javax.swing.JDialog {
 
         jTextFieldBitDepth.setEditable(false);
         jTextFieldBitDepth.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextFieldBitDepth.setPreferredSize(new java.awt.Dimension(40, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 2, 5);
         jPanel1.add(jTextFieldBitDepth, gridBagConstraints);
 
