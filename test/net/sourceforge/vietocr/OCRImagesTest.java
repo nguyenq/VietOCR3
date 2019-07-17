@@ -5,6 +5,7 @@ import java.util.List;
 import javax.imageio.IIOImage;
 
 import net.sourceforge.tess4j.util.ImageIOHelper;
+import net.sourceforge.vietocr.util.Utils;
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -12,14 +13,12 @@ import static org.junit.Assert.*;
 public class OCRImagesTest {
 
     static final boolean WINDOWS = System.getProperty("os.name").toLowerCase().startsWith("windows");
-    String tessPath;
-    String datapath;
+    File tessdataDir;
     String lang = "vie";
     OCRImageEntity entity;
 
     public OCRImagesTest() {
-        tessPath = WINDOWS ? new File(System.getProperty("user.dir")).getPath() : "/usr/local/bin";
-        datapath = WINDOWS ? tessPath + "/tessdata" : "/usr/share/tesseract-ocr/tessdata";
+        tessdataDir = Gui.getDatapath(Utils.getBaseDir(OCRImagesTest.this));
         File selectedFile = new File("samples/vietsample1.tif");
         try {
             List<IIOImage> iioImageList = ImageIOHelper.getIIOImageList(selectedFile);
@@ -52,8 +51,8 @@ public class OCRImagesTest {
     @Test
     public void testRecognizeText() throws Exception {
         System.out.println("recognizeText with Tesseract API");
-        OCR<IIOImage> instance = new OCRImages(tessPath);
-        instance.setDatapath(datapath);
+        OCR<IIOImage> instance = new OCRImages();
+        instance.setDatapath(tessdataDir.getPath());
         instance.setLanguage(lang);
         String expResult = "Đôi Mắt Người Sơn Tây";
         String result = instance.recognizeText(entity.getSelectedOimages(), entity.getInputfilename());
@@ -71,8 +70,8 @@ public class OCRImagesTest {
         System.out.println("processPages");
         File inputImage = new File("samples/vietsample1.tif");
         File outputFile = new File("build/test/results/vietsample1");
-        OCRImages instance = new OCRImages(tessPath);
-        instance.setDatapath(datapath);
+        OCRImages instance = new OCRImages();
+        instance.setDatapath(tessdataDir.getPath());
         instance.setLanguage(lang);
         instance.setOutputFormat("text");
         instance.processPages(inputImage, outputFile);

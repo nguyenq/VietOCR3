@@ -82,18 +82,10 @@ public class ConsoleApp {
             }
         }
 
-        String tessPath;
-
-        File baseDir = Utils.getBaseDir(this);
-
-        if (Gui.WINDOWS) {
-            tessPath = baseDir.getPath();
-        } else {
-            tessPath = Gui.prefs.get("TesseractDirectory", baseDir.getPath());
-        }
+        File tessdataDir = Gui.getDatapath(Utils.getBaseDir(ConsoleApp.this));
 
         try {
-            OCRHelper.performOCR(imageFile, outputFile, tessPath, curLangCode, psm, outputFormat, false);
+            OCRHelper.performOCR(imageFile, outputFile, tessdataDir.getPath(), curLangCode, psm, outputFormat, false);
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
         }

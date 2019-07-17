@@ -25,6 +25,8 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.channels.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.*;
 import java.util.List;
 import java.util.*;
@@ -60,7 +62,7 @@ public class Gui extends JFrame {
             + (MAC_OS_X ? "/Library/Application Support/" + APP_NAME : "/." + APP_NAME.toLowerCase()));
     static final String UTF8 = "UTF-8";
     static final String strUILanguage = "UILanguage";
-    static final String TESSDATA = "/tessdata";
+    static final String TESSDATA = "tessdata";
     private static final String strLookAndFeel = "lookAndFeel";
     private static final String strWindowState = "windowState";
     private static final String strLangCode = "langCode";
@@ -248,36 +250,35 @@ public class Gui extends JFrame {
         updateCutCopyDelete(false);
     }
 
+    public static File getDatapath(File baseDir) {
+        String TESSDATA_PREFIX = System.getenv("TESSDATA_PREFIX"); // env var takes precedence
+        
+        // not defined
+        if (TESSDATA_PREFIX == null) {
+            if (WINDOWS) {
+                TESSDATA_PREFIX = baseDir.getPath();
+            } else {
+                if (Files.exists(Paths.get("/usr/bin/tesseract"))) { // default install path of Tesseract on Linux
+                    TESSDATA_PREFIX = "/usr/share/tesseract-ocr/4.00/"; // default install path of tessdata on Linux
+                } else {
+                    TESSDATA_PREFIX = "/usr/local/share/"; // default make install path of tessdata on Linux
+                }
+            }
+        }
+
+        return new File(TESSDATA_PREFIX, TESSDATA);
+    }
+
     /**
      * Gets Tesseract's installed language data packs.
      */
     private void getInstalledLanguagePacks() {
-        if (WINDOWS) {
-            tessPath = baseDir.getPath();
-            datapath = tessPath + TESSDATA;
-        } else {
-            tessPath = prefs.get(strTessDir, "/usr/bin");
-            datapath = "/usr/share/tesseract-ocr/tessdata";
-        }
-
         lookupISO639 = new Properties();
         lookupISO_3_1_Codes = new Properties();
 
         try {
-            File tessdataDir = new File(tessPath, TESSDATA);
-            if (!tessdataDir.exists()) {
-                String TESSDATA_PREFIX = System.getenv("TESSDATA_PREFIX");
-                if (TESSDATA_PREFIX == null && !WINDOWS) { // if TESSDATA_PREFIX env var not set
-                    if (tessPath.equals("/usr/bin")) { // default install path of Tesseract on Linux
-                        TESSDATA_PREFIX = "/usr/share/tesseract-ocr/"; // default install path of tessdata on Linux
-                    } else {
-                        TESSDATA_PREFIX = "/usr/local/share/"; // default make install path of tessdata on Linux
-                    }
-                }
-                tessdataDir = new File(TESSDATA_PREFIX, TESSDATA);
-                datapath = tessdataDir.getPath();
-            }
-
+            File tessdataDir = getDatapath(baseDir);
+            datapath = tessdataDir.getPath();
             installedLanguageCodes = tessdataDir.list(new FilenameFilter() {
 
                 @Override
@@ -2270,7 +2271,7 @@ public class Gui extends JFrame {
         }
 
         try {
-            OCR<IIOImage> ocrEngine = new OCRImages(tessPath); // for Tess4J
+            OCR<IIOImage> ocrEngine = new OCRImages(); // for Tess4J
             ocrEngine.setDatapath(datapath);
             HashMap<Color, List<Rectangle>> map = ((JImageLabel) jImageLabel).getSegmentedRegions();
             if (map == null) {
@@ -2666,7 +2667,7 @@ public class Gui extends JFrame {
         this.jSplitPaneImage.setDividerLocation(collapsed ? 0 : this.jSplitPaneImage.getLastDividerLocation());
         this.jSplitPaneImage.setDividerSize(collapsed ? 0 : 5);
     }//GEN-LAST:event_jButtonCollapseExpandActionPerformed
-    
+
     void jCheckBoxMenuItemDoubleSidedPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemDoubleSidedPageActionPerformed
         this.jLabelPageValue.setText(this.jCheckBoxMenuItemDoubleSidedPage.isSelected() ? bundle.getString("Double_sided") : bundle.getString("Single_sided"));
     }//GEN-LAST:event_jCheckBoxMenuItemDoubleSidedPageActionPerformed

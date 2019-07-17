@@ -38,10 +38,8 @@ import net.sourceforge.vietocr.util.Utils;
 public class OCRImages extends OCR<IIOImage> {
 
     private final Tesseract instance;
-    private final String tessPath;
 
-    public OCRImages(String tessPath) {
-        this.tessPath = tessPath;
+    public OCRImages() {
         instance = new Tesseract();
     }
 

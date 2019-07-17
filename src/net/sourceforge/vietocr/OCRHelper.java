@@ -30,16 +30,16 @@ public class OCRHelper {
      *
      * @param imageFile Image file
      * @param outputFile Without extension
-     * @param tessPath path to Tesseract executable
+     * @param tessdataPath path to Tesseract <code>tessdata</code> directory
      * @param langCode language code
      * @param pageSegMode page segmentation mode
      * @param outputFormat format of output file. Possible values:
      * <code>text</code>, <code>text+</code> (with post-corrections),
      * <code>hocr</code>
-     * @param deskew
+     * @param deskew auto-deskew or not
      * @throws Exception
      */
-    public static void performOCR(File imageFile, File outputFile, String tessPath, String langCode, String pageSegMode, String outputFormat, boolean deskew) throws Exception {
+    public static void performOCR(File imageFile, File outputFile, String tessdataPath, String langCode, String pageSegMode, String outputFormat, boolean deskew) throws Exception {
         File workingTiffFile = null;
 
         try {
@@ -51,8 +51,8 @@ public class OCRHelper {
 
             boolean postprocess = "text+".equals(outputFormat);
 
-            OCR<IIOImage> ocrEngine = new OCRImages(tessPath);
-            ocrEngine.setDatapath(new File(tessPath, "tessdata").getPath());
+            OCR<IIOImage> ocrEngine = new OCRImages();
+            ocrEngine.setDatapath(tessdataPath);
             ocrEngine.setPageSegMode(pageSegMode);
             ocrEngine.setLanguage(langCode);
             ocrEngine.setOutputFormat(outputFormat.replace("+", ""));
