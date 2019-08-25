@@ -23,7 +23,6 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.nio.channels.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -66,7 +65,6 @@ public class Gui extends JFrame {
     private static final String strLookAndFeel = "lookAndFeel";
     private static final String strWindowState = "windowState";
     private static final String strLangCode = "langCode";
-    private static final String strTessDir = "TesseractDirectory";
     private static final String strMruList = "MruList";
     private static final String strFrameWidth = "frameWidth";
     private static final String strFrameHeight = "frameHeight";
@@ -138,22 +136,6 @@ public class Gui extends JFrame {
 
         bundle = java.util.ResourceBundle.getBundle("net.sourceforge.vietocr.Gui");
         initComponents();
-
-        if (MAC_OS_X) {
-            new MacOSXApplication(Gui.this);
-
-            // remove Exit menuitem
-            this.jMenuFile.remove(this.jSeparatorExit);
-            this.jMenuFile.remove(this.jMenuItemExit);
-
-            // remove About menuitem
-            this.jMenuHelp.remove(this.jSeparatorAbout);
-            this.jMenuHelp.remove(this.jMenuItemAbout);
-
-            // remove Options menuitem
-            this.jMenuSettings.remove(this.jSeparatorOptions);
-            this.jMenuSettings.remove(this.jMenuItemOptions);
-        }
 
         getInstalledLanguagePacks();
         populateOCRLanguageBox();
@@ -251,7 +233,7 @@ public class Gui extends JFrame {
 
     public static String getDatapath(File baseDir) {
         String TESSDATA_PREFIX = System.getenv("TESSDATA_PREFIX"); // env var takes precedence
-        
+
         // not defined
         if (TESSDATA_PREFIX == null) {
             if (WINDOWS) {
@@ -1868,60 +1850,28 @@ public class Gui extends JFrame {
 
     private void jMenuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHelpActionPerformed
         final String readme = bundle.getString("readme");
-        if (MAC_OS_X) {
-            try {
-                File helpFile = new File(supportDir, "readme.html");
-                copyFileFromJarToSupportDir(helpFile);
-                helpFile = new File(supportDir, "readme_lt.html");
-                copyFileFromJarToSupportDir(helpFile);
-                helpFile = new File(supportDir, "readme_sk.html");
-                copyFileFromJarToSupportDir(helpFile);
-                helpFile = new File(supportDir, "readme_vi.html");
-                copyFileFromJarToSupportDir(helpFile);
-                Runtime.getRuntime().exec(new String[]{"open", "-b", "com.apple.helpviewer", readme}, null, supportDir);
-            } catch (IOException e) {
-                logger.log(Level.WARNING, e.getMessage(), e);
-            }
-        } else {
-            if (helptopicsFrame == null) {
-                helptopicsFrame = new JFrame(jMenuItemHelp.getText());
-                helptopicsFrame.addWindowListener(new WindowAdapter() {
 
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        super.windowClosing(e);
-                        helptopicsFrame.dispose();
-                        helptopicsFrame = null;
-                    }
-                });
-                helptopicsFrame.getContentPane().setLayout(new BorderLayout());
-                HtmlPane helpPane = new HtmlPane(readme);
-                helptopicsFrame.getContentPane().add(helpPane, BorderLayout.CENTER);
-                helptopicsFrame.getContentPane().add(helpPane.getStatusBar(), BorderLayout.SOUTH);
-                helptopicsFrame.pack();
-                helptopicsFrame.setLocation((screen.width - helptopicsFrame.getWidth()) / 2, 40);
-            }
-            helptopicsFrame.setVisible(true);
-            helptopicsFrame.setExtendedState(Frame.NORMAL);
+        if (helptopicsFrame == null) {
+            helptopicsFrame = new JFrame(jMenuItemHelp.getText());
+            helptopicsFrame.addWindowListener(new WindowAdapter() {
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    super.windowClosing(e);
+                    helptopicsFrame.dispose();
+                    helptopicsFrame = null;
+                }
+            });
+            helptopicsFrame.getContentPane().setLayout(new BorderLayout());
+            HtmlPane helpPane = new HtmlPane(readme);
+            helptopicsFrame.getContentPane().add(helpPane, BorderLayout.CENTER);
+            helptopicsFrame.getContentPane().add(helpPane.getStatusBar(), BorderLayout.SOUTH);
+            helptopicsFrame.pack();
+            helptopicsFrame.setLocation((screen.width - helptopicsFrame.getWidth()) / 2, 40);
         }
+        helptopicsFrame.setVisible(true);
+        helptopicsFrame.setExtendedState(Frame.NORMAL);
     }//GEN-LAST:event_jMenuItemHelpActionPerformed
-
-    /**
-     * Copies resources from Jar to support directory.
-     *
-     * @param helpFile
-     * @throws IOException
-     */
-    private void copyFileFromJarToSupportDir(File helpFile) throws IOException {
-        if (!helpFile.exists()) {
-            final ReadableByteChannel input
-                    = Channels.newChannel(ClassLoader.getSystemResourceAsStream(helpFile.getName()));
-            final FileChannel output = new FileOutputStream(helpFile).getChannel();
-            output.transferFrom(input, 0, 1000000L);
-            output.close();
-            input.close();
-        }
-    }
 
     private void jComboBoxLangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxLangItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
