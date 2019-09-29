@@ -165,10 +165,10 @@ public class Hunspell {
 
         } else if (os.startsWith("linux") || os.contains("bsd")) {
             if (x86) {
-                return "hunspell-1.6";
+                return "hunspell-1.7";
             }
             if (amd64) {
-                return "hunspell-1.6";
+                return "hunspell-1.7";
             }
 
         } else if (os.startsWith("sunos")) {
