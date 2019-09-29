@@ -217,4 +217,4 @@ Version 5.5.1 (25 August 2019)
 - Remove AppleJavaExtensions deprecated in Java 9
 
 Version 5.5.2 (29 September 2019)
-- Update Hunspell version
+- Update Hunspell & other dependencies
