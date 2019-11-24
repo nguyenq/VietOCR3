@@ -55,8 +55,14 @@ source_file = src/net/sourceforge/vietpad/components/FontDialog.properties
 source_lang = en
 type = PROPERTIES
 
+[vietocr.JFindReplaceDialog_properties]
+file_filter = src/net/sourceforge/vietpad/components/JFindReplaceDialog_<lang>.properties
+source_file = src/net/sourceforge/vietpad/components/JFindReplaceDialog.properties
+source_lang = en
+type = PROPERTIES
+
 [vietocr.readme_html]
 file_filter = readme_<lang>.html
 source_file = readme.html
 source_lang = en
-type = HTML 
+type = HTML
