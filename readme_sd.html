@@ -1,0 +1,128 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>VietOCR - Java GUI Frontend for Tesseract OCR</title>
+</head>
+<body>
+    <div class="Section1">
+        <h2 align="center">ويٽ او سي آر</h2>
+        <h3>تفصيل</h3>
+        <p><a href="http://vietocr.sourceforge.net">VietOCR</a> is a Java GUI frontend for
+            <a href="https://github.com/tesseract-ocr">Tesseract OCR engine</a>, providing
+            character recognition support for common image formats, and multi-page images. The
+            program has postprocessing which helps correct errors regularly encountered in the
+            OCR process, boosting the accuracy rate on the result. The program can also function
+            as a console application, executing from the command line.</p>
+        <p>Batch processing is now supported. The program monitors a watch folder for new image
+            files, automatically processes them through the OCR engine, and outputs recognition
+            results to an output folder.</p>
+        <h3>سسٽم جون گھرجون</h3>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime
+                Environment 8</a> or later.</p>
+        <h3>انسٽاليشن</h3>
+        <p>Tesseract Windows executable is bundled with the program. Additional <a href="https://github.com/tesseract-ocr/tessdata">
+                language data packs</a> for Tesseract, whose names start with ISO639-3 codes,
+            should be placed into the <code>tessdata</code> subdirectory.</p>
+        <p>For Linux, Tesseract and its language data packages are in the Graphics (universe)
+            repository. They can be installed using Synaptic or by the following command:</p>
+        <blockquote>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
+        </blockquote>
+        <p>The files will be placed in <code>/usr/bin</code> and <code>/usr/share/tesseract-ocr/tessdata</code>,
+            respectively. On the other hand, if Tesseract is built and installed from the <a href="https://github.com/tesseract-ocr/tesseract/wiki">source</a>,
+            they will be placed in <code>/usr/local/bin</code> and <code>/usr/local/share/tessdata</code>.
+            You may need to specify the directory of Tesseract executable from VietOCR&#39;s
+            <code>Settings</code> menu. If the data is in a non-standard location, a soft link
+            to <code>tessdata</code> may be required. You can also let VietOCR know the location
+            of <code>tessdata</code> via the environment variable <code>TESSDATA_PREFIX</code>:</p>
+        <blockquote>
+            <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
+        </blockquote>
+        <p>For other platforms, please consult <a href="https://github.com/tesseract-ocr/tesseract/wiki">
+                Tesseract Wiki</a> page.</p>
+        <p>VietOCR also provides support for downloading and installing selected language packs
+            via <em>Download Language Data</em> menu item. Depending on the location of the
+            <code>tessdata</code> folder, you may be required to run the program as root or
+            admin to be able to install the downloaded data into the folder if it is inside
+            a system folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code>
+            on Windows.</p>
+        <p>Scanning support on Windows is provided via the Windows Image 
+			Acquisition Library v2.0.</p>
+        <p>لنڪس تي اسڪين ڪرن لاءِ SANE پيڪيج ڊائون لوڊ ڪري استعمال ڪريو:</p>
+        <blockquote>
+            <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
+        </blockquote>
+        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL Ghostscript</a>.</p>
+        <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
+                dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed
+            in <code>dict</code> folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded
+            file which contains a list of custom words, one word per line.</p>
+        <p>On Linux, Hunspell and its dictionaries can be installed by Synaptic or <code>apt</code>,
+            as follows:</p>
+        <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
+        <h3>هدايتون</h3>
+        <p>پروگرام لانچ ڪرڻ بابت:</p>
+        <blockquote>
+            <p><code>java -jar VietOCR.jar</code></p>
+        </blockquote>
+        <p><b><u>Note</u></b>: If you encounter out-of-memory exception, run <code>ocr</code>
+            script file instead of using the .jar.</p>
+        <p>The Vietnamese language data were generated for Times New Roman, Arial, Verdana,
+            and Courier New fonts. Therefore, the recognition would have better success rate
+            for images having similar font glyphs. OCRing images that have font glyphs look
+            different from the supported fonts generally will require <a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">
+                training</a> Tesseract to create another language data pack specifically for
+            those typefaces. Language data for some VNI and TCVN3 (ABC) fonts have also been
+            bundled in latest versions.</p>
+        <p>Images to be OCRed should be scanned at resolution from at least 200 DPI (dot per
+            inch) to 400 DPI in monochrome (black&amp;white) or grayscale. Scanning at higher
+            resolutions will not necessarily result in better recognition accuracy, which currently
+            can be higher than 97% for Vietnamese, and the next release of Tesseract may improve
+            it even further. Even so, the actual rates still depend greatly on the quality of
+            the scanned image. The typical settings for scanning are 300 DPI and 1 bpp (bit
+            per pixel) black&amp;white or 8 bpp grayscale uncompressed TIFF or PNG format.</p>
+        <p>The <em>Screenshot Mode</em> offers better recognition rates for low-resolution
+            images, such as screen prints, by rescaling them to 300 DPI.</p>
+        <p>In addition to the built-in text postprocessing algorithm, you can add your own
+            custom text replacement scheme via a UTF-8-encoded tab-delimited text file named <code>x.DangAmbigs.txt</code>,
+            where x is the ISO639-3 language code. Both plain and Regex text replacements are supported.</p>
+        <p>You can put init-only and non-init control parameters in <code>tessdata/configs/tess_configs</code>
+            and <code>tess_configvars</code> files, respectively, to modify Tesseract&#39;s
+            behaviour.</p>
+        <p>Some built-in tools are provided to merge several images or PDF files into a single
+            one for convenient OCR operations, or to split a TIFF or PDF file into smaller ones
+            if it contains too many pages, which can cause out-of-memory exceptions.</p>
+        <h3>او سي آر جا آخري مرحلا</h3>
+        <p>The recognition errors can generally be classified into three categories. Many of
+            the errors are related to the letter cases — for example: hOa, nhắC — which can
+            be easily corrected by popular Unicode text editors. Many other errors are a result
+            of the OCR process, such as missing diacritical marks, wrong letters with similar
+            shape, etc. — huu – hưu, mang – marg, h0a – hoa, la – 1a, uhìu - nhìn. These can
+            also be easily fixed by spell checker programs. The built-in Postprocessing function
+            can help correct many of the aforementioned errors.</p>
+        <p>The last category of errors is the most difficult to detect because they are semantic
+            errors, which means that the words are valid entries in the dictionary but are wrong
+            in the context — e.g., tinh – tình, vân – vấn. These errors require the editor to
+            read though and manually correct them according to the original image.</p>
+        <p>Following are instructions on how to correct the first two categories of OCR errors
+            using the built-in functionality:</p>
+        <ol style="margin-top: 0in" start="1" type="1">
+<li>Group lines. The lines need to be grouped to the paragraph they belong, as being
+                OCRed, each line becomes a separate 1-line paragraph. Use <i>Remove Line Breaks</i>
+                function under <i>Format</i> menu. Note that this operation may not be needed for
+                poems.</li>
+            <li>Select <i>Change Case</i>, also under <i>Format</i> menu, and choose <i>Sentence
+                case</i> to correct most of the letter case errors. Locate and fix the rest of remaining
+                letter case errors.</li>
+            <li>Correct the misspelled errors using the integrated <i>Spell Check</i>.</li>
+        </ol>
+<p>Through the above process, most of common errors can be eliminated. The remaining,
+            semantic errors are few, but it requires a human editor to read though and make
+            necessary edits to make the document like the original scanned document, and error-free
+            if desired.</p>
+        <p>If there is any questions, please post in <a href="http://sourceforge.net/projects/vietocr/forums">
+                VietOCR Forum</a>.</p>
+        <hr>
+</div>
+</body>
+</html>
