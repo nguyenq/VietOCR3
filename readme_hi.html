@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>विएतओसीआर -  टेसेरक्ट ओसीआर का जावा जीयूआई फ्रंटएण्ड</title>
@@ -7,8 +7,8 @@
     <div class="Section1">
         <h2 align="center">विएतओसीआर</h2>
         <h3>विवरण</h3>
-        <p><a href="http://vietocr.sourceforge.net">विएतओसीआर</a> 
-<a href="https://github.com/tesseract-ocr">टेसेरक्ट ओसीआर इंजन</a> का एक जावा में बना जीयूआई फ्रंटएण्ड है , जो सामान्य फॉर्मेट की छवियों और कई-पेज वाली छवियों के अक्षर पहचानने में मदद करता है . इस प्रोग्राम में पोस्टप्रोसेसिंग है जिससे ओसीआर प्रक्रिया से होने वाले कई सामान्य गलतियाँ सुधारी जा सकती है, जिससे सफलता की दर बढ़ जाती है . प्रोग्राम को कॉन्सोल एप्लीकेशन के रूप में कमांड लाइन से भी चलाया जा सकता है .</p>
+        <p> 98% match
+<a href="http://vietocr.sourceforge.net">विएतओसीआर</a> <a href="http://code.google.com/p/tesseract-ocr/">टेसेरक्ट ओसीआर इंजन</a> ke liye जावा में बना ek जीयूआई फ्रंटएण्ड है , जो सामान्य फॉर्मेट की छवियों और कई-पेज वाली छवियों के अक्षर पहचानने में मदद करता है . इस प्रोग्राम में पोस्टप्रोसेसिंग है जिससे ओसीआर प्रक्रिया से होने वाले कई सामान्य गलतियाँ सुधारी जा सकती है, जिससे सफलता की दर बढ़ जाती है . प्रोग्राम को कॉन्सोल एप्लीकेशन के रूप में कमांड लाइन से भी चलाया जा सकता है .</p>
         <p>अब बैच प्रोसेसिंग भी सपोर्टेड है . प्रोग्राम एक वाच फोल्डर को नयी छवि फाइलों के लिए चेक करता है औए उन्हें स्वतः ओसीआर करके रिकग्निशन की आउटपुट को आउटपुट फोल्डर में सहेजता है .</p>
         <h3>सिस्टम की ज़रूरतें</h3>
         <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">जावा  रनटाइम
@@ -17,9 +17,15 @@
         <p>टेसेरक्ट विंडोज एक्सीक्यूटेबल इस प्रोग्राम के साथ दिया गया है . टेसेरक्ट के अन्य <a href="https://github.com/tesseract-ocr/tessdata"> लैंग्वेज डेटा पैक </a> जिनके नाम ISO639-3 कोड से शुरू होते हैं, <code>tessdata</code> सबडिरेक्टरी में रखे जाने चाहिए .</p>
         <p>लिनक्स के लिए, टेसेरक्ट और इसके  लैंग्वेज डेटा पैकेज Graphics (universe) रिपोसिटरी में हैं. इनको सेनेप्टिक या निम्न कमांड से इनस्टॉल किया जा सकता है .</p>
         <blockquote>
-            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-hin</code></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
         </blockquote>
-        <p> फाइलें क्रमशः <code>/usr/bin</code> और <code>/usr/share/tesseract-ocr/tessdata</code>  में रखी जायेंगी . लेकिन, अगर टेसेरक्ट को  <a href="https://github.com/tesseract-ocr/tesseract/wiki">source</a>  से बिल्ड और इनस्टॉल किया जाएगा तो, वे   <code>/usr/local/bin</code> और <code>/usr/local/share/tessdata</code>. में रखी जायेंगी.     आप विएतओसीआर के             <code>Settings</code> मेनू द्वारा टेसेरक्ट एक्सिकयूटिबल की डायरेक्टरी बता सकते हैं . अगर डेटा गैर मानक स्थान में है, तो  <code>tessdata</code> के लिए एक सॉफ्ट लिंक आवश्यक हो सकता है . आप विएतओसीआर को  <code>tessdata</code> की जगह एनवायरनमेंट वेरिएबल <code>TESSDATA_PREFIX</code>के माध्यम से भी बता सकते हैं .</p>
+        <p>The files will be placed in <code>/usr/bin</code> and <code>/usr/share/tesseract-ocr/tessdata</code>,
+            respectively. On the other hand, if Tesseract is built and installed from the <a href="https://github.com/tesseract-ocr/tesseract/wiki">source</a>,
+            they will be placed in <code>/usr/local/bin</code> and <code>/usr/local/share/tessdata</code>.
+            You may need to specify the directory of Tesseract executable from VietOCR&#39;s
+            <code>Settings</code> menu. If the data is in a non-standard location, a soft link
+            to <code>tessdata</code> may be required. You can also let VietOCR know the location
+            of <code>tessdata</code> via the environment variable <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
