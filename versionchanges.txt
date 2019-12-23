@@ -223,3 +223,7 @@ Version 5.5.3 (14 December 2019)
 - Update Tess4J 4.4.1
 - Add support for reading JPEG2000 image
 - Update translations
+
+Version 5.5.4 (23 December 2019)
+- Fix minor UI issues
+- Additional localized strings

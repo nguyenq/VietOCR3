@@ -1530,7 +1530,6 @@ public class Gui extends JFrame {
         jMenuImage.add(jMenuFilter);
 
         jMenuItemDeskew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItemDeskew.setFont(new java.awt.Font("Noto Sans", 0, 12)); // NOI18N
         jMenuItemDeskew.setMnemonic(java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui").getString("jMenuItemDeskew.Mnemonic").charAt(0));
         jMenuItemDeskew.setText(bundle.getString("jMenuItemDeskew.Text")); // NOI18N
         jMenuItemDeskew.addActionListener(new java.awt.event.ActionListener() {

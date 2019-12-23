@@ -285,7 +285,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanelHyphens.add(jCheckBoxRemoveHyphens, gridBagConstraints);
 
-        jTabbedPane1.addTab("Hyphens", jPanelHyphens);
+        jTabbedPane1.addTab(bundle.getString("Hyphens"), jPanelHyphens); // NOI18N
 
         getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
         jTabbedPane1.getAccessibleContext().setAccessibleName("Watch");
