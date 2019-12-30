@@ -224,6 +224,8 @@ Version 5.5.3 (14 December 2019)
 - Add support for reading JPEG2000 image
 - Update translations
 
-Version 5.5.4 (23 December 2019)
+Version 5.6.0 (29 December 2019)
 - Fix minor UI issues
 - Additional localized strings
+- Update Tess4J 4.5.0 (Tesseract 4.1.1)
+- Update other dependencies
