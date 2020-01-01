@@ -30,6 +30,7 @@ public class SplitPdfDialog extends javax.swing.JDialog {
 
     private SplitPdfArgs args;
     private int actionSelected = -1;
+    private File currentDirectory;
     protected ResourceBundle bundle;
 
     /** Creates new form SplitPdfDialog */
@@ -229,7 +230,7 @@ public class SplitPdfDialog extends javax.swing.JDialog {
         jPanel1.add(jLabelNumPages, gridBagConstraints);
 
         jTextFieldNumOfPages.setColumns(3);
-        jTextFieldNumOfPages.setText("50");
+        jTextFieldNumOfPages.setText("20");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 3;
@@ -269,7 +270,9 @@ public class SplitPdfDialog extends javax.swing.JDialog {
         FileFilter pdfFilter = new SimpleFilter("pdf", "PDF");
         filechooser.addChoosableFileFilter(pdfFilter);
         filechooser.setAcceptAllFileFilterUsed(false);
+        filechooser.setCurrentDirectory(currentDirectory);
         if (filechooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            currentDirectory = filechooser.getCurrentDirectory();
             this.jTextFieldInputFile.setText(filechooser.getSelectedFile().getPath());
         }
     }//GEN-LAST:event_jButtonInputActionPerformed
@@ -280,6 +283,7 @@ public class SplitPdfDialog extends javax.swing.JDialog {
         FileFilter pdfFilter = new SimpleFilter("pdf", "PDF");
         filechooser.addChoosableFileFilter(pdfFilter);
         filechooser.setAcceptAllFileFilterUsed(false);
+        filechooser.setCurrentDirectory(currentDirectory);
         if (filechooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             this.jTextFieldOutputFile.setText(filechooser.getSelectedFile().getPath());
 
@@ -409,5 +413,19 @@ public class SplitPdfDialog extends javax.swing.JDialog {
                 }
             }
         }
+    }
+
+    /**
+     * @return the currentDirectory
+     */
+    public File getCurrentDirectory() {
+        return currentDirectory;
+    }
+
+    /**
+     * @param currentDirectory the currentDirectory to set
+     */
+    public void setCurrentDirectory(File currentDirectory) {
+        this.currentDirectory = currentDirectory;
     }
 }

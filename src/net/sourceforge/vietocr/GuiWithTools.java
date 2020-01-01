@@ -35,7 +35,9 @@ import net.sourceforge.vietpad.components.SimpleFilter;
 public class GuiWithTools extends GuiWithSpellcheck {
 
     private final String strImageFolder = "ImageFolder";
+    private final String strPdfFolder = "PdfFolder";
     File imageFolder;
+    File pdfFolder;
     FileFilter selectedFilter;
     FileFilter tiffFilter = new SimpleFilter("tif;tiff", "TIFF");
     FileFilter pdfFilter = new SimpleFilter("pdf", "PDF");
@@ -44,6 +46,7 @@ public class GuiWithTools extends GuiWithSpellcheck {
 
     public GuiWithTools() {
         imageFolder = new File(prefs.get(strImageFolder, System.getProperty("user.home")));
+        pdfFolder = new File(prefs.get(strPdfFolder, System.getProperty("user.home")));
     }
 
     /**
@@ -323,7 +326,9 @@ public class GuiWithTools extends GuiWithSpellcheck {
     @Override
     void jMenuItemSplitPdfActionPerformed(java.awt.event.ActionEvent evt) {
         SplitPdfDialog dialog = new SplitPdfDialog(this, true);
+        dialog.setCurrentDirectory(pdfFolder);
         if (dialog.showDialog() == JOptionPane.OK_OPTION) {
+            pdfFolder = dialog.getCurrentDirectory();
             final SplitPdfArgs args = dialog.getArgs();
 
             jLabelStatus.setText(bundle.getString("SplitPDF_running..."));
@@ -476,6 +481,7 @@ public class GuiWithTools extends GuiWithSpellcheck {
     @Override
     void quit() {
         prefs.put(strImageFolder, imageFolder.getPath());
+        prefs.put(strPdfFolder, pdfFolder.getPath());
         super.quit();
     }
 
