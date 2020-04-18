@@ -37,7 +37,9 @@ public class GuiWithSettings extends GuiWithLaF {
 
     public GuiWithSettings() {
         watchFolder = prefs.get(strWatchFolder, System.getProperty("user.home"));
+        if (!new File(watchFolder).exists()) watchFolder = System.getProperty("user.home");
         outputFolder = prefs.get(strOutputFolder, System.getProperty("user.home"));
+        if (!new File(outputFolder).exists()) outputFolder = System.getProperty("user.home");
         watchEnabled = prefs.getBoolean(strWatchEnabled, false);
         watchDeskewEnabled = prefs.getBoolean(strWatchDeskewEnable, false);
         tessLibEnabled = prefs.getBoolean(strTessLibEnabled, false);

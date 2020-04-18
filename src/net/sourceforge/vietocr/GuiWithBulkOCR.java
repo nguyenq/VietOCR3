@@ -45,7 +45,9 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
 
     public GuiWithBulkOCR() {
         inputFolder = prefs.get(strInputFolder, System.getProperty("user.home"));
+        if (!new File(inputFolder).exists()) inputFolder = System.getProperty("user.home");
         outputFolder = prefs.get(strBulkOutputFolder, System.getProperty("user.home"));
+        if (!new File(outputFolder).exists()) outputFolder = System.getProperty("user.home");
         outputFormat = prefs.get(strBulkOutputFormat, "text");
         bulkDeskewEnabled = prefs.getBoolean(strBulkDeskewEnable, false);
         statusFrame = new StatusFrame();
