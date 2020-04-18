@@ -16,6 +16,9 @@
 package net.sourceforge.vietocr.util;
 
 import java.io.*;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -23,7 +26,8 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * Adapted from http://forums.sun.com/thread.jspa?forumID=31&amp;threadID=5316582
+ * Adapted from
+ * http://forums.sun.com/thread.jspa?forumID=31&amp;threadID=5316582
  */
 public class Watcher implements Runnable {
 
@@ -69,6 +73,14 @@ public class Watcher implements Runnable {
             } else {
                 for (File file : files) {
                     if (!lastFiles.contains(file)) {
+                        // Wait if file is still being written
+                        while (isFileLocked(file)) {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                // not important
+                            }
+                        }
                         System.out.println("New file: " + file);
                         queue.offer(file);
                     }
@@ -96,6 +108,21 @@ public class Watcher implements Runnable {
      */
     public void setPath(File path) {
         watchFolder = path;
+    }
+
+    /**
+     * Check if file is locked as in being used or written by another process.
+     *
+     * @param file
+     * @return
+     */
+    protected boolean isFileLocked(File file) {
+        try (FileChannel ch = FileChannel.open(file.toPath(), StandardOpenOption.WRITE);
+                FileLock lock = ch.tryLock()) {
+            return lock == null;
+        } catch (IOException e) {
+            return true;
+        }
     }
 
     public static void main(String[] args) {

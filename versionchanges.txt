@@ -230,3 +230,6 @@ Version 5.6.0 (3 January 2020)
 - Persist selected directory of PDF files
 - Update Tess4J 4.5.1 (Tesseract 4.1.1)
 - Update other dependencies
+
+Version 5.6.1 (17 April 2020)
+- Fix locked file issues with batch process
