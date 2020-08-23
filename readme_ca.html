@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VietOCR - Interfície gràfica d'usuari Java per al Tesseract OCR</title>
@@ -17,23 +17,23 @@
             files, automatically processes them through the OCR engine, and outputs recognition
             results to an output folder.</p>
         <h3>REQUERIMENTS DEL SISTEMA</h3>
-        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 8</a>
-            o superior.</p>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime
+                Environment 8</a> or later.</p>
         <h3>INSTAL·LACIÓ</h3>
         <p>Tesseract Windows executable is bundled with the program. Additional <a href="https://github.com/tesseract-ocr/tessdata">
                 language data packs</a> for Tesseract, whose names start with ISO639-3 codes,
             should be placed into the <code>tessdata</code> subdirectory.</p>
         <p>Per a Linux, el Tesseract i els paquests de llengua es troben al dipòsit Graphics (universe). Es poden instal·lar usant el Synaptic o amb l'ordre següent:</p>
         <blockquote>
-            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-cat</code></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
         </blockquote>
         <p>The files will be placed in <code>/usr/bin</code> and <code>/usr/share/tesseract-ocr/tessdata</code>,
             respectively. On the other hand, if Tesseract is built and installed from the <a href="https://github.com/tesseract-ocr/tesseract/wiki">source</a>,
             they will be placed in <code>/usr/local/bin</code> and <code>/usr/local/share/tessdata</code>.
-            You may need to specify the directory of Tesseract executable from VietOCR's
-            <code>Settings</code> menu. If the data is in a non-standard location, a soft link to
-            <code>tessdata</code> may be required. You can also let VietOCR know the location of
-            <code>tessdata</code> via the environment variable <code>TESSDATA_PREFIX</code>:</p>
+            You may need to specify the directory of Tesseract executable from VietOCR&#39;s
+            <code>Settings</code> menu. If the data is in a non-standard location, a soft link
+            to <code>tessdata</code> may be required. You can also let VietOCR know the location
+            of <code>tessdata</code> via the environment variable <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
@@ -45,14 +45,14 @@
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL
-                Ghostscript</a>.</p>
+        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL Ghostscript</a>.</p>
         <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
-                dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed in <code>dict</code>
-            folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded file which contains a list
-            of custom words, one word per line.</p>
-        <p>A Linux, l'Hunspell i els seus diccionaris es poden instal·lar amb el Synaptic o <code>apt</code>, com segueix:</p>
-        <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
+                dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed
+            in <code>dict</code> folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded
+            file which contains a list of custom words, one word per line.</p>
+        <p>A Linux, l'Hunspell i els seus diccionaris es poden instal·lar amb el Synaptic o <code>apt</code>,
+com segueix:</p>
+        <blockquote><code>sudo apt-get install hunspell hunspell-ca</code></blockquote>
         <h3>INSTRUCCIONS</h3>
         <p>Per a executar el programa:</p>
         <blockquote>

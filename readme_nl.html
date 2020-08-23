@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VietOCR - Java GUI Frontend voor Tesseract OCR</title>
@@ -6,36 +6,57 @@
 <body>
     <div class="Section1">
         <h2 align="center">VietOCR</h2>
-        <h3>Beschrijving</h3>
-        <p><a href="http://vietocr.sourceforge.net">VietOCR</a> is een Java GUI frontend voor <a href="https://github.com/tesseract-ocr">Tesseract OCR engine</a>, het programma levert ondersteuning voor karakterherkenning bij  gangbare afbeelding formaten en meerdere pagina afbeeldingen. Het programma heeft nabewerking opties, dat helpt veelvoorkomende fouten in het OCR proces corrigeren, dit zorgt voor betere accuratie op het resultaat. Het programma functioneert ook in command line interface.</p>
-        <p>Het verwerken van grotere partijen data word nu ondersteund. Het programma controleert de controlemap op nieuwe bestanden en verwerkt deze automatisch via de OCR engine. Het resultaat komt na de letterherkenning in de uitvoer map terecht.</p>
-        <h3>SYSTEEM VEREISTEN</h3>
-        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 8</a> of nieuwer.</p>
+        <h3>BESCHRIJVING</h3>
+        <p><a href="http://vietocr.sourceforge.net">VietOCR</a> is a Java GUI frontend for
+            <a href="https://github.com/tesseract-ocr">Tesseract OCR engine</a>, providing
+            character recognition support for common image formats, and multi-page images. The
+            program has postprocessing which helps correct errors regularly encountered in the
+            OCR process, boosting the accuracy rate on the result. The program can also function
+            as a console application, executing from the command line.</p>
+        <p>Het verwerken van meerdere bestanden wordt nu ondersteund. Het programma controleert
+            de bronmap op nieuwe bestanden en verwerkt deze automatisch via de OCR engine.
+            Het resultaat komt na de letterherkenning in de doelmap terecht.</p>
+        <h3>SYSTEEMVEREISTEN</h3>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime
+                Environment 8</a> or later.</p>
         <h3>INSTALLATIE</h3>
-        <p>Tesseract Windows uitvoerbestand word meegeleverd met dit programma. Je kunt als aanvulling nog extra <a href="https://github.com/tesseract-ocr/tessdata"> taaldata pakketten</a> voor Tesseract downloaden. Alle bestanden die starten met de code; ISO639-3 kun je plaatsen in de submap <code>tessdata</code>.</p>
+        <p>Tesseract Windows executable is bundled with the program. Additional <a href="https://github.com/tesseract-ocr/tessdata">
+                language data packs</a> for Tesseract, whose names start with ISO639-3 codes,
+            should be placed into the <code>tessdata</code> subdirectory.</p>
         <p>Voor Linux zijn Tesseract en de taaldata pakketten ook verkrijgbaar in de grafische (universele) repository. Je kunt ze installeren via Synaptic of door het volgende commando:</p>
         <blockquote>
-            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-nld</code></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
         </blockquote>
-        <p>De bestanden zullen in <code>/usr/bin</code> en <code>/usr/share/tesseract-ocr/tessdata</code> geplaatst worden. Tenzij tesseract is gebouwd en geïnstalleerd vanaf de <a href="https://github.com/tesseract-ocr/tesseract/wiki">source</a>, zullen ze geplaatst worden in <code>/usr/local/bin</code> en <code>/usr/local/share/tessdata</code>. Je moet wel de map waarin het Tesseract uitvoerbestand zich bevind opgeven in het VietOCR <code>Instellingen</code> menu. Als de data op een niet standaard locatie staat zal een softlink naar <code>tessdata</code> vereist zijn. Je kunt de locatie van <code>tessdata</code> ook opgeven via de environment variabel <code>TESSDATA_PREFIX</code>:</p>
+        <p>The files will be placed in <code>/usr/bin</code> and <code>/usr/share/tesseract-ocr/tessdata</code>,
+            respectively. On the other hand, if Tesseract is built and installed from the <a href="https://github.com/tesseract-ocr/tesseract/wiki">source</a>,
+            they will be placed in <code>/usr/local/bin</code> and <code>/usr/local/share/tessdata</code>.
+            You may need to specify the directory of Tesseract executable from VietOCR&#39;s
+            <code>Settings</code> menu. If the data is in a non-standard location, a soft link
+            to <code>tessdata</code> may be required. You can also let VietOCR know the location
+            of <code>tessdata</code> via the environment variable <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
-        <p>Voor andere platformen, zie de <a href="https://github.com/tesseract-ocr/tesseract/wiki">Tesseract Wiki</a> pagina.</p>
-        <p>VietOCR ondersteund ook het downloaden en installeren van taaldata pakketten via het <em>Download taaldata</em> menu. Afhankelijk van de locatie van de <code>tessdata</code> map, kan het nodig zijn om het programma als root of admin uit te voeren om de gedownloade data te installeren. Zoals in de <code>/usr</code> map in Linux of de <code>C:\Program Files</code> map in Windows.</p>
-        <p>Scanning support on Windows is provided via the Windows Image Acquisition Library
-            v2.0.</p>
+        <p>For other platforms, please consult <a href="https://github.com/tesseract-ocr/tesseract/wiki">
+                Tesseract Wiki</a> page.</p>
+        <p>VietOCR also provides support for downloading and installing selected language packs
+            via <em>Download Language Data</em> menu item. Depending on the location of the
+            <code>tessdata</code> folder, you may be required to run the program as root or
+            admin to be able to install the downloaded data into the folder if it is inside
+            a system folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code>
+            on Windows.</p>
+        <p>Scanning support on Windows is provided via the Windows Image 
+			Acquisition Library v2.0.</p>
         <p>Om gebruik te maken van de scanfunctionaliteit zijn de volgende SANE pakketten vereist op Linux systemen:</p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL
-                Ghostscript</a>.</p>
+        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL Ghostscript</a>.</p>
         <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
-                dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed in <code>dict</code>
-            folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded file which contains a list
-            of custom words, one word per line.</p>
-        <p>Op linux, kunnen Hunspell en bijbehorende woordenlijsten worden geïnstalleerd door Synaptic of <code>apt</code> op de volgende manier:</p>
+                dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed
+            in <code>dict</code> folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded
+            file which contains a list of custom words, one word per line.</p>
+        <p>Op Linux systemen kunnen Hunspell en bijbehorende woordenboeken worden geïnstalleerd door middel van Synaptic of <code>apt</code> als volgt:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
         <h3>INSTRUCTIES</h3>
         <p>Voer het volgende commando uit om het programma te starten:</p>

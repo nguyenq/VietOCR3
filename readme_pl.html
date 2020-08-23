@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VietOCR - interfejs użytkownika w języku Java dla Tesseract OCR </title>
@@ -13,29 +13,36 @@ wsparcie rozpoznawania znaków dla popularnych formatów obrazu i obrazów wielo
 Program posiada mechanizm przetwarzania wtórnego, który pomaga poprawiać błędy napotykane regularnie w procesie rozpoznawania znaków OCR, zwiększając tym samym stopień dokładności, który ma wpływ na ostateczny wynik. Program może również działać jako aplikacja w konsoli, wykonując polecenia bezpośrednio z linii poleceń.</p>
         <p>Przetwarzanie wsadowe jest już dostępne. Program przeszukuje obserwowany folder celem znalezienia nowych plików z obrazami i automatycznie przetwarza je przez silnik OCR, następnie wysyła wyniki procesu do folderu wyjściowego.</p>
         <h3>WYMAGANIA SYSTEMOWE</h3>
-        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 8</a>
-lub wyższą wersję.</p>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime
+                Environment 8</a> or later.</p>
         <h3>INSTALACJA</h3>
-        <p>Pliki wykonywalne Tesseract dla Windows są w zestawie z programem. Dodatkowe <a href="https://github.com/tesseract-ocr/tessdata">pakiety językowe</a> dla Tesseract, których nazwy zaczynają się kodem ISO639-3, powinny być umieszczone w katalogu <code>tessdata</code>.</p>
+        <p>Tesseract Windows executable is bundled with the program. Additional <a href="https://github.com/tesseract-ocr/tessdata">
+                language data packs</a> for Tesseract, whose names start with ISO639-3 codes,
+            should be placed into the <code>tessdata</code> subdirectory.</p>
         <p>Dla Linuksa, Tesseract i jego pakiety językowe są w Graficznym (ogólnodostępnym) repozytorium. Mogą być zainstalowane przy użyciu Menedżera pakietów Synaptic lub poniższego polecenia:</p>
         <blockquote>
-            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-pol</code></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
         </blockquote>
-        <p>Pliki bedą umieszczone odpowiednio w katalogach <code>/usr/bin</code> i <code>/usr/share/tesseract-ocr/tessdata</code>. Z drugiej strony, jeśli Tesseract jest skompilowany i zainstalowany ze<a href="https://github.com/tesseract-ocr/tesseract/wiki">źródła</a>, będą one umieszczone w <code>/usr/local/bin</code> i <code>/usr/local/share/tessdata</code>. Byćmoże będziesz musiał wskazać katalog z plikami wykonywalnymi Tesseract z menu <code>Ustawień</code> programu VietOCR. Jeśli dane nie są w standardowej lokalizacji, byćmoże będzie wymagane dowiązanie miękkie do <code>tessdata.</code> Będziesz także musiał zadbać by VietOCR znał lokalizację <code>tessdata</code> poprzez zmienną <code>TESSDATA_PREFIX</code>:</p>
+        <p>The files will be placed in <code>/usr/bin</code> and <code>/usr/share/tesseract-ocr/tessdata</code>,
+            respectively. On the other hand, if Tesseract is built and installed from the <a href="https://github.com/tesseract-ocr/tesseract/wiki">source</a>,
+            they will be placed in <code>/usr/local/bin</code> and <code>/usr/local/share/tessdata</code>.
+            You may need to specify the directory of Tesseract executable from VietOCR&#39;s
+            <code>Settings</code> menu. If the data is in a non-standard location, a soft link
+            to <code>tessdata</code> may be required. You can also let VietOCR know the location
+            of <code>tessdata</code> via the environment variable <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
         <p>Dla innych platform zasięgnij wiedzy na stronie&nbsp;<a href="https://github.com/tesseract-ocr/tesseract/wiki">Tesseract Wiki</a>&nbsp;.</p>
         <p>VietOCR również umożliwia ściąganie i instalowanie wybranych pakietów językowych poprzez element menu <em>Pobierz pakiet językowy</em>. W zależności od lokalizacji folderu <code>tessdata</code> może będzie wymagane uruchomienie programu jako root albo admin 
 by było możliwe zainstalowanie ściągniętych danych do folderu, zwłaszcza jeśli jest to wewnątrz katalogu systemowego takiego jak <code>/usr</code> w Linuksie lub <code>C:\Program Files</code> w Windows.</p>
-        <p>Skanowanie na platformie Windows jest wspierane przez bibliotekę Windows Image
-Acquisition Library v2.0.</p>
+        <p>Scanning support on Windows is provided via the Windows Image 
+			Acquisition Library v2.0.</p>
         <p>W systemie Linux, skanowanie wymaga instalacji pakietów SANE</p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>Obsługa plików PDF jest możliwa dzięki <a href="http://www.ghostscript.com/">GPL
-                Ghostscript</a>.</p>
+        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL Ghostscript</a>.</p>
         <p>Funkcjonalność sprawdzania pisowni jest dostępna poprzez Hunspell, którego pliki <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">słownika (</a><code>.aff</code> <code>.dic</code>) powinny być umieszczone w folderze <code>dict</code> programu VietOCR. <code>user.dic</code> jest plikiem z kodowaniem UTF-8, który zawiera listę słów, po jednym słowie na linię.</p>
         <p>W systemie Linux, Hunspell wraz ze słownikami może być zainstalowany za pomocą Menedżera pakietów Synaptic lub polecenia&nbsp;<code>apt</code>, jak poniżej:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
@@ -55,7 +62,9 @@ to jeszcze bardziej. Mimo to, wciąż aktualne wyniki, zależą w dużym stopniu
 zeskanowanego obrazu. Typowe ustawienia skanowania to 300 DPI i 1 bpp (bit 
 na piksel) obraz czarno-biały lub 8-bitowa skala szarości w formacie nieskompresowany TIFF lub PNG.</p>
         <p><em>Tryb Zrzutu Ekranu</em> zapewnia lepsze rezultaty dla obrazów niskiej rozdzielczości takich jak wydruki z ekranów, poprzez przeskalowanie ich do rozdzielczości 300 DPI.</p>
-        <p>W dodatku do wbudowanego algorytmu przetwarzania wtórnego tekstu, można dodać własny zmodyfikowany schemat podmiany tekstu poprzez plik z nazwą UTF-8-encoded tab-delimited <code>x.DangAmbigs.txt</code>, gdzie x jest kodem języka w standardzie ISO639-3. Zarówno naturalne i Regex zamienniki tekstowe są obsługiwane.</p>
+        <p>In addition to the built-in text postprocessing algorithm, you can add your own
+            custom text replacement scheme via a UTF-8-encoded tab-delimited text file named <code>x.DangAmbigs.txt</code>,
+            where x is the ISO639-3 language code. Both plain and Regex text replacements are supported.</p>
         <p>By zmodifikować zachowanie silnika Tesseract możesz wpisać startowe i bieżące parametry kontrolne w pliki konfiguracyjne  - odpowiednio: <code>tessdata/configs/tess_configs</code>
 oraz <code>tess_configvars</code>.</p>
         <p>Niektóre wbudowane narzędzia są przewidziane do łączenia kilku obrazów lub plików PDF
