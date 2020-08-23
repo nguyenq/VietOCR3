@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VietOCR - Uživatelské rozhraní Java pro Tesseract OCR</title>
@@ -7,7 +7,7 @@
     <div class="Section1">
         <h2 align="center">VietOCR</h2>
         <h3>POPIS</h3>
-        <p><a href="http://vietocr.sourceforge.net">VietOCR</a> je rozhraní Java pro <a href="https://github.com/tesseract-ocr">
+        <p><a href="http://vietocr.sourceforge.net">VietOCR</a> je rozhraní Java pro <a href="http://code.google.com/p/tesseract-ocr/">
                 systém rozpoznávání znaků Tesseract</a>, poskytující podporu rozpoznávání znaků pro běžné
             formáty obrázků a vícestranové obrázky. Program obsahuje funkci dalšího zpracování,
             která pomáhá při opravování chyb, které se pravidelně objavují při procesu rozpoznávání, a
@@ -17,24 +17,24 @@
             ve sledované složce a automaticky je zpracuje pomocí OCR systému a výstup uloží
             do výstupní složky.</p>
         <h3>SYSTÉMOVÉ POŽADAVKY</h3>
-        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime Environment 8</a>
-            anebo vyšší verze.</p>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime
+                Environment 8</a> or later.</p>
         <h3>INSTALACE</h3>
-        <p>Windows verze Tesseract je součástí programu. Další <a href="https://github.com/tesseract-ocr/tessdata">
-                jazykové datové balíky</a> pro Tesseract, které začínají kódem ISO639-3, by
-            měly být umístěny do podadresáře <code>tessdata</code>.</p>
+        <p>Tesseract Windows executable is bundled with the program. Additional <a href="https://github.com/tesseract-ocr/tessdata">
+                language data packs</a> for Tesseract, whose names start with ISO639-3 codes,
+            should be placed into the <code>tessdata</code> subdirectory.</p>
         <p>V Ubuntu jsou Tesseract a jeho jazyková data součástí Graphics (universe) repository.
             Můžete je nainstalovat pomocí Synaptic anebo příkazu:</p>
         <blockquote>
-            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-ces</code></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
         </blockquote>
         <p>The files will be placed in <code>/usr/bin</code> and <code>/usr/share/tesseract-ocr/tessdata</code>,
             respectively. On the other hand, if Tesseract is built and installed from the <a href="https://github.com/tesseract-ocr/tesseract/wiki">source</a>,
             they will be placed in <code>/usr/local/bin</code> and <code>/usr/local/share/tessdata</code>.
             You may need to specify the directory of Tesseract executable from VietOCR&#39;s
-            <code>Settings</code> menu. If the data is in a non-standard location, a soft link to
-            <code>tessdata</code> may be required. You can also let VietOCR know the location of
-            <code>tessdata</code> via the environment variable <code>TESSDATA_PREFIX</code>:</p>
+            <code>Settings</code> menu. If the data is in a non-standard location, a soft link
+            to <code>tessdata</code> may be required. You can also let VietOCR know the location
+            of <code>tessdata</code> via the environment variable <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
@@ -42,39 +42,41 @@
                 Tesseract Wiki</a> page.</p>
         <p>VietOCR also provides support for downloading and installing selected language packs
             via <em>Download Language Data</em> menu item. Depending on the location of the
-            <code>tessdata</code> folder, you may be required to run the program as root or admin
-            to be able to install the downloaded data into the folder if it is inside a system
-            folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code> on Windows.</p>
-        <p>Scanning support on Windows is provided via the Windows Image Acquisition Library
-            v2.0.</p>
-        <p>On Linux, scanning requires installation of SANE packages:</p>
+            <code>tessdata</code> folder, you may be required to run the program as root or
+            admin to be able to install the downloaded data into the folder if it is inside
+            a system folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code>
+            on Windows.</p>
+        <p>Scanning support on Windows is provided via the Windows Image 
+			Acquisition Library v2.0.</p>
+        <p>Podpora PDF je dostupná přes projekt <a href="http://sourceforge.net/projects/ghostscript/">
+                GPL Ghostscript</a>. Po jeho instalaci se, prosím, ujistěte, že sdílená knihovna
+            (<tt>gsdll32.dll</tt> anebo <tt>libgs.so</tt>) je v cestě (PATH), případně nastavte
+            patřičnou proměnnou prostředí. Ve Windows přidejte následující řetězec hodnotě <tt>Path</tt></p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>Podpora PDF je dostupná přes projekt <a href="http://sourceforge.net/projects/ghostscript/">
-                GPL Ghostscript</a>. </p>
+        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL Ghostscript</a>.</p>
         <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
-                dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed in <code>dict</code>
-            folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded file which contains a list
-            of custom words, one word per line.</p>
+                dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed
+            in <code>dict</code> folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded
+            file which contains a list of custom words, one word per line.</p>
         <p>On Linux, Hunspell and its dictionaries can be installed by Synaptic or <code>apt</code>,
             as follows:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
-        <h3>INSTRUCTIONS</h3>
+        <h3><tt>java -jar VietOCR.jar</tt></h3>
+        <p><b></b></p>
         <blockquote>
             <p><code>java -jar VietOCR.jar</code></p>
         </blockquote>
-        <p>Pokud narazíte na problém „out-of-memory exception“, spusťte skript
-            <tt>ocr(.bat)</tt> namísto uvedeného příkazu. Obrázky určené pro rozpoznávání by měly být snímány v rozlišení aspoň 200 DPI (bodů na palec - dots per inch)
-            až 400 DPI v monochromatickém (černobílém) režimu anebo v odstínech šedé.
-            Snímání ve vyšším rozlišení nepřináší při rozpoznávání znaků vyšší přesnost.
-            Míra přesnosti však závisí hlavně na kvalitě nasnímaného obrázku. Typické nastavení
-            pro snímání je 300 DPI a 1 bpp (bit per pixel) černo-bílo anebo 8 bpp (odstíny
-            šedé) do nekomprimovaného TIFF anebo PNG formátu. If you encounter out-of-memory exception, run <code>ocr</code> script
-            file instead of using the .jar.</p>
-        <p>Vedle vestavěného algoritmu pro další zpracování textu si můžete přidat vlastní
-            schéma nahrazování textu - textový soubor s názvem <tt>x.DangAmbigs.txt</tt>, kde
-            x je kód jazyka ISO639-3.</p>
+        <p><b><u>Note</u></b>: If you encounter out-of-memory exception, run <code>ocr</code>
+            script file instead of using the .jar.</p>
+        <p>The Vietnamese language data were generated for Times New Roman, Arial, Verdana,
+            and Courier New fonts. Therefore, the recognition would have better success rate
+            for images having similar font glyphs. OCRing images that have font glyphs look
+            different from the supported fonts generally will require <a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">
+                training</a> Tesseract to create another language data pack specifically for
+            those typefaces. Language data for some VNI and TCVN3 (ABC) fonts have also been
+            bundled in latest versions.</p>
         <p>Images to be OCRed should be scanned at resolution from at least 200 DPI (dot per
             inch) to 400 DPI in monochrome (black&amp;white) or grayscale. Scanning at higher
             resolutions will not necessarily result in better recognition accuracy, which currently
@@ -82,7 +84,7 @@
             it even further. Even so, the actual rates still depend greatly on the quality of
             the scanned image. The typical settings for scanning are 300 DPI and 1 bpp (bit
             per pixel) black&amp;white or 8 bpp grayscale uncompressed TIFF or PNG format.</p>
-        <h3>DALŠÍ ZPRACOVÁNÍ</h3>
+        <p>DALŠÍ ZPRACOVÁNÍ</p>
         <p>In addition to the built-in text postprocessing algorithm, you can add your own
             custom text replacement scheme via a UTF-8-encoded tab-delimited text file named <code>x.DangAmbigs.txt</code>,
             where x is the ISO639-3 language code. Both plain and Regex text replacements are supported.</p>
@@ -90,12 +92,12 @@
             and <code>tess_configvars</code> files, respectively, to modify Tesseract&#39;s
             behaviour.</p>
         <p>Some built-in tools are provided to merge several images or PDF files into a single
-            one for convenient OCR operations, or to split a TIFF or PDF file into smaller 
-            ones if it contains too many pages, which can cause out-of-memory exceptions.</p>
-        <p>Poslední skupinou jsou chyby, které je těžké zjistit, protože jsoú to sémantické
+            one for convenient OCR operations, or to split a TIFF or PDF file into smaller ones
+            if it contains too many pages, which can cause out-of-memory exceptions.</p>
+        <h3>Poslední skupinou jsou chyby, které je těžké zjistit, protože jsoú to sémantické
             chyby, což znamená, že daná slova se nacházejí ve slovníku, ale jsou chybná z hlediska
             souvislosti napr. „cíp“ — „cip“ a pod. Tyto chyby si žádají, aby je opravil opravce
-            ručně podle původního obrázku.</p>
+            ručně podle původního obrázku.</h3>
         <p>Další chyby jsou způsobeny procesem rozpoznávání - například chybějící diakritická
             znaménka, zaměněné znaky („1“ — „l“). Takové chyby je možné poměrně lehce opravit
             pomocí ověření pravopisu - kontroly překlepů (spellechecker). Vestavěné funkce pro
@@ -115,6 +117,8 @@
             <li>Pokud máte nějaké otázky, položte je ve <a href="http://sourceforge.net/projects/vietocr/forums">
                 fóru VietOCR</a>.</li>
         </ol>
+<p>-</p>
+        <p>-</p>
         <hr>
 </div>
 </body>

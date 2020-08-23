@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>VietOCR - Java GUI Frontend für Tesseract OCR</title>
@@ -8,7 +8,7 @@
         <h2 align="center">VietOCR</h2>
         <h3>BESCHREIBUNG</h3>
         <p><a href="http://vietocr.sourceforge.net">VietOCR</a> ist ein Java GUI-Frontend für die
-<a href="https://github.com/tesseract-ocr">Tesseract OCR-Engine</a>, welches
+<a href="http://code.google.com/p/tesseract-ocr/">Tesseract OCR-Engine</a>, welches
 Texterkennung für gängige Bildformate und mehrseitige Bilder anbietet. Eine Nachbearbeitung der Texterkennung um gewöhnliche Fehler die beim OCR-Prozess auftreten können zu beseitigen ist möglich. Dadurch kann die Erkennungsrate erhöht
 werden. Das Programm kann ebenso von der Konsole aus ausgeführt werden.</p>
         <p>Die Batch-Verarbeitung ist jetzt möglich. Das Programm überwacht den Ordner auf neue 
@@ -18,13 +18,13 @@ in einem Ergebnisordner.</p>
         <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime
                 Environment 8</a> or later.</p>
         <h3>INSTALLATION</h3>
-        <p>Tesseract Windows ausführbare Datei it im Paket mitgeliefert. Zusätzliche <a href="https://github.com/tesseract-ocr/tessdata">
-                Sprachpakete</a> für Tesseract, dessen Namen  mit dem ISO639-3 code beginnen,
-            sollen unter <code>tessdata</code> hinterlegt werden.</p>
+        <p>Tesseract Windows executable is bundled with the program. Additional <a href="https://github.com/tesseract-ocr/tessdata">
+                language data packs</a> for Tesseract, whose names start with ISO639-3 codes,
+            should be placed into the <code>tessdata</code> subdirectory.</p>
         <p>Bei Linux , ist Tesseract und seine Sprachpaketen in der Graphics (universe)
 repository. Sie können installiert werden via Synaptic oder durch folgenden Befehl:</p>
         <blockquote>
-            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-deu</code></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
         </blockquote>
         <p>The files will be placed in <code>/usr/bin</code> and <code>/usr/share/tesseract-ocr/tessdata</code>,
             respectively. On the other hand, if Tesseract is built and installed from the <a href="https://github.com/tesseract-ocr/tesseract/wiki">source</a>,
@@ -44,13 +44,13 @@ repository. Sie können installiert werden via Synaptic oder durch folgenden Bef
             admin to be able to install the downloaded data into the folder if it is inside
             a system folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code>
             on Windows.</p>
-        <p>Scanning support on Windows is provided via the Windows Image Acquisition Library
-            v2.0.</p>
+        <p>Scanning support on Windows is provided via the Windows Image 
+			Acquisition Library v2.0.</p>
         <p>In Linux Systemen ist die Installation von SANE-Paketen erforderlich. </p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>Die PDF Unterstützung ist möglich via <a href="http://www.ghostscript.com/">GPL Ghostscript</a>.</p>
+        <p>PDF support is possible via <a href="http://www.ghostscript.com/">GPL Ghostscript</a>.</p>
         <p>Die Rechtschreibprüfung ist wird mit Hunspell umgesetzt <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
 Wörterbücher-Dateien</a> (<code>.aff</code>, <code>.dic</code>) sollten in dem Ordner <code>dict</code> aus dem VietOCR abgelegt werden.  <code>user.dic</code> ist eine
 UTF-8 kodierte Datei die eine Liste von angepassten Wörter beinhaltet, ein Wort pro Zeile.</p>
