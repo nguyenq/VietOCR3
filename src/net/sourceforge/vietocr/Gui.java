@@ -1943,7 +1943,7 @@ public class Gui extends JFrame {
         JOptionPane.showMessageDialog(this, TO_BE_IMPLEMENTED);
     }//GEN-LAST:event_jMenuItemFontActionPerformed
     protected static Locale getLocale(String selectedUILang) {
-        return new Locale(selectedUILang);
+        return Locale.forLanguageTag(selectedUILang);
     }
 
     private void jMenuItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAboutActionPerformed
@@ -2806,7 +2806,7 @@ public class Gui extends JFrame {
 
                 for (Component comp : jMenuUILang.getMenuComponents()) {
                     JMenuItem item = (JMenuItem) comp;
-                    Locale locale = new Locale(item.getActionCommand());
+                    Locale locale = Locale.forLanguageTag(item.getActionCommand());
                     item.setText(locale.getDisplayLanguage());
                 }
             }

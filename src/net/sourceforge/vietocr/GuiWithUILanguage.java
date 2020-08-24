@@ -45,9 +45,9 @@ public class GuiWithUILanguage extends GuiWithInputMethod {
         ButtonGroup groupUILang = new ButtonGroup();
         String[] uiLangs = getInstalledUILangs();
         for (String uiLang : uiLangs) {
-            Locale locale = new Locale(uiLang);
-            JRadioButtonMenuItem uiLangButton = new JRadioButtonMenuItem(locale.getDisplayLanguage(), selectedUILang.equals(locale.getLanguage()));
-            uiLangButton.setActionCommand(locale.getLanguage());
+            Locale locale = Locale.forLanguageTag(uiLang);
+            JRadioButtonMenuItem uiLangButton = new JRadioButtonMenuItem(locale.getDisplayLanguage(), selectedUILang.equals(locale.toLanguageTag()));
+            uiLangButton.setActionCommand(locale.toLanguageTag());
             uiLangButton.addActionListener(uiLangLst);
             groupUILang.add(uiLangButton);
             jMenuUILang.add(uiLangButton);
@@ -55,7 +55,7 @@ public class GuiWithUILanguage extends GuiWithInputMethod {
     }
 
     private String[] getInstalledUILangs() {
-        String[] locales = {"bn", "ca", "cs", "de", "en", "es", "fa", "hi", "hu", "it", "ja", "kn", "ku", "lt", "ne", "nl", "pl", "ru", "sd", "sk", "tr", "vi"};
+        String[] locales = {"ar", "bn", "ca", "cs", "de", "en", "es", "et", "fa", "fr", "hi", "hu", "it", "ja", "kn", "ku", "lt", "ne", "nl", "pl", "ru", "sd", "sk", "tr", "vi", "zh-Hans"};
         return locales;
     }
 }
