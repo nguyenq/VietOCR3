@@ -240,3 +240,8 @@ Version 5.6.2 (14 July 2020)
 
 Version 5.6.3 (15 August 2020)
 - Add commons-logging dependency
+
+Version 5.6.4 (23 August 2020)
+- Update Tess4J 4.5.3
+- Update other dependencies
+- Update translations
