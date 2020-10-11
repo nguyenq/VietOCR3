@@ -347,6 +347,14 @@
                 <Property name="toolTipText" type="java.lang.String" value="Text Post-Processing"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JCheckBox" name="jCheckBoxCorrectLetterCases">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="net/sourceforge/vietocr/OptionsDialog.properties" key="jCheckBoxCorrectLetterCases.Text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Correct Letter Cases"/>
+              </Properties>
+            </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBoxDeskew">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">

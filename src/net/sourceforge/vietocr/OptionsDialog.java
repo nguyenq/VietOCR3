@@ -101,6 +101,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         jButtonOutput = new javax.swing.JButton();
         jPanelBulkBatchOptions = new javax.swing.JPanel();
         jCheckBoxPostProcessing = new javax.swing.JCheckBox();
+        jCheckBoxCorrectLetterCases = new javax.swing.JCheckBox();
         jCheckBoxDeskew = new javax.swing.JCheckBox();
         jCheckBoxRemoveLines = new javax.swing.JCheckBox();
         jPanelHyphens = new javax.swing.JPanel();
@@ -275,6 +276,10 @@ public class OptionsDialog extends javax.swing.JDialog {
         jCheckBoxPostProcessing.setToolTipText("Text Post-Processing");
         jPanelBulkBatchOptions.add(jCheckBoxPostProcessing);
 
+        jCheckBoxCorrectLetterCases.setText(bundle.getString("jCheckBoxCorrectLetterCases.Text")); // NOI18N
+        jCheckBoxCorrectLetterCases.setToolTipText("Correct Letter Cases");
+        jPanelBulkBatchOptions.add(jCheckBoxCorrectLetterCases);
+
         jCheckBoxDeskew.setText(bundle.getString("jCheckBoxDeskew.Text")); // NOI18N
         jCheckBoxDeskew.setToolTipText("Deskew");
         jPanelBulkBatchOptions.add(jCheckBoxDeskew);
@@ -444,6 +449,7 @@ public class OptionsDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonOK;
     private javax.swing.JButton jButtonOutput;
     private javax.swing.JButton jButtonWatch;
+    private javax.swing.JCheckBox jCheckBoxCorrectLetterCases;
     private javax.swing.JCheckBox jCheckBoxDangAmbigs;
     private javax.swing.JCheckBox jCheckBoxDeskew;
     private javax.swing.JCheckBox jCheckBoxPostProcessing;
@@ -599,6 +605,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         processingOptions.setDeskew(this.jCheckBoxDeskew.isSelected());
         processingOptions.setPostProcessing(this.jCheckBoxPostProcessing.isSelected());
         processingOptions.setRemoveLines(this.jCheckBoxRemoveLines.isSelected());
+        processingOptions.setCorrectLetterCases(this.jCheckBoxCorrectLetterCases.isSelected());
         
         return processingOptions;
     }
@@ -610,5 +617,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         this.jCheckBoxDeskew.setSelected(processingOptions.isDeskew());
         this.jCheckBoxPostProcessing.setSelected(processingOptions.isPostProcessing());
         this.jCheckBoxRemoveLines.setSelected(processingOptions.isRemoveLines());
+        this.jCheckBoxCorrectLetterCases.setSelected(processingOptions.isCorrectLetterCases());
     }
 }

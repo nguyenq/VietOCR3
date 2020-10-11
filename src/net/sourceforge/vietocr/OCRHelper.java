@@ -18,11 +18,6 @@ package net.sourceforge.vietocr;
 import java.io.*;
 import javax.imageio.IIOImage;
 
-import net.sourceforge.vietocr.postprocessing.*;
-import net.sourceforge.vietocr.util.Utils;
-
-import net.sourceforge.tess4j.util.PdfUtilities;
-
 public class OCRHelper {
 
     /**
@@ -40,16 +35,12 @@ public class OCRHelper {
      * @throws Exception
      */
     public static void performOCR(File imageFile, File outputFile, String tessdataPath, String langCode, String pageSegMode, String outputFormat, ProcessingOptions options) throws Exception {
-        File workingTiffFile = null;
-
         try {
             // create parent folder if not yet exists
             File dir = outputFile.getParentFile();
             if (dir != null && !dir.exists()) {
                 dir.mkdirs();
             }
-
-            boolean postprocess = "text+".equals(outputFormat);
 
             OCR<IIOImage> ocrEngine = new OCRImages();
             ocrEngine.setDatapath(tessdataPath);
@@ -58,35 +49,10 @@ public class OCRHelper {
             ocrEngine.setOutputFormat(outputFormat.replace("+", ""));
             ocrEngine.setProcessingOptions(options);
 
-            // convert PDF to TIFF
-            if (imageFile.getName().toLowerCase().endsWith(".pdf")) {
-                workingTiffFile = PdfUtilities.convertPdf2Tiff(imageFile);
-                imageFile = workingTiffFile;
-            }
-
             // recognize image file
             ocrEngine.processPages(imageFile, outputFile);
-
-            // post-corrections for text+ output
-            if (postprocess) {
-                outputFile = new File(outputFile.getPath() + ".txt");
-                String result = Utils.readTextFile(outputFile);
-
-                // postprocess to correct common OCR errors
-                result = Processor.postProcess(result, langCode);
-                // correct letter cases
-                result = TextUtilities.correctLetterCases(result);
-
-                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), "UTF-8"));
-                out.write(result);
-                out.close();
-            }
         } catch (InterruptedException ignore) {
             // ignore
-        } finally {
-            if (workingTiffFile != null && workingTiffFile.exists()) {
-                workingTiffFile.delete();
-            }
         }
     }
 }

@@ -23,6 +23,7 @@ public class ProcessingOptions {
     private boolean deskew;
     private boolean postProcessing;
     private boolean removeLines;
+    private boolean correctLetterCases;
 
     /**
      * @return the deskew
@@ -64,5 +65,19 @@ public class ProcessingOptions {
      */
     public void setRemoveLines(boolean removeLines) {
         this.removeLines = removeLines;
+    }
+
+    /**
+     * @return the correctLetterCases
+     */
+    public boolean isCorrectLetterCases() {
+        return correctLetterCases;
+    }
+
+    /**
+     * @param correctLetterCases the correctLetterCases to set
+     */
+    public void setCorrectLetterCases(boolean correctLetterCases) {
+        this.correctLetterCases = correctLetterCases;
     }
 }

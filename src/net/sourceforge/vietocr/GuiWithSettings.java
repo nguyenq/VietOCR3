@@ -26,6 +26,7 @@ public class GuiWithSettings extends GuiWithLaF {
     private final String strWatchEnabled = "WatchEnabled";
     private final String strDeskewEnabled = "DeskewEnabled";
     private final String strPostProcessingEnabled = "PostProcessingEnabled";
+    private final String strCorrectLetterCasesEnabled = "CorrectLetterCasesEnabled";
     private final String strRemoveLinesEnabled = "RemoveLinesEnabled";
     private final String strTessLibEnabled = "TessLibEnabled";
     private final String strBatchOutputFormat = "BatchOutputFormat";
@@ -49,6 +50,7 @@ public class GuiWithSettings extends GuiWithLaF {
         watchEnabled = prefs.getBoolean(strWatchEnabled, false);
         options.setDeskew(prefs.getBoolean(strDeskewEnabled, false));
         options.setPostProcessing(prefs.getBoolean(strPostProcessingEnabled, false));
+        options.setCorrectLetterCases(prefs.getBoolean(strCorrectLetterCasesEnabled, false));
         options.setRemoveLines(prefs.getBoolean(strRemoveLinesEnabled, false));
         tessLibEnabled = prefs.getBoolean(strTessLibEnabled, false);
         outputFormat = prefs.get(strBatchOutputFormat, "text");
@@ -108,6 +110,7 @@ public class GuiWithSettings extends GuiWithLaF {
         prefs.putBoolean(strWatchEnabled, watchEnabled);
         prefs.putBoolean(strDeskewEnabled, options.isDeskew());
         prefs.putBoolean(strPostProcessingEnabled, options.isPostProcessing());
+        prefs.putBoolean(strCorrectLetterCasesEnabled, options.isCorrectLetterCases());
         prefs.putBoolean(strRemoveLinesEnabled, options.isRemoveLines());
         prefs.putBoolean(strTessLibEnabled, tessLibEnabled);
         prefs.put(strBatchOutputFormat, outputFormat);

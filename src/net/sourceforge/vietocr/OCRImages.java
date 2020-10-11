@@ -17,22 +17,23 @@ package net.sourceforge.vietocr;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.IOException;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ListIterator;
 import javax.imageio.IIOImage;
-import net.sourceforge.lept4j.Leptonica1;
-import net.sourceforge.lept4j.Pix;
-import net.sourceforge.lept4j.util.LeptUtils;
 
+import net.sourceforge.lept4j.util.LeptUtils;
 import net.sourceforge.tess4j.ITesseract.RenderedFormat;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.util.ImageIOHelper;
+import net.sourceforge.tess4j.util.PdfUtilities;
+import net.sourceforge.vietocr.postprocessing.Processor;
+import net.sourceforge.vietocr.postprocessing.TextUtilities;
 import net.sourceforge.vietocr.util.Utils;
-import org.apache.commons.io.FilenameUtils;
 
 /**
  * Invokes Tesseract OCR API through JNA-based Tess4J wrapper. This could be
@@ -130,31 +131,73 @@ public class OCRImages extends OCR<IIOImage> {
         instance.setLanguage(language);
         instance.setPageSegMode(Integer.parseInt(pageSegMode));
         instance.setOcrEngineMode(Integer.parseInt(ocrEngineMode));
-        List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
-        formats.add(RenderedFormat.valueOf(outputFormat.toUpperCase()));
-
+        
+        List<RenderedFormat> renderedFormats = new ArrayList<RenderedFormat>();
+        
+        for (String format : outputFormat.toUpperCase().split(",")) {
+            renderedFormats.add(RenderedFormat.valueOf(format));
+        }
+        
+        File workingTiffFile = null;
         File deskewedImageFile = null;
         File linesRemovedImageFile = null;
 
-        if (options.isDeskew()) {
-            deskewedImageFile = ImageIOHelper.deskewImage(imageFile, MINIMUM_DESKEW_THRESHOLD);
+        // convert PDF to TIFF
+        if (imageFile.getName().toLowerCase().endsWith(".pdf")) {
+            workingTiffFile = PdfUtilities.convertPdf2Tiff(imageFile);
+            imageFile = workingTiffFile;
         }
 
+        // deskew
+        if (options.isDeskew()) {
+            deskewedImageFile = ImageIOHelper.deskewImage(imageFile, MINIMUM_DESKEW_THRESHOLD);
+            imageFile = deskewedImageFile;
+        }
+
+        // remove lines
         if (options.isRemoveLines()) {
-            String outfile = LeptUtils.removeLines(deskewedImageFile != null ? deskewedImageFile.getPath() : imageFile.getPath());
+            String outfile = LeptUtils.removeLines(imageFile.getPath());
             linesRemovedImageFile = new File(outfile);
             if (linesRemovedImageFile.length() == 0) {
                 linesRemovedImageFile.delete();
                 linesRemovedImageFile = null;
+            } else {
+                imageFile = linesRemovedImageFile;
             }
         }
 
-        instance.createDocuments(linesRemovedImageFile != null ? linesRemovedImageFile.getPath() : deskewedImageFile != null ? deskewedImageFile.getPath() : imageFile.getPath(), outputFile.getPath(), formats);
+        instance.createDocuments(imageFile.getPath(), outputFile.getPath(), renderedFormats);
+
+        // post-corrections for text output
+        if (renderedFormats.contains(RenderedFormat.TEXT)) {
+            if (options.isPostProcessing() || options.isCorrectLetterCases()) {
+                outputFile = new File(outputFile.getPath() + ".txt");
+                String result = Utils.readTextFile(outputFile);
+
+                // postprocess to correct common OCR errors
+                if (options.isPostProcessing()) {
+                    result = Processor.postProcess(result, language);                    
+                }
+
+                // correct letter cases
+                if (options.isCorrectLetterCases()) {
+                    result = TextUtilities.correctLetterCases(result);
+                }
+
+                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), "UTF-8"));
+                out.write(result);
+                out.close();                
+            }
+        }
+
+        if (workingTiffFile != null && workingTiffFile.exists()) {
+            workingTiffFile.delete();
+        }
 
         if (deskewedImageFile != null && deskewedImageFile.exists()) {
             deskewedImageFile.delete();
         }
-                
+
         if (linesRemovedImageFile != null && linesRemovedImageFile.exists()) {
             linesRemovedImageFile.delete();
         }
