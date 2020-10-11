@@ -24,24 +24,32 @@ public class GuiWithSettings extends GuiWithLaF {
     private final String strWatchFolder = "WatchFolder";
     private final String strOutputFolder = "OutputFolder";
     private final String strWatchEnabled = "WatchEnabled";
-    private final String strWatchDeskewEnable = "WatchDeskewEnable";
+    private final String strDeskewEnabled = "DeskewEnabled";
+    private final String strPostProcessingEnabled = "PostProcessingEnabled";
+    private final String strRemoveLinesEnabled = "RemoveLinesEnabled";
     private final String strTessLibEnabled = "TessLibEnabled";
     private final String strBatchOutputFormat = "BatchOutputFormat";
-    
+
     protected String watchFolder;
     protected String outputFolder;
     protected boolean watchEnabled;
-    protected boolean watchDeskewEnabled;
     protected String outputFormat;
+    
     private OptionsDialog optionsDialog;
 
     public GuiWithSettings() {
         watchFolder = prefs.get(strWatchFolder, System.getProperty("user.home"));
-        if (!new File(watchFolder).exists()) watchFolder = System.getProperty("user.home");
+        if (!new File(watchFolder).exists()) {
+            watchFolder = System.getProperty("user.home");
+        }
         outputFolder = prefs.get(strOutputFolder, System.getProperty("user.home"));
-        if (!new File(outputFolder).exists()) outputFolder = System.getProperty("user.home");
+        if (!new File(outputFolder).exists()) {
+            outputFolder = System.getProperty("user.home");
+        }
         watchEnabled = prefs.getBoolean(strWatchEnabled, false);
-        watchDeskewEnabled = prefs.getBoolean(strWatchDeskewEnable, false);
+        options.setDeskew(prefs.getBoolean(strDeskewEnabled, false));
+        options.setPostProcessing(prefs.getBoolean(strPostProcessingEnabled, false));
+        options.setRemoveLines(prefs.getBoolean(strRemoveLinesEnabled, false));
         tessLibEnabled = prefs.getBoolean(strTessLibEnabled, false);
         outputFormat = prefs.get(strBatchOutputFormat, "text");
     }
@@ -55,19 +63,20 @@ public class GuiWithSettings extends GuiWithLaF {
         optionsDialog.setWatchFolder(watchFolder);
         optionsDialog.setOutputFolder(outputFolder);
         optionsDialog.setWatchEnabled(watchEnabled);
-        optionsDialog.setWatchDeskewEnabled(watchDeskewEnabled);
+        optionsDialog.setProcessingOptions(options);
         optionsDialog.setDangAmbigsPath(dangAmbigsPath);
         optionsDialog.setDangAmbigsEnabled(dangAmbigsOn);
         optionsDialog.setCurLangCode(curLangCode);
         optionsDialog.setReplaceHyphensEnabled(replaceHyphensEnabled);
         optionsDialog.setRemoveHyphensEnabled(removeHyphensEnabled);
         optionsDialog.setSelectedOutputFormat(outputFormat);
-
+        optionsDialog.setSelectedTab(evt.getActionCommand().equals("Options…") ? 0 : 2);
+        
         if (optionsDialog.showDialog() == JOptionPane.OK_OPTION) {
             watchFolder = optionsDialog.getWatchFolder();
             outputFolder = optionsDialog.getOutputFolder();
             watchEnabled = optionsDialog.isWatchEnabled();
-            watchDeskewEnabled = optionsDialog.isWatchDeskewEnabled();
+            options = optionsDialog.getProcessingOptions();
             dangAmbigsPath = optionsDialog.getDangAmbigsPath();
             dangAmbigsOn = optionsDialog.isDangAmbigsEnabled();
             replaceHyphensEnabled = optionsDialog.isReplaceHyphensEnabled();
@@ -97,7 +106,9 @@ public class GuiWithSettings extends GuiWithLaF {
         prefs.put(strWatchFolder, watchFolder);
         prefs.put(strOutputFolder, outputFolder);
         prefs.putBoolean(strWatchEnabled, watchEnabled);
-        prefs.putBoolean(strWatchDeskewEnable, watchDeskewEnabled);
+        prefs.putBoolean(strDeskewEnabled, options.isDeskew());
+        prefs.putBoolean(strPostProcessingEnabled, options.isPostProcessing());
+        prefs.putBoolean(strRemoveLinesEnabled, options.isRemoveLines());
         prefs.putBoolean(strTessLibEnabled, tessLibEnabled);
         prefs.put(strBatchOutputFormat, outputFormat);
         super.quit();

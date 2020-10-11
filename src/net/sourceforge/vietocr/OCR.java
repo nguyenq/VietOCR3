@@ -33,8 +33,9 @@ public abstract class OCR<T> {
     protected String ocrEngineMode = "3"; // Default, based on what is available
     protected String language = "eng";
     protected String outputFormat = "text";
-    protected boolean deskew;
     protected String datapath = "tessdata";
+    
+    protected ProcessingOptions options;
 
     /**
      * Recognizes files or images.
@@ -71,7 +72,7 @@ public abstract class OCR<T> {
 
     /**
      * Gets segmented regions.
-     * 
+     *
      * @param image
      * @param tessPageIteratorLevel
      * @return segmented regions
@@ -105,7 +106,8 @@ public abstract class OCR<T> {
     }
 
     /**
-     * @param outputFormat the outputFormat to set; possible values: txt, hocr, pdf
+     * @param outputFormat the outputFormat to set; possible values: txt, hocr,
+     * pdf
      */
     public void setOutputFormat(String outputFormat) {
         this.outputFormat = outputFormat;
@@ -127,7 +129,7 @@ public abstract class OCR<T> {
 
     /**
      * Gets path to <code>tessdata</code>.
-     * 
+     *
      * @return the datapath
      */
     public String getDatapath() {
@@ -136,7 +138,7 @@ public abstract class OCR<T> {
 
     /**
      * Sets path to <code>tessdata</code>.
-     * 
+     *
      * @param datapath the datapath to set
      */
     public void setDatapath(String datapath) {
@@ -158,16 +160,9 @@ public abstract class OCR<T> {
     }
 
     /**
-     * @return the deskew
+     * @param options the Processing Options to set
      */
-    public boolean isDeskew() {
-        return deskew;
-    }
-
-    /**
-     * @param deskew the deskew to set
-     */
-    public void setDeskew(boolean deskew) {
-        this.deskew = deskew;
+    public void setProcessingOptions(ProcessingOptions options) {
+        this.options = options;
     }
 }

@@ -18,15 +18,21 @@ package net.sourceforge.vietocr;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ListIterator;
 import javax.imageio.IIOImage;
+import net.sourceforge.lept4j.Leptonica1;
+import net.sourceforge.lept4j.Pix;
+import net.sourceforge.lept4j.util.LeptUtils;
 
 import net.sourceforge.tess4j.ITesseract.RenderedFormat;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.vietocr.util.Utils;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  * Invokes Tesseract OCR API through JNA-based Tess4J wrapper. This could be
@@ -127,17 +133,30 @@ public class OCRImages extends OCR<IIOImage> {
         List<RenderedFormat> formats = new ArrayList<RenderedFormat>();
         formats.add(RenderedFormat.valueOf(outputFormat.toUpperCase()));
 
-        File tempImageFile = null;
+        File deskewedImageFile = null;
+        File linesRemovedImageFile = null;
 
-        if (deskew) {
-            tempImageFile = ImageIOHelper.deskewImage(imageFile, MINIMUM_DESKEW_THRESHOLD);
-            tempImageFile.deleteOnExit();
+        if (options.isDeskew()) {
+            deskewedImageFile = ImageIOHelper.deskewImage(imageFile, MINIMUM_DESKEW_THRESHOLD);
         }
 
-        instance.createDocuments(deskew ? tempImageFile.getPath() : imageFile.getPath(), outputFile.getPath(), formats);
+        if (options.isRemoveLines()) {
+            String outfile = LeptUtils.removeLines(deskewedImageFile != null ? deskewedImageFile.getPath() : imageFile.getPath());
+            linesRemovedImageFile = new File(outfile);
+            if (linesRemovedImageFile.length() == 0) {
+                linesRemovedImageFile.delete();
+                linesRemovedImageFile = null;
+            }
+        }
 
-        if (tempImageFile != null && tempImageFile.exists()) {
-            tempImageFile.delete();
+        instance.createDocuments(linesRemovedImageFile != null ? linesRemovedImageFile.getPath() : deskewedImageFile != null ? deskewedImageFile.getPath() : imageFile.getPath(), outputFile.getPath(), formats);
+
+        if (deskewedImageFile != null && deskewedImageFile.exists()) {
+            deskewedImageFile.delete();
+        }
+                
+        if (linesRemovedImageFile != null && linesRemovedImageFile.exists()) {
+            linesRemovedImageFile.delete();
         }
     }
 }

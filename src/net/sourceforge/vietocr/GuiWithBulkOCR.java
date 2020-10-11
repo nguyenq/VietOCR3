@@ -34,22 +34,21 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
     private final String strInputFolder = "InputFolder";
     private final String strBulkOutputFolder = "BulkOutputFolder";
     private final String strBulkOutputFormat = "BulkOutputFormat";
-    private final String strBulkDeskewEnable = "BulkDeskewEnable";
         
     private String inputFolder;
     private String outputFolder;
     private String outputFormat;
-    protected boolean bulkDeskewEnabled;
+    protected ProcessingOptions options;
     
     private final static Logger logger = Logger.getLogger(GuiWithBulkOCR.class.getName());
 
     public GuiWithBulkOCR() {
+        options = new ProcessingOptions();
         inputFolder = prefs.get(strInputFolder, System.getProperty("user.home"));
         if (!new File(inputFolder).exists()) inputFolder = System.getProperty("user.home");
         outputFolder = prefs.get(strBulkOutputFolder, System.getProperty("user.home"));
         if (!new File(outputFolder).exists()) outputFolder = System.getProperty("user.home");
         outputFormat = prefs.get(strBulkOutputFormat, "text");
-        bulkDeskewEnabled = prefs.getBoolean(strBulkDeskewEnable, false);
         statusFrame = new StatusFrame();
         statusFrame.setTitle(bundle.getString("bulkStatusFrame.Title"));
     }
@@ -70,13 +69,11 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
         bulkDialog.setInputFolder(inputFolder);
         bulkDialog.setOutputFolder(outputFolder);
         bulkDialog.setSelectedOutputFormat(outputFormat);
-        bulkDialog.setDeskewEnabled(bulkDeskewEnabled);
 
         if (bulkDialog.showDialog() == JOptionPane.OK_OPTION) {
             inputFolder = bulkDialog.getInputFolder();
             outputFolder = bulkDialog.getOutputFolder();
             outputFormat = bulkDialog.getSelectedOutputFormat();
-            bulkDeskewEnabled = bulkDialog.isDeskewEnabled();
 
             jLabelStatus.setText(bundle.getString("OCR_running..."));
             jProgressBar1.setIndeterminate(true);
@@ -103,7 +100,7 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
             ocrWorker.execute();
         }
     }
-
+    
     @Override
     void changeUILanguage(final Locale locale) {
         super.changeUILanguage(locale);
@@ -124,7 +121,6 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
         prefs.put(strInputFolder, inputFolder);
         prefs.put(strBulkOutputFolder, outputFolder);
         prefs.put(strBulkOutputFormat, outputFormat);
-        prefs.putBoolean(strBulkDeskewEnable, bulkDeskewEnabled);
         
         super.quit();
     }
@@ -149,7 +145,7 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
                     publish(imageFile.getPath()); // interim result
                     try {
                         String outputFilename = imageFile.getPath().substring(inputFolder.length() + 1);
-                        OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename), datapath, curLangCode, selectedPSM, outputFormat, bulkDeskewEnabled);
+                        OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename), datapath, curLangCode, selectedPSM, outputFormat, options);
                     } catch (Exception e) {
                         logger.log(Level.WARNING, e.getMessage(), e);
                         publish("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **");

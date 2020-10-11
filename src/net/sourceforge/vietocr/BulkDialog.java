@@ -69,15 +69,14 @@ public class BulkDialog extends javax.swing.JDialog {
         jLabelOutput = new javax.swing.JLabel();
         jTextFieldOutput = new javax.swing.JTextField();
         jLabelOutputFormat = new javax.swing.JLabel();
-        jPanelOutput = new javax.swing.JPanel();
         jComboBoxOutputFormat = new javax.swing.JComboBox();
-        jCheckBoxDeskew = new javax.swing.JCheckBox();
         jButtonInput = new javax.swing.JButton();
         jButtonOutput = new javax.swing.JButton();
         jPanelCommand = new javax.swing.JPanel();
         jButtonRun = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 32767));
         jButtonCancel = new javax.swing.JButton();
+        jButtonOptions = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/BulkDialog"); // NOI18N
@@ -138,24 +137,18 @@ public class BulkDialog extends javax.swing.JDialog {
         jPanelImageFolder.add(jLabelOutputFormat, gridBagConstraints);
         jLabelOutputFormat.getAccessibleContext().setAccessibleName("jLabelOutputFormat");
 
-        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "text", "text+", "hocr", "pdf" }));
+        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "text", "hocr", "pdf" }));
         jComboBoxOutputFormat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jComboBoxOutputFormatMouseEntered(evt);
             }
         });
-        jPanelOutput.add(jComboBoxOutputFormat);
-
-        jCheckBoxDeskew.setText(bundle.getString("jCheckBoxDeskew.Text")); // NOI18N
-        jCheckBoxDeskew.setMargin(new java.awt.Insets(2, 20, 2, 2));
-        jPanelOutput.add(jCheckBoxDeskew);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        jPanelImageFolder.add(jPanelOutput, gridBagConstraints);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 0);
+        jPanelImageFolder.add(jComboBoxOutputFormat, gridBagConstraints);
 
         jButtonInput.setText("...");
         jButtonInput.setToolTipText(bundle.getString("jButtonInput.ToolTipText")); // NOI18N
@@ -207,6 +200,19 @@ public class BulkDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(8, 0, 6, 0);
         jPanelImageFolder.add(jPanelCommand, gridBagConstraints);
 
+        jButtonOptions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/tools.png"))); // NOI18N
+        jButtonOptions.setToolTipText("Options");
+        jButtonOptions.setBorder(null);
+        jButtonOptions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOptionsActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        jPanelImageFolder.add(jButtonOptions, gridBagConstraints);
+
         getContentPane().add(jPanelImageFolder, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -251,20 +257,16 @@ public class BulkDialog extends javax.swing.JDialog {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         this.jTextFieldFolder.setText(inputFolder);
         this.jTextFieldOutput.setText(outputFolder);
-        this.jCheckBoxDeskew.setSelected(isDeskewEnabled());
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
         inputFolder = this.jTextFieldFolder.getText();
         outputFolder = this.jTextFieldOutput.getText();
-        setDeskewEnabled(this.jCheckBoxDeskew.isSelected());
     }//GEN-LAST:event_formWindowDeactivated
 
     private void jComboBoxOutputFormatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxOutputFormatMouseEntered
         String val = this.jComboBoxOutputFormat.getSelectedItem().toString();
-        if ("text+".equals(val)) {
-            val = "Text with postprocessing";
-        } else if ("text".equals(val)) {
+        if ("text".equals(val)) {
             val = "Text with no postprocessing";
         } else if ("pdf".equals(val)) {
             val = "PDF";
@@ -275,6 +277,10 @@ public class BulkDialog extends javax.swing.JDialog {
         }
         this.jComboBoxOutputFormat.setToolTipText(val);
     }//GEN-LAST:event_jComboBoxOutputFormatMouseEntered
+
+    private void jButtonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionsActionPerformed
+        ((GuiWithBulkOCR)this.getParent()).jMenuItemOptionsActionPerformed(evt);
+    }//GEN-LAST:event_jButtonOptionsActionPerformed
 
     public int showDialog() {
         setVisible(true);
@@ -368,16 +374,15 @@ public class BulkDialog extends javax.swing.JDialog {
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonInput;
+    private javax.swing.JButton jButtonOptions;
     private javax.swing.JButton jButtonOutput;
     private javax.swing.JButton jButtonRun;
-    private javax.swing.JCheckBox jCheckBoxDeskew;
     private javax.swing.JComboBox jComboBoxOutputFormat;
     private javax.swing.JLabel jLabelInput;
     private javax.swing.JLabel jLabelOutput;
     private javax.swing.JLabel jLabelOutputFormat;
     private javax.swing.JPanel jPanelCommand;
     private javax.swing.JPanel jPanelImageFolder;
-    private javax.swing.JPanel jPanelOutput;
     private javax.swing.JTextField jTextFieldFolder;
     private javax.swing.JTextField jTextFieldOutput;
     // End of variables declaration//GEN-END:variables
@@ -394,19 +399,5 @@ public class BulkDialog extends javax.swing.JDialog {
      */
     public void setSelectedOutputFormat(String selectedFormat) {
         this.jComboBoxOutputFormat.setSelectedItem(selectedFormat);
-    }
-
-    /**
-     * @return the deskewEnabled
-     */
-    public boolean isDeskewEnabled() {
-        return this.jCheckBoxDeskew.isSelected();
-    }
-
-    /**
-     * @param deskewEnabled the deskewEnabled to set
-     */
-    public void setDeskewEnabled(boolean deskewEnabled) {
-        this.jCheckBoxDeskew.setSelected(deskewEnabled);
     }
 }

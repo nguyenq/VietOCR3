@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConsoleApp {
+
     private final static Logger logger = Logger.getLogger(ConsoleApp.class.getName());
 
     public static void main(String[] args) {
@@ -40,6 +41,8 @@ public class ConsoleApp {
                     + "       (to execute the program in command-line mode)");
             return;
         }
+        
+        ProcessingOptions options = new ProcessingOptions();
 
         String outputFormat = "text";
         for (String arg : args) {
@@ -48,7 +51,7 @@ public class ConsoleApp {
             } else if ("pdf".equals(arg)) {
                 outputFormat = "pdf";
             } else if ("text+".equals(arg)) {
-                outputFormat = "text+";
+                options.setPostProcessing(true);
             }
         }
 
@@ -85,7 +88,7 @@ public class ConsoleApp {
         String tessdataPath = Gui.getDatapath(Utils.getBaseDir(ConsoleApp.this));
 
         try {
-            OCRHelper.performOCR(imageFile, outputFile, tessdataPath, curLangCode, psm, outputFormat, false);
+            OCRHelper.performOCR(imageFile, outputFile, tessdataPath, curLangCode, psm, outputFormat, options);
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
         }

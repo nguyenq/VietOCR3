@@ -36,10 +36,10 @@ public class OCRHelper {
      * @param outputFormat format of output file. Possible values:
      * <code>text</code>, <code>text+</code> (with post-corrections),
      * <code>hocr</code>
-     * @param deskew auto-deskew or not
+     * @param options Processing options
      * @throws Exception
      */
-    public static void performOCR(File imageFile, File outputFile, String tessdataPath, String langCode, String pageSegMode, String outputFormat, boolean deskew) throws Exception {
+    public static void performOCR(File imageFile, File outputFile, String tessdataPath, String langCode, String pageSegMode, String outputFormat, ProcessingOptions options) throws Exception {
         File workingTiffFile = null;
 
         try {
@@ -56,7 +56,7 @@ public class OCRHelper {
             ocrEngine.setPageSegMode(pageSegMode);
             ocrEngine.setLanguage(langCode);
             ocrEngine.setOutputFormat(outputFormat.replace("+", ""));
-            ocrEngine.setDeskew(deskew);
+            ocrEngine.setProcessingOptions(options);
 
             // convert PDF to TIFF
             if (imageFile.getName().toLowerCase().endsWith(".pdf")) {

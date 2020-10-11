@@ -97,9 +97,12 @@ public class OptionsDialog extends javax.swing.JDialog {
         jPanelWatch = new javax.swing.JPanel();
         jComboBoxOutputFormat = new javax.swing.JComboBox();
         jCheckBoxWatch = new javax.swing.JCheckBox();
-        jCheckBoxWatchDeskew = new javax.swing.JCheckBox();
         jButtonWatch = new javax.swing.JButton();
         jButtonOutput = new javax.swing.JButton();
+        jPanelBulkBatchOptions = new javax.swing.JPanel();
+        jCheckBoxPostProcessing = new javax.swing.JCheckBox();
+        jCheckBoxDeskew = new javax.swing.JCheckBox();
+        jCheckBoxRemoveLines = new javax.swing.JCheckBox();
         jPanelHyphens = new javax.swing.JPanel();
         jCheckBoxReplaceHyphens = new javax.swing.JCheckBox();
         jCheckBoxRemoveHyphens = new javax.swing.JCheckBox();
@@ -219,7 +222,9 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints.gridy = 2;
         jPanelWatchFolder.add(jLabelOutputFormat, gridBagConstraints);
 
-        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "text", "text+", "hocr", "pdf" }));
+        jPanelWatch.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "text", "hocr", "pdf" }));
         jComboBoxOutputFormat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jComboBoxOutputFormatMouseEntered(evt);
@@ -228,15 +233,14 @@ public class OptionsDialog extends javax.swing.JDialog {
         jPanelWatch.add(jComboBoxOutputFormat);
 
         jCheckBoxWatch.setText(bundle.getString("jCheckBoxWatch.Text")); // NOI18N
+        jCheckBoxWatch.setMargin(new java.awt.Insets(2, 20, 2, 2));
         jPanelWatch.add(jCheckBoxWatch);
-
-        jCheckBoxWatchDeskew.setText(bundle.getString("jCheckBoxWatchDeskew.Text")); // NOI18N
-        jPanelWatch.add(jCheckBoxWatchDeskew);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanelWatchFolder.add(jPanelWatch, gridBagConstraints);
 
         jButtonWatch.setText("...");
@@ -262,28 +266,39 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints.gridy = 1;
         jPanelWatchFolder.add(jButtonOutput, gridBagConstraints);
 
-        jTabbedPane1.addTab(bundle.getString("Watch"), jPanelWatchFolder); // NOI18N
+        jTabbedPane1.addTab(bundle.getString("Batch"), jPanelWatchFolder); // NOI18N
 
-        jPanelHyphens.setLayout(new java.awt.GridBagLayout());
+        jPanelBulkBatchOptions.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 1));
+        jPanelBulkBatchOptions.setLayout(new javax.swing.BoxLayout(jPanelBulkBatchOptions, javax.swing.BoxLayout.Y_AXIS));
+
+        jCheckBoxPostProcessing.setText(bundle.getString("jCheckBoxPostProcessing.Text")); // NOI18N
+        jCheckBoxPostProcessing.setToolTipText("Text Post-Processing");
+        jPanelBulkBatchOptions.add(jCheckBoxPostProcessing);
+
+        jCheckBoxDeskew.setText(bundle.getString("jCheckBoxDeskew.Text")); // NOI18N
+        jCheckBoxDeskew.setToolTipText("Deskew");
+        jPanelBulkBatchOptions.add(jCheckBoxDeskew);
+
+        jCheckBoxRemoveLines.setText(bundle.getString("jCheckBoxRemoveLines.Text")); // NOI18N
+        jCheckBoxRemoveLines.setToolTipText("Remove Lines");
+        jCheckBoxRemoveLines.setActionCommand("RemoveLines");
+        jPanelBulkBatchOptions.add(jCheckBoxRemoveLines);
+
+        jTabbedPane1.addTab("Bulk/Batch Options", jPanelBulkBatchOptions);
+
+        jPanelHyphens.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 1, 1));
+        jPanelHyphens.setLayout(new javax.swing.BoxLayout(jPanelHyphens, javax.swing.BoxLayout.Y_AXIS));
 
         jCheckBoxReplaceHyphens.setText(bundle.getString("jCheckBoxReplaceHyphens.Text")); // NOI18N
         jCheckBoxReplaceHyphens.setToolTipText(bundle.getString("jCheckBoxReplaceHyphens.ToolTipText")); // NOI18N
         jCheckBoxReplaceHyphens.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jCheckBoxReplaceHyphens.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        jPanelHyphens.add(jCheckBoxReplaceHyphens, gridBagConstraints);
+        jPanelHyphens.add(jCheckBoxReplaceHyphens);
         jCheckBoxReplaceHyphens.getAccessibleContext().setAccessibleName("ReplaceHyphens");
 
         jCheckBoxRemoveHyphens.setText(bundle.getString("jCheckBoxRemoveHyphens.Text")); // NOI18N
         jCheckBoxRemoveHyphens.setToolTipText(bundle.getString("jCheckBoxRemoveHyphens.ToolTipText")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        jPanelHyphens.add(jCheckBoxRemoveHyphens, gridBagConstraints);
+        jPanelHyphens.add(jCheckBoxRemoveHyphens);
 
         jTabbedPane1.addTab(bundle.getString("Hyphens"), jPanelHyphens); // NOI18N
 
@@ -367,10 +382,8 @@ public class OptionsDialog extends javax.swing.JDialog {
 
     private void jComboBoxOutputFormatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxOutputFormatMouseEntered
         String val = this.jComboBoxOutputFormat.getSelectedItem().toString();
-        if ("text+".equals(val)) {
-            val = "Text with postprocessing";
-        } else if ("text".equals(val)) {
-            val = "Text with no postprocessing";
+        if ("text".equals(val)) {
+            val = "Text";
         } else if ("pdf".equals(val)) {
             val = "PDF";
         } else if ("hocr".equals(val)) {
@@ -385,6 +398,10 @@ public class OptionsDialog extends javax.swing.JDialog {
         setVisible(true);
         return actionSelected;
     }
+    
+    public void setSelectedTab(int index) {
+        this.jTabbedPane1.setSelectedIndex(index);
+    }
 
     void changeUILanguage(final Locale locale) {
         Locale.setDefault(locale);
@@ -396,7 +413,7 @@ public class OptionsDialog extends javax.swing.JDialog {
             public void run() {
                 FormLocalizer localizer = new FormLocalizer(OptionsDialog.this, OptionsDialog.class);
                 localizer.ApplyCulture(bundle);
-                jTabbedPane1.setTitleAt(0, bundle.getString("Watch"));
+                jTabbedPane1.setTitleAt(0, bundle.getString("Batch"));
             }
         });
     }
@@ -428,15 +445,18 @@ public class OptionsDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonOutput;
     private javax.swing.JButton jButtonWatch;
     private javax.swing.JCheckBox jCheckBoxDangAmbigs;
+    private javax.swing.JCheckBox jCheckBoxDeskew;
+    private javax.swing.JCheckBox jCheckBoxPostProcessing;
     private javax.swing.JCheckBox jCheckBoxRemoveHyphens;
+    private javax.swing.JCheckBox jCheckBoxRemoveLines;
     private javax.swing.JCheckBox jCheckBoxReplaceHyphens;
     private javax.swing.JCheckBox jCheckBoxWatch;
-    private javax.swing.JCheckBox jCheckBoxWatchDeskew;
     private javax.swing.JComboBox jComboBoxOutputFormat;
     private javax.swing.JLabel jLabelDangAmbigs;
     private javax.swing.JLabel jLabelOutput;
     private javax.swing.JLabel jLabelOutputFormat;
     private javax.swing.JLabel jLabelWatch;
+    private javax.swing.JPanel jPanelBulkBatchOptions;
     private javax.swing.JPanel jPanelCommand;
     private javax.swing.JPanel jPanelDangAmbigsPath;
     private javax.swing.JPanel jPanelHyphens;
@@ -572,16 +592,23 @@ public class OptionsDialog extends javax.swing.JDialog {
     }
 
     /**
-     * @return the watchDeskewEnabled
+     * @return the processingOptions
      */
-    public boolean isWatchDeskewEnabled() {
-        return this.jCheckBoxWatchDeskew.isSelected();
+    public ProcessingOptions getProcessingOptions() {
+        ProcessingOptions processingOptions = new ProcessingOptions();
+        processingOptions.setDeskew(this.jCheckBoxDeskew.isSelected());
+        processingOptions.setPostProcessing(this.jCheckBoxPostProcessing.isSelected());
+        processingOptions.setRemoveLines(this.jCheckBoxRemoveLines.isSelected());
+        
+        return processingOptions;
     }
 
     /**
-     * @param watchDeskewEnabled the watchDeskewEnabled to set
+     * @param processingOptions the processingOptions to set
      */
-    public void setWatchDeskewEnabled(boolean watchDeskewEnabled) {
-        this.jCheckBoxWatchDeskew.setSelected(watchDeskewEnabled);
+    public void setProcessingOptions(ProcessingOptions processingOptions) {
+        this.jCheckBoxDeskew.setSelected(processingOptions.isDeskew());
+        this.jCheckBoxPostProcessing.setSelected(processingOptions.isPostProcessing());
+        this.jCheckBoxRemoveLines.setSelected(processingOptions.isRemoveLines());
     }
 }
