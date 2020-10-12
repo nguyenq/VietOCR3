@@ -251,6 +251,11 @@ public class BulkDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonOutputActionPerformed
 
     private void jButtonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunActionPerformed
+        if (getSelectedOutputFormat().length() == 0) {
+            JOptionPane.showMessageDialog(null, bundle.getString("Please_select_output_format"), this.getTitle(), JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
         actionSelected = JOptionPane.OK_OPTION;
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRunActionPerformed

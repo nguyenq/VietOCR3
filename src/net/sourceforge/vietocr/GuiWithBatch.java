@@ -72,7 +72,7 @@ public class GuiWithBatch extends GuiWithSettings {
 //                        queue.clear();
                 return;
             }
-
+            
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {

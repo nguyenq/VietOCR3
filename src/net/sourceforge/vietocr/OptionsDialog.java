@@ -377,6 +377,11 @@ public class OptionsDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonDangAmbigsActionPerformed
 
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
+        if (this.jCheckBoxWatch.isSelected() && getSelectedOutputFormat().length() == 0) {
+            JOptionPane.showMessageDialog(null, bundle.getString("Please_select_output_format"), this.getTitle(), JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
         actionSelected = JOptionPane.OK_OPTION;
         this.setVisible(false);
     }//GEN-LAST:event_jButtonOKActionPerformed
