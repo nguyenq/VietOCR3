@@ -27,6 +27,10 @@
       </AuxValues>
     </Component>
     <Container class="javax.swing.JPopupMenu" name="jPopupMenuSegmentedRegions">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="for (Component comp : jPopupMenuSegmentedRegions.getComponents()) {&#xd;&#xa;    JCheckBoxMenuItem item = (JCheckBoxMenuItem) comp;&#xd;&#xa;    item.setUI(new StayOpenCheckBoxMenuItemUI());&#xd;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="        jPopupMenuSegmentedRegions.addPopupMenuListener(new PopupMenuListener() {&#xd;&#xa;            @Override&#xd;&#xa;            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {&#xd;&#xa;                jButtonSegmentedRegions.setText(jButtonSegmentedRegions.getText().replace(&apos;&#x25be;&apos;, &apos;&#x25b4;&apos;));&#xd;&#xa;            }&#xd;&#xa;&#xd;&#xa;            @Override&#xd;&#xa;            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {&#xd;&#xa;                jButtonSegmentedRegions.setText(jButtonSegmentedRegions.getText().replace(&apos;&#x25b4;&apos;, &apos;&#x25be;&apos;));&#xd;&#xa;            }&#xd;&#xa;&#xd;&#xa;            @Override&#xd;&#xa;            public void popupMenuCanceled(PopupMenuEvent e) {&#xd;&#xa;                &#xd;&#xa;            }&#xd;&#xa;        }) ;"/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="true"/>

@@ -34,6 +34,8 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.vietpad.components.SimpleFilter;
@@ -121,6 +123,23 @@ public class OptionsDialog extends javax.swing.JDialog {
             item.setUI(new StayOpenCheckBoxMenuItemUI());
             jPopupMenu.add(item);
         }
+
+        jPopupMenu.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace('▾', '▴'));
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace('▴', '▾'));
+            }
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+
+            }
+        }) ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/OptionsDialog"); // NOI18N

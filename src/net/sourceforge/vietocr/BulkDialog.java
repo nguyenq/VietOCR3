@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 
 import net.sourceforge.vietocr.util.FormLocalizer;
 import net.sourceforge.tess4j.ITesseract.RenderedFormat;
@@ -91,6 +93,23 @@ public class BulkDialog extends javax.swing.JDialog {
             item.setUI(new StayOpenCheckBoxMenuItemUI());
             jPopupMenu.add(item);
         }
+
+        jPopupMenu.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace('▾', '▴'));
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace('▴', '▾'));
+            }
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+
+            }
+        }) ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/BulkDialog"); // NOI18N
@@ -255,7 +274,7 @@ public class BulkDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, bundle.getString("Please_select_output_format"), this.getTitle(), JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         actionSelected = JOptionPane.OK_OPTION;
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRunActionPerformed

@@ -40,8 +40,8 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.JTextComponent;
 import javax.swing.undo.*;
-import net.sourceforge.tess4j.ITessAPI;
 
+import net.sourceforge.tess4j.ITessAPI;
 import net.sourceforge.tess4j.util.ImageHelper;
 import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.vietocr.components.*;
@@ -49,6 +49,7 @@ import net.sourceforge.vietocr.util.FormLocalizer;
 import net.sourceforge.vietocr.util.Utils;
 import net.sourceforge.vietpad.components.*;
 import net.sourceforge.vietpad.inputmethod.VietKeyListener;
+import darrylbu.plaf.StayOpenCheckBoxMenuItemUI;
 
 public class Gui extends JFrame {
 
@@ -877,6 +878,28 @@ public class Gui extends JFrame {
             }
         });
         jPopupMenuSegmentedRegions.add(jCheckBoxMenuItemBlock);
+
+        for (Component comp : jPopupMenuSegmentedRegions.getComponents()) {
+            JCheckBoxMenuItem item = (JCheckBoxMenuItem) comp;
+            item.setUI(new StayOpenCheckBoxMenuItemUI());
+        }
+
+        jPopupMenuSegmentedRegions.addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                jButtonSegmentedRegions.setText(jButtonSegmentedRegions.getText().replace('▾', '▴'));
+            }
+
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+                jButtonSegmentedRegions.setText(jButtonSegmentedRegions.getText().replace('▴', '▾'));
+            }
+
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+
+            }
+        }) ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle(APP_NAME);
