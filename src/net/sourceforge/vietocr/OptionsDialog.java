@@ -280,14 +280,12 @@ public class OptionsDialog extends javax.swing.JDialog {
         jPanelBulkBatchOptions.setLayout(new java.awt.GridBagLayout());
 
         jCheckBoxPostProcessing.setText(bundle.getString("jCheckBoxPostProcessing.Text")); // NOI18N
-        jCheckBoxPostProcessing.setToolTipText("Text Post-Processing");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 15);
         jPanelBulkBatchOptions.add(jCheckBoxPostProcessing, gridBagConstraints);
 
         jCheckBoxCorrectLetterCases.setText(bundle.getString("jCheckBoxCorrectLetterCases.Text")); // NOI18N
-        jCheckBoxCorrectLetterCases.setToolTipText("Correct Letter Cases");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -296,13 +294,11 @@ public class OptionsDialog extends javax.swing.JDialog {
         jPanelBulkBatchOptions.add(jCheckBoxCorrectLetterCases, gridBagConstraints);
 
         jCheckBoxDeskew.setText(bundle.getString("jCheckBoxDeskew.Text")); // NOI18N
-        jCheckBoxDeskew.setToolTipText("Deskew");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanelBulkBatchOptions.add(jCheckBoxDeskew, gridBagConstraints);
 
         jCheckBoxRemoveLines.setText(bundle.getString("jCheckBoxRemoveLines.Text")); // NOI18N
-        jCheckBoxRemoveLines.setToolTipText("Remove Lines");
         jCheckBoxRemoveLines.setActionCommand("RemoveLines");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
