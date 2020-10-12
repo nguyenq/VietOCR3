@@ -147,7 +147,7 @@ public class GuiWithFormat extends GuiWithImage {
                 return;
             }
         }
-        String result = TextUtilities.removeLineBreaks(jTextArea1.getSelectedText(), removeHyphensEnabled);
+        String result = TextUtilities.removeLineBreaks(jTextArea1.getSelectedText(), options.isRemoveHyphens());
 
         undoSupport.beginUpdate();
         int start = jTextArea1.getSelectionStart();

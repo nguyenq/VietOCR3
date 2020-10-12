@@ -23,7 +23,10 @@ public class ProcessingOptions {
     private boolean deskew;
     private boolean postProcessing;
     private boolean removeLines;
+    private boolean removeLineBreaks;
     private boolean correctLetterCases;
+    private boolean removeHyphens;
+    private boolean replaceHyphens;
 
     /**
      * @return the deskew
@@ -79,5 +82,47 @@ public class ProcessingOptions {
      */
     public void setCorrectLetterCases(boolean correctLetterCases) {
         this.correctLetterCases = correctLetterCases;
+    }
+
+    /**
+     * @return the removeLineBreaks
+     */
+    public boolean isRemoveLineBreaks() {
+        return removeLineBreaks;
+    }
+
+    /**
+     * @param removeLineBreaks the removeLineBreaks to set
+     */
+    public void setRemoveLineBreaks(boolean removeLineBreaks) {
+        this.removeLineBreaks = removeLineBreaks;
+    }
+
+    /**
+     * @return the removeHyphens
+     */
+    public boolean isRemoveHyphens() {
+        return removeHyphens;
+    }
+
+    /**
+     * @param removeHyphens the removeHyphens to set
+     */
+    public void setRemoveHyphens(boolean removeHyphens) {
+        this.removeHyphens = removeHyphens;
+    }
+
+    /**
+     * @return the replaceHyphens
+     */
+    public boolean isReplaceHyphens() {
+        return replaceHyphens;
+    }
+
+    /**
+     * @param replaceHyphens the replaceHyphens to set
+     */
+    public void setReplaceHyphens(boolean replaceHyphens) {
+        this.replaceHyphens = replaceHyphens;
     }
 }

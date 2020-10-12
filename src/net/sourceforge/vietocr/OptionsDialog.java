@@ -41,7 +41,7 @@ import net.sourceforge.vietocr.util.FormLocalizer;
 import darrylbu.plaf.StayOpenCheckBoxMenuItemUI;
 
 public class OptionsDialog extends javax.swing.JDialog {
-
+    
     private int actionSelected = -1;
     private String watchFolder;
     private String outputFolder;
@@ -49,8 +49,6 @@ public class OptionsDialog extends javax.swing.JDialog {
     private String curLangCode;
     private boolean watchEnabled;
     private boolean dangAmbigsOn;
-    private boolean replaceHyphensEnabled;
-    private boolean removeHyphensEnabled;
     protected ResourceBundle bundle;
 
     /**
@@ -59,16 +57,16 @@ public class OptionsDialog extends javax.swing.JDialog {
     public OptionsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        
         bundle = ResourceBundle.getBundle("net/sourceforge/vietocr/OptionsDialog");
-
+        
         this.setLocationRelativeTo(parent);
         getRootPane().setDefaultButton(jButtonOK);
 
         //  Handle escape key to hide the dialog
         KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
         Action escapeAction = new AbstractAction() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
@@ -113,6 +111,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         jCheckBoxCorrectLetterCases = new javax.swing.JCheckBox();
         jCheckBoxDeskew = new javax.swing.JCheckBox();
         jCheckBoxRemoveLines = new javax.swing.JCheckBox();
+        jCheckBoxRemoveLineBreaks = new javax.swing.JCheckBox();
         jPanelHyphens = new javax.swing.JPanel();
         jCheckBoxReplaceHyphens = new javax.swing.JCheckBox();
         jCheckBoxRemoveHyphens = new javax.swing.JCheckBox();
@@ -306,6 +305,14 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanelBulkBatchOptions.add(jCheckBoxRemoveLines, gridBagConstraints);
 
+        jCheckBoxRemoveLineBreaks.setText(bundle.getString("jCheckBoxRemoveLineBreaks.Text")); // NOI18N
+        jCheckBoxRemoveLineBreaks.setActionCommand("RemoveLineBreaks");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        jPanelBulkBatchOptions.add(jCheckBoxRemoveLineBreaks, gridBagConstraints);
+
         jTabbedPane1.addTab("Bulk/Batch Options", jPanelBulkBatchOptions);
 
         jPanelHyphens.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 1, 1));
@@ -393,8 +400,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         this.jCheckBoxWatch.setSelected(watchEnabled);
         this.jTextFieldDangAmbigs.setText(dangAmbigsPath);
         this.jCheckBoxDangAmbigs.setSelected(dangAmbigsOn);
-        this.jCheckBoxReplaceHyphens.setSelected(replaceHyphensEnabled);
-        this.jCheckBoxRemoveHyphens.setSelected(removeHyphensEnabled);
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
@@ -403,29 +408,27 @@ public class OptionsDialog extends javax.swing.JDialog {
         watchEnabled = this.jCheckBoxWatch.isSelected();
         dangAmbigsPath = this.jTextFieldDangAmbigs.getText();
         dangAmbigsOn = this.jCheckBoxDangAmbigs.isSelected();
-        replaceHyphensEnabled = this.jCheckBoxReplaceHyphens.isSelected();
-        removeHyphensEnabled = this.jCheckBoxRemoveHyphens.isSelected();
     }//GEN-LAST:event_formWindowDeactivated
 
     private void jButtonOutputFormatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOutputFormatActionPerformed
         jPopupMenu.show(jButtonOutputFormat, 0, jButtonOutputFormat.getHeight());
     }//GEN-LAST:event_jButtonOutputFormatActionPerformed
-
+    
     public int showDialog() {
         setVisible(true);
         return actionSelected;
     }
-
+    
     public void setSelectedTab(int index) {
         this.jTabbedPane1.setSelectedIndex(index);
     }
-
+    
     void changeUILanguage(final Locale locale) {
         Locale.setDefault(locale);
         bundle = ResourceBundle.getBundle("net/sourceforge/vietocr/OptionsDialog");
-
+        
         SwingUtilities.invokeLater(new Runnable() {
-
+            
             @Override
             public void run() {
                 FormLocalizer localizer = new FormLocalizer(OptionsDialog.this, OptionsDialog.class);
@@ -440,12 +443,12 @@ public class OptionsDialog extends javax.swing.JDialog {
      */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
-
+            
             @Override
             public void run() {
                 OptionsDialog dialog = new OptionsDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
+                    
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
@@ -467,6 +470,7 @@ public class OptionsDialog extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBoxDeskew;
     private javax.swing.JCheckBox jCheckBoxPostProcessing;
     private javax.swing.JCheckBox jCheckBoxRemoveHyphens;
+    private javax.swing.JCheckBox jCheckBoxRemoveLineBreaks;
     private javax.swing.JCheckBox jCheckBoxRemoveLines;
     private javax.swing.JCheckBox jCheckBoxReplaceHyphens;
     private javax.swing.JCheckBox jCheckBoxWatch;
@@ -594,36 +598,6 @@ public class OptionsDialog extends javax.swing.JDialog {
     }
 
     /**
-     * @return
-     */
-    public boolean isReplaceHyphensEnabled() {
-        replaceHyphensEnabled = this.jCheckBoxReplaceHyphens.isSelected();
-        return replaceHyphensEnabled;
-    }
-
-    /**
-     * @param replaceHyphensEnabled
-     */
-    public void setReplaceHyphensEnabled(boolean replaceHyphensEnabled) {
-        this.replaceHyphensEnabled = replaceHyphensEnabled;
-    }
-
-    /**
-     * @return
-     */
-    public boolean isRemoveHyphensEnabled() {
-        removeHyphensEnabled = this.jCheckBoxRemoveHyphens.isSelected();
-        return removeHyphensEnabled;
-    }
-
-    /**
-     * @param removeHyphensEnabled
-     */
-    public void setRemoveHyphensEnabled(boolean removeHyphensEnabled) {
-        this.removeHyphensEnabled = removeHyphensEnabled;
-    }
-
-    /**
      * @return the processingOptions
      */
     public ProcessingOptions getProcessingOptions() {
@@ -631,8 +605,11 @@ public class OptionsDialog extends javax.swing.JDialog {
         processingOptions.setDeskew(this.jCheckBoxDeskew.isSelected());
         processingOptions.setPostProcessing(this.jCheckBoxPostProcessing.isSelected());
         processingOptions.setRemoveLines(this.jCheckBoxRemoveLines.isSelected());
+        processingOptions.setRemoveLineBreaks(this.jCheckBoxRemoveLineBreaks.isSelected());
         processingOptions.setCorrectLetterCases(this.jCheckBoxCorrectLetterCases.isSelected());
-
+        processingOptions.setRemoveHyphens(this.jCheckBoxRemoveHyphens.isSelected());
+        processingOptions.setReplaceHyphens(this.jCheckBoxReplaceHyphens.isSelected());
+        
         return processingOptions;
     }
 
@@ -643,6 +620,9 @@ public class OptionsDialog extends javax.swing.JDialog {
         this.jCheckBoxDeskew.setSelected(processingOptions.isDeskew());
         this.jCheckBoxPostProcessing.setSelected(processingOptions.isPostProcessing());
         this.jCheckBoxRemoveLines.setSelected(processingOptions.isRemoveLines());
+        this.jCheckBoxRemoveLineBreaks.setSelected(processingOptions.isRemoveLineBreaks());
         this.jCheckBoxCorrectLetterCases.setSelected(processingOptions.isCorrectLetterCases());
+        this.jCheckBoxRemoveHyphens.setSelected(processingOptions.isRemoveHyphens());
+        this.jCheckBoxReplaceHyphens.setSelected(processingOptions.isReplaceHyphens());
     }
 }

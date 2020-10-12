@@ -38,12 +38,10 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
     private String inputFolder;
     private String outputFolder;
     private String outputFormat;
-    protected ProcessingOptions options;
     
     private final static Logger logger = Logger.getLogger(GuiWithBulkOCR.class.getName());
 
     public GuiWithBulkOCR() {
-        options = new ProcessingOptions();
         inputFolder = prefs.get(strInputFolder, System.getProperty("user.home"));
         if (!new File(inputFolder).exists()) inputFolder = System.getProperty("user.home");
         outputFolder = prefs.get(strBulkOutputFolder, System.getProperty("user.home"));

@@ -170,7 +170,7 @@ public class OCRImages extends OCR<IIOImage> {
 
         // post-corrections for text output
         if (renderedFormats.contains(RenderedFormat.TEXT)) {
-            if (options.isPostProcessing() || options.isCorrectLetterCases()) {
+            if (options.isPostProcessing() || options.isCorrectLetterCases() || options.isRemoveLineBreaks()) {
                 outputFile = new File(outputFile.getPath() + ".txt");
                 String result = Utils.readTextFile(outputFile);
 
@@ -182,6 +182,11 @@ public class OCRImages extends OCR<IIOImage> {
                 // correct letter cases
                 if (options.isCorrectLetterCases()) {
                     result = TextUtilities.correctLetterCases(result);
+                }
+
+                // remove line breaks
+                if (options.isRemoveLineBreaks()) {
+                    result = net.sourceforge.vietpad.utilities.TextUtilities.removeLineBreaks(result, options.isRemoveHyphens());
                 }
 
                 BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), "UTF-8"));

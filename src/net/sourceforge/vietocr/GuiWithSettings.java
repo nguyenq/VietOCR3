@@ -28,6 +28,7 @@ public class GuiWithSettings extends GuiWithLaF {
     private final String strPostProcessingEnabled = "PostProcessingEnabled";
     private final String strCorrectLetterCasesEnabled = "CorrectLetterCasesEnabled";
     private final String strRemoveLinesEnabled = "RemoveLinesEnabled";
+    private final String strRemoveLineBreaksEnabled = "RemoveLineBreaksEnabled";
     private final String strTessLibEnabled = "TessLibEnabled";
     private final String strBatchOutputFormat = "BatchOutputFormat";
 
@@ -52,6 +53,7 @@ public class GuiWithSettings extends GuiWithLaF {
         options.setPostProcessing(prefs.getBoolean(strPostProcessingEnabled, false));
         options.setCorrectLetterCases(prefs.getBoolean(strCorrectLetterCasesEnabled, false));
         options.setRemoveLines(prefs.getBoolean(strRemoveLinesEnabled, false));
+        options.setRemoveLineBreaks(prefs.getBoolean(strRemoveLineBreaksEnabled, false));
         tessLibEnabled = prefs.getBoolean(strTessLibEnabled, false);
         outputFormat = prefs.get(strBatchOutputFormat, "text");
     }
@@ -69,8 +71,6 @@ public class GuiWithSettings extends GuiWithLaF {
         optionsDialog.setDangAmbigsPath(dangAmbigsPath);
         optionsDialog.setDangAmbigsEnabled(dangAmbigsOn);
         optionsDialog.setCurLangCode(curLangCode);
-        optionsDialog.setReplaceHyphensEnabled(replaceHyphensEnabled);
-        optionsDialog.setRemoveHyphensEnabled(removeHyphensEnabled);
         optionsDialog.setSelectedOutputFormat(outputFormat);
         optionsDialog.setSelectedTab(evt.getActionCommand().equals("Options…") ? 0 : 2);
         
@@ -81,8 +81,6 @@ public class GuiWithSettings extends GuiWithLaF {
             options = optionsDialog.getProcessingOptions();
             dangAmbigsPath = optionsDialog.getDangAmbigsPath();
             dangAmbigsOn = optionsDialog.isDangAmbigsEnabled();
-            replaceHyphensEnabled = optionsDialog.isReplaceHyphensEnabled();
-            removeHyphensEnabled = optionsDialog.isRemoveHyphensEnabled();
             outputFormat = optionsDialog.getSelectedOutputFormat();
 
             updateWatch(watchFolder, watchEnabled);
@@ -112,6 +110,7 @@ public class GuiWithSettings extends GuiWithLaF {
         prefs.putBoolean(strPostProcessingEnabled, options.isPostProcessing());
         prefs.putBoolean(strCorrectLetterCasesEnabled, options.isCorrectLetterCases());
         prefs.putBoolean(strRemoveLinesEnabled, options.isRemoveLines());
+        prefs.putBoolean(strRemoveLineBreaksEnabled, options.isRemoveLineBreaks());
         prefs.putBoolean(strTessLibEnabled, tessLibEnabled);
         prefs.put(strBatchOutputFormat, outputFormat);
         super.quit();

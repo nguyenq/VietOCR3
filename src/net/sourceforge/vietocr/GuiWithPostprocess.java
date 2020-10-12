@@ -35,16 +35,16 @@ public class GuiWithPostprocess extends GuiWithOCR {
     private final String strRemoveHyphensEnabled = "RemoveHyphensEnabled";
     protected String dangAmbigsPath;
     protected boolean dangAmbigsOn;
-    protected boolean replaceHyphensEnabled;
-    protected boolean removeHyphensEnabled;
+    protected ProcessingOptions options;
 
     private final static Logger logger = Logger.getLogger(GuiWithPostprocess.class.getName());
 
     public GuiWithPostprocess() {
+        options = new ProcessingOptions();
         dangAmbigsPath = prefs.get(strDangAmbigsPath, new File(baseDir, "data").getPath());
         dangAmbigsOn = prefs.getBoolean(strDangAmbigs, true);
-        replaceHyphensEnabled = prefs.getBoolean(strReplaceHyphensEnabled, false);
-        removeHyphensEnabled = prefs.getBoolean(strRemoveHyphensEnabled, false);
+        options.setReplaceHyphens(prefs.getBoolean(strReplaceHyphensEnabled, false));
+        options.setRemoveHyphens(prefs.getBoolean(strRemoveHyphensEnabled, false));
     }
 
     @Override
@@ -68,7 +68,7 @@ public class GuiWithPostprocess extends GuiWithOCR {
             @Override
             public String doInBackground() throws Exception {
                 selectedText = jTextArea1.getSelectedText();
-                return Processor.postProcess((selectedText != null) ? selectedText : jTextArea1.getText(), curLangCode, dangAmbigsPath, dangAmbigsOn, replaceHyphensEnabled);
+                return Processor.postProcess((selectedText != null) ? selectedText : jTextArea1.getText(), curLangCode, dangAmbigsPath, dangAmbigsOn, options.isReplaceHyphens());
             }
 
             @Override
@@ -120,8 +120,8 @@ public class GuiWithPostprocess extends GuiWithOCR {
     void quit() {
         prefs.put(strDangAmbigsPath, dangAmbigsPath);
         prefs.putBoolean(strDangAmbigs, dangAmbigsOn);
-        prefs.putBoolean(strReplaceHyphensEnabled, replaceHyphensEnabled);
-        prefs.putBoolean(strRemoveHyphensEnabled, removeHyphensEnabled);
+        prefs.putBoolean(strReplaceHyphensEnabled, options.isReplaceHyphens());
+        prefs.putBoolean(strRemoveHyphensEnabled, options.isRemoveHyphens());
         super.quit();
     }
 }

@@ -245,3 +245,7 @@ Version 5.6.4 (23 August 2020)
 - Update Tess4J 4.5.3
 - Update other dependencies
 - Update translations
+
+Version 5.6.5-Beta (12 October 2020)
+- Provide pre- and post-processing to Bulk/Batch ops
+- Update dependencies
