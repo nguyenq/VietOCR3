@@ -44,12 +44,6 @@ public class BulkDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        for (RenderedFormat value : RenderedFormat.values()) {
-            JCheckBoxMenuItem item = new JCheckBoxMenuItem(value.name());
-            item.setUI(new StayOpenCheckBoxMenuItemUI());
-            jPopupMenu.add(item);
-        }
-
         bundle = ResourceBundle.getBundle("net/sourceforge/vietocr/BulkDialog");
 
         this.setLocationRelativeTo(parent);
@@ -91,6 +85,12 @@ public class BulkDialog extends javax.swing.JDialog {
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 32767));
         jButtonCancel = new javax.swing.JButton();
         jButtonOptions = new javax.swing.JButton();
+
+        for (RenderedFormat value : RenderedFormat.values()) {
+            JCheckBoxMenuItem item = new JCheckBoxMenuItem(value.name());
+            item.setUI(new StayOpenCheckBoxMenuItemUI());
+            jPopupMenu.add(item);
+        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/BulkDialog"); // NOI18N

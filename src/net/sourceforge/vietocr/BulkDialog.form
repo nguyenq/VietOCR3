@@ -3,6 +3,9 @@
 <Form version="1.8" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JPopupMenu" name="jPopupMenu">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="        for (RenderedFormat value : RenderedFormat.values()) {&#xa;            JCheckBoxMenuItem item = new JCheckBoxMenuItem(value.name());&#xa;            item.setUI(new StayOpenCheckBoxMenuItemUI());&#xa;            jPopupMenu.add(item);&#xa;        }"/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="true"/>
