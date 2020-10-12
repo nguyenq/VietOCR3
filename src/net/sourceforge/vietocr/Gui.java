@@ -887,12 +887,12 @@ public class Gui extends JFrame {
         jPopupMenuSegmentedRegions.addPopupMenuListener(new PopupMenuListener() {
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-                jButtonSegmentedRegions.setText(jButtonSegmentedRegions.getText().replace('▾', '▴'));
+                jButtonSegmentedRegions.setText(jButtonSegmentedRegions.getText().replace('⏷', '⏶'));
             }
 
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-                jButtonSegmentedRegions.setText(jButtonSegmentedRegions.getText().replace('▴', '▾'));
+                jButtonSegmentedRegions.setText(jButtonSegmentedRegions.getText().replace('⏶', '⏷'));
             }
 
             @Override

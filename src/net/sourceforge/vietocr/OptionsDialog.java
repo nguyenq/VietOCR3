@@ -127,12 +127,12 @@ public class OptionsDialog extends javax.swing.JDialog {
         jPopupMenu.addPopupMenuListener(new PopupMenuListener() {
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace('▾', '▴'));
+                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace('⏷', '⏶'));
             }
 
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace('▴', '▾'));
+                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace('⏶', '⏷'));
             }
 
             @Override
