@@ -35,24 +35,20 @@ public class OCRHelper {
      * @throws Exception
      */
     public static void performOCR(File imageFile, File outputFile, String tessdataPath, String langCode, String pageSegMode, String outputFormat, ProcessingOptions options) throws Exception {
-        try {
-            // create parent folder if not yet exists
-            File dir = outputFile.getParentFile();
-            if (dir != null && !dir.exists()) {
-                dir.mkdirs();
-            }
-
-            OCR<IIOImage> ocrEngine = new OCRImages();
-            ocrEngine.setDatapath(tessdataPath);
-            ocrEngine.setPageSegMode(pageSegMode);
-            ocrEngine.setLanguage(langCode);
-            ocrEngine.setOutputFormat(outputFormat.replace("+", ""));
-            ocrEngine.setProcessingOptions(options);
-
-            // recognize image file
-            ocrEngine.processPages(imageFile, outputFile);
-        } catch (InterruptedException ignore) {
-            // ignore
+        // create parent folder if not yet exists
+        File dir = outputFile.getParentFile();
+        if (dir != null && !dir.exists()) {
+            dir.mkdirs();
         }
+
+        OCR<IIOImage> ocrEngine = new OCRImages();
+        ocrEngine.setDatapath(tessdataPath);
+        ocrEngine.setPageSegMode(pageSegMode);
+        ocrEngine.setLanguage(langCode);
+        ocrEngine.setOutputFormat(outputFormat);
+        ocrEngine.setProcessingOptions(options);
+
+        // recognize image file
+        ocrEngine.processPages(imageFile, outputFile);
     }
 }

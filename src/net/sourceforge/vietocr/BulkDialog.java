@@ -20,7 +20,15 @@ import java.io.File;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.*;
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import net.sourceforge.vietocr.util.FormLocalizer;
+import net.sourceforge.tess4j.ITesseract.RenderedFormat;
+import darrylbu.plaf.StayOpenCheckBoxMenuItemUI;
 
 public class BulkDialog extends javax.swing.JDialog {
 
@@ -35,6 +43,12 @@ public class BulkDialog extends javax.swing.JDialog {
     public BulkDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        for (RenderedFormat value : RenderedFormat.values()) {
+            JCheckBoxMenuItem item = new JCheckBoxMenuItem(value.name());
+            item.setUI(new StayOpenCheckBoxMenuItemUI());
+            jPopupMenu.add(item);
+        }
 
         bundle = ResourceBundle.getBundle("net/sourceforge/vietocr/BulkDialog");
 
@@ -63,13 +77,13 @@ public class BulkDialog extends javax.swing.JDialog {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jPopupMenu = new javax.swing.JPopupMenu();
         jPanelImageFolder = new javax.swing.JPanel();
         jLabelInput = new javax.swing.JLabel();
         jTextFieldFolder = new javax.swing.JTextField();
         jLabelOutput = new javax.swing.JLabel();
         jTextFieldOutput = new javax.swing.JTextField();
-        jLabelOutputFormat = new javax.swing.JLabel();
-        jComboBoxOutputFormat = new javax.swing.JComboBox();
+        jButtonOutputFormat = new javax.swing.JButton();
         jButtonInput = new javax.swing.JButton();
         jButtonOutput = new javax.swing.JButton();
         jPanelCommand = new javax.swing.JPanel();
@@ -128,19 +142,10 @@ public class BulkDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
         jPanelImageFolder.add(jTextFieldOutput, gridBagConstraints);
 
-        jLabelOutputFormat.setLabelFor(jComboBoxOutputFormat);
-        jLabelOutputFormat.setText(bundle.getString("jComboBoxOutputFormat.Text")); // NOI18N
-        jLabelOutputFormat.setToolTipText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        jPanelImageFolder.add(jLabelOutputFormat, gridBagConstraints);
-        jLabelOutputFormat.getAccessibleContext().setAccessibleName("jLabelOutputFormat");
-
-        jComboBoxOutputFormat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "text", "hocr", "pdf" }));
-        jComboBoxOutputFormat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jComboBoxOutputFormatMouseEntered(evt);
+        jButtonOutputFormat.setText(bundle.getString("jButtonOutputFormat.Text")); // NOI18N
+        jButtonOutputFormat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOutputFormatActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -148,7 +153,7 @@ public class BulkDialog extends javax.swing.JDialog {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 0);
-        jPanelImageFolder.add(jComboBoxOutputFormat, gridBagConstraints);
+        jPanelImageFolder.add(jButtonOutputFormat, gridBagConstraints);
 
         jButtonInput.setText("...");
         jButtonInput.setToolTipText(bundle.getString("jButtonInput.ToolTipText")); // NOI18N
@@ -209,8 +214,9 @@ public class BulkDialog extends javax.swing.JDialog {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanelImageFolder.add(jButtonOptions, gridBagConstraints);
 
         getContentPane().add(jPanelImageFolder, java.awt.BorderLayout.CENTER);
@@ -264,23 +270,13 @@ public class BulkDialog extends javax.swing.JDialog {
         outputFolder = this.jTextFieldOutput.getText();
     }//GEN-LAST:event_formWindowDeactivated
 
-    private void jComboBoxOutputFormatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxOutputFormatMouseEntered
-        String val = this.jComboBoxOutputFormat.getSelectedItem().toString();
-        if ("text".equals(val)) {
-            val = "Text with no postprocessing";
-        } else if ("pdf".equals(val)) {
-            val = "PDF";
-        } else if ("hocr".equals(val)) {
-            val = "hOCR";
-        } else {
-            val = null;
-        }
-        this.jComboBoxOutputFormat.setToolTipText(val);
-    }//GEN-LAST:event_jComboBoxOutputFormatMouseEntered
-
     private void jButtonOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOptionsActionPerformed
-        ((GuiWithBulkOCR)this.getParent()).jMenuItemOptionsActionPerformed(evt);
+        ((GuiWithBulkOCR) this.getParent()).jMenuItemOptionsActionPerformed(evt);
     }//GEN-LAST:event_jButtonOptionsActionPerformed
+
+    private void jButtonOutputFormatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOutputFormatActionPerformed
+        jPopupMenu.show(jButtonOutputFormat, 0, jButtonOutputFormat.getHeight());
+    }//GEN-LAST:event_jButtonOutputFormatActionPerformed
 
     public int showDialog() {
         setVisible(true);
@@ -299,8 +295,8 @@ public class BulkDialog extends javax.swing.JDialog {
             }
         });
     }
-    
-      /**
+
+    /**
      * @return the inputFolder
      */
     public String getInputFolder() {
@@ -376,13 +372,13 @@ public class BulkDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonInput;
     private javax.swing.JButton jButtonOptions;
     private javax.swing.JButton jButtonOutput;
+    private javax.swing.JButton jButtonOutputFormat;
     private javax.swing.JButton jButtonRun;
-    private javax.swing.JComboBox jComboBoxOutputFormat;
     private javax.swing.JLabel jLabelInput;
     private javax.swing.JLabel jLabelOutput;
-    private javax.swing.JLabel jLabelOutputFormat;
     private javax.swing.JPanel jPanelCommand;
     private javax.swing.JPanel jPanelImageFolder;
+    private javax.swing.JPopupMenu jPopupMenu;
     private javax.swing.JTextField jTextFieldFolder;
     private javax.swing.JTextField jTextFieldOutput;
     // End of variables declaration//GEN-END:variables
@@ -391,13 +387,27 @@ public class BulkDialog extends javax.swing.JDialog {
      * @return the selectedFormat
      */
     public String getSelectedOutputFormat() {
-        return this.jComboBoxOutputFormat.getSelectedItem().toString();
+        List<String> list = new ArrayList<String>();
+        for (Component comp : jPopupMenu.getComponents()) {
+            JCheckBoxMenuItem item = (JCheckBoxMenuItem) comp;
+            if (item.isSelected()) {
+                list.add(item.getText());
+            }
+        }
+//        return list.toString().replaceAll("[\\[ \\]]", "");
+        return list.stream().map(n -> String.valueOf(n)).collect(Collectors.joining(","));
     }
 
     /**
      * @param selectedFormat the selectedFormat to set
      */
     public void setSelectedOutputFormat(String selectedFormat) {
-        this.jComboBoxOutputFormat.setSelectedItem(selectedFormat);
+        List<String> list = Arrays.asList(selectedFormat.split(","));
+        for (Component comp : jPopupMenu.getComponents()) {
+            JCheckBoxMenuItem item = (JCheckBoxMenuItem) comp;
+            if (list.contains(item.getText())) {
+                item.setSelected(true);
+            }
+        }
     }
 }
