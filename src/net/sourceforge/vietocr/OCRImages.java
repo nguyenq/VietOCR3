@@ -17,22 +17,14 @@ package net.sourceforge.vietocr;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.imageio.IIOImage;
 
-import net.sourceforge.lept4j.util.LeptUtils;
 import net.sourceforge.tess4j.ITesseract.RenderedFormat;
 import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.util.ImageIOHelper;
-import net.sourceforge.tess4j.util.PdfUtilities;
-import net.sourceforge.vietocr.postprocessing.Processor;
-import net.sourceforge.vietocr.postprocessing.TextUtilities;
 import net.sourceforge.vietocr.util.Utils;
 
 /**
@@ -138,75 +130,6 @@ public class OCRImages extends OCR<IIOImage> {
             renderedFormats.add(RenderedFormat.valueOf(format));
         }
 
-        File workingTiffFile = null;
-        File deskewedImageFile = null;
-        File linesRemovedImageFile = null;
-
-        try {
-            // convert PDF to TIFF
-            if (imageFile.getName().toLowerCase().endsWith(".pdf")) {
-                workingTiffFile = PdfUtilities.convertPdf2Tiff(imageFile);
-                imageFile = workingTiffFile;
-            }
-
-            // deskew
-            if (options.isDeskew()) {
-                deskewedImageFile = ImageIOHelper.deskewImage(imageFile, MINIMUM_DESKEW_THRESHOLD);
-                imageFile = deskewedImageFile;
-            }
-
-            // remove lines
-            if (options.isRemoveLines()) {
-                String outfile = LeptUtils.removeLines(imageFile.getPath());
-                linesRemovedImageFile = new File(outfile);
-                if (linesRemovedImageFile.length() == 0) {
-                    linesRemovedImageFile.delete();
-                    linesRemovedImageFile = null;
-                } else {
-                    imageFile = linesRemovedImageFile;
-                }
-            }
-
-            instance.createDocuments(imageFile.getPath(), outputFile.getPath(), renderedFormats);
-
-            // post-corrections for text output
-            if (renderedFormats.contains(RenderedFormat.TEXT)) {
-                if (options.isPostProcessing() || options.isCorrectLetterCases() || options.isRemoveLineBreaks()) {
-                    outputFile = new File(outputFile.getPath() + ".txt");
-                    String result = Utils.readTextFile(outputFile);
-
-                    // postprocess to correct common OCR errors
-                    if (options.isPostProcessing()) {
-                        result = Processor.postProcess(result, language);
-                    }
-
-                    // correct letter cases
-                    if (options.isCorrectLetterCases()) {
-                        result = TextUtilities.correctLetterCases(result);
-                    }
-
-                    // remove line breaks
-                    if (options.isRemoveLineBreaks()) {
-                        result = net.sourceforge.vietpad.utilities.TextUtilities.removeLineBreaks(result, options.isRemoveHyphens());
-                    }
-
-                    BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), "UTF-8"));
-                    out.write(result);
-                    out.close();
-                }
-            }
-        } finally {
-            if (workingTiffFile != null && workingTiffFile.exists()) {
-                workingTiffFile.delete();
-            }
-
-            if (deskewedImageFile != null && deskewedImageFile.exists()) {
-                deskewedImageFile.delete();
-            }
-
-            if (linesRemovedImageFile != null && linesRemovedImageFile.exists()) {
-                linesRemovedImageFile.delete();
-            }
-        }
+        instance.createDocuments(imageFile.getPath(), outputFile.getPath(), renderedFormats);
     }
 }
