@@ -19,7 +19,7 @@
         <blockquote>
             <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-ita</code></p>
         </blockquote>
-        <p>I file saranno inseriti in <code>/usr/bin</code> e <code>/usr/share/tesseract-ocr/tessdata</code>,  rispettivamente. D'altra parte, se Tesseract è costruito e installato dai file<a href="https://github.com/tesseract-ocr/tesseract/wiki"></a><a href="https://github.com/tesseract-ocr/tesseract/wiki">sorgenti </a>, saranno messi in <code>/usr/local/bin</code> e <code>/usr/local/share/tessdata</code>. Potrebbe essere necessario specificare la directory dell'eseguibile da Tesseract VietOCR nel menù <code>Impostazioni</code>. Se i dati sono in un percorso non standard, un link simbolico per <code>tessdata</code> può essere richiesto. È anche possibile lasciare che VietOCR riconosca automaticamente la posizione della cartella <code>tessdata</code> tramite la variabile <code>TESSDATA_PREFIX</code>:</p>
+        <p>I file saranno inseriti in <code>/usr/bin</code> e <code>/usr/share/tesseract-ocr/tessdata</code>,  rispettivamente. D'altra parte, se Tesseract è costruito e installato dai file<a href="https://github.com/tesseract-ocr/tesseract/wiki"></a><a href="https://github.com/tesseract-ocr/tesseract/wiki">sorgenti </a>, saranno messi in <code>/usr/local/bin</code> e <code>/usr/local/share/tessdata</code>. È anche possibile lasciare che VietOCR riconosca automaticamente la posizione della cartella <code>tessdata</code> tramite la variabile <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>

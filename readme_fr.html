@@ -16,13 +16,11 @@
         <p>L'exécutable Tesseract Windows est fourni avec le programme. Les fichiers de langues additionnelles pour Tesseract <a href="https://github.com/tesseract-ocr/tessdata">language data packs</a>, dont le nom commence par des codes ISO639-3, doivent être placés dans le sous-dossier <code>tessdata</code>.</p>
         <p>Pour Linux, Tesseract et ses données de langues se trouvent dans le dépôt Graphics (universe). Ils peuvent être installés en utilisant Synaptic ou avec la commande suivante:</p>
         <blockquote>
-            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-fra</code></p>
         </blockquote>
         <p>L'emplacement des fichiers sera respectivement <code>/usr/bin</code> et <code>/usr/share/tesseract-ocr/tessdata</code>. 
  Toutefois, si Tesseract est installé à parir de <a href="https://github.com/tesseract-ocr/tesseract/wiki">source</a>, ils se trouveront dans <code>/usr/local/bin</code> et <code>/usr/local/share/tessdata</code>.
-Il faudra préciser le dossier de l'exécutable Tesseract en VietOCR&#39;s
-menu <code>Settings</code>. Si les données ne se trouvent pas à l'emplacement standard, un lien
-vers  <code>tessdata</code>peut être requis. Vous pouvez aussi laisser VietOCR trouver l'emplacement
+Vous pouvez aussi laisser VietOCR trouver l'emplacement
  de <code>tessdata</code> grâce à la variable d'environnement <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>

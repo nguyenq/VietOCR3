@@ -17,7 +17,7 @@
         <blockquote>
             <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-lit</code></p>
         </blockquote>
-        <p>Įvykdžius šią komandą, programos failai bus įdiegti į aplanką <code>/usr/bin</code>, o kalbiniai duomenys – į <code>/usr/share/tesseract-ocr/tessdata</code>. Tuo atveju, jeigu „Tesseract“ kompiliuosite ir diegsite iš <a href="https://github.com/tesseract-ocr/tesseract/wiki">pirminių tekstų</a>, šie failai bus patalpinti atitinkamai į aplankus <code>/usr/local/bin</code> ir <code>/usr/local/share/tessdata</code>. „Tesseract“ vykdomojo failo kelią galite nurodyti „VietOCR“ nustatymų lange. Jeigu kalbiniai duomenys yra neįprastesnėje vietoje, <code>tessdata</code> aplanke gali tekti sukurti simbolinę nuorodą į juos. Taip pat apie <code>tessdata</code> aplanko vietą programą „VietOCR“ galite informuoti, nustatydami <code>TESSDATA_PREFIX</code> aplinkos kintamojo reikšmę:</p>
+        <p>Įvykdžius šią komandą, programos failai bus įdiegti į aplanką <code>/usr/bin</code>, o kalbiniai duomenys – į <code>/usr/share/tesseract-ocr/tessdata</code>. Tuo atveju, jeigu „Tesseract“ kompiliuosite ir diegsite iš <a href="https://github.com/tesseract-ocr/tesseract/wiki">pirminių tekstų</a>, šie failai bus patalpinti atitinkamai į aplankus <code>/usr/local/bin</code> ir <code>/usr/local/share/tessdata</code>. Taip pat apie <code>tessdata</code> aplanko vietą programą „VietOCR“ galite informuoti, nustatydami <code>TESSDATA_PREFIX</code> aplinkos kintamojo reikšmę:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
