@@ -29,7 +29,7 @@ To launch the program from the command line:
 ```
 java -jar VietOCR.jar
 ```
-On Linux or Unix-based systems, you may need to set the proper locale first:
+or for CLI option:
 ```
-export LC_ALL=C
+java -jar VietOCR.jar imagefile outputfile [-l lang] [--psm pagesegmode] [text|hocr|pdf|unlv|box|alto|tsv|lstmbox|wordstrbox] [postprocessing] [correctlettercases] [deskew] [removelines] [removelinebreaks]
 ```

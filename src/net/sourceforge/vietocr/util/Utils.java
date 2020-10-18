@@ -18,6 +18,7 @@ package net.sourceforge.vietocr.util;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,12 +26,12 @@ import java.util.logging.Logger;
 public class Utils {
 
     private static final String EOL = "\n";
-    
+
     private final static Logger logger = Logger.getLogger(Utils.class.getName());
 
     /**
      * Gets the directory of the executing JAR.
-     * 
+     *
      * @param aType
      * @return the directory of the running jar
      */
@@ -80,10 +81,10 @@ public class Utils {
 
     /**
      * Reads a text file.
-     * 
+     *
      * @param tempTessOutputFile
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
     public static String readTextFile(File tempTessOutputFile) throws Exception {
         StringBuilder result = new StringBuilder();
@@ -103,13 +104,12 @@ public class Utils {
 
         return result.toString();
     }
-    
-     
+
     /**
      * Lists image files recursively in a given directory.
-     * 
+     *
      * @param list
-     * @param directory 
+     * @param directory
      */
     public static void listImageFiles(List<File> list, File directory) {
         // list image files and subdir
@@ -119,13 +119,13 @@ public class Utils {
                 return file.getName().toLowerCase().matches(".*\\.(tif|tiff|jpg|jpeg|gif|png|bmp|pdf)$") || file.isDirectory();
             }
         });
-        
+
         if (files == null) {
             return;
         }
-        
+
         List<File> dirs = new ArrayList<File>();
-        
+
         // process files first
         for (File file : files) {
             if (file.isFile()) {
@@ -134,10 +134,19 @@ public class Utils {
                 dirs.add(file);
             }
         }
-        
+
         // then process directories
         for (File dir : dirs) {
             listImageFiles(list, dir);
         }
+    }
+
+    /**
+     * Gets names of enum
+     * @param e
+     * @return array of string
+     */
+    public static String[] getNames(Class<? extends Enum<?>> e) {
+        return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
     }
 }
