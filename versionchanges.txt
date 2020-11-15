@@ -252,3 +252,6 @@ Version 5.7.0 (18 October 2020)
 - Proper cleanup of working intermediate files
 - Expand command-line interface (CLI) support
 - Update dependencies
+
+Version 5.7.1 (15 November 2020)
+- Update dependencies
