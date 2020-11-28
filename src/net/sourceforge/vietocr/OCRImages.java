@@ -123,6 +123,7 @@ public class OCRImages extends OCR<IIOImage> {
         instance.setLanguage(language);
         instance.setPageSegMode(Integer.parseInt(pageSegMode));
         instance.setOcrEngineMode(Integer.parseInt(ocrEngineMode));
+        instance.setTessVariable("textonly_pdf", options.isTextOnlyPdf() ? "1" : "0");
 
         List<RenderedFormat> renderedFormats = new ArrayList<RenderedFormat>();
 

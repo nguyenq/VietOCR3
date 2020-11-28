@@ -24,6 +24,7 @@ public class ProcessingOptions {
     private boolean postProcessing;
     private boolean removeLines;
     private boolean removeLineBreaks;
+    private boolean textOnlyPdf;
     private boolean correctLetterCases;
     private boolean removeHyphens;
     private boolean replaceHyphens;
@@ -124,5 +125,19 @@ public class ProcessingOptions {
      */
     public void setReplaceHyphens(boolean replaceHyphens) {
         this.replaceHyphens = replaceHyphens;
+    }
+
+    /**
+     * @return the textOnlyPdf
+     */
+    public boolean isTextOnlyPdf() {
+        return textOnlyPdf;
+    }
+
+    /**
+     * @param textOnlyPdf the textOnlyPdf to set
+     */
+    public void setTextOnlyPdf(boolean textOnlyPdf) {
+        this.textOnlyPdf = textOnlyPdf;
     }
 }
