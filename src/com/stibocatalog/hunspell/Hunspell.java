@@ -151,7 +151,7 @@ public class Hunspell {
         if (os.startsWith("windows")) {
             return "libhunspell";
         } else if (os.startsWith("mac os x")) {
-            return "libhunspell";
+            return "hunspell";
         } else if (os.startsWith("linux") || os.contains("bsd")) {
             return "hunspell-1.7";
         } else if (os.startsWith("sunos")) {
