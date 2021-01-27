@@ -150,27 +150,10 @@ public class Hunspell {
 
         if (os.startsWith("windows")) {
             return "libhunspell";
-            //if (amd64) {
-            // Note: No bindings exist for this yet (no JNA support).
-            //	return "hunspell-win-x86-64";
-            //}
-
         } else if (os.startsWith("mac os x")) {
-            if (x86) {
-                return "hunspell-darwin-x86-32";
-            }
-            if (arch.equals("ppc")) {
-                return "hunspell-darwin-ppc-32";
-            }
-
+            return "libhunspell";
         } else if (os.startsWith("linux") || os.contains("bsd")) {
-            if (x86) {
-                return "hunspell-1.7";
-            }
-            if (amd64) {
-                return "hunspell-1.7";
-            }
-
+            return "hunspell-1.7";
         } else if (os.startsWith("sunos")) {
             //if (arch.equals("sparc")) {
             //	return "hunspell-sunos-sparc-64";
