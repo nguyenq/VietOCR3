@@ -2782,6 +2782,9 @@ public class Gui extends JFrame {
         try {
             Image image = ImageHelper.getClipboardImage();
             if (image != null) {
+                if (MAC_OS_X) {
+                    image = ImageHelper.getScaledInstance((BufferedImage) image, image.getWidth(null), image.getHeight(null));
+                }
                 File tempFile = File.createTempFile("tmp", ".png");
                 ImageIO.write((BufferedImage) image, "png", tempFile);
                 openFile(tempFile);
