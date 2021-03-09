@@ -2783,7 +2783,7 @@ public class Gui extends JFrame {
             Image image = ImageHelper.getClipboardImage();
             if (image != null) {
                 if (MAC_OS_X) {
-                    image = ImageHelper.getScaledInstance((BufferedImage) image, image.getWidth(null), image.getHeight(null));
+                    image = getBufferedImage(image);
                 }
                 File tempFile = File.createTempFile("tmp", ".png");
                 ImageIO.write((BufferedImage) image, "png", tempFile);
@@ -2793,6 +2793,16 @@ public class Gui extends JFrame {
         } catch (Exception e) {
             logger.log(Level.WARNING, e.getMessage(), e);
         }
+    }
+
+    BufferedImage getBufferedImage(Image img) {
+        int w = img.getWidth(null);
+        int h = img.getHeight(null);
+        BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2 = bi.createGraphics();
+        g2.drawImage(img, 0, 0, w, h, null);
+        g2.dispose();
+        return bi;
     }
 
     /**
