@@ -268,5 +268,5 @@ Version 5.7.4 (8 March 2021)
 Version 5.7.5 (20 July 2021)
 - Update dependencies
 
-Version 5.7.6-Beta (8 September 2021)
+Version 5.7.6-Beta (28 September 2021)
 - Update dependencies
