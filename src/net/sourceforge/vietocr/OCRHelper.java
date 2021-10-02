@@ -37,13 +37,12 @@ public class OCRHelper {
      * @param tessdataPath path to Tesseract <code>tessdata</code> directory
      * @param langCode language code
      * @param pageSegMode page segmentation mode
-     * @param outputFormat format of output file. Possible values:
-     * <code>text</code>, <code>text+</code> (with post-corrections),
-     * <code>hocr</code>
+     * @param outputFormats formats of output file. Possible values:
+     * <code>text</code>, <code>hocr</code>, or <code>pdf</code>
      * @param options Processing options
      * @throws Exception
      */
-    public static void performOCR(File imageFile, File outputFile, String tessdataPath, String langCode, String pageSegMode, String outputFormat, ProcessingOptions options) throws Exception {
+    public static void performOCR(File imageFile, File outputFile, String tessdataPath, String langCode, String pageSegMode, String outputFormats, ProcessingOptions options) throws Exception {
         // create parent folder if not yet exists
         File dir = outputFile.getParentFile();
         if (dir != null && !dir.exists()) {
@@ -54,7 +53,7 @@ public class OCRHelper {
         ocrEngine.setDatapath(tessdataPath);
         ocrEngine.setPageSegMode(pageSegMode);
         ocrEngine.setLanguage(langCode);
-        ocrEngine.setOutputFormat(outputFormat);
+        ocrEngine.setOutputFormats(outputFormats);
         ocrEngine.setProcessingOptions(options);
 
         File workingTiffFile = null;
@@ -90,7 +89,7 @@ public class OCRHelper {
             ocrEngine.processPages(imageFile, outputFile);
 
             // post-corrections for text output
-            if (Arrays.asList(outputFormat.split(",")).contains(ITesseract.RenderedFormat.TEXT.name())) {
+            if (Arrays.asList(outputFormats.split(",")).contains(ITesseract.RenderedFormat.TEXT.name())) {
                 if (options.isPostProcessing() || options.isCorrectLetterCases() || options.isRemoveLineBreaks()) {
                     outputFile = new File(outputFile.getPath() + ".txt");
                     String result = Utils.readTextFile(outputFile);

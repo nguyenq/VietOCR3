@@ -56,7 +56,6 @@ public class OCRImages extends OCR<IIOImage> {
         instance.setLanguage(language);
         instance.setPageSegMode(Integer.parseInt(pageSegMode));
         instance.setOcrEngineMode(Integer.parseInt(ocrEngineMode));
-        instance.setHocr(outputFormat.equalsIgnoreCase("hocr"));
 
         File configsFilePath = new File(datapath, CONFIG_PATH + CONFIGS_FILE);
         if (configsFilePath.exists()) {
@@ -102,7 +101,7 @@ public class OCRImages extends OCR<IIOImage> {
             if (!line.trim().startsWith("#")) {
                 try {
                     String[] keyValuePair = line.trim().split("\\s+");
-                    instance.setTessVariable(keyValuePair[0], keyValuePair[1]);
+                    instance.setVariable(keyValuePair[0], keyValuePair[1]);
                 } catch (Exception e) {
                     //ignore and continue on
                 }
@@ -123,11 +122,10 @@ public class OCRImages extends OCR<IIOImage> {
         instance.setLanguage(language);
         instance.setPageSegMode(Integer.parseInt(pageSegMode));
         instance.setOcrEngineMode(Integer.parseInt(ocrEngineMode));
-        instance.setTessVariable("textonly_pdf", options.isTextOnlyPdf() ? "1" : "0");
 
         List<RenderedFormat> renderedFormats = new ArrayList<RenderedFormat>();
 
-        for (String format : outputFormat.toUpperCase().split(",")) {
+        for (String format : outputFormats.toUpperCase().split(",")) {
             renderedFormats.add(RenderedFormat.valueOf(format));
         }
 

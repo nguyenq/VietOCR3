@@ -114,7 +114,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         jCheckBoxDeskew = new javax.swing.JCheckBox();
         jCheckBoxRemoveLines = new javax.swing.JCheckBox();
         jCheckBoxRemoveLineBreaks = new javax.swing.JCheckBox();
-        jCheckBoxTextOnlyPdf = new javax.swing.JCheckBox();
         jPanelHyphens = new javax.swing.JPanel();
         jCheckBoxReplaceHyphens = new javax.swing.JCheckBox();
         jCheckBoxRemoveHyphens = new javax.swing.JCheckBox();
@@ -333,12 +332,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanelBulkBatchOptions.add(jCheckBoxRemoveLineBreaks, gridBagConstraints);
 
-        jCheckBoxTextOnlyPdf.setText(bundle.getString("jCheckBoxTextOnlyPdf.Text")); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        jPanelBulkBatchOptions.add(jCheckBoxTextOnlyPdf, gridBagConstraints);
-
         jTabbedPane1.addTab("Bulk/Batch Options", jPanelBulkBatchOptions);
 
         jPanelHyphens.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 1, 1));
@@ -499,7 +492,6 @@ public class OptionsDialog extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckBoxRemoveLineBreaks;
     private javax.swing.JCheckBox jCheckBoxRemoveLines;
     private javax.swing.JCheckBox jCheckBoxReplaceHyphens;
-    private javax.swing.JCheckBox jCheckBoxTextOnlyPdf;
     private javax.swing.JCheckBox jCheckBoxWatch;
     private javax.swing.JLabel jLabelDangAmbigs;
     private javax.swing.JLabel jLabelOutput;
@@ -634,7 +626,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         processingOptions.setRemoveLines(this.jCheckBoxRemoveLines.isSelected());
         processingOptions.setRemoveLineBreaks(this.jCheckBoxRemoveLineBreaks.isSelected());
         processingOptions.setCorrectLetterCases(this.jCheckBoxCorrectLetterCases.isSelected());
-        processingOptions.setTextOnlyPdf(this.jCheckBoxTextOnlyPdf.isSelected());
         processingOptions.setRemoveHyphens(this.jCheckBoxRemoveHyphens.isSelected());
         processingOptions.setReplaceHyphens(this.jCheckBoxReplaceHyphens.isSelected());
         
@@ -650,7 +641,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         this.jCheckBoxRemoveLines.setSelected(processingOptions.isRemoveLines());
         this.jCheckBoxRemoveLineBreaks.setSelected(processingOptions.isRemoveLineBreaks());
         this.jCheckBoxCorrectLetterCases.setSelected(processingOptions.isCorrectLetterCases());
-        this.jCheckBoxTextOnlyPdf.setSelected(processingOptions.isTextOnlyPdf());
         this.jCheckBoxRemoveHyphens.setSelected(processingOptions.isRemoveHyphens());
         this.jCheckBoxReplaceHyphens.setSelected(processingOptions.isReplaceHyphens());
     }

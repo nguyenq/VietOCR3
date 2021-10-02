@@ -32,7 +32,7 @@ public abstract class OCR<T> {
     protected String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)
     protected String ocrEngineMode = "3"; // Default, based on what is available
     protected String language = "eng";
-    protected String outputFormat = "text";
+    protected String outputFormats = "text";
     protected String datapath = "tessdata";
     
     protected ProcessingOptions options;
@@ -99,18 +99,17 @@ public abstract class OCR<T> {
     }
 
     /**
-     * @return the outputFormat
+     * @return the outputFormats
      */
-    public String getOutputFormat() {
-        return outputFormat;
+    public String getOutputFormats() {
+        return outputFormats;
     }
 
     /**
-     * @param outputFormat the outputFormat to set; possible values: txt, hocr,
-     * pdf
+     * @param outputFormats the outputFormats to set; possible values: text, hocr, pdf
      */
-    public void setOutputFormat(String outputFormat) {
-        this.outputFormat = outputFormat;
+    public void setOutputFormats(String outputFormats) {
+        this.outputFormats = outputFormats;
     }
 
     /**

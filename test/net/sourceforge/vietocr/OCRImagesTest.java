@@ -73,9 +73,11 @@ public class OCRImagesTest {
         OCRImages instance = new OCRImages();
         instance.setDatapath(tessdataPath);
         instance.setLanguage(lang);
-        instance.setOutputFormat("text");
+        String outputFormats = "text,hocr,pdf";
+        instance.setOutputFormats(outputFormats);
         instance.processPages(inputImage, outputFile);
-        String ext = ".txt";
-        assertTrue(new File(outputFile.getPath() + ext).exists());
+        for (String ext : outputFormats.split(",")) {
+            assertTrue(new File(outputFile.getPath() + "." + ext).exists());
+        }
     }
 }

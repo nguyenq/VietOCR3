@@ -53,7 +53,6 @@ public class GuiWithSettings extends GuiWithLaF {
         options.setDeskew(prefs.getBoolean(strDeskewEnabled, false));
         options.setPostProcessing(prefs.getBoolean(strPostProcessingEnabled, false));
         options.setCorrectLetterCases(prefs.getBoolean(strCorrectLetterCasesEnabled, false));
-        options.setTextOnlyPdf(prefs.getBoolean(strTextOnlyPdfEnabled, false));
         options.setRemoveLines(prefs.getBoolean(strRemoveLinesEnabled, false));
         options.setRemoveLineBreaks(prefs.getBoolean(strRemoveLineBreaksEnabled, false));
         tessLibEnabled = prefs.getBoolean(strTessLibEnabled, false);
@@ -111,7 +110,6 @@ public class GuiWithSettings extends GuiWithLaF {
         prefs.putBoolean(strDeskewEnabled, options.isDeskew());
         prefs.putBoolean(strPostProcessingEnabled, options.isPostProcessing());
         prefs.putBoolean(strCorrectLetterCasesEnabled, options.isCorrectLetterCases());
-        prefs.putBoolean(strTextOnlyPdfEnabled, options.isTextOnlyPdf());
         prefs.putBoolean(strRemoveLinesEnabled, options.isRemoveLines());
         prefs.putBoolean(strRemoveLineBreaksEnabled, options.isRemoveLineBreaks());
         prefs.putBoolean(strTessLibEnabled, tessLibEnabled);
