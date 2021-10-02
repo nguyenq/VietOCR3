@@ -118,12 +118,12 @@ public class ConsoleApp {
             outputFormatSet.add(ITesseract.RenderedFormat.TEXT.toString());
         }
 
-        String outputFormat = String.join(",", outputFormatSet);
+        String outputFormats = String.join(",", outputFormatSet);
 
         String tessdataPath = Gui.getDatapath(Utils.getBaseDir(ConsoleApp.this));
 
         try {
-            OCRHelper.performOCR(imageFile, outputFile, tessdataPath, curLangCode, psm, outputFormat, options);
+            OCRHelper.performOCR(imageFile, outputFile, tessdataPath, curLangCode, psm, outputFormats, options);
         } catch (Exception e) {
             System.out.println(e.getMessage());
 //            logger.log(Level.SEVERE, e.getMessage(), e);

@@ -270,7 +270,7 @@ public class BulkDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonOutputActionPerformed
 
     private void jButtonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunActionPerformed
-        if (getSelectedOutputFormat().length() == 0) {
+        if (getSelectedOutputFormats().length() == 0) {
             JOptionPane.showMessageDialog(null, bundle.getString("Please_select_output_format"), this.getTitle(), JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -408,9 +408,9 @@ public class BulkDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     /**
-     * @return the selectedFormat
+     * @return the selectedFormats
      */
-    public String getSelectedOutputFormat() {
+    public String getSelectedOutputFormats() {
         List<String> list = new ArrayList<String>();
         for (Component comp : jPopupMenu.getComponents()) {
             JCheckBoxMenuItem item = (JCheckBoxMenuItem) comp;
@@ -423,10 +423,10 @@ public class BulkDialog extends javax.swing.JDialog {
     }
 
     /**
-     * @param selectedFormat the selectedFormat to set
+     * @param selectedFormats the selectedFormats to set
      */
-    public void setSelectedOutputFormat(String selectedFormat) {
-        List<String> list = Arrays.asList(selectedFormat.split(","));
+    public void setSelectedOutputFormats(String selectedFormats) {
+        List<String> list = Arrays.asList(selectedFormats.split(","));
         for (Component comp : jPopupMenu.getComponents()) {
             JCheckBoxMenuItem item = (JCheckBoxMenuItem) comp;
             if (list.contains(item.getText())) {

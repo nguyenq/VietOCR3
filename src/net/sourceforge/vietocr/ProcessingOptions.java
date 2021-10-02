@@ -24,7 +24,6 @@ public class ProcessingOptions {
     private boolean postProcessing;
     private boolean removeLines;
     private boolean removeLineBreaks;
-    private boolean textOnlyPdf;
     private boolean correctLetterCases;
     private boolean removeHyphens;
     private boolean replaceHyphens;

@@ -37,7 +37,7 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
         
     private String inputFolder;
     private String outputFolder;
-    private String outputFormat;
+    private String outputFormats;
     
     private final static Logger logger = Logger.getLogger(GuiWithBulkOCR.class.getName());
 
@@ -46,7 +46,7 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
         if (!new File(inputFolder).exists()) inputFolder = System.getProperty("user.home");
         outputFolder = prefs.get(strBulkOutputFolder, System.getProperty("user.home"));
         if (!new File(outputFolder).exists()) outputFolder = System.getProperty("user.home");
-        outputFormat = prefs.get(strBulkOutputFormat, "text");
+        outputFormats = prefs.get(strBulkOutputFormat, "text");
         statusFrame = new StatusFrame();
         statusFrame.setTitle(bundle.getString("bulkStatusFrame.Title"));
     }
@@ -66,12 +66,12 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
 
         bulkDialog.setInputFolder(inputFolder);
         bulkDialog.setOutputFolder(outputFolder);
-        bulkDialog.setSelectedOutputFormat(outputFormat);
+        bulkDialog.setSelectedOutputFormats(outputFormats);
 
         if (bulkDialog.showDialog() == JOptionPane.OK_OPTION) {
             inputFolder = bulkDialog.getInputFolder();
             outputFolder = bulkDialog.getOutputFolder();
-            outputFormat = bulkDialog.getSelectedOutputFormat();
+            outputFormats = bulkDialog.getSelectedOutputFormats();
 
             jLabelStatus.setText(bundle.getString("OCR_running..."));
             jProgressBar1.setIndeterminate(true);
@@ -118,7 +118,7 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
     void quit() {
         prefs.put(strInputFolder, inputFolder);
         prefs.put(strBulkOutputFolder, outputFolder);
-        prefs.put(strBulkOutputFormat, outputFormat);
+        prefs.put(strBulkOutputFormat, outputFormats);
         
         super.quit();
     }
@@ -143,7 +143,7 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
                     publish(imageFile.getPath()); // interim result
                     try {
                         String outputFilename = imageFile.getPath().substring(inputFolder.length() + 1);
-                        OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename), datapath, curLangCode, selectedPSM, outputFormat, options);
+                        OCRHelper.performOCR(imageFile, new File(outputFolder, outputFilename), datapath, curLangCode, selectedPSM, outputFormats, options);
                     } catch (Exception e) {
                         logger.log(Level.WARNING, e.getMessage(), e);
                         publish("\t** " + bundle.getString("Cannotprocess") + " " + imageFile.getName() + " **");

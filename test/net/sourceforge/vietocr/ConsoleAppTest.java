@@ -36,7 +36,7 @@ public class ConsoleAppTest {
     public void testMain() {
         System.out.println("main");
         String outfile = "build/test/results/out";
-        String[] args = {"samples/vietsample.tif", outfile, "-l", "vie", "pdf"};
+        String[] args = {"samples/vietsample.tif", outfile, "-l", "vie", "pdf", "hocr"};
         ConsoleApp.main(args);
         assertTrue(new File(outfile + ".pdf").exists());
     }

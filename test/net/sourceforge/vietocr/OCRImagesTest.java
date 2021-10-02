@@ -77,7 +77,7 @@ public class OCRImagesTest {
         instance.setOutputFormats(outputFormats);
         instance.processPages(inputImage, outputFile);
         for (String ext : outputFormats.split(",")) {
-            assertTrue(new File(outputFile.getPath() + "." + ext).exists());
+            assertTrue(new File(outputFile.getPath() + "." + ext.replace("text", "txt")).exists());
         }
     }
 }

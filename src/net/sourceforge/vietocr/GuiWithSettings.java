@@ -27,7 +27,6 @@ public class GuiWithSettings extends GuiWithLaF {
     private final String strDeskewEnabled = "DeskewEnabled";
     private final String strPostProcessingEnabled = "PostProcessingEnabled";
     private final String strCorrectLetterCasesEnabled = "CorrectLetterCasesEnabled";
-    private final String strTextOnlyPdfEnabled = "TextOnlyPdfEnabled";
     private final String strRemoveLinesEnabled = "RemoveLinesEnabled";
     private final String strRemoveLineBreaksEnabled = "RemoveLineBreaksEnabled";
     private final String strTessLibEnabled = "TessLibEnabled";
@@ -36,7 +35,7 @@ public class GuiWithSettings extends GuiWithLaF {
     protected String watchFolder;
     protected String outputFolder;
     protected boolean watchEnabled;
-    protected String outputFormat;
+    protected String outputFormats;
     
     private OptionsDialog optionsDialog;
 
@@ -56,7 +55,7 @@ public class GuiWithSettings extends GuiWithLaF {
         options.setRemoveLines(prefs.getBoolean(strRemoveLinesEnabled, false));
         options.setRemoveLineBreaks(prefs.getBoolean(strRemoveLineBreaksEnabled, false));
         tessLibEnabled = prefs.getBoolean(strTessLibEnabled, false);
-        outputFormat = prefs.get(strBatchOutputFormat, "text");
+        outputFormats = prefs.get(strBatchOutputFormat, "text");
     }
 
     @Override
@@ -72,7 +71,7 @@ public class GuiWithSettings extends GuiWithLaF {
         optionsDialog.setDangAmbigsPath(dangAmbigsPath);
         optionsDialog.setDangAmbigsEnabled(dangAmbigsOn);
         optionsDialog.setCurLangCode(curLangCode);
-        optionsDialog.setSelectedOutputFormat(outputFormat);
+        optionsDialog.setSelectedOutputFormats(outputFormats);
         optionsDialog.setSelectedTab(evt.getActionCommand().equals("Options…") ? 0 : 2);
         
         if (optionsDialog.showDialog() == JOptionPane.OK_OPTION) {
@@ -82,7 +81,7 @@ public class GuiWithSettings extends GuiWithLaF {
             options = optionsDialog.getProcessingOptions();
             dangAmbigsPath = optionsDialog.getDangAmbigsPath();
             dangAmbigsOn = optionsDialog.isDangAmbigsEnabled();
-            outputFormat = optionsDialog.getSelectedOutputFormat();
+            outputFormats = optionsDialog.getSelectedOutputFormats();
 
             updateWatch(watchFolder, watchEnabled);
         }
@@ -113,7 +112,7 @@ public class GuiWithSettings extends GuiWithLaF {
         prefs.putBoolean(strRemoveLinesEnabled, options.isRemoveLines());
         prefs.putBoolean(strRemoveLineBreaksEnabled, options.isRemoveLineBreaks());
         prefs.putBoolean(strTessLibEnabled, tessLibEnabled);
-        prefs.put(strBatchOutputFormat, outputFormat);
+        prefs.put(strBatchOutputFormat, outputFormats);
         super.quit();
     }
 
