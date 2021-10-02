@@ -31,6 +31,7 @@ import javax.swing.event.PopupMenuListener;
 import net.sourceforge.vietocr.util.FormLocalizer;
 import net.sourceforge.tess4j.ITesseract.RenderedFormat;
 import darrylbu.plaf.StayOpenCheckBoxMenuItemUI;
+import net.sourceforge.vietocr.components.OuputFormatCheckBoxActionListener;
 
 public class BulkDialog extends javax.swing.JDialog {
 
@@ -91,18 +92,19 @@ public class BulkDialog extends javax.swing.JDialog {
         for (RenderedFormat value : RenderedFormat.values()) {
             JCheckBoxMenuItem item = new JCheckBoxMenuItem(value.name());
             item.setUI(new StayOpenCheckBoxMenuItemUI());
+            item.addActionListener(new OuputFormatCheckBoxActionListener());
             jPopupMenu.add(item);
         }
 
         jPopupMenu.addPopupMenuListener(new PopupMenuListener() {
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace('⏷', '⏶'));
+                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace('▾', '▴'));
             }
 
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace('⏶', '⏷'));
+                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace('▴', '▾'));
             }
 
             @Override

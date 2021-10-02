@@ -4,7 +4,7 @@
   <NonVisualComponents>
     <Container class="javax.swing.JPopupMenu" name="jPopupMenu">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="        for (RenderedFormat value : RenderedFormat.values()) {&#xa;            JCheckBoxMenuItem item = new JCheckBoxMenuItem(value.name());&#xa;            item.setUI(new StayOpenCheckBoxMenuItemUI());&#xa;            jPopupMenu.add(item);&#xa;        }"/>
+        <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="        for (RenderedFormat value : RenderedFormat.values()) {&#xa;            JCheckBoxMenuItem item = new JCheckBoxMenuItem(value.name());&#xa;            item.setUI(new StayOpenCheckBoxMenuItemUI());&#xa;            item.addActionListener(new OuputFormatCheckBoxActionListener());&#xa;            jPopupMenu.add(item);&#xa;        }"/>
         <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="        jPopupMenu.addPopupMenuListener(new PopupMenuListener() {&#xa;            @Override&#xa;            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {&#xa;                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace(&apos;&#x25be;&apos;, &apos;&#x25b4;&apos;));&#xa;            }&#xa;&#xa;            @Override&#xa;            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {&#xa;                jButtonOutputFormat.setText(jButtonOutputFormat.getText().replace(&apos;&#x25b4;&apos;, &apos;&#x25be;&apos;));&#xa;            }&#xa;&#xa;            @Override&#xa;            public void popupMenuCanceled(PopupMenuEvent e) {&#xa;                &#xa;            }&#xa;        }) ;"/>
       </AuxValues>
 

@@ -41,6 +41,7 @@ import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.vietpad.components.SimpleFilter;
 import net.sourceforge.vietocr.util.FormLocalizer;
 import darrylbu.plaf.StayOpenCheckBoxMenuItemUI;
+import net.sourceforge.vietocr.components.OuputFormatCheckBoxActionListener;
 
 public class OptionsDialog extends javax.swing.JDialog {
     
@@ -121,6 +122,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         for (ITesseract.RenderedFormat value : ITesseract.RenderedFormat.values()) {
             JCheckBoxMenuItem item = new JCheckBoxMenuItem(value.name());
             item.setUI(new StayOpenCheckBoxMenuItemUI());
+            item.addActionListener(new OuputFormatCheckBoxActionListener());
             jPopupMenu.add(item);
         }
 
