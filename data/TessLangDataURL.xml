@@ -32,7 +32,7 @@
     <entry key="eng">https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata</entry>
     <entry key="enm">https://github.com/tesseract-ocr/tessdata_fast/raw/main/enm.traineddata</entry>
     <entry key="epo">https://github.com/tesseract-ocr/tessdata_fast/raw/main/epo.traineddata</entry>
-    <entry key="equ">https://github.com/tesseract-ocr/tessdata/raw/3.04.00/equ.traineddata</entry>
+    <entry key="equ">https://github.com/tesseract-ocr/tessdata_fast/raw/main/equ.traineddata</entry>
     <entry key="est">https://github.com/tesseract-ocr/tessdata_fast/raw/main/est.traineddata</entry>
     <entry key="eus">https://github.com/tesseract-ocr/tessdata_fast/raw/main/eus.traineddata</entry>
     <entry key="fao">https://github.com/tesseract-ocr/tessdata_fast/raw/main/fao.traineddata</entry>
