@@ -3,6 +3,6 @@
 <properties>
     <comment>Configuration File</comment>
     <entry key="TessVersion">4.1.1</entry>
-    <entry key="ReleaseDate">2021/09/28</entry>
-    <entry key="Version">v5.7.6-Beta</entry>
+    <entry key="ReleaseDate">2021/11/11</entry>
+    <entry key="Version">v5.7.6</entry>
 </properties>
