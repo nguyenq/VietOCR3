@@ -271,6 +271,6 @@ Version 5.7.5 (20 July 2021)
 Version 5.7.6-Beta (28 September 2021)
 - Update dependencies
 
-Version 6.0 (27 October 2021)
-- Upgrade to Tesseract 5.0.0-beta (a7a729f)
+Version 6.0 (12 November 2021)
+- Upgrade to Tesseract 5.0.0-rc1 (5884036)
 - Upgrade to Tess4J 5.0.0-SNAPSHOT and Lept4J 1.16.0
