@@ -17,8 +17,8 @@
  , ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅವುಗಳನ್ನು ಓಸಿಆರ್ ಎಂಜಿನ್ ಮೂಲಕ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸುತ್ತದೆ ಮತ್ತು ಗುರುತಿಸುವಿಕೆಯ ಫಲಿತಾಂಶಗಳನ್ನು &#13;
 ಔಟ್‌ಪುಟ್ ಫೋಲ್ಡರ್‌ಗೆ ನೀಡುತ್ತದೆ.</p>
         <h3>ಸಿಸ್ಟಂ ಅವಶ್ಯಕತೆಗಳು</h3>
-        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">ಜಾವಾ ರನ್ ಟೈಮ್&#13;
-                ಎನ್ವಿರಾಮೆಂಟ್ 8</a> ಅಥವಾ ನಂತರದ್ದು. On Windows, <a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">Microsoft Visual C++ 2015-2019 Redistributable Package</a> is also required.</p>
+        <p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Runtime
+                Environment 8</a> ಅಥವಾ ನಂತರದ್ದು. ವಿಂಡೋಸ್‍ನಲ್ಲಿ, <a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">Microsoft Visual C++ 2015-2019 Redistributable Package</a> ಕೂಡಾ ಅವಶ್ಯ.</p>
         <h3>ಅನುಸ್ಥಾಪಿಸುವುದು</h3>
         <p>ಟೆಸ್ಸೆರಾಕ್ಟ್ ವಿಂಡೋಸ್ ಎಕ್ಸಿಕ್ಯೂಟಬಲ್ ಅನ್ನು ಪ್ರೋಗ್ರಾಂನೊಂದಿಗೆ ಸಂಯೋಜಿಸಲಾಗಿದೆ. ಹೆಚ್ಚುವರಿ <a href="https://github.com/tesseract-ocr/tessdata">&#13;
 ಟೆಸ್ಸೆರಾಕ್ಟ್ ಭಾಷಾ ಡೇಟಾ ಪ್ಯಾಕ್</a> ಗಳು , ISO639-3 ಸಂಕೇತಗಳ ಹೆಸರಿನಿಂದ ಪ್ರಾರಂಭವಾಗುತ್ತವೆ,&#13;
@@ -28,12 +28,11 @@
         <blockquote>
             <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
         </blockquote>
-        <p>ಕಡತಗಳು ಕ್ರಮವಾಗಿ <code>/usr/bin</code> ಮತ್ತು <code>/usr/share/tesseract-ocr/tessdata</code>, ನಲ್ಲಿ ಇರುತ್ತವೆ. 
-ಹಾಂ! ಒಂದು ವೇಳೆ ನೀವು ಟೆಸೆರಾಕ್ಟನ್ನು  <a href="https://github.com/tesseract-ocr/tesseract/wiki">source</a> ನಿಂದ ಬಿಲ್ಡ್ ಮಾಡಿ ಇನ್ಸಟಾಲ್ ಮಾಡಿದ್ದರೆ, 
-ಕಡತಗಳು <code>/usr/local/bin</code> ಮತ್ತು <code>/usr/local/share/tessdata</code> ಗಳಲ್ಲಿ ಇರುತ್ತವೆ. 
-ಇಲ್ಲವೇ,
-<code>tessdata</code>  ಅನ್ನು  ಎನ್ವಿರಾನ್ಮೆಂಟ್ ವೇರಿಯಬಲ್ ಸೆಟ್   <code>TESSDATA_PREFIX</code> ಮೂಲಕ VietOCR ಗೆ
-ಎಲ್ಲಿದೆ ಎಂಬುದನ್ನು ತಿಳಿಸಬಹುದು:</p>
+        <p>ಕಡತಗಳನ್ನು ಕ್ರಮವಾಗಿ ‍<code>/usr/bin</code> ಮತ್ತು ‍<code>/usr/share/tesseract-ocr/tessdata</code>,
+            ನಲ್ಲಿ ಇಡಲಾಗುತ್ತದೆ. ಇಲ್ಲವಾದಲ್ಲಿ, ಟೆಸೆರಾಕ್ಟ್ ಅನ್ನು ಅನುಸ್ಥಾಪಿಸಿದ್ದು ಅದರ ‍<a href="https://github.com/tesseract-ocr/tesseract/wiki">source</a>,
+            ನಿಂದಾಗಿದ್ದಲ್ಲಿ ಅವು <code>/usr/local/bin</code> ಮತ್ತು <code>/usr/local/share/tessdata</code>‍ ನಲ್ಲಿರುತ್ತವೆ.
+            ನೀವೂ ಕೂಡ VietOCR ಗೆ
+            <code>tessdata</code> ಇರುವ ಸ್ಥಳವನ್ನು ಎನ್ವಿರಾನ್ಮೆಂಟ್ ವೇರಿಯಬಲ್  <code>TESSDATA_PREFIX</code>‍ ‍ಮೂಲಕ ತಿಳಿಸಬಹುದು :</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
