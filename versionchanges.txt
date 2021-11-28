@@ -271,3 +271,6 @@ Version 5.7.5 (20 July 2021)
 Version 5.7.6 (11 November 2021)
 - Update dependencies
 - Update language data pack download links
+
+Version 5.8.0 (28 November 2021)
+- Update Tess4J 4.6.0 (Tesseract 4.1.3)
