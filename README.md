@@ -33,3 +33,8 @@ or for CLI option:
 ```
 java -jar VietOCR.jar imagefile outputfile [-l lang] [--psm pagesegmode] [text|hocr|pdf|unlv|box|alto|tsv|lstmbox|wordstrbox] [postprocessing] [correctlettercases] [deskew] [removelines] [removelinebreaks]
 ```
+
+## Dependencies
+* [Java Runtime Environment 8 or later](https://www.oracle.com/java/technologies/downloads/)
+* On Windows: [Microsoft Visual C++ 2022 Redistributable Package](https://visualstudio.microsoft.com/downloads/)
+* [GPL Ghostscript](http://www.ghostscript.com)
