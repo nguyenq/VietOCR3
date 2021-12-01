@@ -31,7 +31,7 @@ java -jar VietOCR.jar
 ```
 or for CLI option:
 ```
-java -jar VietOCR.jar imagefile outputfile [-l lang] [--psm pagesegmode] [text|hocr|pdf|unlv|box|alto|tsv|lstmbox|wordstrbox] [postprocessing] [correctlettercases] [deskew] [removelines] [removelinebreaks]
+java -jar VietOCR.jar imagefile outputfile [-l lang] [--psm pagesegmode] [text|hocr|pdf|pdf_textonly|unlv|box|alto|tsv|lstmbox|wordstrbox] [postprocessing] [correctlettercases] [deskew] [removelines] [removelinebreaks]
 ```
 
 ## Dependencies
