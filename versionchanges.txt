@@ -282,3 +282,6 @@ Version 6.0.0 (17 December 2021)
 Version 6.1.0 (11 January 2022)
 - Upgrade to Tess4J 5.1.0 (Tesseract 5.0.1)
 - Update dependencies
+
+Version 6.1.1 (26 January 2022)
+- Remove ghost4j and log4j due to vulnerabilities
