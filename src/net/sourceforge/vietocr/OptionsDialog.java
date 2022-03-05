@@ -602,7 +602,7 @@ public class OptionsDialog extends javax.swing.JDialog {
             }
         }
 //        return list.toString().replaceAll("[\\[ \\]]", "");
-        return list.stream().map(n -> String.valueOf(n)).collect(Collectors.joining(","));
+        return list.stream().collect(Collectors.joining(","));
     }
 
     /**
