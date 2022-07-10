@@ -28,7 +28,7 @@
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>PDF failų palaikymui naudojama „PDFBox“ priemonė.</p>
+        <p>PDF failų palaikymas realizuotas „PDFBox“ bibliotekos pagalba.</p>
         <p>Rašybos tikrinimo funkcija galima panaudojant „Hunspell“ tikrintuvę, kurios <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">žodynų</a> failai (<code>.aff</code>, <code>.dic</code>) turėtų būti patalpinti į aplanką <code>dict</code>, esantį „VietOCR“ programos aplanke. Be to, šiame aplanke galite sukurti UTF-8 koduoto teksto failą <code>user.dic</code> su papildomais žodžiais, nesančiais žodyne (vienas žodis eilutėje).</p>
         <p>„Linux“ sistemoje „Hunspell“ bei žodynus galite įdiegti, naudodamiesi programa „Synaptic“ arba <code>apt</code> įrankiu:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us myspell-lt</code></blockquote>
@@ -38,7 +38,7 @@
             <p><code>java -jar VietOCR.jar</code></p>
         </blockquote>
         <p><b><u>Pastaba</u></b>: jeigu susiduriate su atminties trūkumo problema, bandykite įvykdyti ne .jar failą, bet <code>ocr</code> scenarijų.</p>
-        <p>Kalbinių duomenų failai yra generuojami konkretiems šriftams, todėl programai geriausiai sekasi atpažinti jai žinomais ar panašių glifų šriftais rašytus tekstus. Prireikus vaizduose atpažinti kitais šriftais rašytą tekstą, reikės „Tesseract“ programą papildomai <a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">apmokyti</a>, sukuriant naujus kalbos duomenų failus. Kiek išsamiau lietuviškai apie „Tesseract“ galite paskaityti <a href="https://dg.lapas.info/it/tesseract-ocr/">Donato Glodenio tinklaraštyje</a>.</p>
+        <p>Kalbinių duomenų failai yra generuojami konkretiems šriftams, todėl programai geriausiai sekasi atpažinti jai žinomais ar panašios išvaizdos šriftais rašytus tekstus. Prireikus vaizduose atpažinti kitais šriftais rašytą tekstą, reikės „Tesseract“ programą papildomai <a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">apmokyti</a>, sukuriant naujus kalbos duomenų failus.</p>
         <p>Ženklų atpažinimui teksto failo vaizdai turi būti nuskaitomi nuo 200 iki 400 taškų colyje raiška, naudojant juodai baltą arba pilkumo tonų veikseną. Aukštesnės raiškos vaizdai nebūtinai pagerins ženklų atpažinimo kokybę, kuri ir taip yra pakankamai aukšta, ir kitose „Tesseract“ laidose gali dar pagerėti. Reali ženklų atpažinimo kokybė priklauso nuo nuskenuoto vaizdo kokybės. Rekomenduojami parametrai skenuojamam vaizdui yra tokios: 300 taškų colyje, 1 bitas taškui (1bpp; juodai balta veiksena) arba 8 bitai taškui (8bpp; pilkumo tonai), vaizdą įrašant į neglaudintą TIFF arba PNG formato failą.</p>
         <p><em>Žemos raiškos (ekranvaizdžio) veiksena</em> įgalina pagerinti žemos raiškos vaizdų atpažinimo kokybę. Šioje veiksenoje, prieš atpažįstant tekstą, žemos raiškos (pvz. ekrano) vaizdų raiška padidinama iki 300 taškų colyje.</p>
         <p>Programa numato galimybę jau esamą teksto apdorojimo algoritmą papildyti savuoju. Pridėkite savo pritaikytą teksto ženklų pakeitimo schemą įrašytą UTF-8 koduotės faile <code>x.DangAmbigs.txt</code>, simbolį „x“ pakeisdami ISO639-3 standarto kalbos kodu (pvz., lietuvių kalbos kodas – „lit“). Keistinus teksto fragmentus nuo pakaitalų faile turėtų skirti tabuliacijos ženklas. Faile galima naudoti tiek paprastus keitinius, tiek reguliariuosius reiškinius.</p>

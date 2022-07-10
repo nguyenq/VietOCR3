@@ -35,7 +35,7 @@ dossier <code>tessdata</code>, vous devrez peut-être lancer le programme en roo
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>Les PDF sont pris en charge par PDFBox.</p>
+        <p>La prise en compte du format PDF est possible via PDFBox.</p>
         <p>La correction orthographique est assurée par Hunspell, dont les fichiers <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
 dictionary</a> (<code>.aff</code>, <code>.dic</code>) devraient être placés 
 dans le dossier <code>dict</code> de VietOCR. <code>user.dic</code> est un fichier encodé en UTF-8 qui contient une liste de mots personnalisés, un mot par ligne. </p>
@@ -56,7 +56,7 @@ Même ainsi, le taux réel dépend grandement de la qualité de l'image numéris
         <p>Des outils ont été incorporés pour fusionner plusieurs images ou PDF en un seul fichier, ce qui rend les opérations d'OCR plus pratiques, ou pour fractionner un PDF en fichiers plus petits si sa taille initiale risque de poser des problèmes de mémoire insuffisante. </p>
         <h3>POST-TRAITEMENT</h3>
         <p>Les erreurs de reconnaissance peuvent être classées en trois catégories. La plupart concernent la casse - par exemple hOa, nhắC - et sont facilement corrigées par les éditeurs de texte Unicode courants. Beaucoup d'autres erreurs réultent du processus d'OCR, comme le manque de signes diacritiques, la confusion de lettres de formes proches, etc. - huu - huư, mang - marg, h0a - hoa, la - 1a, uhìu - nhìn. Elles peuvent être aussi facilement corrigées par des programmes de vérification orthographique. Le programme intégré de post-traitement peut corriger beaucoup d'erreurs de ces deux catégories. </p>
-        <p>La dernière catégorie d'erreurs est la plus difficile à détecter, car elles sont sémantiques, ce quiveut dire que les mots existent bien dans le dictionnaire, mais sont erronés dans leur contexte - ainsi tinh - tình, vân - vấn. Ces erreurs demandent une relecture et une correction manuelle en conformité avec l'image d'origine. </p>
+        <p>La dernière catégorie d'erreurs est la plus difficile à détecter, car elles sont sémantiques, ce qui veut dire que les mots existent bien dans le dictionnaire, mais sont erronés dans leur contexte - ainsi tinh - tình, vân - vấn. Ces erreurs demandent une relecture et une correction manuelle en conformité avec l'image d'origine. </p>
         <p>Les instructions suivantes expliquent comment corriger les deux premières catégories d'erreurs en utilisant les fonctionnalités intégrées:</p>
         <ol style="margin-top: 0in" start="1" type="1">
 <li>Groupement des lignes. Le processus d'OCR transforme chaque ligne individuelle en paragraphe. Il faut donc reconstituer les paragraphes d'origine en utilisant la fonction <i>Remove Line Breaks</i>dans le menu <i>Format</i>. Cette opération n'est pas forcément nécessaire dans le cas de poèmes. </li>
