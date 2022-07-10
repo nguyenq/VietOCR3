@@ -1,70 +1,70 @@
 ﻿<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>VietOCR - Java GUI Frontend for Tesseract OCR</title>
+<title>VietOCR - Java GUI Frontend для Tesseract OCR</title>
 </head>
 <body>
     <div class="Section1">
         <h2 align="center">VietOCR</h2>
         <h3>ОПИСАНИЕ</h3>
-        <p><a href="http://vietocr.sourceforge.net">VietOCR</a> is a Java GUI frontend for
-            <a href="https://github.com/tesseract-ocr">Tesseract OCR engine</a>, providing
-            character recognition support for common image formats, and multi-page images. The
-            program has postprocessing which helps correct errors regularly encountered in the
-            OCR process, boosting the accuracy rate on the result. The program can also function
-            as a console application, executing from the command line.</p>
-        <p>Batch processing is now supported. The program monitors a watch folder for new image
-            files, automatically processes them through the OCR engine, and outputs recognition
-            results to an output folder.</p>
+        <p><a href="http://vietocr.sourceforge.net">VietOCR</a> это, написанный на Java графический интерфейс для
+            <a href="https://github.com/tesseract-ocr">Tesseract OCR engine</a>, предоставляющий поддержку в распознавании
+            символов для распространенных графических форматов, в том числе 
+            и многостраничных. Программа имеет функцию постобработки, позволяющую
+            исправлять регулярно возникающие в процессе оптического распознавания 
+            текста ошибки. Программа также может выполняться из командной строки.</p>
+        <p>Теперь поддерживается пакетная обработка. Программа отслеживает папку для 
+            наблюдения за новыми файлами изображений, автоматически обрабатывает их 
+            с помощью OCR-движка и выводит результаты распознавания в папку вывода.</p>
         <h3>СИСТЕМНЫЕ ТРЕБОВАНИЯ</h3>
         <p><a href="https://www.oracle.com/java/technologies/downloads/">Java Runtime
-                Environment 8</a> or later. On Windows, <a href="https://docs.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist">Microsoft Visual C++ 2022 Redistributable Package</a> is also required.</p>
+                Environment 8</a> и выше. В Windows также требуется <a href="https://docs.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist">Microsoft Visual C++ 2022 Redistributable Package</a>.</p>
         <h3>УСТАНОВКА</h3>
-        <p>Tesseract Windows executable is bundled with the program. Additional <a href="https://github.com/tesseract-ocr/tessdata">
-                language data packs</a> for Tesseract, whose names start with ISO639-3 codes,
-            should be placed into the <code>tessdata</code> subdirectory.</p>
-        <p>For Linux, Tesseract and its language data packages are in the Graphics (universe)
-            repository. They can be installed using Synaptic or by the following command:</p>
+        <p>Исполняемый файл Tesseract для Windows поставляется вместе с программой. 
+                Дополнительные <a href="https://github.com/tesseract-ocr/tessdata">языковые пакеты</a> для Tesseract с именами в соответствии 
+            со стандартом ISO639-3, следует поместить в подкаталог <code>tessdata</code>.</p>
+        <p>Для Linux Tesseract и его языковые пакеты находятся в репозитории Graphics (universe).
+            Их можно установить используя Synaptic или с помощью следующей команды:</p>
         <blockquote>
-            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-rus</code></p>
+            <p><code>sudo apt-get install tesseract-ocr tesseract-ocr-eng tesseract-ocr-vie</code></p>
         </blockquote>
-        <p>The files will be placed in <code>/usr/bin</code> and <code>/usr/share/tesseract-ocr/tessdata</code>,
-            respectively. On the other hand, if Tesseract is built and installed from the <a href="https://github.com/tesseract-ocr/tesseract/wiki">source</a>,
-            they will be placed in <code>/usr/local/bin</code> and <code>/usr/local/share/tessdata</code>.
-            You can also let VietOCR know the location
-            of <code>tessdata</code> via the environment variable <code>TESSDATA_PREFIX</code>:</p>
+        <p>Файлы будут размещены в <code>/usr/bin</code> и <code>/usr/share/tesseract-ocr/tessdata</code>,
+            соответственно. Если Tesseract собран и установлен из <a href="https://github.com/tesseract-ocr/tesseract/wiki">исходного кода</a>,
+            то помещены в <code>/usr/local/bin</code> и <code>/usr/local/share/tessdata</code>.
+            Вы также можете сообщить VietOCR о расположении 
+             <code>tessdata</code> через переменную <code>TESSDATA_PREFIX</code>:</p>
         <blockquote>
             <p><code>export TESSDATA_PREFIX=/usr/local/share/</code></p>
         </blockquote>
-        <p>For other platforms, please consult <a href="https://github.com/tesseract-ocr/tesseract/wiki">
-                Tesseract Wiki</a> page.</p>
+        <p>Для других платформ, пожалуйста, обратитесь к странице <a href="https://github.com/tesseract-ocr/tesseract/wiki">
+                Tesseract Wiki</a>.</p>
         <p>VietOCR also provides support for downloading and installing selected language packs
             via <em>Download Language Data</em> menu item. Depending on the location of the
             <code>tessdata</code> folder, you may be required to run the program as root or
             admin to be able to install the downloaded data into the folder if it is inside
             a system folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code>
             on Windows.</p>
-        <p>Scanning support on Windows is provided via the Windows Image 
-			Acquisition Library v2.0.</p>
-        <p>On Linux, scanning requires installation of SANE packages:</p>
+        <p>Поддержка сканирования в Windows обеспечивается библиотекой 
+			Windows Image Acquisition версии 2.0.</p>
+        <p>В Linux для сканирования требуется установка пакетов SANE:</p>
         <blockquote>
             <p><code>sudo apt-get install libsane sane sane-utils libsane-extras xsane</code></p>
         </blockquote>
-        <p>PDF support is possible via PDFBox.</p>
-        <p>Spellcheck functionality is available through Hunspell, whose <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
-                dictionary</a> files (<code>.aff</code>, <code>.dic</code>) should be placed
-            in <code>dict</code> folder of VietOCR. <code>user.dic</code> is an UTF-8-encoded
-            file which contains a list of custom words, one word per line.</p>
-        <p>On Linux, Hunspell and its dictionaries can be installed by Synaptic or <code>apt</code>,
-            as follows:</p>
+        <p>Поддержка PDF возможна через PDFBox.</p>
+        <p>Функциональность проверки орфографии доступна через Hunspell, чьи <a href="http://wiki.services.openoffice.org/wiki/Dictionaries">
+                словари</a> (<code>.aff</code>, <code>.dic</code>) должны быть размещены
+            в папке <code>dict</code> VietOCR. <code>user.dic</code> - это файл в кодировке UTF-8, 
+            который содержит список слов, выбранных пользователем, по одному слову в строке.</p>
+        <p>В Linux Hunspell и его словари можно установить с помощью Synaptic или <code>apt</code>
+            следующим образом:</p>
         <blockquote><code>sudo apt-get install hunspell hunspell-en-us</code></blockquote>
         <h3>ИНСТРУКЦИИ</h3>
-        <p>To launch the program:</p>
+        <p>Чтобы запустить программу, наберите:</p>
         <blockquote>
             <p><code>java -jar VietOCR.jar</code></p>
         </blockquote>
-        <p><b><u>Note</u></b>: If you encounter out-of-memory exception, run <code>ocr</code>
-            script file instead of using the .jar.</p>
+        <p><b><u>Примечание</u></b>: Если вы столкнулись с сообщением о нехватки памяти, 
+            запустите файл сценария <code>ocr</code> вместо использования .jar.</p>
         <p>The Vietnamese language data were generated for Times New Roman, Arial, Verdana,
             and Courier New fonts. Therefore, the recognition would have better success rate
             for images having similar font glyphs. OCRing images that have font glyphs look
@@ -79,8 +79,8 @@
             it even further. Even so, the actual rates still depend greatly on the quality of
             the scanned image. The typical settings for scanning are 300 DPI and 1 bpp (bit
             per pixel) black&amp;white or 8 bpp grayscale uncompressed TIFF or PNG format.</p>
-        <p>The <em>Screenshot Mode</em> offers better recognition rates for low-resolution
-            images, such as screen prints, by rescaling them to 300 DPI.</p>
+        <p>В <em>Режиме скриншота</em> обеспечивается лучшая скорость распознавания изображений
+            с низким разрешением, таких как снимки экрана, посредством масштабирования их до 300 DPI.</p>
         <p>In addition to the built-in text postprocessing algorithm, you can add your own
             custom text replacement scheme via a UTF-8-encoded tab-delimited text file named <code>x.DangAmbigs.txt</code>,
             where x is the ISO639-3 language code. Both plain and Regex text replacements are supported.</p>
@@ -102,24 +102,24 @@
             errors, which means that the words are valid entries in the dictionary but are wrong
             in the context — e.g., tinh – tình, vân – vấn. These errors require the editor to
             read though and manually correct them according to the original image.</p>
-        <p>Following are instructions on how to correct the first two categories of OCR errors
-            using the built-in functionality:</p>
+        <p>Далее приведены инструкции по исправлению первых двух категорий ошибок OCR
+            используя встроенный функционал:</p>
         <ol style="margin-top: 0in" start="1" type="1">
-<li>Group lines. The lines need to be grouped to the paragraph they belong, as being
-                OCRed, each line becomes a separate 1-line paragraph. Use <i>Remove Line Breaks</i>
-                function under <i>Format</i> menu. Note that this operation may not be needed for
-                poems.</li>
+<li>Группы строк. Строки должны быть сгруппированы по абзацам, к которым они принадлежат, 
+                так после распознавания символов каждая строка становится отдельным 1-строчным 
+                абзацем. Используйте <i>Удалить разрывы строк</i> в меню <i>Формат</i>.  
+                Обратите внимание, что эта операция может не понадобиться для стихов.</li>
             <li>Select <i>Change Case</i>, also under <i>Format</i> menu, and choose <i>Sentence
                 case</i> to correct most of the letter case errors. Locate and fix the rest of remaining
                 letter case errors.</li>
-            <li>Correct the misspelled errors using the integrated <i>Spell Check</i>.</li>
+            <li>Исправление опечаток с помощью встроенной <i>Проверки орфографии</i>.</li>
         </ol>
 <p>Through the above process, most of common errors can be eliminated. The remaining,
             semantic errors are few, but it requires a human editor to read though and make
             necessary edits to make the document like the original scanned document, and error-free
             if desired.</p>
-        <p>If there is any questions, please post in <a href="http://sourceforge.net/projects/vietocr/forums">
-                VietOCR Forum</a>.</p>
+        <p>Если есть вопросы, обратитесь на <a href="http://sourceforge.net/projects/vietocr/forums">
+                Форум VietOCR</a>.</p>
         <hr>
 </div>
 </body>
