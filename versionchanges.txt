@@ -298,3 +298,6 @@ Version 6.3.0 (7 July 2022)
 
 Version 6.3.1 (10 July 2022)
 - Update translations
+
+Version 6.4.0 (11 August 2022)
+- Update tess4j-5.4.0
