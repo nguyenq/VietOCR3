@@ -302,5 +302,6 @@ Version 6.3.1 (10 July 2022)
 Version 6.4.0 (11 August 2022)
 - Update tess4j-5.4.0
 
-Version 6.5.0 (3 December 2022
+Version 6.5.0 (3 December 2022)
 - Implement postprocessing for Bulk/Batch ops
+- Update dependencies
