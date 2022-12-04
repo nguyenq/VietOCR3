@@ -68,8 +68,6 @@ public class GuiWithSettings extends GuiWithLaF {
         optionsDialog.setOutputFolder(outputFolder);
         optionsDialog.setWatchEnabled(watchEnabled);
         optionsDialog.setProcessingOptions(options);
-        optionsDialog.setDangAmbigsPath(dangAmbigsPath);
-        optionsDialog.setDangAmbigsEnabled(dangAmbigsOn);
         optionsDialog.setCurLangCode(curLangCode);
         optionsDialog.setSelectedOutputFormats(outputFormats);
         optionsDialog.setSelectedTab(evt.getActionCommand().equals("Options…") ? 0 : 2);
@@ -79,8 +77,6 @@ public class GuiWithSettings extends GuiWithLaF {
             outputFolder = optionsDialog.getOutputFolder();
             watchEnabled = optionsDialog.isWatchEnabled();
             options = optionsDialog.getProcessingOptions();
-            dangAmbigsPath = optionsDialog.getDangAmbigsPath();
-            dangAmbigsOn = optionsDialog.isDangAmbigsEnabled();
             outputFormats = optionsDialog.getSelectedOutputFormats();
 
             updateWatch(watchFolder, watchEnabled);

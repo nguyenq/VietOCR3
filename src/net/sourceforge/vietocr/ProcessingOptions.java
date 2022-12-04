@@ -27,6 +27,8 @@ public class ProcessingOptions {
     private boolean correctLetterCases;
     private boolean removeHyphens;
     private boolean replaceHyphens;
+    private boolean dangAmbigsEnabled;
+    private String dangAmbigsPath;
 
     /**
      * @return the deskew
@@ -124,5 +126,33 @@ public class ProcessingOptions {
      */
     public void setReplaceHyphens(boolean replaceHyphens) {
         this.replaceHyphens = replaceHyphens;
+    }
+
+    /**
+     * @return the dangAmbigsEnabled
+     */
+    public boolean isDangAmbigsEnabled() {
+        return dangAmbigsEnabled;
+    }
+
+    /**
+     * @param dangAmbigsEnabled the dangAmbigsEnabled to set
+     */
+    public void setDangAmbigsEnabled(boolean dangAmbigsEnabled) {
+        this.dangAmbigsEnabled = dangAmbigsEnabled;
+    }
+
+    /**
+     * @return the dangAmbigsPath
+     */
+    public String getDangAmbigsPath() {
+        return dangAmbigsPath;
+    }
+
+    /**
+     * @param dangAmbigsPath the dangAmbigsPath to set
+     */
+    public void setDangAmbigsPath(String dangAmbigsPath) {
+        this.dangAmbigsPath = dangAmbigsPath;
     }
 }

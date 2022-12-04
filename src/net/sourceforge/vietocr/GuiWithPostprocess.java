@@ -30,19 +30,17 @@ import net.sourceforge.vietocr.postprocessing.Processor;
 public class GuiWithPostprocess extends GuiWithOCR {
 
     private final String strDangAmbigsPath = "DangAmbigsPath";
-    private final String strDangAmbigs = "DangAmbigs";
+    private final String strDangAmbigsEnabled = "DangAmbigsEnabled";
     private final String strReplaceHyphensEnabled = "ReplaceHyphensEnabled";
     private final String strRemoveHyphensEnabled = "RemoveHyphensEnabled";
-    protected String dangAmbigsPath;
-    protected boolean dangAmbigsOn;
     protected ProcessingOptions options;
 
     private final static Logger logger = Logger.getLogger(GuiWithPostprocess.class.getName());
 
     public GuiWithPostprocess() {
         options = new ProcessingOptions();
-        dangAmbigsPath = prefs.get(strDangAmbigsPath, new File(baseDir, "data").getPath());
-        dangAmbigsOn = prefs.getBoolean(strDangAmbigs, true);
+        options.setDangAmbigsPath(prefs.get(strDangAmbigsPath, new File(baseDir, "data").getPath()));
+        options.setDangAmbigsEnabled(prefs.getBoolean(strDangAmbigsEnabled, true));
         options.setReplaceHyphens(prefs.getBoolean(strReplaceHyphensEnabled, false));
         options.setRemoveHyphens(prefs.getBoolean(strRemoveHyphensEnabled, false));
     }
@@ -68,7 +66,7 @@ public class GuiWithPostprocess extends GuiWithOCR {
             @Override
             public String doInBackground() throws Exception {
                 selectedText = jTextArea1.getSelectedText();
-                return Processor.postProcess((selectedText != null) ? selectedText : jTextArea1.getText(), curLangCode, dangAmbigsPath, dangAmbigsOn, options.isReplaceHyphens());
+                return Processor.postProcess((selectedText != null) ? selectedText : jTextArea1.getText(), curLangCode, options.getDangAmbigsPath(), options.isDangAmbigsEnabled(), options.isReplaceHyphens());
             }
 
             @Override
@@ -118,8 +116,8 @@ public class GuiWithPostprocess extends GuiWithOCR {
 
     @Override
     void quit() {
-        prefs.put(strDangAmbigsPath, dangAmbigsPath);
-        prefs.putBoolean(strDangAmbigs, dangAmbigsOn);
+        prefs.put(strDangAmbigsPath, options.getDangAmbigsPath());
+        prefs.putBoolean(strDangAmbigsEnabled, options.isDangAmbigsEnabled());
         prefs.putBoolean(strReplaceHyphensEnabled, options.isReplaceHyphens());
         prefs.putBoolean(strRemoveHyphensEnabled, options.isRemoveHyphens());
         super.quit();

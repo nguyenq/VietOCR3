@@ -51,7 +51,6 @@ public class OptionsDialog extends javax.swing.JDialog {
     private String dangAmbigsPath;
     private String curLangCode;
     private boolean watchEnabled;
-    private boolean dangAmbigsOn;
     protected ResourceBundle bundle;
 
     /**
@@ -395,7 +394,8 @@ public class OptionsDialog extends javax.swing.JDialog {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             String path = pathchooser.getCurrentDirectory().getPath();
             if (!dangAmbigsPath.equals(path)) {
-                setDangAmbigsPath(path);
+                dangAmbigsPath = path;
+                this.jTextFieldDangAmbigs.setText(dangAmbigsPath);
             }
         }
     }//GEN-LAST:event_jButtonDangAmbigsActionPerformed
@@ -420,7 +420,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         this.jTextFieldOutput.setText(outputFolder);
         this.jCheckBoxWatch.setSelected(watchEnabled);
         this.jTextFieldDangAmbigs.setText(dangAmbigsPath);
-        this.jCheckBoxDangAmbigs.setSelected(dangAmbigsOn);
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
@@ -428,7 +427,6 @@ public class OptionsDialog extends javax.swing.JDialog {
         outputFolder = this.jTextFieldOutput.getText();
         watchEnabled = this.jCheckBoxWatch.isSelected();
         dangAmbigsPath = this.jTextFieldDangAmbigs.getText();
-        dangAmbigsOn = this.jCheckBoxDangAmbigs.isSelected();
     }//GEN-LAST:event_formWindowDeactivated
 
     private void jButtonOutputFormatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOutputFormatActionPerformed
@@ -555,39 +553,10 @@ public class OptionsDialog extends javax.swing.JDialog {
     }
 
     /**
-     * @return the dangAmbigsPath
-     */
-    public String getDangAmbigsPath() {
-        return dangAmbigsPath;
-    }
-
-    /**
-     * @param dangAmbigsPath the dangAmbigsPath to set
-     */
-    public void setDangAmbigsPath(String dangAmbigsPath) {
-        this.dangAmbigsPath = dangAmbigsPath;
-    }
-
-    /**
      * @param curLangCode the curLangCode to set
      */
     public void setCurLangCode(String curLangCode) {
         this.curLangCode = curLangCode;
-    }
-
-    /**
-     * @return the dangAmbigsOn
-     */
-    public boolean isDangAmbigsEnabled() {
-        dangAmbigsOn = this.jCheckBoxDangAmbigs.isSelected();
-        return dangAmbigsOn;
-    }
-
-    /**
-     * @param dangAmbigsOn the dangAmbigsOn to set
-     */
-    public void setDangAmbigsEnabled(boolean dangAmbigsOn) {
-        this.dangAmbigsOn = dangAmbigsOn;
     }
 
     /**
@@ -630,6 +599,8 @@ public class OptionsDialog extends javax.swing.JDialog {
         processingOptions.setCorrectLetterCases(this.jCheckBoxCorrectLetterCases.isSelected());
         processingOptions.setRemoveHyphens(this.jCheckBoxRemoveHyphens.isSelected());
         processingOptions.setReplaceHyphens(this.jCheckBoxReplaceHyphens.isSelected());
+        processingOptions.setDangAmbigsEnabled(this.jCheckBoxDangAmbigs.isSelected());
+        processingOptions.setDangAmbigsPath(dangAmbigsPath);
         
         return processingOptions;
     }
@@ -645,5 +616,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         this.jCheckBoxCorrectLetterCases.setSelected(processingOptions.isCorrectLetterCases());
         this.jCheckBoxRemoveHyphens.setSelected(processingOptions.isRemoveHyphens());
         this.jCheckBoxReplaceHyphens.setSelected(processingOptions.isReplaceHyphens());
+        this.jCheckBoxDangAmbigs.setSelected(processingOptions.isDangAmbigsEnabled());
+        this.dangAmbigsPath = processingOptions.getDangAmbigsPath();
     }
 }

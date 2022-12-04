@@ -96,7 +96,7 @@ public class OCRHelper {
 
                     // postprocess to correct common OCR errors
                     if (options.isPostProcessing()) {
-                        result = Processor.postProcess(result, langCode);
+                        result = Processor.postProcess(result, langCode, options.getDangAmbigsPath(), options.isDangAmbigsEnabled(), options.isReplaceHyphens());
                     }
 
                     // correct letter cases
@@ -109,9 +109,9 @@ public class OCRHelper {
                         result = net.sourceforge.vietpad.utilities.TextUtilities.removeLineBreaks(result, options.isRemoveHyphens());
                     }
 
-                    BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), "UTF-8"));
-                    out.write(result);
-                    out.close();
+                    try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), "UTF-8"))) {
+                        out.write(result);
+                    }
                 }
             }
         } finally {

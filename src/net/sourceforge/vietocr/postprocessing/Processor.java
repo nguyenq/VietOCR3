@@ -32,7 +32,7 @@ public class Processor {
         }
     }
 
-    public static String postProcess(String text, String langCode, String dangAmbigsPath, boolean dangAmbigsOn, boolean replaceHyphens) throws Exception {
+    public static String postProcess(String text, String langCode, String dangAmbigsPath, boolean dangAmbigsEnabled, boolean replaceHyphens) throws Exception {
         if (text.trim().length() == 0) {
             return text;
         }
@@ -42,7 +42,7 @@ public class Processor {
         }
 
         // correct using external x.DangAmbigs.txt file first, if enabled
-        if (dangAmbigsOn) {
+        if (dangAmbigsEnabled) {
             // replace text based on entries read from an x.DangAmbigs.txt file
             List<LinkedHashMap<String, String>> replaceRules = TextUtilities.loadMap(new File(dangAmbigsPath, langCode + ".DangAmbigs.txt").getPath());
             if (replaceRules.isEmpty() && langCode.length() > 3) {
