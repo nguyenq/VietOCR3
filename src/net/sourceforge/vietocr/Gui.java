@@ -2319,7 +2319,7 @@ public class Gui extends JFrame {
         if (textFile == null || !textFile.exists()) {
             return saveFileDlg();
         } else {
-            return saveTextFile();
+            return saveTextFile(textFile);
         }
     }
 
@@ -2345,9 +2345,8 @@ public class Gui extends JFrame {
 
         if (saveChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             outputDirectory = saveChooser.getCurrentDirectory().getPath();
-            File f = saveChooser.getSelectedFile();
             textFile = saveChooser.getSelectedFile();
-            return saveTextFile();
+            return saveTextFile(textFile);
         } else {
             return false;
         }
@@ -2355,18 +2354,18 @@ public class Gui extends JFrame {
 
     /**
      * Saves output text file.
-     *
-     * @return
+     * @param file
+     * @return 
      */
-    boolean saveTextFile() {
+    boolean saveTextFile(File file) {
         getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         getGlassPane().setVisible(true);
 
         try {
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(textFile), UTF8));
-            jTextArea1.write(out);
-            out.close();
-            updateMRUList(textFile.getPath());
+            try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), UTF8))) {
+                jTextArea1.write(out);
+            }
+            updateMRUList(file.getPath());
             updateSave(false);
         } catch (OutOfMemoryError oome) {
             JOptionPane.showMessageDialog(this, oome.getMessage(), bundle.getString("OutOfMemoryError"), JOptionPane.ERROR_MESSAGE);
@@ -2375,13 +2374,9 @@ public class Gui extends JFrame {
         } catch (Exception ex) {
             showError(ex, ex.getMessage());
         } finally {
-            SwingUtilities.invokeLater(new Runnable() {
-
-                @Override
-                public void run() {
-                    getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                    getGlassPane().setVisible(false);
-                }
+            SwingUtilities.invokeLater(() -> {
+                getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                getGlassPane().setVisible(false);
             });
         }
 
