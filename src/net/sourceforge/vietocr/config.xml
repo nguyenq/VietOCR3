@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment>Configuration File</comment>
-    <entry key="TessVersion">5.2.0</entry>
-    <entry key="ReleaseDate">2022/12/03</entry>
-    <entry key="Version">v6.5.0</entry>
+    <entry key="TessVersion">5.3.0</entry>
+    <entry key="ReleaseDate">2022/12/27</entry>
+    <entry key="Version">v6.6.0</entry>
 </properties>
