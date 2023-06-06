@@ -316,3 +316,6 @@ Version 6.7.0 (29 January 2023)
 
 Version 6.8.0 (5 April 2023)
 - Upgrade to Tesseract 5.3.1 (tess4j-5.7.0)
+
+Version 6.8.1 (5 June 2023)
+- Update dependencies
