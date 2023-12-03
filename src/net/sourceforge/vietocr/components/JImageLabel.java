@@ -21,10 +21,14 @@ import java.awt.*;
 import java.util.*;
 
 /**
- *
  * @author Quan Nguyen (nguyenq@users.sf.net)
+ * 
  * Note: Part of this class is from
  * http://forum.java.sun.com/thread.jspa?threadID=634438&amp;messageID=3691163
+ *
+ * Note: Consider future support for drawing multiple regions of interest, each
+ * with an associated numeric label identifying the order of recognition. If any
+ * contributor can implement this functionality, please submit a PR.
  */
 public class JImageLabel extends JLabel implements MouseMotionListener, MouseListener {
 
@@ -94,15 +98,17 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
     public Rectangle getRect() {
         return rect;
     }
-    
+
     /**
-     * Gets all ROIs. (As of now, only one or none. Will consider support for drawing multiple ROIs.)
+     * Gets all ROIs. (As of now, only one or none. Will consider support for
+     * drawing multiple ROIs.)
      *
      * @return
      */
     public java.util.List<Rectangle> getROIs() {
-//        if (rect == null) 
-//            return new ArrayList<Rectangle>();
+        if (rect == null) {
+            return new ArrayList<Rectangle>();
+        }
         return Arrays.asList(rect);
     }
 
@@ -116,13 +122,13 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
 
     /**
      * Gets segmented regions.
-     * 
+     *
      * @return map
      */
     public HashMap<Color, java.util.List<Rectangle>> getSegmentedRegions() {
         return map;
     }
-    
+
     /**
      * Sets segmented regions.
      *
@@ -147,7 +153,7 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
             int y = (this.getHeight() - this.getIcon().getIconHeight()) / 2;
 
             Graphics2D g2d = (Graphics2D) g;
-            
+
             for (Color c : map.keySet()) {
                 g2d.setColor(c);
 
@@ -161,7 +167,7 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
         if (rect != null) {
             Graphics2D g2d = (Graphics2D) g;
             g2d.setColor(Color.BLACK);
-            
+
             // draw handles
             java.util.List<Rectangle> squares = createSquares(rect);
             for (Rectangle square : squares) {
