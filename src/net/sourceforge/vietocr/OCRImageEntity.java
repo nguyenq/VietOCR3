@@ -47,9 +47,9 @@ public class OCRImageEntity {
      */
     private final int index;
     /**
-     * bounding rectangle
+     * list of list of regions of interest
      */
-    private final Rectangle rect;
+    private final List<List<Rectangle>> roiss;
     /**
      * double-sided page
      */
@@ -73,37 +73,38 @@ public class OCRImageEntity {
      * @param oimages a list of <code>IIOImage</code> objects
      * @param inputfilename input filename
      * @param index index of images
-     * @param rect the bounding rectangle defines the region of the image to be
-     * recognized. A rectangle of zero dimension or <code>null</code> indicates
-     * the whole image.
+     * @param roiss list of lists of the bounding rectangle defines the regions of the
+     * image to be recognized. A rectangle of zero dimension or
+     * <code>null</code> indicates the whole image.
+     * @param doublesided
      * @param lang language code, which follows ISO 639-3 standard
      */
-    public OCRImageEntity(List<IIOImage> oimages, String inputfilename, int index, Rectangle rect, boolean doublesided, String lang) {
+    public OCRImageEntity(List<IIOImage> oimages, String inputfilename, int index, List<List<Rectangle>> roiss, boolean doublesided, String lang) {
         this.oimages = oimages;
         this.inputfilename = inputfilename;
         this.index = index;
-        this.rect = rect;
+        this.roiss = roiss;
         this.doublesided = doublesided;
         this.lang = lang;
     }
 
-    /**
-     * Constructor.
-     *
-     * @param imageFile an image file
-     * @param index index of images
-     * @param rect the bounding rectangle defines the region of the image to be
-     * recognized. A rectangle of zero dimension or <code>null</code> indicates
-     * the whole image.
-     * @param lang language code, which follows ISO 639-3 standard
-     */
-    public OCRImageEntity(File imageFile, int index, Rectangle rect, String lang) {
-        this.imageFile = imageFile;
-        this.inputfilename = imageFile.getPath();
-        this.index = index;
-        this.rect = rect;
-        this.lang = lang;
-    }
+//    /**
+//     * Constructor.
+//     *
+//     * @param imageFile an image file
+//     * @param index index of images
+//     * @param rect the bounding rectangle defines the region of the image to be
+//     * recognized. A rectangle of zero dimension or <code>null</code> indicates
+//     * the whole image.
+//     * @param lang language code, which follows ISO 639-3 standard
+//     */
+//    public OCRImageEntity(File imageFile, int index, List<Rectangle> rect, String lang) {
+//        this.imageFile = imageFile;
+//        this.inputfilename = imageFile.getPath();
+//        this.index = index;
+//        this.rects = rect;
+//        this.lang = lang;
+//    }
 
     /**
      * Gets oimages.
@@ -120,16 +121,7 @@ public class OCRImageEntity {
      * @return the list of selected oimages
      */
     public List<IIOImage> getSelectedOimages() {
-        if (doublesided) {
-            List<IIOImage> tempList = new ArrayList<IIOImage>();
-            for (IIOImage image : (index == -1 ? oimages : oimages.subList(index, index + 1))) {
-                // split image in half
-                tempList.addAll(splitImage(image));
-            }
-            return tempList;
-        } else {
-            return index == -1 ? oimages : oimages.subList(index, index + 1);
-        }
+        return index == -1 ? oimages : oimages.subList(index, index + 1);
     }
 
     /**
@@ -150,58 +142,19 @@ public class OCRImageEntity {
     public List<File> getClonedImageFiles() throws IOException {
         if (oimages != null) {
             if (dpiX == 0 || dpiY == 0) {
-                if (rect == null || rect.isEmpty()) {
-                    if (doublesided) {
-                        List<IIOImage> oimageList = new ArrayList<IIOImage>();
-                        for (IIOImage image : (index == -1 ? oimages : oimages.subList(index, index + 1))) {
-                            // split image in half
-                            oimageList.addAll(splitImage(image));
-                        }
-                        return ImageIOHelper.createTiffFiles(oimageList, -1);
-                    }
-                    return ImageIOHelper.createTiffFiles(oimages, index);
-                } else {
-                    // rectangular region
-//                    BufferedImage bi = ((BufferedImage) oimages.get(index).getRenderedImage()).getSubimage(rect.x, rect.y, rect.width, rect.height);
-                    // On Linux, the standard getSubimage method has generated images that Tesseract does not like.
-                    BufferedImage bi = ImageHelper.getSubImage((BufferedImage) oimages.get(index).getRenderedImage(), rect.x, rect.y, rect.width, rect.height);
-                    List<IIOImage> tempList = new ArrayList<IIOImage>();
-                    tempList.add(new IIOImage(bi, null, null));
-                    return ImageIOHelper.createTiffFiles(tempList, 0);
-                }
+                return ImageIOHelper.createTiffFiles(oimages, index);
             } else {
                 // scaling
-                if (rect == null || rect.isEmpty()) {
-                    List<IIOImage> tempList = new ArrayList<IIOImage>();
-                    for (IIOImage oimage : (index == -1 ? oimages : oimages.subList(index, index + 1))) {
-                        BufferedImage bi = (BufferedImage) oimage.getRenderedImage();
-                        Map<String, String> metadata = ImageIOHelper.readImageData(oimage);
-                        float scale = dpiX / Float.parseFloat(metadata.get("dpiX"));
-                        bi = ImageHelper.getScaledInstance(bi, (int) (bi.getWidth() * scale), (int) (bi.getHeight() * scale));
-                        tempList.add(new IIOImage(bi, null, null));
-                    }
-                    
-                    if (doublesided) {
-                        List<IIOImage> oimageList = new ArrayList<IIOImage>();
-                        for (IIOImage image : tempList) {
-                            // split image in half
-                            oimageList.addAll(splitImage(image));
-                        }
-                        return ImageIOHelper.createTiffFiles(oimageList, -1, dpiX, dpiY);
-                    }
-                    
-                    return ImageIOHelper.createTiffFiles(tempList, -1, dpiX, dpiY);
-                } else {
-                    // rectangular region
-                    //Cut out the subimage first and rescale that
-                    BufferedImage bi = ((BufferedImage) oimages.get(index).getRenderedImage()).getSubimage(rect.x, rect.y, rect.width, rect.height);
-                    Map<String, String> metadata = ImageIOHelper.readImageData(oimages.get(index));
+                List<IIOImage> tempList = new ArrayList<IIOImage>();
+                for (IIOImage oimage : (index == -1 ? oimages : oimages.subList(index, index + 1))) {
+                    BufferedImage bi = (BufferedImage) oimage.getRenderedImage();
+                    Map<String, String> metadata = ImageIOHelper.readImageData(oimage);
                     float scale = dpiX / Float.parseFloat(metadata.get("dpiX"));
                     bi = ImageHelper.getScaledInstance(bi, (int) (bi.getWidth() * scale), (int) (bi.getHeight() * scale));
-                    List<IIOImage> tempList = new ArrayList<IIOImage>();
                     tempList.add(new IIOImage(bi, null, null));
-                    return ImageIOHelper.createTiffFiles(tempList, 0, dpiX, dpiY);
                 }
+
+                return ImageIOHelper.createTiffFiles(tempList, -1, dpiX, dpiY);
             }
         } else {
             return ImageIOHelper.createTiffFiles(imageFile, index);
@@ -218,12 +171,32 @@ public class OCRImageEntity {
     }
 
     /**
-     * Gets bounding rectangle.
+     * Gets list of lists of regions of interest.
      *
-     * @return the bounding rectangle
+     * @return the bounding rectangles
      */
-    public Rectangle getRect() {
-        return rect;
+    public List<List<Rectangle>> getROIss() {
+        if (roiss != null) {
+            return roiss; // drawn ROIs on images
+        } else if (doublesided) {
+            // create ROIs for double-sided pages, which consist of two equal-sized side-by-side rectangles for each page
+            List<List<Rectangle>> lists = new ArrayList<>();
+            for (IIOImage image : oimages) {
+                List<Rectangle> list = new ArrayList<>();
+                RenderedImage ri = image.getRenderedImage();
+                int width = ri.getWidth();
+                int height = ri.getHeight();
+                Rectangle rect = new Rectangle(width / 2, height);
+                list.add(rect);
+                rect = (Rectangle) rect.clone();
+                rect.x = width / 2;
+                list.add(rect);
+                lists.add(list);
+            }
+            return lists;
+        }
+        
+        return null;
     }
 
     /**
@@ -264,24 +237,5 @@ public class OCRImageEntity {
      */
     public String getInputfilename() {
         return inputfilename;
-    }
-    
-    /**
-     * Splits image in halves (as in double-sided pages).
-     * 
-     * @param image
-     * @return two half images
-     */
-    public List<IIOImage> splitImage(IIOImage image) {
-        List<IIOImage> tempList = new ArrayList<IIOImage>();
-        RenderedImage ri = image.getRenderedImage();
-        Rectangle cropRect = new Rectangle(0, 0, ri.getWidth() / 2, ri.getHeight());
-        BufferedImage bi = ImageHelper.getSubImage((BufferedImage) ri, cropRect.x, cropRect.y, cropRect.width, cropRect.height);
-        tempList.add(new IIOImage(bi, null, null));
-        cropRect = new Rectangle(ri.getWidth() / 2, 0, ri.getWidth() / 2, ri.getHeight());
-        bi = ImageHelper.getSubImage((BufferedImage) ri, cropRect.x, cropRect.y, cropRect.width, cropRect.height);
-        tempList.add(new IIOImage(bi, null, null));
-
-        return tempList;
     }
 }

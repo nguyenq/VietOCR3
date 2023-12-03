@@ -64,7 +64,7 @@ public class OCRImages extends OCR<IIOImage> {
         }
 
         controlParameters(instance);
-        String text = instance.doOCR(images, inputfilename, rect);
+        String text = instance.doOCR(images, inputfilename, roiss);
 
         return text;
     }

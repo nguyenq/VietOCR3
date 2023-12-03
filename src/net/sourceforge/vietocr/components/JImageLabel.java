@@ -94,6 +94,17 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
     public Rectangle getRect() {
         return rect;
     }
+    
+    /**
+     * Gets all ROIs. (As of now, only one or none. Will consider support for drawing multiple ROIs.)
+     *
+     * @return
+     */
+    public java.util.List<Rectangle> getROIs() {
+//        if (rect == null) 
+//            return new ArrayList<Rectangle>();
+        return Arrays.asList(rect);
+    }
 
     /**
      * Deselects bounding box.

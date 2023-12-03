@@ -192,9 +192,10 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
                 jProgressBar1.setString(null);
                 JOptionPane.showMessageDialog(null, why, "OCR Operation", JOptionPane.ERROR_MESSAGE);
             } catch (java.util.concurrent.CancellationException e) {
-                logger.log(Level.WARNING, e.getMessage(), e);
-                jLabelStatus.setText("OCR " + bundle.getString("canceled"));
-                jProgressBar1.setString("OCR " + bundle.getString("canceled"));
+                String msg = "OCR " + bundle.getString("canceled");
+                logger.log(Level.WARNING, msg);
+                jLabelStatus.setText(msg);
+                jProgressBar1.setString(msg);
                 statusFrame.getTextArea().append("\t-- " + bundle.getString("Task_canceled") + " --\n");
             } finally {
                 jMenuItemBulkOCR.setText(bundle.getString("jMenuItemBulkOCR.Text"));

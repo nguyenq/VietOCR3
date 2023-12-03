@@ -19,6 +19,7 @@ import java.awt.Cursor;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -112,7 +113,7 @@ public class GuiWithScan extends GuiWithThumbnail implements ScannerListener {
             BufferedImage scannedImage = metadata.getImage();
 
             try {
-                iioImageList = ImageIOHelper.getIIOImageList(scannedImage);
+                iioImageList = Arrays.asList(ImageIOHelper.getIIOImage(scannedImage));
                 imageList = ImageIconScalable.getImageList(iioImageList);
                 loadImage();
                 setTitle("Scanned image - " + APP_NAME);

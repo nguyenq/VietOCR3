@@ -28,7 +28,7 @@ public abstract class OCR<T> {
     final static String TESSDATA = "tessdata";
     final static double MINIMUM_DESKEW_THRESHOLD = 0.05d;
 
-    protected Rectangle rect = null;
+    protected List<List<Rectangle>> roiss = null;
     protected String pageSegMode = "3"; // Fully automatic page segmentation, but no OSD (default)
     protected String ocrEngineMode = "3"; // Default, based on what is available
     protected String language = "eng";
@@ -42,12 +42,12 @@ public abstract class OCR<T> {
      *
      * @param imageEntities List of files or images
      * @param inputfilename input filename
-     * @param selection Region of Interest
+     * @param roiss List of list of Regions of Interest
      * @return
      * @throws Exception
      */
-    public String recognizeText(List<T> imageEntities, String inputfilename, Rectangle selection) throws Exception {
-        rect = selection;
+    public String recognizeText(List<T> imageEntities, String inputfilename, List<List<Rectangle>> roiss) throws Exception {
+        this.roiss = roiss;
         return recognizeText(imageEntities, inputfilename);
     }
 

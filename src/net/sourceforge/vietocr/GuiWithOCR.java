@@ -18,6 +18,7 @@ package net.sourceforge.vietocr;
 import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,28 +43,33 @@ public class GuiWithOCR extends GuiWithImageOps {
             return;
         }
 
-        Rectangle rect = ((JImageLabel) jImageLabel).getRect();
+        List<Rectangle> rois = ((JImageLabel) jImageLabel).getROIs();
 
-        if (rect != null) {
+        if (rois != null && !rois.isEmpty()) {
+            // ROIs applicable to current page only
             try {
-                ImageIcon ii = (ImageIcon) this.jImageLabel.getIcon();
-                int offsetX = 0;
-                int offsetY = 0;
-                if (ii.getIconWidth() < this.jScrollPaneImage.getWidth()) {
-                    offsetX = (this.jScrollPaneImage.getViewport().getWidth() - ii.getIconWidth()) / 2;
-                }
-                if (ii.getIconHeight() < this.jScrollPaneImage.getHeight()) {
-                    offsetY = (this.jScrollPaneImage.getViewport().getHeight() - ii.getIconHeight()) / 2;
-                }
-//                BufferedImage bi = ((BufferedImage) ii.getImage()).getSubimage((int) ((rect.x - offsetX) * scaleX), (int) ((rect.y - offsetY) * scaleY), (int) (rect.width * scaleX), (int) (rect.height * scaleY));
+                int index = 0;
+                for (Rectangle rect : rois) {
+                    if (rect == null) {
+                        index++;
+                        continue;
+                    }
+                    ImageIcon ii = (ImageIcon) this.jImageLabel.getIcon();
+                    int offsetX = 0;
+                    int offsetY = 0;
+                    if (ii.getIconWidth() < this.jScrollPaneImage.getWidth()) {
+                        offsetX = (this.jScrollPaneImage.getViewport().getWidth() - ii.getIconWidth()) / 2;
+                    }
+                    if (ii.getIconHeight() < this.jScrollPaneImage.getHeight()) {
+                        offsetY = (this.jScrollPaneImage.getViewport().getHeight() - ii.getIconHeight()) / 2;
+                    }
 
-//                // create a new rectangle with scale factors and offets factored in
-                rect = new Rectangle((int) ((rect.x - offsetX) * scaleX), (int) ((rect.y - offsetY) * scaleY), (int) (rect.width * scaleX), (int) (rect.height * scaleY));
+                    // create a new rectangle with scale factors and offets factored in
+                    Rectangle recaledRect = new Rectangle((int) ((rect.x - offsetX) * scaleX), (int) ((rect.y - offsetY) * scaleY), (int) (rect.width * scaleX), (int) (rect.height * scaleY));
+                    rois.set(index++, recaledRect);
+                }
 
-                //move this part to the image entity
-//                ArrayList<IIOImage> tempList = new ArrayList<IIOImage>();
-//                tempList.add(new IIOImage(bi, null, null));
-                performOCR(iioImageList, inputfilename, imageIndex, rect);
+                performOCR(iioImageList, inputfilename, imageIndex, Arrays.asList(rois));
             } catch (RasterFormatException rfe) {
                 logger.log(Level.SEVERE, rfe.getMessage(), rfe);
                 JOptionPane.showMessageDialog(this, rfe.getMessage(), APP_NAME, JOptionPane.ERROR_MESSAGE);
@@ -94,9 +100,9 @@ public class GuiWithOCR extends GuiWithImageOps {
      * @param iioImageList list of IIOImage
      * @param inputfilename input filename
      * @param index Index of page to be OCRed: -1 for all pages
-     * @param rect region of interest
+     * @param roiss list of list of regions of interest
      */
-    void performOCR(final List<IIOImage> iioImageList, String inputfilename, final int index, Rectangle rect) {
+    void performOCR(final List<IIOImage> iioImageList, final String inputfilename, final int index, final List<List<Rectangle>> roiss) {
         if (curLangCode.trim().length() == 0) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_select_a_language."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -112,7 +118,7 @@ public class GuiWithOCR extends GuiWithImageOps {
         this.jMenuItemOCR.setEnabled(false);
         this.jMenuItemOCRAll.setEnabled(false);
 
-        OCRImageEntity entity = new OCRImageEntity(iioImageList, inputfilename, index, rect, this.jCheckBoxMenuItemDoubleSidedPage.isSelected(), curLangCode);
+        OCRImageEntity entity = new OCRImageEntity(iioImageList, inputfilename, index, roiss, this.jCheckBoxMenuItemDoubleSidedPage.isSelected(), curLangCode);
         entity.setScreenshotMode(this.jCheckBoxMenuItemScreenshotMode.isSelected());
 
         // instantiate SwingWorker for OCR
@@ -137,8 +143,6 @@ public class GuiWithOCR extends GuiWithImageOps {
     class OcrWorker extends SwingWorker<Void, String> {
 
         OCRImageEntity entity;
-        List<File> workingFiles;
-        List<IIOImage> imageList; // Option for Tess4J
 
         OcrWorker(OCRImageEntity entity) {
             this.entity = entity;
@@ -151,11 +155,13 @@ public class GuiWithOCR extends GuiWithImageOps {
             ocrEngine.setDatapath(datapath);
             ocrEngine.setPageSegMode(selectedPSM);
             ocrEngine.setLanguage(lang);
-            imageList = entity.getSelectedOimages();
+            List<IIOImage> imageList = entity.getSelectedOimages();
+            List<List<Rectangle>> roiss = entity.getROIss();
 
             for (int i = 0; i < imageList.size(); i++) {
+                // Could send all images at once for recognition but doing so would not allow cancellation of long-running task; thus, individual images (pages) are being processed here.
                 if (!isCancelled()) {
-                    String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), entity.getInputfilename(), entity.getRect());
+                    String result = ocrEngine.recognizeText(imageList.subList(i, i + 1), entity.getInputfilename(), roiss == null ? null : roiss.subList(i, i + 1));
                     publish(result); // interim result
                 }
             }
@@ -206,9 +212,10 @@ public class GuiWithOCR extends GuiWithImageOps {
                 jProgressBar1.setString(null);
                 JOptionPane.showMessageDialog(null, why, "OCR Operation", JOptionPane.ERROR_MESSAGE);
             } catch (java.util.concurrent.CancellationException e) {
-                logger.log(Level.WARNING, e.getMessage(), e);
-                jLabelStatus.setText("OCR " + bundle.getString("canceled"));
-                jProgressBar1.setString("OCR " + bundle.getString("canceled"));
+                String msg = "OCR " + bundle.getString("canceled");
+                logger.log(Level.WARNING, msg);
+                jLabelStatus.setText(msg);
+                jProgressBar1.setString(msg);
             } finally {
                 getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 getGlassPane().setVisible(false);
@@ -217,13 +224,6 @@ public class GuiWithOCR extends GuiWithImageOps {
                 jMenuItemOCR.setEnabled(true);
                 jMenuItemOCRAll.setEnabled(true);
                 jButtonCancelOCR.setVisible(false);
-
-                // clean up temporary image files
-                if (workingFiles != null) {
-                    for (File tempImageFile : workingFiles) {
-                        tempImageFile.delete();
-                    }
-                }
             }
         }
     }
