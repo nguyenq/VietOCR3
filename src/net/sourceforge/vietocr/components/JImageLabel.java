@@ -107,7 +107,7 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
      */
     public java.util.List<Rectangle> getROIs() {
         if (rect == null) {
-            return new ArrayList<Rectangle>();
+            return new ArrayList<>();
         }
         return Arrays.asList(rect);
     }

@@ -123,7 +123,7 @@ public class OCRImages extends OCR<IIOImage> {
         instance.setPageSegMode(Integer.parseInt(pageSegMode));
         instance.setOcrEngineMode(Integer.parseInt(ocrEngineMode));
 
-        List<RenderedFormat> renderedFormats = new ArrayList<RenderedFormat>();
+        List<RenderedFormat> renderedFormats = new ArrayList<>();
 
         for (String format : outputFormats.toUpperCase().split(",")) {
             renderedFormats.add(RenderedFormat.valueOf(format));
