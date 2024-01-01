@@ -325,3 +325,6 @@ Version 6.10.0 (4 December 2023)
 - Upgrade to Tesseract 5.3.3 (tess4j-5.9.0)
 - Update dependencies
 - Lay down support for multiple ROIs per image page
+
+Version 6.11.0 (31 December 2023)
+- Implement checkedcombobox for language selection

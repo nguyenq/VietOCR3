@@ -50,6 +50,8 @@ import net.sourceforge.vietocr.util.Utils;
 import net.sourceforge.vietpad.components.*;
 import net.sourceforge.vietpad.inputmethod.VietKeyListener;
 import darrylbu.plaf.StayOpenCheckBoxMenuItemUI;
+import javaswingtips.CheckableItem;
+import javaswingtips.CheckedComboBox;
 
 public class Gui extends JFrame {
 
@@ -301,29 +303,16 @@ public class Gui extends JFrame {
             JOptionPane.showMessageDialog(Gui.this, bundle.getString("tessdata_is_not_found"), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-
-        DefaultComboBoxModel model = new DefaultComboBoxModel(installedLanguages);
-        model.setSelectedItem(null);
-        jComboBoxLang.setModel(model);
-        jComboBoxLang.setSelectedItem(prefs.get(strLangCode, null));
-        final JTextComponent textField = (JTextComponent) jComboBoxLang.getEditor().getEditorComponent();
-        textField.getDocument().addDocumentListener(new DocumentListener() {
-
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                curLangCode = textField.getText();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                curLangCode = textField.getText();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                // ignore
-            }
-        });
+        java.util.List<String> langList = new ArrayList<>(Arrays.asList(prefs.get(strLangCode, "").split("\\+")));
+        java.util.List<String> installedLanguageList = Arrays.asList(installedLanguages);       
+        langList.removeIf(l -> !installedLanguageList.contains(l)); // remove unavailable languages
+        
+        ((CheckedComboBox) jComboBoxLang).setSelectedItems(langList);
+        java.util.List<CheckableItem> list = new ArrayList<>();
+        for (String lang : installedLanguages) {
+            list.add(new CheckableItem(lang, langList.contains(lang)));
+        }
+        jComboBoxLang.setModel(new DefaultComboBoxModel(list.toArray()));
     }
 
     /**
@@ -659,7 +648,7 @@ public class Gui extends JFrame {
         jSeparator15 = new javax.swing.JToolBar.Separator();
         jLabelLanguage = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(4, 0), new java.awt.Dimension(4, 0), new java.awt.Dimension(4, 32767));
-        jComboBoxLang = new javax.swing.JComboBox();
+        jComboBoxLang = new javaswingtips.CheckedComboBox();
         jScrollPaneText = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jTextArea1.addMouseListener(new MouseAdapter() {
@@ -917,8 +906,6 @@ public class Gui extends JFrame {
         jSplitPane1.setDividerSize(2);
 
         jPanelImage.setLayout(new java.awt.BorderLayout());
-
-        jToolBar2.setFloatable(false);
 
         jButtonOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/open.png"))); // NOI18N
         jButtonOpen.setToolTipText(bundle.getString("jButtonOpen.ToolTipText")); // NOI18N
@@ -1185,7 +1172,6 @@ public class Gui extends JFrame {
         jToolBar1.add(jLabelLanguage);
         jToolBar1.add(filler1);
 
-        jComboBoxLang.setEditable(true);
         jComboBoxLang.setMaximumSize(new java.awt.Dimension(100, 24));
         jComboBoxLang.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -1897,11 +1883,16 @@ public class Gui extends JFrame {
 
     private void jComboBoxLangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxLangItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            if (jComboBoxLang.getSelectedIndex() != -1) {
-                curLangCode = installedLanguageCodes[jComboBoxLang.getSelectedIndex()];
-            } else {
-                curLangCode = jComboBoxLang.getSelectedItem().toString();
+            java.util.List<String> selectedLangs = ((CheckedComboBox) jComboBoxLang).getSelectedItems();
+            java.util.List<String> selectedLangCodes = new ArrayList<>();
+            for (String lang : selectedLangs) {
+                int index = Arrays.asList(installedLanguages).indexOf(lang);
+                if (index != -1) {
+                    selectedLangCodes.add(installedLanguageCodes[index]);
+                }
             }
+            curLangCode = String.join("+", selectedLangCodes);
+            
             // Hide Viet Input Method submenu if selected OCR Language is not Vietnamese
             boolean vie = curLangCode.contains("vie") || curLangCode.contains("Vietnamese");
             VietKeyListener.setVietModeEnabled(vie);
@@ -2019,7 +2010,7 @@ public class Gui extends JFrame {
         prefs.put(strLookAndFeel, UIManager.getLookAndFeel().getClass().getName());
         prefs.putInt(strWindowState, getExtendedState());
         if (this.jComboBoxLang.getSelectedIndex() != -1) {
-            prefs.put(strLangCode, this.jComboBoxLang.getSelectedItem().toString());
+            prefs.put(strLangCode, String.join("+", ((CheckedComboBox) jComboBoxLang).getSelectedItems()));
         }
 
         prefs.putBoolean(strWordWrap, wordWrapOn);
@@ -2242,7 +2233,7 @@ public class Gui extends JFrame {
             ocrEngine.setDatapath(datapath);
             HashMap<Color, List<Rectangle>> map = ((JImageLabel) jImageLabel).getSegmentedRegions();
             if (map == null) {
-                map = new HashMap<Color, List<Rectangle>>();
+                map = new HashMap<>();
             }
 
             IIOImage image = iioImageList.get(imageIndex);
@@ -2354,8 +2345,9 @@ public class Gui extends JFrame {
 
     /**
      * Saves output text file.
+     *
      * @param file
-     * @return 
+     * @return
      */
     boolean saveTextFile(File file) {
         getGlassPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
