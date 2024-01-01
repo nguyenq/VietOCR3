@@ -134,34 +134,6 @@ public class OCRImageEntity {
     }
 
     /**
-     * Gets cloned image files.
-     *
-     * @return the ClonedImageFiles
-     * @throws java.io.IOException
-     */
-    public List<File> getClonedImageFiles() throws IOException {
-        if (oimages != null) {
-            if (dpiX == 0 || dpiY == 0) {
-                return ImageIOHelper.createTiffFiles(oimages, index);
-            } else {
-                // scaling
-                List<IIOImage> tempList = new ArrayList<IIOImage>();
-                for (IIOImage oimage : (index == -1 ? oimages : oimages.subList(index, index + 1))) {
-                    BufferedImage bi = (BufferedImage) oimage.getRenderedImage();
-                    Map<String, String> metadata = ImageIOHelper.readImageData(oimage);
-                    float scale = dpiX / Float.parseFloat(metadata.get("dpiX"));
-                    bi = ImageHelper.getScaledInstance(bi, (int) (bi.getWidth() * scale), (int) (bi.getHeight() * scale));
-                    tempList.add(new IIOImage(bi, null, null));
-                }
-
-                return ImageIOHelper.createTiffFiles(tempList, -1, dpiX, dpiY);
-            }
-        } else {
-            return ImageIOHelper.createTiffFiles(imageFile, index);
-        }
-    }
-
-    /**
      * Gets the index.
      *
      * @return the index
