@@ -204,7 +204,7 @@ public class ImageIconScalable extends ImageIcon {
      */
     public static java.util.List<ImageIconScalable> getImageList(java.util.List<IIOImage> iioImageList) {
         try {
-            java.util.List<ImageIconScalable> al = new java.util.ArrayList<ImageIconScalable>();
+            java.util.List<ImageIconScalable> al = new java.util.ArrayList<>();
             for (IIOImage iioImage : iioImageList) {
                 al.add(new ImageIconScalable((BufferedImage) iioImage.getRenderedImage()));
             }

@@ -114,7 +114,7 @@ public class Gui extends JFrame {
     int originalW, originalH;
     Point curScrollPos;
     private File textFile;
-    private java.util.List<String> mruList = new java.util.ArrayList<String>();
+    private List<String> mruList = new ArrayList<>();
     private String strClearRecentFiles;
     private boolean textChanged = true;
     private RawListener rawListener;
@@ -303,12 +303,12 @@ public class Gui extends JFrame {
             JOptionPane.showMessageDialog(Gui.this, bundle.getString("tessdata_is_not_found"), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        java.util.List<String> langList = new ArrayList<>(Arrays.asList(prefs.get(strLangCode, "").split("\\+")));
-        java.util.List<String> installedLanguageList = Arrays.asList(installedLanguages);       
+        List<String> langList = new ArrayList<>(Arrays.asList(prefs.get(strLangCode, "").split("\\+")));
+        List<String> installedLanguageList = Arrays.asList(installedLanguages);
         langList.removeIf(l -> !installedLanguageList.contains(l)); // remove unavailable languages
-        
+        setLangCode(langList);
         ((CheckedComboBox) jComboBoxLang).setSelectedItems(langList);
-        java.util.List<CheckableItem> list = new ArrayList<>();
+        List<CheckableItem> list = new ArrayList<>();
         for (String lang : installedLanguages) {
             list.add(new CheckableItem(lang, langList.contains(lang)));
         }
@@ -1883,16 +1883,8 @@ public class Gui extends JFrame {
 
     private void jComboBoxLangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxLangItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            java.util.List<String> selectedLangs = ((CheckedComboBox) jComboBoxLang).getSelectedItems();
-            java.util.List<String> selectedLangCodes = new ArrayList<>();
-            for (String lang : selectedLangs) {
-                int index = Arrays.asList(installedLanguages).indexOf(lang);
-                if (index != -1) {
-                    selectedLangCodes.add(installedLanguageCodes[index]);
-                }
-            }
-            curLangCode = String.join("+", selectedLangCodes);
-            
+            setLangCode(((CheckedComboBox) jComboBoxLang).getSelectedItems());
+
             // Hide Viet Input Method submenu if selected OCR Language is not Vietnamese
             boolean vie = curLangCode.contains("vie") || curLangCode.contains("Vietnamese");
             VietKeyListener.setVietModeEnabled(vie);
@@ -1905,6 +1897,21 @@ public class Gui extends JFrame {
             }
         }
     }//GEN-LAST:event_jComboBoxLangItemStateChanged
+
+    /**
+     * Sets language code for language name
+     * @param selectedLangs 
+     */
+    void setLangCode(List<String> selectedLangs) {
+        List<String> selectedLangCodes = new ArrayList<>();
+        for (String lang : selectedLangs) {
+            int index = Arrays.asList(installedLanguages).indexOf(lang);
+            if (index != -1) {
+                selectedLangCodes.add(installedLanguageCodes[index]);
+            }
+        }
+        curLangCode = String.join("+", selectedLangCodes);
+    }
 
     void jMenuItemOCRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemOCRActionPerformed
         // to be implemented in subclass

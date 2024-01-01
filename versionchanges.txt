@@ -326,5 +326,5 @@ Version 6.10.0 (4 December 2023)
 - Update dependencies
 - Lay down support for multiple ROIs per image page
 
-Version 6.11.0 (31 December 2023)
+Version 6.11.0 (1 January 2024)
 - Implement checkedcombobox for language selection

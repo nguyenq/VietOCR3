@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 import javax.accessibility.Accessible;
 import javax.swing.AbstractAction;
 import javax.swing.ComboBoxModel;
@@ -30,7 +31,7 @@ import javax.swing.plaf.basic.ComboPopup;
 public class CheckedComboBox<E extends CheckableItem> extends JComboBox<E> {
 
     private final JPanel panel = new JPanel(new BorderLayout());
-    private java.util.List<String> selectedItems = new ArrayList<>();
+    private List<String> selectedItems = new ArrayList<>();
 
     public CheckedComboBox() {
         super();
@@ -120,11 +121,11 @@ public class CheckedComboBox<E extends CheckableItem> extends JComboBox<E> {
         return String.join("+", selectedItems);
     }
 
-    public void setSelectedItems(java.util.List<String> selectedItems) {
+    public void setSelectedItems(List<String> selectedItems) {
         this.selectedItems = new ArrayList<>(selectedItems);
     }
     
-    public java.util.List<String> getSelectedItems() {
+    public List<String> getSelectedItems() {
         return this.selectedItems;
     }
 }
