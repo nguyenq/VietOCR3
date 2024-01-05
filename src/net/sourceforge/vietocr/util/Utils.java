@@ -41,7 +41,7 @@ public class Utils {
 
         try {
             if (dir.toString().startsWith("jar:")) {
-                dir = new URL(dir.toString().replaceFirst("^jar:", "").replaceFirst("/[^/]+.jar!.*$", ""));
+                dir = new URI(dir.toString().replaceFirst("^jar:", "").replaceFirst("/[^/]+.jar!.*$", "")).toURL();
                 dbDir = new File(dir.toURI());
             }
         } catch (MalformedURLException e) {
