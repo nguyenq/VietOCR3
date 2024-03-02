@@ -2112,10 +2112,15 @@ public class Gui extends JFrame {
         this.jMenuItemOCRAll.setEnabled(false);
 
         SwingWorker loadWorker = new SwingWorker<Void, Void>() {
+            private boolean shiftDown;
+
+            {
+                shiftDown = isShiftDown;
+            }
 
             @Override
             protected Void doInBackground() throws Exception {
-                if (isShiftDown) {
+                if (shiftDown) {
                     // open add
                     if (iioImageList == null) {
                         iioImageList = new ArrayList<>();
@@ -2134,7 +2139,7 @@ public class Gui extends JFrame {
             protected void done() {
                 try {
                     get(); // dummy method                   
-                    loadImage();
+                    loadImage(shiftDown);
                     setTitle(selectedFile.getName() + " - " + APP_NAME);
                     updateMRUList(selectedFile.getPath());
                 } catch (InterruptedException e) {
@@ -2173,7 +2178,7 @@ public class Gui extends JFrame {
      * Loads image.
      */
     @SuppressWarnings("unchecked")
-    void loadImage() {
+    void loadImage(boolean isShiftDown) {
         if (imageList == null) {
             JOptionPane.showMessageDialog(this, bundle.getString("Cannotloadimage"), APP_NAME, JOptionPane.ERROR_MESSAGE);
             return;
