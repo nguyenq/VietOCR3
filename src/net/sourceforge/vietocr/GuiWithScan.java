@@ -83,8 +83,10 @@ public class GuiWithScan extends GuiWithThumbnail implements ScannerListener {
                     logger.log(Level.SEVERE, e.getMessage(), e);
                     JOptionPane.showMessageDialog(null, e.getMessage(), "I/O Error", JOptionPane.ERROR_MESSAGE);
                 } catch (WiaOperationException e) {
-                    logger.log(Level.SEVERE, e.getMessage(), e);
-                    JOptionPane.showMessageDialog(null, e.getWIAMessage(), e.getMessage(), JOptionPane.WARNING_MESSAGE);
+                    logger.log(Level.WARNING, e.getMessage(), e);
+                    if (!e.getWIAMessage().toLowerCase().contains("cancelled")) {
+                        JOptionPane.showMessageDialog(null, e.getWIAMessage(), e.getMessage(), JOptionPane.WARNING_MESSAGE);
+                    }
                 } catch (Exception e) {
                     String msg = e.getMessage();
                     if (msg == null || msg.equals("")) {
@@ -115,7 +117,7 @@ public class GuiWithScan extends GuiWithThumbnail implements ScannerListener {
             try {
                 iioImageList = Arrays.asList(ImageIOHelper.getIIOImage(scannedImage));
                 imageList = ImageIconScalable.getImageList(iioImageList);
-                loadImage();
+                loadImage(false);
                 setTitle("Scanned image - " + APP_NAME);
             } catch (Exception e) {
                 logger.log(Level.SEVERE, e.getMessage(), e);
