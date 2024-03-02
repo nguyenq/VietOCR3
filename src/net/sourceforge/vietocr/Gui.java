@@ -123,6 +123,7 @@ public class Gui extends JFrame {
     protected String datapath;
     private static final int FONT_MIN_SIZE = 6;
     private static final int FONT_MAX_SIZE = 50;
+    private boolean isShiftDown;
 
     private final static Logger logger = Logger.getLogger(Gui.class.getName());
 
@@ -184,6 +185,12 @@ public class Gui extends JFrame {
                         m_redoAction.actionPerformed(null);
                     } else if (jTextArea1.isFocusOwner() && e.isControlDown() && e.getKeyCode() == KeyEvent.VK_X) {
                         actionCut.actionPerformed(null);
+                    } else if (e.isShiftDown()) {
+                        isShiftDown = true;
+                    }
+                } else {
+                    if (!e.isShiftDown()) {
+                        isShiftDown = false;
                     }
                 }
 
@@ -2108,8 +2115,17 @@ public class Gui extends JFrame {
 
             @Override
             protected Void doInBackground() throws Exception {
-                iioImageList = ImageIOHelper.getIIOImageList(selectedFile);
-                imageList = ImageIconScalable.getImageList(iioImageList);
+                if (isShiftDown) {
+                    // open add
+                    if (iioImageList == null) {
+                        iioImageList = new ArrayList<>();
+                    }
+                    iioImageList.addAll(ImageIOHelper.getIIOImageList(selectedFile));
+                } else {
+                    iioImageList = ImageIOHelper.getIIOImageList(selectedFile);                 
+                }
+                    
+                imageList = ImageIconScalable.getImageList(iioImageList);   
                 inputfilename = selectedFile.getPath();
                 return null;
             }
@@ -2162,9 +2178,15 @@ public class Gui extends JFrame {
             JOptionPane.showMessageDialog(this, bundle.getString("Cannotloadimage"), APP_NAME, JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        if (isShiftDown) {
+            imageIndex = imageTotal;
+        } else {
+            imageIndex = 0;
+        }
 
         imageTotal = imageList.size();
-        imageIndex = 0;
+        
         scaleX = scaleY = 1f;
         isFitImageSelected = false;
 
@@ -2174,6 +2196,7 @@ public class Gui extends JFrame {
         }
         this.jComboBoxPageNum.setModel(new DefaultComboBoxModel(pages));
         this.jComboBoxPageNum.setEnabled(true);
+        this.jComboBoxPageNum.setSelectedIndex(imageIndex);
         this.jLabelPageMax.setEnabled(true);
         this.jLabelPageMax.setText(" / " + imageTotal);
 

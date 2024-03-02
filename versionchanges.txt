@@ -331,3 +331,6 @@ Version 6.11.0 (1 January 2024)
 
 Version 6.12.0 (4 January 2024)
 - Update Tess4J 5.10.0 and Lept4J 1.19.0
+
+Version 6.13.0 (1 March 2024)
+- Implement open add image functionality using Shift key
