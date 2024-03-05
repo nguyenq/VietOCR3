@@ -6,86 +6,63 @@ file_filter            = src/net/sourceforge/vietocr/BulkDialog_<lang>.propertie
 source_file            = src/net/sourceforge/vietocr/BulkDialog.properties
 source_lang            = en
 type                   = PROPERTIES
-replace_edited_strings = false
-keep_translations      = false
 
 [o:vietocr:p:vietocr:r:ChangeCaseDialog_properties]
 file_filter            = src/net/sourceforge/vietocr/ChangeCaseDialog_<lang>.properties
 source_file            = src/net/sourceforge/vietocr/ChangeCaseDialog.properties
 source_lang            = en
 type                   = PROPERTIES
-replace_edited_strings = false
-keep_translations      = false
 
 [o:vietocr:p:vietocr:r:DownloadDialog_properties]
 file_filter            = src/net/sourceforge/vietocr/DownloadDialog_<lang>.properties
 source_file            = src/net/sourceforge/vietocr/DownloadDialog.properties
 source_lang            = en
 type                   = PROPERTIES
-replace_edited_strings = false
-keep_translations      = false
 
 [o:vietocr:p:vietocr:r:FontDialog_properties]
 file_filter            = src/net/sourceforge/vietpad/components/FontDialog_<lang>.properties
 source_file            = src/net/sourceforge/vietpad/components/FontDialog.properties
 source_lang            = en
 type                   = PROPERTIES
-replace_edited_strings = false
-keep_translations      = false
 
 [o:vietocr:p:vietocr:r:Gui_properties]
 file_filter            = src/net/sourceforge/vietocr/Gui_<lang>.properties
 source_file            = src/net/sourceforge/vietocr/Gui.properties
 source_lang            = en
 type                   = PROPERTIES
-replace_edited_strings = false
-keep_translations      = false
 
 [o:vietocr:p:vietocr:r:ImageInfoDialog_properties]
 file_filter            = src/net/sourceforge/vietocr/ImageInfoDialog_<lang>.properties
 source_file            = src/net/sourceforge/vietocr/ImageInfoDialog.properties
 source_lang            = en
 type                   = PROPERTIES
-replace_edited_strings = false
-keep_translations      = false
 
 [o:vietocr:p:vietocr:r:JFindReplaceDialog_properties]
 file_filter            = src/net/sourceforge/vietpad/components/JFindReplaceDialog_<lang>.properties
 source_file            = src/net/sourceforge/vietpad/components/JFindReplaceDialog.properties
 source_lang            = en
 type                   = PROPERTIES
-replace_edited_strings = false
-keep_translations      = false
 
 [o:vietocr:p:vietocr:r:OptionsDialog_properties]
 file_filter            = src/net/sourceforge/vietocr/OptionsDialog_<lang>.properties
 source_file            = src/net/sourceforge/vietocr/OptionsDialog.properties
 source_lang            = en
 type                   = PROPERTIES
-replace_edited_strings = false
-keep_translations      = false
 
 [o:vietocr:p:vietocr:r:SliderDialog_properties]
 file_filter            = src/net/sourceforge/vietocr/SliderDialog_<lang>.properties
 source_file            = src/net/sourceforge/vietocr/SliderDialog.properties
 source_lang            = en
 type                   = PROPERTIES
-replace_edited_strings = false
-keep_translations      = false
 
 [o:vietocr:p:vietocr:r:SplitPdfDialog_properties]
 file_filter            = src/net/sourceforge/vietocr/SplitPdfDialog_<lang>.properties
 source_file            = src/net/sourceforge/vietocr/SplitPdfDialog.properties
 source_lang            = en
 type                   = PROPERTIES
-replace_edited_strings = false
-keep_translations      = false
 
 [o:vietocr:p:vietocr:r:readme_html]
 file_filter            = readme_<lang>.html
 source_file            = readme.html
 source_lang            = en
 type                   = HTML
-replace_edited_strings = false
-keep_translations      = false
-
