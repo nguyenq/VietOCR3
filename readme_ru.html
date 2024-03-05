@@ -1,7 +1,7 @@
 ﻿<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>VietOCR - Java GUI Frontend для Tesseract OCR</title>
+<title>VietOCR - Java-графический интерфейс для Tesseract OCR</title>
 </head>
 <body>
     <div class="Section1">
@@ -21,8 +21,8 @@
                 Environment 8</a> и выше. В Windows также требуется <a href="https://docs.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist">Microsoft Visual C++ 2022 Redistributable Package</a>.</p>
         <h3>УСТАНОВКА</h3>
         <p>Исполняемый файл Tesseract для Windows поставляется вместе с программой. 
-                Дополнительные <a href="https://github.com/tesseract-ocr/tessdata">языковые пакеты</a> для Tesseract с именами в соответствии 
-            со стандартом ISO639-3, следует поместить в подкаталог <code>tessdata</code>.</p>
+                Дополнительные <a href="https://github.com/tesseract-ocr/tessdata">языковые пакеты</a> для Tesseract, с названиями соответствующими 
+            стандарту ISO639-3, следует поместить в подкаталог <code>tessdata</code>.</p>
         <p>Для Linux Tesseract и его языковые пакеты находятся в репозитории Graphics (universe).
             Их можно установить используя Synaptic или с помощью следующей команды:</p>
         <blockquote>
@@ -38,12 +38,12 @@
         </blockquote>
         <p>Для других платформ, пожалуйста, обратитесь к странице <a href="https://github.com/tesseract-ocr/tesseract/wiki">
                 Tesseract Wiki</a>.</p>
-        <p>VietOCR also provides support for downloading and installing selected language packs
-            via <em>Download Language Data</em> menu item. Depending on the location of the
-            <code>tessdata</code> folder, you may be required to run the program as root or
-            admin to be able to install the downloaded data into the folder if it is inside
-            a system folder, such as in <code>/usr</code> on Linux or <code>C:\Program Files</code>
-            on Windows.</p>
+        <p>VietOCR также поддерживает загрузку и установку выбранных языковых пакетов 
+            с помощью пункта меню <em>Загрузить языковые данные</em>. В зависимости от 
+            расположения папки <code>tessdata</code>, вам может потребоваться запустить программу 
+            от имени пользователя root или admin, что бы установить загруженные данные 
+            в папку, находящуюся внутри системной, например, для Linux в  <code>/usr</code>, 
+            для Windows в <code>C:\Program Files</code>.</p>
         <p>Поддержка сканирования в Windows обеспечивается библиотекой 
 			Windows Image Acquisition версии 2.0.</p>
         <p>В Linux для сканирования требуется установка пакетов SANE:</p>
@@ -65,43 +65,48 @@
         </blockquote>
         <p><b><u>Примечание</u></b>: Если вы столкнулись с сообщением о нехватки памяти, 
             запустите файл сценария <code>ocr</code> вместо использования .jar.</p>
-        <p>The Vietnamese language data were generated for Times New Roman, Arial, Verdana,
-            and Courier New fonts. Therefore, the recognition would have better success rate
-            for images having similar font glyphs. OCRing images that have font glyphs look
-            different from the supported fonts generally will require <a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">
-                training</a> Tesseract to create another language data pack specifically for
-            those typefaces. Language data for some VNI and TCVN3 (ABC) fonts have also been
-            bundled in latest versions.</p>
-        <p>Images to be OCRed should be scanned at resolution from at least 200 DPI (dot per
-            inch) to 400 DPI in monochrome (black&amp;white) or grayscale. Scanning at higher
-            resolutions will not necessarily result in better recognition accuracy, which currently
-            can be higher than 97% for Vietnamese, and the next release of Tesseract may improve
-            it even further. Even so, the actual rates still depend greatly on the quality of
-            the scanned image. The typical settings for scanning are 300 DPI and 1 bpp (bit
-            per pixel) black&amp;white or 8 bpp grayscale uncompressed TIFF or PNG format.</p>
+        <p>Языковой пакет вьетнамского языка был сгенерирован для шрифтов Times New Roman, Arial, 
+            Verdana и Courier New. Таким образом, распознавание будет более успешным для 
+            изображений с похожими глифами. Для распознавания изображений, глифы шрифтов 
+            которых отличаются от поддерживаемых, обычно требуется <a href="https://github.com/tesseract-ocr/tesseract/wiki/TrainingTesseract">
+                обучение</a> Tesseract для создания другого языкового пакета специально для 
+            этих шрифтов. Языковые пакеты для некоторых шрифтов VNI и TCVN3 (ABC) также 
+            включены в последние версии.</p>
+        <p>Изображения, подлежащие распознаванию, должны быть отсканированы с разрешением 
+            от 200 DPI (точек на дюйм) до 400 DPI в монохромном (чёрно-белом) или оттенках 
+            серого. Сканирование с более высоким разрешением необязательно приведёт к
+            повышению точности распознавания, которая в настоящее время может превышать 
+            97% для вьетнамского языка, а следующий выпуск Tesseract может повысить её 
+            ещё больше. Тем не менее фактические показатели по-прежнему сильно зависят 
+            от качества отсканированного изображения. Типичные настройки сканирования: 
+            300 DPI и 1 bpp (бит на пиксель) в чёрно-белом формате или 8 бит в оттенках серого 
+            в несжатом формате TIFF или PNG.</p>
         <p>В <em>Режиме скриншота</em> обеспечивается лучшая скорость распознавания изображений
             с низким разрешением, таких как снимки экрана, посредством масштабирования их до 300 DPI.</p>
-        <p>In addition to the built-in text postprocessing algorithm, you can add your own
-            custom text replacement scheme via a UTF-8-encoded tab-delimited text file named <code>x.DangAmbigs.txt</code>,
-            where x is the ISO639-3 language code. Both plain and Regex text replacements are supported.</p>
-        <p>You can put init-only and non-init control parameters in <code>tessdata/configs/tess_configs</code>
-            and <code>tess_configvars</code> files, respectively, to modify Tesseract&#39;s
-            behaviour.</p>
-        <p>Some built-in tools are provided to merge several images or PDF files into a single
-            one for convenient OCR operations, or to split a TIFF or PDF file into smaller ones
-            if it contains too many pages, which can cause out-of-memory exceptions.</p>
+        <p>Помимо встроенного алгоритма постобработки текста, вы можете добавить свою схему 
+            замены текста с помощью текстового файла <code>x.DangAmbigs.txt</code> в кодировке UTF-8,
+            где x - это код языка в ISO639-3. Поддерживаются как обычные текстовые замены, так и использование регулярных выражений.</p>
+        <p>Вы можете поместить параметры управления init-only и non-init в файлы 
+            <code>tessdata/configs/tess_configs</code> и <code>tess_configvars</code> соответственно, 
+            чтобы изменить поведение Tesseract.</p>
+        <p>Имеются встроенные инструменты для объединения нескольких изображений или файлов 
+            PDF в один для удобства распознавания текста, или разделение TIFF и PDF файлов 
+            на более мелкие, если они содержат слишком много страниц, что может привести к 
+            нехватке памяти.</p>
         <h3>ПОСТОБРАБОТКА</h3>
-        <p>The recognition errors can generally be classified into three categories. Many of
-            the errors are related to the letter cases — for example: hOa, nhắC — which can
-            be easily corrected by popular Unicode text editors. Many other errors are a result
-            of the OCR process, such as missing diacritical marks, wrong letters with similar
-            shape, etc. — huu – hưu, mang – marg, h0a – hoa, la – 1a, uhìu - nhìn. These can
-            also be easily fixed by spell checker programs. The built-in Postprocessing function
-            can help correct many of the aforementioned errors.</p>
-        <p>The last category of errors is the most difficult to detect because they are semantic
-            errors, which means that the words are valid entries in the dictionary but are wrong
-            in the context — e.g., tinh – tình, vân – vấn. These errors require the editor to
-            read though and manually correct them according to the original image.</p>
+        <p>Ошибки распознавания в целом можно разделить на три категории. Многие ошибки 
+            связаны с регистром символов, например: hOa, nhắC — которые легко исправляются 
+            при использовании популярных Unicode-текстовых редакторов. Другие - являются 
+            результатом процесса оптического распознавания символов, например, пропущенные 
+            диакритические знаки, неправильные буквы одинаковой формы и т. д. — huu – hưu, 
+            mang – marg, h0a – hoa, la – 1a, uhìu - nhìn. Их также легко можно исправить используя 
+            программы проверки орфографии. Встроенная функция постобработки может помочь 
+            исправить многие из вышеупомянутых ошибок.</p>
+        <p>Ошибки последней категории труднее всего обнаружить, поскольку они являются
+            семантическими, что означает, что слова являются действительными элементами
+            словаря, но неверны в контексте, например: tinh – tình, vân – vấn. Эти ошибки требуют, 
+            чтобы редактор сам нашёл их в полученном тексте и вручную исправил в соответствии 
+            с исходным изображением.</p>
         <p>Далее приведены инструкции по исправлению первых двух категорий ошибок OCR
             используя встроенный функционал:</p>
         <ol style="margin-top: 0in" start="1" type="1">
@@ -109,15 +114,15 @@
                 так после распознавания символов каждая строка становится отдельным 1-строчным 
                 абзацем. Используйте <i>Удалить разрывы строк</i> в меню <i>Формат</i>.  
                 Обратите внимание, что эта операция может не понадобиться для стихов.</li>
-            <li>Select <i>Change Case</i>, also under <i>Format</i> menu, and choose <i>Sentence
-                case</i> to correct most of the letter case errors. Locate and fix the rest of remaining
-                letter case errors.</li>
-            <li>Исправление опечаток с помощью встроенной <i>Проверки орфографии</i>.</li>
+            <li>Выберите <i>Изменить регистр</i>, также расположенный в меню <i>Формат</i>, 
+                выберите из <i>Предложенных вариантов</i> необходимый, чтобы исправить большинство 
+                ошибок при определении регистра. Оставшиеся ошибки исправьте вручную.</li>
+            <li>Исправьте опечатки с помощью встроенной <i>Проверки орфографии</i>.</li>
         </ol>
-<p>Through the above process, most of common errors can be eliminated. The remaining,
-            semantic errors are few, but it requires a human editor to read though and make
-            necessary edits to make the document like the original scanned document, and error-free
-            if desired.</p>
+<p>С помощью описанного выше процесса можно устранить большинство распространенных 
+            ошибок. Оставшихся семантических ошибок не так много, но для их исправления 
+            требуется участие человека, чтобы сделать текст похожим на исходный 
+            отсканированный документ и, при желании, не содержащий ошибок.</p>
         <p>Если есть вопросы, обратитесь на <a href="http://sourceforge.net/projects/vietocr/forums">
                 Форум VietOCR</a>.</p>
         <hr>
