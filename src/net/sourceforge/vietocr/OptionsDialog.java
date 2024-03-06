@@ -196,7 +196,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         jPanelDangAmbigsPath.add(jButtonDangAmbigs, gridBagConstraints);
 
         jTextFieldDangAmbigs.setEditable(false);
-        jTextFieldDangAmbigs.setPreferredSize(new java.awt.Dimension(200, 20));
+        jTextFieldDangAmbigs.setPreferredSize(new java.awt.Dimension(200, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -223,7 +223,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         jPanelWatchFolder.add(jLabelWatch, gridBagConstraints);
 
         jTextFieldWatch.setEditable(false);
-        jTextFieldWatch.setPreferredSize(new java.awt.Dimension(200, 20));
+        jTextFieldWatch.setPreferredSize(new java.awt.Dimension(200, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -241,7 +241,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         jPanelWatchFolder.add(jLabelOutput, gridBagConstraints);
 
         jTextFieldOutput.setEditable(false);
-        jTextFieldOutput.setPreferredSize(new java.awt.Dimension(200, 20));
+        jTextFieldOutput.setPreferredSize(new java.awt.Dimension(200, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;

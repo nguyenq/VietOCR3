@@ -136,7 +136,7 @@ public class BulkDialog extends javax.swing.JDialog {
         jPanelImageFolder.add(jLabelInput, gridBagConstraints);
 
         jTextFieldFolder.setEditable(false);
-        jTextFieldFolder.setPreferredSize(new java.awt.Dimension(200, 20));
+        jTextFieldFolder.setPreferredSize(new java.awt.Dimension(200, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -154,7 +154,7 @@ public class BulkDialog extends javax.swing.JDialog {
         jPanelImageFolder.add(jLabelOutput, gridBagConstraints);
 
         jTextFieldOutput.setEditable(false);
-        jTextFieldOutput.setPreferredSize(new java.awt.Dimension(200, 20));
+        jTextFieldOutput.setPreferredSize(new java.awt.Dimension(200, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;

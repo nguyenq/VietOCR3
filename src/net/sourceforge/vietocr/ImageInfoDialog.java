@@ -105,7 +105,7 @@ public class ImageInfoDialog extends javax.swing.JDialog {
 
         jTextFieldWidth.setEditable(false);
         jTextFieldWidth.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextFieldWidth.setPreferredSize(new java.awt.Dimension(40, 20));
+        jTextFieldWidth.setPreferredSize(new java.awt.Dimension(40, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 18;
@@ -114,7 +114,7 @@ public class ImageInfoDialog extends javax.swing.JDialog {
 
         jTextFieldHeight.setEditable(false);
         jTextFieldHeight.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextFieldHeight.setPreferredSize(new java.awt.Dimension(40, 20));
+        jTextFieldHeight.setPreferredSize(new java.awt.Dimension(40, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -124,7 +124,7 @@ public class ImageInfoDialog extends javax.swing.JDialog {
 
         jTextFieldXRes.setEditable(false);
         jTextFieldXRes.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextFieldXRes.setPreferredSize(new java.awt.Dimension(40, 20));
+        jTextFieldXRes.setPreferredSize(new java.awt.Dimension(40, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -134,7 +134,7 @@ public class ImageInfoDialog extends javax.swing.JDialog {
 
         jTextFieldYRes.setEditable(false);
         jTextFieldYRes.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextFieldYRes.setPreferredSize(new java.awt.Dimension(40, 20));
+        jTextFieldYRes.setPreferredSize(new java.awt.Dimension(40, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -186,7 +186,7 @@ public class ImageInfoDialog extends javax.swing.JDialog {
 
         jTextFieldBitDepth.setEditable(false);
         jTextFieldBitDepth.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextFieldBitDepth.setPreferredSize(new java.awt.Dimension(40, 20));
+        jTextFieldBitDepth.setPreferredSize(new java.awt.Dimension(40, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;

@@ -112,6 +112,7 @@ public class SplitPdfDialog extends javax.swing.JDialog {
         jPanel1.add(jLabelOutput, gridBagConstraints);
 
         jTextFieldInputFile.setEditable(false);
+        jTextFieldInputFile.setPreferredSize(new java.awt.Dimension(64, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -120,6 +121,7 @@ public class SplitPdfDialog extends javax.swing.JDialog {
         jPanel1.add(jTextFieldInputFile, gridBagConstraints);
 
         jTextFieldOutputFile.setEditable(false);
+        jTextFieldOutputFile.setPreferredSize(new java.awt.Dimension(64, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -182,6 +184,7 @@ public class SplitPdfDialog extends javax.swing.JDialog {
         jPanel1.add(jLabelFrom, gridBagConstraints);
 
         jTextFieldFrom.setColumns(3);
+        jTextFieldFrom.setPreferredSize(new java.awt.Dimension(47, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -198,6 +201,7 @@ public class SplitPdfDialog extends javax.swing.JDialog {
         jPanel1.add(jLabelTo, gridBagConstraints);
 
         jTextFieldTo.setColumns(3);
+        jTextFieldTo.setPreferredSize(new java.awt.Dimension(47, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 2;
@@ -231,6 +235,7 @@ public class SplitPdfDialog extends javax.swing.JDialog {
 
         jTextFieldNumOfPages.setColumns(3);
         jTextFieldNumOfPages.setText("20");
+        jTextFieldNumOfPages.setPreferredSize(new java.awt.Dimension(47, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 3;
