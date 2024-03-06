@@ -60,6 +60,9 @@
               <Connection code="&quot;Sentence_case&quot;" type="code"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jPanel1.add(Box.createVerticalStrut(3));"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioButtonLower">
           <Properties>
@@ -73,6 +76,9 @@
               <Connection code="&quot;lowercase&quot;" type="code"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jPanel1.add(Box.createVerticalStrut(3));"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioButtonUpper">
           <Properties>
@@ -86,6 +92,9 @@
               <Connection code="&quot;UPPERCASE&quot;" type="code"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jPanel1.add(Box.createVerticalStrut(3));"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRadioButtonTitle">
           <Properties>
