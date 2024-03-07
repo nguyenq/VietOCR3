@@ -452,7 +452,9 @@ public class OptionsDialog extends javax.swing.JDialog {
             public void run() {
                 FormLocalizer localizer = new FormLocalizer(OptionsDialog.this, OptionsDialog.class);
                 localizer.ApplyCulture(bundle);
-                jTabbedPane1.setTitleAt(0, bundle.getString("Batch"));
+                jTabbedPane1.setTitleAt(1, bundle.getString("Batch"));
+                jTabbedPane1.setTitleAt(2, bundle.getString("BulkBatchOptions"));
+                jTabbedPane1.setTitleAt(3, bundle.getString("Hyphens"));
             }
         });
     }
