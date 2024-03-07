@@ -333,7 +333,7 @@ public class OptionsDialog extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jPanelBulkBatchOptions.add(jCheckBoxRemoveLineBreaks, gridBagConstraints);
 
-        jTabbedPane1.addTab("Bulk/Batch Options", jPanelBulkBatchOptions);
+        jTabbedPane1.addTab(bundle.getString("BulkBatchOptions"), jPanelBulkBatchOptions); // NOI18N
 
         jPanelHyphens.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 1, 1));
         jPanelHyphens.setLayout(new javax.swing.BoxLayout(jPanelHyphens, javax.swing.BoxLayout.Y_AXIS));
