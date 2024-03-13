@@ -1,0 +1,52 @@
+# Common settings that generally should always be used with your language specific settings
+
+# Auto detect text files and perform LF normalization
+*          text=auto
+
+#
+# The above will handle all files NOT found below
+#
+
+# Documents
+*.html     text diff=html
+*.md       text diff=markdown
+*.pdf      binary diff=astextplain
+*.txt      text
+
+# Graphics
+*.ico      binary
+*.png      binary
+*.tif      binary
+
+# Scripts
+*.sh       text eol=lf
+/ocr       text eol=lf
+*.bat      text eol=crlf
+
+#
+# Exclude files from exporting
+#
+.gitattributes text export-ignore
+.gitignore     text export-ignore
+.gitkeep       text export-ignore
+
+# Java sources
+*.form          text
+*.groovy        text diff=java
+*.java          text diff=java
+
+# These files are text and should be normalized (Convert crlf => lf)
+*.aff              text
+*.dic              text
+*.properties       text
+*.xml              text
+.tx/config         text
+manifest.mf        text
+tessdata/configs/* text
+
+# These files are binary and should be left untouched
+# (binary is a macro for -text -diff)
+*.dll           binary
+*.jar           binary
+*.traineddata   binary
+*.ttf           binary
