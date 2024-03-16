@@ -56,7 +56,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
      */
     @Override
     void jMenuItemMetadataActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -77,7 +77,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
      */
     @Override
     void jMenuItemDeskewActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -103,7 +103,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemAutocropActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -127,7 +127,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemCropActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -167,7 +167,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemRemoveLinesActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -202,7 +202,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemBrightnessActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -235,7 +235,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemContrastActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -269,7 +269,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemGammaActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -303,7 +303,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemThresholdActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -338,7 +338,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemGrayscaleActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -353,7 +353,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemMonochromeActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -368,7 +368,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemInvertActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -386,7 +386,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemSharpenActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -401,7 +401,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemSmoothActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -416,7 +416,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemBilateralActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -443,7 +443,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemDespeckle2x2ActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -476,7 +476,7 @@ public class GuiWithImage extends GuiWithBulkOCR {
 
     @Override
     void jMenuItemDespeckle3x3ActionPerformed(java.awt.event.ActionEvent evt) {
-        if (iioImageList == null) {
+        if (iioImageList.isEmpty()) {
             JOptionPane.showMessageDialog(this, bundle.getString("Please_load_an_image."), APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             return;
         }
