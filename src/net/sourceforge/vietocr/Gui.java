@@ -99,7 +99,7 @@ public class Gui extends JFrame {
     protected int imageIndex;
     int imageTotal;
     List<ImageIconScalable> imageList;
-    protected List<IIOImage> iioImageList;
+    protected List<IIOImage> iioImageList = new ArrayList<>();
     protected String inputfilename;
     protected ResourceBundle bundle;
     private String currentDirectory;
@@ -800,6 +800,7 @@ public class Gui extends JFrame {
         jFileChooser.setCurrentDirectory(currentDirectory == null ? null : new File(currentDirectory));
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("net/sourceforge/vietocr/Gui"); // NOI18N
         jFileChooser.setDialogTitle(bundle.getString("jButtonOpen.ToolTipText")); // NOI18N
+        jFileChooser.setMultiSelectionEnabled(true);
         FileFilter allImageFilter = new SimpleFilter("bmp;gif;jpg;jpeg;jp2;png;pnm;pbm;pgm;ppm;tif;tiff;pdf", bundle.getString("All_Image_Files"));
         FileFilter bmpFilter = new SimpleFilter("bmp", "Bitmap");
         FileFilter gifFilter = new SimpleFilter("gif", "GIF");
@@ -883,12 +884,12 @@ public class Gui extends JFrame {
         jPopupMenuSegmentedRegions.addPopupMenuListener(new PopupMenuListener() {
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-                jButtonSegmentedRegions.setText(jButtonSegmentedRegions.getText().replace('⏷', '⏶'));
+                jButtonSegmentedRegions.setText(jButtonSegmentedRegions.getText().replace('▾', '▴'));
             }
 
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-                jButtonSegmentedRegions.setText(jButtonSegmentedRegions.getText().replace('⏶', '⏷'));
+                jButtonSegmentedRegions.setText(jButtonSegmentedRegions.getText().replace('▴', '▾'));
             }
 
             @Override
@@ -1907,7 +1908,8 @@ public class Gui extends JFrame {
 
     /**
      * Sets language code for language name
-     * @param selectedLangs 
+     *
+     * @param selectedLangs
      */
     void setLangCode(List<String> selectedLangs) {
         List<String> selectedLangCodes = new ArrayList<>();
@@ -2056,7 +2058,7 @@ public class Gui extends JFrame {
     private void jMenuItemOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemOpenActionPerformed
         if (jFileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             currentDirectory = jFileChooser.getCurrentDirectory().getPath();
-            openFile(jFileChooser.getSelectedFile());
+            openFiles(jFileChooser.getSelectedFiles());
 
             for (int i = 0; i < fileFilters.length; i++) {
                 if (fileFilters[i] == jFileChooser.getFileFilter()) {
@@ -2073,6 +2075,17 @@ public class Gui extends JFrame {
      * @param selectedFile
      */
     public void openFile(final File selectedFile) {
+        openFiles(new File[]{selectedFile});
+    }
+
+    /**
+     * Opens images or text file.
+     *
+     * @param selectedFiles
+     */
+    void openFiles(final File[] selectedFiles) {
+        final File selectedFile = selectedFiles[0];
+
         if (!selectedFile.exists()) {
             JOptionPane.showMessageDialog(this, bundle.getString("File_not_exist"), APP_NAME, JOptionPane.ERROR_MESSAGE);
             return;
@@ -2112,7 +2125,7 @@ public class Gui extends JFrame {
         this.jMenuItemOCRAll.setEnabled(false);
 
         SwingWorker loadWorker = new SwingWorker<Void, Void>() {
-            private boolean shiftDown;
+            private final boolean shiftDown;
 
             {
                 shiftDown = isShiftDown;
@@ -2120,17 +2133,13 @@ public class Gui extends JFrame {
 
             @Override
             protected Void doInBackground() throws Exception {
-                if (shiftDown) {
-                    // open add
-                    if (iioImageList == null) {
-                        iioImageList = new ArrayList<>();
-                    }
-                    iioImageList.addAll(ImageIOHelper.getIIOImageList(selectedFile));
-                } else {
-                    iioImageList = ImageIOHelper.getIIOImageList(selectedFile);                 
+                if (!shiftDown) {
+                    iioImageList.clear();
                 }
-                    
-                imageList = ImageIconScalable.getImageList(iioImageList);   
+                for (File file : selectedFiles) {
+                    iioImageList.addAll(ImageIOHelper.getIIOImageList(file));
+                }
+                imageList = ImageIconScalable.getImageList(iioImageList);
                 inputfilename = selectedFile.getPath();
                 return null;
             }
@@ -2183,7 +2192,7 @@ public class Gui extends JFrame {
             JOptionPane.showMessageDialog(this, bundle.getString("Cannotloadimage"), APP_NAME, JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         if (isShiftDown) {
             imageIndex = imageTotal;
         } else {
@@ -2191,7 +2200,7 @@ public class Gui extends JFrame {
         }
 
         imageTotal = imageList.size();
-        
+
         scaleX = scaleY = 1f;
         isFitImageSelected = false;
 

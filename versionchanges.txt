@@ -338,3 +338,6 @@ Version 6.13.0 (13 March 2024)
 - Implement open add image functionality using Shift key
 - Additional localized strings
 - Update translations
+
+Version 6.13.1 (16 March 2024)
+- Support open multiple file selection
