@@ -91,7 +91,7 @@ public class GuiWithThumbnail extends Gui {
                         super.paintBorder(g);
                         if (this.isSelected()) {
                             g.setColor(new Color(0, 128, 128));
-                            g.fillRect(this.getWidth() - 10, this.getHeight() - 10, 10, 10);
+                            g.fillRect(this.getWidth() - 11, this.getHeight() - 11, 10, 10);
                         }
                     }
                 };
