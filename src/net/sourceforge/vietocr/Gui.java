@@ -2696,6 +2696,7 @@ public class Gui extends JFrame {
         displayImage();
         clearStack();
         setButton();
+        selectThumbnail(imageIndex);
     }//GEN-LAST:event_jComboBoxPageNumActionPerformed
 
     private void jCheckBoxMenuItemSegmentedRegionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemSegmentedRegionsActionPerformed
@@ -2840,6 +2841,14 @@ public class Gui extends JFrame {
      * Loads thumbnails.
      */
     void loadThumbnails() {
+        // to be implemented in subclass
+    }
+    
+    /**
+     * Selects thumbnail
+     * @param index 
+     */
+    void selectThumbnail(int index) {
         // to be implemented in subclass
     }
 

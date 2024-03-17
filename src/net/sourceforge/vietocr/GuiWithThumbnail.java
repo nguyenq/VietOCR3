@@ -15,8 +15,10 @@
  */
 package net.sourceforge.vietocr;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.util.Enumeration;
@@ -41,6 +43,17 @@ public class GuiWithThumbnail extends Gui {
         }
         loadWorker = new LoadThumbnailWorker();
         loadWorker.execute();
+    }
+
+    @Override
+    void selectThumbnail(int index) {
+        Enumeration<AbstractButton> buttons = group.getElements();
+        while (buttons.hasMoreElements()) {
+            JToggleButton button = (JToggleButton) buttons.nextElement();
+            if (((ThumbnailAction) button.getAction()).getIndex() == index) {
+                button.doClick();
+            }
+        }
     }
 
     /**
@@ -72,7 +85,17 @@ public class GuiWithThumbnail extends Gui {
 
             for (ThumbnailAction thumbAction : chunks) {
                 jPanelThumb.add(Box.createRigidArea((new Dimension(0, 7))));
-                JToggleButton thumbButton = new JToggleButton(thumbAction);
+                JToggleButton thumbButton = new JToggleButton(thumbAction) {
+                    @Override
+                    protected void paintBorder(Graphics g) {
+                        super.paintBorder(g);
+                        if (this.isSelected()) {
+                            g.setColor(new Color(0, 128, 128));
+                            g.fillRect(this.getWidth() - 10, this.getHeight() - 10, 10, 10);
+                        }
+                    }
+                };
+
                 group.add(thumbButton);
 
                 thumbButton.setMargin(new Insets(0, 0, 0, 0)); // remove paddings
@@ -89,6 +112,14 @@ public class GuiWithThumbnail extends Gui {
             }
             jPanelThumb.revalidate();
         }
+
+        @Override
+        protected void done() {
+            try {
+                selectThumbnail(imageIndex);
+            } catch (Exception ignore) {
+            }
+        }
     };
 
     /**
@@ -96,7 +127,7 @@ public class GuiWithThumbnail extends Gui {
      */
     private class ThumbnailAction extends AbstractAction {
 
-        int index;
+        private int index;
 
         /**
          * @param Icon - The thumbnail to show in the button.
@@ -107,7 +138,6 @@ public class GuiWithThumbnail extends Gui {
 
             // The short description becomes the tooltip of a button.
 //            putValue(SHORT_DESCRIPTION, desc);
-
             // The LARGE_ICON_KEY is the key for setting the
             // icon when an Action is applied to a button.
             putValue(LARGE_ICON_KEY, thumb);
