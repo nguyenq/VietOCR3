@@ -16,24 +16,19 @@
 package net.sourceforge.vietocr;
 
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.imageio.IIOImage;
 
-import net.sourceforge.tess4j.util.ImageIOHelper;
-import net.sourceforge.tess4j.util.ImageHelper;
 
 public class OCRImageEntity {
 
     /**
      * input images
      */
-    private List<IIOImage> oimages;
+    private final List<IIOImage> oimages;
     /**
      * input image File
      */
@@ -41,7 +36,7 @@ public class OCRImageEntity {
     /**
      * input filename
      */
-    private String inputfilename;
+    private final String inputfilename;
     /**
      * index of pages, such as in multi-page TIFF image
      */
@@ -53,7 +48,7 @@ public class OCRImageEntity {
     /**
      * double-sided page
      */
-    private boolean doublesided;
+    private final boolean doublesided;
     /**
      * Language code, which follows ISO 639-3 standard
      */

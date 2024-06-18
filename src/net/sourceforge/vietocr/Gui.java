@@ -222,7 +222,7 @@ public class Gui extends JFrame {
 
     @Override
     public List<Image> getIconImages() {
-        List<Image> images = new ArrayList<Image>();
+        List<Image> images = new ArrayList<>();
         images.add(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/ocr_small.png")).getImage());
         images.add(new javax.swing.ImageIcon(getClass().getResource("/com/fatcow/icons/ocr.png")).getImage());
         return images;

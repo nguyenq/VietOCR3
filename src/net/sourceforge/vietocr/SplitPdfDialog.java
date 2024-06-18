@@ -33,7 +33,11 @@ public class SplitPdfDialog extends javax.swing.JDialog {
     private File currentDirectory;
     protected ResourceBundle bundle;
 
-    /** Creates new form SplitPdfDialog */
+    /** 
+     * Creates new form SplitPdfDialog
+     * @param parent
+     * @param modal 
+     */
     public SplitPdfDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
