@@ -124,7 +124,7 @@ public class Utils {
             return;
         }
 
-        List<File> dirs = new ArrayList<File>();
+        List<File> dirs = new ArrayList<>();
 
         // process files first
         for (File file : files) {

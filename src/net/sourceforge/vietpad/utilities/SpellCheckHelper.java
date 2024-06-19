@@ -41,9 +41,9 @@ public class SpellCheckHelper {
     Highlighter.HighlightPainter myPainter = new WavyLineHighlighter(Color.red);
     String localeId;
     File baseDir;
-    static List<DocumentListener> lstList = new ArrayList<DocumentListener>();
+    static List<DocumentListener> lstList = new ArrayList<>();
     Hunspell.Dictionary spellDict;
-    static List<String> userWordList = new ArrayList<String>();
+    static List<String> userWordList = new ArrayList<>();
     static long mapLastModified = Long.MIN_VALUE;
 
     private final static Logger logger = Logger.getLogger(SpellCheckHelper.class.getName());
@@ -157,7 +157,7 @@ public class SpellCheckHelper {
      * @return
      */
     List<String> spellCheck(List<String> words) {
-        List<String> misspelled = new ArrayList<String>();
+        List<String> misspelled = new ArrayList<>();
 
         for (String word : words) {
             if (isMispelled(word)) {
@@ -175,7 +175,7 @@ public class SpellCheckHelper {
      * @return
      */
     List<String> parseText(String text) {
-        List<String> words = new ArrayList<String>();
+        List<String> words = new ArrayList<>();
         BreakIterator boundary = BreakIterator.getWordInstance();
         boundary.setText(text);
         int start = boundary.first();
@@ -196,7 +196,7 @@ public class SpellCheckHelper {
      * @return
      */
     public List<String> suggest(String misspelled) {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         list.add(misspelled);
         if (spellCheck(list).isEmpty()) {
             return null;

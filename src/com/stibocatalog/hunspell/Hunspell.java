@@ -38,6 +38,7 @@ public class Hunspell {
     /**
      * The instance of the HunspellManager, looks for the native lib in the
      * default directories
+     * @return 
      */
     public static Hunspell getInstance() throws UnsatisfiedLinkError, UnsupportedOperationException {
         return getInstance(null);
@@ -48,6 +49,7 @@ public class Hunspell {
      * the directory specified.
      *
      * @param libDir Optional absolute directory where the native lib can be found. 
+     * @return  
      */
     public static Hunspell getInstance(String libDir) throws UnsatisfiedLinkError, UnsupportedOperationException {
         if (hunspell != null) {
@@ -126,6 +128,7 @@ public class Hunspell {
      * Calculate the filename of the native hunspell lib.
      * The files have completely different names to allow them to live
      * in the same directory and avoid confusion.
+     * @return 
      */
     public static String libName() throws UnsupportedOperationException {
         String os = System.getProperty("os.name").toLowerCase();
@@ -145,8 +148,8 @@ public class Hunspell {
         String arch = System.getProperty("os.arch").toLowerCase();
 
         // Annoying that Java doesn't have consistent names for the arch types:
-        boolean x86 = arch.equals("x86") || arch.equals("i386") || arch.equals("i686");
-        boolean amd64 = arch.equals("x86_64") || arch.equals("amd64") || arch.equals("ia64n");
+//        boolean x86 = arch.equals("x86") || arch.equals("i386") || arch.equals("i686");
+//        boolean amd64 = arch.equals("x86_64") || arch.equals("amd64") || arch.equals("ia64n");
 
         if (os.startsWith("windows")) {
             return "libhunspell";
@@ -173,6 +176,9 @@ public class Hunspell {
      * @param baseFileName the base name of the dictionary, 
      * passing /dict/da_DK means that the files /dict/da_DK.dic
      * and /dict/da_DK.aff get loaded
+     * @return 
+     * @throws java.io.FileNotFoundException 
+     * @throws java.io.UnsupportedEncodingException 
      */
     public Dictionary getDictionary(String baseFileName)
             throws FileNotFoundException, UnsupportedEncodingException {
@@ -251,6 +257,7 @@ public class Hunspell {
          * Check if a word is spelled correctly
          *
          * @param word The word to check.
+         * @return 
          */
         public boolean misspelled(String word) {
             try {
@@ -263,6 +270,9 @@ public class Hunspell {
         /**
          * Convert a Java string to a zero terminated byte array, in the
          * encoding of the dictionary, as expected by the hunspell functions.
+         * @param str
+         * @return 
+         * @throws java.io.UnsupportedEncodingException
          */
         protected byte[] stringToBytes(String str)
                 throws UnsupportedEncodingException {
@@ -273,13 +283,13 @@ public class Hunspell {
          * Returns a list of suggestions
          *
          * @param word The word to check and offer suggestions for
+         * @return 
          */
         public List<String> suggest(String word) {
-            List<String> res = new ArrayList<String>();
+            List<String> res = new ArrayList<>();
             try {
-                int suggestionsCount = 0;
                 PointerByReference suggestions = new PointerByReference();
-                suggestionsCount = hsl.Hunspell_suggest(
+                int suggestionsCount = hsl.Hunspell_suggest(
                         hunspellDict, suggestions, stringToBytes(word));
 
                 // prevent NPE
@@ -321,12 +331,10 @@ public class Hunspell {
          * @return List of stems or null if the word doesn't exist in dictionary
          */
         public List<String> stem(String word) {
-            List<String> res = new ArrayList<String>();
+            List<String> res = new ArrayList<>();
             try {
-                int stemsCount = 0;
-
                 PointerByReference stems = new PointerByReference();
-                stemsCount = hsl.Hunspell_stem(
+                int stemsCount = hsl.Hunspell_stem(
                         hunspellDict, stems, stringToBytes(word));
 
                 if (stemsCount == 0) {

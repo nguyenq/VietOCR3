@@ -185,7 +185,7 @@ public class JImageLabel extends JLabel implements MouseMotionListener, MouseLis
      *
      */
     java.util.List<Rectangle> createSquares(Rectangle rect) {
-        java.util.List<Rectangle> ar = new ArrayList<Rectangle>();
+        java.util.List<Rectangle> ar = new ArrayList<>();
         if (moving) {
             return ar;
         }

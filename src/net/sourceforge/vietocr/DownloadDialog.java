@@ -70,7 +70,7 @@ public class DownloadDialog extends javax.swing.JDialog {
         bundle = ResourceBundle.getBundle("net/sourceforge/vietocr/DownloadDialog");
 
         baseDir = Utils.getBaseDir(DownloadDialog.this);
-        downloadTracker = new ArrayList<SwingWorker<File, Integer>>();
+        downloadTracker = new ArrayList<>();
         availableLanguageCodes = new Properties();
         availableDictionaries = new Properties();
 
@@ -227,7 +227,7 @@ public class DownloadDialog extends javax.swing.JDialog {
         contentLength = byteCount = 0;
         numOfConcurrentTasks = this.jList1.getSelectedIndices().length;
 
-        for (Object value : this.jList1.getSelectedValues()) {
+        for (Object value : this.jList1.getSelectedValuesList()) {
             String key = FindKey(lookupISO639, value.toString()); // Vietnamese -> vie
             if (key != null) {
                 try {
@@ -424,7 +424,7 @@ public class DownloadDialog extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         String[] available = availableLanguageCodes.keySet().toArray(new String[0]);
-        List<String> languageNames = new ArrayList<String>();
+        List<String> languageNames = new ArrayList<>();
         for (String key : available) {
             languageNames.add(this.lookupISO639.getProperty(key, key));
         }

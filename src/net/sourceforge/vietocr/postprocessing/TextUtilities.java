@@ -68,7 +68,7 @@ public class TextUtilities {
             File dataFile = new File(dangAmbigsFile);
             long fileLastModified = dataFile.lastModified();
             if (maps == null) {
-                maps = new ArrayList<LinkedHashMap<String, String>>();
+                maps = new ArrayList<>();
             } else {
                 if (fileLastModified <= mapLastModified) {
                     return maps; // no need to reload map
@@ -78,42 +78,40 @@ public class TextUtilities {
             mapLastModified = fileLastModified;
 
             for (int i = Processor.PLAIN; i <= Processor.REGEX; i++) {
-                maps.add(new LinkedHashMap<String, String>());
+                maps.add(new LinkedHashMap<>());
             }
 
-            InputStreamReader stream = new InputStreamReader(new FileInputStream(dangAmbigsFile), StandardCharsets.UTF_8);
-            BufferedReader bs = new BufferedReader(stream);
-            String str;
-            while ((str = bs.readLine()) != null) {
-                // strip BOM character
-                if (str.length() > 0 && str.charAt(0) == '\uFEFF') {
-                    str = str.substring(1);
+            try (InputStreamReader stream = new InputStreamReader(new FileInputStream(dangAmbigsFile), StandardCharsets.UTF_8);
+                    BufferedReader bs = new BufferedReader(stream)) {
+                String str;
+                while ((str = bs.readLine()) != null) {
+                    // strip BOM character
+                    if (str.length() > 0 && str.charAt(0) == '\uFEFF') {
+                        str = str.substring(1);
+                    }
+                    // skip empty line or line starts with # or without tab delimiters
+                    if (str.trim().length() == 0 || str.trim().startsWith("#") || !str.contains("\t")) {
+                        continue;
+                    }
+                    
+                    str = str.replaceAll("\t+", "\t");
+                    String[] parts = str.split("\t");
+                    if (parts.length < 3) {
+                        continue;
+                    }
+                    
+                    Integer type = Integer.valueOf(parts[0]);
+                    String key = parts[1];
+                    String value = parts[2];
+                    
+                    if (type < Processor.PLAIN || type > Processor.REGEX) {
+                        continue;
+                    }
+                    
+                    LinkedHashMap<String, String> hmap = maps.get(type);
+                    hmap.put(key, value);
                 }
-                // skip empty line or line starts with # or without tab delimiters
-                if (str.trim().length() == 0 || str.trim().startsWith("#") || !str.contains("\t")) {
-                    continue;
-                }
-
-                str = str.replaceAll("\t+", "\t");
-                String[] parts = str.split("\t");
-                if (parts.length < 3) {
-                    continue;
-                }
-
-                Integer type = Integer.parseInt(parts[0]);
-                String key = parts[1];
-                String value = parts[2];
-
-                if (type < Processor.PLAIN || type > Processor.REGEX) {
-                    continue;
-                }
-
-                LinkedHashMap<String, String> hmap = maps.get(type);
-                hmap.put(key, value);
             }
-
-            bs.close();
-            stream.close();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

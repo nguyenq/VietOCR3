@@ -413,7 +413,7 @@ public class BulkDialog extends javax.swing.JDialog {
      * @return the selectedFormats
      */
     public String getSelectedOutputFormats() {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         for (Component comp : jPopupMenu.getComponents()) {
             JCheckBoxMenuItem item = (JCheckBoxMenuItem) comp;
             if (item.isSelected()) {

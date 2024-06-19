@@ -32,7 +32,7 @@ import java.util.Queue;
 public class Watcher implements Runnable {
 
     private long lastTime = 0;
-    private List<File> lastFiles = new ArrayList<File>();
+    private List<File> lastFiles = new ArrayList<>();
     private File watchFolder;
     private final Queue<File> queue;
     private boolean firstTimeEntered = true;
@@ -126,7 +126,7 @@ public class Watcher implements Runnable {
     }
 
     public static void main(String[] args) {
-        Queue<File> queue = new LinkedList<File>();
+        Queue<File> queue = new LinkedList<>();
         File watchFolder = new File(System.getProperty("user.home"));
         Thread t = new Thread(new Watcher(queue, watchFolder));
         t.start();

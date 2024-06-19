@@ -90,7 +90,7 @@ public class GuiWithBulkOCR extends GuiWithFindReplace {
             statusFrame.toFront();
             statusFrame.getTextArea().append("\t-- " + bundle.getString("Beginning_of_task") + " --\n");
 
-            List<File> files = new ArrayList<File>();
+            List<File> files = new ArrayList<>();
             Utils.listImageFiles(files, new File(inputFolder));
 
             // instantiate SwingWorker for OCR

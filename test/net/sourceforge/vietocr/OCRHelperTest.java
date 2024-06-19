@@ -47,7 +47,7 @@ public class OCRHelperTest {
         String outputFormats = "text,hocr,pdf_textonly";
         String inputFolder = "samples";
         String outputFolder = "build/test/results";
-        List<File> files = new ArrayList<File>();
+        List<File> files = new ArrayList<>();
         Utils.listImageFiles(files, new File(inputFolder));
 
         for (File imageFile : files) {
