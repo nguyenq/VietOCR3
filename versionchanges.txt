@@ -341,3 +341,7 @@ Version 6.13.0 (13 March 2024)
 
 Version 6.13.1 (16 March 2024)
 - Support open multiple file selection
+
+Version 6.14.0 (24 June 2024)
+- Upgrade to Tesseract 5.4.1 (Tess4J 5.12.0)
+- Update dependencies
