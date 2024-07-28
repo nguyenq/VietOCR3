@@ -42,7 +42,7 @@ public class ConsoleApp {
         if (args[0].equals("-?") || args[0].equals("-help") || args.length == 1) {
             System.out.println("Usage: java -jar VietOCR.jar\n"
                     + "       (to launch the program in GUI mode)\n\n"
-                    + "   or  java -jar VietOCR.jar imagefile outputfile [-l lang] [--psm pagesegmode] [text|hocr|pdf|pdf_textonly|unlv|box|alto|tsv|lstmbox|wordstrbox] [postprocessing] [correctlettercases] [deskew] [removelines] [removelinebreaks]\n"
+                    + "   or  java -jar VietOCR.jar imagefile outputfile [-l lang] [--psm pagesegmode] [text|hocr|pdf|pdf_textonly|unlv|box|alto|page|tsv|lstmbox|wordstrbox] [postprocessing] [correctlettercases] [deskew] [removelines] [removelinebreaks]\n"
                     + "       (to execute the program in command-line mode)");
             return;
         }
@@ -58,7 +58,7 @@ public class ConsoleApp {
 
         ProcessingOptions options = new ProcessingOptions();
 
-        Set<String> outputFormatSet = new HashSet<String>();
+        Set<String> outputFormatSet = new HashSet<>();
         List<String> renderers = Arrays.asList(Utils.getNames(ITesseract.RenderedFormat.class));
         String curLangCode = "eng"; //default language
         String psm = "3"; // Fully automatic page segmentation, but no OSD (default)
