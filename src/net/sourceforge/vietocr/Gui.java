@@ -147,6 +147,12 @@ public class Gui extends JFrame {
         if (!supportDir.exists()) {
             supportDir.mkdirs();
         }
+        
+        // hide Scan button on Linux 64-bit. Sane jni binary does not include support for 64-bit
+        if (!WINDOWS && com.sun.jna.Platform.is64Bit()) {
+            this.jButtonScan.setVisible(false);
+            this.jMenuItemScan.setVisible(false);
+        }
 
         KeyEventDispatcher dispatcher = new KeyEventDispatcher() {
 
