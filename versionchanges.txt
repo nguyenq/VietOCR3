@@ -352,3 +352,7 @@ Version 6.15.0 (21 January 2025)
 
 Version 6.16.0 (15 February 2025)
 - Update Tess4J 5.15.0 and other dependencies
+
+Version 6.17.0 (7 June 2025)
+- Upgrade to Tesseract 5.5.1 (Tess4J 5.16.0)
+- Update dependencies
