@@ -362,3 +362,7 @@ Version 6.18.0 (11 December 2025)
 
 Version 6.19.0 (16 January 2026)
 - Upgrade to Tesseract 5.5.2 (Tess4J 5.18.0)
+
+Version 6.20.0 (26 May 2026)
+- Update Tess4J 5.19.0 & Lept4J 1.24.0
+- Update dependencies
