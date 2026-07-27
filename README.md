@@ -36,4 +36,4 @@ java -jar VietOCR.jar imagefile outputfile [-l lang] [--psm pagesegmode] [text|h
 
 ## Dependencies
 * [Java Runtime Environment 8 or later](https://www.oracle.com/java/technologies/downloads/)
-* On Windows: [Microsoft Visual C++ 2022 Redistributable Package](https://visualstudio.microsoft.com/downloads/)
+* On Windows: [Microsoft Visual C++ v14 Redistributable Package](https://visualstudio.microsoft.com/downloads/)
